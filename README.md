@@ -2,4 +2,4 @@
 Example Home Assistant Configs
 
 # UI
-![UI](screenshot.jpg)  
+![Interface](screenshot.jpg)  
