@@ -1,5 +1,5 @@
 # homeassistant
 Example Home Assistant Configs
 
-# UI
-![Interface](screenshot.jpg)  
+# Interface
+![UI](screenshot.jpg)  
