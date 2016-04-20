@@ -1,0 +1,204 @@
+#################################################################
+## Groups
+#################################################################
+
+  Automation Override:
+    - input_boolean.disable_security
+    - input_boolean.lights_morning_disable
+    - input_boolean.plex_lights_disable
+    - input_boolean.rainy_day_disable
+    - input_boolean.occupancy_lights_off_disable
+    - input_boolean.office_lights_sunset
+    - input_boolean.thermostat_home_away
+    - input_boolean.lights_away
+    - input_boolean.home_lights
+    - input_boolean.exterior_off_night
+    - input_boolean.exterior_on_sunset
+
+  Automation On Demand:
+    - input_boolean.livingroom_rainbow
+    - input_boolean.office_rainbow
+    - input_boolean.panic_mode
+
+  Living Room:
+    - light.living_room_lamp_1
+    - light.living_room_lamp_2
+    - sensor.living_room_temperature
+    - sensor.living_room_occupancy
+    - media_player.living_room
+
+  Bedroom:
+    - light.[REDACTED]s_nightstand
+    - light.[REDACTED]s_nightstand
+    - light.bedroom_lamp
+    - light.closet_lamp
+    - sensor.bedroom_temperature
+    - sensor.bedroom_occupancy
+
+  Interior Lights:
+    - group.living_room
+    - group.dining_room
+    - group.bedroom
+    - group.kitchen
+    - group.stairs
+    - group.[REDACTED]_office
+    - group.[REDACTED]_office
+    - group.basement
+    - light.hallway
+
+  Exterior Lights:
+    - group.front_porch
+    - group.back_door
+    - group.back_porch
+
+  [REDACTED] Office:
+    - light.office_ceiling
+    - light.office_lamp
+    - sensor.office_temperature
+    - sensor.office_occupancy
+    - media_player.plex_for_vizio_vizio_mtk
+
+  [REDACTED] Office:
+    - light.[REDACTED]s_office_ceiling_1
+    - light.[REDACTED]s_office_ceiling_2
+    - sensor.[REDACTED]_office_temperature
+    - sensor.[REDACTED]_office_occupancy
+
+  Kitchen:
+    - light.kitchen_ceiling
+    - light.kitchen_cabinets
+    - light.kitchen_sink
+    - sensor.kitchen_temperature
+    - sensor.kitchen_occupancy
+
+  Stairs:
+    - light.stairs_1
+    - light.stairs_2
+    - light.stairs_3 
+
+  Front Porch:
+    - light.front_porch_left
+    - light.front_porch_right
+
+  Back Door:
+    - light.back_door_left
+    - light.back_door_right
+
+  Back Porch:
+    - light.upper_patio_left
+    - light.upper_patio_right
+ 
+  Basement:
+    - light.basement_stairs
+    - light.basement_light
+
+  Household:
+    - device_tracker.[REDACTED]siphone
+    - device_tracker.[REDACTED]siphone
+
+  Dining Room:
+    - light.dining_room_table
+    - light.dining_room_ceiling
+    - thermostat.main_floor
+    - sensor.main_floor_temperature
+    - sensor.main_floor_humidity
+    - sensor.main_floor_occupancy
+
+  Media Player:
+    - media_player.living_room
+    - media_player.plex_for_vizio_vizio_mtk
+    - media_player.[REDACTED]s_iphone
+    - media_player.[REDACTED]s_ipad
+
+  Sensors:
+    - sensor.main_floor_occupancy
+    - sensor.living_room_occupancy
+    - sensor.kitchen_occupancy
+    - sensor.bedroom_occupancy
+    - sensor.office_occupancy
+    - sensor.[REDACTED]_office_occupancy
+
+  Weather:
+    - sun.sun
+    - sensor.weather_summary
+    - sensor.weather_temperature
+    - sensor.weather_apparent_temperature
+#    - sensor.weather_icon
+    - sensor.weather_precip
+    - sensor.weather_precip_probability
+    - sensor.weather_precip_intensity
+    - sensor.weather_humidity
+#    - sensor.weather_dew_point
+    - sensor.weather_cloud_coverage
+    - sensor.weather_nearest_storm_distance
+#    - sensor.weather_nearest_storm_bearing
+    - sensor.weather_wind_speed
+#    - sensor.weather_wind_bearing
+#    - sensor.weather_visibility
+#    - sensor.weather_ozone
+#    - sensor.weather_pressure
+
+  Home Lights:
+    - light.kitchen_cabinets
+    - light.living_room_lamp_1
+    - light.living_room_lamp_2
+    - light.hallway
+    - light.stairs_1
+    - light.stairs_2
+    - light.stairs_3
+    - light.back_door_left
+    - light.back_door_right
+    - light.front_porch_left
+    - light.front_porch_right
+    - light.dining_room_table
+
+  Device Location:
+    - device_tracker.[REDACTED]siphone
+    - device_tracker.[REDACTED]siphone
+    - device_tracker.[REDACTED]sipad
+    - device_tracker.[REDACTED]sipad
+    - device_tracker.macbookpro
+    - device_tracker.macbookair
+    - device_tracker.[REDACTED]smacbookair
+    - device_tracker.macpro
+
+  [REDACTED] Office Ceiling:
+    - light.[REDACTED]s_office_ceiling_1
+    - light.[REDACTED]s_office_ceiling_2
+
+  Rain Lights:
+    - light.kitchen_cabinets
+    - light.living_room_lamp_1
+    - light.living_room_lamp_2
+    - light.dining_room_table
+
+  Hue lights:
+    - light.[REDACTED]s_nightstand
+    - light.back_door_left
+    - light.back_door_right
+    - light.basement_light
+    - light.basement_stairs
+    - light.bedroom_lamp
+    - light.closet_lamp
+    - light.front_porch_left
+    - light.front_porch_right
+    - light.hallway
+    - light.living_room_lamp_1
+    - light.living_room_lamp_2
+    - light.office_lamp
+    - light.[REDACTED]s_nightstand
+    - light.[REDACTED]s_office_ceiling_1
+    - light.[REDACTED]s_office_ceiling_2
+    - light.stairs_1
+    - light.stairs_2
+    - light.stairs_3
+    - light.upper_patio_left
+    - light.upper_patio_right
+
+  Wink Lights:
+    - light.dining_room_ceiling
+    - light.dining_room_table
+    - light.kitchen_cabinets
+    - light.kitchen_ceiling
+    - light.kitchen_sink
+    - light.office_ceiling

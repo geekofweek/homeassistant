@@ -1,0 +1,138 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: [REDACTED]
+  longitude: [REDACTED]
+  # C for Celcius, F for Fahrenheit
+  temperature_unit: F
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/Chicago
+
+  customize: !include customize.yaml
+
+# Enables the frontend
+frontend:
+
+# Checks for available updates
+updater:
+
+# View all events in a logbook
+logbook:
+
+# Track the sun
+sun:
+
+# Allows you to issue voice commands from the frontend
+conversation:
+
+# Enables support for tracking state changes over time.
+history:
+
+# Discover some devices automatically
+discovery:
+
+# Show links to resources in log and frontend
+# introduction:
+
+#################################################################
+## Components
+#################################################################
+
+light:
+  platform: hue
+  host: [REDACTED]
+  allow_unreachable: true
+  scan_interval: 10
+
+media_player:
+  platform: plex
+#  list_sessions: True
+
+wink:
+  access_token: [REDACTED]
+
+ecobee:
+  api_key: [REDACTED]
+  hold_temp: False
+
+ifttt:
+  key: [REDACTED]
+
+device_tracker:
+  - platform: icloud
+    username: [REDACTED]
+    password: [REDACTED]
+    track_new_devices: yes
+    interval_seconds: 12
+  # Seconds to wait till marking someone as not home after not being seen
+    consider_home: 300
+  - platform: asuswrt
+    host: [REDACTED]
+    username: [REDACTED]
+    password: [REDACTED]
+  - platform: nmap_tracker
+    hosts: [REDACTED]
+    home_interval: 10
+
+sensor:
+  platform: forecast
+  api_key: [REDACTED]
+  monitored_conditions:
+    - summary
+#    - icon
+    - nearest_storm_distance
+#    - nearest_storm_bearing
+    - precip_type
+    - precip_intensity
+    - precip_probability
+    - temperature
+#    - apparent_temperature
+#    - dew_point
+    - wind_speed
+#    - wind_bearing
+    - cloud_cover
+    - humidity
+#    - pressure
+#    - visibility
+#    - ozone
+
+#################################################################
+## Zones
+#################################################################
+
+zone:
+
+  name: Work
+  latitude: [REDACTED]
+  longitude: [REDACTED]
+  radius: 250
+  icon: mdi:hospital-building
+
+zone 2:
+
+  name: Work
+  latitude: [REDACTED]
+  longitude: [REDACTED]
+  radius: 250
+  icon: mdi:hospital-building
+
+zone 3:
+
+  name: Work
+  latitude: [REDACTED]
+  longitude: [REDACTED]
+  radius: 250
+  icon: mdi:hospital-building
+
+#################################################################
+## Includes
+#################################################################
+
+group: !include groups.yaml
+
+scene: !include scenes.yaml
+
+automation: !include automation.yaml
+
+input_boolean: !include input_boolean.yaml

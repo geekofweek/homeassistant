@@ -1,0 +1,169 @@
+#################################################################
+## Customize
+#################################################################
+
+     thermostat.main_floor:
+#       entity_picture: /local/ecobee.jpeg
+       friendly_name: Ecobee3
+
+#devices
+
+     device_tracker.{Redacted}iphone:
+       icon: mdi:cellphone-iphone
+       friendly_name: [REDACTED] iPhone
+     device_tracker.sarasiphone:
+       icon: mdi:cellphone-iphone
+       friendly_name: [REDACTED] iPhone
+     device_tracker.[REDACTED]ipad:
+       icon: mdi:tablet-ipad
+     device_tracker.[REDACTED]ipad:
+       icon: mdi:tablet-ipad
+     device_tracker.macbookair:
+       icon: mdi:laptop-mac
+     device_tracker.macbookpro:
+       icon: mdi:laptop-mac
+     device_tracker.[REDACTED]macbookair:
+       icon: mdi:laptop-mac
+     device_tracker.macpro:
+       icon: mdi:desktop-mac
+
+#weather
+
+     sensor.weather_temperature:
+       friendly_name: 'Outdoor Temperature'
+     sensor.weather_summary:
+       icon: mdi:weather-sunny
+     sensor.weather_apparent_temperature:
+       icon: mdi:thermometer-lines
+     sensor.weather_precip:
+       icon: mdi:weather-pouring
+     sensor.weather_precip_probability:
+       icon: mdi:weather-pouring
+     sensor.weather_precip_intensity:
+       icon: mdi:weather-pouring
+       friendly_name: 'Rainfall'
+     sensor.weather_humidity:
+       icon: mdi:water-percent
+       friendly_name: 'Outdoor Humidity'
+     sensor.weather_cloud_coverage:
+       icon: mdi:weather-cloudy
+     sensor.weather_nearest_storm_distance:
+       icon: mdi:weather-lightning
+     sensor.weather_wind_speed:
+       icon: mdi:weather-windy
+     sensor.main_floor_humidity:
+       icon: mdi:water-percent
+
+     media_player.living_room:
+       friendly_name: Apple TV
+     media_player.plex_for_vizio_vizio_mtk:
+       friendly_name: Office TV
+
+#Hidden Groups/Lights/Scenes
+
+     group.household:
+       hidden: true
+     group.home_lights:
+       hidden: true
+     group.rain_lights:
+       hidden: true
+     group.hue_lights:
+       hidden: true
+     group.wink_lights:
+       hidden: true
+     scene.security:
+       hidden: true
+#     light.back_door_right:
+#       hidden: true
+#     light.front_porch_left:
+#       hidden: true
+#     light.front_porch_right:
+#       hidden: true
+#     light.upper_patio_left:
+#       hidden: true
+#     light.upper_patio_right:
+#       hidden: true
+     light.stairs_1:
+       hidden: true
+     light.stairs_2:
+       hidden: true
+     light.stairs_3:
+       hidden: true
+#     light.back_door_left:
+#       hidden: true
+#     light.back_door_right:
+#       hidden: true
+#     light.saras_office_ceiling_1:
+#       hidden: true
+#     light.saras_office_ceiling_2:
+#       hidden: true
+     light.[REDACTED]s_nightstand_2:
+       hidden: true
+     light.[REDACTED]s_nightstand_2:
+       hidden: true
+
+#Wink Ecobee
+
+     sensor.bedroom_temperature_2:
+       hidden: true
+     sensor.kitchen_temperature_2:
+       hidden: true
+     sensor.living_room_temperature_2:
+       hidden: true
+     sensor.office_temperature_2:
+       hidden: true
+     sensor.[REDACTED]_office_temperature_2:
+       hidden: true
+     binary_sensor.bedroom:
+       hidden: true
+     binary_sensor.kitchen:
+       hidden: true
+     binary_sensor.living_room:
+       hidden: true
+     binary_sensor.office:
+       hidden: true
+     binary_sensor.[REDACTED]_office:
+       hidden: true
+
+#Wink Hue Bulbs
+    
+     light.back_door_left_2:
+       hidden: true
+     light.back_door_right_2:
+       hidden: true
+     light.basement_2:
+       hidden: true
+     light.bedroom_lamp_2:
+       hidden: true
+     light.closet_lamp_2:
+       hidden: true
+     light.front_porch_left_2:
+       hidden: true
+     light.front_porch_right_2:
+       hidden: true
+     light.hallway_2:
+       hidden: true
+     light.living_room_lamp_1_2:
+       hidden: true
+     light.living_room_lamp_2_2:
+       hidden: true
+     light.office_lamp_2:
+       hidden: true
+     light.stairs_1_2:
+       hidden: true
+     light.stairs_2_2:
+       hidden: true
+     light.stairs_3_2:
+       hidden: true
+     light.upper_patio_left_2:
+       hidden: true
+     light.upper_patio_right_2:
+       hidden: true
+     light.basement_light_2:
+       hidden: true
+     light.basement_stairs_2:
+       hidden: true
+     light.[REDACTED]s_office_ceiling_1_2:
+       hidden: true
+     light.[REDACTED]s_office_ceiling_2_2:
+       hidden: true
