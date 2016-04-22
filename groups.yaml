@@ -2,6 +2,55 @@
 ## Groups
 #################################################################
 
+  default_view:
+    view: yes
+    icon: mdi:home
+    entities:
+      - group.living_room
+      - group.dining_room
+      - group.kitchen
+      - group.bedroom
+      - group.[REDACTED]_office
+      - group.[REDACTED]_office
+      - group.basement
+      - group.exterior_lights
+      - group.interior_lights
+      - group.automation_on_demand
+      - group.garage
+      - group.household
+
+  sensors:
+    name: Sensors
+    view: yes
+    icon: mdi:gauge
+    entities:
+      - group.occupancy
+      - group.device_location
+      - group.weather
+      - group.speedtest
+
+  cameras:
+    name: Cameras
+    view: yes
+    icon: mdi:camera
+    entities:
+      - camera.garage_camera
+
+  media:
+    name: Media
+    view: yes
+    icon: mdi:play-circle-outline
+    entities:
+      - group.media_player
+
+  automation:
+    name: Automation
+    view: yes
+    icon: mdi:settings
+    entities:
+      - group.automation_override
+      - group.automation_on_demand
+
   Automation Override:
     - input_boolean.disable_security
     - input_boolean.lights_morning_disable
@@ -59,8 +108,7 @@
     - media_player.plex_for_vizio_vizio_mtk
 
   [REDACTED] Office:
-    - light.[REDACTED]s_office_ceiling_1
-    - light.[REDACTED]s_office_ceiling_2
+    - group.[REDACTED]_office_ceiling
     - sensor.[REDACTED]_office_temperature
     - sensor.[REDACTED]_office_occupancy
 
@@ -104,13 +152,16 @@
     - sensor.main_floor_humidity
     - sensor.main_floor_occupancy
 
+  Garage:
+    - camera.garage_camera
+
   Media Player:
     - media_player.living_room
     - media_player.plex_for_vizio_vizio_mtk
     - media_player.[REDACTED]s_iphone
     - media_player.[REDACTED]s_ipad
 
-  Sensors:
+  Occupancy:
     - sensor.main_floor_occupancy
     - sensor.living_room_occupancy
     - sensor.kitchen_occupancy
@@ -165,6 +216,11 @@
   [REDACTED] Office Ceiling:
     - light.[REDACTED]s_office_ceiling_1
     - light.[REDACTED]s_office_ceiling_2
+
+  speedtest:
+    - sensor.speedtest_ping    
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
 
   Rain Lights:
     - light.kitchen_cabinets
