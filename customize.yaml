@@ -27,6 +27,22 @@
      device_tracker.macpro:
        icon: mdi:desktop-mac
 
+#sensors
+     binary_sensor.front_door:
+       icon: mdi:home
+       friendly_name: Front Door
+     binary_sensor.back_door:
+       icon: mdi:home
+       friendly_name: Back Door
+     binary_sensor.basement_door:
+       icon: mdi:home
+       friendly_name: Basement Door
+       
+#switches
+     switch.air_purifier:
+       icon: mdi:fan
+       friendly_name: Air Purifier
+
 #weather
 
      sensor.weather_temperature:
@@ -61,8 +77,6 @@
 
 #Hidden Groups/Lights/Scenes
 
-#     group.household:
-#       hidden: true
      group.home_lights:
        hidden: true
      group.rain_lights:
@@ -73,30 +87,13 @@
        hidden: true
      scene.security:
        hidden: true
-#     light.back_door_right:
-#       hidden: true
-#     light.front_porch_left:
-#       hidden: true
-#     light.front_porch_right:
-#       hidden: true
-#     light.upper_patio_left:
-#       hidden: true
-#     light.upper_patio_right:
-#       hidden: true
+
      light.stairs_1:
        hidden: true
      light.stairs_2:
        hidden: true
      light.stairs_3:
        hidden: true
-#     light.back_door_left:
-#       hidden: true
-#     light.back_door_right:
-#       hidden: true
-#     light.[REDACTED]s_office_ceiling_1:
-#       hidden: true
-#     light.[REDACTED]s_office_ceiling_2:
-#       hidden: true
      light.[REDACTED]s_nightstand_2:
        hidden: true
      light.[REDACTED]s_nightstand_2:

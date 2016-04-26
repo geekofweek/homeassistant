@@ -26,6 +26,7 @@
     entities:
       - group.occupancy
       - group.device_location
+      - group.doors
       - group.weather
       - group.speedtest
 
@@ -55,6 +56,8 @@
     - input_boolean.disable_security
     - input_boolean.lights_morning_disable
     - input_boolean.plex_lights_disable
+    - input_boolean.door_open_lights_on
+    - input_boolean.occupancy_air_purifier_on_off_disable
     - input_boolean.rainy_day_disable
     - input_boolean.occupancy_lights_off_disable
     - input_boolean.office_lights_sunset
@@ -74,6 +77,7 @@
     - light.living_room_lamp_2
     - sensor.living_room_temperature
     - sensor.living_room_occupancy
+    - binary_sensor.front_door
     - media_player.living_room
 
   Bedroom:
@@ -103,6 +107,7 @@
   [REDACTED] Office:
     - light.office_ceiling
     - light.office_lamp
+    - switch.air_purifier
     - sensor.office_temperature
     - sensor.office_occupancy
     - media_player.plex_for_vizio_vizio_mtk
@@ -118,6 +123,7 @@
     - light.kitchen_sink
     - sensor.kitchen_temperature
     - sensor.kitchen_occupancy
+    - binary_sensor.back_door
 
   Stairs:
     - light.stairs_1
@@ -139,6 +145,7 @@
   Basement:
     - light.basement_stairs
     - light.basement_light
+    - binary_sensor.basement_door
 
   Household:
     - device_tracker.[REDACTED]siphone
@@ -216,6 +223,11 @@
   [REDACTED] Office Ceiling:
     - light.[REDACTED]s_office_ceiling_1
     - light.[REDACTED]s_office_ceiling_2
+    
+  Doors:
+    - binary_sensor.front_door
+    - binary_sensor.back_door
+    - binary_sensor.basement_door
 
   speedtest:
     - sensor.speedtest_ping    

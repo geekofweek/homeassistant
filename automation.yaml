@@ -240,6 +240,123 @@
      entity_id: group.front_porch
 
         ##########################################################
+        ## Turn On Front Porch when Door Opens
+        ##########################################################
+
+- alias: Turn on Front Porch when Door Opens
+
+  trigger:
+       - platform: state
+         entity_id: binary_sensor.front_door
+         from: 'off'
+         to: 'on'
+
+  condition:
+       - platform: state
+         entity_id: sun.sun
+         state: 'below_horizon'
+       - platform: state
+         entity_id: input_boolean.door_open_lights_on
+         state: 'off'
+       - platform: state
+         entity_id: group.household
+         state: 'home'
+
+  action:
+     service: light.turn_on
+     entity_id: group.front_porch
+     data:
+       brightness: 255
+
+        ##########################################################
+        ## Reset Front Door Brightness when Door Closes
+        ##########################################################
+
+- alias: Reset Front Porch Brightness when Door Closes
+
+  trigger:
+       - platform: state
+         entity_id: binary_sensor.front_door
+         from: 'on'
+         to: 'off'
+
+  condition:
+       - platform: state
+         entity_id: sun.sun
+         state: 'below_horizon'
+       - platform: state
+         entity_id: input_boolean.door_open_lights_on
+         state: 'off'
+       - platform: state
+         entity_id: group.household
+         state: 'home'
+
+  action:
+     service: light.turn_on
+     entity_id: group.front_porch
+     data:
+       brightness: 50
+
+        ##########################################################
+        ## Turn On Living Room when Door Opens
+        ##########################################################
+
+- alias: Turn on Front Porch when Door Opens
+
+  trigger:
+       - platform: state
+         entity_id: binary_sensor.front_door
+         from: 'off'
+         to: 'on'
+
+  condition:
+       - platform: state
+         entity_id: sun.sun
+         state: 'below_horizon'
+       - platform: state
+         entity_id: input_boolean.door_open_lights_on
+         state: 'off'
+       - platform: state
+         entity_id: group.household
+         state: 'home'
+
+  action:
+     service: light.turn_on
+     entity_id: group.living_room
+     data:
+      xy_color: [ 0.5134, 0.4149 ]
+      brightness: 255
+
+        ##########################################################
+        ## Turn On Back Door when Door Opens
+        ##########################################################
+
+- alias: Turn on Back Door when Door Opens
+
+  trigger:
+       - platform: state
+         entity_id: binary_sensor.back_door
+         from: 'off'
+         to: 'on'
+
+  condition:
+       - platform: state
+         entity_id: sun.sun
+         state: 'below_horizon'
+       - platform: state
+         entity_id: input_boolean.door_open_lights_on
+         state: 'off'
+       - platform: state
+         entity_id: group.household
+         state: 'home'
+
+  action:
+     service: light.turn_on
+     entity_id: group.back_door
+     data:
+      brightness: 150
+
+        ##########################################################
         ## Turn On Front Porch at Sunset
         ##########################################################
 
@@ -382,7 +499,7 @@
 
   action:
      service: light.turn_off
-     entity_id: light.dining_room_table, light.kitchen_cabinets, group.living_room, group.back_door
+     entity_id: group.interior_lights
 
 
         ##########################################################
@@ -423,6 +540,51 @@
   action:
      service: light.turn_off
      entity_id: group.[REDACTED]_office
+
+        ##########################################################
+        ## Turn on Office Air Purifier when Occupied
+        ##########################################################
+
+- alias: Turn on Office Air Purifier when Occupied
+
+  trigger:
+       - platform: state
+         entity_id: sensor.office_occupancy
+         from: 'false'
+         to: 'true'
+
+  condition:
+       - platform: state
+         entity_id: input_boolean.occupancy_air_purifier_on_off_disable
+         state: 'off'
+       - platform: state
+         entity_id: device_tracker.[REDACTED]siphone
+         state: 'home'         
+
+  action:
+     service: switch.turn_on
+     entity_id: switch.air_purifier
+
+        ##########################################################
+        ## Turn off Office Air Purifier when Unoccupied
+        ##########################################################
+
+- alias: Turn off Office Air Purifier when Unoccupied
+
+  trigger:
+       - platform: state
+         entity_id: sensor.office_occupancy
+         from: 'true'
+         to: 'false'
+
+  condition:
+       - platform: state
+         entity_id: input_boolean.occupancy_air_purifier_on_off_disable
+         state: 'off'     
+
+  action:
+     service: switch.turn_off
+     entity_id: switch.air_purifier
 
         ##########################################################
         ## Turn off [REDACTED] Office when Unoccupied
@@ -595,6 +757,9 @@
      - platform: state
        entity_id: sensor.living_room_occupancy
        state: 'true'
+     - platform: state
+       entity_id: group.household
+       state: 'home'
 
   action:
      service: light.turn_on
@@ -624,6 +789,9 @@
      - platform: state
        entity_id: input_boolean.office_lights_sunset
        state: 'off'
+     - platform: state
+       entity_id: device_tracker.[REDACTED]siphone
+       state: 'home'
 
   action:
      service: light.turn_on
@@ -651,6 +819,9 @@
      - platform: state
        entity_id: input_boolean.office_lights_sunset
        state: 'off'
+     - platform: state
+       entity_id: device_tracker.[REDACTED]siphone
+       state: 'home'
 
   action:
      service: light.turn_on
@@ -707,6 +878,9 @@
        - platform: state
          entity_id: input_boolean.rainy_day_disable
          state: 'off'
+       - platform: state
+         entity_id: group.household
+         state: 'home'
 
   action:
     service: light.turn_on
@@ -752,6 +926,9 @@
        - platform: state
          entity_id: input_boolean.rainy_day_disable
          state: 'off'
+       - platform: state
+         entity_id: device_tracker.[REDACTED]siphone
+         state: 'home'
 
   action:
     service: light.turn_on
@@ -797,6 +974,9 @@
        - platform: state
          entity_id: input_boolean.rainy_day_disable
          state: 'off'
+       - platform: state
+         entity_id: device_tracker.[REDACTED]siphone
+         state: 'home'
 
   action:
     service: light.turn_on
@@ -932,6 +1112,26 @@
          entity_id: sensor.[REDACTED]_office_occupancy
          from: 'false'
          to: 'true'
+
+  condition:
+       - platform: state
+         entity_id: group.household
+         state: 'not_home'
+       - platform: state
+         entity_id: input_boolean.disable_security
+         state: 'off'
+
+  action:
+    service: scene.turn_on
+    entity_id: scene.security
+
+- alias: Security Door Open
+
+  trigger:
+       - platform: state
+         entity_id: group.doors
+         from: 'off'
+         to: 'on'
 
   condition:
        - platform: state
