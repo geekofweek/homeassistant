@@ -4,6 +4,8 @@
 
   - name: Security
     entities:
+        input_boolean.alarm_tripped:
+            state: on
         group.hue_lights:
             state: on
             flash: long
@@ -12,3 +14,5 @@
         group.wink_lights:
             state: on
             brightness: 255
+        switch.siren:
+            state: on

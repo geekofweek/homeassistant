@@ -24,9 +24,8 @@
     view: yes
     icon: mdi:gauge
     entities:
-      - group.occupancy
       - group.device_location
-      - group.doors
+      - group.alarm
       - group.weather
       - group.speedtest
 
@@ -162,6 +161,19 @@
   Garage:
     - camera.garage_camera
 
+  Alarm:
+    - input_boolean.alarm_tripped
+    - switch.siren
+    - binary_sensor.front_door
+    - binary_sensor.back_door
+    - binary_sensor.basement_door
+    - sensor.main_floor_occupancy
+    - sensor.living_room_occupancy
+    - sensor.kitchen_occupancy
+    - sensor.bedroom_occupancy
+    - sensor.office_occupancy
+    - sensor.[REDACTED]_office_occupancy
+
   Media Player:
     - media_player.living_room
     - media_player.plex_for_vizio_vizio_mtk
@@ -201,9 +213,6 @@
     - light.living_room_lamp_1
     - light.living_room_lamp_2
     - light.hallway
-    - light.stairs_1
-    - light.stairs_2
-    - light.stairs_3
     - light.back_door_left
     - light.back_door_right
     - light.front_porch_left

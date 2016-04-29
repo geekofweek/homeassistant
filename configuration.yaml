@@ -47,10 +47,10 @@ light:
 
 media_player:
   platform: plex
-#  list_sessions: True
 
 wink:
   access_token: [REDACTED]
+#  scan_interval: 10
 
 ecobee:
   api_key: [REDACTED]
@@ -82,6 +82,12 @@ camera:
   port: 88
   username: [REDACTED]
   password: [REDACTED]
+
+notify:
+  platform: googlevoice
+  username: [REDACTED]
+  password: [REDACTED]
+  name: text_message
 
 sensor:
   platform: speedtest
@@ -144,6 +150,8 @@ zone 3:
 #################################################################
 ## Includes
 #################################################################
+
+#zone: !include zones.yaml
 
 group: !include groups.yaml
 

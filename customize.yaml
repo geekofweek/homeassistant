@@ -42,6 +42,9 @@
      switch.air_purifier:
        icon: mdi:fan
        friendly_name: Air Purifier
+     switch.siren:
+       icon: mdi:shield-outline
+       friendly_name: Alarm Siren
 
 #weather
 
@@ -77,6 +80,10 @@
 
 #Hidden Groups/Lights/Scenes
 
+     group.doors:
+       hidden: true
+     group.occupancy:
+       hidden: true
      group.home_lights:
        hidden: true
      group.rain_lights:
@@ -87,16 +94,11 @@
        hidden: true
      scene.security:
        hidden: true
-
      light.stairs_1:
        hidden: true
      light.stairs_2:
        hidden: true
      light.stairs_3:
-       hidden: true
-     light.[REDACTED]s_nightstand_2:
-       hidden: true
-     light.[REDACTED]s_nightstand_2:
        hidden: true
 
 #Wink Ecobee
@@ -163,4 +165,8 @@
      light.[REDACTED]s_office_ceiling_1_2:
        hidden: true
      light.[REDACTED]s_office_ceiling_2_2:
+       hidden: true
+     light.[REDACTED]s_nightstand_2:
+       hidden: true
+     light.[REDACTED]s_nightstand_2:
        hidden: true

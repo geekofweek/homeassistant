@@ -377,7 +377,7 @@
      entity_id: group.front_porch
      data:
      # 900 seconds = 15 minutes
-       transition: 600
+       transition: 300
        brightness: 50
 
         ##########################################################
@@ -1144,3 +1144,18 @@
   action:
     service: scene.turn_on
     entity_id: scene.security
+
+- alias: Security Notify
+
+  trigger:
+       - platform: state
+         entity_id: input_boolean.alarm_tripped
+         from: 'off'
+         to: 'on'
+
+  action:
+    service: notify.text_message
+    data:
+      message: 'Alarm Has Been Tripped!'
+      target:
+        - [REDACTED]
