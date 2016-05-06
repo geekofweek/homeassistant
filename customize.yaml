@@ -27,16 +27,23 @@
      device_tracker.macpro:
        icon: mdi:desktop-mac
 
+#locks
+
+     lock.front_door:
+       friendly_name: Front Door Lock
+     lock.back_door:
+       friendly_name: Back Door Lock
+
 #sensors
      binary_sensor.front_door:
        icon: mdi:home
-       friendly_name: Front Door
+       friendly_name: Front Door Open
      binary_sensor.back_door:
        icon: mdi:home
-       friendly_name: Back Door
+       friendly_name: Back Door Open
      binary_sensor.basement_door:
        icon: mdi:home
-       friendly_name: Basement Door
+       friendly_name: Basement Door Open
        
 #switches
      switch.air_purifier:
@@ -45,6 +52,11 @@
      switch.siren:
        icon: mdi:shield-outline
        friendly_name: Alarm Siren
+
+#lights
+
+     light.hallway_light:
+       friendly_name: Hallway
 
 #weather
 
@@ -140,7 +152,7 @@
        hidden: true
      light.front_porch_right_2:
        hidden: true
-     light.hallway_2:
+     light.hallway_light_2:
        hidden: true
      light.living_room_lamp_1_2:
        hidden: true

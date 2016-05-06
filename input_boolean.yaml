@@ -3,17 +3,22 @@
 ##############################################################
 
   disable_security:
-    name: Disable Security
+    name: Disable Alarm
+    initial: off
+    icon: mdi:close-circle-outline
+
+  disable_lock_unlock_doors:
+    name: Disable Lock/Unlock Doors
     initial: off
     icon: mdi:close-circle-outline
   
   lights_morning_disable:
-    name: Disable Turning Lights On in the Morning
+    name: Disable Lights On in the Morning
     initial: off
     icon: mdi:close-circle-outline
     
   occupancy_lights_off_disable:
-    name: Disable Turning Off Lights in Unoccupied Rooms
+    name: Disable Lights Off in Unoccupied Rooms
     initial: off
     icon: mdi:close-circle-outline
 
@@ -23,7 +28,7 @@
     icon: mdi:close-circle-outline
     
   office_lights_sunset:
-    name: Disable Office Lights Turning On at Sunset
+    name: Disable Office Lights On at Sunset
     initial: off
     icon: mdi:close-circle-outline
 
@@ -43,22 +48,22 @@
     icon: mdi:close-circle-outline
 
   home_lights:
-    name: Disable Lights Turning On when Returning Home
+    name: Disable Lights On when Returning Home
     initial: off
     icon: mdi:close-circle-outline
     
   exterior_off_night:
-    name: Disable Exterior Lights Turning Off at Night
+    name: Disable Exterior Lights Off at Night
     initial: off
     icon: mdi:close-circle-outline
 
   exterior_on_sunset:
-    name: Disable Exterior Lights Turning On at Sunset
+    name: Disable Exterior Lights On at Sunset
     initial: off
     icon: mdi:close-circle-outline
 
   lights_away:
-    name: Disable Turn Off Lights When Away
+    name: Disable Lights Off When Away
     initial: off
     icon: mdi:close-circle-outline
 
@@ -80,9 +85,14 @@
   panic_mode:
     name: Panic Mode
     initial: off
-    icon: mdi:power
+    icon: mdi:shield-outline
 
   alarm_tripped:
     name: Alarm Tripped
     initial: off
     icon: mdi:shield-outline
+
+  lock_doors:
+    name: Lock Doors
+    initial: off
+    icon: mdi:lock-outline

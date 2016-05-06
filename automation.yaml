@@ -23,7 +23,7 @@
 
   action:
     service: light.turn_on
-    entity_id: light.living_room_lamp_1, light.living_room_lamp_2, light.hallway
+    entity_id: light.living_room_lamp_1, light.living_room_lamp_2, light.hallway_light
     data:
      transition: 1
 #     brightness: 200 
@@ -46,7 +46,7 @@
 
   action:
     service: light.turn_off
-    entity_id: light.living_room_lamp_1, light.living_room_lamp_2, light.hallway
+    entity_id: light.living_room_lamp_1, light.living_room_lamp_2, light.hallway_light
     data:
      transition: 1
 
@@ -87,6 +87,17 @@
       effect: random
       transition: 5
       brightness: 255
+
+- alias: Lock Doors on Demand
+
+  trigger:
+       - platform: state
+         entity_id: input_boolean.lock_doors
+         state: 'on'
+
+  action:
+    service: lock.lock
+    entity_id: group.all_locks
 
 - alias: Panic Mode
 
@@ -140,6 +151,158 @@
     service: thermostat.set_away_mode
     data:
       away_mode: 'True'
+
+        ##########################################################
+        ## Lock Front Door After 30 Mins
+        ##########################################################
+      
+- alias: 'Lock Front Door After 30 Mins'
+  trigger:  
+      -  platform: state
+         entity_id: lock.front_door
+         from: 'locked'
+         to: 'unlocked'
+         for:
+           hours: 0
+           minutes: 30
+           seconds: 0
+  
+  condition:
+      -  platform: state
+         entity_id: input_boolean.disable_lock_unlock_doors
+         state: 'off'
+      -  platform: state
+         entity_id: binary_sensor.front_door
+         state: 'off'
+      -  platform: state
+         entity_id: lock.front_door
+         state: 'unlocked'    
+  
+  action:
+    service: lock.lock
+    entity_id: lock.front_door
+
+        ##########################################################
+        ## Lock Back Door After 2 Hours
+        ##########################################################
+      
+- alias: 'Lock Front Door After 2 Hours'
+  trigger:  
+      -  platform: state
+         entity_id: lock.back_door
+         from: 'locked'
+         to: 'unlocked'
+         for:
+           hours: 2
+           minutes: 0
+           seconds: 0
+  
+  condition:
+      -  platform: state
+         entity_id: input_boolean.disable_lock_unlock_doors
+         state: 'off'
+      -  platform: state
+         entity_id: binary_sensor.back_door
+         state: 'off'
+         for:
+           hours: 1
+           minutes: 0
+           seconds: 0
+      -  platform: state
+         entity_id: lock.front_door
+         state: 'unlocked'   
+
+  action:
+    service: lock.lock
+    entity_id: lock.back_door
+
+        ##########################################################
+        ## Lock Doors at 2a
+        ##########################################################
+      
+- alias: 'Lock Doors at 2a'
+  trigger:
+      - platform: time
+        after: '02:00'
+  
+  condition:
+      -  platform: state
+         entity_id: input_boolean.disable_lock_unlock_doors
+         state: 'off'
+      -  platform: state
+         entity_id: group.doors
+         state: 'off'
+  
+  action:
+    service: lock.lock
+    entity_id: group.all_locks
+
+
+        ##########################################################
+        ## Lock Doors When Away
+        ##########################################################
+
+- alias: Lock Doors
+
+  trigger:
+      -  platform: state
+         entity_id: group.household
+         from: 'not_home'
+         to: 'home'
+
+  condition:
+       - platform: state
+         entity_id: input_boolean.disable_lock_unlock_doors
+         state: 'off'
+
+  action:
+    service: lock.lock
+    entity_id: group.all_locks
+
+        ##########################################################
+        ## [REDACTED] Home Unlock Doors
+        ##########################################################
+
+- alias: [REDACTED] Home Unlock Doors
+
+  trigger:
+       - platform: state
+         entity_id: device_tracker.[REDACTED]siphone
+         from: 'not_home'
+         to: 'home'
+
+  condition:
+       - platform: state
+         entity_id: input_boolean.disable_lock_unlock_doors
+         state: 'off'
+
+  action:
+    service: lock.unlock
+    entity_id: group.all_locks
+
+
+        ##########################################################
+        ## [REDACTED] Home Unlock Doors
+        ##########################################################
+
+- alias: [REDACTED] Home Unlock Doors
+
+  trigger:
+       - platform: state
+         entity_id: device_tracker.[REDACTED]siphone
+         from: 'not_home'
+         to: 'home'
+
+  condition:
+       - platform: state
+         entity_id: input_boolean.disable_lock_unlock_doors
+         state: 'off'
+
+  action:
+    service: lock.unlock
+    entity_id: group.all_locks
+    
+
 
         ##########################################################
         ## [REDACTED] Home Turn on Lights
@@ -668,7 +831,7 @@
 
   action:
      service: light.turn_off
-     entity_id: light.hallway, group.dining_room
+     entity_id: light.hallway_light, group.dining_room
 
         ##########################################################
         ## Turn off Living Room when Unoccupied

@@ -53,6 +53,7 @@
 
   Automation Override:
     - input_boolean.disable_security
+    - input_boolean.disable_lock_unlock_doors
     - input_boolean.lights_morning_disable
     - input_boolean.plex_lights_disable
     - input_boolean.door_open_lights_on
@@ -69,6 +70,7 @@
   Automation On Demand:
     - input_boolean.livingroom_rainbow
     - input_boolean.office_rainbow
+    - input_boolean.lock_doors
     - input_boolean.panic_mode
 
   Living Room:
@@ -76,8 +78,8 @@
     - light.living_room_lamp_2
     - sensor.living_room_temperature
     - sensor.living_room_occupancy
+    - lock.front_door
     - binary_sensor.front_door
-    - media_player.living_room
 
   Bedroom:
     - light.[REDACTED]s_nightstand
@@ -96,7 +98,7 @@
     - group.[REDACTED]_office
     - group.[REDACTED]_office
     - group.basement
-    - light.hallway
+    - light.hallway_light
 
   Exterior Lights:
     - group.front_porch
@@ -109,7 +111,6 @@
     - switch.air_purifier
     - sensor.office_temperature
     - sensor.office_occupancy
-    - media_player.plex_for_vizio_vizio_mtk
 
   [REDACTED] Office:
     - group.[REDACTED]_office_ceiling
@@ -122,6 +123,7 @@
     - light.kitchen_sink
     - sensor.kitchen_temperature
     - sensor.kitchen_occupancy
+    - lock.back_door
     - binary_sensor.back_door
 
   Stairs:
@@ -164,6 +166,8 @@
   Alarm:
     - input_boolean.alarm_tripped
     - switch.siren
+    - lock.front_door
+    - lock.back_door
     - binary_sensor.front_door
     - binary_sensor.back_door
     - binary_sensor.basement_door
@@ -193,26 +197,20 @@
     - sensor.weather_summary
     - sensor.weather_temperature
     - sensor.weather_apparent_temperature
-#    - sensor.weather_icon
     - sensor.weather_precip
     - sensor.weather_precip_probability
     - sensor.weather_precip_intensity
     - sensor.weather_humidity
-#    - sensor.weather_dew_point
     - sensor.weather_cloud_coverage
     - sensor.weather_nearest_storm_distance
-#    - sensor.weather_nearest_storm_bearing
     - sensor.weather_wind_speed
-#    - sensor.weather_wind_bearing
-#    - sensor.weather_visibility
-#    - sensor.weather_ozone
-#    - sensor.weather_pressure
+
 
   Home Lights:
     - light.kitchen_cabinets
     - light.living_room_lamp_1
     - light.living_room_lamp_2
-    - light.hallway
+    - light.hallway_light
     - light.back_door_left
     - light.back_door_right
     - light.front_porch_left
@@ -259,7 +257,7 @@
     - light.closet_lamp
     - light.front_porch_left
     - light.front_porch_right
-    - light.hallway
+    - light.hallway_light
     - light.living_room_lamp_1
     - light.living_room_lamp_2
     - light.office_lamp
