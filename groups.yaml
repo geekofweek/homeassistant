@@ -71,6 +71,7 @@
     - input_boolean.livingroom_rainbow
     - input_boolean.office_rainbow
     - input_boolean.lock_doors
+    - input_boolean.unlock_doors
     - input_boolean.panic_mode
 
   Living Room:
@@ -146,6 +147,7 @@
   Basement:
     - light.basement_stairs
     - light.basement_light
+    - lock.basement_door
     - binary_sensor.basement_door
 
   Household:
@@ -162,12 +164,14 @@
 
   Garage:
     - camera.garage_camera
+    - garage_door.garage_door
 
   Alarm:
     - input_boolean.alarm_tripped
     - switch.siren
     - lock.front_door
     - lock.back_door
+    - lock.basement_door
     - binary_sensor.front_door
     - binary_sensor.back_door
     - binary_sensor.basement_door
@@ -197,14 +201,20 @@
     - sensor.weather_summary
     - sensor.weather_temperature
     - sensor.weather_apparent_temperature
+#    - sensor.weather_icon
     - sensor.weather_precip
     - sensor.weather_precip_probability
     - sensor.weather_precip_intensity
     - sensor.weather_humidity
+#    - sensor.weather_dew_point
     - sensor.weather_cloud_coverage
     - sensor.weather_nearest_storm_distance
+#    - sensor.weather_nearest_storm_bearing
     - sensor.weather_wind_speed
-
+#    - sensor.weather_wind_bearing
+#    - sensor.weather_visibility
+#    - sensor.weather_ozone
+#    - sensor.weather_pressure
 
   Home Lights:
     - light.kitchen_cabinets

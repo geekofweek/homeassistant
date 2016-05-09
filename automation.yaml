@@ -9,24 +9,23 @@
 - alias: "Media player paused/stopped"
 
   trigger:
-       - platform: state
-         entity_id: media_player.living_room
-         from: 'playing'
+    - platform: state
+      entity_id: media_player.living_room
+      from: 'playing'
 
   condition:
-       - platform: state
-         entity_id: sun.sun
-         state: 'below_horizon'
-       - platform: state
-         entity_id: input_boolean.plex_lights_disable
-         state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.plex_lights_disable
+      state: 'off'
 
   action:
     service: light.turn_on
     entity_id: light.living_room_lamp_1, light.living_room_lamp_2, light.hallway_light
     data:
      transition: 1
-#     brightness: 200 
      profile: relax
 
 - alias: "Media player playing"
@@ -37,12 +36,12 @@
          to: 'playing'
 
   condition:
-       - platform: state
-         entity_id: sun.sun
-         state: 'below_horizon'
-       - platform: state
-         entity_id: input_boolean.plex_lights_disable
-         state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.plex_lights_disable
+      state: 'off'
 
   action:
     service: light.turn_off
@@ -55,14 +54,17 @@
         ##########################################################
 
 - alias: 'Set Living Room to Random Color'
+
   trigger:
-    platform: time
-    minutes: '/2'
-    seconds: 0
+    - platform: time
+      minutes: '/2'
+      seconds: 0
+
   condition:
-    platform: state
-    entity_id: input_boolean.livingroom_rainbow
-    state: 'on'
+    - condition: state
+      entity_id: input_boolean.livingroom_rainbow
+      state: 'on'
+
   action:
     service: light.turn_on
     entity_id: group.living_room
@@ -72,14 +74,17 @@
       brightness: 255
 
 - alias: 'Set Office to Random Color'
+
   trigger:
-    platform: time
-    minutes: '/2'
-    seconds: 0
+    - platform: time
+      minutes: '/2'
+      seconds: 0
+
   condition:
-    platform: state
-    entity_id: input_boolean.office_rainbow
-    state: 'on'
+    - condition: state
+      entity_id: input_boolean.office_rainbow
+      state: 'on'
+
   action:
     service: light.turn_on
     entity_id: light.office_lamp
@@ -97,6 +102,17 @@
 
   action:
     service: lock.lock
+    entity_id: group.all_locks
+
+- alias: Unock Doors on Demand
+
+  trigger:
+       - platform: state
+         entity_id: input_boolean.unlock_doors
+         state: 'on'
+
+  action:
+    service: lock.unlock
     entity_id: group.all_locks
 
 - alias: Panic Mode
@@ -117,15 +133,15 @@
 - alias: Thermostat - Home
   
   trigger:
-      -  platform: state
-         entity_id: group.household
-         from: 'not_home'
-         to: 'home'
+    -  platform: state
+       entity_id: group.household
+       from: 'not_home'
+       to: 'home'
   
   condition:
-       - platform: state
-         entity_id: input_boolean.thermostat_home_away
-         state: 'off'
+    - condition: state
+      entity_id: input_boolean.thermostat_home_away
+      state: 'off'
 
   action:
     entity_id: thermostat.main_floor
@@ -136,15 +152,15 @@
 - alias: Thermostat - Away
 
   trigger:
-      -  platform: state
-         entity_id: group.household
-         from: 'home'
-         to: 'not_home'
+    -  platform: state
+       entity_id: group.household
+       from: 'home'
+       to: 'not_home'
 
   condition:
-       - platform: state
-         entity_id: input_boolean.thermostat_home_away
-         state: 'off'
+    - condition: state
+      entity_id: input_boolean.thermostat_home_away
+      state: 'off'
 
   action:
     entity_id: thermostat.main_floor
@@ -158,25 +174,25 @@
       
 - alias: 'Lock Front Door After 30 Mins'
   trigger:  
-      -  platform: state
-         entity_id: lock.front_door
-         from: 'locked'
-         to: 'unlocked'
-         for:
-           hours: 0
-           minutes: 30
-           seconds: 0
+    -  platform: state
+       entity_id: lock.front_door
+       from: 'locked'
+       to: 'unlocked'
+       for:
+         hours: 0
+         minutes: 30
+         seconds: 0
   
   condition:
-      -  platform: state
-         entity_id: input_boolean.disable_lock_unlock_doors
-         state: 'off'
-      -  platform: state
-         entity_id: binary_sensor.front_door
-         state: 'off'
-      -  platform: state
-         entity_id: lock.front_door
-         state: 'unlocked'    
+    -  condition: state
+       entity_id: input_boolean.disable_lock_unlock_doors
+       state: 'off'
+    -  condition: state
+       entity_id: binary_sensor.front_door
+       state: 'off'
+    -  condition: state
+       entity_id: lock.front_door
+       state: 'unlocked'    
   
   action:
     service: lock.lock
@@ -188,29 +204,90 @@
       
 - alias: 'Lock Front Door After 2 Hours'
   trigger:  
-      -  platform: state
-         entity_id: lock.back_door
-         from: 'locked'
-         to: 'unlocked'
-         for:
-           hours: 2
-           minutes: 0
-           seconds: 0
+    -  platform: state
+       entity_id: lock.back_door
+       from: 'locked'
+       to: 'unlocked'
+       for:
+         hours: 2
+         minutes: 0
+         seconds: 0
   
   condition:
-      -  platform: state
-         entity_id: input_boolean.disable_lock_unlock_doors
-         state: 'off'
-      -  platform: state
-         entity_id: binary_sensor.back_door
-         state: 'off'
-         for:
-           hours: 1
-           minutes: 0
-           seconds: 0
-      -  platform: state
-         entity_id: lock.front_door
-         state: 'unlocked'   
+    -  condition: state
+       entity_id: input_boolean.disable_lock_unlock_doors
+       state: 'off'
+    -  condition: state
+       entity_id: binary_sensor.back_door
+       state: 'off'
+       for:
+         hours: 1
+         minutes: 0
+         seconds: 0
+    -  condition: state
+       entity_id: lock.back_door
+       state: 'unlocked'   
+
+  action:
+    service: lock.lock
+    entity_id: lock.back_door
+
+        ##########################################################
+        ## Lock Basement Door After 30 Mins
+        ##########################################################
+
+- alias: 'Lock Basement Door After 30 Mins'
+  trigger:
+    -  platform: state
+       entity_id: lock.basement_door
+       from: 'locked'
+       to: 'unlocked'
+       for:
+         hours: 0
+         minutes: 30
+         seconds: 0
+
+  condition:
+    -  condition: state
+       entity_id: input_boolean.disable_lock_unlock_doors
+       state: 'off'
+    -  condition: state
+       entity_id: binary_sensor.basement_door
+       state: 'off'
+    -  condition: state
+       entity_id: lock.basement_door
+       state: 'unlocked'
+
+  action:
+    service: lock.lock
+    entity_id: lock.basement_door
+
+        ##########################################################
+        ## Lock Back Door when [REDACTED] Leaves
+        ##########################################################
+
+- alias: Lock Back Door when [REDACTED] Leaves
+
+  trigger:
+     - platform: state
+       entity_id: device_tracker.[REDACTED]siphone
+       from: 'home'
+       to: 'not_home'
+
+  condition:
+    - condition: time
+      after: '05:00'
+      before: '07:00'
+    - condition: state
+      entity_id: input_boolean.disable_lock_unlock_doors
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.back_door
+      state: 'off'
+    - condition: state
+      entity_id: lock.back_door
+      state: 'unlocked'
+
 
   action:
     service: lock.lock
@@ -222,16 +299,16 @@
       
 - alias: 'Lock Doors at 2a'
   trigger:
-      - platform: time
-        after: '02:00'
+    - platform: time
+      after: '02:00'
   
   condition:
-      -  platform: state
-         entity_id: input_boolean.disable_lock_unlock_doors
-         state: 'off'
-      -  platform: state
-         entity_id: group.doors
-         state: 'off'
+    -  condition: state
+       entity_id: input_boolean.disable_lock_unlock_doors
+       state: 'off'
+    -  condition: state
+       entity_id: group.doors
+       state: 'off'
   
   action:
     service: lock.lock
@@ -245,15 +322,15 @@
 - alias: Lock Doors
 
   trigger:
-      -  platform: state
-         entity_id: group.household
-         from: 'not_home'
-         to: 'home'
+    -  platform: state
+       entity_id: group.household
+       from: 'not_home'
+       to: 'home'
 
   condition:
-       - platform: state
-         entity_id: input_boolean.disable_lock_unlock_doors
-         state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_lock_unlock_doors
+      state: 'off'
 
   action:
     service: lock.lock
@@ -266,15 +343,15 @@
 - alias: [REDACTED] Home Unlock Doors
 
   trigger:
-       - platform: state
-         entity_id: device_tracker.[REDACTED]siphone
-         from: 'not_home'
-         to: 'home'
+    - platform: state
+      entity_id: device_tracker.[REDACTED]siphone
+      from: 'not_home'
+      to: 'home'
 
   condition:
-       - platform: state
-         entity_id: input_boolean.disable_lock_unlock_doors
-         state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_lock_unlock_doors
+      state: 'off'
 
   action:
     service: lock.unlock
@@ -288,15 +365,15 @@
 - alias: [REDACTED] Home Unlock Doors
 
   trigger:
-       - platform: state
-         entity_id: device_tracker.[REDACTED]siphone
-         from: 'not_home'
-         to: 'home'
+    - platform: state
+      entity_id: device_tracker.[REDACTED]siphone
+      from: 'not_home'
+      to: 'home'
 
   condition:
-       - platform: state
-         entity_id: input_boolean.disable_lock_unlock_doors
-         state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_lock_unlock_doors
+      state: 'off'
 
   action:
     service: lock.unlock
@@ -311,18 +388,18 @@
 - alias: [REDACTED] Home
 
   trigger:
-       - platform: state
-         entity_id: device_tracker.[REDACTED]siphone
-         from: 'not_home'
-         to: 'home'
+    - platform: state
+      entity_id: device_tracker.[REDACTED]siphone
+      from: 'not_home'
+      to: 'home'
 
   condition:
-       - platform: state
-         entity_id: sun.sun
-         state: 'below_horizon'
-       - platform: state
-         entity_id: input_boolean.home_lights
-         state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.home_lights
+      state: 'off'
 
   action:
     service: light.turn_on
@@ -338,18 +415,18 @@
 - alias: [REDACTED] Home
 
   trigger:
-       - platform: state
-         entity_id: device_tracker.[REDACTED]siphone
-         from: 'not_home'
-         to: 'home'
+    - platform: state
+      entity_id: device_tracker.[REDACTED]siphone
+      from: 'not_home'
+      to: 'home'
 
   condition:
-       - platform: state
-         entity_id: sun.sun
-         state: 'below_horizon'
-       - platform: state
-         entity_id: input_boolean.home_lights
-         state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.home_lights
+      state: 'off'
 
   action:
     service: light.turn_on
@@ -365,20 +442,20 @@
 - alias: Back Door Off at 9:30p
 
   trigger:
-   - platform: time
-     after: '21:30'
+    - platform: time
+      after: '21:30'
      
   condition:
-       - platform: state
-         entity_id: sun.sun
-         state: 'below_horizon'
-       - platform: state
-         entity_id: input_boolean.exterior_off_night
-         state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.exterior_off_night
+      state: 'off'
 
   action:
-     service: light.turn_off
-     entity_id: group.back_door
+   service: light.turn_off
+   entity_id: group.back_door
 
         ##########################################################
         ## Turn Off Front Porch at 10:00 pm
@@ -391,16 +468,16 @@
      after: '22:00'
 
   condition:
-       - platform: state
-         entity_id: sun.sun
-         state: 'below_horizon'
-       - platform: state
-         entity_id: input_boolean.exterior_off_night
-         state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.exterior_off_night
+      state: 'off'
 
   action:
-     service: light.turn_off
-     entity_id: group.front_porch
+    service: light.turn_off
+    entity_id: group.front_porch
 
         ##########################################################
         ## Turn On Front Porch when Door Opens
@@ -409,27 +486,27 @@
 - alias: Turn on Front Porch when Door Opens
 
   trigger:
-       - platform: state
-         entity_id: binary_sensor.front_door
-         from: 'off'
-         to: 'on'
+    - platform: state
+      entity_id: binary_sensor.front_door
+      from: 'off'
+      to: 'on'
 
   condition:
-       - platform: state
-         entity_id: sun.sun
-         state: 'below_horizon'
-       - platform: state
-         entity_id: input_boolean.door_open_lights_on
-         state: 'off'
-       - platform: state
-         entity_id: group.household
-         state: 'home'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.door_open_lights_on
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
-     service: light.turn_on
-     entity_id: group.front_porch
-     data:
-       brightness: 255
+    service: light.turn_on
+    entity_id: group.front_porch
+    data:
+      brightness: 255
 
         ##########################################################
         ## Reset Front Door Brightness when Door Closes
@@ -438,27 +515,27 @@
 - alias: Reset Front Porch Brightness when Door Closes
 
   trigger:
-       - platform: state
-         entity_id: binary_sensor.front_door
-         from: 'on'
-         to: 'off'
+    - platform: state
+      entity_id: binary_sensor.front_door
+      from: 'on'
+      to: 'off'
 
   condition:
-       - platform: state
-         entity_id: sun.sun
-         state: 'below_horizon'
-       - platform: state
-         entity_id: input_boolean.door_open_lights_on
-         state: 'off'
-       - platform: state
-         entity_id: group.household
-         state: 'home'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.door_open_lights_on
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
-     service: light.turn_on
-     entity_id: group.front_porch
-     data:
-       brightness: 50
+    service: light.turn_on
+    entity_id: group.front_porch
+    data:
+      brightness: 50
 
         ##########################################################
         ## Turn On Living Room when Door Opens
@@ -467,28 +544,28 @@
 - alias: Turn on Front Porch when Door Opens
 
   trigger:
-       - platform: state
-         entity_id: binary_sensor.front_door
-         from: 'off'
-         to: 'on'
+    - platform: state
+      entity_id: binary_sensor.front_door
+      from: 'off'
+      to: 'on'
 
   condition:
-       - platform: state
-         entity_id: sun.sun
-         state: 'below_horizon'
-       - platform: state
-         entity_id: input_boolean.door_open_lights_on
-         state: 'off'
-       - platform: state
-         entity_id: group.household
-         state: 'home'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.door_open_lights_on
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
-     service: light.turn_on
-     entity_id: group.living_room
-     data:
-      xy_color: [ 0.5134, 0.4149 ]
-      brightness: 255
+    service: light.turn_on
+    entity_id: group.living_room
+    data:
+     xy_color: [ 0.5134, 0.4149 ]
+     brightness: 255
 
         ##########################################################
         ## Turn On Back Door when Door Opens
@@ -497,27 +574,27 @@
 - alias: Turn on Back Door when Door Opens
 
   trigger:
-       - platform: state
-         entity_id: binary_sensor.back_door
-         from: 'off'
-         to: 'on'
+    - platform: state
+      entity_id: binary_sensor.back_door
+      from: 'off'
+      to: 'on'
 
   condition:
-       - platform: state
-         entity_id: sun.sun
-         state: 'below_horizon'
-       - platform: state
-         entity_id: input_boolean.door_open_lights_on
-         state: 'off'
-       - platform: state
-         entity_id: group.household
-         state: 'home'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.door_open_lights_on
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
-     service: light.turn_on
-     entity_id: group.back_door
-     data:
-      brightness: 150
+    service: light.turn_on
+    entity_id: group.back_door
+    data:
+     brightness: 150
 
         ##########################################################
         ## Turn On Front Porch at Sunset
@@ -526,22 +603,22 @@
 - alias: Turn on Front Porch at Sunset
 
   trigger:
-     - platform: sun
-       event: 'sunset'
-       offset: '-00:05:00'
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:05:00'
 
   condition:
-       - platform: state
-         entity_id: input_boolean.exterior_on_sunset
-         state: 'off'
+    - condition: state
+      entity_id: input_boolean.exterior_on_sunset
+      state: 'off'
 
   action:
-     service: light.turn_on
-     entity_id: group.front_porch
-     data:
-     # 900 seconds = 15 minutes
-       transition: 300
-       brightness: 50
+    service: light.turn_on
+    entity_id: group.front_porch
+    data:
+    # 900 seconds = 15 minutes
+      transition: 300
+      brightness: 50
 
         ##########################################################
         ## Turn on Back Door at Sunset when [REDACTED] Leaves Work
@@ -550,24 +627,24 @@
 - alias: Turn on Back Door at Sunset
 
   trigger:
-       - platform: state
-         entity_id: device_tracker.[REDACTED]siphone
-         from: 'work'
-         to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.[REDACTED]siphone
+      from: 'work'
+      to: 'not_home'
 
   condition:
-       - platform: state
-         entity_id: sun.sun
-         state: 'below_horizon'
-       - platform: state
-         entity_id: input_boolean.exterior_on_sunset
-         state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.exterior_on_sunset
+      state: 'off'
 
   action:
-     service: light.turn_on
-     entity_id: group.back_door
-     data:
-      brightness: 200
+    service: light.turn_on
+    entity_id: group.back_door
+    data:
+     brightness: 200
 
         ##########################################################
         ## Turn on Back Door at 5:00a if [REDACTED] Home
@@ -576,25 +653,25 @@
 - alias: Back Door on at 5a
 
   trigger:
-   - platform: time
-     after: '05:00'
+    - platform: time
+      after: '05:00'
 
   condition:
-       - platform: state
-         entity_id: device_tracker.[REDACTED]siphone
-         state: 'home'
-       - platform: state
-         entity_id: sun.sun
-         state: 'below_horizon'
-       - platform: state
-         entity_id: input_boolean.lights_morning_disable
-         state: 'off'
+    - condition: state
+      entity_id: device_tracker.[REDACTED]siphone
+      state: 'home'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.lights_morning_disable
+      state: 'off'
 
   action:
-     service: light.turn_on
-     entity_id: group.back_door
-     data:
-      brightness: 200
+    service: light.turn_on
+    entity_id: group.back_door
+    data:
+     brightness: 200
 
         ##########################################################
         ## Turn on Lights at 5a if [REDACTED] Home
@@ -603,19 +680,19 @@
 - alias: Turn on Interior Lights at 5a
 
   trigger:
-   - platform: time
-     after: '05:00'
+    - platform: time
+      after: '05:00'
 
   condition:
-       - platform: state
-         entity_id: device_tracker.[REDACTED]siphone
-         state: 'home'
-       - platform: state
-         entity_id: sun.sun
-         state: 'below_horizon'
-       - platform: state
-         entity_id: input_boolean.lights_morning_disable
-         state: 'off'
+    - condition: state
+      entity_id: device_tracker.[REDACTED]siphone
+      state: 'home'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.lights_morning_disable
+      state: 'off'
 
   action:
     service: light.turn_on
@@ -631,18 +708,18 @@
 - alias: Turn off Lights when [REDACTED] Leaves
 
   trigger:
-       - platform: state
-         entity_id: device_tracker.[REDACTED]siphone
-         from: 'home'
-         to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.[REDACTED]siphone
+      from: 'home'
+      to: 'not_home'
   
   condition: 
-       - platform: time
-         after: '05:00'
-         before: '07:00'
-       - platform: state
-         entity_id: input_boolean.lights_away
-         state: 'off'
+    - condition: time
+      after: '05:00'
+      before: '07:00'
+    - condition: state
+      entity_id: input_boolean.lights_away
+      state: 'off'
 
   action:
     service: light.turn_off
@@ -655,14 +732,14 @@
 - alias: Turn off Interior Lights at Sunrise if [REDACTED] Home
 
   trigger:
-       - platform: state
-         entity_id: sun.sun
-         from: 'below_horizon'
-         to: 'above_horizon'
+    - platform: state
+      entity_id: sun.sun
+      from: 'below_horizon'
+      to: 'above_horizon'
 
   action:
-     service: light.turn_off
-     entity_id: group.interior_lights
+    service: light.turn_off
+    entity_id: group.interior_lights
 
 
         ##########################################################
@@ -672,14 +749,14 @@
 - alias: Turn off Exterior Lights at Sunrise
 
   trigger:
-       - platform: state
-         entity_id: sun.sun
-         from: 'below_horizon'
-         to: 'above_horizon'
+    - platform: state
+      entity_id: sun.sun
+      from: 'below_horizon'
+      to: 'above_horizon'
 
   action:
-     service: light.turn_off
-     entity_id: group.exterior_lights
+    service: light.turn_off
+    entity_id: group.exterior_lights
 
 
         ##########################################################
@@ -689,20 +766,20 @@
 - alias: Turn off Office Light when Unoccupied
 
   trigger:
-       - platform: state
-         entity_id: sensor.office_occupancy
-         from: 'true'
-         to: 'false'
+    - platform: state
+      entity_id: sensor.office_occupancy
+      from: 'true'
+      to: 'false'
 
   condition:
-       - platform: state
-         entity_id: input_boolean.occupancy_lights_off_disable
-         state: 'off'         
+    - condition: state
+      entity_id: input_boolean.occupancy_lights_off_disable
+      state: 'off'         
 
 
   action:
-     service: light.turn_off
-     entity_id: group.[REDACTED]_office
+    service: light.turn_off
+    entity_id: group.[REDACTED]_office
 
         ##########################################################
         ## Turn on Office Air Purifier when Occupied
@@ -711,22 +788,22 @@
 - alias: Turn on Office Air Purifier when Occupied
 
   trigger:
-       - platform: state
-         entity_id: sensor.office_occupancy
-         from: 'false'
-         to: 'true'
+    - platform: state
+      entity_id: sensor.office_occupancy
+      from: 'false'
+      to: 'true'
 
   condition:
-       - platform: state
-         entity_id: input_boolean.occupancy_air_purifier_on_off_disable
-         state: 'off'
-       - platform: state
-         entity_id: device_tracker.[REDACTED]siphone
-         state: 'home'         
+    - condition: state
+      entity_id: input_boolean.occupancy_air_purifier_on_off_disable
+      state: 'off'
+    - condition: state
+      entity_id: device_tracker.[REDACTED]siphone
+      state: 'home'         
 
   action:
-     service: switch.turn_on
-     entity_id: switch.air_purifier
+    service: switch.turn_on
+    entity_id: switch.air_purifier
 
         ##########################################################
         ## Turn off Office Air Purifier when Unoccupied
@@ -735,19 +812,19 @@
 - alias: Turn off Office Air Purifier when Unoccupied
 
   trigger:
-       - platform: state
-         entity_id: sensor.office_occupancy
-         from: 'true'
-         to: 'false'
+    - platform: state
+      entity_id: sensor.office_occupancy
+      from: 'true'
+      to: 'false'
 
   condition:
-       - platform: state
-         entity_id: input_boolean.occupancy_air_purifier_on_off_disable
-         state: 'off'     
+    - condition: state
+      entity_id: input_boolean.occupancy_air_purifier_on_off_disable
+      state: 'off'     
 
   action:
-     service: switch.turn_off
-     entity_id: switch.air_purifier
+    service: switch.turn_off
+    entity_id: switch.air_purifier
 
         ##########################################################
         ## Turn off [REDACTED] Office when Unoccupied
@@ -756,19 +833,19 @@
 - alias: Turn off [REDACTED] Office Light when Unoccupied
 
   trigger:
-       - platform: state
-         entity_id: sensor.[REDACTED]_office_occupancy
-         from: 'true'
-         to: 'false'
+    - platform: state
+      entity_id: sensor.[REDACTED]_office_occupancy
+      from: 'true'
+      to: 'false'
 
   condition:
-       - platform: state
-         entity_id: input_boolean.occupancy_lights_off_disable
-         state: 'off'         
+    - condition: state
+      entity_id: input_boolean.occupancy_lights_off_disable
+      state: 'off'         
 
   action:
-     service: light.turn_off
-     entity_id: group.[REDACTED]_office
+    service: light.turn_off
+    entity_id: group.[REDACTED]_office
 
         ##########################################################
         ## Turn off Bedroom when Unoccupied
@@ -777,19 +854,19 @@
 - alias: Turn off Bedroom Light when Unoccupied
 
   trigger:
-       - platform: state
-         entity_id: sensor.bedroom_occupancy
-         from: 'true'
-         to: 'false'
+    - platform: state
+      entity_id: sensor.bedroom_occupancy
+      from: 'true'
+      to: 'false'
 
   condition:
-       - platform: state
-         entity_id: input_boolean.occupancy_lights_off_disable
-         state: 'off'         
+    - condition: state
+      entity_id: input_boolean.occupancy_lights_off_disable
+      state: 'off'         
 
   action:
-     service: light.turn_off
-     entity_id: group.bedroom
+    service: light.turn_off
+    entity_id: group.bedroom
 
         ##########################################################
         ## Turn off Kitchen when Unoccupied
@@ -798,19 +875,19 @@
 - alias: Turn off Kitchen Light when Unoccupied
 
   trigger:
-       - platform: state
-         entity_id: sensor.kitchen_occupancy
-         from: 'true'
-         to: 'false'
+    - platform: state
+      entity_id: sensor.kitchen_occupancy
+      from: 'true'
+      to: 'false'
   
   condition:
-       - platform: state
-         entity_id: input_boolean.occupancy_lights_off_disable
-         state: 'off'         
+    - condition: state
+      entity_id: input_boolean.occupancy_lights_off_disable
+      state: 'off'         
 
   action:
-     service: light.turn_off
-     entity_id: group.kitchen
+    service: light.turn_off
+    entity_id: group.kitchen
 
         ##########################################################
         ## Turn off Dining Room / Hallway when Unoccupied
@@ -819,19 +896,19 @@
 - alias: Turn off Dining Room when Unoccupied
 
   trigger:
-       - platform: state
-         entity_id: sensor.main_floor_occupancy
-         from: 'true'
-         to: 'false'
+    - platform: state
+      entity_id: sensor.main_floor_occupancy
+      from: 'true'
+      to: 'false'
          
   condition:
-       - platform: state
-         entity_id: input_boolean.occupancy_lights_off_disable
-         state: 'off'         
+    - condition: state
+      entity_id: input_boolean.occupancy_lights_off_disable
+      state: 'off'         
 
   action:
-     service: light.turn_off
-     entity_id: light.hallway_light, group.dining_room
+    service: light.turn_off
+    entity_id: light.hallway_light, group.dining_room
 
         ##########################################################
         ## Turn off Living Room when Unoccupied
@@ -840,22 +917,22 @@
 - alias: Turn off Living Room when Unoccupied
 
   trigger:
-       - platform: state
-         entity_id: sensor.living_room_occupancy
-         from: 'true'
-         to: 'false'
+    - platform: state
+      entity_id: sensor.living_room_occupancy
+      from: 'true'
+      to: 'false'
 
   condition:
-       - platform: state
-         entity_id: sensor.main_floor_occupancy
-         state: 'false'
-       - platform: state
-         entity_id: input_boolean.occupancy_lights_off_disable
-         state: 'off'                  
+    - condition: state
+      entity_id: sensor.main_floor_occupancy
+      state: 'false'
+    - condition: state
+      entity_id: input_boolean.occupancy_lights_off_disable
+      state: 'off'                  
 
   action:
-     service: light.turn_off
-     entity_id: group.living_room
+    service: light.turn_off
+    entity_id: group.living_room
 
         ##########################################################
         ## Turn off Stairs when Unoccupied
@@ -864,42 +941,42 @@
 - alias: Turn off Stairs when [REDACTED] Unoccupied
 
   trigger:
-       - platform: state
-         entity_id: sensor.office_occupancy
-         from: 'true'
-         to: 'false'
+    - platform: state
+      entity_id: sensor.office_occupancy
+      from: 'true'
+      to: 'false'
 
   condition:
-       - platform: state
-         entity_id: sensor.[REDACTED]_office_occupancy
-         state: 'false'
-       - platform: state
-         entity_id: input_boolean.occupancy_lights_off_disable
-         state: 'off'         
+    - condition: state
+      entity_id: sensor.[REDACTED]_office_occupancy
+      state: 'false'
+    - condition: state
+      entity_id: input_boolean.occupancy_lights_off_disable
+      state: 'off'         
 
   action:
-     service: light.turn_off
-     entity_id: group.stairs
+    service: light.turn_off
+    entity_id: group.stairs
 
 - alias: Turn off Stairs when [REDACTED] Office Unoccupied
 
   trigger:
-       - platform: state
-         entity_id: sensor.[REDACTED]_office_occupancy
-         from: 'true'
-         to: 'false'
+    - platform: state
+      entity_id: sensor.[REDACTED]_office_occupancy
+      from: 'true'
+      to: 'false'
 
   condition:
-       - platform: state
-         entity_id: sensor.office_occupancy
-         state: 'false'
-       - platform: state
-         entity_id: input_boolean.occupancy_lights_off_disable
-         state: 'off'         
+    - condition: state
+      entity_id: sensor.office_occupancy
+      state: 'false'
+    - condition: state
+      entity_id: input_boolean.occupancy_lights_off_disable
+      state: 'off'         
 
   action:
-     service: light.turn_off
-     entity_id: group.stairs
+    service: light.turn_off
+    entity_id: group.stairs
 
         ##########################################################
         ## Turn on Living Room / Dining Room at Sunset when Occupied
@@ -908,30 +985,30 @@
 - alias: Turn on Lights at Sunset when Occupied
 
   trigger:
-     - platform: sun
-       event: 'sunset'
-       offset: '-00:59:00'
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:59:00'
 
   condition_type: or
   condition:
-     - platform: state
-       entity_id: sensor.main_floor_occupancy
-       state: 'true'
-     - platform: state
-       entity_id: sensor.living_room_occupancy
-       state: 'true'
-     - platform: state
-       entity_id: group.household
-       state: 'home'
+    - condition: state
+      entity_id: sensor.main_floor_occupancy
+      state: 'true'
+    - condition: state
+      entity_id: sensor.living_room_occupancy
+      state: 'true'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
-     service: light.turn_on
-     entity_id: group.living_room, light.dining_room_table
-     data:
-     # 900 seconds = 15 minutes
-       transition: 3600
-       xy_color: [ 0.5134, 0.4149 ]
-       brightness: 255
+    service: light.turn_on
+    entity_id: group.living_room, light.dining_room_table
+    data:
+    # 900 seconds = 15 minutes
+      transition: 3600
+      xy_color: [ 0.5134, 0.4149 ]
+      brightness: 255
 
 
         ##########################################################
@@ -941,28 +1018,28 @@
 - alias: Turn on Office Lights at Sunset when Occupied
 
   trigger:
-     - platform: sun
-       event: 'sunset'
-       offset: '-00:10:00'
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:10:00'
 
   condition:
-     - platform: state
-       entity_id: sensor.office_occupancy
-       state: 'true'
-     - platform: state
-       entity_id: input_boolean.office_lights_sunset
-       state: 'off'
-     - platform: state
-       entity_id: device_tracker.[REDACTED]siphone
-       state: 'home'
+    - condition: state
+      entity_id: sensor.office_occupancy
+      state: 'true'
+    - condition: state
+      entity_id: input_boolean.office_lights_sunset
+      state: 'off'
+    - condition: state
+      entity_id: device_tracker.[REDACTED]siphone
+      state: 'home'
 
   action:
-     service: light.turn_on
-     entity_id: group.[REDACTED]_office
-     data:
-     # 900 seconds = 15 minutes
-       transition: 1200
-       brightness: 75
+    service: light.turn_on
+    entity_id: group.[REDACTED]_office
+    data:
+    # 900 seconds = 15 minutes
+      transition: 1200
+      brightness: 75
 
         ##########################################################
         ## Turn on [REDACTED]'s Office at Sunset when Occupied
@@ -971,28 +1048,28 @@
 - alias: Turn on [REDACTED] Office Lights at Sunset when Occupied
 
   trigger:
-     - platform: sun
-       event: 'sunset'
-       offset: '-00:10:00'
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:10:00'
 
   condition:
-     - platform: state
-       entity_id: sensor.[REDACTED]_office_occupancy
-       state: 'true'
-     - platform: state
-       entity_id: input_boolean.office_lights_sunset
-       state: 'off'
-     - platform: state
-       entity_id: device_tracker.[REDACTED]siphone
-       state: 'home'
+    - condition: state
+      entity_id: sensor.[REDACTED]_office_occupancy
+      state: 'true'
+    - condition: state
+      entity_id: input_boolean.office_lights_sunset
+      state: 'off'
+    - condition: state
+      entity_id: device_tracker.[REDACTED]siphone
+      state: 'home'
 
   action:
-     service: light.turn_on
-     entity_id: group.[REDACTED]_office
-     data:
-     # 900 seconds = 15 minutes
-       transition: 1200
-       brightness: 75
+    service: light.turn_on
+    entity_id: group.[REDACTED]_office
+    data:
+    # 900 seconds = 15 minutes
+      transition: 1200
+      brightness: 75
 
         ##########################################################
         ## Turn off Interior Lights when Unoccupied
@@ -1001,19 +1078,19 @@
 - alias: Turn off Interior Lights when Unoccupied
 
   trigger:
-       - platform: state
-         entity_id: group.household
-         from: 'home'
-         to: 'not_home'
+    - platform: state
+      entity_id: group.household
+      from: 'home'
+      to: 'not_home'
 
   condition:         
-       - platform: state
-         entity_id: input_boolean.lights_away
-         state: 'off'
+    - condition: state
+      entity_id: input_boolean.lights_away
+      state: 'off'
 
   action:
-     service: light.turn_off
-     entity_id: group.interior_lights
+    service: light.turn_off
+    entity_id: group.interior_lights
 
         ##########################################################
         ## Turn On/Off First Floor Lights During Rain
@@ -1022,28 +1099,28 @@
 - alias: Rainy Day First Floor
 
   trigger:
-       - platform: state
-         entity_id: sensor.weather_precip
-         state: 'rain'
+    - platform: state
+      entity_id: sensor.weather_precip
+      state: 'rain'
 
   condition:
-       - platform: state
-         entity_id: group.household
-         state: 'home'
-       - platform: time
-         after: '09:00'
-       - platform: state
-         entity_id: sun.sun
-         state: 'above_horizon'
-       - platform: state
-         entity_id: sensor.main_floor_occupancy
-         state: 'true'
-       - platform: state
-         entity_id: input_boolean.rainy_day_disable
-         state: 'off'
-       - platform: state
-         entity_id: group.household
-         state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: time
+      after: '09:00'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: state
+      entity_id: sensor.main_floor_occupancy
+      state: 'true'
+    - condition: state
+      entity_id: input_boolean.rainy_day_disable
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
     service: light.turn_on
@@ -1055,14 +1132,14 @@
 #- alias: Rain is over First Floor
 #  
 #  trigger:
-#       - platform: state
-#         entity_id: sensor.weather_precip
-#         state: 'unknown'
+#    - platform: state
+#      entity_id: sensor.weather_precip
+#      state: 'unknown'
 #  
 #  condition:
-#       - platform: state
-#         entity_id: sun.sun
-#         state: 'above_horizon'
+#    - condition: state
+#      entity_id: sun.sun
+#      state: 'above_horizon'
 #         
 #  action:
 #    service: light.turn_off
@@ -1075,23 +1152,23 @@
 - alias: Rainy Day [REDACTED] Office
 
   trigger:
-       - platform: state
-         entity_id: sensor.weather_precip
-         state: 'rain'
+    - platform: state
+      entity_id: sensor.weather_precip
+      state: 'rain'
 
   condition:
-       - platform: state
-         entity_id: sensor.[REDACTED]_office_occupancy
-         state: 'true'
-       - platform: state
-         entity_id: sun.sun
-         state: 'above_horizon'
-       - platform: state
-         entity_id: input_boolean.rainy_day_disable
-         state: 'off'
-       - platform: state
-         entity_id: device_tracker.[REDACTED]siphone
-         state: 'home'
+    - condition: state
+      entity_id: sensor.[REDACTED]_office_occupancy
+      state: 'true'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: state
+      entity_id: input_boolean.rainy_day_disable
+      state: 'off'
+    - condition: state
+      entity_id: device_tracker.[REDACTED]siphone
+      state: 'home'
 
   action:
     service: light.turn_on
@@ -1102,14 +1179,14 @@
 #- alias: Rain is over [REDACTED] Office
 #  
 #  trigger:
-#       - platform: state
-#         entity_id: sensor.weather_precip
-#         state: 'unknown'
+#    - platform: state
+#      entity_id: sensor.weather_precip
+#      state: 'unknown'
 #
 #  condition:
-#       - platform: state
-#         entity_id: sun.sun
-#         state: 'above_horizon'
+#    - condition: state
+#      entity_id: sun.sun
+#      state: 'above_horizon'
 #
 #  condition: use_trigger_values
 #  action:
@@ -1123,23 +1200,23 @@
 - alias: Rainy Day [REDACTED] Office
 
   trigger:
-       - platform: state
-         entity_id: sensor.weather_precip
-         state: 'rain'
+    - platform: state
+      entity_id: sensor.weather_precip
+      state: 'rain'
 
   condition:
-       - platform: state
-         entity_id: sensor.office_occupancy
-         state: 'true'
-       - platform: state
-         entity_id: sun.sun
-         state: 'above_horizon'
-       - platform: state
-         entity_id: input_boolean.rainy_day_disable
-         state: 'off'
-       - platform: state
-         entity_id: device_tracker.[REDACTED]siphone
-         state: 'home'
+    - condition: state
+      entity_id: sensor.office_occupancy
+      state: 'true'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: state
+      entity_id: input_boolean.rainy_day_disable
+      state: 'off'
+    - condition: state
+      entity_id: device_tracker.[REDACTED]siphone
+      state: 'home'
 
   action:
     service: light.turn_on
@@ -1151,14 +1228,14 @@
 #- alias: Rain is over [REDACTED] Office
 #  
 #  trigger:
-#       - platform: state
-#         entity_id: sensor.weather_precip
-#         state: 'None'
+#    - platform: state
+#      entity_id: sensor.weather_precip
+#      state: 'None'
 #
 #  condition:
-#       - platform: state
-#         entity_id: sun.sun
-#         state: 'above_horizon'
+#    - condition: state
+#      entity_id: sun.sun
+#      state: 'above_horizon'
 #
 #  action:
 #    service: light.turn_off
@@ -1171,18 +1248,18 @@
 - alias: Security Main Floor
 
   trigger:
-       - platform: state
-         entity_id: sensor.main_floor_occupancy
-         from: 'false'
-         to: 'true'
+    - platform: state
+      entity_id: sensor.main_floor_occupancy
+      from: 'false'
+      to: 'true'
 
   condition:
-       - platform: state
-         entity_id: group.household
-         state: 'not_home'
-       - platform: state
-         entity_id: input_boolean.disable_security
-         state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.disable_security
+      state: 'off'
 
   action:
     service: scene.turn_on
@@ -1191,18 +1268,18 @@
 - alias: Security Living Room
 
   trigger:
-       - platform: state
-         entity_id: sensor.living_room_occupancy
-         from: 'false'
-         to: 'true'
+    - platform: state
+      entity_id: sensor.living_room_occupancy
+      from: 'false'
+      to: 'true'
 
   condition:
-       - platform: state
-         entity_id: group.household
-         state: 'not_home'
-       - platform: state
-         entity_id: input_boolean.disable_security
-         state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.disable_security
+      state: 'off'
 
   action:
     service: scene.turn_on
@@ -1211,18 +1288,18 @@
 - alias: Security Kitchen
 
   trigger:
-       - platform: state
-         entity_id: sensor.kitchen_occupancy
-         from: 'false'
-         to: 'true'
+    - platform: state
+      entity_id: sensor.kitchen_occupancy
+      from: 'false'
+      to: 'true'
 
   condition:
-       - platform: state
-         entity_id: group.household
-         state: 'not_home'
-       - platform: state
-         entity_id: input_boolean.disable_security
-         state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.disable_security
+      state: 'off'
 
   action:
     service: scene.turn_on
@@ -1231,18 +1308,18 @@
 - alias: Security Bedroom
 
   trigger:
-       - platform: state
-         entity_id: sensor.bedroom_occupancy
-         from: 'false'
-         to: 'true'
+    - platform: state
+      entity_id: sensor.bedroom_occupancy
+      from: 'false'
+      to: 'true'
 
   condition:
-       - platform: state
-         entity_id: group.household
-         state: 'not_home'
-       - platform: state
-         entity_id: input_boolean.disable_security
-         state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.disable_security
+      state: 'off'
 
   action:
     service: scene.turn_on
@@ -1251,18 +1328,18 @@
 - alias: Security Office
 
   trigger:
-       - platform: state
-         entity_id: sensor.office_occupancy
-         from: 'false'
-         to: 'true'
+    - platform: state
+      entity_id: sensor.office_occupancy
+      from: 'false'
+      to: 'true'
 
   condition:
-       - platform: state
-         entity_id: group.household
-         state: 'not_home'
-       - platform: state
-         entity_id: input_boolean.disable_security
-         state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.disable_security
+      state: 'off'
 
   action:
     service: scene.turn_on
@@ -1271,18 +1348,18 @@
 - alias: Security [REDACTED] Office
 
   trigger:
-       - platform: state
-         entity_id: sensor.[REDACTED]_office_occupancy
-         from: 'false'
-         to: 'true'
+    - platform: state
+      entity_id: sensor.[REDACTED]_office_occupancy
+      from: 'false'
+      to: 'true'
 
   condition:
-       - platform: state
-         entity_id: group.household
-         state: 'not_home'
-       - platform: state
-         entity_id: input_boolean.disable_security
-         state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.disable_security
+      state: 'off'
 
   action:
     service: scene.turn_on
@@ -1291,18 +1368,18 @@
 - alias: Security Door Open
 
   trigger:
-       - platform: state
-         entity_id: group.doors
-         from: 'off'
-         to: 'on'
+    - platform: state
+      entity_id: group.doors
+      from: 'off'
+      to: 'on'
 
   condition:
-       - platform: state
-         entity_id: group.household
-         state: 'not_home'
-       - platform: state
-         entity_id: input_boolean.disable_security
-         state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.disable_security
+      state: 'off'
 
   action:
     service: scene.turn_on
@@ -1311,10 +1388,10 @@
 - alias: Security Notify
 
   trigger:
-       - platform: state
-         entity_id: input_boolean.alarm_tripped
-         from: 'off'
-         to: 'on'
+    - platform: state
+      entity_id: input_boolean.alarm_tripped
+      from: 'off'
+      to: 'on'
 
   action:
     service: notify.text_message
