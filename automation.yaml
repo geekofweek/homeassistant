@@ -14,12 +14,14 @@
       from: 'playing'
 
   condition:
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: state
-      entity_id: input_boolean.plex_lights_disable
-      state: 'off'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+      - condition: state
+        entity_id: input_boolean.plex_lights_disable
+        state: 'off'
 
   action:
     service: light.turn_on
@@ -36,12 +38,14 @@
          to: 'playing'
 
   condition:
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: state
-      entity_id: input_boolean.plex_lights_disable
-      state: 'off'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+      - condition: state
+        entity_id: input_boolean.plex_lights_disable
+        state: 'off'
 
   action:
     service: light.turn_off
@@ -184,15 +188,17 @@
          seconds: 0
   
   condition:
-    -  condition: state
-       entity_id: input_boolean.disable_lock_unlock_doors
-       state: 'off'
-    -  condition: state
-       entity_id: binary_sensor.front_door
-       state: 'off'
-    -  condition: state
-       entity_id: lock.front_door
-       state: 'unlocked'    
+    condition: and
+    conditions:
+      -  condition: state
+         entity_id: input_boolean.disable_lock_unlock_doors
+         state: 'off'
+      -  condition: state
+         entity_id: binary_sensor.front_door
+         state: 'off'
+      -  condition: state
+         entity_id: lock.front_door
+         state: 'unlocked'    
   
   action:
     service: lock.lock
@@ -214,19 +220,21 @@
          seconds: 0
   
   condition:
-    -  condition: state
-       entity_id: input_boolean.disable_lock_unlock_doors
-       state: 'off'
-    -  condition: state
-       entity_id: binary_sensor.back_door
-       state: 'off'
-       for:
-         hours: 1
-         minutes: 0
-         seconds: 0
-    -  condition: state
-       entity_id: lock.back_door
-       state: 'unlocked'   
+    condition: and
+    conditions:
+      -  condition: state
+         entity_id: input_boolean.disable_lock_unlock_doors
+         state: 'off'
+      -  condition: state
+         entity_id: binary_sensor.back_door
+         state: 'off'
+         for:
+           hours: 1
+           minutes: 0
+           seconds: 0
+      -  condition: state
+         entity_id: lock.back_door
+         state: 'unlocked'   
 
   action:
     service: lock.lock
@@ -248,15 +256,17 @@
          seconds: 0
 
   condition:
-    -  condition: state
-       entity_id: input_boolean.disable_lock_unlock_doors
-       state: 'off'
-    -  condition: state
-       entity_id: binary_sensor.basement_door
-       state: 'off'
-    -  condition: state
-       entity_id: lock.basement_door
-       state: 'unlocked'
+    condition: and
+    conditions:
+      -  condition: state
+         entity_id: input_boolean.disable_lock_unlock_doors
+         state: 'off'
+      -  condition: state
+         entity_id: binary_sensor.basement_door
+         state: 'off'
+      -  condition: state
+         entity_id: lock.basement_door
+         state: 'unlocked'
 
   action:
     service: lock.lock
@@ -275,19 +285,20 @@
        to: 'not_home'
 
   condition:
-    - condition: time
-      after: '05:00'
-      before: '07:00'
-    - condition: state
-      entity_id: input_boolean.disable_lock_unlock_doors
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.back_door
-      state: 'off'
-    - condition: state
-      entity_id: lock.back_door
-      state: 'unlocked'
-
+    condition: and
+    conditions:
+      - condition: time
+        after: '05:00'
+        before: '07:00'
+      - condition: state
+        entity_id: input_boolean.disable_lock_unlock_doors
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.back_door
+        state: 'off'
+      - condition: state
+        entity_id: lock.back_door
+        state: 'unlocked'
 
   action:
     service: lock.lock
@@ -303,12 +314,14 @@
       after: '02:00'
   
   condition:
-    -  condition: state
-       entity_id: input_boolean.disable_lock_unlock_doors
-       state: 'off'
-    -  condition: state
-       entity_id: group.doors
-       state: 'off'
+    condition: and
+    conditions:
+      -  condition: state
+         entity_id: input_boolean.disable_lock_unlock_doors
+         state: 'off'
+      -  condition: state
+         entity_id: group.doors
+         state: 'off'
   
   action:
     service: lock.lock
@@ -394,12 +407,14 @@
       to: 'home'
 
   condition:
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: state
-      entity_id: input_boolean.home_lights
-      state: 'off'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+      - condition: state
+        entity_id: input_boolean.home_lights
+        state: 'off'
 
   action:
     service: light.turn_on
@@ -421,12 +436,14 @@
       to: 'home'
 
   condition:
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: state
-      entity_id: input_boolean.home_lights
-      state: 'off'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+      - condition: state
+        entity_id: input_boolean.home_lights
+        state: 'off'
 
   action:
     service: light.turn_on
@@ -446,12 +463,14 @@
       after: '21:30'
      
   condition:
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: state
-      entity_id: input_boolean.exterior_off_night
-      state: 'off'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+      - condition: state
+        entity_id: input_boolean.exterior_off_night
+        state: 'off'
 
   action:
    service: light.turn_off
@@ -468,12 +487,14 @@
      after: '22:00'
 
   condition:
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: state
-      entity_id: input_boolean.exterior_off_night
-      state: 'off'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+      - condition: state
+        entity_id: input_boolean.exterior_off_night
+        state: 'off'
 
   action:
     service: light.turn_off
@@ -492,15 +513,17 @@
       to: 'on'
 
   condition:
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: state
-      entity_id: input_boolean.door_open_lights_on
-      state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+      - condition: state
+        entity_id: input_boolean.door_open_lights_on
+        state: 'off'
+      - condition: state
+        entity_id: group.household
+        state: 'home'
 
   action:
     service: light.turn_on
@@ -521,15 +544,17 @@
       to: 'off'
 
   condition:
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: state
-      entity_id: input_boolean.door_open_lights_on
-      state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+      - condition: state
+        entity_id: input_boolean.door_open_lights_on
+        state: 'off'
+      - condition: state
+        entity_id: group.household
+        state: 'home'
 
   action:
     service: light.turn_on
@@ -550,15 +575,17 @@
       to: 'on'
 
   condition:
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: state
-      entity_id: input_boolean.door_open_lights_on
-      state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+      - condition: state
+        entity_id: input_boolean.door_open_lights_on
+        state: 'off'
+      - condition: state
+        entity_id: group.household
+        state: 'home'
 
   action:
     service: light.turn_on
@@ -580,15 +607,17 @@
       to: 'on'
 
   condition:
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: state
-      entity_id: input_boolean.door_open_lights_on
-      state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+      - condition: state
+        entity_id: input_boolean.door_open_lights_on
+        state: 'off'
+      - condition: state
+        entity_id: group.household
+        state: 'home'
 
   action:
     service: light.turn_on
@@ -633,12 +662,14 @@
       to: 'not_home'
 
   condition:
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: state
-      entity_id: input_boolean.exterior_on_sunset
-      state: 'off'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+      - condition: state
+        entity_id: input_boolean.exterior_on_sunset
+        state: 'off'
 
   action:
     service: light.turn_on
@@ -657,15 +688,17 @@
       after: '05:00'
 
   condition:
-    - condition: state
-      entity_id: device_tracker.[REDACTED]siphone
-      state: 'home'
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: state
-      entity_id: input_boolean.lights_morning_disable
-      state: 'off'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: device_tracker.[REDACTED]siphone
+        state: 'home'
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+      - condition: state
+        entity_id: input_boolean.lights_morning_disable
+        state: 'off'
 
   action:
     service: light.turn_on
@@ -684,15 +717,17 @@
       after: '05:00'
 
   condition:
-    - condition: state
-      entity_id: device_tracker.[REDACTED]siphone
-      state: 'home'
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: state
-      entity_id: input_boolean.lights_morning_disable
-      state: 'off'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: device_tracker.[REDACTED]siphone
+        state: 'home'
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+      - condition: state
+        entity_id: input_boolean.lights_morning_disable
+        state: 'off'
 
   action:
     service: light.turn_on
@@ -713,13 +748,15 @@
       from: 'home'
       to: 'not_home'
   
-  condition: 
-    - condition: time
-      after: '05:00'
-      before: '07:00'
-    - condition: state
-      entity_id: input_boolean.lights_away
-      state: 'off'
+  condition:
+    condition: and
+    conditions: 
+      - condition: time
+        after: '05:00'
+        before: '07:00'
+      - condition: state
+        entity_id: input_boolean.lights_away
+        state: 'off'
 
   action:
     service: light.turn_off
@@ -794,12 +831,14 @@
       to: 'true'
 
   condition:
-    - condition: state
-      entity_id: input_boolean.occupancy_air_purifier_on_off_disable
-      state: 'off'
-    - condition: state
-      entity_id: device_tracker.[REDACTED]siphone
-      state: 'home'         
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.occupancy_air_purifier_on_off_disable
+        state: 'off'
+      - condition: state
+        entity_id: device_tracker.[REDACTED]siphone
+        state: 'home'         
 
   action:
     service: switch.turn_on
@@ -923,12 +962,14 @@
       to: 'false'
 
   condition:
-    - condition: state
-      entity_id: sensor.main_floor_occupancy
-      state: 'false'
-    - condition: state
-      entity_id: input_boolean.occupancy_lights_off_disable
-      state: 'off'                  
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: sensor.main_floor_occupancy
+        state: 'false'
+      - condition: state
+        entity_id: input_boolean.occupancy_lights_off_disable
+        state: 'off'                  
 
   action:
     service: light.turn_off
@@ -947,12 +988,14 @@
       to: 'false'
 
   condition:
-    - condition: state
-      entity_id: sensor.[REDACTED]_office_occupancy
-      state: 'false'
-    - condition: state
-      entity_id: input_boolean.occupancy_lights_off_disable
-      state: 'off'         
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: sensor.[REDACTED]_office_occupancy
+        state: 'false'
+      - condition: state
+        entity_id: input_boolean.occupancy_lights_off_disable
+        state: 'off'         
 
   action:
     service: light.turn_off
@@ -967,12 +1010,14 @@
       to: 'false'
 
   condition:
-    - condition: state
-      entity_id: sensor.office_occupancy
-      state: 'false'
-    - condition: state
-      entity_id: input_boolean.occupancy_lights_off_disable
-      state: 'off'         
+    condition: and
+    conditions::
+      - condition: state
+        entity_id: sensor.office_occupancy
+        state: 'false'
+      - condition: state
+        entity_id: input_boolean.occupancy_lights_off_disable
+        state: 'off'         
 
   action:
     service: light.turn_off
@@ -989,17 +1034,18 @@
       event: 'sunset'
       offset: '-00:59:00'
 
-  condition_type: or
   condition:
-    - condition: state
-      entity_id: sensor.main_floor_occupancy
-      state: 'true'
-    - condition: state
-      entity_id: sensor.living_room_occupancy
-      state: 'true'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: sensor.main_floor_occupancy
+        state: 'true'
+      - condition: state
+        entity_id: sensor.living_room_occupancy
+        state: 'true'
+      - condition: state
+        entity_id: group.household
+        state: 'home'
 
   action:
     service: light.turn_on
@@ -1023,15 +1069,17 @@
       offset: '-00:10:00'
 
   condition:
-    - condition: state
-      entity_id: sensor.office_occupancy
-      state: 'true'
-    - condition: state
-      entity_id: input_boolean.office_lights_sunset
-      state: 'off'
-    - condition: state
-      entity_id: device_tracker.[REDACTED]siphone
-      state: 'home'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: sensor.office_occupancy
+        state: 'true'
+      - condition: state
+        entity_id: input_boolean.office_lights_sunset
+        state: 'off'
+      - condition: state
+        entity_id: device_tracker.[REDACTED]siphone
+        state: 'home'
 
   action:
     service: light.turn_on
@@ -1053,15 +1101,17 @@
       offset: '-00:10:00'
 
   condition:
-    - condition: state
-      entity_id: sensor.[REDACTED]_office_occupancy
-      state: 'true'
-    - condition: state
-      entity_id: input_boolean.office_lights_sunset
-      state: 'off'
-    - condition: state
-      entity_id: device_tracker.[REDACTED]siphone
-      state: 'home'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: sensor.[REDACTED]_office_occupancy
+        state: 'true'
+      - condition: state
+        entity_id: input_boolean.office_lights_sunset
+        state: 'off'
+      - condition: state
+        entity_id: device_tracker.[REDACTED]siphone
+        state: 'home'
 
   action:
     service: light.turn_on
@@ -1104,23 +1154,25 @@
       state: 'rain'
 
   condition:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: time
-      after: '09:00'
-    - condition: state
-      entity_id: sun.sun
-      state: 'above_horizon'
-    - condition: state
-      entity_id: sensor.main_floor_occupancy
-      state: 'true'
-    - condition: state
-      entity_id: input_boolean.rainy_day_disable
-      state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: time
+        after: '09:00'
+      - condition: state
+        entity_id: sun.sun
+        state: 'above_horizon'
+      - condition: state
+        entity_id: sensor.main_floor_occupancy
+        state: 'true'
+      - condition: state
+        entity_id: input_boolean.rainy_day_disable
+        state: 'off'
+      - condition: state
+        entity_id: group.household
+        state: 'home'
 
   action:
     service: light.turn_on
@@ -1157,18 +1209,20 @@
       state: 'rain'
 
   condition:
-    - condition: state
-      entity_id: sensor.[REDACTED]_office_occupancy
-      state: 'true'
-    - condition: state
-      entity_id: sun.sun
-      state: 'above_horizon'
-    - condition: state
-      entity_id: input_boolean.rainy_day_disable
-      state: 'off'
-    - condition: state
-      entity_id: device_tracker.[REDACTED]siphone
-      state: 'home'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: sensor.[REDACTED]_office_occupancy
+        state: 'true'
+      - condition: state
+        entity_id: sun.sun
+        state: 'above_horizon'
+      - condition: state
+        entity_id: input_boolean.rainy_day_disable
+        state: 'off'
+      - condition: state
+        entity_id: device_tracker.[REDACTED]siphone
+        state: 'home'
 
   action:
     service: light.turn_on
@@ -1205,18 +1259,20 @@
       state: 'rain'
 
   condition:
-    - condition: state
-      entity_id: sensor.office_occupancy
-      state: 'true'
-    - condition: state
-      entity_id: sun.sun
-      state: 'above_horizon'
-    - condition: state
-      entity_id: input_boolean.rainy_day_disable
-      state: 'off'
-    - condition: state
-      entity_id: device_tracker.[REDACTED]siphone
-      state: 'home'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: sensor.office_occupancy
+        state: 'true'
+      - condition: state
+        entity_id: sun.sun
+        state: 'above_horizon'
+      - condition: state
+        entity_id: input_boolean.rainy_day_disable
+        state: 'off'
+      - condition: state
+        entity_id: device_tracker.[REDACTED]siphone
+        state: 'home'
 
   action:
     service: light.turn_on
@@ -1254,12 +1310,14 @@
       to: 'true'
 
   condition:
-    - condition: state
-      entity_id: group.household
-      state: 'not_home'
-    - condition: state
-      entity_id: input_boolean.disable_security
-      state: 'off'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'off'
 
   action:
     service: scene.turn_on
@@ -1274,12 +1332,14 @@
       to: 'true'
 
   condition:
-    - condition: state
-      entity_id: group.household
-      state: 'not_home'
-    - condition: state
-      entity_id: input_boolean.disable_security
-      state: 'off'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'off'
 
   action:
     service: scene.turn_on
@@ -1294,12 +1354,14 @@
       to: 'true'
 
   condition:
-    - condition: state
-      entity_id: group.household
-      state: 'not_home'
-    - condition: state
-      entity_id: input_boolean.disable_security
-      state: 'off'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'off'
 
   action:
     service: scene.turn_on
@@ -1314,12 +1376,14 @@
       to: 'true'
 
   condition:
-    - condition: state
-      entity_id: group.household
-      state: 'not_home'
-    - condition: state
-      entity_id: input_boolean.disable_security
-      state: 'off'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'off'
 
   action:
     service: scene.turn_on
@@ -1334,12 +1398,14 @@
       to: 'true'
 
   condition:
-    - condition: state
-      entity_id: group.household
-      state: 'not_home'
-    - condition: state
-      entity_id: input_boolean.disable_security
-      state: 'off'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'off'
 
   action:
     service: scene.turn_on
@@ -1354,12 +1420,14 @@
       to: 'true'
 
   condition:
-    - condition: state
-      entity_id: group.household
-      state: 'not_home'
-    - condition: state
-      entity_id: input_boolean.disable_security
-      state: 'off'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'off'
 
   action:
     service: scene.turn_on
@@ -1374,12 +1442,14 @@
       to: 'on'
 
   condition:
-    - condition: state
-      entity_id: group.household
-      state: 'not_home'
-    - condition: state
-      entity_id: input_boolean.disable_security
-      state: 'off'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'off'
 
   action:
     service: scene.turn_on
