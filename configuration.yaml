@@ -50,7 +50,6 @@ media_player:
 
 wink:
   access_token: [REDACTED]
-#  scan_interval: 10
 
 ecobee:
   api_key: [REDACTED]
@@ -72,7 +71,7 @@ device_tracker:
     username: [REDACTED]
     password: [REDACTED]
   - platform: nmap_tracker
-    hosts: [REDACTED]
+    hosts: [REDACTED]/24
     home_interval: 10
 
 camera:
@@ -101,23 +100,37 @@ sensor 2:
   api_key: [REDACTED]
   monitored_conditions:
     - summary
+    - minutely_summary
+    - hourly_summary
+    - daily_summary
 #    - icon
     - nearest_storm_distance
-#    - nearest_storm_bearing
+    - nearest_storm_bearing
     - precip_type
     - precip_intensity
     - precip_probability
     - temperature
-#    - apparent_temperature
-#    - dew_point
+    - apparent_temperature
+    - dew_point
     - wind_speed
-#    - wind_bearing
+    - wind_bearing
     - cloud_cover
     - humidity
-#    - pressure
-#    - visibility
-#    - ozone
+    - pressure
+    - visibility
+    - ozone
 
+sensor 3:
+  platform: cpuspeed
+  name: CPU 
+
+sensor 4:
+  platform: systemmonitor
+  resources:
+    - type: memory_free
+    - type: memory_use_percent
+    - type: processor_use
+    - type: since_last_boot
 
 #################################################################
 ## Zones

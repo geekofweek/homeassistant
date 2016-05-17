@@ -16,3 +16,55 @@
             brightness: 255
         switch.siren:
             state: on
+
+  - name: Vacation
+    entities:
+        group.back_door:
+            state: on
+            brightness: 200
+        light.office_ceiling:
+            state: on
+            brightness: 100
+        light.basement_stairs:
+            state: on
+            brightness: 255
+        group.living_room:
+            state: on
+            brightness: 175
+        light.closet_lamp:
+            state: on
+            brightness: 175
+
+  - name: Vacation Disable Automation
+    entities:
+        input_boolean.lights_morning_disable:
+            state: on
+        input_boolean.exterior_off_night:
+            state: on
+        input_boolean.rainy_day_disable:
+            state: on
+        input_boolean.office_lights_sunset:
+            state: on
+        input_boolean.occupancy_air_purifier_on_off_disable:
+            state: on
+        input_boolean.plex_lights_disable:
+            state: on
+        input_boolean.occupancy_lights_off_disable:
+            state: on
+
+  - name: Vacation Enable Automation
+    entities:
+        input_boolean.lights_morning_disable:
+            state: off
+        input_boolean.exterior_off_night:
+            state: off
+        input_boolean.rainy_day_disable:
+            state: off
+        input_boolean.office_lights_sunset:
+            state: off
+        input_boolean.occupancy_air_purifier_on_off_disable:
+            state: off
+        input_boolean.plex_lights_disable:
+            state: off
+        input_boolean.occupancy_lights_off_disable:
+            state: off

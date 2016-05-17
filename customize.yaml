@@ -33,6 +33,8 @@
        friendly_name: Front Door Lock
      lock.back_door:
        friendly_name: Back Door Lock
+     lock.basement_door:
+       friendly_name: Basement Door Lock
 
 #sensors
      binary_sensor.front_door:
@@ -44,6 +46,13 @@
      binary_sensor.basement_door:
        icon: mdi:home
        friendly_name: Basement Door Open
+     sensor.cpu_use:
+       friendly_name: CPU Usage
+     sensor.ram_use:
+       friendly_name: RAM Usage
+     sensor.since_last_boot:
+       friendly_name: Uptime
+
        
 #switches
      switch.air_purifier:
@@ -63,6 +72,12 @@
      sensor.weather_temperature:
        friendly_name: 'Outdoor Temperature'
      sensor.weather_summary:
+       icon: mdi:weather-sunny
+     sensor.weather_hourly_summary:
+       icon: mdi:weather-sunny
+     sensor.weather_minutely_summary:
+       icon: mdi:weather-sunny
+     sensor.weather_daily_summary:
        icon: mdi:weather-sunny
      sensor.weather_apparent_temperature:
        icon: mdi:thermometer-lines
@@ -84,7 +99,14 @@
        icon: mdi:weather-windy
      sensor.main_floor_humidity:
        icon: mdi:water-percent
+     sensor.weather_wind_bearing:
+       icon: mdi:weather-windy
+     sensor.weather_ozone:
+       icon: mdi:cloud
+     sensor.weather_pressure:
+       icon: mdi:weight
 
+#media players
      media_player.living_room:
        friendly_name: Apple TV
      media_player.plex_for_vizio_vizio_mtk:
@@ -93,6 +115,8 @@
 #Hidden Groups/Lights/Scenes
 
      group.doors:
+       hidden: true
+     group.home_locks:
        hidden: true
      group.occupancy:
        hidden: true
@@ -111,6 +135,16 @@
      light.stairs_2:
        hidden: true
      light.stairs_3:
+       hidden: true
+     scene.vacation:
+       hidden: true
+     scene.vacation_disable_automation:
+       hidden: true
+     scene.vacation_enable_automation:
+       hidden: true
+     light.living_room_lamp_1:
+       hidden: true
+     light.living_room_lamp_2:
        hidden: true
 
 #Wink Ecobee
