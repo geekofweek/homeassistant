@@ -3,12 +3,12 @@
 ##############################################################
 
   disable_security:
-    name: Disable Alarm
+    name: Alarm Disabled
     initial: off
-    icon: mdi:close-circle-outline
+    icon: mdi:shield-outline
 
   disable_lock_unlock_doors:
-    name: Disable Lock/Unlock Doors
+    name: Disable Lock Doors
     initial: off
     icon: mdi:close-circle-outline
   
@@ -42,16 +42,6 @@
     initial: off
     icon: mdi:close-circle-outline
 
-  thermostat_home_away:
-    name: Disable Thermostat Home/Away
-    initial: off
-    icon: mdi:close-circle-outline
-
-  home_lights:
-    name: Disable Lights On when Returning Home
-    initial: off
-    icon: mdi:close-circle-outline
-    
   exterior_off_night:
     name: Disable Exterior Lights Off at Night
     initial: off
@@ -62,8 +52,8 @@
     initial: off
     icon: mdi:close-circle-outline
 
-  lights_away:
-    name: Disable Lights Off When Away
+  home_away:
+    name: Disable Home / Away Mode
     initial: off
     icon: mdi:close-circle-outline
 
@@ -102,7 +92,22 @@
     initial: off
     icon: mdi:lock-open-outline
 
+  thermostat_away:
+    name: Thermostat Away Mode
+    initial: off
+    icon: mdi:walk
+
   vacation_mode:
     name: Vacation Mode
     initial: off
     icon: mdi:airplane
+
+  _REDACTED__away:
+    name: _REDACTED_ Away
+    initial: off
+    icon: mdi:walk
+
+  _REDACTED__away:
+    name: _REDACTED_ Away
+    initial: off
+    icon: mdi:walk

@@ -3,52 +3,58 @@
 #################################################################
 
         ##########################################################
-        ## [REDACTED] Home Unlock Doors
+        ## _REDACTED_ Home Unlock Doors
         ##########################################################
 
-- alias: [REDACTED] Home Unlock Doors
+- alias: _REDACTED_ Home Unlock Doors
 
   trigger:
     - platform: state
-      entity_id: device_tracker.[REDACTED]siphone
+      entity_id: device_tracker._REDACTED_siphone
       from: 'not_home'
       to: 'home'
 
   condition:
     - condition: state
-      entity_id: input_boolean.disable_lock_unlock_doors
+      entity_id: input_boolean.home_away
       state: 'off'
+    - condition: state
+      entity_id: input_boolean._REDACTED__away
+      state: 'on'
+  
+  action:
+    service: lock.unlock
+    entity_id: lock.back_door, lock.front_door
+
+        ##########################################################
+        ## _REDACTED_ Home Unlock Doors
+        ##########################################################
+
+- alias: _REDACTED_ Home Unlock Doors
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._REDACTED_siphone
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean._REDACTED__away
+      state: 'on'
 
   action:
     service: lock.unlock
     entity_id: lock.back_door, lock.front_door
 
         ##########################################################
-        ## [REDACTED] Home Unlock Doors
+        ## Away Mode
         ##########################################################
 
-- alias: [REDACTED] Home Unlock Doors
-
-  trigger:
-    - platform: state
-      entity_id: device_tracker.[REDACTED]siphone
-      from: 'not_home'
-      to: 'home'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_lock_unlock_doors
-      state: 'off'
-
-  action:
-    service: lock.unlock
-    entity_id: lock.back_door, lock.front_door
-
-        ##########################################################
-        ## Lock Doors When Away
-        ##########################################################
-
-- alias: Lock Doors
+- alias: Away Mode
 
   trigger:
     - platform: state
@@ -58,43 +64,26 @@
 
   condition:
     - condition: state
-      entity_id: input_boolean.disable_lock_unlock_doors
+      entity_id: input_boolean.home_away
       state: 'off'
 
   action:
-    service: lock.lock
-    entity_id: group.all_locks
+    - service: lock.lock
+      entity_id: group.all_locks
+    - service: light.turn_off
+      entity_id: group.interior_lights
+    - service: switch.turn_off
+      entity_id: switch.air_purifier
 
         ##########################################################
-        ## Turn off Interior Lights when Unoccupied
+        ## _REDACTED_ Home Turn on Lights
         ##########################################################
 
-- alias: Turn off Interior Lights when Unoccupied
+- alias: _REDACTED_ Home
 
   trigger:
     - platform: state
-      entity_id: group.household
-      from: 'home'
-      to: 'not_home'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.lights_away
-      state: 'off'
-
-  action:
-    service: light.turn_off
-    entity_id: group.interior_lights
-
-        ##########################################################
-        ## [REDACTED] Home Turn on Lights
-        ##########################################################
-
-- alias: [REDACTED] Home
-
-  trigger:
-    - platform: state
-      entity_id: device_tracker.[REDACTED]siphone
+      entity_id: device_tracker._REDACTED_siphone
       from: 'not_home'
       to: 'home'
 
@@ -103,8 +92,11 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: state
-      entity_id: input_boolean.home_lights
+      entity_id: input_boolean.home_away
       state: 'off'
+    - condition: state
+      entity_id: input_boolean._REDACTED__away
+      state: 'on'
 
   action:
     service: light.turn_on
@@ -114,14 +106,14 @@
      brightness: 150
 
         ##########################################################
-        ## [REDACTED] Home Turn on Lights
+        ## _REDACTED_ Home Turn on Lights
         ##########################################################
 
-- alias: [REDACTED] Home
+- alias: _REDACTED_ Home
 
   trigger:
     - platform: state
-      entity_id: device_tracker.[REDACTED]siphone
+      entity_id: device_tracker._REDACTED_siphone
       from: 'not_home'
       to: 'home'
 
@@ -130,8 +122,11 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: state
-      entity_id: input_boolean.home_lights
+      entity_id: input_boolean.home_away
       state: 'off'
+    - condition: state
+      entity_id: input_boolean._REDACTED__away
+      state: 'on'
 
   action:
     service: light.turn_on
@@ -211,14 +206,14 @@
   
   condition:
     - condition: state
-      entity_id: input_boolean.thermostat_home_away
+      entity_id: input_boolean.home_away
       state: 'off'
 
   action:
     entity_id: thermostat.main_floor
     service: thermostat.set_away_mode
     data:
-      away_mode: ''
+      away_mode: 'False'
 
 - alias: Thermostat - Away
 
@@ -230,7 +225,7 @@
 
   condition:
     - condition: state
-      entity_id: input_boolean.thermostat_home_away
+      entity_id: input_boolean.home_away
       state: 'off'
 
   action:
@@ -454,14 +449,14 @@
     entity_id: lock.basement_door
 
         ##########################################################
-        ## Lock Back Door when [REDACTED] Leaves in the Morning
+        ## Lock Back Door when _REDACTED_ Leaves in the Morning
         ##########################################################
 
-- alias: Lock Back Door when [REDACTED] Leaves
+- alias: Lock Back Door when _REDACTED_ Leaves
 
   trigger:
      - platform: state
-       entity_id: device_tracker.[REDACTED]siphone
+       entity_id: device_tracker._REDACTED_siphone
        from: 'home'
        to: 'not_home'
 
@@ -553,14 +548,14 @@
     entity_id: group.front_porch
 
         ##########################################################
-        ## Turn on Back Door at Sunset when [REDACTED] Leaves Work
+        ## Turn on Back Door at Sunset when _REDACTED_ Leaves Work
         ##########################################################
 
 - alias: Turn on Back Door at Sunset
 
   trigger:
     - platform: state
-      entity_id: device_tracker.[REDACTED]siphone
+      entity_id: device_tracker._REDACTED_siphone
       from: 'work'
       to: 'not_home'
 
@@ -601,7 +596,7 @@
    entity_id: group.back_door
 
         ##########################################################
-        ## Turn on Back Door at 5:00a if [REDACTED] Home
+        ## Turn on Back Door at 5:00a if _REDACTED_ Home
         ##########################################################
 
 - alias: Back Door on at 5a
@@ -612,7 +607,7 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker.[REDACTED]siphone
+      entity_id: device_tracker._REDACTED_siphone
       state: 'home'
     - condition: state
       entity_id: sun.sun
@@ -628,7 +623,7 @@
      brightness: 200
 
         ##########################################################
-        ## Turn on Lights at 5a if [REDACTED] Home
+        ## Turn on Lights at 5a if _REDACTED_ Home
         ##########################################################
 
 - alias: Turn on Interior Lights at 5a
@@ -639,7 +634,7 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker.[REDACTED]siphone
+      entity_id: device_tracker._REDACTED_siphone
       state: 'home'
     - condition: state
       entity_id: sun.sun
@@ -656,14 +651,14 @@
      xy_color: [ 0.5134, 0.4149 ]
 
         ##########################################################
-        ## Turn off Lights when [REDACTED] Leaves
+        ## Turn off Lights when _REDACTED_ Leaves
         ##########################################################
 
-- alias: Turn off Lights when [REDACTED] Leaves
+- alias: Turn off Lights when _REDACTED_ Leaves
 
   trigger:
     - platform: state
-      entity_id: device_tracker.[REDACTED]siphone
+      entity_id: device_tracker._REDACTED_siphone
       from: 'home'
       to: 'not_home'
   
@@ -712,7 +707,7 @@
       entity_id: input_boolean.occupancy_air_purifier_on_off_disable
       state: 'off'
     - condition: state
-      entity_id: device_tracker.[REDACTED]siphone
+      entity_id: device_tracker._REDACTED_siphone
       state: 'home'         
 
   action:
@@ -760,17 +755,17 @@
 
   action:
     service: light.turn_off
-    entity_id: group.[REDACTED]_office
+    entity_id: group._REDACTED__office
 
         ##########################################################
-        ## Turn off [REDACTED] Office when Unoccupied
+        ## Turn off _REDACTED_ Office when Unoccupied
         ##########################################################
 
-- alias: Turn off [REDACTED] Office Light when Unoccupied
+- alias: Turn off _REDACTED_ Office Light when Unoccupied
 
   trigger:
     - platform: state
-      entity_id: sensor.[REDACTED]_office_occupancy
+      entity_id: sensor._REDACTED__office_occupancy
       from: 'true'
       to: 'false'
 
@@ -781,7 +776,7 @@
 
   action:
     service: light.turn_off
-    entity_id: group.[REDACTED]_office
+    entity_id: group._REDACTED__office
 
         ##########################################################
         ## Turn off Bedroom when Unoccupied
@@ -874,7 +869,7 @@
         ## Turn off Stairs when Unoccupied
         ##########################################################
 
-- alias: Turn off Stairs when [REDACTED] Unoccupied
+- alias: Turn off Stairs when _REDACTED_ Unoccupied
 
   trigger:
     - platform: state
@@ -884,7 +879,7 @@
 
   condition:
     - condition: state
-      entity_id: sensor.[REDACTED]_office_occupancy
+      entity_id: sensor._REDACTED__office_occupancy
       state: 'false'
     - condition: state
       entity_id: input_boolean.occupancy_lights_off_disable
@@ -894,11 +889,11 @@
     service: light.turn_off
     entity_id: group.stairs
 
-- alias: Turn off Stairs when [REDACTED] Office Unoccupied
+- alias: Turn off Stairs when _REDACTED_ Office Unoccupied
 
   trigger:
     - platform: state
-      entity_id: sensor.[REDACTED]_office_occupancy
+      entity_id: sensor._REDACTED__office_occupancy
       from: 'true'
       to: 'false'
 
@@ -967,22 +962,22 @@
       entity_id: input_boolean.office_lights_sunset
       state: 'off'
     - condition: state
-      entity_id: device_tracker.[REDACTED]siphone
+      entity_id: device_tracker._REDACTED_siphone
       state: 'home'
 
   action:
     service: light.turn_on
-    entity_id: group.[REDACTED]_office
+    entity_id: group._REDACTED__office
     data:
     # 900 seconds = 15 minutes
       transition: 1200
       brightness: 75
 
         ##########################################################
-        ## Turn on [REDACTED]'s Office at Sunset when Occupied
+        ## Turn on _REDACTED_'s Office at Sunset when Occupied
         ##########################################################
 
-- alias: Turn on [REDACTED] Office Lights at Sunset when Occupied
+- alias: Turn on _REDACTED_ Office Lights at Sunset when Occupied
 
   trigger:
     - platform: sun
@@ -991,18 +986,18 @@
 
   condition:
     - condition: state
-      entity_id: sensor.[REDACTED]_office_occupancy
+      entity_id: sensor._REDACTED__office_occupancy
       state: 'true'
     - condition: state
       entity_id: input_boolean.office_lights_sunset
       state: 'off'
     - condition: state
-      entity_id: device_tracker.[REDACTED]siphone
+      entity_id: device_tracker._REDACTED_siphone
       state: 'home'
 
   action:
     service: light.turn_on
-    entity_id: group.[REDACTED]_office
+    entity_id: group._REDACTED__office
     data:
     # 900 seconds = 15 minutes
       transition: 1200
@@ -1062,10 +1057,10 @@
 #    entity_id: group.rain_lights
 
         ##########################################################
-        ## Turn On/Off [REDACTED] Office During Rain
+        ## Turn On/Off _REDACTED_ Office During Rain
         ##########################################################
 
-- alias: Rainy Day [REDACTED] Office
+- alias: Rainy Day _REDACTED_ Office
 
   trigger:
     - platform: state
@@ -1074,7 +1069,7 @@
 
   condition:
     - condition: state
-      entity_id: sensor.[REDACTED]_office_occupancy
+      entity_id: sensor._REDACTED__office_occupancy
       state: 'true'
     - condition: state
       entity_id: sun.sun
@@ -1083,16 +1078,16 @@
       entity_id: input_boolean.rainy_day_disable
       state: 'off'
     - condition: state
-      entity_id: device_tracker.[REDACTED]siphone
+      entity_id: device_tracker._REDACTED_siphone
       state: 'home'
 
   action:
     service: light.turn_on
-    entity_id: group.[REDACTED]_office
+    entity_id: group._REDACTED__office
     data:
      brightness: 50
 
-#- alias: Rain is over [REDACTED] Office
+#- alias: Rain is over _REDACTED_ Office
 #  
 #  trigger:
 #    - platform: state
@@ -1107,13 +1102,13 @@
 #  condition: use_trigger_values
 #  action:
 #    service: light.turn_off
-#    entity_id: group.[REDACTED]_office, group.stairs
+#    entity_id: group._REDACTED__office, group.stairs
 
         ##########################################################
-        ## Turn On/Off [REDACTED] Office During Rain
+        ## Turn On/Off _REDACTED_ Office During Rain
         ##########################################################
 
-- alias: Rainy Day [REDACTED] Office
+- alias: Rainy Day _REDACTED_ Office
 
   trigger:
     - platform: state
@@ -1131,17 +1126,17 @@
       entity_id: input_boolean.rainy_day_disable
       state: 'off'
     - condition: state
-      entity_id: device_tracker.[REDACTED]siphone
+      entity_id: device_tracker._REDACTED_siphone
       state: 'home'
 
   action:
     service: light.turn_on
-    entity_id: group.[REDACTED]_office, group.stairs
+    entity_id: group._REDACTED__office, group.stairs
     data:
      brightness: 30
      xy_color: [0.139,0.081]
 
-#- alias: Rain is over [REDACTED] Office
+#- alias: Rain is over _REDACTED_ Office
 #  
 #  trigger:
 #    - platform: state
@@ -1155,7 +1150,7 @@
 #
 #  action:
 #    service: light.turn_off
-#    entity_id: group.[REDACTED]_office, group.stairs
+#    entity_id: group._REDACTED__office, group.stairs
 
         ##########################################################
         ## Security
@@ -1261,11 +1256,11 @@
     service: scene.turn_on
     entity_id: scene.security
       
-- alias: Security [REDACTED] Office
+- alias: Security _REDACTED_ Office
 
   trigger:
     - platform: state
-      entity_id: sensor.[REDACTED]_office_occupancy
+      entity_id: sensor._REDACTED__office_occupancy
       from: 'false'
       to: 'true'
 
@@ -1300,21 +1295,6 @@
   action:
     service: scene.turn_on
     entity_id: scene.security
-
-- alias: Security Notify
-
-  trigger:
-    - platform: state
-      entity_id: input_boolean.alarm_tripped
-      from: 'off'
-      to: 'on'
-
-  action:
-    service: notify.text_message
-    data:
-      message: 'Alarm Has Been Tripped!'
-      target:
-        - [REDACTED]
 
         ##########################################################
         ## On Demand Automation
@@ -1414,6 +1394,35 @@
     service: homeassistant.turn_off
     entity_id: input_boolean.unlock_doors
 
+- alias: Thermostat On Demand Home
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.thermostat_away
+      from: 'on'
+      to: 'off'
+
+  action:
+    entity_id: thermostat.main_floor
+    service: thermostat.set_away_mode
+    data:
+      away_mode: 'False'
+
+- alias: Thermostat On Demand Away
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.thermostat_away
+      from: 'off'
+      to: 'on'
+
+  action:
+    entity_id: thermostat.main_floor
+    service: thermostat.set_away_mode
+    data:
+      away_mode: 'True'
+
+
 - alias: Panic Mode
 
   trigger:
@@ -1434,8 +1443,8 @@
   trigger:
     - platform: state
       entity_id: sun.sun
-      from: 'below_horizon'
-      to: 'above_horizon'
+      from: 'above_horizon'
+      to: 'below_horizon'
 
   condition:
     - condition: state
@@ -1485,3 +1494,199 @@
     service: scene.turn_on
     entity_id: scene.vacation_enable_automation
 
+        ##########################################################
+        ## Notifications
+        ##########################################################
+
+- alias: Security Notify
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.alarm_tripped
+      from: 'off'
+      to: 'on'
+
+  action:
+    service: notify.text_message
+    data:
+      message: 'Alarm Has Been Tripped!'
+      target:
+        - _REDACTED_
+
+- alias: Alarm Enabled Notify
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.disable_security
+      to: 'off'
+
+  action:
+    service: notify.text_message
+    data:
+      message: 'Alarm Enabled'
+      target:
+        - _REDACTED_
+
+- alias: Alarm Disabled Notify
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.disable_security
+      to: 'on'
+
+  action:
+    service: notify.text_message
+    data:
+      message: 'Alarm Disabled'
+      target:
+        - _REDACTED_
+
+- alias: _REDACTED_ Message Away
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._REDACTED_siphone
+      from: 'home'
+      to: 'not_home'
+
+  action:
+    service: notify.text_message
+    data:
+      message: '_REDACTED_ Phone Away State'
+      target:
+        - _REDACTED_
+
+- alias: _REDACTED_ Message Home
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._REDACTED_siphone
+      from: 'not_home'
+      to: 'home'
+
+  action:
+    service: notify.text_message
+    data:
+      message: '_REDACTED_ Phone Home State'
+      target:
+        - _REDACTED_ 
+
+#################################################################
+## Work Arounds
+#################################################################
+
+        ##########################################################
+        ## Disable Alarm when Home
+        ##########################################################
+
+- alias: Disable Alarm when Home
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'not_home'
+      to: 'home'
+
+  action:
+    service: homeassistant.turn_on
+    entity_id: input_boolean.disable_security
+
+        ##########################################################
+        ## Enable Alarm when Home
+        ##########################################################
+
+- alias: Enable Alarm when Away
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
+
+  action:
+    service: homeassistant.turn_off
+    entity_id: input_boolean.disable_security
+
+        ##########################################################
+        ## Set _REDACTED_ Away after 5 Mins
+        ##########################################################
+
+- alias: Set _REDACTED_ Away after 5 Mins
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._REDACTED_siphone
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  action:
+    service: homeassistant.turn_on
+    entity_id: input_boolean._REDACTED__away
+    
+        ##########################################################
+        ## Set _REDACTED_ Home after 15 Mins
+        ##########################################################
+
+- alias: Set _REDACTED_ Home after 15 Mins
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._REDACTED_siphone
+      from: 'not_home'
+      to: 'home'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+
+  action:
+    service: homeassistant.turn_off
+    entity_id: input_boolean._REDACTED__away
+    
+        ##########################################################
+        ## Set _REDACTED_ Away after 5 Mins
+        ##########################################################
+
+- alias: Set _REDACTED_ Away after 5 Mins
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._REDACTED_siphone
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  action:
+    service: homeassistant.turn_on
+    entity_id: input_boolean._REDACTED__away
+    
+        ##########################################################
+        ## Set _REDACTED_ Home after 15 Mins
+        ##########################################################
+
+- alias: Set _REDACTED_ Home after 15 Mins
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._REDACTED_siphone
+      from: 'not_home'
+      to: 'home'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+
+  action:
+    service: homeassistant.turn_off
+    entity_id: input_boolean._REDACTED__away

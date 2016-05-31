@@ -10,8 +10,8 @@
       - group.dining_room
       - group.kitchen
       - group.bedroom
-      - group.[REDACTED]_office
-      - group.[REDACTED]_office
+      - group._REDACTED__office
+      - group._REDACTED__office
       - group.basement
       - group.exterior_lights
       - group.interior_lights
@@ -53,7 +53,6 @@
       - group.automation_on_demand
 
   Automation Override:
-    - input_boolean.disable_security
     - input_boolean.disable_lock_unlock_doors
     - input_boolean.lights_morning_disable
     - input_boolean.plex_lights_disable
@@ -62,9 +61,7 @@
     - input_boolean.rainy_day_disable
     - input_boolean.occupancy_lights_off_disable
     - input_boolean.office_lights_sunset
-    - input_boolean.thermostat_home_away
-    - input_boolean.lights_away
-    - input_boolean.home_lights
+    - input_boolean.home_away
     - input_boolean.exterior_off_night
     - input_boolean.exterior_on_sunset
 
@@ -73,6 +70,7 @@
     - input_boolean.office_rainbow
     - input_boolean.lock_doors
     - input_boolean.unlock_doors
+    - input_boolean.thermostat_away
     - input_boolean.vacation_mode
     - input_boolean.panic_mode
 
@@ -88,8 +86,8 @@
     - light.living_room_lamp_2
 
   Bedroom:
-    - light.[REDACTED]s_nightstand
-    - light.[REDACTED]s_nightstand
+    - light._REDACTED_s_nightstand
+    - light._REDACTED_s_nightstand
     - light.bedroom_lamp
     - light.closet_lamp
     - sensor.bedroom_temperature
@@ -101,8 +99,8 @@
     - group.bedroom
     - group.kitchen
     - group.stairs
-    - group.[REDACTED]_office
-    - group.[REDACTED]_office
+    - group._REDACTED__office
+    - group._REDACTED__office
     - group.basement
     - light.hallway_light
 
@@ -111,17 +109,17 @@
     - group.back_door
     - group.back_porch
 
-  [REDACTED] Office:
+  _REDACTED_ Office:
     - light.office_ceiling
     - light.office_lamp
     - switch.air_purifier
     - sensor.office_temperature
     - sensor.office_occupancy
 
-  [REDACTED] Office:
-    - group.[REDACTED]_office_ceiling
-    - sensor.[REDACTED]_office_temperature
-    - sensor.[REDACTED]_office_occupancy
+  _REDACTED_ Office:
+    - group._REDACTED__office_ceiling
+    - sensor._REDACTED__office_temperature
+    - sensor._REDACTED__office_occupancy
 
   Kitchen:
     - light.kitchen_ceiling
@@ -156,8 +154,8 @@
     - binary_sensor.basement_door
 
   Household:
-    - device_tracker.[REDACTED]siphone
-    - device_tracker.[REDACTED]siphone
+    - device_tracker._REDACTED_siphone
+    - device_tracker._REDACTED_siphone
 
   Dining Room:
     - light.dining_room_table
@@ -172,6 +170,7 @@
     - garage_door.garage_door
 
   Alarm:
+    - input_boolean.disable_security
     - input_boolean.alarm_tripped
     - switch.siren
     - lock.front_door
@@ -185,13 +184,14 @@
     - sensor.kitchen_occupancy
     - sensor.bedroom_occupancy
     - sensor.office_occupancy
-    - sensor.[REDACTED]_office_occupancy
+    - sensor._REDACTED__office_occupancy
 
   Media Player:
     - media_player.living_room
     - media_player.plex_for_vizio_vizio_mtk
-    - media_player.[REDACTED]s_iphone
-    - media_player.[REDACTED]s_ipad
+    - media_player._REDACTED_s_iphone
+    - media_player._REDACTED_s_ipad
+    - media_player.macproprivate
 
   Occupancy:
     - sensor.main_floor_occupancy
@@ -199,7 +199,7 @@
     - sensor.kitchen_occupancy
     - sensor.bedroom_occupancy
     - sensor.office_occupancy
-    - sensor.[REDACTED]_office_occupancy
+    - sensor._REDACTED__office_occupancy
 
   Weather:
     - sun.sun
@@ -236,18 +236,18 @@
     - lock.front_door
 
   Device Location:
-    - device_tracker.[REDACTED]siphone
-    - device_tracker.[REDACTED]siphone
-    - device_tracker.[REDACTED]sipad
-    - device_tracker.[REDACTED]sipad
-    - device_tracker.macbookpro
-    - device_tracker.macbookair
-    - device_tracker.[REDACTED]smacbookair
+    - device_tracker._REDACTED_siphone
+    - device_tracker._REDACTED_siphone
+    - device_tracker._REDACTED_sipad
+    - device_tracker._REDACTED_sipad
+    - device_tracker._REDACTED_smacbookpro
+    - device_tracker._REDACTED_smacbookair
+    - device_tracker._REDACTED_smacbookair
     - device_tracker.macpro
 
-  [REDACTED] Office Ceiling:
-    - light.[REDACTED]s_office_ceiling_1
-    - light.[REDACTED]s_office_ceiling_2
+  _REDACTED_ Office Ceiling:
+    - light._REDACTED_s_office_ceiling_1
+    - light._REDACTED_s_office_ceiling_2
     
   Doors:
     - binary_sensor.front_door
@@ -273,7 +273,7 @@
     - light.dining_room_table
 
   Hue lights:
-    - light.[REDACTED]s_nightstand
+    - light._REDACTED_s_nightstand
     - light.back_door_left
     - light.back_door_right
     - light.basement_light
@@ -286,9 +286,9 @@
     - light.living_room_lamp_1
     - light.living_room_lamp_2
     - light.office_lamp
-    - light.[REDACTED]s_nightstand
-    - light.[REDACTED]s_office_ceiling_1
-    - light.[REDACTED]s_office_ceiling_2
+    - light._REDACTED_s_nightstand
+    - light._REDACTED_s_office_ceiling_1
+    - light._REDACTED_s_office_ceiling_2
     - light.stairs_1
     - light.stairs_2
     - light.stairs_3

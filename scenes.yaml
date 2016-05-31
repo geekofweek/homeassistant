@@ -24,16 +24,16 @@
             brightness: 200
         light.office_ceiling:
             state: on
-            brightness: 100
+            brightness: 50
         light.basement_stairs:
             state: on
             brightness: 255
         group.living_room:
             state: on
-            brightness: 175
+            brightness: 50
         light.closet_lamp:
             state: on
-            brightness: 175
+            brightness: 50
 
   - name: Vacation Disable Automation
     entities:
@@ -50,6 +50,8 @@
         input_boolean.plex_lights_disable:
             state: on
         input_boolean.occupancy_lights_off_disable:
+            state: on
+        input_boolean.thermostat_away:
             state: on
 
   - name: Vacation Enable Automation
@@ -68,3 +70,6 @@
             state: off
         input_boolean.occupancy_lights_off_disable:
             state: off
+        input_boolean.thermostat_away:
+            state: off
+
