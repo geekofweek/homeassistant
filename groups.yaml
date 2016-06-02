@@ -54,16 +54,18 @@
 
   Automation Override:
     - input_boolean.disable_lock_unlock_doors
-    - input_boolean.lights_morning_disable
     - input_boolean.plex_lights_disable
-    - input_boolean.door_open_lights_on
-    - input_boolean.occupancy_air_purifier_on_off_disable
     - input_boolean.rainy_day_disable
     - input_boolean.occupancy_lights_off_disable
+    - input_boolean.door_open_lights_on
+    - input_boolean.occupancy_air_purifier_on_off_disable
+    - input_boolean.lights_morning_disable
     - input_boolean.office_lights_sunset
-    - input_boolean.home_away
-    - input_boolean.exterior_off_night
     - input_boolean.exterior_on_sunset
+    - input_boolean.exterior_off_night
+    - input_boolean.home_away
+    - input_boolean._REDACTED__away
+    - input_boolean._REDACTED__away
 
   Automation On Demand:
     - input_boolean.livingroom_rainbow
@@ -265,6 +267,7 @@
     - sensor.ram_use
     - sensor.ram_free
     - sensor.since_last_boot
+    - updater.updater
 
   Rain Lights:
     - light.kitchen_cabinets

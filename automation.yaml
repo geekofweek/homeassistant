@@ -27,6 +27,39 @@
     entity_id: lock.back_door, lock.front_door
 
         ##########################################################
+        ## After _REDACTED_ Home Lock Doors
+        ########################################################
+
+- alias: _REDACTED_ Home Lock Doors
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean._REDACTED__away
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_lock_unlock_doors
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.front_door
+      state: 'off'
+    - condition: state
+      entity_id: lock.front_door
+      state: 'unlocked'
+    - condition: state
+      entity_id: binary_sensor.back_door
+      state: 'off'
+    - condition: state
+      entity_id: lock.back_door
+      state: 'unlocked'
+
+  action:
+    service: lock.lock
+    entity_id: lock.back_door, lock.front_door
+
+        ##########################################################
         ## _REDACTED_ Home Unlock Doors
         ##########################################################
 
@@ -48,6 +81,39 @@
 
   action:
     service: lock.unlock
+    entity_id: lock.back_door, lock.front_door
+
+        ##########################################################
+        ## After _REDACTED_ Home Lock Doors
+        ########################################################
+
+- alias: _REDACTED_ Home Lock Doors
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean._REDACTED__away
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_lock_unlock_doors
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.front_door
+      state: 'off'
+    - condition: state
+      entity_id: lock.front_door
+      state: 'unlocked'
+    - condition: state
+      entity_id: binary_sensor.back_door
+      state: 'off'
+    - condition: state
+      entity_id: lock.back_door
+      state: 'unlocked'
+
+  action:
+    service: lock.lock
     entity_id: lock.back_door, lock.front_door
 
         ##########################################################
@@ -1367,7 +1433,7 @@
     service: homeassistant.turn_off
     entity_id: input_boolean.lock_doors
 
-- alias: Unock Doors on Demand
+- alias: Unlock Doors on Demand
 
   trigger:
     - platform: state
@@ -1592,7 +1658,7 @@
     entity_id: input_boolean.disable_security
 
         ##########################################################
-        ## Enable Alarm when Home
+        ## Enable Alarm when Away
         ##########################################################
 
 - alias: Enable Alarm when Away
