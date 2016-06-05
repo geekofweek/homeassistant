@@ -1,13 +1,6 @@
 # Home Assistant
 Example [Home Assistant](https://home-assistant.io) Configs
 
-# Interface
-![UI](images/home-screenshot.jpg)
-![UI](images/sensors-screenshot.jpg)
-![UI](images/camera-screenshot.jpg)
-![UI](images/media-screenshot.jpg)
-![UI](images/automation-screenshot.jpg)
-
 #Devices
 
 * [Ecobee 3](http://www.amazon.com/ecobee3-Smarter-Thermostat-Remote-Generation/dp/B00ZIRV39M/ref=sr_1_1?ie=UTF8&qid=1461377268&sr=8-1&keywords=ecobee3) + 5 Sensors
@@ -24,13 +17,20 @@ Example [Home Assistant](https://home-assistant.io) Configs
 * [Plex Media Server](https://plex.tv)
 * [Homebridge](https://github.com/nfarina/homebridge) *for Apple HomeKit Support*
 
-
 #Devices not in Home Assistant:
 
 * [Amazon Echo](http://www.amazon.com/Amazon-SK705DI-Echo/dp/B00X4WHP5E/ref=sr_1_1?ie=UTF8&qid=1461377119&sr=8-1&keywords=amazon+echo)
 * [Amazon Echo Dot](http://www.amazon.com/b/?node=14047587011)
 * [Ring Doorbell](http://www.amazon.com/Ring-Wi-Fi-Enabled-Video-Doorbell/dp/B00TZAO9D0/ref=sr_1_4?ie=UTF8&qid=1461377085&sr=8-4&keywords=ring+doorbell)
 * [Quirky + GE Aros Window AC](http://www.amazon.com/Quirky-Aros-Smart-Window-Conditioner/dp/B00IDXGIAC?ie=UTF8&psc=1&redirect=true&ref_=oh_aui_detailpage_o03_s01)
+
+# Interface
+![UI](images/home-screenshot.jpg)
+![UI](images/sensors-screenshot.jpg)
+![UI](images/camera-screenshot.jpg)
+![UI](images/media-screenshot.jpg)
+![UI](images/automation-screenshot.jpg)
+
 
 
 
