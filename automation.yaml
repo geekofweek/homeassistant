@@ -46,18 +46,33 @@
       entity_id: binary_sensor.front_door
       state: 'off'
     - condition: state
-      entity_id: lock.front_door
-      state: 'unlocked'
-    - condition: state
       entity_id: binary_sensor.back_door
       state: 'off'
-    - condition: state
-      entity_id: lock.back_door
-      state: 'unlocked'
 
   action:
     service: lock.lock
     entity_id: lock.back_door, lock.front_door
+
+        ##########################################################
+        ## After _REDACTED_ Home Close Garage Door
+        ########################################################
+
+- alias: _REDACTED_ Home Close Garage
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean._REDACTED__away
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_auto_garage
+      state: 'off'
+
+  action:
+    service: garage_door.close
+    entity_id: garage_door.garage_door
 
         ##########################################################
         ## _REDACTED_ Home Unlock Doors
@@ -103,18 +118,120 @@
       entity_id: binary_sensor.front_door
       state: 'off'
     - condition: state
-      entity_id: lock.front_door
-      state: 'unlocked'
-    - condition: state
       entity_id: binary_sensor.back_door
       state: 'off'
-    - condition: state
-      entity_id: lock.back_door
-      state: 'unlocked'
 
   action:
     service: lock.lock
     entity_id: lock.back_door, lock.front_door
+
+        ##########################################################
+        ## After _REDACTED_ Home Close Garage Door
+        ########################################################
+
+- alias: _REDACTED_ Home Close Garage
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean._REDACTED__away
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_auto_garage
+      state: 'off'
+
+  action:
+    service: garage_door.close
+    entity_id: garage_door.garage_door
+
+        ##########################################################
+        ## _REDACTED_ Home after Work Open Garage
+        ##########################################################
+
+- alias: _REDACTED_ Home Open Garage
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._REDACTED_siphone
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: time
+      after: '18:30'
+      before: '21:00'
+    - condition: state
+      entity_id: input_boolean.disable_auto_garage
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean._REDACTED__away
+      state: 'off'
+
+  action:
+    service: garage_door.open
+    entity_id: garage_door.garage_door
+
+        ##########################################################
+        ## _REDACTED_ Home Turn on Lights
+        ##########################################################
+
+- alias: _REDACTED_ Home
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._REDACTED_siphone
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean._REDACTED__away
+      state: 'on'
+
+  action:
+    service: light.turn_on
+    entity_id: group.home_lights
+    data:
+     xy_color: [ 0.5134, 0.4149 ]
+     brightness: 150
+
+        ##########################################################
+        ## _REDACTED_ Home Turn on Lights
+        ##########################################################
+
+- alias: _REDACTED_ Home
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._REDACTED_siphone
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean._REDACTED__away
+      state: 'on'
+
+  action:
+    service: light.turn_on
+    entity_id: group.home_lights
+    data:
+     xy_color: [ 0.5134, 0.4149 ]
+     brightness: 150
 
         ##########################################################
         ## Away Mode
@@ -140,66 +257,50 @@
       entity_id: group.interior_lights
     - service: switch.turn_off
       entity_id: switch.air_purifier
+    - service: garage_door.close
+      entity_id: garage_door.garage_door
 
         ##########################################################
-        ## _REDACTED_ Home Turn on Lights
+        ## Close Garage Door when _REDACTED_ Leaves
         ##########################################################
 
-- alias: _REDACTED_ Home
+- alias: Close Garage when _REDACTED_ Leaves
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_siphone
-      from: 'not_home'
-      to: 'home'
+      entity_id: input_boolean._REDACTED__away
+      from: 'off'
+      to: 'on'
 
   condition:
     - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.disable_auto_garage
       state: 'off'
-    - condition: state
-      entity_id: input_boolean._REDACTED__away
-      state: 'on'
 
   action:
-    service: light.turn_on
-    entity_id: group.home_lights
-    data:
-     xy_color: [ 0.5134, 0.4149 ]
-     brightness: 150
+    service: garage_door.close
+    entity_id: garage_door.garage_door
 
         ##########################################################
-        ## _REDACTED_ Home Turn on Lights
+        ## Close Garage Door when _REDACTED_ Leaves
         ##########################################################
 
-- alias: _REDACTED_ Home
+- alias: Close Garage when _REDACTED_ Leaves
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_siphone
-      from: 'not_home'
-      to: 'home'
+      entity_id: input_boolean._REDACTED__away
+      from: 'off'
+      to: 'on'
 
   condition:
     - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.disable_auto_garage
       state: 'off'
-    - condition: state
-      entity_id: input_boolean._REDACTED__away
-      state: 'on'
 
   action:
-    service: light.turn_on
-    entity_id: group.home_lights
-    data:
-     xy_color: [ 0.5134, 0.4149 ]
-     brightness: 150
+    service: garage_door.close
+    entity_id: garage_door.garage_door
 
         ##########################################################
         ## Plex Lights On/Off
@@ -319,9 +420,6 @@
     - condition: state
       entity_id: input_boolean.door_open_lights_on
       state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
 
   action:
     service: light.turn_on
@@ -359,6 +457,36 @@
       brightness: 50
 
         ##########################################################
+        ## Turn off Front Porch when Door Closes
+        ##########################################################
+
+- alias: Turn off Front Porch when Door Closes
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - platform: time
+      after: '22:00'
+    - condition: state
+      entity_id: input_boolean.door_open_lights_on
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    service: light.turn_off
+    entity_id: group.front_porch
+
+        ##########################################################
         ## Turn On Living Room when Door Opens
         ##########################################################
 
@@ -377,9 +505,6 @@
     - condition: state
       entity_id: input_boolean.door_open_lights_on
       state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
 
   action:
     service: light.turn_on
@@ -407,15 +532,67 @@
     - condition: state
       entity_id: input_boolean.door_open_lights_on
       state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
 
   action:
     service: light.turn_on
     entity_id: group.back_door
     data:
      brightness: 150
+
+        ##########################################################
+        ## Turn off Back Door when Door Closes
+        ##########################################################
+
+- alias: Turn on Back Door when Door Closes
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.back_door
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: time
+      after: '21:30'
+    - condition: state
+      entity_id: input_boolean.door_open_lights_on
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    service: light.turn_off
+    entity_id: group.back_door
+
+        ##########################################################
+        ## Close Garage Door after 30 Mins
+        ##########################################################
+      
+- alias: 'Close Garage Door After 30 Mins'
+
+  trigger:  
+    - platform: state
+      entity_id: garage_door.garage_door
+      from: 'closed'
+      to: 'open'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+  
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_auto_garage
+      state: 'off'
+
+  action:
+    service: garage_door.close
+    entity_id: garage_door.garage_door
 
         ##########################################################
         ## Lock Front Door After 30 Mins
@@ -1756,3 +1933,7 @@
   action:
     service: homeassistant.turn_off
     entity_id: input_boolean._REDACTED__away
+
+        ##########################################################
+        ## POC
+        ##########################################################
