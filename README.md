@@ -3,7 +3,7 @@ Example [Home Assistant](https://home-assistant.io) Configs
 
 #Devices
 
-* [Ecobee 3](http://www.amazon.com/ecobee3-Smarter-Thermostat-Remote-Generation/dp/B00ZIRV39M/ref=sr_1_1?ie=UTF8&qid=1461377268&sr=8-1&keywords=ecobee3) + 5 Sensors
+* [Ecobee 3](http://www.amazon.com/ecobee3-Smarter-Thermostat-Remote-Generation/dp/B00ZIRV39M/ref=sr_1_1?ie=UTF8&qid=1461377268&sr=8-1&keywords=ecobee3) + 6 Sensors
 * [Hue Hub](http://www.amazon.com/Philips-458489-Hue-Bridge-Frustration/dp/B014H2P42K/ref=sr_1_1?ie=UTF8&qid=1461377320&sr=8-1&keywords=hue+hub)
 * [Wink Hub](http://www.amazon.com/Wink-PWHUB-WH17-Connected-Home-Hub/dp/B00PV6GAI4/ref=sr_1_1?ie=UTF8&qid=1461377299&sr=8-1&keywords=wink+hub)
 * [Hue Color](http://www.amazon.com/Philips-456186-Ambiance-Extension-Generation/dp/B014H2OZJS/ref=sr_1_1?ie=UTF8&qid=1461377356&sr=8-1&keywords=hue+color) (connected via Hue Hub)
