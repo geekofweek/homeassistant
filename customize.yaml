@@ -3,17 +3,16 @@
 #################################################################
 
      thermostat.main_floor:
-#       entity_picture: /local/ecobee.jpeg
        friendly_name: Ecobee3
 
 #devices
 
-     device_tracker._REDACTED_siphone:
-       icon: mdi:cellphone-iphone
-       friendly_name: _REDACTED_'s iPhone
-     device_tracker._REDACTED_siphone:
-       icon: mdi:cellphone-iphone
-       friendly_name: _REDACTED_'s iPhone
+     device_tracker._REDACTED_:
+       icon: mdi:human-male
+       friendly_name: _REDACTED_
+     device_tracker._REDACTED_:
+       icon: mdi:human-female
+       friendly_name: _REDACTED_
      device_tracker._REDACTED_sipad:
        icon: mdi:tablet-ipad
      device_tracker._REDACTED_sipad:
@@ -52,7 +51,8 @@
        friendly_name: RAM Usage
      sensor.since_last_boot:
        friendly_name: Uptime
-
+     sensor._REDACTED_:
+       icon: mdi:theater
        
 #switches
      switch.air_purifier:
@@ -174,6 +174,10 @@
        hidden: true
      binary_sensor._REDACTED__office:
        hidden: true
+     binary_sensor.guest_bedroom:
+       hidden: true
+     sensor.guest_bedroom_temperature_2:
+       hidden: true
 
 #Wink Hue Bulbs
     
@@ -220,4 +224,8 @@
      light._REDACTED_s_nightstand_2:
        hidden: true
      light._REDACTED_s_nightstand_2:
+       hidden: true
+     light.guest_bedroom_lamp_2:
+       hidden: true
+     light.guest_bedroom_nightstand_2:
        hidden: true

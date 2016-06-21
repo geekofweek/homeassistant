@@ -35,6 +35,11 @@ discovery:
 # Show links to resources in log and frontend
 # introduction:
 
+http:
+  api_password: _REDACTED_
+  ssl_certificate: _REDACTED_
+  ssl_key: _REDACTED_
+
 #################################################################
 ## Components
 #################################################################
@@ -59,13 +64,16 @@ ifttt:
   key: _REDACTED_
 
 device_tracker:
-  - platform: asuswrt
-    host: _REDACTED_
-    username: _REDACTED_
-    password: _REDACTED_
+  - platform: locative
     track_new_devices: yes
     interval_seconds: 12
     consider_home: 180
+  - platform: asuswrt
+    host: _REDACTED_1
+    protocol: telnet
+    mode: router
+    username: _REDACTED_
+    password: _REDACTED_
 
 garage_door:
   platform: myq
@@ -86,6 +94,9 @@ notify:
   username: _REDACTED_
   password: _REDACTED_
   name: text_message
+
+recorder:
+  purge_days: 31
 
 sensor:
   platform: speedtest
@@ -130,6 +141,15 @@ sensor 4:
     - type: memory_use_percent
     - type: processor_use
     - type: since_last_boot
+
+sensor 5:
+  platform: plex
+  name: _REDACTED_
+  host: _REDACTED_
+  port: _REDACTED_
+  username: _REDACTED_
+  password: _REDACTED_
+  server: _REDACTED_
 
 #################################################################
 ## Zones

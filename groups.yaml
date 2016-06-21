@@ -12,6 +12,7 @@
       - group.bedroom
       - group._REDACTED__office
       - group._REDACTED__office
+      - group.guest_bedroom
       - group.basement
       - group.exterior_lights
       - group.interior_lights
@@ -105,6 +106,7 @@
     - group.stairs
     - group._REDACTED__office
     - group._REDACTED__office
+    - group.guest_bedroom
     - group.basement
     - light.hallway_light
 
@@ -112,6 +114,7 @@
     - group.front_porch
     - group.back_door
     - group.back_porch
+    - group.outdoor_lighting
 
   _REDACTED_ Office:
     - light.office_ceiling
@@ -158,8 +161,8 @@
     - binary_sensor.basement_door
 
   Household:
-    - device_tracker._REDACTED_siphone
-    - device_tracker._REDACTED_siphone
+    - device_tracker._REDACTED_
+    - device_tracker._REDACTED_
 
   Dining Room:
     - light.dining_room_table
@@ -169,9 +172,19 @@
     - sensor.main_floor_humidity
     - sensor.main_floor_occupancy
 
+  Guest Bedroom:
+    - light.guest_bedroom_lamp
+    - light.guest_bedroom_nightstand
+    - sensor.guest_bedroom_temperature
+    - sensor.guest_bedroom_occupancy
+
   Garage:
     - camera.garage_camera
     - garage_door.garage_door
+
+  Outdoor Lighting:
+    - switch.lower_patio_outdoor_lighting
+    - switch.lower_backyard_outdoor_lighting
 
   Alarm:
     - input_boolean.disable_security
@@ -189,8 +202,10 @@
     - sensor.bedroom_occupancy
     - sensor.office_occupancy
     - sensor._REDACTED__office_occupancy
+    - sensor.guest_bedroom_occupancy
 
   Media Player:
+    - sensor._REDACTED_
     - media_player.living_room
     - media_player.plex_for_vizio_vizio_mtk
     - media_player._REDACTED_s_iphone
@@ -240,8 +255,8 @@
     - lock.front_door
 
   Device Location:
-    - device_tracker._REDACTED_siphone
-    - device_tracker._REDACTED_siphone
+    - device_tracker._REDACTED_
+    - device_tracker._REDACTED_
     - device_tracker._REDACTED_sipad
     - device_tracker._REDACTED_sipad
     - device_tracker._REDACTED_smacbookpro
@@ -299,6 +314,8 @@
     - light.stairs_3
     - light.upper_patio_left
     - light.upper_patio_right
+    - light.guest_bedroom_lamp
+    - light.guest_bedroom_nightstand
 
   Wink Lights:
     - light.dining_room_ceiling

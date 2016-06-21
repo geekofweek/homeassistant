@@ -10,7 +10,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_siphone
+      entity_id: device_tracker._REDACTED_
       from: 'not_home'
       to: 'home'
 
@@ -82,7 +82,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_siphone
+      entity_id: device_tracker._REDACTED_
       from: 'not_home'
       to: 'home'
 
@@ -154,7 +154,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_siphone
+      entity_id: device_tracker._REDACTED_
       from: 'not_home'
       to: 'home'
 
@@ -167,7 +167,7 @@
       state: 'off'
     - condition: state
       entity_id: input_boolean._REDACTED__away
-      state: 'off'
+      state: 'on'
 
   action:
     service: garage_door.open
@@ -181,7 +181,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_siphone
+      entity_id: device_tracker._REDACTED_
       from: 'not_home'
       to: 'home'
 
@@ -211,7 +211,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_siphone
+      entity_id: device_tracker._REDACTED_
       from: 'not_home'
       to: 'home'
 
@@ -256,7 +256,7 @@
     - service: light.turn_off
       entity_id: group.interior_lights
     - service: switch.turn_off
-      entity_id: switch.air_purifier
+      entity_id: switch.air_purifier, switch.lower_backyard_outdoor_lighting, switch.lower_patio_outdoor_lighting
     - service: garage_door.close
       entity_id: garage_door.garage_door
 
@@ -699,7 +699,7 @@
 
   trigger:
      - platform: state
-       entity_id: device_tracker._REDACTED_siphone
+       entity_id: device_tracker._REDACTED_
        from: 'home'
        to: 'not_home'
 
@@ -798,7 +798,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_siphone
+      entity_id: device_tracker._REDACTED_
       from: 'work'
       to: 'not_home'
 
@@ -850,7 +850,7 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker._REDACTED_siphone
+      entity_id: device_tracker._REDACTED_
       state: 'home'
     - condition: state
       entity_id: sun.sun
@@ -877,7 +877,7 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker._REDACTED_siphone
+      entity_id: device_tracker._REDACTED_
       state: 'home'
     - condition: state
       entity_id: sun.sun
@@ -894,6 +894,33 @@
      xy_color: [ 0.5134, 0.4149 ]
 
         ##########################################################
+        ## Open Garage Door when _REDACTED_ Leaves
+        ##########################################################
+
+- alias: _REDACTED_ Leaving Open Garage
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.back_door
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: time
+      after: '05:00'
+      before: '07:00'
+    - condition: state
+      entity_id: input_boolean.disable_auto_garage
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean._REDACTED__away
+      state: 'off'
+
+  action:
+    service: garage_door.open
+    entity_id: garage_door.garage_door
+
+        ##########################################################
         ## Turn off Lights when _REDACTED_ Leaves
         ##########################################################
 
@@ -901,7 +928,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_siphone
+      entity_id: device_tracker._REDACTED_
       from: 'home'
       to: 'not_home'
   
@@ -950,7 +977,7 @@
       entity_id: input_boolean.occupancy_air_purifier_on_off_disable
       state: 'off'
     - condition: state
-      entity_id: device_tracker._REDACTED_siphone
+      entity_id: device_tracker._REDACTED_
       state: 'home'         
 
   action:
@@ -1205,12 +1232,12 @@
       entity_id: input_boolean.office_lights_sunset
       state: 'off'
     - condition: state
-      entity_id: device_tracker._REDACTED_siphone
+      entity_id: device_tracker._REDACTED_
       state: 'home'
 
   action:
     service: light.turn_on
-    entity_id: group._REDACTED__office
+    entity_id: light.office_lamp
     data:
     # 900 seconds = 15 minutes
       transition: 1200
@@ -1235,7 +1262,7 @@
       entity_id: input_boolean.office_lights_sunset
       state: 'off'
     - condition: state
-      entity_id: device_tracker._REDACTED_siphone
+      entity_id: device_tracker._REDACTED_
       state: 'home'
 
   action:
@@ -1321,7 +1348,7 @@
       entity_id: input_boolean.rainy_day_disable
       state: 'off'
     - condition: state
-      entity_id: device_tracker._REDACTED_siphone
+      entity_id: device_tracker._REDACTED_
       state: 'home'
 
   action:
@@ -1369,7 +1396,7 @@
       entity_id: input_boolean.rainy_day_disable
       state: 'off'
     - condition: state
-      entity_id: device_tracker._REDACTED_siphone
+      entity_id: device_tracker._REDACTED_
       state: 'home'
 
   action:
@@ -1394,6 +1421,181 @@
 #  action:
 #    service: light.turn_off
 #    entity_id: group._REDACTED__office, group.stairs
+
+        ##########################################################
+        ## Turn On Outdoor Lighting at Sunset
+        ##########################################################
+
+- alias: Turn on Outdoor Porch at Sunset
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.exterior_on_sunset
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: switch.turn_on
+      entity_id: switch.lower_patio_outdoor_lighting
+    - service: switch.turn_on
+      entity_id: switch.lower_backyard_outdoor_lighting
+    
+        ##########################################################
+        ## Turn Off Outdoor Lighting After 4 Hours
+        ##########################################################
+
+- alias: Turn off Outdoor Lighting at Sunset
+
+  trigger:
+    - platform: state
+      entity_id: switch.outdoor_lighting
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 4
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.exterior_off_night
+      state: 'off'
+    - condition: time
+      after: '22:00'
+
+  action:
+    - service: switch.turn_off
+      entity_id: switch.lower_backyard_outdoor_lighting
+    - service: switch.turn_off
+      entity_id: switch.lower_patio_outdoor_lighting
+
+        ##########################################################
+        ## Turn Off Outdoor Lighting At 1:00a on Weekends
+        ##########################################################
+
+- alias: Turn off Outdoor Lighting at 1a on Weekends
+
+  trigger:
+    - platform: time
+      after: '01:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.exterior_off_night
+      state: 'off'
+    - condition: time
+      weekday:
+        - sat
+        - sun
+
+  action:
+    - service: switch.turn_off
+      entity_id: switch.lower_backyard_outdoor_lighting
+    - service: switch.turn_off
+      entity_id: switch.lower_patio_outdoor_lighting
+
+        ##########################################################
+        ## Turn Off Outdoor Lighting At 10:00p on Weekdays
+        ##########################################################
+
+- alias: Turn off Outdoor Lighting at 10p on Weekdays
+
+  trigger:
+    - platform: time
+      after: '22:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.exterior_off_night
+      state: 'off'
+    - condition: time
+      weekday:
+        - sun
+        - mon
+        - tue
+        - wed
+        - thu
+
+  action:
+    - service: switch.turn_off
+      entity_id: switch.lower_backyard_outdoor_lighting
+    - service: switch.turn_off
+      entity_id: switch.lower_patio_outdoor_lighting
+
+        ##########################################################
+        ## Turn on Outdoor Lighting when Home Weekdays
+        ##########################################################
+
+- alias: Turn on Outdoor Lighting when Home Weekdays
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.home_away
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      before: '22:00'
+    - condition: time
+      weekday:
+        - sun
+        - mon
+        - tue
+        - wed
+        - thu
+
+  action:
+    - service: switch.turn_on
+      entity_id: switch.lower_patio_outdoor_lighting
+    - service: switch.turn_on
+      entity_id: switch.lower_backyard_outdoor_lighting
+
+        ##########################################################
+        ## Turn on Outdoor Lighting when Home Weekends
+        ##########################################################
+
+- alias: Turn on Outdoor Lighting when Home Weekends
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.home_away
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      before: '23:59'
+    - condition: time
+      weekday:
+        - fri
+        - sat
+  action:
+    - service: switch.turn_on
+      entity_id: switch.lower_patio_outdoor_lighting
+    - service: switch.turn_on
+      entity_id: switch.lower_backyard_outdoor_lighting
 
         ##########################################################
         ## Security
@@ -1504,6 +1706,26 @@
   trigger:
     - platform: state
       entity_id: sensor._REDACTED__office_occupancy
+      from: 'false'
+      to: 'true'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.disable_security
+      state: 'off'
+
+  action:
+    service: scene.turn_on
+    entity_id: scene.security
+
+- alias: Security Guest Bedroom
+
+  trigger:
+    - platform: state
+      entity_id: sensor.guest_bedroom_occupancy
       from: 'false'
       to: 'true'
 
@@ -1788,7 +2010,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_siphone
+      entity_id: device_tracker._REDACTED_
       from: 'home'
       to: 'not_home'
 
@@ -1803,7 +2025,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_siphone
+      entity_id: device_tracker._REDACTED_
       from: 'not_home'
       to: 'home'
 
@@ -1862,7 +2084,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_siphone
+      entity_id: device_tracker._REDACTED_
       from: 'home'
       to: 'not_home'
       for:
@@ -1882,7 +2104,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_siphone
+      entity_id: device_tracker._REDACTED_
       from: 'not_home'
       to: 'home'
       for:
@@ -1902,7 +2124,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_siphone
+      entity_id: device_tracker._REDACTED_
       from: 'home'
       to: 'not_home'
       for:
@@ -1922,7 +2144,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_siphone
+      entity_id: device_tracker._REDACTED_
       from: 'not_home'
       to: 'home'
       for:
@@ -1933,6 +2155,66 @@
   action:
     service: homeassistant.turn_off
     entity_id: input_boolean._REDACTED__away
+
+        ##########################################################
+        ## Turn off Back Door Twice
+        ##########################################################
+
+- alias: Turn off Back Door Twice
+
+  trigger:
+    - platform: state
+      entity_id: group.back_door
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 60
+
+  action:
+    service: light.turn_off
+    entity_id: light.upper_patio_left, light.upper_patio_right
+
+        ##########################################################
+        ## Turn off Back Door Twice
+        ##########################################################
+
+- alias: Turn off Back Door Twice
+
+  trigger:
+    - platform: state
+      entity_id: group.back_porch
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 60
+
+  action:
+    service: light.turn_off
+    entity_id: light.back_door_left, light.back_door_right
+    
+        ##########################################################
+        ## Turn on Lower BackYard after Patio
+        ##########################################################
+
+- alias: Turn on Lower BackYard after Patio
+
+  trigger:
+    - platform: state
+      entity_id: switch.lower_patio_outdoor_lighting
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 90
+
+  action:
+    service: switch.turn_on
+    entity_id: switch.lower_backyard_outdoor_lighting
 
         ##########################################################
         ## POC
