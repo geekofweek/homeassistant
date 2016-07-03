@@ -29,6 +29,7 @@ Example [Home Assistant](https://home-assistant.io) Configs
 
 # Interface
 ![UI](images/home-screenshot.jpg)
+![UI](images/lightbulbs-screenshot.jpg)
 ![UI](images/sensors-screenshot.jpg)
 ![UI](images/camera-screenshot.jpg)
 ![UI](images/media-screenshot.jpg)
