@@ -18,13 +18,21 @@
       - group.interior_lights
       - group.automation_on_demand
       - group.garage
-      - group.household
 
+  lights:
+    name: Lights
+    view: yes
+    icon: mdi:lightbulb-outline
+    entities:
+      - group.interior_lights
+      - group.exterior_lights
+     
   sensors:
     name: Sensors
     view: yes
     icon: mdi:gauge
     entities:
+      - group.household
       - group.device_location
       - group.alarm
       - group.weather
@@ -74,10 +82,9 @@
     - input_boolean.office_rainbow
     - input_boolean.lock_doors
     - input_boolean.unlock_doors
+    - input_boolean.bedtime
     - input_boolean.thermostat_away
     - input_boolean.vacation_mode
-    - input_boolean.panic_mode
-    - input_boolean.open_garage
 
   Living Room:
     - group.living_room_lamps
@@ -108,6 +115,7 @@
     - group._REDACTED__office
     - group.guest_bedroom
     - group.basement
+    - light.bathroom_vanity
     - light.hallway_light
 
   Exterior Lights:
@@ -115,6 +123,7 @@
     - group.back_door
     - group.back_porch
     - group.outdoor_lighting
+    - light.garage_light
 
   _REDACTED_ Office:
     - light.office_ceiling
@@ -175,11 +184,13 @@
   Guest Bedroom:
     - light.guest_bedroom_lamp
     - light.guest_bedroom_nightstand
+    - switch.guest_bedroom_fan
     - sensor.guest_bedroom_temperature
     - sensor.guest_bedroom_occupancy
 
   Garage:
     - camera.garage_camera
+    - light.garage_light
     - garage_door.garage_door
 
   Outdoor Lighting:
@@ -188,6 +199,7 @@
 
   Alarm:
     - input_boolean.disable_security
+    - input_boolean.panic_mode
     - input_boolean.alarm_tripped
     - switch.siren
     - lock.front_door
@@ -241,7 +253,7 @@
     - sensor.weather_visibility
     - sensor.weather_ozone
     - sensor.weather_pressure
-
+    
   Home Lights:
     - light.kitchen_cabinets
     - group.living_room_lamps
@@ -255,8 +267,6 @@
     - lock.front_door
 
   Device Location:
-    - device_tracker._REDACTED_
-    - device_tracker._REDACTED_
     - device_tracker._REDACTED_sipad
     - device_tracker._REDACTED_sipad
     - device_tracker._REDACTED_smacbookpro
@@ -324,3 +334,5 @@
     - light.kitchen_ceiling
     - light.kitchen_sink
     - light.office_ceiling
+    - light.garge_light
+    - light.bathroom_vanity

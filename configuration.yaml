@@ -1,11 +1,17 @@
 homeassistant:
   # Name of the location where Home Assistant is running
   name: Home
+  
   # Location required to calculate the time the sun rises and sets
   latitude: _REDACTED_
   longitude: _REDACTED_
+  
+  # Impacts weather/sunrise data (altitude above sea level) 
+  elevation: _REDACTED_
+  
   # C for Celcius, F for Fahrenheit
   temperature_unit: F
+  
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: America/Chicago
 
@@ -55,6 +61,7 @@ media_player:
 
 wink:
   access_token: _REDACTED_
+  #scan_interval: 10
 
 ecobee:
   api_key: _REDACTED_
@@ -146,7 +153,7 @@ sensor 5:
   platform: plex
   name: _REDACTED_
   host: _REDACTED_
-  port: _REDACTED_
+  port: 32400
   username: _REDACTED_
   password: _REDACTED_
   server: _REDACTED_

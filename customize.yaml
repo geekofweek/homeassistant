@@ -3,6 +3,7 @@
 #################################################################
 
      thermostat.main_floor:
+#       entity_picture: /local/ecobee.jpeg
        friendly_name: Ecobee3
 
 #devices
@@ -25,6 +26,57 @@
        icon: mdi:laptop-mac
      device_tracker.macpro:
        icon: mdi:desktop-mac
+
+#doors
+     garage_door.garage_door:
+       icon: mdi:car
+
+#rooms
+     group.living_room:
+       icon: mdi:sofa
+       haaska_hidden: true
+     group.dining_room:
+       icon: mdi:silverware-variant
+       haaska_hidden: true
+     group.bedroom:
+       icon: mdi:hotel
+       haaska_hidden: true
+     group.kitchen:
+       icon: mdi:stove
+       haaska_hidden: true
+     group.stairs:
+       icon: mdi:stairs
+       haaska_hidden: true
+     group._REDACTED__office:
+       icon: mdi:desktop-mac
+       haaska_hidden: true
+     group._REDACTED__office:
+       icon: mdi:desktop-mac
+       haaska_hidden: true
+     group.guest_bedroom:
+       icon: mdi:hotel
+       haaska_hidden: true
+     group.basement:
+       icon: mdi:stairs
+       haaska_hidden: true
+     group.front_porch:
+       icon: mdi:home
+       haaska_hidden: true
+     group.back_door:
+       icon: mdi:home
+       haaska_hidden: true
+     group.back_porch:
+       icon: mdi:home
+       haaska_hidden: true
+     group.outdoor_lighting:
+       icon: mdi:nature
+       haaska_hidden: true
+     group.living_room_lamps:
+       icon: mdi:lightbulb
+       haaska_hidden: true
+     group._REDACTED__office_ceiling:
+       icon: mdi:lightbulb
+       haaska_hidden: true
 
 #locks
 
@@ -53,19 +105,51 @@
        friendly_name: Uptime
      sensor._REDACTED_:
        icon: mdi:theater
+     sensor.speedtest_ping:
+       icon: mdi:speedometer
+     sensor.speedtest_download:
+       icon: mdi:speedometer
+     sensor.speedtest_upload:
+       icon: mdi:speedometer
+     sensor.main_floor_occupancy:
+       icon: mdi:account
+     sensor.living_room_occupancy:
+       icon: mdi:account
+     sensor.kitchen_occupancy:
+       icon: mdi:account
+     sensor.bedroom_occupancy:
+       icon: mdi:account
+     sensor.office_occupancy:
+       icon: mdi:account
+     sensor._REDACTED__office_occupancy:
+       icon: mdi:account
+     sensor.guest_bedroom_occupancy:
+       icon: mdi:account
+     
        
 #switches
      switch.air_purifier:
        icon: mdi:fan
        friendly_name: Air Purifier
+       haaska_hidden: true
+     switch.guest_bedroom_fan:
+       icon: mdi:fan
+       friendly_name: Guest Bedroom Fan
+       haaska_hidden: true
      switch.siren:
        icon: mdi:shield-outline
        friendly_name: Alarm Siren
+       haaska_hidden: true
 
 #lights
 
      light.hallway_light:
        friendly_name: Hallway
+       haaska_hidden: true
+     light.bathroom_vanity:
+       icon: mdi:water-pump
+       haaska_hidden: true
+
 
 #weather
 
@@ -116,36 +200,52 @@
 
      group.doors:
        hidden: true
+       haaska_hidden: true
      group.home_locks:
        hidden: true
+       haaska_hidden: true
      group.occupancy:
        hidden: true
+       haaska_hidden: true
      group.home_lights:
        hidden: true
+       haaska_hidden: true
      group.rain_lights:
        hidden: true
+       haaska_hidden: true
      group.hue_lights:
        hidden: true
+       haaska_hidden: true
      group.wink_lights:
        hidden: true
+       haaska_hidden: true
      scene.security:
        hidden: true
+       haaska_hidden: true
      light.stairs_1:
        hidden: true
+       haaska_hidden: true
      light.stairs_2:
        hidden: true
+       haaska_hidden: true
      light.stairs_3:
        hidden: true
+       haaska_hidden: true
      scene.vacation:
        hidden: true
+       haaska_hidden: true
      scene.vacation_disable_automation:
        hidden: true
+       haaska_hidden: true
      scene.vacation_enable_automation:
        hidden: true
+       haaska_hidden: true
      light.living_room_lamp_1:
        hidden: true
+       haaska_hidden: true
      light.living_room_lamp_2:
        hidden: true
+       haaska_hidden: true
 
 #Wink Garage Door
 
@@ -183,49 +283,216 @@
     
      light.back_door_left_2:
        hidden: true
+       haaska_hidden: true
      light.back_door_right_2:
        hidden: true
+       haaska_hidden: true
      light.basement_2:
        hidden: true
+       haaska_hidden: true
      light.bedroom_lamp_2:
        hidden: true
+       haaska_hidden: true
      light.closet_lamp_2:
        hidden: true
+       haaska_hidden: true
      light.front_porch_left_2:
        hidden: true
+       haaska_hidden: true
      light.front_porch_right_2:
        hidden: true
+       haaska_hidden: true
      light.hallway_light_2:
        hidden: true
+       haaska_hidden: true
      light.living_room_lamp_1_2:
        hidden: true
+       haaska_hidden: true
      light.living_room_lamp_2_2:
        hidden: true
+       haaska_hidden: true
      light.office_lamp_2:
        hidden: true
+       haaska_hidden: true
      light.stairs_1_2:
        hidden: true
+       haaska_hidden: true
      light.stairs_2_2:
        hidden: true
+       haaska_hidden: true
      light.stairs_3_2:
        hidden: true
+       haaska_hidden: true
      light.upper_patio_left_2:
        hidden: true
+       haaska_hidden: true
      light.upper_patio_right_2:
        hidden: true
+       haaska_hidden: true
      light.basement_light_2:
        hidden: true
+       haaska_hidden: true
      light.basement_stairs_2:
        hidden: true
+       haaska_hidden: true
      light._REDACTED_s_office_ceiling_1_2:
        hidden: true
+       haaska_hidden: true
      light._REDACTED_s_office_ceiling_2_2:
        hidden: true
+       haaska_hidden: true
      light._REDACTED_s_nightstand_2:
        hidden: true
+       haaska_hidden: true
      light._REDACTED_s_nightstand_2:
        hidden: true
+       haaska_hidden: true
      light.guest_bedroom_lamp_2:
        hidden: true
+       haaska_hidden: true
      light.guest_bedroom_nightstand_2:
        hidden: true
+       haaska_hidden: true
+
+#Amazon Echo Customize
+     input_boolean.office_rainbow:
+       haaska_name: Office Party
+     input_boolean.livingroom_rainbow:
+       haaska_name: Living Room Party
+
+#Amazon Echo Hidden
+
+     light._REDACTED_s_nightstand:
+       haaska_hidden: true
+     light.back_door_left:
+       haaska_hidden: true
+     light.back_door_right:
+       haaska_hidden: true
+     light.basement_light:
+       haaska_hidden: true
+     light.basement_stairs:
+       haaska_hidden: true
+     light.bedroom_lamp:
+       haaska_hidden: true
+     light.closet_lamp:
+       haaska_hidden: true
+     light.dining_room_ceiling:
+       haaska_hidden: true
+     light.dining_room_table:
+       haaska_hidden: true
+     light.front_porch_left:
+       haaska_hidden: true
+     light.front_porch_right:
+       haaska_hidden: true
+     light.garage_light:
+       haaska_hidden: true
+     light.guest_bedroom_lamp:
+       haaska_hidden: true
+     light.guest_bedroom_nightstand:
+       haaska_hidden: true
+     light.kitchen_cabinets:
+       haaska_hidden: true
+     light.kitchen_ceiling:
+       haaska_hidden: true
+     light.kitchen_sink:
+       haaska_hidden: true
+     light.office_ceiling:
+       haaska_hidden: true
+     light.office_lamp:
+       haaska_hidden: true
+     light._REDACTED_s_nightstand:
+       haaska_hidden: true
+     light._REDACTED_s_office_ceiling_1:
+       haaska_hidden: true
+     light._REDACTED_s_office_ceiling_2:
+       haaska_hidden: true
+     light.upper_patio_left:
+       haaska_hidden: true
+     light.upper_patio_right:
+       haaska_hidden: true
+     switch.lower_backyard_outdoor_lighting:
+       haaska_hidden: true
+     switch.lower_patio_outdoor_lighting:
+       haaska_hidden: true
+     input_boolean._REDACTED__away:
+       haaska_hidden: true
+     input_boolean.alarm_tripped:
+       haaska_hidden: true
+     input_boolean.disable_auto_garage:
+       haaska_hidden: true
+     input_boolean.disable_lock_unlock_doors:
+       haaska_hidden: true
+     input_boolean.disable_security:
+       haaska_hidden: true
+     input_boolean.door_open_lights_on:
+       haaska_hidden: true
+     input_boolean.exterior_off_night:
+       haaska_hidden: true
+     input_boolean.exterior_on_sunset:
+       haaska_hidden: true
+     input_boolean.home_away:
+       haaska_hidden: true
+     input_boolean.lights_morning_disable:
+       haaska_hidden: true
+     input_boolean.occupancy_air_purifier_on_off_disable:
+       haaska_hidden: true
+     input_boolean.occupancy_lights_off_disable:
+       haaska_hidden: true
+     input_boolean.office_lights_sunset:
+       haaska_hidden: true
+     input_boolean.panic_mode:
+       haaska_hidden: true
+     input_boolean.plex_lights_disable:
+       haaska_hidden: true
+     input_boolean.rainy_day_disable:
+       haaska_hidden: true
+     input_boolean._REDACTED__away:
+       haaska_hidden: true
+     input_boolean.thermostat_away:
+       haaska_hidden: true
+     group.alarm:
+       haaska_hidden: true
+     group.all_devices:
+       haaska_hidden: true
+     group.all_garage_doors:
+       haaska_hidden: true
+     group.all_lights:
+       haaska_hidden: true
+     group.all_locks:
+       haaska_hidden: true
+     group.all_switches:
+       haaska_hidden: true
+     group.automation:
+       haaska_hidden: true
+     group.automation_on_demand:
+       haaska_hidden: true
+     group.automation_override:
+       haaska_hidden: true
+     group.cameras:
+       haaska_hidden: true
+     group.default_view:
+       haaska_hidden: true
+     group.device_location:
+       haaska_hidden: true
+     group.exterior_lights:
+       haaska_hidden: true
+     group.garage:
+       haaska_hidden: true
+     group.household:
+       haaska_hidden: true
+     group.interior_lights:
+       haaska_hidden: true
+     group.lights:
+       haaska_hidden: true
+     group.media:
+       haaska_hidden: true
+     group.media_player:
+       haaska_hidden: true
+     group.sensors:
+       haaska_hidden: true
+     group.speedtest:
+       haaska_hidden: true
+     group.system:
+       haaska_hidden: true
+     group.weather:
+       haaska_hidden: true
