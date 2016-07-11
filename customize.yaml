@@ -103,8 +103,6 @@
        friendly_name: RAM Usage
      sensor.since_last_boot:
        friendly_name: Uptime
-     sensor._REDACTED_:
-       icon: mdi:theater
      sensor.speedtest_ping:
        icon: mdi:speedometer
      sensor.speedtest_download:
@@ -193,10 +191,21 @@
 #media players
      media_player.living_room:
        friendly_name: Apple TV
+       haaska_hidden: true
      media_player.plex_for_vizio_vizio_mtk:
        friendly_name: Office TV
+       haaska_hidden: true
+     sensor._REDACTED_:
+       icon: mdi:theater
+       haaska_hidden: true
+     media_player._REDACTED_s_iphone:
+       haaska_hidden: true
+     media_player._REDACTED_s_ipad:
+       haaska_hidden: true
+     media_player.macproprivate:
+       haaska_hidden: true
 
-#Hidden Groups/Lights/Scenes
+#Hidden Groups/Lights/Scenes/Boolean
 
      group.doors:
        hidden: true
@@ -447,6 +456,10 @@
      input_boolean.rainy_day_disable:
        haaska_hidden: true
      input_boolean._REDACTED__away:
+       haaska_hidden: true
+     input_boolean._REDACTED__away_driving:
+       haaska_hidden: true
+     input_boolean._REDACTED__away_driving:
        haaska_hidden: true
      input_boolean.thermostat_away:
        haaska_hidden: true

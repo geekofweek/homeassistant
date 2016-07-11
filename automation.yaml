@@ -27,6 +27,33 @@
     entity_id: lock.back_door, lock.front_door
 
         ##########################################################
+        ## _REDACTED_ Home Open Garage Door
+        ##########################################################
+
+- alias: _REDACTED_ Home Open Garage Door
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._REDACTED_
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_auto_garage
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean._REDACTED__away
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean._REDACTED__away_driving
+      state: 'on'
+  
+  action:
+    service: garage_door.open
+    entity_id: garage_door.garage_door
+
+        ##########################################################
         ## After _REDACTED_ Home Lock Doors
         ########################################################
 
@@ -99,6 +126,33 @@
     entity_id: lock.back_door, lock.front_door
 
         ##########################################################
+        ## _REDACTED_ Home Open Garage Door
+        ##########################################################
+
+- alias: _REDACTED_ Home Open Garage Door
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._REDACTED_
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_auto_garage
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean._REDACTED__away
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean._REDACTED__away_driving
+      state: 'on'
+
+  action:
+    service: garage_door.open
+    entity_id: garage_door.garage_door
+
+        ##########################################################
         ## After _REDACTED_ Home Lock Doors
         ########################################################
 
@@ -144,33 +198,6 @@
 
   action:
     service: garage_door.close
-    entity_id: garage_door.garage_door
-
-        ##########################################################
-        ## _REDACTED_ Home after Work Open Garage
-        ##########################################################
-
-- alias: _REDACTED_ Home Open Garage
-
-  trigger:
-    - platform: state
-      entity_id: device_tracker._REDACTED_
-      from: 'not_home'
-      to: 'home'
-
-  condition:
-    - condition: time
-      after: '18:30'
-      before: '21:00'
-    - condition: state
-      entity_id: input_boolean.disable_auto_garage
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean._REDACTED__away
-      state: 'on'
-
-  action:
-    service: garage_door.open
     entity_id: garage_door.garage_door
 
         ##########################################################
@@ -438,6 +465,10 @@
       entity_id: binary_sensor.front_door
       from: 'on'
       to: 'off'
+      for:
+        hours: 0
+        minutes: 3
+        seconds: 0
 
   condition:
     - condition: state
@@ -465,11 +496,11 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.front_door
-      from: 'off'
-      to: 'on'
+      from: 'on'
+      to: 'off'
       for:
         hours: 0
-        minutes: 5
+        minutes: 10
         seconds: 0
 
   condition:
@@ -537,13 +568,13 @@
     service: light.turn_on
     entity_id: group.back_door
     data:
-     brightness: 150
+     brightness: 200
 
         ##########################################################
         ## Turn off Back Door when Door Closes
         ##########################################################
 
-- alias: Turn on Back Door when Door Closes
+- alias: Turn off Back Door when Door Closes
 
   trigger:
     - platform: state
@@ -552,7 +583,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 1
+        minutes: 10
         seconds: 0
 
   condition:
@@ -589,9 +620,6 @@
     - condition: state
       entity_id: input_boolean.door_open_lights_on
       state: 'off'
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
 
   action:
     service: light.turn_off
@@ -1203,7 +1231,7 @@
       to: 'false'
       for:
         hours: 0
-        minutes: 20
+        minutes: 30
         seconds: 0
          
   condition:
@@ -1228,7 +1256,7 @@
       to: 'false'
       for:
         hours: 0
-        minutes: 20
+        minutes: 30
         seconds: 0
 
   condition:
@@ -1877,8 +1905,12 @@
     service: scene.turn_on
     entity_id: scene.security
 
+##################################################################
+## On Demand Automation
+##################################################################
+
         ##########################################################
-        ## On Demand Automation
+        ## Hue Rainbow Colors
         ##########################################################
 
 - alias: 'Set Living Room to Random Color'
@@ -1920,6 +1952,10 @@
       effect: random
       transition: 5
       brightness: 255
+
+        ##########################################################
+        ## Lock / Unlock Doors on Demand
+        ##########################################################
 
 - alias: Lock Doors on Demand
 
@@ -1975,6 +2011,10 @@
     service: homeassistant.turn_off
     entity_id: input_boolean.unlock_doors
 
+        ##########################################################
+        ## Thermostat on Demand
+        ##########################################################
+
 - alias: Thermostat On Demand Home
 
   trigger:
@@ -2014,6 +2054,42 @@
   action:
     service: scene.turn_on
     entity_id: scene.security
+
+        ##########################################################
+        ## Garage Door on Demand (Echo Integration)
+        ##########################################################
+
+- alias: Open Garage Door on Demand
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.garage_door
+      state: 'on'
+
+  condition:
+    - condition: state
+      entity_id: garage_door.garage_door
+      state: 'closed'
+
+  action:
+    service: garage_door.open
+    entity_id: garage_door.garage_door
+
+- alias: Close Garage Door on Demand
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.garage_door
+      state: 'off'
+
+  condition:
+    - condition: state
+      entity_id: garage_door.garage_door
+      state: 'open'
+
+  action:
+    service: garage_door.close
+    entity_id: garage_door.garage_door
 
         ##########################################################
         ## Bedtime
@@ -2201,21 +2277,6 @@
       target:
         - _REDACTED_
 
-- alias: _REDACTED_ Message Away
-
-  trigger:
-    - platform: state
-      entity_id: device_tracker._REDACTED_
-      from: 'home'
-      to: 'not_home'
-
-  action:
-    service: notify.text_message
-    data:
-      message: '_REDACTED_ Phone Away State'
-      target:
-        - _REDACTED_
-
 - alias: _REDACTED_ Message Home
 
   trigger:
@@ -2272,6 +2333,27 @@
     entity_id: input_boolean.disable_security
 
         ##########################################################
+        ## Set _REDACTED_ Away Driving
+        ##########################################################
+
+- alias: Set _REDACTED_ Away Driving
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._REDACTED_
+      from: 'home'
+      to: 'not_home'
+
+  condition:
+    - condition: state
+      entity_id: garage_door.garage_door
+      state: 'open'
+
+  action:
+    service: homeassistant.turn_on
+    entity_id: input_boolean._REDACTED__away_driving
+
+        ##########################################################
         ## Set _REDACTED_ Away after 5 Mins
         ##########################################################
 
@@ -2309,7 +2391,28 @@
 
   action:
     service: homeassistant.turn_off
-    entity_id: input_boolean._REDACTED__away
+    entity_id: input_boolean._REDACTED__away, input_boolean._REDACTED__away_driving
+
+        ##########################################################
+        ## Set _REDACTED_ Away Driving
+        ##########################################################
+
+- alias: Set _REDACTED_ Away Driving
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._REDACTED_
+      from: 'home'
+      to: 'not_home'
+
+  condition:
+    - condition: state
+      entity_id: garage_door.garage_door
+      state: 'open'
+
+  action:
+    service: homeassistant.turn_on
+    entity_id: input_boolean._REDACTED__away_driving
     
         ##########################################################
         ## Set _REDACTED_ Away after 5 Mins
@@ -2349,13 +2452,41 @@
 
   action:
     service: homeassistant.turn_off
-    entity_id: input_boolean._REDACTED__away
+    entity_id: input_boolean._REDACTED__away, input_boolean._REDACTED__away_driving
 
         ##########################################################
-        ## Turn off Back Door Twice
+        ## Reset Garage Door Boolean Switch
         ##########################################################
 
-- alias: Turn off Back Door Twice
+- alias: Turn off Garage Door when Closed
+
+  trigger:
+    - platform: state
+      entity_id: garage_door.garage_door
+      from: 'open'
+      to: 'closed'
+
+  action:
+    service: homeassistant.turn_off
+    entity_id: input_boolean.garage_door
+    
+- alias: Turn on Garage Door when Open
+
+  trigger:
+    - platform: state
+      entity_id: garage_door.garage_door
+      from: 'closed'
+      to: 'open'
+
+  action:
+    service: homeassistant.turn_on
+    entity_id: input_boolean.garage_door
+
+        ##########################################################
+        ## Turn off Back Patio Twice
+        ##########################################################
+
+- alias: Turn off Back Patio Twice
 
   trigger:
     - platform: state
