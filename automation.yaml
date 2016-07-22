@@ -283,7 +283,7 @@
     - service: light.turn_off
       entity_id: group.interior_lights
     - service: switch.turn_off
-      entity_id: switch.air_purifier, switch.guest_bedroom_fan, switch.lower_backyard_outdoor_lighting, switch.lower_patio_outdoor_lighting
+      entity_id: switch.air_purifier, switch.hallway_fan, switch.lower_backyard_outdoor_lighting, switch.lower_patio_outdoor_lighting, switch.fireplace
     - service: garage_door.close
       entity_id: garage_door.garage_door
 
@@ -1017,7 +1017,7 @@
       after: '05:00'
       before: '07:00'
     - condition: state
-      entity_id: input_boolean.lights_away
+      entity_id: input_boolean.home_away
       state: 'off'
 
   action:
@@ -1065,7 +1065,7 @@
 
   action:
     service: switch.turn_on
-    entity_id: switch.air_purifier
+    entity_id: switch.air_purifier, switch.hallway_fan
 
         ##########################################################
         ## Turn off Office Air Purifier when Unoccupied
@@ -1090,7 +1090,7 @@
 
   action:
     service: switch.turn_off
-    entity_id: switch.air_purifier
+    entity_id: switch.air_purifier, switch.hallway_fan
 
         ##########################################################
         ## Turn off Office when Unoccupied
@@ -1623,14 +1623,14 @@
       entity_id: switch.lower_patio_outdoor_lighting
 
         ##########################################################
-        ## Turn Off Outdoor Lighting At 1:00a on Weekends
+        ## Turn Off Outdoor Lighting At Midnight on Weekends
         ##########################################################
 
 - alias: Turn off Outdoor Lighting at 1a on Weekends
 
   trigger:
     - platform: time
-      after: '01:00'
+      after: '23:59'
 
   condition:
     - condition: state
@@ -1638,8 +1638,8 @@
       state: 'off'
     - condition: time
       weekday:
+        - fri
         - sat
-        - sun
 
   action:
     - service: switch.turn_off
@@ -2108,7 +2108,7 @@
     - service: light.turn_off
       entity_id: group.interior_lights, group.exterior_lights
     - service: switch.turn_off
-      entity_id: switch.air_purifier, switch.guest_bedroom_fan, switch.lower_backyard_outdoor_lighting, switch.lower_patio_outdoor_lighting
+      entity_id: switch.air_purifier, switch.hallway_fan, switch.lower_backyard_outdoor_lighting, switch.lower_patio_outdoor_lighting, switch.fireplace
     - service: garage_door.close
       entity_id: garage_door.garage_door
       
@@ -2354,10 +2354,10 @@
     entity_id: input_boolean._REDACTED__away_driving
 
         ##########################################################
-        ## Set _REDACTED_ Away after 5 Mins
+        ## Set _REDACTED_ Away after 2 Mins
         ##########################################################
 
-- alias: Set _REDACTED_ Away after 5 Mins
+- alias: Set _REDACTED_ Away after 2 Mins
 
   trigger:
     - platform: state
@@ -2366,7 +2366,7 @@
       to: 'not_home'
       for:
         hours: 0
-        minutes: 5
+        minutes: 2
         seconds: 0
 
   action:
@@ -2374,10 +2374,10 @@
     entity_id: input_boolean._REDACTED__away
     
         ##########################################################
-        ## Set _REDACTED_ Home after 15 Mins
+        ## Set _REDACTED_ Home after 10 Mins
         ##########################################################
 
-- alias: Set _REDACTED_ Home after 15 Mins
+- alias: Set _REDACTED_ Home after 10 Mins
 
   trigger:
     - platform: state
@@ -2415,10 +2415,10 @@
     entity_id: input_boolean._REDACTED__away_driving
     
         ##########################################################
-        ## Set _REDACTED_ Away after 5 Mins
+        ## Set _REDACTED_ Away after 2 Mins
         ##########################################################
 
-- alias: Set _REDACTED_ Away after 5 Mins
+- alias: Set _REDACTED_ Away after 2 Mins
 
   trigger:
     - platform: state
@@ -2427,7 +2427,7 @@
       to: 'not_home'
       for:
         hours: 0
-        minutes: 5
+        minutes: 2
         seconds: 0
 
   action:
@@ -2435,10 +2435,10 @@
     entity_id: input_boolean._REDACTED__away
     
         ##########################################################
-        ## Set _REDACTED_ Home after 15 Mins
+        ## Set _REDACTED_ Home after 10 Mins
         ##########################################################
 
-- alias: Set _REDACTED_ Home after 15 Mins
+- alias: Set _REDACTED_ Home after 10 Mins
 
   trigger:
     - platform: state
@@ -2447,7 +2447,7 @@
       to: 'home'
       for:
         hours: 0
-        minutes: 15
+        minutes: 10
         seconds: 0
 
   action:

@@ -35,6 +35,10 @@
      group.living_room:
        icon: mdi:sofa
        haaska_hidden: true
+     group.living_room_lights:
+       icon: mdi:sofa
+       haaska_hidden: true
+       friendly_name: Living Room
      group.dining_room:
        icon: mdi:silverware-variant
        haaska_hidden: true
@@ -75,6 +79,12 @@
        icon: mdi:lightbulb
        haaska_hidden: true
      group._REDACTED__office_ceiling:
+       icon: mdi:lightbulb
+       haaska_hidden: true
+     group.bathroom:
+       icon: mdi:water-pump
+       haaska_hidden: true
+     group.hallway:
        icon: mdi:lightbulb
        haaska_hidden: true
 
@@ -126,13 +136,17 @@
      
        
 #switches
+     switch.fireplace:
+       icon: mdi:fire
+       friendly_name: Fireplace
+       haaska_hidden: true
      switch.air_purifier:
        icon: mdi:fan
        friendly_name: Air Purifier
        haaska_hidden: true
-     switch.guest_bedroom_fan:
+     switch.hallway_fan:
        icon: mdi:fan
-       friendly_name: Guest Bedroom Fan
+       friendly_name: Hallway Fan
        haaska_hidden: true
      switch.siren:
        icon: mdi:shield-outline
@@ -287,7 +301,25 @@
        hidden: true
      sensor.guest_bedroom_temperature_2:
        hidden: true
-
+     binary_sensor._REDACTED_:
+       hidden: true
+       haaska_hidden: true
+     binary_sensor._REDACTED__2:
+       hidden: true
+       haaska_hidden: true
+     binary_sensor._REDACTED__3:
+       hidden: true
+       haaska_hidden: true
+     binary_sensor._REDACTED_:
+       hidden: true
+       haaska_hidden: true
+     binary_sensor._REDACTED__2:
+       hidden: true
+       haaska_hidden: true
+     binary_sensor._REDACTED__3:
+       hidden: true
+       haaska_hidden: true
+      
 #Wink Hue Bulbs
     
      light.back_door_left_2:
