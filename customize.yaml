@@ -81,12 +81,10 @@
      group._REDACTED__office_ceiling:
        icon: mdi:lightbulb
        haaska_hidden: true
-     group.bathroom:
-       icon: mdi:water-pump
+     group.interior:
+       friendly_name: Interior Lights
        haaska_hidden: true
-     group.hallway:
-       icon: mdi:lightbulb
-       haaska_hidden: true
+
 
 #locks
 
@@ -133,8 +131,28 @@
        icon: mdi:account
      sensor.guest_bedroom_occupancy:
        icon: mdi:account
-     
-       
+     sensor.back_door_sensor_batt:
+       icon: mdi:battery
+       haaska_hidden: true
+     sensor.basement_door_sensor_batt:
+       icon: mdi:battery
+       haaska_hidden: true
+     sensor.front_door_sensor_batt:
+       icon: mdi:battery
+       haaska_hidden: true
+     sensor.siren_batt:
+       icon: mdi:battery
+       haaska_hidden: true
+     sensor.front_door_lock_batt:
+       icon: mdi:battery
+       haaska_hidden: true
+     sensor.back_door_lock_batt:
+       icon: mdi:battery
+       haaska_hidden: true
+     sensor.basement_door_lock_batt:
+       icon: mdi:battery
+       haaska_hidden: true
+        
 #switches
      switch.fireplace:
        icon: mdi:fire
@@ -152,11 +170,19 @@
        icon: mdi:shield-outline
        friendly_name: Alarm Siren
        haaska_hidden: true
+     switch.living_room_ceiling_fan:
+       icon: mdi:lightbulb
+       friendly_name: Living Room Ceiling Fan
+       haaska_hidden: true
+     switch.bottom_light_load:
+       hidden: true
+       haaska_hidden: true
 
 #lights
 
      light.hallway_light:
        friendly_name: Hallway
+       icon: mdi:lightbulb
        haaska_hidden: true
      light.bathroom_vanity:
        icon: mdi:water-pump
@@ -221,6 +247,8 @@
 
 #Hidden Groups/Lights/Scenes/Boolean
 
+     group.battery_levels:
+       haaska_hidden: true
      group.doors:
        hidden: true
        haaska_hidden: true

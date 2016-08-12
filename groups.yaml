@@ -14,11 +14,13 @@
       - group._REDACTED__office
       - group.guest_bedroom
       - group.basement
-      - group.hallway
-      - group.bathroom
+      - group.interior
       - group.exterior_lights
       - group.automation_on_demand
       - group.garage
+      - device_tracker._REDACTED_
+      - device_tracker._REDACTED_
+      - persistent_notification.1
 
   lights:
     name: Lights
@@ -39,6 +41,7 @@
       - group.weather
       - group.speedtest
       - group.system
+      - group.battery_levels
 
   cameras:
     name: Cameras
@@ -94,6 +97,7 @@
 
   Living Room:
     - group.living_room_lamps
+    - switch.living_room_ceiling_fan
     - switch.fireplace
     - sensor.living_room_temperature
     - sensor.living_room_occupancy
@@ -183,11 +187,10 @@
     - switch.lower_patio_outdoor_lighting
     - switch.lower_backyard_outdoor_lighting
 
-  Hallway:
+  Interior:
     - light.hallway_light
-
-  Bathroom:
     - light.bathroom_vanity
+    - group.stairs
 
   Interior Lights:
     - group.living_room_lights
@@ -307,6 +310,15 @@
     - sensor.ram_free
     - sensor.since_last_boot
     - updater.updater
+
+  Battery Levels:
+    - sensor.front_door_lock_batt
+    - sensor.back_door_lock_batt
+    - sensor.basement_door_lock_batt
+    - sensor.front_door_sensor_batt
+    - sensor.back_door_sensor_batt
+    - sensor.basement_door_sensor_batt
+    - sensor.siren_batt
 
   Rain Lights:
     - light.kitchen_cabinets

@@ -3,10 +3,10 @@
 #################################################################
 
         ##########################################################
-        ## _REDACTED_ Home Unlock Doors
+        ## _REDACTED_ Home from Waling Unlock Doors
         ##########################################################
 
-- alias: _REDACTED_ Home Unlock Doors
+- alias: _REDACTED_ Home from Waling Unlock Doors
 
   trigger:
     - platform: state
@@ -21,16 +21,19 @@
     - condition: state
       entity_id: input_boolean._REDACTED__away
       state: 'on'
+    - condition: state
+      entity_id: input_boolean._REDACTED__away_driving
+      state: 'off'
   
   action:
     service: lock.unlock
     entity_id: lock.back_door, lock.front_door
 
         ##########################################################
-        ## _REDACTED_ Home Open Garage Door
+        ## _REDACTED_ Home from Driving Open Garage Door Unlock Door
         ##########################################################
 
-- alias: _REDACTED_ Home Open Garage Door
+- alias: _REDACTED_ Home from Driving Open Garage Door Unlock Door
 
   trigger:
     - platform: state
@@ -43,6 +46,9 @@
       entity_id: input_boolean.disable_auto_garage
       state: 'off'
     - condition: state
+      entity_id: input_boolean.home_away
+      state: 'off'
+    - condition: state
       entity_id: input_boolean._REDACTED__away
       state: 'on'
     - condition: state
@@ -50,8 +56,10 @@
       state: 'on'
   
   action:
-    service: garage_door.open
-    entity_id: garage_door.garage_door
+    - service: garage_door.open
+      entity_id: garage_door.garage_door
+    - service: lock.unlock
+      entity_id: lock.back_door
 
         ##########################################################
         ## After _REDACTED_ Home Lock Doors
@@ -102,10 +110,10 @@
     entity_id: garage_door.garage_door
 
         ##########################################################
-        ## _REDACTED_ Home Unlock Doors
+        ## _REDACTED_ Home from Waling Unlock Doors
         ##########################################################
 
-- alias: _REDACTED_ Home Unlock Doors
+- alias: _REDACTED_ Home from Waling Unlock Doors
 
   trigger:
     - platform: state
@@ -120,16 +128,20 @@
     - condition: state
       entity_id: input_boolean._REDACTED__away
       state: 'on'
+    - condition: state
+      entity_id: input_boolean._REDACTED__away_driving
+      state: 'off'
+
 
   action:
     service: lock.unlock
     entity_id: lock.back_door, lock.front_door
 
         ##########################################################
-        ## _REDACTED_ Home Open Garage Door
+        ## _REDACTED_ Home from Driving Open Garage Door Unlock Door
         ##########################################################
 
-- alias: _REDACTED_ Home Open Garage Door
+- alias: _REDACTED_ Home from Driving Open Garage Door Unlock Door
 
   trigger:
     - platform: state
@@ -142,6 +154,9 @@
       entity_id: input_boolean.disable_auto_garage
       state: 'off'
     - condition: state
+      entity_id: input_boolean.home_away
+      state: 'off'
+    - condition: state
       entity_id: input_boolean._REDACTED__away
       state: 'on'
     - condition: state
@@ -149,8 +164,10 @@
       state: 'on'
 
   action:
-    service: garage_door.open
-    entity_id: garage_door.garage_door
+    - service: garage_door.open
+      entity_id: garage_door.garage_door
+    - service: lock.unlock
+      entity_id: lock.back_door
 
         ##########################################################
         ## After _REDACTED_ Home Lock Doors
@@ -1065,7 +1082,7 @@
 
   action:
     service: switch.turn_on
-    entity_id: switch.air_purifier, switch.hallway_fan
+    entity_id: switch.air_purifier
 
         ##########################################################
         ## Turn off Office Air Purifier when Unoccupied
@@ -1080,7 +1097,7 @@
       to: 'false'
       for:
         hours: 0
-        minutes: 10
+        minutes: 30
         seconds: 0
 
   condition:
@@ -1090,7 +1107,7 @@
 
   action:
     service: switch.turn_off
-    entity_id: switch.air_purifier, switch.hallway_fan
+    entity_id: switch.air_purifier
 
         ##########################################################
         ## Turn off Office when Unoccupied
@@ -1105,7 +1122,7 @@
       to: 'false'
       for:
         hours: 0
-        minutes: 10
+        minutes: 30
         seconds: 0
 
   condition:
@@ -1131,7 +1148,7 @@
       to: 'false'
       for:
         hours: 0
-        minutes: 10
+        minutes: 30
         seconds: 0
 
   condition:
@@ -1156,7 +1173,7 @@
       to: 'false'
       for:
         hours: 0
-        minutes: 10
+        minutes: 30
         seconds: 0
 
   condition:
@@ -1206,7 +1223,7 @@
       to: 'false'
       for:
         hours: 0
-        minutes: 20
+        minutes: 30
         seconds: 0
   
   condition:
@@ -1231,7 +1248,7 @@
       to: 'false'
       for:
         hours: 0
-        minutes: 30
+        minutes: 60
         seconds: 0
          
   condition:
@@ -1256,7 +1273,7 @@
       to: 'false'
       for:
         hours: 0
-        minutes: 30
+        minutes: 60
         seconds: 0
 
   condition:
@@ -1284,7 +1301,7 @@
       to: 'false'
       for:
         hours: 0
-        minutes: 10
+        minutes: 30
         seconds: 0
 
   condition:
@@ -2129,6 +2146,73 @@
     entity_id: input_boolean.bedtime
 
         ##########################################################
+        ## Turn on Vacation Mode when Gone 24 Hours
+        ##########################################################
+
+- alias: Turn on Vacation Mode when Gone 24 Hours
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 24
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.home_away
+      state: 'off'
+
+  action:
+    service: homeassistant.turn_on
+    entity_id: input_boolean.vacation_mode
+
+        ##########################################################
+        ## Turn off Vacation Mode when Home
+        ##########################################################
+
+- alias: Turn on Vacation Mode when Gone 24 Hours
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.home_away
+      state: 'off'
+
+  action:
+    service: homeassistant.turn_off
+    entity_id: input_boolean.vacation_mode
+
+        ##########################################################
+        ## Turn on Vacation Mode when on Vacation
+        ##########################################################
+
+- alias: Turn on Vacation Mode when on Vacation
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._REDACTED_
+      from: 'not_home'
+      to: 'vacation'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.home_away
+      state: 'off'
+
+  action:
+    service: homeassistant.turn_on
+    entity_id: input_boolean.vacation_mode
+
+        ##########################################################
         ## Turn on Vacation Mode when at the Lake
         ##########################################################
 
@@ -2243,54 +2327,11 @@
       to: 'on'
 
   action:
-    service: notify.text_message
+    service: persistent_notification.create
     data:
-      message: 'Alarm Has Been Tripped!'
-      target:
-        - _REDACTED_
-
-- alias: Alarm Enabled Notify
-
-  trigger:
-    - platform: state
-      entity_id: input_boolean.disable_security
-      to: 'off'
-
-  action:
-    service: notify.text_message
-    data:
-      message: 'Alarm Enabled'
-      target:
-        - _REDACTED_
-
-- alias: Alarm Disabled Notify
-
-  trigger:
-    - platform: state
-      entity_id: input_boolean.disable_security
-      to: 'on'
-
-  action:
-    service: notify.text_message
-    data:
-      message: 'Alarm Disabled'
-      target:
-        - _REDACTED_
-
-- alias: _REDACTED_ Message Home
-
-  trigger:
-    - platform: state
-      entity_id: device_tracker._REDACTED_
-      from: 'not_home'
-      to: 'home'
-
-  action:
-    service: notify.text_message
-    data:
-      message: '_REDACTED_ Phone Home State'
-      target:
-        - _REDACTED_
+      message: "Alarm Has Been Tripped!"
+      title: "Alarm"
+      notification_id: "1"
 
 #################################################################
 ## Work Arounds
@@ -2354,7 +2395,7 @@
     entity_id: input_boolean._REDACTED__away_driving
 
         ##########################################################
-        ## Set _REDACTED_ Away after 2 Mins
+        ## Set _REDACTED_ Away after 1.5 Mins
         ##########################################################
 
 - alias: Set _REDACTED_ Away after 2 Mins
@@ -2366,8 +2407,8 @@
       to: 'not_home'
       for:
         hours: 0
-        minutes: 2
-        seconds: 0
+        minutes: 1
+        seconds: 30
 
   action:
     service: homeassistant.turn_on
@@ -2386,7 +2427,7 @@
       to: 'home'
       for:
         hours: 0
-        minutes: 15
+        minutes: 10
         seconds: 0
 
   action:
@@ -2415,7 +2456,7 @@
     entity_id: input_boolean._REDACTED__away_driving
     
         ##########################################################
-        ## Set _REDACTED_ Away after 2 Mins
+        ## Set _REDACTED_ Away after 1.5 Mins
         ##########################################################
 
 - alias: Set _REDACTED_ Away after 2 Mins
@@ -2427,8 +2468,8 @@
       to: 'not_home'
       for:
         hours: 0
-        minutes: 2
-        seconds: 0
+        minutes: 1
+        seconds: 30
 
   action:
     service: homeassistant.turn_on

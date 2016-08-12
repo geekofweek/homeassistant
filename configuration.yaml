@@ -7,7 +7,7 @@ homeassistant:
   longitude: _REDACTED_
   
   # Impacts weather/sunrise data (altitude above sea level) 
-  elevation: 505
+  elevation: _REDACTED_
   
   # C for Celcius, F for Fahrenheit
   temperature_unit: F
@@ -61,7 +61,6 @@ media_player:
 
 wink:
   access_token: _REDACTED_
-  #scan_interval: 10
 
 ecobee:
   api_key: _REDACTED_
@@ -95,12 +94,6 @@ camera:
   port: 88
   username: _REDACTED_
   password: _REDACTED_
-
-notify:
-  platform: googlevoice
-  username: _REDACTED_
-  password: _REDACTED_
-  name: text_message
 
 recorder:
   purge_days: 31
@@ -157,6 +150,38 @@ sensor 5:
   username: _REDACTED_
   password: _REDACTED_
   server: _REDACTED_
+
+sensor 6:  
+  platform: template
+  sensors:
+    back_door_sensor_batt:
+      value_template: '{{ states.binary_sensor.back_door.attributes.battery_level }}'
+      friendly_name: 'Back Door Sensor'
+      unit_of_measurement: '%'
+    basement_door_sensor_batt:
+      value_template: '{{ states.binary_sensor.basement_door.attributes.battery_level }}'
+      friendly_name: 'Basement Door Sensor'
+      unit_of_measurement: '%'
+    front_door_sensor_batt:
+      value_template: '{{ states.binary_sensor.front_door.attributes.battery_level }}'
+      friendly_name: 'Front Door Sensor'
+      unit_of_measurement: '%'
+    siren_batt:
+      value_template: '{{ states.switch.siren.attributes.battery_level }}'
+      friendly_name: 'Siren'
+      unit_of_measurement: '%'
+    front_door_lock_batt:
+      value_template: '{{ states.lock.front_door.attributes.battery_level }}'
+      friendly_name: 'Front Door Lock'
+      unit_of_measurement: '%'
+    back_door_lock_batt:
+      value_template: '{{ states.lock.back_door.attributes.battery_level }}'
+      friendly_name: 'Back Door Lock'
+      unit_of_measurement: '%'
+    basement_door_lock_batt:
+      value_template: '{{ states.lock.basement_door.attributes.battery_level }}'
+      friendly_name: 'Basement Door Lock'
+      unit_of_measurement: '%'
 
 #################################################################
 ## Zones
