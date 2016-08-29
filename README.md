@@ -32,10 +32,11 @@ Example [Home Assistant](https://home-assistant.io) Configs
 # Interface
 ![UI](images/home-screenshot.jpg)
 ![UI](images/lights-screenshot.jpg)
-![UI](images/sensors-screenshot.jpg)
-![UI](images/camera-screenshot.jpg)
-![UI](images/media-screenshot.jpg)
 ![UI](images/automation-screenshot.jpg)
+![UI](images/sensors-screenshot.jpg)
+![UI](images/media-screenshot.jpg)
+![UI](images/camera-screenshot.jpg)
+
 
 
 
