@@ -2,7 +2,7 @@
 ## Customize
 #################################################################
 
-     thermostat.main_floor:
+     climate.main_floor:
 #       entity_picture: /local/ecobee.jpeg
        friendly_name: Ecobee3
 
@@ -42,27 +42,55 @@
      group.dining_room:
        icon: mdi:silverware-variant
        haaska_hidden: true
+     group.dining_room_lights:
+       icon: mdi:silverware-variant
+       haaska_hidden: true
+       friendly_name: Dining Room
      group.bedroom:
        icon: mdi:hotel
        haaska_hidden: true
+     group.bedroom_lights:
+       icon: mdi:hotel
+       haaska_hidden: true
+       friendly_name: Bedroom
      group.kitchen:
        icon: mdi:stove
        haaska_hidden: true
+     group.kitchen_lights:
+       icon: mdi:stove
+       haaska_hidden: true
+       friendly_name: Kitchen
      group.stairs:
        icon: mdi:stairs
        haaska_hidden: true
      group._REDACTED__office:
        icon: mdi:desktop-mac
        haaska_hidden: true
+     group._REDACTED__office_lights:
+       icon: mdi:desktop-mac
+       haaska_hidden: true
+       friendly_name: _REDACTED_ Office
      group._REDACTED__office:
        icon: mdi:desktop-mac
        haaska_hidden: true
+     group._REDACTED__office_lights:
+       icon: mdi:desktop-mac
+       haaska_hidden: true
+       friendly_name: _REDACTED_ Office
      group.guest_bedroom:
        icon: mdi:hotel
        haaska_hidden: true
+     group.guest_bedroom_lights:
+       icon: mdi:hotel
+       haaska_hidden: true
+       friendly_name: Bedroom
      group.basement:
        icon: mdi:stairs
        haaska_hidden: true
+     group.basement_lighting:
+       icon: mdi:stairs
+       haaska_hidden: true
+       friendly_name: Basement
      group.front_porch:
        icon: mdi:home
        haaska_hidden: true
@@ -83,6 +111,9 @@
        haaska_hidden: true
      group.interior:
        friendly_name: Interior Lights
+       haaska_hidden: true
+     group.basement_lights:
+       icon: mdi:lightbulb
        haaska_hidden: true
 
 
@@ -117,19 +148,20 @@
        icon: mdi:speedometer
      sensor.speedtest_upload:
        icon: mdi:speedometer
-     sensor.main_floor_occupancy:
+     binary_sensor.main_floor_occupancy:
        icon: mdi:account
-     sensor.living_room_occupancy:
+       friendly_name: Dining Room Occupancy
+     binary_sensor.living_room_occupancy:
        icon: mdi:account
-     sensor.kitchen_occupancy:
+     binary_sensor.kitchen_occupancy:
        icon: mdi:account
-     sensor.bedroom_occupancy:
+     binary_sensor.bedroom_occupancy:
        icon: mdi:account
-     sensor.office_occupancy:
+     binary_sensor.office_occupancy:
        icon: mdi:account
-     sensor._REDACTED__office_occupancy:
+     binary_sensor._REDACTED__office_occupancy:
        icon: mdi:account
-     sensor.guest_bedroom_occupancy:
+     binary_sensor.guest_bedroom_occupancy:
        icon: mdi:account
      sensor.back_door_sensor_batt:
        icon: mdi:battery
@@ -152,6 +184,11 @@
      sensor.basement_door_lock_batt:
        icon: mdi:battery
        haaska_hidden: true
+     sensor.main_floor_humidity:
+       icon: mdi:water-percent
+       friendly_name: Dining Room Humidity
+     sensor.main_floor_temperature:
+       friendly_name: Dining Room Temperature
         
 #switches
      switch.fireplace:
@@ -191,42 +228,57 @@
 
 #weather
 
-     sensor.weather_temperature:
+     sensor.forecastio_temperature:
        friendly_name: 'Outdoor Temperature'
-     sensor.weather_summary:
+     sensor.forecastio_summary:
        icon: mdi:weather-sunny
-     sensor.weather_hourly_summary:
+       friendly_name: 'Summary'
+     sensor.forecastio_hourly_summary:
        icon: mdi:weather-sunny
-     sensor.weather_minutely_summary:
+       friendly_name: 'Hourly Summary'
+     sensor.forecastio_minutely_summary:
        icon: mdi:weather-sunny
-     sensor.weather_daily_summary:
+       friendly_name: 'Minute Summary'
+     sensor.forecastio_daily_summary:
        icon: mdi:weather-sunny
-     sensor.weather_apparent_temperature:
+       friendly_name: 'Daily Summary'
+     sensor.forecastio_apparent_temperature:
        icon: mdi:thermometer-lines
-     sensor.weather_precip:
+       friendly_name: 'Apparent Temperature'
+     sensor.forecastio_precip:
        icon: mdi:weather-pouring
-     sensor.weather_precip_probability:
+       friendly_name: 'Precipitation'
+     sensor.forecastio_precip_probability:
        icon: mdi:weather-pouring
-     sensor.weather_precip_intensity:
+       friendly_name: 'Precipitation Probability'
+     sensor.forecastio_precip_intensity:
        icon: mdi:weather-pouring
        friendly_name: 'Rainfall'
-     sensor.weather_humidity:
+     sensor.forecastio_humidity:
        icon: mdi:water-percent
        friendly_name: 'Outdoor Humidity'
-     sensor.weather_cloud_coverage:
+     sensor.forecastio_cloud_cover:
        icon: mdi:weather-cloudy
-     sensor.weather_nearest_storm_distance:
+       friendly_name: 'Cloud Cover'
+     sensor.forecastio_nearest_storm_distance:
        icon: mdi:weather-lightning
-     sensor.weather_wind_speed:
+       friendly_name: 'Nearest Storm'
+     sensor.forecastio_wind_speed:
        icon: mdi:weather-windy
-     sensor.main_floor_humidity:
-       icon: mdi:water-percent
-     sensor.weather_wind_bearing:
+       friendly_name: 'Wind Speed'
+     sensor.forecastio_wind_bearing:
        icon: mdi:weather-windy
-     sensor.weather_ozone:
+       friendly_name: 'Wind Bearing'
+     sensor.forecastio_ozone:
        icon: mdi:cloud
-     sensor.weather_pressure:
+       friendly_name: 'Ozone'
+     sensor.forecastio_pressure:
        icon: mdi:weight
+       friendly_name: 'Pressure'
+     sensor.forecastio_dew_point:
+       friendly_name: 'Dew Point'
+     sensor.forecastio_visibility:
+       friendly_name: 'Visibility'
 
 #media players
      media_player.living_room:
@@ -244,19 +296,20 @@
        haaska_hidden: true
      media_player.macproprivate:
        haaska_hidden: true
+     media_player.roku_hd__18c23w020195:
+       friendly_name: Guest Bedroom Roku
+       haaska_hidden: true
 
 #Hidden Groups/Lights/Scenes/Boolean
 
      group.battery_levels:
        haaska_hidden: true
      group.doors:
-       hidden: true
        haaska_hidden: true
      group.home_locks:
        hidden: true
        haaska_hidden: true
      group.occupancy:
-       hidden: true
        haaska_hidden: true
      group.home_lights:
        hidden: true
@@ -297,7 +350,16 @@
      light.living_room_lamp_2:
        hidden: true
        haaska_hidden: true
-
+     light.basement_light_1:
+       hidden: true
+       haaska_hidden: true
+     light.basement_light_2:
+       hidden: true
+       haaska_hidden: true
+     light.basement_light_3:
+       hidden: true
+       haaska_hidden: true
+  
 #Wink Garage Door
 
      garage_door.garage_door_2:
@@ -315,6 +377,8 @@
        hidden: true
      sensor._REDACTED__office_temperature_2:
        hidden: true
+     sensor.guest_bedroom_temperature_2:
+       hidden: true
      binary_sensor.bedroom:
        hidden: true
      binary_sensor.kitchen:
@@ -326,8 +390,6 @@
      binary_sensor._REDACTED__office:
        hidden: true
      binary_sensor.guest_bedroom:
-       hidden: true
-     sensor.guest_bedroom_temperature_2:
        hidden: true
      binary_sensor._REDACTED_:
        hidden: true
@@ -398,9 +460,6 @@
      light.upper_patio_right_2:
        hidden: true
        haaska_hidden: true
-     light.basement_light_2:
-       hidden: true
-       haaska_hidden: true
      light.basement_stairs_2:
        hidden: true
        haaska_hidden: true
@@ -422,12 +481,26 @@
      light.guest_bedroom_nightstand_2:
        hidden: true
        haaska_hidden: true
+     light.basement_light_1_2:
+       hidden: true
+       haaska_hidden: true
+     light.basement_light_2_2:
+       hidden: true
+       haaska_hidden: true
+     light.basement_light_3_2:
+       hidden: true
+       haaska_hidden: true
+     light.basement_light_4_2:
+       hidden: true
+       haaska_hidden: true
 
 #Amazon Echo Customize
      input_boolean.office_rainbow:
        haaska_name: Office Party
      input_boolean.livingroom_rainbow:
        haaska_name: Living Room Party
+     input_boolean.front_porch_rainbow:
+       haaska_name: Front Porch Party
 
 #Amazon Echo Hidden
 
@@ -436,8 +509,6 @@
      light.back_door_left:
        haaska_hidden: true
      light.back_door_right:
-       haaska_hidden: true
-     light.basement_light:
        haaska_hidden: true
      light.basement_stairs:
        haaska_hidden: true
@@ -568,4 +639,6 @@
      group.system:
        haaska_hidden: true
      group.weather:
+       haaska_hidden: true
+     group.indoor_temperature:
        haaska_hidden: true

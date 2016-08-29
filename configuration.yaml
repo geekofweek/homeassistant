@@ -7,10 +7,10 @@ homeassistant:
   longitude: _REDACTED_
   
   # Impacts weather/sunrise data (altitude above sea level) 
-  elevation: _REDACTED_
+  elevation: 505
   
-  # C for Celcius, F for Fahrenheit
-  temperature_unit: F
+  # 'metric' for the metric system, 'imperial' for the imperial system
+  unit_system: imperial
   
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: America/Chicago
@@ -59,9 +59,6 @@ light:
 media_player:
   platform: plex
 
-wink:
-  access_token: _REDACTED_
-
 ecobee:
   api_key: _REDACTED_
   hold_temp: True
@@ -76,8 +73,8 @@ device_tracker:
     consider_home: 180
   - platform: asuswrt
     host: _REDACTED_
-    protocol: telnet
-    mode: router
+#    protocol: ssh
+#    mode: router
     username: _REDACTED_
     password: _REDACTED_
 
@@ -95,8 +92,11 @@ camera:
   username: _REDACTED_
   password: _REDACTED_
 
+wink:
+  access_token: _REDACTED_
+
 recorder:
-  purge_days: 31
+  purge_days: 30
 
 sensor:
   platform: speedtest
@@ -222,3 +222,6 @@ scene: !include scenes.yaml
 automation: !include automation.yaml
 
 input_boolean: !include input_boolean.yaml
+
+input_select: !include input_select.yaml
+

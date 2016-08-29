@@ -18,8 +18,6 @@
       - group.exterior_lights
       - group.automation_on_demand
       - group.garage
-      - device_tracker._REDACTED_
-      - device_tracker._REDACTED_
       - persistent_notification.1
 
   lights:
@@ -30,6 +28,16 @@
       - group.interior_lights
       - group.exterior_lights
      
+  automation:
+    name: Automation
+    view: yes
+    icon: mdi:robot
+    entities:
+      - group.alarm
+      - group.automation_override
+      - group.automation_on_demand
+      - group.party_modes
+
   sensors:
     name: Sensors
     view: yes
@@ -37,18 +45,13 @@
     entities:
       - group.household
       - group.device_location
-      - group.alarm
       - group.weather
+      - group.indoor_temperature
+      - group.occupancy
+      - group.doors
       - group.speedtest
       - group.system
       - group.battery_levels
-
-  cameras:
-    name: Cameras
-    view: yes
-    icon: mdi:camera
-    entities:
-      - camera.garage_camera
 
   media:
     name: Media
@@ -57,13 +60,12 @@
     entities:
       - group.media_player
 
-  automation:
-    name: Automation
+  cameras:
+    name: Cameras
     view: yes
-    icon: mdi:settings
+    icon: mdi:camera
     entities:
-      - group.automation_override
-      - group.automation_on_demand
+      - camera.garage_camera
 
   Automation Override:
     - input_boolean.disable_lock_unlock_doors
@@ -84,25 +86,29 @@
     - input_boolean._REDACTED__away_driving
 
   Automation On Demand:
-    - input_boolean.livingroom_rainbow
-    - input_boolean.office_rainbow
     - input_boolean.lock_doors
     - input_boolean.unlock_doors
     - input_boolean.bedtime
     - input_boolean.vacation_mode
 
+  Party Modes:
+    - input_boolean.livingroom_rainbow
+    - input_boolean.office_rainbow
+    - input_boolean.front_porch_rainbow
+    - input_select.holiday
+
   Household:
-    - device_tracker._REDACTED_
-    - device_tracker._REDACTED_
+    - device_tracker.9f1d3e5719f84fba80012e6f6f995b84
+    - device_tracker.39acd860256948beb043f1490ac1e08a
 
   Living Room:
     - group.living_room_lamps
     - switch.living_room_ceiling_fan
     - switch.fireplace
-    - sensor.living_room_temperature
-    - sensor.living_room_occupancy
     - lock.front_door
     - binary_sensor.front_door
+    - binary_sensor.living_room_occupancy
+    - sensor.living_room_temperature
 
   Living Room Lamps:
     - light.living_room_lamp_1
@@ -116,30 +122,48 @@
     - light._REDACTED_s_nightstand
     - light.bedroom_lamp
     - light.closet_lamp
+    - binary_sensor.bedroom_occupancy
     - sensor.bedroom_temperature
-    - sensor.bedroom_occupancy
+
+  Bedroom Lights:
+    - light._REDACTED_s_nightstand
+    - light._REDACTED_s_nightstand
+    - light.bedroom_lamp
+    - light.closet_lamp
 
   _REDACTED_ Office:
     - light.office_ceiling
     - light.office_lamp
     - switch.air_purifier
     - switch.hallway_fan
+    - binary_sensor.office_occupancy
     - sensor.office_temperature
-    - sensor.office_occupancy
+
+  _REDACTED_ Office Lights:
+    - light.office_ceiling
+    - light.office_lamp
 
   _REDACTED_ Office:
     - group._REDACTED__office_ceiling
+    - binary_sensor._REDACTED__office_occupancy
     - sensor._REDACTED__office_temperature
-    - sensor._REDACTED__office_occupancy
+
+  _REDACTED_ Office Lights:
+    - group._REDACTED__office_ceiling
 
   Kitchen:
     - light.kitchen_ceiling
     - light.kitchen_cabinets
     - light.kitchen_sink
-    - sensor.kitchen_temperature
-    - sensor.kitchen_occupancy
     - lock.back_door
     - binary_sensor.back_door
+    - binary_sensor.kitchen_occupancy
+    - sensor.kitchen_temperature
+
+  Kitchen Lights:
+    - light.kitchen_ceiling
+    - light.kitchen_cabinets
+    - light.kitchen_sink
 
   Stairs:
     - light.stairs_1
@@ -160,23 +184,41 @@
  
   Basement:
     - light.basement_stairs
-    - light.basement_light
+    - group.basement_lights
     - lock.basement_door
     - binary_sensor.basement_door
+
+  Basement Lighting:
+    - light.basement_stairs
+    - group.basement_lights
+
+  Basement Lights:
+    - light.basement_light_1
+    - light.basement_light_2
+    - light.basement_light_3
+    - light.basement_light_4
 
   Dining Room:
     - light.dining_room_table
     - light.dining_room_ceiling
-    - thermostat.main_floor
+    - binary_sensor.main_floor_occupancy
+    - climate.main_floor
     - sensor.main_floor_temperature
     - sensor.main_floor_humidity
-    - sensor.main_floor_occupancy
+
+  Dining Room Lights:
+    - light.dining_room_table
+    - light.dining_room_ceiling
 
   Guest Bedroom:
     - light.guest_bedroom_lamp
     - light.guest_bedroom_nightstand
+    - binary_sensor.guest_bedroom_occupancy
     - sensor.guest_bedroom_temperature
-    - sensor.guest_bedroom_occupancy
+
+  Guest Bedroom Lights:
+    - light.guest_bedroom_lamp
+    - light.guest_bedroom_nightstand
 
   Garage:
     - camera.garage_camera
@@ -194,14 +236,14 @@
 
   Interior Lights:
     - group.living_room_lights
-    - group.dining_room
-    - group.bedroom
-    - group.kitchen
+    - group.dining_room_lights
+    - group.bedroom_lights
+    - group.kitchen_lights
     - group.stairs
-    - group._REDACTED__office
-    - group._REDACTED__office
-    - group.guest_bedroom
-    - group.basement
+    - group._REDACTED__office_lights
+    - group._REDACTED__office_lights
+    - group.guest_bedroom_lights
+    - group.basement_lighting
     - light.bathroom_vanity
     - light.hallway_light
 
@@ -217,19 +259,6 @@
     - input_boolean.panic_mode
     - input_boolean.alarm_tripped
     - switch.siren
-    - lock.front_door
-    - lock.back_door
-    - lock.basement_door
-    - binary_sensor.front_door
-    - binary_sensor.back_door
-    - binary_sensor.basement_door
-    - sensor.main_floor_occupancy
-    - sensor.living_room_occupancy
-    - sensor.kitchen_occupancy
-    - sensor.bedroom_occupancy
-    - sensor.office_occupancy
-    - sensor._REDACTED__office_occupancy
-    - sensor.guest_bedroom_occupancy
 
   Media Player:
     - sensor._REDACTED_
@@ -238,42 +267,53 @@
     - media_player._REDACTED_s_iphone
     - media_player._REDACTED_s_ipad
     - media_player.macproprivate
+    - media_player.roku_hd__18c23w020195
 
   Occupancy:
-    - sensor.main_floor_occupancy
-    - sensor.living_room_occupancy
-    - sensor.kitchen_occupancy
-    - sensor.bedroom_occupancy
-    - sensor.office_occupancy
-    - sensor._REDACTED__office_occupancy
+    - binary_sensor.main_floor_occupancy
+    - binary_sensor.living_room_occupancy
+    - binary_sensor.kitchen_occupancy
+    - binary_sensor.bedroom_occupancy
+    - binary_sensor.office_occupancy
+    - binary_sensor._REDACTED__office_occupancy
+    - binary_sensor.guest_bedroom_occupancy
+
+  Indoor Temperature:
+    - sensor.main_floor_temperature
+    - sensor.main_floor_humidity
+    - sensor.living_room_temperature
+    - sensor.bedroom_temperature
+    - sensor.kitchen_temperature
+    - sensor.office_temperature
+    - sensor._REDACTED__office_temperature
+    - sensor.guest_bedroom_temperature
 
   Weather:
     - sun.sun
-    - sensor.weather_temperature    
-    - sensor.weather_summary
-#    - sensor.weather_minutely_summary
-#    - sensor.weather_hourly_summary
-#    - sensor.weather_daily_summary
-    - sensor.weather_apparent_temperature
-    - sensor.weather_precip
-    - sensor.weather_precip_probability
-    - sensor.weather_precip_intensity
-    - sensor.weather_humidity
-    - sensor.weather_dew_point
-    - sensor.weather_cloud_coverage
-    - sensor.weather_nearest_storm_distance
+    - sensor.forecastio_temperature    
+    - sensor.forecastio_summary
+#    - sensor.forecastio_minutely_summary
+#    - sensor.forecastio_hourly_summary
+#    - sensor.forecastio_daily_summary
+    - sensor.forecastio_apparent_temperature
+    - sensor.forecastio_precip
+    - sensor.forecastio_precip_probability
+    - sensor.forecastio_precip_intensity
+    - sensor.forecastio_humidity
+    - sensor.forecastio_dew_point
+    - sensor.forecastio_cloud_ciover
+    - sensor.forecastio_nearest_storm_distance
 #    - sensor.weather_nearest_storm_bearing
-    - sensor.weather_wind_speed
-    - sensor.weather_wind_bearing
-    - sensor.weather_visibility
-    - sensor.weather_ozone
-    - sensor.weather_pressure
+    - sensor.forecastio_wind_speed
+    - sensor.forecastio_wind_bearing
+    - sensor.forecastio_visibility
+    - sensor.forecastio_ozone
+    - sensor.forecastio_pressure
     
   Home Lights:
     - light.kitchen_cabinets
     - group.living_room_lamps
     - light.hallway_light
-    - group.front_porch
     - group.back_door
     - light.dining_room_table
   
@@ -330,7 +370,9 @@
     - light._REDACTED_s_nightstand
     - light.back_door_left
     - light.back_door_right
-    - light.basement_light
+    - light.basement_light_1
+    - light.basement_light_2
+    - light.basement_light_3
     - light.basement_stairs
     - light.bedroom_lamp
     - light.closet_lamp
