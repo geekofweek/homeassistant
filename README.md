@@ -17,7 +17,7 @@ Home Assistant Version: 0.28.2
 * [iHome WiFI Smart Plug](https://www.amazon.com/iHome-Smart-Apple-HomeKit-Amazon/dp/B010ACFEI0/ref=sr_1_1?ie=UTF8&qid=1467576017&sr=8-1&keywords=ihome+smart+plug) (connected via Wink Hub)
 * [Remotec Zwave Dry Contact Fixture Module](https://www.amazon.com/gp/product/B00913ATFI/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1) - *Gas Fireplace Control* (connected via Wink Hub)
 * [Foscam FI9800P](http://www.amazon.com/Wireless-Foscam-FI9800P-Waterproof-Detection/dp/B0173Z3NG2?ie=UTF8&psc=1&redirect=true&ref_=oh_aui_detailpage_o02_s01)
-* [Chamberlain MYQ](http://www.amazon.com/Chamberlain-MYQ-G0201-MyQ-Garage-Controls-Smartphone/dp/B00EAD65UW) - *MyQ Platform componenet added from [maxvitek](https://github.com/home-assistant/home-assistant/pull/1961/commits/deaaf1687aee1d2050892ce4da7cf114aed5cd96#r67625639)* -
+* [Chamberlain MYQ](http://www.amazon.com/Chamberlain-MYQ-G0201-MyQ-Garage-Controls-Smartphone/dp/B00EAD65UW) - *MyQ Platform componenet originally adapted from [maxvitek](https://github.com/home-assistant/home-assistant/pull/1961/commits/deaaf1687aee1d2050892ce4da7cf114aed5cd96#r67625639)* -
 * [Asus RT-AC88U Router](http://www.amazon.com/Dual-Band-Wireless-AC3100-Gigabit-Router-RT-AC88U/dp/B016EWKQAQ?ie=UTF8&psc=1&redirect=true&ref_=oh_aui_search_detailpage) (Device Tracking)
 * [Locative App](https://my.locative.io) (iOS Device Tracking)
 * [Plex Media Server](https://plex.tv)
