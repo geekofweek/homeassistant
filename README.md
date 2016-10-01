@@ -1,6 +1,8 @@
 # Home Assistant
 Example [Home Assistant](https://home-assistant.io) Configs
 
+Home Assistant Version: 0.28.2
+
 #Devices
 
 * [Ecobee 3](http://www.amazon.com/ecobee3-Smarter-Thermostat-Remote-Generation/dp/B00ZIRV39M/ref=sr_1_1?ie=UTF8&qid=1461377268&sr=8-1&keywords=ecobee3) + 6 Sensors

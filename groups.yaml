@@ -36,6 +36,7 @@
       - group.alarm
       - group.automation_override
       - group.automation_on_demand
+      - group.location_controls
       - group.party_modes
 
   sensors:
@@ -80,10 +81,14 @@
     - input_boolean.exterior_on_sunset
     - input_boolean.exterior_off_night
     - input_boolean.home_away
+  
+  Location Controls:
     - input_boolean._REDACTED__away
     - input_boolean._REDACTED__away_driving
     - input_boolean._REDACTED__away
     - input_boolean._REDACTED__away_driving
+    - input_boolean._REDACTED__home
+    - input_boolean._REDACTED__home
 
   Automation On Demand:
     - input_boolean.lock_doors
@@ -98,8 +103,8 @@
     - input_select.holiday
 
   Household:
-    - device_tracker.9f1d3e5719f84fba80012e6f6f995b84
-    - device_tracker.39acd860256948beb043f1490ac1e08a
+    - device_tracker._REDACTED_
+    - device_tracker._REDACTED_
 
   Living Room:
     - group.living_room_lamps
@@ -223,6 +228,7 @@
   Garage:
     - camera.garage_camera
     - light.garage_light
+    - cover.garage_door
     - garage_door.garage_door
 
   Outdoor Lighting:
@@ -255,7 +261,9 @@
     - light.garage_light
 
   Alarm:
-    - input_boolean.disable_security
+    - input_boolean.enable_security
+    - automation.motion_based_security
+    - automation.security_door_open
     - input_boolean.panic_mode
     - input_boolean.alarm_tripped
     - switch.siren
@@ -277,6 +285,14 @@
     - binary_sensor.office_occupancy
     - binary_sensor._REDACTED__office_occupancy
     - binary_sensor.guest_bedroom_occupancy
+
+  Alarm Occupancy:
+    - binary_sensor.main_floor_occupancy
+    - binary_sensor.living_room_occupancy
+    - binary_sensor.kitchen_occupancy
+    - binary_sensor.bedroom_occupancy
+    - binary_sensor.office_occupancy
+    - binary_sensor._REDACTED__office_occupancy
 
   Indoor Temperature:
     - sensor.main_floor_temperature
@@ -316,12 +332,11 @@
     - light.hallway_light
     - group.back_door
     - light.dining_room_table
-  
-  Home Locks:
-    - lock.back_door
-    - lock.front_door
 
   Device Location:
+    - device_tracker._REDACTED_s_iphone
+    - device_tracker._REDACTED_siphone
+    - device_tracker._REDACTED_siphone
     - device_tracker._REDACTED_sipad
     - device_tracker._REDACTED_sipad
     - device_tracker._REDACTED_smacbookpro
@@ -360,12 +375,6 @@
     - sensor.basement_door_sensor_batt
     - sensor.siren_batt
 
-  Rain Lights:
-    - light.kitchen_cabinets
-    - light.living_room_lamp_1
-    - light.living_room_lamp_2
-    - light.dining_room_table
-
   Hue lights:
     - light._REDACTED_s_nightstand
     - light.back_door_left
@@ -373,6 +382,7 @@
     - light.basement_light_1
     - light.basement_light_2
     - light.basement_light_3
+    - light.basement_light_4
     - light.basement_stairs
     - light.bedroom_lamp
     - light.closet_lamp

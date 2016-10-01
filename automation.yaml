@@ -3,7 +3,7 @@
 #################################################################
 
         ##########################################################
-        ## _REDACTED_ Home from Waling Unlock Doors
+        ## _REDACTED_ Home from Walking Unlock Doors
         ##########################################################
 
 - alias: _REDACTED_ Home from Waling Unlock Doors
@@ -56,8 +56,8 @@
       state: 'on'
   
   action:
-    - service: garage_door.open
-      entity_id: garage_door.garage_door
+    - service: cover.open_cover
+      entity_id: cover.garage_door
     - service: lock.unlock
       entity_id: lock.back_door
 
@@ -106,8 +106,8 @@
       state: 'off'
 
   action:
-    service: garage_door.close
-    entity_id: garage_door.garage_door
+    service: cover.close_cover
+    entity_id: cover.garage_door
 
         ##########################################################
         ## _REDACTED_ Home from Waling Unlock Doors
@@ -164,8 +164,8 @@
       state: 'on'
 
   action:
-    - service: garage_door.open
-      entity_id: garage_door.garage_door
+    - service: cover.open_cover
+      entity_id: cover.garage_door
     - service: lock.unlock
       entity_id: lock.back_door
 
@@ -214,8 +214,8 @@
       state: 'off'
 
   action:
-    service: garage_door.close
-    entity_id: garage_door.garage_door
+    service: cover.close_cover
+    entity_id: cover.garage_door
 
         ##########################################################
         ## _REDACTED_ Home Turn on Lights
@@ -309,8 +309,8 @@
       entity_id: group.interior_lights
     - service: switch.turn_off
       entity_id: switch.air_purifier, switch.hallway_fan, switch.lower_backyard_outdoor_lighting, switch.lower_patio_outdoor_lighting, switch.fireplace
-    - service: garage_door.close
-      entity_id: garage_door.garage_door
+    - service: cover.close_cover
+      entity_id: cover.garage_door
 
         ##########################################################
         ## Close Garage Door when _REDACTED_ Leaves
@@ -330,8 +330,8 @@
       state: 'off'
 
   action:
-    service: garage_door.close
-    entity_id: garage_door.garage_door
+    service: cover.close_cover
+    entity_id: cover.garage_door
 
         ##########################################################
         ## Close Garage Door when _REDACTED_ Leaves
@@ -351,8 +351,8 @@
       state: 'off'
 
   action:
-    service: garage_door.close
-    entity_id: garage_door.garage_door
+    service: cover.close_cover
+    entity_id: cover.garage_door
 
         ##########################################################
         ## Plex Lights On/Off
@@ -534,6 +534,7 @@
   condition:
     - condition: time
       after: '22:00'
+      before: '05:00'
     - condition: state
       entity_id: input_boolean.door_open_lights_on
       state: 'off'
@@ -620,6 +621,7 @@
   condition:
     - condition: time
       after: '21:30'
+      before: '04:30'
     - condition: state
       entity_id: input_boolean.door_open_lights_on
       state: 'off'
@@ -639,7 +641,7 @@
 
   trigger:
     - platform: state
-      entity_id: garage_door.garage_door
+      entity_id: cover.garage_door
       from: 'open'
       to: 'closed'
       for:
@@ -664,7 +666,7 @@
 
   trigger:
     - platform: state
-      entity_id: garage_door.garage_door
+      entity_id: cover.garage_door
       from: 'closed'
       to: 'open'
 
@@ -688,7 +690,7 @@
 
   trigger:  
     - platform: state
-      entity_id: garage_door.garage_door
+      entity_id: cover.garage_door
       from: 'closed'
       to: 'open'
       for:
@@ -702,8 +704,8 @@
       state: 'off'
 
   action:
-    service: garage_door.close
-    entity_id: garage_door.garage_door
+    service: cover.close_cover
+    entity_id: cover.garage_door
 
         ##########################################################
         ## Lock Front Door After 30 Mins
@@ -907,32 +909,8 @@
   action:
     service: light.turn_off
     entity_id: group.front_porch
-
-        ##########################################################
-        ## Turn on Back Door at Sunset when _REDACTED_ Leaves Work
-        ##########################################################
-
-- alias: Turn on Back Door at Sunset
-
-  trigger:
-    - platform: state
-      entity_id: device_tracker._REDACTED_
-      from: 'work'
-      to: 'not_home'
-
-  condition:
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: state
-      entity_id: input_boolean.exterior_on_sunset
-      state: 'off'
-
-  action:
-    service: light.turn_on
-    entity_id: group.back_door
     data:
-     brightness: 200
+     transition: 300
 
         ##########################################################
         ## Turn Off Back Door at 9:30 pm
@@ -1035,8 +1013,8 @@
       state: 'off'
 
   action:
-    service: garage_door.open
-    entity_id: garage_door.garage_door
+    service: cover.open_cover
+    entity_id: cover.garage_door
 
         ##########################################################
         ## Turn off Lights when _REDACTED_ Leaves
@@ -1346,7 +1324,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 10
+        minutes: 30
         seconds: 0
 
   condition:
@@ -1419,10 +1397,10 @@
 
   action:
     service: light.turn_on
-    entity_id: light.office_lamp
+    entity_id: light.office_lamp, group.stairs
     data:
     # 900 seconds = 15 minutes
-      transition: 1200
+      transition: 900
       brightness: 75
 
         ##########################################################
@@ -1449,10 +1427,10 @@
 
   action:
     service: light.turn_on
-    entity_id: group._REDACTED__office
+    entity_id: group._REDACTED__office, group.stairs
     data:
     # 900 seconds = 15 minutes
-      transition: 1200
+      transition: 900
       brightness: 75
 
         ##########################################################
@@ -1462,9 +1440,9 @@
 - alias: Rainy Day First Floor
 
   trigger:
-    - platform: state
-      entity_id: sensor.forecastio_precip
-      state: 'rain'
+    - platform: numeric_state
+      entity_id: sensor.forecastio_precip_intensity
+      above: 2
 
   condition:
     - condition: state
@@ -1487,26 +1465,26 @@
 
   action:
     service: light.turn_on
-    entity_id: group.rain_lights
+    entity_id: group.living_room_lamps, light.kitchen_cabinets, light.dining_room_table
     data:
      xy_color: [ 0.5134, 0.4149 ]
      brightness: 50
 
-#- alias: Rain is over First Floor
-#  
-#  trigger:
-#    - platform: state
-#      entity_id: sensor.forecastio_precip
-#      state: 'unknown'
-#  
-#  condition:
-#    - condition: state
-#      entity_id: sun.sun
-#      state: 'above_horizon'
-#         
-#  action:
-#    service: light.turn_off
-#    entity_id: group.rain_lights
+- alias: Rain is over First Floor
+  
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.forecastio_precip_intensity
+      below: 1
+  
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+         
+  action:
+    service: light.turn_off
+    entity_id: group.living_room_lamps, light.kitchen_cabinets, light.dining_room_table
 
         ##########################################################
         ## Turn On/Off _REDACTED_ Office During Rain
@@ -1515,9 +1493,9 @@
 - alias: Rainy Day _REDACTED_ Office
 
   trigger:
-    - platform: state
-      entity_id: sensor.forecastio_precip
-      state: 'rain'
+    - platform: numeric_state
+      entity_id: sensor.forecastio_precip_intensity
+      above: 2
 
   condition:
     - condition: state
@@ -1535,26 +1513,25 @@
 
   action:
     service: light.turn_on
-    entity_id: group._REDACTED__office
+    entity_id: group._REDACTED__office, group.stairs
     data:
      brightness: 50
 
-#- alias: Rain is over _REDACTED_ Office
-#  
-#  trigger:
-#    - platform: state
-#      entity_id: sensor.forecastio_precip
-#      state: 'unknown'
-#
-#  condition:
-#    - condition: state
-#      entity_id: sun.sun
-#      state: 'above_horizon'
-#
-#  condition: use_trigger_values
-#  action:
-#    service: light.turn_off
-#    entity_id: group._REDACTED__office, group.stairs
+- alias: Rain is over _REDACTED_ Office
+  
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.forecastio_precip_intensity
+      below: 1
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+
+  action:
+    service: light.turn_off
+    entity_id: group._REDACTED__office, group.stairs
 
         ##########################################################
         ## Turn On/Off _REDACTED_ Office During Rain
@@ -1563,9 +1540,9 @@
 - alias: Rainy Day _REDACTED_ Office
 
   trigger:
-    - platform: state
-      entity_id: sensor.forecastio_precip
-      state: 'rain'
+    - platform: numeric_state
+      entity_id: sensor.forecastio_precip_intensity
+      above: 2
 
   condition:
     - condition: state
@@ -1583,36 +1560,37 @@
 
   action:
     service: light.turn_on
-    entity_id: group._REDACTED__office, group.stairs
+    entity_id: light.office_lamp, group.stairs
     data:
      brightness: 30
      xy_color: [0.139,0.081]
 
-#- alias: Rain is over _REDACTED_ Office
-#  
-#  trigger:
-#    - platform: state
-#      entity_id: sensor.forecastio_precip
-#      state: 'None'
-#
-#  condition:
-#    - condition: state
-#      entity_id: sun.sun
-#      state: 'above_horizon'
-#
-#  action:
-#    service: light.turn_off
-#    entity_id: group._REDACTED__office, group.stairs
+- alias: Rain is over _REDACTED_ Office
+  
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.forecastio_precip_intensity
+      below: 1
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+
+  action:
+    service: light.turn_off
+    entity_id: light.office_lamp, group.stairs
 
         ##########################################################
         ## Turn On Outdoor Lighting at Sunset
         ##########################################################
 
-- alias: Turn on Outdoor Porch at Sunset
+- alias: Turn on Outdoor Lighting at Sunset
 
   trigger:
     - platform: sun
       event: 'sunset'
+      offset: '-00:05:00'
 
   condition:
     - condition: state
@@ -1635,7 +1613,7 @@
         ## Turn Off Outdoor Lighting After 4 Hours
         ##########################################################
 
-- alias: Turn off Outdoor Lighting at Sunset
+- alias: Turn off Outdoor Lighting After 4 Hours
 
   trigger:
     - platform: state
@@ -1664,7 +1642,7 @@
         ## Turn Off Outdoor Lighting At Midnight on Weekends
         ##########################################################
 
-- alias: Turn off Outdoor Lighting at 1a on Weekends
+- alias: Turn off Outdoor Lighting at Midnight on Weekends
 
   trigger:
     - platform: time
@@ -1714,45 +1692,38 @@
       entity_id: switch.lower_patio_outdoor_lighting
 
         ##########################################################
-        ## Turn on Outdoor Lighting when Home Weekdays
+        ## Turn Off Outdoor Lighting At 2a on Weekdays
         ##########################################################
 
-- alias: Turn on Outdoor Lighting when Home Weekdays
+- alias: Turn off Outdoor Lighting at 2a on Weekdays
 
   trigger:
-    - platform: state
-      entity_id: group.household
-      from: 'not_home'
-      to: 'home'
+    - platform: time
+      after: '02:00'
 
   condition:
     - condition: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.exterior_off_night
       state: 'off'
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: time
-      before: '22:00'
     - condition: time
       weekday:
-        - sun
         - mon
         - tue
         - wed
         - thu
 
   action:
-    - service: switch.turn_on
-      entity_id: switch.lower_patio_outdoor_lighting
-    - service: switch.turn_on
+    - service: switch.turn_off
       entity_id: switch.lower_backyard_outdoor_lighting
+    - service: switch.turn_off
+      entity_id: switch.lower_patio_outdoor_lighting
+
 
         ##########################################################
-        ## Turn on Outdoor Lighting when Home Weekends
+        ## Turn on Outdoor Lighting when Home
         ##########################################################
 
-- alias: Turn on Outdoor Lighting when Home Weekends
+- alias: Turn on Outdoor Lighting when Home
 
   trigger:
     - platform: state
@@ -1767,12 +1738,7 @@
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
-    - condition: time
-      before: '23:59'
-    - condition: time
-      weekday:
-        - fri
-        - sat
+
   action:
     - service: switch.turn_on
       entity_id: switch.lower_patio_outdoor_lighting
@@ -1807,16 +1773,16 @@
       entity_id: light.front_porch_left
       data:
       # 900 seconds = 15 minutes
-        transition: 300
+        transition: 900
         brightness: 255
-        color_name: red
+        color_name: green
     - service: light.turn_on
       entity_id: light.front_porch_right
       data:
       # 900 seconds = 15 minutes
-        transition: 300
+        transition: 900
         brightness: 255
-        color_name: green
+        color_name: red
 
         ##########################################################
         ## Halloween Lighting
@@ -1842,16 +1808,18 @@
       entity_id: light.front_porch_left
       data:
       # 900 seconds = 15 minutes
-        transition: 300
+        transition: 900
         brightness: 255
-        color_name: orange
+        # Dark Orange
+        xy_color: [ 0.6164, 0.3645 ]
     - service: light.turn_on
       entity_id: light.front_porch_right
       data:
       # 900 seconds = 15 minutes
-        transition: 300
+        transition: 900
         brightness: 255
-        color_name: orange
+        # Dark Orange
+        xy_color: [ 0.6164, 0.3645 ]
 
         ##########################################################
         ## St. Patricks Day Lighting
@@ -1877,14 +1845,14 @@
       entity_id: light.front_porch_left
       data:
       # 900 seconds = 15 minutes
-        transition: 300
+        transition: 900
         brightness: 255
         color_name: green
     - service: light.turn_on
       entity_id: light.front_porch_right
       data:
       # 900 seconds = 15 minutes
-        transition: 300
+        transition: 900
         brightness: 255
         color_name: green
 
@@ -1912,16 +1880,16 @@
       entity_id: light.front_porch_left
       data:
       # 900 seconds = 15 minutes
-        transition: 300
+        transition: 900
         brightness: 255
-        color_name: pink
+        color_name: "hot pink"
     - service: light.turn_on
       entity_id: light.front_porch_right
       data:
       # 900 seconds = 15 minutes
-        transition: 300
+        transition: 900
         brightness: 255
-        color_name: pink
+        color_name: "hot pink"
 
         ##########################################################
         ## Cardinals Game Lighting
@@ -1947,14 +1915,14 @@
       entity_id: light.front_porch_left
       data:
       # 900 seconds = 15 minutes
-        transition: 300
+        transition: 900
         brightness: 255
         color_name: red
     - service: light.turn_on
       entity_id: light.front_porch_right
       data:
       # 900 seconds = 15 minutes
-        transition: 300
+        transition: 900
         brightness: 255
         color_name: red
 
@@ -1982,16 +1950,16 @@
       entity_id: light.front_porch_left
       data:
       # 900 seconds = 15 minutes
-        transition: 300
+        transition: 900
         brightness: 255
-        color_name: yellow
+        color_name: indigo
     - service: light.turn_on
       entity_id: light.front_porch_right
       data:
       # 900 seconds = 15 minutes
-        transition: 300
+        transition: 900
         brightness: 255
-        color_name: blue
+        xy_color: [ 0.4283, 0.2298 ]
 
         ##########################################################
         ## Thanksgiving Lighting
@@ -2017,16 +1985,17 @@
       entity_id: light.front_porch_left
       data:
       # 900 seconds = 15 minutes
-        transition: 300
+        transition: 900
         brightness: 255
-        color_name: yellow
+        # Orange
+        xy_color: [ 0.5781, 0.3921 ]
     - service: light.turn_on
       entity_id: light.front_porch_right
       data:
       # 900 seconds = 15 minutes
-        transition: 300
+        transition: 900
         brightness: 255
-        color_name: orange
+        xy_color: [ 0.4862, 0.4599 ]
 
         ##########################################################
         ## Labor Day Lighting
@@ -2052,16 +2021,16 @@
       entity_id: light.front_porch_left
       data:
       # 900 seconds = 15 minutes
-        transition: 300
+        transition: 900
         brightness: 255
-        color_name: red
+        color_name: blue
     - service: light.turn_on
       entity_id: light.front_porch_right
       data:
       # 900 seconds = 15 minutes
-        transition: 300
+        transition: 900
         brightness: 255
-        color_name: blue
+        color_name: red
 
         ##########################################################
         ## Memorial Day Lighting
@@ -2087,16 +2056,16 @@
       entity_id: light.front_porch_left
       data:
       # 900 seconds = 15 minutes
-        transition: 300
+        transition: 900
         brightness: 255
-        color_name: red
+        color_name: blue
     - service: light.turn_on
       entity_id: light.front_porch_right
       data:
       # 900 seconds = 15 minutes
-        transition: 300
+        transition: 900
         brightness: 255
-        color_name: blue
+        color_name: red
 
         ##########################################################
         ## Independence Day Lighting
@@ -2122,16 +2091,16 @@
       entity_id: light.front_porch_left
       data:
       # 900 seconds = 15 minutes
-        transition: 300
+        transition: 900
         brightness: 255
-        color_name: red
+        color_name: blue
     - service: light.turn_on
       entity_id: light.front_porch_right
       data:
       # 900 seconds = 15 minutes
-        transition: 300
+        transition: 900
         brightness: 255
-        color_name: blue
+        color_name: red
 
         ##########################################################
         ## Turn Off Holiday Lighting at 1:00 am
@@ -2236,7 +2205,7 @@
 
   trigger:
     - platform: state
-      entity_id: group.occupancy
+      entity_id: group.alarm_occupancy
       from: 'off'
       to: 'on'
 
@@ -2245,8 +2214,8 @@
       entity_id: group.household
       state: 'not_home'
     - condition: state
-      entity_id: input_boolean.disable_security
-      state: 'off'
+      entity_id: input_boolean.enable_security
+      state: 'on'
 
   action:
     service: scene.turn_on
@@ -2265,8 +2234,8 @@
       entity_id: group.household
       state: 'not_home'
     - condition: state
-      entity_id: input_boolean.disable_security
-      state: 'off'
+      entity_id: input_boolean.enable_security
+      state: 'on'
 
   action:
     service: scene.turn_on
@@ -2364,8 +2333,8 @@
       to: 'on'
       for:
         hours: 0
-        minutes: 5
-        seconds: 0
+        minutes: 0
+        seconds: 60
 
   action:
     service: homeassistant.turn_off
@@ -2391,8 +2360,8 @@
        to: 'on'
        for:
          hours: 0
-         minutes: 5
-         seconds: 0
+         minutes: 0
+         seconds: 60
 
   action:
     service: homeassistant.turn_off
@@ -2458,12 +2427,12 @@
 
   condition:
     - condition: state
-      entity_id: garage_door.garage_door
+      entity_id: cover.garage_door
       state: 'closed'
 
   action:
-    service: garage_door.open
-    entity_id: garage_door.garage_door
+    service: cover.open_cover
+    entity_id: cover.garage_door
 
 - alias: Close Garage Door on Demand
 
@@ -2474,12 +2443,12 @@
 
   condition:
     - condition: state
-      entity_id: garage_door.garage_door
+      entity_id: cover.garage_door
       state: 'open'
 
   action:
-    service: garage_door.close
-    entity_id: garage_door.garage_door
+    service: cover.close_cover
+    entity_id: cover.garage_door
 
         ##########################################################
         ## Bedtime
@@ -2491,16 +2460,22 @@
     - platform: state
       entity_id: input_boolean.bedtime
       state: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
 
   action:
     - service: lock.lock
       entity_id: group.all_locks
     - service: light.turn_off
-      entity_id: group.interior_lights, group.exterior_lights
+      entity_id: group.interior_lights
+    - service: light.turn_off
+      entity_id: group.exterior_lights
     - service: switch.turn_off
       entity_id: switch.air_purifier, switch.hallway_fan, switch.lower_backyard_outdoor_lighting, switch.lower_patio_outdoor_lighting, switch.fireplace
-    - service: garage_door.close
-      entity_id: garage_door.garage_door
+    - service: cover.close_cover
+      entity_id: cover.garage_door
       
 - alias: Reset Bedtime Switch
 
@@ -2511,8 +2486,8 @@
        to: 'on'
        for:
          hours: 0
-         minutes: 5
-         seconds: 0
+         minutes: 0
+         seconds: 90
 
   action:
     service: homeassistant.turn_off
@@ -2738,8 +2713,8 @@
       to: 'home'
 
   action:
-    service: homeassistant.turn_on
-    entity_id: input_boolean.disable_security
+    service: homeassistant.turn_off
+    entity_id: input_boolean.enable_security
 
         ##########################################################
         ## Enable Alarm when Away
@@ -2758,8 +2733,8 @@
         seconds: 0
 
   action:
-    service: homeassistant.turn_off
-    entity_id: input_boolean.disable_security
+    service: homeassistant.turn_on
+    entity_id: input_boolean.enable_security
 
         ##########################################################
         ## Set _REDACTED_ Away Driving
@@ -2775,7 +2750,7 @@
 
   condition:
     - condition: state
-      entity_id: garage_door.garage_door
+      entity_id: cover.garage_door
       state: 'open'
 
   action:
@@ -2836,7 +2811,7 @@
 
   condition:
     - condition: state
-      entity_id: garage_door.garage_door
+      entity_id: cover.garage_door
       state: 'open'
 
   action:
@@ -2884,14 +2859,82 @@
     entity_id: input_boolean._REDACTED__away, input_boolean._REDACTED__away_driving
 
         ##########################################################
-        ## Reset Garage Door Boolean Switch
+        ## Manually Set _REDACTED_ Home
         ##########################################################
 
-- alias: Turn off Garage Door when Closed
+- alias: Manually Set _REDACTED_ Home
 
   trigger:
     - platform: state
-      entity_id: garage_door.garage_door
+      entity_id: input_boolean._REDACTED__home
+      from: 'off'
+      to: 'on'
+
+  action:
+    service: device_tracker.see
+    data:
+      dev_id: _REDACTED_
+      location_name: 'home'
+
+- alias: Reset _REDACTED_ Home
+
+  trigger:
+     - platform: state
+       entity_id: input_boolean._REDACTED__home
+       from: 'off'
+       to: 'on'
+       for:
+         hours: 0
+         minutes: 0
+         seconds: 30
+
+  action:
+    service: homeassistant.turn_off
+    entity_id: input_boolean._REDACTED__home
+
+        ##########################################################
+        ## Manually Set _REDACTED_ Home
+        ##########################################################
+
+- alias: Manually Set _REDACTED_ Home
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean._REDACTED__home
+      from: 'off'
+      to: 'on'
+
+  action:
+    service: device_tracker.see
+    data:
+      dev_id: _REDACTED_
+      location_name: 'home'
+
+- alias: Reset _REDACTED_ Home
+
+  trigger:
+     - platform: state
+       entity_id: input_boolean._REDACTED__home
+       from: 'off'
+       to: 'on'
+       for:
+         hours: 0
+         minutes: 0
+         seconds: 30
+
+  action:
+    service: homeassistant.turn_off
+    entity_id: input_boolean._REDACTED__home
+
+        ##########################################################
+        ## Reset Dummy Garage Door Boolean Switch
+        ##########################################################
+
+- alias: Reset Dummy Garage Door Switch when Closed
+
+  trigger:
+    - platform: state
+      entity_id: cover.garage_door
       from: 'open'
       to: 'closed'
 
@@ -2903,7 +2946,7 @@
 
   trigger:
     - platform: state
-      entity_id: garage_door.garage_door
+      entity_id: cover.garage_door
       from: 'closed'
       to: 'open'
 

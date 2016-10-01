@@ -2,643 +2,435 @@
 ## Customize
 #################################################################
 
-     climate.main_floor:
-#       entity_picture: /local/ecobee.jpeg
-       friendly_name: Ecobee3
+  climate.main_floor:
+#   entity_picture: /local/ecobee.jpeg
+    friendly_name: Ecobee3
 
 #devices
-
-     device_tracker._REDACTED_:
-       icon: mdi:human-male
-       friendly_name: _REDACTED_
-     device_tracker._REDACTED_:
-       icon: mdi:human-female
-       friendly_name: _REDACTED_
-     device_tracker._REDACTED_sipad:
-       icon: mdi:tablet-ipad
-     device_tracker._REDACTED_sipad:
-       icon: mdi:tablet-ipad
-     device_tracker._REDACTED_smacbookair:
-       icon: mdi:laptop-mac
-     device_tracker._REDACTED_smacbookpro:
-       icon: mdi:laptop-mac
-     device_tracker._REDACTED_smacbookair:
-       icon: mdi:laptop-mac
-     device_tracker.macpro:
-       icon: mdi:desktop-mac
+  device_tracker._REDACTED_:
+    icon: mdi:human-male
+    friendly_name: _REDACTED_
+  device_tracker._REDACTED_:
+    icon: mdi:human-female
+    friendly_name: _REDACTED_
+  device_tracker._REDACTED_siphone:
+    icon: mdi:cellphone-iphone
+  device_tracker._REDACTED_s_iphone:
+    icon: mdi:cellphone-iphone
+    friendly_name: _REDACTED_'s iPhone (Test)
+  device_tracker._REDACTED_siphone:
+    icon: mdi:cellphone-iphone
+    friendly_name: _REDACTED_'s iPhone
+  device_tracker._REDACTED_sipad:
+    icon: mdi:tablet-ipad
+  device_tracker._REDACTED_sipad:
+    icon: mdi:tablet-ipad
+  device_tracker._REDACTED_smacbookair:
+    icon: mdi:laptop-mac
+  device_tracker._REDACTED_smacbookpro:
+    icon: mdi:laptop-mac
+  device_tracker._REDACTED_smacbookair:
+    icon: mdi:laptop-mac
+  device_tracker.macpro:
+    icon: mdi:desktop-mac
 
 #doors
-     garage_door.garage_door:
-       icon: mdi:car
+  cover.garage_door:
+    icon: mdi:car
+
+#Wink Garage Door
+  cover.garage_door_2:
+    hidden: true
 
 #rooms
-     group.living_room:
-       icon: mdi:sofa
-       haaska_hidden: true
-     group.living_room_lights:
-       icon: mdi:sofa
-       haaska_hidden: true
-       friendly_name: Living Room
-     group.dining_room:
-       icon: mdi:silverware-variant
-       haaska_hidden: true
-     group.dining_room_lights:
-       icon: mdi:silverware-variant
-       haaska_hidden: true
-       friendly_name: Dining Room
-     group.bedroom:
-       icon: mdi:hotel
-       haaska_hidden: true
-     group.bedroom_lights:
-       icon: mdi:hotel
-       haaska_hidden: true
-       friendly_name: Bedroom
-     group.kitchen:
-       icon: mdi:stove
-       haaska_hidden: true
-     group.kitchen_lights:
-       icon: mdi:stove
-       haaska_hidden: true
-       friendly_name: Kitchen
-     group.stairs:
-       icon: mdi:stairs
-       haaska_hidden: true
-     group._REDACTED__office:
-       icon: mdi:desktop-mac
-       haaska_hidden: true
-     group._REDACTED__office_lights:
-       icon: mdi:desktop-mac
-       haaska_hidden: true
-       friendly_name: _REDACTED_ Office
-     group._REDACTED__office:
-       icon: mdi:desktop-mac
-       haaska_hidden: true
-     group._REDACTED__office_lights:
-       icon: mdi:desktop-mac
-       haaska_hidden: true
-       friendly_name: _REDACTED_ Office
-     group.guest_bedroom:
-       icon: mdi:hotel
-       haaska_hidden: true
-     group.guest_bedroom_lights:
-       icon: mdi:hotel
-       haaska_hidden: true
-       friendly_name: Bedroom
-     group.basement:
-       icon: mdi:stairs
-       haaska_hidden: true
-     group.basement_lighting:
-       icon: mdi:stairs
-       haaska_hidden: true
-       friendly_name: Basement
-     group.front_porch:
-       icon: mdi:home
-       haaska_hidden: true
-     group.back_door:
-       icon: mdi:home
-       haaska_hidden: true
-     group.back_porch:
-       icon: mdi:home
-       haaska_hidden: true
-     group.outdoor_lighting:
-       icon: mdi:nature
-       haaska_hidden: true
-     group.living_room_lamps:
-       icon: mdi:lightbulb
-       haaska_hidden: true
-     group._REDACTED__office_ceiling:
-       icon: mdi:lightbulb
-       haaska_hidden: true
-     group.interior:
-       friendly_name: Interior Lights
-       haaska_hidden: true
-     group.basement_lights:
-       icon: mdi:lightbulb
-       haaska_hidden: true
-
+  group.living_room:
+    icon: mdi:sofa
+  group.living_room_lights:
+    icon: mdi:sofa
+    friendly_name: Living Room
+  group.dining_room:
+    icon: mdi:silverware-variant
+  group.dining_room_lights:
+    icon: mdi:silverware-variant
+    friendly_name: Dining Room
+  group.bedroom:
+    icon: mdi:hotel
+  group.bedroom_lights:
+    icon: mdi:hotel
+    friendly_name: Bedroom
+  group.kitchen:
+    icon: mdi:fridge
+  group.kitchen_lights:
+    icon: mdi:fridge
+    friendly_name: Kitchen
+  group.stairs:
+    icon: mdi:stairs
+  group._REDACTED__office:
+    icon: mdi:desktop-mac
+  group._REDACTED__office_lights:
+    icon: mdi:desktop-mac
+    friendly_name: _REDACTED_ Office
+  group._REDACTED__office:
+    icon: mdi:desktop-mac
+  group._REDACTED__office_lights:
+    icon: mdi:desktop-mac
+    friendly_name: _REDACTED_ Office
+  group.guest_bedroom:
+    icon: mdi:hotel
+    friendly_name: Guest Bedroom
+  group.guest_bedroom_lights:
+    icon: mdi:hotel
+    friendly_name: Guest Bedroom
+  group.basement:
+    icon: mdi:stairs
+  group.basement_lighting:
+    icon: mdi:stairs
+    friendly_name: Basement
+  group.front_porch:
+    icon: mdi:home
+  group.back_door:
+    icon: mdi:home
+  group.back_porch:
+    icon: mdi:home
+  group.outdoor_lighting:
+    icon: mdi:nature
+  group.living_room_lamps:
+    icon: mdi:lightbulb
+#    icon: mdi:lamp
+  group._REDACTED__office_ceiling:
+    icon: mdi:lightbulb
+  group.interior:
+    friendly_name: Interior Lights
+  group.basement_lights:
+    icon: mdi:lightbulb
 
 #locks
-
-     lock.front_door:
-       friendly_name: Front Door Lock
-     lock.back_door:
-       friendly_name: Back Door Lock
-     lock.basement_door:
-       friendly_name: Basement Door Lock
+  lock.front_door:
+    friendly_name: Front Door Lock
+  lock.back_door:
+    friendly_name: Back Door Lock
+  lock.basement_door:
+    friendly_name: Basement Door Lock
 
 #sensors
-     binary_sensor.front_door:
-       icon: mdi:home
-       friendly_name: Front Door Open
-     binary_sensor.back_door:
-       icon: mdi:home
-       friendly_name: Back Door Open
-     binary_sensor.basement_door:
-       icon: mdi:home
-       friendly_name: Basement Door Open
-     sensor.cpu_use:
-       friendly_name: CPU Usage
-     sensor.ram_use:
-       friendly_name: RAM Usage
-     sensor.since_last_boot:
-       friendly_name: Uptime
-     sensor.speedtest_ping:
-       icon: mdi:speedometer
-     sensor.speedtest_download:
-       icon: mdi:speedometer
-     sensor.speedtest_upload:
-       icon: mdi:speedometer
-     binary_sensor.main_floor_occupancy:
-       icon: mdi:account
-       friendly_name: Dining Room Occupancy
-     binary_sensor.living_room_occupancy:
-       icon: mdi:account
-     binary_sensor.kitchen_occupancy:
-       icon: mdi:account
-     binary_sensor.bedroom_occupancy:
-       icon: mdi:account
-     binary_sensor.office_occupancy:
-       icon: mdi:account
-     binary_sensor._REDACTED__office_occupancy:
-       icon: mdi:account
-     binary_sensor.guest_bedroom_occupancy:
-       icon: mdi:account
-     sensor.back_door_sensor_batt:
-       icon: mdi:battery
-       haaska_hidden: true
-     sensor.basement_door_sensor_batt:
-       icon: mdi:battery
-       haaska_hidden: true
-     sensor.front_door_sensor_batt:
-       icon: mdi:battery
-       haaska_hidden: true
-     sensor.siren_batt:
-       icon: mdi:battery
-       haaska_hidden: true
-     sensor.front_door_lock_batt:
-       icon: mdi:battery
-       haaska_hidden: true
-     sensor.back_door_lock_batt:
-       icon: mdi:battery
-       haaska_hidden: true
-     sensor.basement_door_lock_batt:
-       icon: mdi:battery
-       haaska_hidden: true
-     sensor.main_floor_humidity:
-       icon: mdi:water-percent
-       friendly_name: Dining Room Humidity
-     sensor.main_floor_temperature:
-       friendly_name: Dining Room Temperature
-        
+  binary_sensor.front_door:
+    icon: mdi:home
+    friendly_name: Front Door Open
+  binary_sensor.back_door:
+    icon: mdi:home
+    friendly_name: Back Door Open
+  binary_sensor.basement_door:
+    icon: mdi:home
+    friendly_name: Basement Door Open
+  sensor.cpu_use:
+    friendly_name: CPU Usage
+  sensor.ram_use:
+    friendly_name: RAM Usage
+  sensor.since_last_boot:
+    friendly_name: Uptime
+  sensor.speedtest_ping:
+    icon: mdi:speedometer
+  sensor.speedtest_download:
+    icon: mdi:speedometer
+  sensor.speedtest_upload:
+    icon: mdi:speedometer
+  binary_sensor.main_floor_occupancy:
+    icon: mdi:account
+    friendly_name: Dining Room Occupancy
+  binary_sensor.living_room_occupancy:
+    icon: mdi:account
+  binary_sensor.kitchen_occupancy:
+    icon: mdi:account
+  binary_sensor.bedroom_occupancy:
+    icon: mdi:account
+  binary_sensor.office_occupancy:
+    icon: mdi:account
+  binary_sensor._REDACTED__office_occupancy:
+    icon: mdi:account
+  binary_sensor.guest_bedroom_occupancy:
+    icon: mdi:account
+  sensor.back_door_sensor_batt:
+    icon: mdi:battery
+  sensor.basement_door_sensor_batt:
+    icon: mdi:battery
+  sensor.front_door_sensor_batt:
+    icon: mdi:battery
+  sensor.siren_batt:
+    icon: mdi:battery
+  sensor.front_door_lock_batt:
+    icon: mdi:battery
+  sensor.back_door_lock_batt:
+    icon: mdi:battery
+  sensor.basement_door_lock_batt:
+    icon: mdi:battery
+  sensor.main_floor_humidity:
+    icon: mdi:water-percent
+    friendly_name: Dining Room Humidity
+  sensor.main_floor_temperature:
+    friendly_name: Dining Room Temperature
+     
 #switches
-     switch.fireplace:
-       icon: mdi:fire
-       friendly_name: Fireplace
-       haaska_hidden: true
-     switch.air_purifier:
-       icon: mdi:fan
-       friendly_name: Air Purifier
-       haaska_hidden: true
-     switch.hallway_fan:
-       icon: mdi:fan
-       friendly_name: Hallway Fan
-       haaska_hidden: true
-     switch.siren:
-       icon: mdi:shield-outline
-       friendly_name: Alarm Siren
-       haaska_hidden: true
-     switch.living_room_ceiling_fan:
-       icon: mdi:lightbulb
-       friendly_name: Living Room Ceiling Fan
-       haaska_hidden: true
-     switch.bottom_light_load:
-       hidden: true
-       haaska_hidden: true
+  switch.fireplace:
+    icon: mdi:fire
+    friendly_name: Fireplace
+  switch.air_purifier:
+    icon: mdi:fan
+    friendly_name: Air Purifier
+  switch.hallway_fan:
+    icon: mdi:fan
+    friendly_name: Hallway Fan
+  switch.siren:
+    icon: mdi:shield-outline
+    friendly_name: Alarm Siren
+  switch.living_room_ceiling_fan:
+    icon: mdi:lightbulb
+    friendly_name: Living Room Ceiling Fan
+  switch.bottom_light_load:
+    hidden: true
 
 #lights
-
-     light.hallway_light:
-       friendly_name: Hallway
-       icon: mdi:lightbulb
-       haaska_hidden: true
-     light.bathroom_vanity:
-       icon: mdi:water-pump
-       haaska_hidden: true
-
+  light.hallway_light:
+    friendly_name: Hallway
+    icon: mdi:lightbulb
+  light.bathroom_vanity:
+    icon: mdi:water-pump
+#  light._REDACTED_s_nightstand:
+#    icon: mdi:lamp
+#  light.bedroom_lamp:
+#    icon: mdi:lamp
+#  light.closet_lamp:
+#    icon: mdi:lamp
+#  light.guest_bedroom_lamp:
+#    icon: mdi:lamp
+#  light.guest_bedroom_nightstand:
+#    icon: mdi:lamp
+#  light.office_lamp:
+#    icon: mdi:lamp
+#  light._REDACTED_s_nightstand:
+#    icon: mdi:lamp
 
 #weather
-
-     sensor.forecastio_temperature:
-       friendly_name: 'Outdoor Temperature'
-     sensor.forecastio_summary:
-       icon: mdi:weather-sunny
-       friendly_name: 'Summary'
-     sensor.forecastio_hourly_summary:
-       icon: mdi:weather-sunny
-       friendly_name: 'Hourly Summary'
-     sensor.forecastio_minutely_summary:
-       icon: mdi:weather-sunny
-       friendly_name: 'Minute Summary'
-     sensor.forecastio_daily_summary:
-       icon: mdi:weather-sunny
-       friendly_name: 'Daily Summary'
-     sensor.forecastio_apparent_temperature:
-       icon: mdi:thermometer-lines
-       friendly_name: 'Apparent Temperature'
-     sensor.forecastio_precip:
-       icon: mdi:weather-pouring
-       friendly_name: 'Precipitation'
-     sensor.forecastio_precip_probability:
-       icon: mdi:weather-pouring
-       friendly_name: 'Precipitation Probability'
-     sensor.forecastio_precip_intensity:
-       icon: mdi:weather-pouring
-       friendly_name: 'Rainfall'
-     sensor.forecastio_humidity:
-       icon: mdi:water-percent
-       friendly_name: 'Outdoor Humidity'
-     sensor.forecastio_cloud_cover:
-       icon: mdi:weather-cloudy
-       friendly_name: 'Cloud Cover'
-     sensor.forecastio_nearest_storm_distance:
-       icon: mdi:weather-lightning
-       friendly_name: 'Nearest Storm'
-     sensor.forecastio_wind_speed:
-       icon: mdi:weather-windy
-       friendly_name: 'Wind Speed'
-     sensor.forecastio_wind_bearing:
-       icon: mdi:weather-windy
-       friendly_name: 'Wind Bearing'
-     sensor.forecastio_ozone:
-       icon: mdi:cloud
-       friendly_name: 'Ozone'
-     sensor.forecastio_pressure:
-       icon: mdi:weight
-       friendly_name: 'Pressure'
-     sensor.forecastio_dew_point:
-       friendly_name: 'Dew Point'
-     sensor.forecastio_visibility:
-       friendly_name: 'Visibility'
+  sensor.forecastio_temperature:
+    friendly_name: 'Outdoor Temperature'
+  sensor.forecastio_summary:
+    icon: mdi:weather-sunny
+    friendly_name: 'Summary'
+  sensor.forecastio_hourly_summary:
+    icon: mdi:weather-sunny
+    friendly_name: 'Hourly Summary'
+  sensor.forecastio_minutely_summary:
+    icon: mdi:weather-sunny
+    friendly_name: 'Minute Summary'
+  sensor.forecastio_daily_summary:
+    icon: mdi:weather-sunny
+    friendly_name: 'Daily Summary'
+  sensor.forecastio_apparent_temperature:
+    icon: mdi:thermometer-lines
+    friendly_name: 'Apparent Temperature'
+  sensor.forecastio_precip:
+    icon: mdi:weather-pouring
+    friendly_name: 'Precipitation'
+  sensor.forecastio_precip_probability:
+    icon: mdi:weather-pouring
+    friendly_name: 'Precipitation Probability'
+  sensor.forecastio_precip_intensity:
+    icon: mdi:weather-pouring
+    friendly_name: 'Rainfall'
+  sensor.forecastio_humidity:
+    icon: mdi:water-percent
+    friendly_name: 'Outdoor Humidity'
+  sensor.forecastio_cloud_cover:
+    icon: mdi:weather-cloudy
+    friendly_name: 'Cloud Cover'
+  sensor.forecastio_nearest_storm_distance:
+    icon: mdi:weather-lightning
+    friendly_name: 'Nearest Storm'
+  sensor.forecastio_wind_speed:
+    icon: mdi:weather-windy
+    friendly_name: 'Wind Speed'
+  sensor.forecastio_wind_bearing:
+    icon: mdi:weather-windy
+    friendly_name: 'Wind Bearing'
+  sensor.forecastio_ozone:
+    icon: mdi:cloud
+    friendly_name: 'Ozone'
+  sensor.forecastio_pressure:
+    icon: mdi:weight
+    friendly_name: 'Pressure'
+  sensor.forecastio_dew_point:
+    friendly_name: 'Dew Point'
+  sensor.forecastio_visibility:
+    friendly_name: 'Visibility'
 
 #media players
-     media_player.living_room:
-       friendly_name: Apple TV
-       haaska_hidden: true
-     media_player.plex_for_vizio_vizio_mtk:
-       friendly_name: Office TV
-       haaska_hidden: true
-     sensor._REDACTED_:
-       icon: mdi:theater
-       haaska_hidden: true
-     media_player._REDACTED_s_iphone:
-       haaska_hidden: true
-     media_player._REDACTED_s_ipad:
-       haaska_hidden: true
-     media_player.macproprivate:
-       haaska_hidden: true
-     media_player.roku_hd__18c23w020195:
-       friendly_name: Guest Bedroom Roku
-       haaska_hidden: true
+  media_player.living_room:
+    friendly_name: Apple TV
+  media_player.plex_for_vizio_vizio_mtk:
+    friendly_name: Office TV
+  sensor._REDACTED_:
+    icon: mdi:theater
+  media_player.roku_hd__18c23w020195:
+    friendly_name: Guest Bedroom Roku
 
 #Hidden Groups/Lights/Scenes/Boolean
-
-     group.battery_levels:
-       haaska_hidden: true
-     group.doors:
-       haaska_hidden: true
-     group.home_locks:
-       hidden: true
-       haaska_hidden: true
-     group.occupancy:
-       haaska_hidden: true
-     group.home_lights:
-       hidden: true
-       haaska_hidden: true
-     group.rain_lights:
-       hidden: true
-       haaska_hidden: true
-     group.hue_lights:
-       hidden: true
-       haaska_hidden: true
-     group.wink_lights:
-       hidden: true
-       haaska_hidden: true
-     scene.security:
-       hidden: true
-       haaska_hidden: true
-     light.stairs_1:
-       hidden: true
-       haaska_hidden: true
-     light.stairs_2:
-       hidden: true
-       haaska_hidden: true
-     light.stairs_3:
-       hidden: true
-       haaska_hidden: true
-     scene.vacation:
-       hidden: true
-       haaska_hidden: true
-     scene.vacation_disable_automation:
-       hidden: true
-       haaska_hidden: true
-     scene.vacation_enable_automation:
-       hidden: true
-       haaska_hidden: true
-     light.living_room_lamp_1:
-       hidden: true
-       haaska_hidden: true
-     light.living_room_lamp_2:
-       hidden: true
-       haaska_hidden: true
-     light.basement_light_1:
-       hidden: true
-       haaska_hidden: true
-     light.basement_light_2:
-       hidden: true
-       haaska_hidden: true
-     light.basement_light_3:
-       hidden: true
-       haaska_hidden: true
-  
-#Wink Garage Door
-
-     garage_door.garage_door_2:
-       hidden: true
+  group.alarm_occupancy:
+    hidden: true
+  group.home_lights:
+    hidden: true
+  group.hue_lights:
+    hidden: true
+  group.wink_lights:
+    hidden: true
+  scene.security:
+    hidden: true
+  light.stairs_1:
+    hidden: true
+  light.stairs_2:
+    hidden: true
+  light.stairs_3:
+    hidden: true
+  scene.vacation:
+    hidden: true
+  scene.vacation_disable_automation:
+    hidden: true
+  scene.vacation_enable_automation:
+    hidden: true
+  light.living_room_lamp_1:
+    hidden: true
+  light.living_room_lamp_2:
+    hidden: true
+  light.basement_light_1:
+    hidden: true
+  light.basement_light_2:
+    hidden: true
+  light.basement_light_3:
+    hidden: true
 
 #Wink Ecobee
-
-     sensor.bedroom_temperature_2:
-       hidden: true
-     sensor.kitchen_temperature_2:
-       hidden: true
-     sensor.living_room_temperature_2:
-       hidden: true
-     sensor.office_temperature_2:
-       hidden: true
-     sensor._REDACTED__office_temperature_2:
-       hidden: true
-     sensor.guest_bedroom_temperature_2:
-       hidden: true
-     binary_sensor.bedroom:
-       hidden: true
-     binary_sensor.kitchen:
-       hidden: true
-     binary_sensor.living_room:
-       hidden: true
-     binary_sensor.office:
-       hidden: true
-     binary_sensor._REDACTED__office:
-       hidden: true
-     binary_sensor.guest_bedroom:
-       hidden: true
-     binary_sensor._REDACTED_:
-       hidden: true
-       haaska_hidden: true
-     binary_sensor._REDACTED__2:
-       hidden: true
-       haaska_hidden: true
-     binary_sensor._REDACTED__3:
-       hidden: true
-       haaska_hidden: true
-     binary_sensor._REDACTED_:
-       hidden: true
-       haaska_hidden: true
-     binary_sensor._REDACTED__2:
-       hidden: true
-       haaska_hidden: true
-     binary_sensor._REDACTED__3:
-       hidden: true
-       haaska_hidden: true
-      
+  sensor.bedroom_temperature_2:
+    hidden: true
+  sensor.kitchen_temperature_2:
+    hidden: true
+  sensor.living_room_temperature_2:
+    hidden: true
+  sensor.office_temperature_2:
+    hidden: true
+  sensor._REDACTED__office_temperature_2:
+    hidden: true
+  sensor.guest_bedroom_temperature_2:
+    hidden: true
+  binary_sensor.bedroom:
+    hidden: true
+  binary_sensor.kitchen:
+    hidden: true
+  binary_sensor.living_room:
+    hidden: true
+  binary_sensor.office:
+    hidden: true
+  binary_sensor._REDACTED__office:
+    hidden: true
+  binary_sensor.guest_bedroom:
+    hidden: true
+  binary_sensor._REDACTED_:
+    hidden: true
+  binary_sensor._REDACTED__2:
+    hidden: true
+  binary_sensor._REDACTED__3:
+    hidden: true
+  binary_sensor._REDACTED_:
+    hidden: true
+  binary_sensor._REDACTED__2:
+    hidden: true
+  binary_sensor._REDACTED__3:
+    hidden: true
+   
 #Wink Hue Bulbs
-    
-     light.back_door_left_2:
-       hidden: true
-       haaska_hidden: true
-     light.back_door_right_2:
-       hidden: true
-       haaska_hidden: true
-     light.basement_2:
-       hidden: true
-       haaska_hidden: true
-     light.bedroom_lamp_2:
-       hidden: true
-       haaska_hidden: true
-     light.closet_lamp_2:
-       hidden: true
-       haaska_hidden: true
-     light.front_porch_left_2:
-       hidden: true
-       haaska_hidden: true
-     light.front_porch_right_2:
-       hidden: true
-       haaska_hidden: true
-     light.hallway_light_2:
-       hidden: true
-       haaska_hidden: true
-     light.living_room_lamp_1_2:
-       hidden: true
-       haaska_hidden: true
-     light.living_room_lamp_2_2:
-       hidden: true
-       haaska_hidden: true
-     light.office_lamp_2:
-       hidden: true
-       haaska_hidden: true
-     light.stairs_1_2:
-       hidden: true
-       haaska_hidden: true
-     light.stairs_2_2:
-       hidden: true
-       haaska_hidden: true
-     light.stairs_3_2:
-       hidden: true
-       haaska_hidden: true
-     light.upper_patio_left_2:
-       hidden: true
-       haaska_hidden: true
-     light.upper_patio_right_2:
-       hidden: true
-       haaska_hidden: true
-     light.basement_stairs_2:
-       hidden: true
-       haaska_hidden: true
-     light._REDACTED_s_office_ceiling_1_2:
-       hidden: true
-       haaska_hidden: true
-     light._REDACTED_s_office_ceiling_2_2:
-       hidden: true
-       haaska_hidden: true
-     light._REDACTED_s_nightstand_2:
-       hidden: true
-       haaska_hidden: true
-     light._REDACTED_s_nightstand_2:
-       hidden: true
-       haaska_hidden: true
-     light.guest_bedroom_lamp_2:
-       hidden: true
-       haaska_hidden: true
-     light.guest_bedroom_nightstand_2:
-       hidden: true
-       haaska_hidden: true
-     light.basement_light_1_2:
-       hidden: true
-       haaska_hidden: true
-     light.basement_light_2_2:
-       hidden: true
-       haaska_hidden: true
-     light.basement_light_3_2:
-       hidden: true
-       haaska_hidden: true
-     light.basement_light_4_2:
-       hidden: true
-       haaska_hidden: true
+  light.back_door_left_2:
+    hidden: true
+  light.back_door_right_2:
+    hidden: true
+  light.basement_2:
+    hidden: true
+  light.bedroom_lamp_2:
+    hidden: true
+  light.closet_lamp_2:
+    hidden: true
+  light.front_porch_left_2:
+    hidden: true
+  light.front_porch_right_2:
+    hidden: true
+  light.hallway_light_2:
+    hidden: true
+  light.living_room_lamp_1_2:
+    hidden: true
+  light.living_room_lamp_2_2:
+    hidden: true
+  light.office_lamp_2:
+    hidden: true
+  light.stairs_1_2:
+    hidden: true
+  light.stairs_2_2:
+    hidden: true
+  light.stairs_3_2:
+    hidden: true
+  light.upper_patio_left_2:
+    hidden: true
+  light.upper_patio_right_2:
+    hidden: true
+  light.basement_stairs_2:
+    hidden: true
+  light._REDACTED_s_office_ceiling_1_2:
+    hidden: true
+  light._REDACTED_s_office_ceiling_2_2:
+    hidden: true
+  light._REDACTED_s_nightstand_2:
+    hidden: true
+  light._REDACTED_s_nightstand_2:
+    hidden: true
+  light.guest_bedroom_lamp_2:
+    hidden: true
+  light.guest_bedroom_nightstand_2:
+    hidden: true
+  light.basement_light_1_2:
+    hidden: true
+  light.basement_light_2_2:
+    hidden: true
+  light.basement_light_3_2:
+    hidden: true
+  light.basement_light_4_2:
+    hidden: true
 
-#Amazon Echo Customize
-     input_boolean.office_rainbow:
-       haaska_name: Office Party
-     input_boolean.livingroom_rainbow:
-       haaska_name: Living Room Party
-     input_boolean.front_porch_rainbow:
-       haaska_name: Front Porch Party
+#Amazon Echo Integration
+  input_boolean.office_rainbow:
+    emulated_hue: true
+    emulated_hue_name: "Office Party"
+  input_boolean.livingroom_rainbow:
+    emulated_hue: true
+    emulated_hue_name: "Living Room Party"
+  input_boolean.front_porch_rainbow:
+    emulated_hue: true
+    emulated_hue_name: "Front Porch Party"
+  input_boolean.vacation_mode:
+    emulated_hue: true
+    emulated_hue_name: "Vacation Mode"
+  input_boolean.garage_door:
+    emulated_hue: true
+    emulated_hue_name: "Garage Door"
+  input_boolean.unlock_doors:
+    emulated_hue: true
+    emulated_hue_name: "Unlock Doors"
+  input_boolean.lock_doors:
+    emulated_hue: true
+    emulated_hue_name: "Lock Doors"
+  input_boolean.bedtime:
+    emulated_hue: true
+    emulated_hue_name: "Bedtime"
 
-#Amazon Echo Hidden
+#Automations
+  automation.motion_based_security:
+    icon: mdi:shield-outline
+    friendly_name: Motion Security Enabled
+  automation.security_door_open:
+    icon: mdi:shield-outline
+    friendly_name: Door Security Enabled
 
-     light._REDACTED_s_nightstand:
-       haaska_hidden: true
-     light.back_door_left:
-       haaska_hidden: true
-     light.back_door_right:
-       haaska_hidden: true
-     light.basement_stairs:
-       haaska_hidden: true
-     light.bedroom_lamp:
-       haaska_hidden: true
-     light.closet_lamp:
-       haaska_hidden: true
-     light.dining_room_ceiling:
-       haaska_hidden: true
-     light.dining_room_table:
-       haaska_hidden: true
-     light.front_porch_left:
-       haaska_hidden: true
-     light.front_porch_right:
-       haaska_hidden: true
-     light.garage_light:
-       haaska_hidden: true
-     light.guest_bedroom_lamp:
-       haaska_hidden: true
-     light.guest_bedroom_nightstand:
-       haaska_hidden: true
-     light.kitchen_cabinets:
-       haaska_hidden: true
-     light.kitchen_ceiling:
-       haaska_hidden: true
-     light.kitchen_sink:
-       haaska_hidden: true
-     light.office_ceiling:
-       haaska_hidden: true
-     light.office_lamp:
-       haaska_hidden: true
-     light._REDACTED_s_nightstand:
-       haaska_hidden: true
-     light._REDACTED_s_office_ceiling_1:
-       haaska_hidden: true
-     light._REDACTED_s_office_ceiling_2:
-       haaska_hidden: true
-     light.upper_patio_left:
-       haaska_hidden: true
-     light.upper_patio_right:
-       haaska_hidden: true
-     switch.lower_backyard_outdoor_lighting:
-       haaska_hidden: true
-     switch.lower_patio_outdoor_lighting:
-       haaska_hidden: true
-     input_boolean._REDACTED__away:
-       haaska_hidden: true
-     input_boolean.alarm_tripped:
-       haaska_hidden: true
-     input_boolean.disable_auto_garage:
-       haaska_hidden: true
-     input_boolean.disable_lock_unlock_doors:
-       haaska_hidden: true
-     input_boolean.disable_security:
-       haaska_hidden: true
-     input_boolean.door_open_lights_on:
-       haaska_hidden: true
-     input_boolean.exterior_off_night:
-       haaska_hidden: true
-     input_boolean.exterior_on_sunset:
-       haaska_hidden: true
-     input_boolean.home_away:
-       haaska_hidden: true
-     input_boolean.lights_morning_disable:
-       haaska_hidden: true
-     input_boolean.occupancy_air_purifier_on_off_disable:
-       haaska_hidden: true
-     input_boolean.occupancy_lights_off_disable:
-       haaska_hidden: true
-     input_boolean.office_lights_sunset:
-       haaska_hidden: true
-     input_boolean.panic_mode:
-       haaska_hidden: true
-     input_boolean.plex_lights_disable:
-       haaska_hidden: true
-     input_boolean.rainy_day_disable:
-       haaska_hidden: true
-     input_boolean._REDACTED__away:
-       haaska_hidden: true
-     input_boolean._REDACTED__away_driving:
-       haaska_hidden: true
-     input_boolean._REDACTED__away_driving:
-       haaska_hidden: true
-     input_boolean.thermostat_away:
-       haaska_hidden: true
-     group.alarm:
-       haaska_hidden: true
-     group.all_devices:
-       haaska_hidden: true
-     group.all_garage_doors:
-       haaska_hidden: true
-     group.all_lights:
-       haaska_hidden: true
-     group.all_locks:
-       haaska_hidden: true
-     group.all_switches:
-       haaska_hidden: true
-     group.automation:
-       haaska_hidden: true
-     group.automation_on_demand:
-       haaska_hidden: true
-     group.automation_override:
-       haaska_hidden: true
-     group.cameras:
-       haaska_hidden: true
-     group.default_view:
-       haaska_hidden: true
-     group.device_location:
-       haaska_hidden: true
-     group.exterior_lights:
-       haaska_hidden: true
-     group.garage:
-       haaska_hidden: true
-     group.household:
-       haaska_hidden: true
-     group.interior_lights:
-       haaska_hidden: true
-     group.lights:
-       haaska_hidden: true
-     group.media:
-       haaska_hidden: true
-     group.media_player:
-       haaska_hidden: true
-     group.sensors:
-       haaska_hidden: true
-     group.speedtest:
-       haaska_hidden: true
-     group.system:
-       haaska_hidden: true
-     group.weather:
-       haaska_hidden: true
-     group.indoor_temperature:
-       haaska_hidden: true

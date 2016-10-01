@@ -7,7 +7,7 @@ homeassistant:
   longitude: _REDACTED_
   
   # Impacts weather/sunrise data (altitude above sea level) 
-  elevation: 505
+  elevation: 154
   
   # 'metric' for the metric system, 'imperial' for the imperial system
   unit_system: imperial
@@ -50,18 +50,26 @@ http:
 ## Components
 #################################################################
 
+ecobee:
+  api_key: _REDACTED_
+  hold_temp: True
+
 light:
   platform: hue
   host: _REDACTED_
   allow_unreachable: true
   scan_interval: 10
+  
+emulated_hue:
+  host_ip: _REDACTED_
+  listen_port: 8300
+  off_maps_to_on_domains:
+    - script
+    - scene
+  expose_by_default: false
 
 media_player:
   platform: plex
-
-ecobee:
-  api_key: _REDACTED_
-  hold_temp: True
 
 ifttt:
   key: _REDACTED_
@@ -73,22 +81,21 @@ device_tracker:
     consider_home: 180
   - platform: asuswrt
     host: _REDACTED_
-#    protocol: ssh
-#    mode: router
     username: _REDACTED_
     password: _REDACTED_
 
-garage_door:
+cover:
   platform: myq
   name: Garage Door
   username: _REDACTED_
   password: _REDACTED_
+  brand: chamberlain
 
 camera:
   platform: foscam
   ip: _REDACTED_
   name: Garage Camera
-  port: 88
+  port: _REDACTED_
   username: _REDACTED_
   password: _REDACTED_
 
@@ -146,7 +153,7 @@ sensor 5:
   platform: plex
   name: _REDACTED_
   host: _REDACTED_
-  port: 32400
+  port: _REDACTED_
   username: _REDACTED_
   password: _REDACTED_
   server: _REDACTED_
@@ -186,30 +193,6 @@ sensor 6:
 #################################################################
 ## Zones
 #################################################################
-
-zone:
-
-  name: Work
-  latitude: _REDACTED_
-  longitude: _REDACTED_
-  radius: 250
-  icon: mdi:hospital-building
-
-zone 2:
-
-  name: Work
-  latitude: _REDACTED_
-  longitude: _REDACTED_
-  radius: 250
-  icon: mdi:hospital-building
-
-zone 3:
-
-  name: Work
-  latitude: _REDACTED_
-  longitude: _REDACTED_
-  radius: 250
-  icon: mdi:hospital-building
 
 #################################################################
 ## Includes
