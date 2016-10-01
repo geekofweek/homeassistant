@@ -25,8 +25,8 @@ Home Assistant Version: 0.28.2
 
 #Devices not in Home Assistant:
 
-* [Amazon Echo](http://www.amazon.com/Amazon-SK705DI-Echo/dp/B00X4WHP5E/ref=sr_1_1?ie=UTF8&qid=1461377119&sr=8-1&keywords=amazon+echo) - *Testing via [haaska](https://github.com/auchter/haaska)*
-* [Amazon Echo Dot](http://www.amazon.com/b/?node=14047587011) - *Testing via [haaska](https://github.com/auchter/haaska)*
+* [Amazon Echo](http://www.amazon.com/Amazon-SK705DI-Echo/dp/B00X4WHP5E/ref=sr_1_1?ie=UTF8&qid=1461377119&sr=8-1&keywords=amazon+echo) - ~~*Testing via [haaska](https://github.com/auchter/haaska)*~~ Testing via Emulated Hue
+* [Amazon Echo Dot](http://www.amazon.com/b/?node=14047587011) - ~~*Testing via [haaska](https://github.com/auchter/haaska)*~~ Testing via Emulated Hue
 * [Ring Doorbell](http://www.amazon.com/Ring-Wi-Fi-Enabled-Video-Doorbell/dp/B00TZAO9D0/ref=sr_1_4?ie=UTF8&qid=1461377085&sr=8-4&keywords=ring+doorbell)
 * [Wink Relay](http://www.wink.com/products/wink-relay-touchscreen-controller/)
 * [Quirky + GE Aros Window AC](http://www.amazon.com/Quirky-Aros-Smart-Window-Conditioner/dp/B00IDXGIAC?ie=UTF8&psc=1&redirect=true&ref_=oh_aui_detailpage_o03_s01)
