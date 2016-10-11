@@ -10,8 +10,8 @@
       - group.dining_room
       - group.kitchen
       - group.bedroom
-      - group._REDACTED__office
-      - group._REDACTED__office
+      - group._REDACTED_office
+      - group._REDACTED_office
       - group.guest_bedroom
       - group.basement
       - group.interior
@@ -37,6 +37,7 @@
       - group.automation_override
       - group.automation_on_demand
       - group.location_controls
+      - group.thermostat
       - group.party_modes
 
   sensors:
@@ -83,12 +84,12 @@
     - input_boolean.home_away
   
   Location Controls:
-    - input_boolean._REDACTED__away
-    - input_boolean._REDACTED__away_driving
-    - input_boolean._REDACTED__away
-    - input_boolean._REDACTED__away_driving
-    - input_boolean._REDACTED__home
-    - input_boolean._REDACTED__home
+    - input_boolean._REDACTED_away
+    - input_boolean._REDACTED_away_driving
+    - input_boolean._REDACTED_away
+    - input_boolean._REDACTED_away_driving
+    - input_boolean._REDACTED_home
+    - input_boolean._REDACTED_home
 
   Automation On Demand:
     - input_boolean.lock_doors
@@ -149,12 +150,12 @@
     - light.office_lamp
 
   _REDACTED_ Office:
-    - group._REDACTED__office_ceiling
-    - binary_sensor._REDACTED__office_occupancy
-    - sensor._REDACTED__office_temperature
+    - group._REDACTED_office_ceiling
+    - binary_sensor._REDACTED_office_occupancy
+    - sensor._REDACTED_office_temperature
 
   _REDACTED_ Office Lights:
-    - group._REDACTED__office_ceiling
+    - group._REDACTED_office_ceiling
 
   Kitchen:
     - light.kitchen_ceiling
@@ -246,8 +247,8 @@
     - group.bedroom_lights
     - group.kitchen_lights
     - group.stairs
-    - group._REDACTED__office_lights
-    - group._REDACTED__office_lights
+    - group._REDACTED_office_lights
+    - group._REDACTED_office_lights
     - group.guest_bedroom_lights
     - group.basement_lighting
     - light.bathroom_vanity
@@ -267,7 +268,20 @@
     - input_boolean.panic_mode
     - input_boolean.alarm_tripped
     - switch.siren
+ 
+  Thermostat:
+    - input_boolean.thermostat_away
+    - group.summer_mode
+    - group.winter_mode
 
+  Summer Mode:
+    - automation.turn_thermostat_on_summer
+    - automation.turn_thermostat_off_summer
+  
+  Winter Mode:
+    - automation.turn_thermostat_on_winter
+    - automation.turn_thermostat_off_winter
+  
   Media Player:
     - sensor._REDACTED_
     - media_player.living_room
@@ -275,7 +289,7 @@
     - media_player._REDACTED_s_iphone
     - media_player._REDACTED_s_ipad
     - media_player.macproprivate
-    - media_player.roku_hd__18c23w020195
+    - media_player.roku_hd_18c23w020195
 
   Occupancy:
     - binary_sensor.main_floor_occupancy
@@ -283,7 +297,7 @@
     - binary_sensor.kitchen_occupancy
     - binary_sensor.bedroom_occupancy
     - binary_sensor.office_occupancy
-    - binary_sensor._REDACTED__office_occupancy
+    - binary_sensor._REDACTED_office_occupancy
     - binary_sensor.guest_bedroom_occupancy
 
   Alarm Occupancy:
@@ -292,7 +306,7 @@
     - binary_sensor.kitchen_occupancy
     - binary_sensor.bedroom_occupancy
     - binary_sensor.office_occupancy
-    - binary_sensor._REDACTED__office_occupancy
+    - binary_sensor._REDACTED_office_occupancy
 
   Indoor Temperature:
     - sensor.main_floor_temperature
@@ -301,7 +315,7 @@
     - sensor.bedroom_temperature
     - sensor.kitchen_temperature
     - sensor.office_temperature
-    - sensor._REDACTED__office_temperature
+    - sensor._REDACTED_office_temperature
     - sensor.guest_bedroom_temperature
 
   Weather:
@@ -386,8 +400,8 @@
     - light.basement_stairs
     - light.bedroom_lamp
     - light.closet_lamp
-    - light.front_porch_left
-    - light.front_porch_right
+#    - light.front_porch_left
+#    - light.front_porch_right
     - light.hallway_light
     - light.living_room_lamp_1
     - light.living_room_lamp_2

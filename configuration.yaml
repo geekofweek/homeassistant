@@ -7,7 +7,7 @@ homeassistant:
   longitude: _REDACTED_
   
   # Impacts weather/sunrise data (altitude above sea level) 
-  elevation: 154
+  elevation: _REDACTED_
   
   # 'metric' for the metric system, 'imperial' for the imperial system
   unit_system: imperial
@@ -45,6 +45,9 @@ http:
   api_password: _REDACTED_
   ssl_certificate: _REDACTED_
   ssl_key: _REDACTED_
+  approved_ips:
+    - 127.0.0.1
+    - _REDACTED_
 
 #################################################################
 ## Components
@@ -62,7 +65,7 @@ light:
   
 emulated_hue:
   host_ip: _REDACTED_
-  listen_port: 8300
+  listen_port: _REDACTED_
   off_maps_to_on_domains:
     - script
     - scene
@@ -83,7 +86,7 @@ device_tracker:
     host: _REDACTED_
     username: _REDACTED_
     password: _REDACTED_
-
+ 
 cover:
   platform: myq
   name: Garage Door
@@ -100,10 +103,42 @@ camera:
   password: _REDACTED_
 
 wink:
-  access_token: _REDACTED_
+  email: _REDACTED_
+  password: _REDACTED_
+  client_id: _REDACTED_
+  client_secret: _REDACTED_
 
 recorder:
   purge_days: 30
+
+ios:
+  push_categories: # Defines actionable notifications. Categories are groups of actions. You specify the category in the notification.
+    - name: Alarm
+      identifier: 'ALARM' # Must be unique and ALL CAPS
+      actions:
+        - identifier: 'SOUND_ALARM' # Must be unique and ALL CAPS
+          title: 'Sound Alarm' # Needs to be short!
+          activationMode: 'background' # or background. The mode in which to run the app when the action is performed.
+          authenticationRequired: yes # A Boolean value indicating whether the user must unlock the device before the action is performed.
+          destructive: yes # A Boolean value indicating whether the action is destructive.  When the value of this property is true, the system displays the corresponding button differently to indicate that the action is destructive.
+          behavior: 'default' # or TextInput. When TextInput the system provides a way for the user to enter a text response to be included with the notification.
+          context: 'default' # or Minimal. Default = In this context, the full UI is displayed for the notification’s alert. You may specify up to four custom actions in this context. Minimal = In this context, a minimal UI is displayed for the notification’s alert. You may specify up to two custom actions in this context.
+        - identifier: 'SILENCE_ALARM' # Must be unique and ALL CAPS
+          title: 'Silence Alarm' # Needs to be short!
+          activationMode: 'background' # or background. The mode in which to run the app when the action is performed.
+          authenticationRequired: yes # A Boolean value indicating whether the user must unlock the device before the action is performed.
+          destructive: no # A Boolean value indicating whether the action is destructive.  When the value of this property is true, the system displays the corresponding button differently to indicate that the action is destructive.
+          behavior: 'TextInput' # Default or TextInput. When TextInput the system provides a way for the user to enter a text response to be included with the notification.
+          context: 'default' # or Minimal. Default = In this context, the full UI is displayed for the notification’s alert. You may specify up to four custom actions in this context. Minimal = In this context, a minimal UI is displayed for the notification’s alert. You may specify up to two custom actions in this context.
+          textInputButtonTitle: 'Silencio!' # Only for iOS 10 when behavior is TextInput.
+          textInputPlaceholder: '...' # Only for iOS 10 when behavior is TextInput.
+          parameters: # iOS 9 only. Use this dictionary to specify any behavior-specific data for the action. For example, if you set behavior to TextInput you can use the UIUserNotificationTextInputActionButtonTitleKey key, which lets you customize the title of the button displayed by the text input interface.
+            UIUserNotificationTextInputActionButtonTitleKey: "Silencio!"
+
+notify:
+  - name: iOSApp
+    platform: ios
+    target: _REDACTED_
 
 sensor:
   platform: speedtest
@@ -153,7 +188,7 @@ sensor 5:
   platform: plex
   name: _REDACTED_
   host: _REDACTED_
-  port: _REDACTED_
+  port: 32400
   username: _REDACTED_
   password: _REDACTED_
   server: _REDACTED_

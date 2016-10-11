@@ -19,10 +19,10 @@
       entity_id: input_boolean.home_away
       state: 'off'
     - condition: state
-      entity_id: input_boolean._REDACTED__away
+      entity_id: input_boolean._REDACTED_away
       state: 'on'
     - condition: state
-      entity_id: input_boolean._REDACTED__away_driving
+      entity_id: input_boolean._REDACTED_away_driving
       state: 'off'
   
   action:
@@ -49,10 +49,10 @@
       entity_id: input_boolean.home_away
       state: 'off'
     - condition: state
-      entity_id: input_boolean._REDACTED__away
+      entity_id: input_boolean._REDACTED_away
       state: 'on'
     - condition: state
-      entity_id: input_boolean._REDACTED__away_driving
+      entity_id: input_boolean._REDACTED_away_driving
       state: 'on'
   
   action:
@@ -69,7 +69,7 @@
 
   trigger:
     - platform: state
-      entity_id: input_boolean._REDACTED__away
+      entity_id: input_boolean._REDACTED_away
       from: 'on'
       to: 'off'
 
@@ -96,7 +96,7 @@
 
   trigger:
     - platform: state
-      entity_id: input_boolean._REDACTED__away
+      entity_id: input_boolean._REDACTED_away
       from: 'on'
       to: 'off'
 
@@ -126,10 +126,10 @@
       entity_id: input_boolean.home_away
       state: 'off'
     - condition: state
-      entity_id: input_boolean._REDACTED__away
+      entity_id: input_boolean._REDACTED_away
       state: 'on'
     - condition: state
-      entity_id: input_boolean._REDACTED__away_driving
+      entity_id: input_boolean._REDACTED_away_driving
       state: 'off'
 
 
@@ -157,10 +157,10 @@
       entity_id: input_boolean.home_away
       state: 'off'
     - condition: state
-      entity_id: input_boolean._REDACTED__away
+      entity_id: input_boolean._REDACTED_away
       state: 'on'
     - condition: state
-      entity_id: input_boolean._REDACTED__away_driving
+      entity_id: input_boolean._REDACTED_away_driving
       state: 'on'
 
   action:
@@ -177,7 +177,7 @@
 
   trigger:
     - platform: state
-      entity_id: input_boolean._REDACTED__away
+      entity_id: input_boolean._REDACTED_away
       from: 'on'
       to: 'off'
 
@@ -204,7 +204,7 @@
 
   trigger:
     - platform: state
-      entity_id: input_boolean._REDACTED__away
+      entity_id: input_boolean._REDACTED_away
       from: 'on'
       to: 'off'
 
@@ -237,7 +237,7 @@
       entity_id: input_boolean.home_away
       state: 'off'
     - condition: state
-      entity_id: input_boolean._REDACTED__away
+      entity_id: input_boolean._REDACTED_away
       state: 'on'
 
   action:
@@ -249,7 +249,7 @@
     - service: light.turn_on
       entity_id: group.front_porch
       data:
-       brightness: 65
+       brightness: 80
 
         ##########################################################
         ## _REDACTED_ Home Turn on Lights
@@ -271,7 +271,7 @@
       entity_id: input_boolean.home_away
       state: 'off'
     - condition: state
-      entity_id: input_boolean._REDACTED__away
+      entity_id: input_boolean._REDACTED_away
       state: 'on'
 
   action:
@@ -283,7 +283,7 @@
     - service: light.turn_on
       entity_id: group.front_porch
       data:
-       brightness: 65
+       brightness: 80
 
         ##########################################################
         ## Away Mode
@@ -320,7 +320,7 @@
 
   trigger:
     - platform: state
-      entity_id: input_boolean._REDACTED__away
+      entity_id: input_boolean._REDACTED_away
       from: 'off'
       to: 'on'
 
@@ -341,7 +341,7 @@
 
   trigger:
     - platform: state
-      entity_id: input_boolean._REDACTED__away
+      entity_id: input_boolean._REDACTED_away
       from: 'off'
       to: 'on'
 
@@ -429,10 +429,13 @@
       state: 'off'
 
   action:
-    entity_id: climate.main_floor
-    service: climate.set_away_mode
-    data:
-      away_mode: 'False'
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.thermostat_away
+#     re-enable Summer or Winter Mode    
+    - service: homeassistant.turn_on
+      entity_id: group.summer_mode
+#    - service: homeassistant.turn_on
+#      entity_id: group.winter_mode
 
 - alias: Thermostat - Away
 
@@ -448,10 +451,100 @@
       state: 'off'
 
   action:
-    entity_id: climate.main_floor
-    service: climate.set_away_mode
-    data:
-      away_mode: 'True'
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.thermostat_away
+    - service: homeassistant.turn_off
+      entity_id: group.summer_mode
+    - service: homeassistant.turn_off
+      entity_id: group.winter_mode
+
+        ##########################################################
+        ## Turn Thermostat on Summer
+        ##########################################################
+
+- alias: Turn Thermostat on Summer
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.forecastio_temperature
+      above: 70
+  
+  action:
+    service: homeassistant.turn_off
+    entity_id: input_boolean.thermostat_away
+
+        ##########################################################
+        ## Turn Thermostat off Summer
+        ##########################################################
+
+- alias: Turn Thermostat off Summer
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.forecastio_temperature
+      below: 69
+
+  action:
+    service: homeassistant.turn_on
+    entity_id: input_boolean.thermostat_away
+
+        ##########################################################
+        ## Turn Thermostat on Winter
+        ##########################################################
+
+- alias: Turn Thermostat on Winter
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.forecastio_temperature
+      below: 68
+  
+  action:
+    service: homeassistant.turn_off
+    entity_id: input_boolean.thermostat_away
+
+        ##########################################################
+        ## Turn Thermostat off Winter
+        ##########################################################
+
+- alias: Turn Thermostat off Winter
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.forecastio_temperature
+      above: 69
+
+  action:
+    service: homeassistant.turn_on
+    entity_id: input_boolean.thermostat_away
+
+        ##########################################################
+        ## Turn off Thermostat when Door Opens for Extended Period
+        ##########################################################
+
+- alias: Turn off Thermostat when Door Opens for Extended Period
+
+  trigger:
+    - platform: state
+      entity_id: group.doors
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+  
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.summer_mode
+      state: 'on'
+
+  action:
+    service: homeassistant.turn_on
+    entity_id: input_boolean.thermostat_away
 
         ##########################################################
         ## Turn On Front Porch when Door Opens
@@ -513,7 +606,8 @@
     service: light.turn_on
     entity_id: group.front_porch
     data:
-      brightness: 65
+      brightness: 80
+      transition: 60
 
         ##########################################################
         ## Turn off Front Porch when Door Closes after 10p
@@ -548,6 +642,8 @@
   action:
     service: light.turn_off
     entity_id: group.front_porch
+    data:
+      transition: 60
 
         ##########################################################
         ## Turn On Living Room when Door Opens
@@ -681,6 +777,8 @@
   action:
     service: light.turn_on
     entity_id: light.garage_light
+    data:
+     brightness: 255
 
         ##########################################################
         ## Close Garage Door after 30 Mins
@@ -882,7 +980,7 @@
     data:
     # 900 seconds = 15 minutes
       transition: 300
-      brightness: 65
+      brightness: 80
       xy_color: [ 0.5134, 0.4149 ]
 
         ##########################################################
@@ -1009,7 +1107,7 @@
       entity_id: input_boolean.disable_auto_garage
       state: 'off'
     - condition: state
-      entity_id: input_boolean._REDACTED__away
+      entity_id: input_boolean._REDACTED_away
       state: 'off'
 
   action:
@@ -1132,7 +1230,7 @@
 
   action:
     service: light.turn_off
-    entity_id: group._REDACTED__office
+    entity_id: group._REDACTED_office
 
         ##########################################################
         ## Turn off _REDACTED_ Office when Unoccupied
@@ -1142,7 +1240,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor._REDACTED__office_occupancy
+      entity_id: binary_sensor._REDACTED_office_occupancy
       from: 'on'
       to: 'off'
       for:
@@ -1157,7 +1255,7 @@
 
   action:
     service: light.turn_off
-    entity_id: group._REDACTED__office
+    entity_id: group._REDACTED_office
 
         ##########################################################
         ## Turn off Bedroom when Unoccupied
@@ -1305,7 +1403,7 @@
 
   condition:
     - condition: state
-      entity_id: binary_sensor._REDACTED__office_occupancy
+      entity_id: binary_sensor._REDACTED_office_occupancy
       state: 'off'
     - condition: state
       entity_id: input_boolean.occupancy_lights_off_disable
@@ -1319,7 +1417,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor._REDACTED__office_occupancy
+      entity_id: binary_sensor._REDACTED_office_occupancy
       from: 'on'
       to: 'off'
       for:
@@ -1348,7 +1446,7 @@
   trigger:
     - platform: sun
       event: 'sunset'
-      offset: '-00:59:00'
+      offset: '-00:30:00'
 
   condition:
     condition: or
@@ -1368,7 +1466,7 @@
     entity_id: group.living_room, light.dining_room_table
     data:
     # 900 seconds = 15 minutes
-      transition: 3600
+      transition: 900
       xy_color: [ 0.5134, 0.4149 ]
       brightness: 255
 
@@ -1416,7 +1514,7 @@
 
   condition:
     - condition: state
-      entity_id: binary_sensor._REDACTED__office_occupancy
+      entity_id: binary_sensor._REDACTED_office_occupancy
       state: 'on'
     - condition: state
       entity_id: input_boolean.office_lights_sunset
@@ -1427,7 +1525,7 @@
 
   action:
     service: light.turn_on
-    entity_id: group._REDACTED__office, group.stairs
+    entity_id: group._REDACTED_office, group.stairs
     data:
     # 900 seconds = 15 minutes
       transition: 900
@@ -1499,7 +1597,7 @@
 
   condition:
     - condition: state
-      entity_id: binary_sensor._REDACTED__office_occupancy
+      entity_id: binary_sensor._REDACTED_office_occupancy
       state: 'on'
     - condition: state
       entity_id: sun.sun
@@ -1513,7 +1611,7 @@
 
   action:
     service: light.turn_on
-    entity_id: group._REDACTED__office, group.stairs
+    entity_id: group._REDACTED_office, group.stairs
     data:
      brightness: 50
 
@@ -1531,7 +1629,7 @@
 
   action:
     service: light.turn_off
-    entity_id: group._REDACTED__office, group.stairs
+    entity_id: group._REDACTED_office, group.stairs
 
         ##########################################################
         ## Turn On/Off _REDACTED_ Office During Rain
@@ -2149,6 +2247,8 @@
   action:
     service: light.turn_off
     entity_id: group.front_porch
+    data:
+      transition: 300
 
         ##########################################################
         ## Reset Holiday Lighting at 4a
@@ -2216,6 +2316,9 @@
     - condition: state
       entity_id: input_boolean.enable_security
       state: 'on'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
 
   action:
     service: scene.turn_on
@@ -2696,6 +2799,112 @@
       title: "Alarm"
       notification_id: "1"
 
+
+- alias: Alarm Notification iOS
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.alarm_tripped
+      from: 'off'
+      to: 'on'
+
+  action:
+    service: notify.iOSApp
+    data:
+      message: Alarm Tripped
+      data:
+        push:
+          category: camera
+        entity_id: camera.garage_camera
+          
+- alias: _REDACTED_ Home Notification
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._REDACTED_
+      from: 'not_home'
+      to: 'home'
+
+  action:
+    service: notify.iOSApp
+    data:
+      message: _REDACTED_ Home
+      data:
+        push:
+          category: map
+        action_data:
+          latitude: _REDACTED_
+          longitude: _REDACTED_
+          
+- alias: _REDACTED_ Away Notification
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._REDACTED_
+      from: 'home'
+      to: 'not_home'
+
+  action:
+    service: notify.iOSApp
+    data:
+      message: _REDACTED_ Away
+      data:
+        push:
+          category: map
+        action_data:
+          latitude: _REDACTED_
+          longitude: _REDACTED_
+
+- alias: _REDACTED_ Home Notification
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._REDACTED_
+      from: 'not_home'
+      to: 'home'
+
+  action:
+    service: notify.iOSApp
+    data:
+      message: _REDACTED_ Home
+      data:
+        push:
+          category: map
+        action_data:
+          latitude: _REDACTED_
+          longitude: _REDACTED_
+
+- alias: _REDACTED_ Away Notification
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._REDACTED_
+      from: 'home'
+      to: 'not_home'
+
+  action:
+    service: notify.iOSApp
+    data:
+      message: _REDACTED_ Away
+      data:
+        push:
+          category: map
+        action_data:
+          latitude: _REDACTED_
+          longitude: _REDACTED_
+
+- alias: Home Assistant Start Notification
+
+  trigger:
+    - platform: event
+      event_type: homeassistant_start
+
+  action:
+    service: notify.iOSApp
+    data:
+      message: Home Assistant Started
+
+
 #################################################################
 ## Work Arounds
 #################################################################
@@ -2755,7 +2964,7 @@
 
   action:
     service: homeassistant.turn_on
-    entity_id: input_boolean._REDACTED__away_driving
+    entity_id: input_boolean._REDACTED_away_driving
 
         ##########################################################
         ## Set _REDACTED_ Away after 1 Min
@@ -2775,7 +2984,7 @@
 
   action:
     service: homeassistant.turn_on
-    entity_id: input_boolean._REDACTED__away
+    entity_id: input_boolean._REDACTED_away
     
         ##########################################################
         ## Set _REDACTED_ Home after 10 Mins
@@ -2795,7 +3004,7 @@
 
   action:
     service: homeassistant.turn_off
-    entity_id: input_boolean._REDACTED__away, input_boolean._REDACTED__away_driving
+    entity_id: input_boolean._REDACTED_away, input_boolean._REDACTED_away_driving
 
         ##########################################################
         ## Set _REDACTED_ Away Driving
@@ -2816,7 +3025,7 @@
 
   action:
     service: homeassistant.turn_on
-    entity_id: input_boolean._REDACTED__away_driving
+    entity_id: input_boolean._REDACTED_away_driving
     
         ##########################################################
         ## Set _REDACTED_ Away after 1 Min
@@ -2836,7 +3045,7 @@
 
   action:
     service: homeassistant.turn_on
-    entity_id: input_boolean._REDACTED__away
+    entity_id: input_boolean._REDACTED_away
     
         ##########################################################
         ## Set _REDACTED_ Home after 10 Mins
@@ -2856,7 +3065,7 @@
 
   action:
     service: homeassistant.turn_off
-    entity_id: input_boolean._REDACTED__away, input_boolean._REDACTED__away_driving
+    entity_id: input_boolean._REDACTED_away, input_boolean._REDACTED_away_driving
 
         ##########################################################
         ## Manually Set _REDACTED_ Home
@@ -2866,7 +3075,7 @@
 
   trigger:
     - platform: state
-      entity_id: input_boolean._REDACTED__home
+      entity_id: input_boolean._REDACTED_home
       from: 'off'
       to: 'on'
 
@@ -2880,7 +3089,7 @@
 
   trigger:
      - platform: state
-       entity_id: input_boolean._REDACTED__home
+       entity_id: input_boolean._REDACTED_home
        from: 'off'
        to: 'on'
        for:
@@ -2890,7 +3099,7 @@
 
   action:
     service: homeassistant.turn_off
-    entity_id: input_boolean._REDACTED__home
+    entity_id: input_boolean._REDACTED_home
 
         ##########################################################
         ## Manually Set _REDACTED_ Home
@@ -2900,7 +3109,7 @@
 
   trigger:
     - platform: state
-      entity_id: input_boolean._REDACTED__home
+      entity_id: input_boolean._REDACTED_home
       from: 'off'
       to: 'on'
 
@@ -2914,7 +3123,7 @@
 
   trigger:
      - platform: state
-       entity_id: input_boolean._REDACTED__home
+       entity_id: input_boolean._REDACTED_home
        from: 'off'
        to: 'on'
        for:
@@ -2924,7 +3133,7 @@
 
   action:
     service: homeassistant.turn_off
-    entity_id: input_boolean._REDACTED__home
+    entity_id: input_boolean._REDACTED_home
 
         ##########################################################
         ## Reset Dummy Garage Door Boolean Switch
@@ -2988,7 +3197,7 @@
       for:
         hours: 0
         minutes: 0
-        seconds: 60
+        seconds: 15
 
   action:
     service: homeassistant.turn_off

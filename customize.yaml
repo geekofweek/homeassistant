@@ -2,9 +2,31 @@
 ## Customize
 #################################################################
 
+#thermostat
   climate.main_floor:
-#   entity_picture: /local/ecobee.jpeg
-    friendly_name: Ecobee3
+    friendly_name: Thermostat
+  automation.turn_thermostat_on_summer:
+    icon: mdi:sunglasses
+    friendly_name: Auto on During Summer Enabled
+    hidden: true
+  automation.turn_thermostat_off_summer:
+    icon: mdi:sunglasses
+    friendly_name: Auto off During Summer Enabled
+    hidden: true
+  automation.turn_thermostat_on_winter:
+    icon: mdi:snowman
+    friendly_name: Auto on During Winter Enabled
+    hidden: true
+  automation.turn_thermostat_off_winter:
+    icon: mdi:snowman
+    friendly_name: Auto off During Winter Enabled
+    hidden: true
+  group.summer_mode:
+    icon: mdi:sunglasses
+    friendly_name: Summer Mode Enabled
+  group.winter_mode:
+    icon: mdi:snowman
+    friendly_name: Winter Mode Enabled
 
 #devices
   device_tracker._REDACTED_:
@@ -65,14 +87,14 @@
     friendly_name: Kitchen
   group.stairs:
     icon: mdi:stairs
-  group._REDACTED__office:
+  group._REDACTED_office:
     icon: mdi:desktop-mac
-  group._REDACTED__office_lights:
+  group._REDACTED_office_lights:
     icon: mdi:desktop-mac
     friendly_name: _REDACTED_ Office
-  group._REDACTED__office:
+  group._REDACTED_office:
     icon: mdi:desktop-mac
-  group._REDACTED__office_lights:
+  group._REDACTED_office_lights:
     icon: mdi:desktop-mac
     friendly_name: _REDACTED_ Office
   group.guest_bedroom:
@@ -95,9 +117,9 @@
   group.outdoor_lighting:
     icon: mdi:nature
   group.living_room_lamps:
-    icon: mdi:lightbulb
-#    icon: mdi:lamp
-  group._REDACTED__office_ceiling:
+#    icon: mdi:lightbulb
+    icon: mdi:lamp
+  group._REDACTED_office_ceiling:
     icon: mdi:lightbulb
   group.interior:
     friendly_name: Interior Lights
@@ -145,7 +167,7 @@
     icon: mdi:account
   binary_sensor.office_occupancy:
     icon: mdi:account
-  binary_sensor._REDACTED__office_occupancy:
+  binary_sensor._REDACTED_office_occupancy:
     icon: mdi:account
   binary_sensor.guest_bedroom_occupancy:
     icon: mdi:account
@@ -194,20 +216,23 @@
     icon: mdi:lightbulb
   light.bathroom_vanity:
     icon: mdi:water-pump
-#  light._REDACTED_s_nightstand:
-#    icon: mdi:lamp
-#  light.bedroom_lamp:
-#    icon: mdi:lamp
-#  light.closet_lamp:
-#    icon: mdi:lamp
-#  light.guest_bedroom_lamp:
-#    icon: mdi:lamp
-#  light.guest_bedroom_nightstand:
-#    icon: mdi:lamp
-#  light.office_lamp:
-#    icon: mdi:lamp
-#  light._REDACTED_s_nightstand:
-#    icon: mdi:lamp
+  light._REDACTED_s_nightstand:
+    icon: mdi:lamp
+  light.bedroom_lamp:
+    icon: mdi:lamp
+  light.closet_lamp:
+    icon: mdi:lamp
+  light.guest_bedroom_lamp:
+    icon: mdi:lamp
+  light.guest_bedroom_nightstand:
+    icon: mdi:lamp
+  light.office_lamp:
+    icon: mdi:lamp
+  light._REDACTED_s_nightstand:
+    icon: mdi:lamp
+  light.garage_light:
+    icon: mdi:spotlight-beam
+
 
 #weather
   sensor.forecastio_temperature:
@@ -269,7 +294,7 @@
     friendly_name: Office TV
   sensor._REDACTED_:
     icon: mdi:theater
-  media_player.roku_hd__18c23w020195:
+  media_player.roku_hd_18c23w020195:
     friendly_name: Guest Bedroom Roku
 
 #Hidden Groups/Lights/Scenes/Boolean
@@ -315,7 +340,7 @@
     hidden: true
   sensor.office_temperature_2:
     hidden: true
-  sensor._REDACTED__office_temperature_2:
+  sensor._REDACTED_office_temperature_2:
     hidden: true
   sensor.guest_bedroom_temperature_2:
     hidden: true
@@ -327,21 +352,21 @@
     hidden: true
   binary_sensor.office:
     hidden: true
-  binary_sensor._REDACTED__office:
+  binary_sensor._REDACTED_office:
     hidden: true
   binary_sensor.guest_bedroom:
     hidden: true
   binary_sensor._REDACTED_:
     hidden: true
-  binary_sensor._REDACTED__2:
+  binary_sensor._REDACTED_2:
     hidden: true
-  binary_sensor._REDACTED__3:
+  binary_sensor._REDACTED_3:
     hidden: true
   binary_sensor._REDACTED_:
     hidden: true
-  binary_sensor._REDACTED__2:
+  binary_sensor._REDACTED_2:
     hidden: true
-  binary_sensor._REDACTED__3:
+  binary_sensor._REDACTED_3:
     hidden: true
    
 #Wink Hue Bulbs
