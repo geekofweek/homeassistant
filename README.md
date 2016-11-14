@@ -1,7 +1,7 @@
 # Home Assistant
 Example [Home Assistant](https://home-assistant.io) Configs
 
-Home Assistant Version: 0.30.1
+Home Assistant Version: 0.32.3
 
 #Devices
 
@@ -10,6 +10,7 @@ Home Assistant Version: 0.30.1
 * [Wink Hub](http://www.amazon.com/Wink-PWHUB-WH17-Connected-Home-Hub/dp/B00PV6GAI4/ref=sr_1_1?ie=UTF8&qid=1461377299&sr=8-1&keywords=wink+hub)
 * [Hue Color](http://www.amazon.com/Philips-456186-Ambiance-Extension-Generation/dp/B014H2OZJS/ref=sr_1_1?ie=UTF8&qid=1461377356&sr=8-1&keywords=hue+color) (connected via Hue Hub)
 * [Hue White](http://www.amazon.com/Philips-455295-White-Equivalent-Single/dp/B01C5C9ZLK/ref=sr_1_1?ie=UTF8&qid=1461377384&sr=8-1&keywords=hue+white) (connected via Hue Hub)
+* [Hue Lightstrip Plus](https://www.amazon.com/dp/B0167H33DU/ref=twister_B01M8JU79M?_encoding=UTF8&psc=1) (connected via Hue Hub)
 * [Cree Connected](http://www.amazon.com/dp/B01701DKVM/ref=twister_B017DJNMU0?_encoding=UTF8&psc=1) (connected via Hue Hub)
 * [Lutron Caseta Wireless Dimmer](http://www.amazon.com/Lutron-PD-6WCL-WH-Caseta-Wireless-150-Watt/dp/B00KLAXFQA/ref=sr_1_4?s=hi&ie=UTF8&qid=1461376977&sr=1-4&keywords=caseta+wireless) (connected via Wink Hub)
 * [GoControl Z-Wave Home Security Suite](http://www.amazon.com/GOCONTROL-WNK01-311KIT-Premium-Z-Wave-Security/dp/B00XUXYT6K/ref=sr_1_1?ie=UTF8&qid=1465167435&sr=8-1&keywords=go+control) (connected via Wink Hub)
