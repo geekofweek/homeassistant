@@ -4,6 +4,7 @@
 
 #thermostat
   climate.main_floor:
+#   entity_picture: /local/ecobee.jpeg
     friendly_name: Thermostat
   automation.turn_thermostat_on_summer:
     icon: mdi:sunglasses
@@ -29,20 +30,28 @@
     friendly_name: Winter Mode Enabled
 
 #devices
-  device_tracker._REDACTED_:
+  device_tracker._REDACTED_s_iphone:
     icon: mdi:human-male
     friendly_name: _REDACTED_
+  device_tracker._REDACTED_siphone:
+    icon: mdi:cellphone-iphone
+    friendly_name: _REDACTED_'s iPhone (Router)
   device_tracker._REDACTED_:
+    icon: mdi:cellphone-iphone
+    friendly_name: _REDACTED_'s iPhone (Locative)
+  device_tracker._REDACTED_s_iphone:
     icon: mdi:human-female
     friendly_name: _REDACTED_
   device_tracker._REDACTED_siphone:
     icon: mdi:cellphone-iphone
-  device_tracker._REDACTED_s_iphone:
+    friendly_name: _REDACTED_'s iPhone (Router)
+  device_tracker._REDACTED_:
     icon: mdi:cellphone-iphone
-    friendly_name: _REDACTED_'s iPhone (Test)
-  device_tracker._REDACTED_siphone:
-    icon: mdi:cellphone-iphone
-    friendly_name: _REDACTED_'s iPhone
+    friendly_name: _REDACTED_'s iPhone (Locative)
+  device_tracker._REDACTED_sapplewatch:
+    icon: mdi:watch
+  device_tracker._REDACTED_sapplewatch:
+    icon: mdi:mdi:watch
   device_tracker._REDACTED_sipad:
     icon: mdi:tablet-ipad
   device_tracker._REDACTED_sipad:
@@ -53,8 +62,9 @@
     icon: mdi:laptop-mac
   device_tracker._REDACTED_smacbookair:
     icon: mdi:laptop-mac
-  device_tracker.macpro:
+  device_tracker._REDACTED_smacpro:
     icon: mdi:desktop-mac
+    friendly_name: Mac Pro
 
 #doors
   cover.garage_door:
@@ -92,8 +102,6 @@
   group._REDACTED_office_lights:
     icon: mdi:desktop-mac
     friendly_name: _REDACTED_ Office
-  group._REDACTED_office:
-    icon: mdi:desktop-mac
   group._REDACTED_office_lights:
     icon: mdi:desktop-mac
     friendly_name: _REDACTED_ Office
@@ -117,7 +125,6 @@
   group.outdoor_lighting:
     icon: mdi:nature
   group.living_room_lamps:
-#    icon: mdi:lightbulb
     icon: mdi:lamp
   group._REDACTED_office_ceiling:
     icon: mdi:lightbulb
@@ -195,12 +202,14 @@
   switch.fireplace:
     icon: mdi:fire
     friendly_name: Fireplace
+    emulated_hue: true
+    emulated_hue_name: "Harmony Fireplace"
   switch.air_purifier:
     icon: mdi:fan
     friendly_name: Air Purifier
-  switch.hallway_fan:
-    icon: mdi:fan
-    friendly_name: Hallway Fan
+  switch.christmas_tree:
+    icon: mdi:pine-tree
+    friendly_name: Christmas Tree
   switch.siren:
     icon: mdi:shield-outline
     friendly_name: Alarm Siren
@@ -232,59 +241,61 @@
     icon: mdi:lamp
   light.garage_light:
     icon: mdi:spotlight-beam
+  light.media_center_lighting:
+    icon: mdi:television
 
 
 #weather
-  sensor.forecastio_temperature:
+  sensor.dark_sky_temperature:
     friendly_name: 'Outdoor Temperature'
-  sensor.forecastio_summary:
+  sensor.dark_sky_summary:
     icon: mdi:weather-sunny
     friendly_name: 'Summary'
-  sensor.forecastio_hourly_summary:
+  sensor.dark_sky_hourly_summary:
     icon: mdi:weather-sunny
     friendly_name: 'Hourly Summary'
-  sensor.forecastio_minutely_summary:
+  sensor.dark_sky_minutely_summary:
     icon: mdi:weather-sunny
     friendly_name: 'Minute Summary'
-  sensor.forecastio_daily_summary:
+  sensor.dark_sky_daily_summary:
     icon: mdi:weather-sunny
     friendly_name: 'Daily Summary'
-  sensor.forecastio_apparent_temperature:
+  sensor.dark_sky_apparent_temperature:
     icon: mdi:thermometer-lines
     friendly_name: 'Apparent Temperature'
-  sensor.forecastio_precip:
+  sensor.dark_sky_precip:
     icon: mdi:weather-pouring
     friendly_name: 'Precipitation'
-  sensor.forecastio_precip_probability:
+  sensor.dark_sky_precip_probability:
     icon: mdi:weather-pouring
     friendly_name: 'Precipitation Probability'
-  sensor.forecastio_precip_intensity:
+  sensor.dark_sky_precip_intensity:
     icon: mdi:weather-pouring
     friendly_name: 'Rainfall'
-  sensor.forecastio_humidity:
+  sensor.dark_sky_humidity:
     icon: mdi:water-percent
     friendly_name: 'Outdoor Humidity'
-  sensor.forecastio_cloud_cover:
+  sensor.dark_sky_cloud_cover:
     icon: mdi:weather-cloudy
     friendly_name: 'Cloud Cover'
-  sensor.forecastio_nearest_storm_distance:
+  sensor.dark_sky_nearest_storm_distance:
     icon: mdi:weather-lightning
     friendly_name: 'Nearest Storm'
-  sensor.forecastio_wind_speed:
+  sensor.dark_sky_wind_speed:
     icon: mdi:weather-windy
     friendly_name: 'Wind Speed'
-  sensor.forecastio_wind_bearing:
+  sensor.dark_sky_wind_bearing:
     icon: mdi:weather-windy
     friendly_name: 'Wind Bearing'
-  sensor.forecastio_ozone:
+  sensor.dark_sky_ozone:
     icon: mdi:cloud
     friendly_name: 'Ozone'
-  sensor.forecastio_pressure:
+  sensor.dark_sky_pressure:
     icon: mdi:weight
     friendly_name: 'Pressure'
-  sensor.forecastio_dew_point:
+  sensor.dark_sky_dew_point:
     friendly_name: 'Dew Point'
-  sensor.forecastio_visibility:
+  sensor.dark_sky_visibility:
     friendly_name: 'Visibility'
 
 #media players
@@ -458,4 +469,16 @@
   automation.security_door_open:
     icon: mdi:shield-outline
     friendly_name: Door Security Enabled
+
+#Christmas Tree Automations
+  automation.turn_on_christmas_tree_at_sunset:
+    friendly_name: On at Sunset
+    icon: mdi:pine-tree
+  automation.turn_off_christmas_tree_at_sunrise:
+    friendly_name: Off at Sunrise
+    icon: mdi:pine-tree
+  automation.return_home_turn_on_christmas_tree:
+    friendly_name: Turn on when Home
+    icon: mdi:pine-tree
+
 

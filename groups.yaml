@@ -39,6 +39,7 @@
       - group.location_controls
       - group.thermostat
       - group.party_modes
+      - group.christmas_tree_automation
 
   sensors:
     name: Sensors
@@ -47,6 +48,7 @@
     entities:
       - group.household
       - group.device_location
+      - group.device_location_testing
       - group.weather
       - group.indoor_temperature
       - group.occupancy
@@ -102,15 +104,18 @@
     - input_boolean.office_rainbow
     - input_boolean.front_porch_rainbow
     - input_select.holiday
+    - input_boolean.interior_holiday
 
   Household:
-    - device_tracker._REDACTED_
-    - device_tracker._REDACTED_
+    - device_tracker._REDACTED_s_iphone
+    - device_tracker._REDACTED_s_iphone
 
   Living Room:
     - group.living_room_lamps
-    - switch.living_room_ceiling_fan
+    - light.media_center_lighting
+    - switch.christmas_tree
     - switch.fireplace
+    - switch.living_room_ceiling_fan
     - lock.front_door
     - binary_sensor.front_door
     - binary_sensor.living_room_occupancy
@@ -122,6 +127,7 @@
 
   Living Room Lights:
     - group.living_room_lamps
+    - light.media_center_lighting
 
   Bedroom:
     - light._REDACTED_s_nightstand
@@ -141,7 +147,6 @@
     - light.office_ceiling
     - light.office_lamp
     - switch.air_purifier
-    - switch.hallway_fan
     - binary_sensor.office_occupancy
     - sensor.office_temperature
 
@@ -320,43 +325,46 @@
 
   Weather:
     - sun.sun
-    - sensor.forecastio_temperature    
-    - sensor.forecastio_summary
-#    - sensor.forecastio_minutely_summary
-#    - sensor.forecastio_hourly_summary
-#    - sensor.forecastio_daily_summary
-    - sensor.forecastio_apparent_temperature
-    - sensor.forecastio_precip
-    - sensor.forecastio_precip_probability
-    - sensor.forecastio_precip_intensity
-    - sensor.forecastio_humidity
-    - sensor.forecastio_dew_point
-    - sensor.forecastio_cloud_ciover
-    - sensor.forecastio_nearest_storm_distance
+    - sensor.dark_sky_temperature    
+    - sensor.dark_sky_summary
+#    - sensor.dark_sky_minutely_summary
+#    - sensor.dark_sky_hourly_summary
+#    - sensor.dark_sky_daily_summary
+    - sensor.dark_sky_apparent_temperature
+    - sensor.dark_sky_precip
+    - sensor.dark_sky_precip_probability
+    - sensor.dark_sky_precip_intensity
+    - sensor.dark_sky_humidity
+    - sensor.dark_sky_dew_point
+    - sensor.dark_sky_cloud_ciover
+    - sensor.dark_sky_nearest_storm_distance
 #    - sensor.weather_nearest_storm_bearing
-    - sensor.forecastio_wind_speed
-    - sensor.forecastio_wind_bearing
-    - sensor.forecastio_visibility
-    - sensor.forecastio_ozone
-    - sensor.forecastio_pressure
+    - sensor.dark_sky_wind_speed
+    - sensor.dark_sky_wind_bearing
+    - sensor.dark_sky_visibility
+    - sensor.dark_sky_ozone
+    - sensor.dark_sky_pressure
     
   Home Lights:
     - light.kitchen_cabinets
-    - group.living_room_lamps
+    - group.living_room_lights
     - light.hallway_light
     - group.back_door
     - light.dining_room_table
 
   Device Location:
-    - device_tracker._REDACTED_s_iphone
-    - device_tracker._REDACTED_siphone
-    - device_tracker._REDACTED_siphone
     - device_tracker._REDACTED_sipad
     - device_tracker._REDACTED_sipad
     - device_tracker._REDACTED_smacbookpro
     - device_tracker._REDACTED_smacbookair
     - device_tracker._REDACTED_smacbookair
-    - device_tracker.macpro
+    - device_tracker._REDACTED_smacpro
+
+  Device Location Testing:
+    - device_tracker._REDACTED_
+    - device_tracker._REDACTED_siphone
+    - device_tracker._REDACTED_
+    - device_tracker._REDACTED_siphone
 
   _REDACTED_ Office Ceiling:
     - light._REDACTED_s_office_ceiling_1
@@ -416,6 +424,7 @@
     - light.upper_patio_right
     - light.guest_bedroom_lamp
     - light.guest_bedroom_nightstand
+    - light.media_center_lighting
 
   Wink Lights:
     - light.dining_room_ceiling
@@ -426,3 +435,9 @@
     - light.office_ceiling
     - light.garge_light
     - light.bathroom_vanity
+
+  Christmas Tree Automation:
+    - automation.turn_on_christmas_tree_at_sunset
+    - automation.return_home_turn_on_christmas_tree
+    - automation.turn_off_christmas_tree_at_sunrise
+
