@@ -1,6 +1,5 @@
 """
 Support for MyQ garage doors.
-
 For more details about this platform, please refer to the documentation at
 https://home-assistant.io/components/cover.myq/
 """
@@ -21,6 +20,7 @@ CHAMBERLAIN = 'chamberlain'
 CRAFTMASTER = 'craftmaster'
 
 SUPPORTED_BRANDS = [LIFTMASTER, CHAMBERLAIN, CRAFTMASTER]
+SUPPORTED_DEVICE_TYPE_NAMES = ['GarageDoorOpener', 'Garage Door Opener WGDO']
 
 DEFAULT_BRAND = CHAMBERLAIN
 DEFAULT_NAME = "MyQ"
@@ -46,8 +46,8 @@ BRAND_MAPPINGS = {
 def setup_platform(hass, config, add_devices, discovery_info=None):
     """Set up the MyQ garage door."""
 
-    name = config.get(CONF_NAME) if \
-        CONF_NAME else DEFAULT_NAME
+    # name = config.get(CONF_NAME) if \
+        # CONF_NAME else DEFAULT_NAME
 
     username = config.get(CONF_USERNAME)
     password = config.get(CONF_PASSWORD)
@@ -66,7 +66,7 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
 
     myq = MyQAPI(username, password, brand, logger)
 
-    add_devices(MyQCoverDevice(myq, door, name) for door
+    add_devices(MyQCoverDevice(myq, door) for door
                 in myq.get_garage_doors())
 
 
@@ -112,7 +112,11 @@ class MyQAPI(object):
             'https://{host_uri}/{login_endpoint}'.format(
                 host_uri=self.brand[HOST_URI],
                 login_endpoint=self.LOGIN_ENDPOINT),
-            params=params)
+            params=params,
+			headers={
+			'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'
+			}
+		)
         auth = login.json()
         self.security_token = auth['SecurityToken']
         self._logger.debug('Logged in to MyQ API')
@@ -133,7 +137,11 @@ class MyQAPI(object):
             'https://{host_uri}/{device_list_endpoint}'.format(
                 host_uri=self.brand[HOST_URI],
                 device_list_endpoint=self.DEVICE_LIST_ENDPOINT),
-            params=params)
+            params=params,
+			headers={
+			'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'
+			}
+		)
 
         devices = devices.json()['Devices']
 
@@ -147,11 +155,15 @@ class MyQAPI(object):
         garage_doors = []
 
         for device in devices:
-            if device['MyQDeviceTypeName'] == 'VGDO':
+            if device['MyQDeviceTypeName'] in SUPPORTED_DEVICE_TYPE_NAMES:
+                dev = {}
                 for attribute in device['Attributes']:
-                    if attribute['AttributeDisplayName'] == 'desc' and \
-                            attribute['Value'] == 'Garage Door':
-                        garage_doors.append(device['DeviceId'])
+                   if attribute['AttributeDisplayName'] == 'desc':
+                        dev['deviceid'] = device['DeviceId']
+                        dev['name'] = attribute['Value']
+                        garage_doors.append(dev)
+
+
         return garage_doors
 
     def get_status(self, device_id):
@@ -168,7 +180,11 @@ class MyQAPI(object):
             'https://{host_uri}/{device_status_endpoint}'.format(
                 host_uri=self.brand[HOST_URI],
                 device_status_endpoint=self.DEVICE_STATUS_ENDPOINT),
-            params=params)
+            params=params,
+			headers={
+			'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'
+			}
+		)
 
         attval = device_status.json()['AttributeValue']
 
@@ -197,7 +213,11 @@ class MyQAPI(object):
             'https://{host_uri}/{device_set_endpoint}'.format(
                 host_uri=self.brand[HOST_URI],
                 device_set_endpoint=self.DEVICE_SET_ENDPOINT),
-            data=payload)
+            data=payload,
+			headers={
+			'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'
+			}
+		)
 
         return device_action.status_code == 200
 
@@ -205,11 +225,12 @@ class MyQAPI(object):
 class MyQCoverDevice(CoverDevice):
     """Representation of a MyQ cover."""
 
-    def __init__(self, myq, device_id, name):
+    def __init__(self, myq, device):
         """Initialize with API object, device id, and name."""
         self.myq = myq
-        self.device_id = device_id
-        self._name = name
+        self.device_id = device['deviceid']
+        self._name = device['name']
+        self._status = STATE_CLOSED
 
     @property
     def should_poll(self):
@@ -224,8 +245,7 @@ class MyQCoverDevice(CoverDevice):
     @property
     def is_closed(self):
         """Return True if cover is closed, else False."""
-        status = self.myq.get_status(self.device_id)
-        return status == STATE_CLOSED
+        return self._status == STATE_CLOSED
 
     @property
     def current_cover_position(self):
@@ -239,3 +259,6 @@ class MyQCoverDevice(CoverDevice):
     def open_cover(self):
         """Issue open command to cover."""
         self.myq.open_device(self.device_id)
+
+    def update(self):
+        self._status = self.myq.get_status(self.device_id)
