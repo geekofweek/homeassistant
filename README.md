@@ -14,7 +14,7 @@ Home Assistant Version: 0.33
 * [Cree Connected](http://www.amazon.com/dp/B01701DKVM/ref=twister_B017DJNMU0?_encoding=UTF8&psc=1) - 12x (connected via Hue Hub)
 * [Lutron Caseta Wireless Dimmer](http://www.amazon.com/Lutron-PD-6WCL-WH-Caseta-Wireless-150-Watt/dp/B00KLAXFQA/ref=sr_1_4?s=hi&ie=UTF8&qid=1461376977&sr=1-4&keywords=caseta+wireless) - 8x (connected via Wink Hub)
 * [GoControl Z-Wave Home Security Suite](http://www.amazon.com/GOCONTROL-WNK01-311KIT-Premium-Z-Wave-Security/dp/B00XUXYT6K/ref=sr_1_1?ie=UTF8&qid=1465167435&sr=8-1&keywords=go+control) (connected via Wink Hub)
-* [GE Z-Wave Wireless Lighting Control Outdoor Module](https://www.amazon.com/GE-Wireless-Lighting-Control-Outdoor/dp/B0013V8K3O/ref=sr_1_1?ie=UTF8&qid=1466468235&sr=8-1&keywords=ge+outdoor+zwave) (connected via Wink Hub)
+* [GE Z-Wave Wireless Lighting Control Outdoor Module](https://www.amazon.com/GE-Wireless-Lighting-Control-Outdoor/dp/B0013V8K3O/ref=sr_1_1?ie=UTF8&qid=1466468235&sr=8-1&keywords=ge+outdoor+zwave) - 2x (connected via Wink Hub)
 * [iHome WiFI Smart Plug](https://www.amazon.com/iHome-Smart-Apple-HomeKit-Amazon/dp/B010ACFEI0/ref=sr_1_1?ie=UTF8&qid=1467576017&sr=8-1&keywords=ihome+smart+plug) - 2x (connected via Wink Hub)
 * [Remotec Zwave Dry Contact Fixture Module](https://www.amazon.com/gp/product/B00913ATFI/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1) - *Gas Fireplace Control* - 1x (connected via Wink Hub)
 * [Foscam FI9800P](http://www.amazon.com/Wireless-Foscam-FI9800P-Waterproof-Detection/dp/B0173Z3NG2?ie=UTF8&psc=1&redirect=true&ref_=oh_aui_detailpage_o02_s01) - 1x
