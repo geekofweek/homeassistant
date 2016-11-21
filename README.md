@@ -1,7 +1,7 @@
 # Home Assistant
 Example [Home Assistant](https://home-assistant.io) Configs
 
-Home Assistant Version: 0.32.3
+Home Assistant Version: 0.33
 
 #Devices
 
@@ -31,6 +31,7 @@ Home Assistant Version: 0.32.3
 
 * [Ring Doorbell](http://www.amazon.com/Ring-Wi-Fi-Enabled-Video-Doorbell/dp/B00TZAO9D0/ref=sr_1_4?ie=UTF8&qid=1461377085&sr=8-4&keywords=ring+doorbell)
 * [Wink Relay](http://www.wink.com/products/wink-relay-touchscreen-controller/)
+* [Harmony Hub](https://www.amazon.com/Logitech-Harmony-Companion-Control-Entertainment/dp/B00N3RFC4G/ref=sr_1_2?s=aht&ie=UTF8&qid=1479756420&sr=1-2&keywords=harmony+hub)
 * [Quirky + GE Aros Window AC](http://www.amazon.com/Quirky-Aros-Smart-Window-Conditioner/dp/B00IDXGIAC?ie=UTF8&psc=1&redirect=true&ref_=oh_aui_detailpage_o03_s01)
 
 # Interface
