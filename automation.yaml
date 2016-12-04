@@ -367,6 +367,12 @@
       entity_id: cover.garage_door
     - service: homeassistant.turn_off
       entity_id: input_boolean.interior_holiday, input_boolean.office_rainbow, input_boolean.livingroom_rainbow, input_boolean.front_porch_rainbow
+    - service: media_player.turn_off
+      entity_id: media_player.media_center, media_player.living_room_sp, media_player.dining_room, media_player.kitchen, media_player.bathroom, media_player._REDACTED_s_office, media_player._REDACTED_s_office, media_player.basement
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.remote
+        option: "PowerOff"
 
         ##########################################################
         ## Close Garage Door when _REDACTED_ Leaves
@@ -553,7 +559,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.dark_sky_temperature
-      below: 68
+      below: 66
 
   action:
     - service: homeassistant.turn_off
@@ -568,7 +574,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.dark_sky_temperature
-      above: 69
+      above: 65
 
   action:
     - service: homeassistant.turn_on
@@ -915,6 +921,26 @@
       entity_id: light.garage_light
       data:
        brightness: 255
+
+        ##########################################################
+        ## Turn off Garage Light after an Hour
+        ########################################################
+
+- alias: Turn off Garage Light after an Hour
+
+  trigger:
+    - platform: state
+      entity_id: light.garage_light
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 60
+        seconds: 0
+
+  action:
+    - service: light.turn_off
+      entity_id: light.garage_light
 
         ##########################################################
         ## Close Garage Door after 30 Mins
@@ -1667,7 +1693,7 @@
   trigger:
     - platform: sun
       event: 'sunset'
-      offset: '-00:20:00'
+      offset: '-00:30:00'
 
   condition:
     - condition: state
@@ -1685,7 +1711,7 @@
       entity_id: group._REDACTED_office, group.stairs
       data:
         transition: 900
-        brightness: 75
+        brightness: 255
 
         ##########################################################
         ## Turn On/Off First Floor Lights During Rain
@@ -1696,7 +1722,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.dark_sky_precip_intensity
-      above: 2
+      above: 1
 
   condition:
     - condition: state
@@ -1719,7 +1745,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: group.living_room_lamps, light.kitchen_cabinets, light.dining_room_table
+      entity_id: group.living_room_lamps, light.kitchen_cabinets, light.dining_room_table, light.media_center_lighting, light.hallway_light
       data:
         xy_color: [ 0.5134, 0.4149 ]
         brightness: 50
@@ -1738,7 +1764,7 @@
 
   action:
     - service: light.turn_off
-      entity_id: group.living_room_lamps, light.kitchen_cabinets, light.dining_room_table
+      entity_id: group.living_room_lamps, light.kitchen_cabinets, light.dining_room_table, light.media_center_lighting, light.hallway_light
 
         ##########################################################
         ## Turn On/Off _REDACTED_ Office During Rain
@@ -1749,7 +1775,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.dark_sky_precip_intensity
-      above: 2
+      above: 1
 
   condition:
     - condition: state
@@ -1796,7 +1822,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.dark_sky_precip_intensity
-      above: 2
+      above: 1
 
   condition:
     - condition: state
@@ -2048,6 +2074,7 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
+      after: '15:00'
       before: '23:59'
     - condition: state
       entity_id: input_select.holiday
@@ -2079,6 +2106,7 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
+      after: '15:00'
       before: '23:59'
     - condition: state
       entity_id: input_select.holiday
@@ -3271,8 +3299,8 @@
       state: 'on'
       for:
         hours: 0
-        minutes: 0
-        seconds: 30
+        minutes: 1
+        seconds: 0
 
   action:
     - service: lock.lock
@@ -3287,6 +3315,12 @@
       entity_id: cover.garage_door
     - service: homeassistant.turn_off
       entity_id: input_boolean.interior_holiday, input_boolean.office_rainbow, input_boolean.livingroom_rainbow, input_boolean.front_porch_rainbow
+    - service: media_player.turn_off
+      entity_id: media_player.media_center, media_player.living_room_sp, media_player.dining_room, media_player.kitchen, media_player.bathroom, media_player._REDACTED_s_office, media_player._REDACTED_s_office, media_player.basement
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.remote
+        option: "PowerOff"
 
 - alias: Reset Bedtime Switch
 
@@ -3487,6 +3521,33 @@
   action:
     - service: scene.turn_on
       entity_id: scene.vacation_enable_automation
+
+      #################################################################
+      ## Remote
+      #################################################################
+
+- alias: 'Remote external update Media Center'
+
+  trigger:
+    platform: state
+    entity_id: remote.media_center
+
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.remote
+        option: >
+          {{ states.remote.media_center.attributes.current_activity }}
+
+- alias: 'Remote start activity from input select media center'
+
+  trigger:
+    platform: state
+    entity_id: input_select.remote
+
+  action:
+    - service: script.turn_on
+      entity_id: script.input_select_harmony
 
         ##########################################################
         ## Notifications

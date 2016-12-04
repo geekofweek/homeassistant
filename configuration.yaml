@@ -1,17 +1,17 @@
 homeassistant:
   # Name of the location where Home Assistant is running
   name: Home
-  
+
   # Location required to calculate the time the sun rises and sets
   latitude: _REDACTED_
   longitude: _REDACTED_
-  
-  # Impacts weather/sunrise data (altitude above sea level) 
+
+  # Impacts weather/sunrise data (altitude above sea level)
   elevation: _REDACTED_
-  
+
   # 'metric' for the metric system, 'imperial' for the imperial system
   unit_system: imperial
-  
+
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: America/Chicago
 
@@ -48,7 +48,7 @@ http:
   ssl_key: _REDACTED_
   trusted_networks:
     - 127.0.0.1
-    - _REDACTED_
+    - _REDACTED_/24
 
 #################################################################
 ## Components
@@ -63,7 +63,7 @@ light:
   host: _REDACTED_
   allow_unreachable: true
   scan_interval: 10
-  
+
 emulated_hue:
   host_ip: _REDACTED_
   listen_port: 8300
@@ -73,13 +73,27 @@ emulated_hue:
   expose_by_default: false
 
 media_player:
-  platform: plex
+  - platform: plex
+  - platform: sonos
+    hosts:
+      - _REDACTED_
+      - _REDACTED_
+      - _REDACTED_
+      - _REDACTED_
+      - _REDACTED_
+      - _REDACTED_
+      - _REDACTED_
+      - _REDACTED_
+
+remote:
+  - platform: harmony
+    name: Media Center
+    host: _REDACTED_
 
 ifttt:
   key: _REDACTED_
 
 device_tracker:
-  - platform: locative
   - platform: asuswrt
     host: _REDACTED_
     username: _REDACTED_
@@ -87,8 +101,8 @@ device_tracker:
     track_new_devices: no
     interval_seconds: 12
     consider_home: 180
+  - platform: locative
 
-  
 cover:
   platform: myq
   name: Garage Door
@@ -107,7 +121,7 @@ camera:
 wink:
   email: _REDACTED_
   password: _REDACTED_
-  client_id: quirky_wink_android_app
+  client_id: _REDACTED_
   client_secret: _REDACTED_
 
 recorder:
@@ -117,7 +131,7 @@ ios:
 
 notify:
   - platform: ios
-  
+
 sensor:
   platform: speedtest
   monitored_conditions:
@@ -152,7 +166,7 @@ sensor 2:
 
 sensor 3:
   platform: cpuspeed
-  name: CPU 
+  name: CPU
 
 sensor 4:
   platform: systemmonitor
@@ -171,7 +185,7 @@ sensor 5:
   password: _REDACTED_
   server: _REDACTED_
 
-sensor 6:  
+sensor 6:
   platform: template
   sensors:
     back_door_sensor_batt:
@@ -202,6 +216,13 @@ sensor 6:
       value_template: '{{ states.lock.basement_door.attributes.battery_level }}'
       friendly_name: 'Basement Door Lock'
       unit_of_measurement: '%'
+
+sensor 7:
+  platform: template
+  sensors:
+    media_center:
+      value_template: '{{ states.remote.media_center.attributes.current_activity }}'
+      friendly_name: 'Media Center'
 
 #################################################################
 ## Zones
@@ -253,3 +274,4 @@ input_boolean: !include input_boolean.yaml
 
 input_select: !include input_select.yaml
 
+script: !include scripts.yaml

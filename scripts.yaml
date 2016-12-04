@@ -1,0 +1,32 @@
+#################################################################
+## Scripts
+#################################################################
+
+input_select_harmony:
+  alias: "Start Remote activity from input select"
+  sequence:
+      service: remote.turn_on
+      data_template:
+        entity_id: remote.media_center
+        activity: >
+          {% if is_state("input_select.remote", "PowerOff") %}
+              -1
+          {% elif is_state("input_select.remote", "Watch TV") %}
+              22106204
+          {% elif is_state("input_select.remote", "Watch Netflix") %}
+              22107142
+          {% elif is_state("input_select.remote", "Watch Amazon") %}
+              22107067
+          {% elif is_state("input_select.remote", "Watch Over the Air TV") %}
+              22109519
+          {% elif is_state("input_select.remote", "Play Xbox One") %}
+              22107236
+          {% elif is_state("input_select.remote", "Play Xbox 360") %}
+              22107394
+          {% elif is_state("input_select.remote", "Play Wii U") %}
+              22107302
+          {% elif is_state("input_select.remote", "Play Sonos") %}
+              22815026
+          {% elif is_state("input_select.remote", "Turn on Receiver") %}
+              22107111
+          {% endif %}

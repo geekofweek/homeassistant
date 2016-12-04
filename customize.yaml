@@ -67,6 +67,8 @@
     friendly_name: Mac Pro
 
 #doors
+#  garage_door.garage_door:
+#    icon: mdi:car
   cover.garage_door:
     icon: mdi:car
 
@@ -125,6 +127,7 @@
   group.outdoor_lighting:
     icon: mdi:nature
   group.living_room_lamps:
+#    icon: mdi:lightbulb
     icon: mdi:lamp
   group._REDACTED_office_ceiling:
     icon: mdi:lightbulb
@@ -197,7 +200,7 @@
     friendly_name: Dining Room Humidity
   sensor.main_floor_temperature:
     friendly_name: Dining Room Temperature
-     
+
 #switches
   switch.fireplace:
     icon: mdi:fire
@@ -343,6 +346,8 @@
     hidden: true
 
 #Wink Ecobee
+  climate.main_floor_2:
+    hidden: true
   sensor.bedroom_temperature_2:
     hidden: true
   sensor.kitchen_temperature_2:
@@ -379,7 +384,7 @@
     hidden: true
   binary_sensor._REDACTED_3:
     hidden: true
-   
+
 #Wink Hue Bulbs
   light.back_door_left_2:
     hidden: true
@@ -435,6 +440,8 @@
     hidden: true
   light.basement_light_4_2:
     hidden: true
+  light.media_center_lighting_2:
+    hidden: true
 
 #Amazon Echo Integration
   input_boolean.office_rainbow:
@@ -470,6 +477,30 @@
     icon: mdi:shield-outline
     friendly_name: Door Security Enabled
 
+#sonos
+  media_player.media_center:
+    icon: mdi:speaker
+    freindly_name: Media Center Sonos
+  media_player.living_room_sp:
+    icon: mdi:speaker
+  media_player.dining_room:
+    icon: mdi:speaker
+  media_player.kitchen:
+    icon: mdi:speaker
+  media_player.bathroom:
+    icon: mdi:speaker
+  media_player._REDACTED_s_office:
+    icon: mdi:speaker
+  media_player._REDACTED_s_office:
+    icon: mdi:speaker
+  media_player.basement:
+    icon: mdi:speaker
+
+#remote
+  sensor.media_center:
+    icon: mdi:television
+    freindly_name: Media Center Remote
+
 #Christmas Tree Automations
   automation.turn_on_christmas_tree_at_sunset:
     friendly_name: On at Sunset
@@ -480,5 +511,3 @@
   automation.return_home_turn_on_christmas_tree:
     friendly_name: Turn on when Home
     icon: mdi:pine-tree
-
-
