@@ -4,7 +4,6 @@
 
 #thermostat
   climate.main_floor:
-#   entity_picture: /local/ecobee.jpeg
     friendly_name: Thermostat
   automation.turn_thermostat_on_summer:
     icon: mdi:sunglasses
@@ -28,26 +27,33 @@
   group.winter_mode:
     icon: mdi:snowman
     friendly_name: Winter Mode Enabled
+  sensor.main_floor_humidity:
+    icon: mdi:water-percent
+    friendly_name: Humidity
+  sensor.main_floor_temperature:
+    friendly_name: Dining Room Temperature
+  binary_sensor.main_floor_occupancy:
+    friendly_name: Dining Room Occupancy
 
 #devices
-  device_tracker._REDACTED_s_iphone:
+  device_tracker._REDACTED_:
     icon: mdi:human-male
     friendly_name: _REDACTED_
+  device_tracker._REDACTED_s_iphone:
+    icon: mdi:cellphone-iphone
+    friendly_name: _REDACTED_'s iPhone (iOS)
   device_tracker._REDACTED_siphone:
     icon: mdi:cellphone-iphone
     friendly_name: _REDACTED_'s iPhone (Router)
-  device_tracker._REDACTED_:
-    icon: mdi:cellphone-iphone
-    friendly_name: _REDACTED_'s iPhone (Locative)
   device_tracker._REDACTED_s_iphone:
+    icon: mdi:cellphone-iphone
+    friendly_name: _REDACTED_'s iPhone (iOS)
+  device_tracker._REDACTED_s_iphone2:
+    icon: mdi:cellphone-iphone
+    friendly_name: _REDACTED_'s iPhone (Router)
+  device_tracker._REDACTED_:
     icon: mdi:human-female
     friendly_name: _REDACTED_
-  device_tracker._REDACTED_siphone:
-    icon: mdi:cellphone-iphone
-    friendly_name: _REDACTED_'s iPhone (Router)
-  device_tracker._REDACTED_:
-    icon: mdi:cellphone-iphone
-    friendly_name: _REDACTED_'s iPhone (Locative)
   device_tracker._REDACTED_sapplewatch:
     icon: mdi:watch
   device_tracker._REDACTED_sapplewatch:
@@ -67,13 +73,13 @@
     friendly_name: Mac Pro
 
 #doors
-#  garage_door.garage_door:
-#    icon: mdi:car
   cover.garage_door:
     icon: mdi:car
 
 #Wink Garage Door
   cover.garage_door_2:
+    hidden: true
+  cover.myq:
     hidden: true
 
 #rooms
@@ -127,7 +133,6 @@
   group.outdoor_lighting:
     icon: mdi:nature
   group.living_room_lamps:
-#    icon: mdi:lightbulb
     icon: mdi:lamp
   group._REDACTED_office_ceiling:
     icon: mdi:lightbulb
@@ -143,16 +148,15 @@
     friendly_name: Back Door Lock
   lock.basement_door:
     friendly_name: Basement Door Lock
+  group.all_locks:
+    friendly_name: Door Locks
 
 #sensors
   binary_sensor.front_door:
-    icon: mdi:home
     friendly_name: Front Door Open
   binary_sensor.back_door:
-    icon: mdi:home
     friendly_name: Back Door Open
   binary_sensor.basement_door:
-    icon: mdi:home
     friendly_name: Basement Door Open
   sensor.cpu_use:
     friendly_name: CPU Usage
@@ -166,21 +170,6 @@
     icon: mdi:speedometer
   sensor.speedtest_upload:
     icon: mdi:speedometer
-  binary_sensor.main_floor_occupancy:
-    icon: mdi:account
-    friendly_name: Dining Room Occupancy
-  binary_sensor.living_room_occupancy:
-    icon: mdi:account
-  binary_sensor.kitchen_occupancy:
-    icon: mdi:account
-  binary_sensor.bedroom_occupancy:
-    icon: mdi:account
-  binary_sensor.office_occupancy:
-    icon: mdi:account
-  binary_sensor._REDACTED_office_occupancy:
-    icon: mdi:account
-  binary_sensor.guest_bedroom_occupancy:
-    icon: mdi:account
   sensor.back_door_sensor_batt:
     icon: mdi:battery
   sensor.basement_door_sensor_batt:
@@ -195,11 +184,23 @@
     icon: mdi:battery
   sensor.basement_door_lock_batt:
     icon: mdi:battery
-  sensor.main_floor_humidity:
-    icon: mdi:water-percent
-    friendly_name: Dining Room Humidity
-  sensor.main_floor_temperature:
-    friendly_name: Dining Room Temperature
+  sensor.basement_drain_water_sensor_batt:
+    icon: mdi:battery
+  sensor.sump_pump_water_sensor_batt:
+    icon: mdi:battery
+  binary_sensor.wink_hub_hub:
+    friendly_name: Wink Hub
+    icon: mdi:ethernet
+  binary_sensor.wink_relays_bottom_button_hub:
+    friendly_name: Wink Relay
+    icon: mdi:ethernet
+  binary_sensor.philips_hue_hub:
+    friendly_name: Hue Hub
+    icon: mdi:ethernet
+  binary_sensor.basement_drain_water_sensor_liquid_detected:
+    friendly_name: Basement Drain Water Sensor
+  binary_sensor.sump_pump_water_sensor_liquid_detected:
+    friendly_name: Sump Pump Water Sensor
 
 #switches
   switch.fireplace:
@@ -306,7 +307,7 @@
     friendly_name: Apple TV
   media_player.plex_for_vizio_vizio_mtk:
     friendly_name: Office TV
-  sensor._REDACTED_:
+  sensor.gingerflix:
     icon: mdi:theater
   media_player.roku_hd_18c23w020195:
     friendly_name: Guest Bedroom Roku
@@ -319,6 +320,10 @@
   group.hue_lights:
     hidden: true
   group.wink_lights:
+    hidden: true
+  group.hue_lights_exterior:
+    hidden: true
+  group.wink_lights_exterior:
     hidden: true
   scene.security:
     hidden: true
@@ -360,6 +365,10 @@
     hidden: true
   sensor.guest_bedroom_temperature_2:
     hidden: true
+  sensor.basement_temperature_2:
+    hidden: true
+  sensor.bathroom_temperature_2:
+    hidden: true
   binary_sensor.bedroom:
     hidden: true
   binary_sensor.kitchen:
@@ -371,6 +380,10 @@
   binary_sensor._REDACTED_office:
     hidden: true
   binary_sensor.guest_bedroom:
+    hidden: true
+  binary_sensor.basement:
+    hidden: true
+  binary_sensor.bathroom:
     hidden: true
   binary_sensor._REDACTED_:
     hidden: true
@@ -501,13 +514,11 @@
     icon: mdi:television
     freindly_name: Media Center Remote
 
-#Christmas Tree Automations
-  automation.turn_on_christmas_tree_at_sunset:
-    friendly_name: On at Sunset
-    icon: mdi:pine-tree
-  automation.turn_off_christmas_tree_at_sunrise:
-    friendly_name: Off at Sunrise
-    icon: mdi:pine-tree
-  automation.return_home_turn_on_christmas_tree:
-    friendly_name: Turn on when Home
-    icon: mdi:pine-tree
+#basement Heater
+  switch.basement_heater:
+    icon: mdi:radiator
+
+#wink workaround
+  sensor.wink_status_logfile:
+    icon: mdi:checkbox-marked-circle-outline
+    friendly_name: Wink Status

@@ -34,7 +34,7 @@ sun:
 conversation:
 
 # Enables support for tracking state changes over time.
-history:
+history: !include history.yaml
 
 # Discover some devices automatically
 discovery:
@@ -46,9 +46,12 @@ http:
   api_password: _REDACTED_
   ssl_certificate: _REDACTED_
   ssl_key: _REDACTED_
+  base_url: _REDACTED_
   trusted_networks:
     - 127.0.0.1
     - _REDACTED_/24
+  ip_ban_enabled: True
+  login_attempts_threshold: 5
 
 #################################################################
 ## Components
@@ -62,7 +65,6 @@ light:
   platform: hue
   host: _REDACTED_
   allow_unreachable: true
-  scan_interval: 10
 
 emulated_hue:
   host_ip: _REDACTED_
@@ -90,6 +92,11 @@ remote:
     name: Media Center
     host: _REDACTED_
 
+ios:
+
+notify:
+  - platform: ios
+
 ifttt:
   key: _REDACTED_
 
@@ -100,7 +107,6 @@ device_tracker:
     password: _REDACTED_
     track_new_devices: no
     interval_seconds: 12
-    consider_home: 180
   - platform: locative
 
 cover:
@@ -125,12 +131,11 @@ wink:
   client_secret: _REDACTED_
 
 recorder:
-  purge_days: 30
+  purge_days: 14
+  db_url: mysql://_REDACTED_
 
-ios:
-
-notify:
-  - platform: ios
+tts:
+  - platform: google
 
 sensor:
   platform: speedtest
@@ -147,7 +152,6 @@ sensor 2:
     - minutely_summary
     - hourly_summary
     - daily_summary
-#    - icon
     - nearest_storm_distance
     - nearest_storm_bearing
     - precip_type
@@ -180,7 +184,7 @@ sensor 5:
   platform: plex
   name: _REDACTED_
   host: _REDACTED_
-  port: 32400
+  port: _REDACTED_
   username: _REDACTED_
   password: _REDACTED_
   server: _REDACTED_
@@ -216,6 +220,14 @@ sensor 6:
       value_template: '{{ states.lock.basement_door.attributes.battery_level }}'
       friendly_name: 'Basement Door Lock'
       unit_of_measurement: '%'
+    basement_drain_water_sensor_batt:
+      value_template: '{{ states.binary_sensor.basement_drain_water_sensor_liquid_detected.attributes.battery_level }}'
+      friendly_name: 'Basement Drain Water Sensor'
+      unit_of_measurement: '%'
+    sump_pump_water_sensor_batt:
+      value_template: '{{ states.binary_sensor.sump_pump_water_sensor_liquid_detected.attributes.battery_level }}'
+      friendly_name: 'Sump Pump Water Sensor'
+      unit_of_measurement: '%'
 
 sensor 7:
   platform: template
@@ -223,6 +235,12 @@ sensor 7:
     media_center:
       value_template: '{{ states.remote.media_center.attributes.current_activity }}'
       friendly_name: 'Media Center'
+
+sensor 8:
+  - platform: command_line
+    name: Wink Status Logfile
+    command: "/home/_REDACTED_/.homeassistant/winkLogCheck.sh"
+    scan_interval: 60
 
 #################################################################
 ## Zones

@@ -10,7 +10,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       from: 'not_home'
       to: 'home'
 
@@ -37,7 +37,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       from: 'not_home'
       to: 'home'
 
@@ -117,7 +117,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       from: 'not_home'
       to: 'home'
 
@@ -145,7 +145,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       from: 'not_home'
       to: 'home'
 
@@ -225,7 +225,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       from: 'not_home'
       to: 'home'
 
@@ -286,7 +286,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       from: 'not_home'
       to: 'home'
 
@@ -362,17 +362,25 @@
     - service: light.turn_off
       entity_id: group.interior_lights
     - service: switch.turn_off
-      entity_id: switch.air_purifier, switch.christmas_tree, switch.lower_backyard_outdoor_lighting, switch.lower_patio_outdoor_lighting, switch.fireplace
+      entity_id: switch.air_purifier, switch.basement_heater, switch.lower_backyard_outdoor_lighting, switch.lower_patio_outdoor_lighting, switch.fireplace
     - service: cover.close_cover
       entity_id: cover.garage_door
     - service: homeassistant.turn_off
       entity_id: input_boolean.interior_holiday, input_boolean.office_rainbow, input_boolean.livingroom_rainbow, input_boolean.front_porch_rainbow
-    - service: media_player.turn_off
-      entity_id: media_player.media_center, media_player.living_room_sp, media_player.dining_room, media_player.kitchen, media_player.bathroom, media_player._REDACTED_s_office, media_player._REDACTED_s_office, media_player.basement
     - service: input_select.select_option
       data:
         entity_id: input_select.remote
         option: "PowerOff"
+    - service: media_player.turn_off
+      entity_id:
+        - media_player.media_center
+        - media_player.living_room_sp
+        - media_player.dining_room
+        - media_player.kitchen
+        - media_player.bathroom
+        - media_player._REDACTED_s_office
+        - media_player._REDACTED_s_office
+        - media_player.basement
 
         ##########################################################
         ## Close Garage Door when _REDACTED_ Leaves
@@ -689,10 +697,10 @@
         transition: 60
 
         ##########################################################
-        ## Turn off Front Porch when Door Closes after 10p
+        ## Turn off Front Porch when Door Closes after Midnight
         ##########################################################
 
-- alias: Turn off Front Porch when Door Closes after 10p
+- alias: Turn off Front Porch when Door Closes after Midnight
 
   trigger:
     - platform: state
@@ -706,7 +714,7 @@
 
   condition:
     - condition: time
-      after: '22:00'
+      after: '23:59'
     - condition: state
       entity_id: input_boolean.door_open_lights_on
       state: 'off'
@@ -1072,7 +1080,7 @@
 
   trigger:
      - platform: state
-       entity_id: device_tracker._REDACTED_s_iphone
+       entity_id: device_tracker._REDACTED_
        from: 'home'
        to: 'not_home'
 
@@ -1144,14 +1152,14 @@
         profile: relax
 
         ##########################################################
-        ## Turn Off Front Porch at 10:00 pm
+        ## Turn Off Front Porch at Midnight
         ##########################################################
 
-- alias: Turn Off Front Porch at 10p
+- alias: Turn Off Front Porch at Midnight
 
   trigger:
    - platform: time
-     after: '22:00'
+     after: '23:59'
 
   condition:
     - condition: state
@@ -1204,7 +1212,7 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       state: 'home'
     - condition: state
       entity_id: sun.sun
@@ -1231,7 +1239,7 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       state: 'home'
     - condition: state
       entity_id: sun.sun
@@ -1246,6 +1254,11 @@
       data:
        brightness: 15
        xy_color: [ 0.5134, 0.4149 ]
+    - service: light.turn_on
+      entity_id: light.hallway
+      data:
+       brightness: 75
+       color_name: red
 
         ##########################################################
         ## Open Garage Door when _REDACTED_ Leaves
@@ -1282,7 +1295,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       from: 'home'
       to: 'not_home'
 
@@ -1334,7 +1347,7 @@
       entity_id: input_boolean.occupancy_air_purifier_on_off_disable
       state: 'off'
     - condition: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       state: 'home'
 
   action:
@@ -1391,6 +1404,30 @@
   action:
     - service: light.turn_off
       entity_id: group._REDACTED_office
+
+        ##########################################################
+        ## Turn on _REDACTED_ Office when Occupied
+        ##########################################################
+
+- alias: Turn on _REDACTED_ Office Light when Occupied
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor._REDACTED_office_occupancy
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: device_tracker._REDACTED_
+      state: 'home'
+
+  action:
+    - service: light.turn_on
+      entity_id: group._REDACTED_office
+      data:
+        transition: 300
+        brightness: 130
 
         ##########################################################
         ## Turn off _REDACTED_ Office when Unoccupied
@@ -1673,7 +1710,7 @@
       entity_id: input_boolean.office_lights_sunset
       state: 'off'
     - condition: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       state: 'home'
 
   action:
@@ -1703,7 +1740,7 @@
       entity_id: input_boolean.office_lights_sunset
       state: 'off'
     - condition: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       state: 'home'
 
   action:
@@ -1788,7 +1825,7 @@
       entity_id: input_boolean.rainy_day_disable
       state: 'off'
     - condition: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       state: 'home'
 
   action:
@@ -1835,7 +1872,7 @@
       entity_id: input_boolean.rainy_day_disable
       state: 'off'
     - condition: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       state: 'home'
 
   action:
@@ -2062,7 +2099,7 @@
         brightness: 255
         color_name: red
 
-- alias: Christmas Lighting Rotate Hour
+- alias: Christmas Lighting Rotate on the Hour
 
   trigger:
     platform: time
@@ -2094,11 +2131,75 @@
         brightness: 255
         color_name: green
 
-- alias: Christmas Lighting Rotate 30 Min
+- alias: Christmas Lighting Rotate 15 mins after the Hour
+
+  trigger:
+    platform: time
+    minutes: 15
+    seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '15:00'
+      before: '23:59'
+    - condition: state
+      entity_id: input_select.holiday
+      state: 'Christmas'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.front_porch_left
+      data:
+        transition: 5
+        brightness: 255
+        color_name: green
+    - service: light.turn_on
+      entity_id: light.front_porch_right
+      data:
+        transition: 5
+        brightness: 255
+        color_name: red
+
+- alias: Christmas Lighting Rotate 30 Mins after the Hour
 
   trigger:
     platform: time
     minutes: 30
+    seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '15:00'
+      before: '23:59'
+    - condition: state
+      entity_id: input_select.holiday
+      state: 'Christmas'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.front_porch_left
+      data:
+        transition: 5
+        brightness: 255
+        color_name: red
+    - service: light.turn_on
+      entity_id: light.front_porch_right
+      data:
+        transition: 5
+        brightness: 255
+        color_name: green
+
+- alias: Christmas Lighting Rotate 45 Mins After the Hour
+
+  trigger:
+    platform: time
+    minutes: 45
     seconds: 0
 
   condition:
@@ -3310,17 +3411,25 @@
     - service: light.turn_off
       entity_id: group.exterior_lights
     - service: switch.turn_off
-      entity_id: switch.air_purifier, switch.christmas_tree, switch.lower_backyard_outdoor_lighting, switch.lower_patio_outdoor_lighting, switch.fireplace
+      entity_id: switch.air_purifier, switch.lower_backyard_outdoor_lighting, switch.lower_patio_outdoor_lighting, switch.fireplace
     - service: cover.close_cover
       entity_id: cover.garage_door
     - service: homeassistant.turn_off
       entity_id: input_boolean.interior_holiday, input_boolean.office_rainbow, input_boolean.livingroom_rainbow, input_boolean.front_porch_rainbow
-    - service: media_player.turn_off
-      entity_id: media_player.media_center, media_player.living_room_sp, media_player.dining_room, media_player.kitchen, media_player.bathroom, media_player._REDACTED_s_office, media_player._REDACTED_s_office, media_player.basement
     - service: input_select.select_option
       data:
         entity_id: input_select.remote
         option: "PowerOff"
+    - service: media_player.turn_off
+      entity_id:
+        - media_player.media_center
+        - media_player.living_room_sp
+        - media_player.dining_room
+        - media_player.kitchen
+        - media_player.bathroom
+        - media_player._REDACTED_s_office
+        - media_player._REDACTED_s_office
+        - media_player.basement
 
 - alias: Reset Bedtime Switch
 
@@ -3392,7 +3501,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       from: 'not_home'
       to: 'vacation'
 
@@ -3413,7 +3522,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       from: 'not_home'
       to: 'lake'
 
@@ -3434,7 +3543,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       from: 'lake'
       to: 'not_home'
 
@@ -3549,9 +3658,13 @@
     - service: script.turn_on
       entity_id: script.input_select_harmony
 
-        ##########################################################
-        ## Notifications
-        ##########################################################
+##########################################################
+## Notifications
+##########################################################
+
+      #################################################################
+      ## Text Notifications
+      #################################################################
 
 - alias: Security Notify
 
@@ -3590,7 +3703,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       from: 'not_home'
       to: 'home'
 
@@ -3609,7 +3722,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       from: 'home'
       to: 'not_home'
 
@@ -3628,7 +3741,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       from: 'not_home'
       to: 'home'
 
@@ -3647,7 +3760,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       from: 'home'
       to: 'not_home'
 
@@ -3718,6 +3831,86 @@
         message: Home Assistant Started
 
 #################################################################
+## Water Sensors
+#################################################################
+
+        ##########################################################
+        ## Send Notification for Water Detected
+        ##########################################################
+
+- alias: Basement Water Sensor Send Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
+      from: 'off'
+      to: 'on'
+
+  action:
+    - service: notify.ios_REDACTED_s_iphone
+      data:
+        message: Water Detected in Basement!
+
+- alias: Sump Pump Water Sensor Send Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.sump_pump_water_sensor_liquid_detected
+      from: 'off'
+      to: 'on'
+
+  action:
+    - service: notify.ios_REDACTED_s_iphone
+      data:
+        message: Water Detected in Sump Pump!
+
+        ##########################################################
+        ## Sound Alarm When Water Detected
+        ##########################################################
+
+- alias: Sound Alarm When Water Detected
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: switch.turn_on
+      entity_id: switch.siren
+
+        ##########################################################
+        ## Flash Lights when Water Detected
+        ##########################################################
+
+- alias: Sound Alarm When Water Detected
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.hue_lights
+      data:
+       brightness: 255
+       color_name: red
+       flash: long
+
+#################################################################
 ## Work Arounds
 #################################################################
 
@@ -3765,7 +3958,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       from: 'home'
       to: 'not_home'
 
@@ -3786,7 +3979,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       from: 'home'
       to: 'not_home'
       for:
@@ -3806,7 +3999,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       from: 'not_home'
       to: 'home'
       for:
@@ -3826,7 +4019,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       from: 'home'
       to: 'not_home'
 
@@ -3847,7 +4040,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       from: 'home'
       to: 'not_home'
       for:
@@ -3867,7 +4060,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_s_iphone
+      entity_id: device_tracker._REDACTED_
       from: 'not_home'
       to: 'home'
       for:
@@ -3894,8 +4087,7 @@
   action:
     - service: device_tracker.see
       data:
-#        dev_id: 297a4cfd7ac04b8b84aae3852a3843e4
-        dev_id: _REDACTED_s_iphone
+        dev_id: _REDACTED_
         location_name: 'home'
 
 - alias: Reset _REDACTED_ Home
@@ -3913,6 +4105,40 @@
   action:
     - service: homeassistant.turn_off
       entity_id: input_boolean._REDACTED_home
+
+        ##########################################################
+        ## Manually Set _REDACTED_ Away
+        ##########################################################
+
+- alias: Manually Set _REDACTED_ Away
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.manual_REDACTED_away
+      from: 'off'
+      to: 'on'
+
+  action:
+    - service: device_tracker.see
+      data:
+        dev_id: _REDACTED_
+        location_name: 'not_home'
+
+- alias: Reset Manually Set _REDACTED_ Away
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.manual_REDACTED_away
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.manual_REDACTED_away
 
         ##########################################################
         ## Manually Set _REDACTED_ Home
@@ -3929,8 +4155,7 @@
   action:
     - service: device_tracker.see
       data:
-#        dev_id: 66bbbaa78a404e5cb16a928a222f50fb
-        dev_id: _REDACTED_s_iphone
+        dev_id: _REDACTED_
         location_name: 'home'
 
 - alias: Reset _REDACTED_ Home
@@ -3948,6 +4173,40 @@
   action:
     - service: homeassistant.turn_off
       entity_id: input_boolean._REDACTED_home
+
+        ##########################################################
+        ## Manually Set _REDACTED_ Away
+        ##########################################################
+
+- alias: Manually Set _REDACTED_ Away
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.manual_REDACTED_away
+      from: 'off'
+      to: 'on'
+
+  action:
+    - service: device_tracker.see
+      data:
+        dev_id: _REDACTED_
+        location_name: 'not_home'
+
+- alias: Reset _REDACTED_ Home
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.manual_REDACTED_away
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.manual_REDACTED_away
 
         ##########################################################
         ## Turn off Back Patio Twice
@@ -4010,19 +4269,19 @@
       entity_id: switch.lower_backyard_outdoor_lighting
 
 ##########################################################
-## Christmas Tree
+## Basement Heater
 ##########################################################
 
         ##########################################################
-        ## Turn On Christmas Tree at Sunset
+        ## Turn on Basement Heater when Cold
         ##########################################################
 
-- alias: Turn On Christmas Tree at Sunset
+- alias: Turn on Basement Heater when Cold
 
   trigger:
-    - platform: sun
-      event: 'sunset'
-      offset: '-00:30:00'
+    - platform: numeric_state
+      entity_id: sensor.dark_sky_temperature
+      below: 32
 
   condition:
     - condition: state
@@ -4031,28 +4290,28 @@
 
   action:
     - service: switch.turn_on
-      entity_id: switch.christmas_tree
+      entity_id: switch.basement_heater
 
         ##########################################################
-        ## Turn off Christmas Tree at Sunrise
+        ## Turn off Basement Heater when Warm
         ##########################################################
 
-- alias: Turn off Christmas Tree at Sunrise
+- alias: Turn off Basement Heater when Warm
 
   trigger:
-    - platform: sun
-      event: 'sunrise'
-      offset: '+00:20:00'
+    - platform: numeric_state
+      entity_id: sensor.dark_sky_temperature
+      above: 32
 
   action:
     - service: switch.turn_off
-      entity_id: switch.christmas_tree
+      entity_id: switch.basement_heater
 
         ##########################################################
-        ## Return Home Turn on Christmas Tree
+        ## Turn on Basement Heater when Home
         ##########################################################
 
-- alias: Return Home Turn on Christmas Tree
+- alias: Turn on Basement Heater when Home
 
   trigger:
     - platform: state
@@ -4064,14 +4323,28 @@
     - condition: state
       entity_id: input_boolean.home_away
       state: 'off'
-    - condition: state
-      entity_id: switch.christmas_tree
-      state: 'off'
+    - condition: numeric_state
+      entity_id: sensor.dark_sky_temperature
+      below: 32
 
   action:
     - service: switch.turn_on
-      entity_id: switch.christmas_tree
+      entity_id: switch.basement_heater
 
 ##########################################################
 ## POC
 ##########################################################
+
+- alias: Wink Failed LogFile
+
+  trigger:
+    - platform: state
+      entity_id: sensor.wink_status_logfile
+      from: 'ok'
+      to: 'failed'
+
+
+  action:
+    - service: notify.ios_REDACTED_s_iphone
+      data:
+        message: Wink Connection has Failed
