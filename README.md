@@ -1,7 +1,7 @@
 # Home Assistant
 Example [Home Assistant](https://home-assistant.io) Configs
 
-Home Assistant Version: 0.34.1
+Home Assistant Version: 0.35.3
 
 #Devices
 
@@ -41,6 +41,13 @@ Home Assistant Version: 0.34.1
 # Interface
 ![UI](images/home-screenshot.jpg)
 ![UI](images/lights-screenshot.jpg)
+![UI](images/living-room-screenshot.jpg)
+![UI](images/dining-screenshot.jpg)
+![UI](images/bedrooms-screenshot.jpg)
+![UI](images/bath-screenshot.jpg)
+![UI](images/offices-screenshot.jpg)
+![UI](images/basement-screenshot.jpg)
+![UI](images/outdoor-screenshot.jpg)
 ![UI](images/automation-screenshot.jpg)
 ![UI](images/sensors-screenshot.jpg)
 ![UI](images/media-screenshot.jpg)
