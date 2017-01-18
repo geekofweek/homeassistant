@@ -140,6 +140,25 @@
     entities:
       - camera.garage_camera
 
+  traffic:
+    name: Traffic
+    view: yes
+    icon: mdi:car
+    entities:
+      - group.travel_times
+      - group.traffic_camera_feeds
+      - camera._REDACTED_
+
+  Traffic Camera Feeds:
+    - weblink._REDACTED_
+    - weblink._REDACTED_
+    - weblink._REDACTED_
+    - weblink._REDACTED_
+    - weblink._REDACTED_
+    - weblink._REDACTED_
+    - weblink._REDACTED_
+    - weblink._REDACTED_
+
   Automation Override:
     - input_boolean.disable_lock_unlock_doors
     - input_boolean.disable_auto_garage
@@ -405,6 +424,24 @@
     - lock.back_door
     - lock.basement_door
 
+  _REDACTED_ Door Codes:
+    - binary_sensor._REDACTED_front_door_code
+    - binary_sensor._REDACTED_back_door_code
+    - binary_sensor._REDACTED_basement_door_code
+
+  _REDACTED_ Door Codes:
+    - binary_sensor._REDACTED_front_door_code
+    - binary_sensor._REDACTED_back_door_code
+    - binary_sensor._REDACTED_basement_door_code
+
+  Door Codes:
+    - binary_sensor._REDACTED_front_door_code
+    - binary_sensor._REDACTED_back_door_code
+    - binary_sensor._REDACTED_basement_door_code
+    - binary_sensor._REDACTED_front_door_code
+    - binary_sensor._REDACTED_back_door_code
+    - binary_sensor._REDACTED_basement_door_code
+
   Occupancy:
     - binary_sensor.living_room_occupancy
     - binary_sensor.main_floor_occupancy
@@ -439,14 +476,18 @@
     - sun.sun
     - sensor.dark_sky_temperature
     - sensor.dark_sky_summary
+#    - sensor.dark_sky_minutely_summary
+#    - sensor.dark_sky_hourly_summary
+#    - sensor.dark_sky_daily_summary
     - sensor.dark_sky_apparent_temperature
     - sensor.dark_sky_precip
     - sensor.dark_sky_precip_probability
     - sensor.dark_sky_precip_intensity
     - sensor.dark_sky_humidity
     - sensor.dark_sky_dew_point
-    - sensor.dark_sky_cloud_ciover
+    - sensor.dark_sky_cloud_cover
     - sensor.dark_sky_nearest_storm_distance
+#    - sensor.weather_nearest_storm_bearing
     - sensor.dark_sky_wind_speed
     - sensor.dark_sky_wind_bearing
     - sensor.dark_sky_visibility
@@ -468,6 +509,13 @@
     - binary_sensor.front_door
     - binary_sensor.back_door
     - binary_sensor.basement_door
+
+  Travel Times:
+    - sensor._REDACTED_to_home
+    - sensor._REDACTED_to_home
+    - sensor._REDACTED_to_REDACTED_
+    - sensor._REDACTED_to_REDACTED_
+    - sensor._REDACTED_to_REDACTED_
 
   speedtest:
     - sensor.speedtest_ping
