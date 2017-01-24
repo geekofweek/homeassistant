@@ -1,0 +1,118 @@
+#################################################################
+## Sensors
+#################################################################
+
+  - platform: speedtest
+    monitored_conditions:
+      - ping
+      - download
+      - upload
+  - platform: darksky
+    api_key: _REDACTED_
+    monitored_conditions:
+      - summary
+      - minutely_summary
+      - hourly_summary
+      - daily_summary
+      - nearest_storm_distance
+      - nearest_storm_bearing
+      - precip_type
+      - precip_intensity
+      - precip_probability
+      - temperature
+      - apparent_temperature
+      - dew_point
+      - wind_speed
+      - wind_bearing
+      - cloud_cover
+      - humidity
+      - pressure
+      - visibility
+      - ozone
+  - platform: cpuspeed
+    name: CPU
+  - platform: systemmonitor
+    resources:
+      - type: memory_free
+      - type: memory_use_percent
+      - type: processor_use
+      - type: since_last_boot
+  - platform: plex
+    name: _REDACTED_
+    host: _REDACTED_
+    port: _REDACTED_
+    username: _REDACTED_
+    password: _REDACTED_
+    server: _REDACTED_
+  - platform: template
+    sensors:
+      back_door_sensor_batt:
+        value_template: '{{ states.binary_sensor.back_door.attributes.battery_level }}'
+        friendly_name: 'Back Door Sensor'
+        unit_of_measurement: '%'
+      basement_door_sensor_batt:
+        value_template: '{{ states.binary_sensor.basement_door.attributes.battery_level }}'
+        friendly_name: 'Basement Door Sensor'
+        unit_of_measurement: '%'
+      front_door_sensor_batt:
+        value_template: '{{ states.binary_sensor.front_door.attributes.battery_level }}'
+        friendly_name: 'Front Door Sensor'
+        unit_of_measurement: '%'
+      siren_batt:
+        value_template: '{{ states.switch.siren.attributes.battery_level }}'
+        friendly_name: 'Siren'
+        unit_of_measurement: '%'
+      front_door_lock_batt:
+        value_template: '{{ states.lock.front_door.attributes.battery_level }}'
+        friendly_name: 'Front Door Lock'
+        unit_of_measurement: '%'
+      back_door_lock_batt:
+        value_template: '{{ states.lock.back_door.attributes.battery_level }}'
+        friendly_name: 'Back Door Lock'
+        unit_of_measurement: '%'
+      basement_door_lock_batt:
+        value_template: '{{ states.lock.basement_door.attributes.battery_level }}'
+        friendly_name: 'Basement Door Lock'
+        unit_of_measurement: '%'
+      basement_drain_water_sensor_batt:
+        value_template: '{{ states.binary_sensor.basement_drain_water_sensor_liquid_detected.attributes.battery_level }}'
+        friendly_name: 'Basement Drain Water Sensor'
+        unit_of_measurement: '%'
+      sump_pump_water_sensor_batt:
+        value_template: '{{ states.binary_sensor.sump_pump_water_sensor_liquid_detected.attributes.battery_level }}'
+        friendly_name: 'Sump Pump Water Sensor'
+        unit_of_measurement: '%'
+  - platform: template
+    sensors:
+      media_center:
+        value_template: '{{ states.remote.media_center.attributes.current_activity }}'
+        friendly_name: 'Media Center'
+  - platform: google_travel_time
+    name: _REDACTED_ To Home
+    api_key: _REDACTED_
+    origin: device_tracker._REDACTED_
+    destination: zone.home
+  - platform: google_travel_time
+    name: _REDACTED_ To Home
+    api_key: _REDACTED_
+    origin: device_tracker._REDACTED_
+    destination: zone.home
+  - platform: google_travel_time
+    name: _REDACTED_ To _REDACTED_
+    api_key: _REDACTED_
+    origin: device_tracker._REDACTED_
+    destination: zone.work_2
+  - platform: google_travel_time
+    name: _REDACTED_ To _REDACTED_
+    api_key: _REDACTED_
+    origin: device_tracker._REDACTED_
+    destination: zone.work_3
+  - platform: google_travel_time
+    name: _REDACTED_ To _REDACTED_
+    api_key: _REDACTED_
+    origin: device_tracker._REDACTED_
+    destination: zone.work
+  - platform: command_line
+    name: Wink Status Logfile
+    command: "/home/_REDACTED_/.homeassistant/winkLogCheck.sh"
+    scan_interval: 60

@@ -1250,14 +1250,14 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.dining_room_table, light.kitchen_cabinets, group.living_room, light.bahtroom_vanity
+      entity_id: light.dining_room_table, light.kitchen_cabinets, light.kitchen_sink, group.living_room_lights, light.bahtroom_vanity
       data:
-       brightness: 15
+       brightness: 25
        xy_color: [ 0.5134, 0.4149 ]
     - service: light.turn_on
       entity_id: light.hallway
       data:
-       brightness: 75
+       brightness: 50
        color_name: red
 
         ##########################################################
@@ -2077,18 +2077,22 @@
       to: 'home'
 
   condition:
-    - condition: state
-      entity_id: input_boolean.home_away
-      state: 'off'
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: state
-      entity_id: input_boolean._REDACTED_away
-      state: 'on'
-    - condition: state
-      entity_id: input_boolean._REDACTED_away
-      state: 'on'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.home_away
+        state: 'off'
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: input_boolean._REDACTED_away
+            state: 'on'
+          - condition: state
+            entity_id: input_boolean._REDACTED_away
+            state: 'on'
 
   action:
     - service: switch.turn_on
