@@ -207,7 +207,6 @@
     - device_tracker._REDACTED_smacbookpro
     - device_tracker._REDACTED_smacbookair
     - device_tracker._REDACTED_smacbookair
-    - device_tracker._REDACTED_smacpro
 
   Living Room:
     - group.living_room_lamps
@@ -303,7 +302,9 @@
     - lock.basement_door
     - binary_sensor.basement_door
     - binary_sensor.basement_occupancy
+    - binary_sensor.laundry_room_occupancy
     - sensor.basement_temperature
+    - sensor.laundry_room_temperature
 
   Basement Lighting:
     - light.basement_stairs
@@ -452,14 +453,11 @@
     - binary_sensor._REDACTED_office_occupancy
     - binary_sensor.guest_bedroom_occupancy
     - binary_sensor.basement_occupancy
+    - binary_sensor.laundry_room_occupancy
 
-  Alarm Occupancy:
-    - binary_sensor.main_floor_occupancy
-    - binary_sensor.living_room_occupancy
-    - binary_sensor.kitchen_occupancy
-    - binary_sensor.bedroom_occupancy
-    - binary_sensor.office_occupancy
-    - binary_sensor._REDACTED_office_occupancy
+  Basement Occupancy:
+    - binary_sensor.basement_occupancy
+    - binary_sensor.laundry_room_occupancy
 
   Indoor Temperature:
     - sensor.living_room_temperature
@@ -471,14 +469,12 @@
     - sensor._REDACTED_office_temperature
     - sensor.guest_bedroom_temperature
     - sensor.basement_temperature
+    - sensor.laundry_room_temperature
 
   Weather:
     - sun.sun
     - sensor.dark_sky_temperature
     - sensor.dark_sky_summary
-#    - sensor.dark_sky_minutely_summary
-#    - sensor.dark_sky_hourly_summary
-#    - sensor.dark_sky_daily_summary
     - sensor.dark_sky_apparent_temperature
     - sensor.dark_sky_precip
     - sensor.dark_sky_precip_probability
@@ -487,7 +483,6 @@
     - sensor.dark_sky_dew_point
     - sensor.dark_sky_cloud_cover
     - sensor.dark_sky_nearest_storm_distance
-#    - sensor.weather_nearest_storm_bearing
     - sensor.dark_sky_wind_speed
     - sensor.dark_sky_wind_bearing
     - sensor.dark_sky_visibility

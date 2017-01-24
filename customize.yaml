@@ -48,7 +48,7 @@
   device_tracker._REDACTED_s_iphone:
     icon: mdi:cellphone-iphone
     friendly_name: _REDACTED_'s iPhone (iOS)
-  device_tracker._REDACTED_s_iphone2:
+  device_tracker._REDACTED_siphone2:
     icon: mdi:cellphone-iphone
     friendly_name: _REDACTED_'s iPhone (Router)
   device_tracker._REDACTED_:
@@ -68,19 +68,29 @@
     icon: mdi:laptop-mac
   device_tracker._REDACTED_smacbookair:
     icon: mdi:laptop-mac
-  device_tracker._REDACTED_smacpro:
-    icon: mdi:desktop-mac
-    friendly_name: Mac Pro
 
 #doors
   cover.garage_door:
     icon: mdi:car
+    emulated_hue: true
 
 #Wink Garage Door
   cover.garage_door_2:
     hidden: true
   cover.myq:
     hidden: true
+
+#Travel Times
+  sensor._REDACTED_to_home:
+    icon: mdi:car
+  sensor._REDACTED_to_home:
+    icon: mdi:car
+  sensor._REDACTED_to_REDACTED_:
+    icon: mdi:car
+  sensor._REDACTED_to_REDACTED_:
+    icon: mdi:car
+  sensor._REDACTED_to_REDACTED_:
+    icon: mdi:car
 
 #rooms
   group.living_room:
@@ -247,7 +257,74 @@
     icon: mdi:spotlight-beam
   light.media_center_lighting:
     icon: mdi:television
+  light.stairs_1:
+    hidden: true
+  light.stairs_2:
+    hidden: true
+  light.stairs_3:
+    hidden: true
+  light.living_room_lamp_1:
+    hidden: true
+  light.living_room_lamp_2:
+    hidden: true
+  light.basement_light_1:
+    hidden: true
+  light.basement_light_2:
+    hidden: true
+  light.basement_light_3:
+    hidden: true
+  light.basement_light_4:
+    hidden: true
+  light.front_porch_left:
+    hidden: true
+  light.front_porch_right:
+    hidden: true
+  light._REDACTED_s_office_ceiling_1:
+    hidden: true
+  light._REDACTED_s_office_ceiling_2:
+    hidden: true
+  light.back_door_left:
+    hidden: true
+  light.back_door_right:
+    hidden: true
+  light.upper_patio_left:
+    hidden: true
+  light.upper_patio_right:
+    hidden: true
 
+#Hue Groups
+  light._REDACTED_s_office:
+    hidden: true
+  light.back_door:
+    hidden: true
+  light.back_porch:
+    hidden: true
+  light.back_yard:
+    hidden: true
+  light.basement:
+    hidden: true
+  light.bedroom:
+    hidden: true
+  light.dining_room:
+    hidden: true
+  light.exterior:
+    hidden: true
+  light.interior:
+    hidden: true
+  light.kitchen:
+    hidden: true
+  light.living_room:
+    hidden: true
+  light.office:
+    hidden: true
+  light._REDACTED_s_office:
+    hidden: true
+  light.stairs:
+    hidden: true
+  light.upstairs:
+    hidden: true
+  light.front_yard:
+    hidden: true
 
 #weather
   sensor.dark_sky_temperature:
@@ -312,8 +389,8 @@
   media_player.roku_hd_18c23w020195:
     friendly_name: Guest Bedroom Roku
 
-#Hidden Groups/Lights/Scenes/Boolean
-  group.alarm_occupancy:
+#groups
+  group.basement_occupancy:
     hidden: true
   group.home_lights:
     hidden: true
@@ -325,29 +402,15 @@
     hidden: true
   group.wink_lights_exterior:
     hidden: true
+
+#scene
   scene.security:
-    hidden: true
-  light.stairs_1:
-    hidden: true
-  light.stairs_2:
-    hidden: true
-  light.stairs_3:
     hidden: true
   scene.vacation:
     hidden: true
   scene.vacation_disable_automation:
     hidden: true
   scene.vacation_enable_automation:
-    hidden: true
-  light.living_room_lamp_1:
-    hidden: true
-  light.living_room_lamp_2:
-    hidden: true
-  light.basement_light_1:
-    hidden: true
-  light.basement_light_2:
-    hidden: true
-  light.basement_light_3:
     hidden: true
 
 #Wink Ecobee
@@ -369,6 +432,8 @@
     hidden: true
   sensor.bathroom_temperature_2:
     hidden: true
+  sensor.laundry_room_temperature_2:
+    hidden: true
   binary_sensor.bedroom:
     hidden: true
   binary_sensor.kitchen:
@@ -385,17 +450,7 @@
     hidden: true
   binary_sensor.bathroom:
     hidden: true
-  binary_sensor._REDACTED_:
-    hidden: true
-  binary_sensor._REDACTED_2:
-    hidden: true
-  binary_sensor._REDACTED_3:
-    hidden: true
-  binary_sensor._REDACTED_:
-    hidden: true
-  binary_sensor._REDACTED_2:
-    hidden: true
-  binary_sensor._REDACTED_3:
+  binary_sensor.laundry_room:
     hidden: true
 
 #Wink Hue Bulbs

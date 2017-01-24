@@ -2,6 +2,10 @@
 ## Scripts
 #################################################################
 
+        ##########################################################
+        ## Harmony Remote
+        ##########################################################
+
 input_select_harmony:
   alias: "Start Remote activity from input select"
   sequence:
@@ -32,3 +36,21 @@ input_select_harmony:
           {% elif is_state("input_select.remote", "Turn on Receiver") %}
               22107111
           {% endif %}
+
+        ##########################################################
+        ## Sonos Text to Speech
+        ##########################################################
+say:
+  alias: SONOS TTS
+  sequence:
+    - service: media_player.sonos_snapshot
+      data_template:
+        entity_id: "{{ where }}"
+    - service: tts.google_say
+      data_template:
+        entity_id: "{{ where }}"
+        message: "{{ what }}"
+    - delay: '00:00:20'
+    - service: media_player.sonos_restore
+      data_template:
+        entity_id: "{{ where }}"
