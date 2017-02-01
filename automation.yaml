@@ -78,10 +78,10 @@
       entity_id: input_boolean.disable_lock_unlock_doors
       state: 'off'
     - condition: state
-      entity_id: binary_sensor.front_door
+      entity_id: binary_sensor.front_door_opened
       state: 'off'
     - condition: state
-      entity_id: binary_sensor.back_door
+      entity_id: binary_sensor.back_door_opened
       state: 'off'
 
   action:
@@ -186,10 +186,10 @@
       entity_id: input_boolean.disable_lock_unlock_doors
       state: 'off'
     - condition: state
-      entity_id: binary_sensor.front_door
+      entity_id: binary_sensor.front_door_opened
       state: 'off'
     - condition: state
-      entity_id: binary_sensor.back_door
+      entity_id: binary_sensor.back_door_opened
       state: 'off'
 
   action:
@@ -641,7 +641,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door
+      entity_id: binary_sensor.front_door_opened
       from: 'off'
       to: 'on'
 
@@ -667,7 +667,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door
+      entity_id: binary_sensor.front_door_opened
       from: 'on'
       to: 'off'
       for:
@@ -704,7 +704,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door
+      entity_id: binary_sensor.front_door_opened
       from: 'on'
       to: 'off'
       for:
@@ -739,7 +739,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door
+      entity_id: binary_sensor.front_door_opened
       from: 'on'
       to: 'off'
       for:
@@ -774,7 +774,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door
+      entity_id: binary_sensor.front_door_opened
       from: 'off'
       to: 'on'
 
@@ -801,7 +801,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.back_door
+      entity_id: binary_sensor.back_door_opened
       from: 'off'
       to: 'on'
 
@@ -827,7 +827,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.back_door
+      entity_id: binary_sensor.back_door_opened
       from: 'on'
       to: 'off'
       for:
@@ -857,7 +857,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.back_door
+      entity_id: binary_sensor.back_door_opened
       from: 'on'
       to: 'off'
       for:
@@ -996,7 +996,7 @@
       entity_id: input_boolean.disable_lock_unlock_doors
       state: 'off'
     - condition: state
-      entity_id: binary_sensor.front_door
+      entity_id: binary_sensor.front_door_opened
       state: 'off'
     - condition: state
       entity_id: lock.front_door
@@ -1027,7 +1027,7 @@
       entity_id: input_boolean.disable_lock_unlock_doors
       state: 'off'
     - condition: state
-      entity_id: binary_sensor.back_door
+      entity_id: binary_sensor.back_door_opened
       state: 'off'
       for:
         hours: 1
@@ -1062,7 +1062,7 @@
       entity_id: input_boolean.disable_lock_unlock_doors
       state: 'off'
     - condition: state
-      entity_id: binary_sensor.basement_door
+      entity_id: binary_sensor.basement_door_opened
       state: 'off'
     - condition: state
       entity_id: lock.basement_door
@@ -1092,7 +1092,7 @@
       entity_id: input_boolean.disable_lock_unlock_doors
       state: 'off'
     - condition: state
-      entity_id: binary_sensor.back_door
+      entity_id: binary_sensor.back_door_opened
       state: 'off'
     - condition: state
       entity_id: lock.back_door
@@ -1255,7 +1255,7 @@
        brightness: 25
        xy_color: [ 0.5134, 0.4149 ]
     - service: light.turn_on
-      entity_id: light.hallway
+      entity_id: light.hallway_light
       data:
        brightness: 50
        color_name: red
@@ -1268,7 +1268,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.back_door
+      entity_id: binary_sensor.back_door_opened
       from: 'off'
       to: 'on'
 
@@ -1458,7 +1458,7 @@
         ## Turn off Bedroom when Unoccupied
         ##########################################################
 
-- alias: Turn off Bedroom Light when Unoccupied
+- alias: Turn off Bedroom Lights when Unoccupied
 
   trigger:
     - platform: state
@@ -1483,7 +1483,7 @@
         ## Turn off Guest Bedroom when Unoccupied
         ##########################################################
 
-- alias: Turn off Guest Bedroom Light when Unoccupied
+- alias: Turn off Guest Bedroom Lights when Unoccupied
 
   trigger:
     - platform: state
@@ -1491,8 +1491,8 @@
       from: 'on'
       to: 'off'
       for:
-        hours: 0
-        minutes: 60
+        hours: 1
+        minutes: 0
         seconds: 0
 
   condition:
@@ -1508,7 +1508,7 @@
         ## Turn off Kitchen when Unoccupied
         ##########################################################
 
-- alias: Turn off Kitchen Light when Unoccupied
+- alias: Turn off Kitchen Lights when Unoccupied
 
   trigger:
     - platform: state
@@ -1516,8 +1516,8 @@
       from: 'on'
       to: 'off'
       for:
-        hours: 0
-        minutes: 30
+        hours: 1
+        minutes: 0
         seconds: 0
 
   condition:
@@ -1533,7 +1533,7 @@
         ## Turn off Dining Room / Hallway when Unoccupied
         ##########################################################
 
-- alias: Turn off Dining Room when Unoccupied
+- alias: Turn off Dining Room Lights when Unoccupied
 
   trigger:
     - platform: state
@@ -1541,8 +1541,8 @@
       from: 'on'
       to: 'off'
       for:
-        hours: 0
-        minutes: 60
+        hours: 1
+        minutes: 30
         seconds: 0
 
   condition:
@@ -1566,8 +1566,8 @@
       from: 'on'
       to: 'off'
       for:
-        hours: 0
-        minutes: 60
+        hours: 1
+        minutes: 30
         seconds: 0
 
   condition:
@@ -1987,7 +1987,7 @@
         ## Turn Off Outdoor Lighting At Midnight on Weekends
         ##########################################################
 
-- alias: Turn off Outdoor Lighting at Midnight on Weekends
+- alias: Turn Off Outdoor Lighting At Midnight on Weekends
 
   trigger:
     - platform: time
@@ -3700,8 +3700,12 @@
 ## Notifications
 ##########################################################
 
+    #################################################################
+    ## Text Notifications
+    #################################################################
+
       #################################################################
-      ## Text Notifications
+      ## Alarm Notification
       #################################################################
 
 - alias: Security Notify
@@ -3737,43 +3741,9 @@
             category: camera
           entity_id: camera.garage_camera
 
-- alias: _REDACTED_ Home Notification
-
-  trigger:
-    - platform: state
-      entity_id: device_tracker._REDACTED_
-      from: 'not_home'
-      to: 'home'
-
-  action:
-    - service: notify.ios_REDACTED_s_iphone
-      data:
-        message: _REDACTED_ Home
-        data:
-          push:
-            category: map
-          action_data:
-            latitude: _REDACTED_
-            longitude: _REDACTED_
-
-- alias: _REDACTED_ Away Notification
-
-  trigger:
-    - platform: state
-      entity_id: device_tracker._REDACTED_
-      from: 'home'
-      to: 'not_home'
-
-  action:
-    - service: notify.ios_REDACTED_s_iphone
-      data:
-        message: _REDACTED_ Away
-        data:
-          push:
-            category: map
-          action_data:
-            latitude: _REDACTED_
-            longitude: _REDACTED_
+        #################################################################
+        ## _REDACTED_ Home Notification
+        #################################################################
 
 - alias: _REDACTED_ Home Notification
 
@@ -3794,6 +3764,10 @@
             latitude: _REDACTED_
             longitude: _REDACTED_
 
+        #################################################################
+        ## _REDACTED_ Away Notification
+        #################################################################
+
 - alias: _REDACTED_ Away Notification
 
   trigger:
@@ -3812,6 +3786,56 @@
           action_data:
             latitude: _REDACTED_
             longitude: _REDACTED_
+
+        #################################################################
+        ## _REDACTED_ Home Notification
+        #################################################################
+
+- alias: _REDACTED_ Home Notification
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._REDACTED_
+      from: 'not_home'
+      to: 'home'
+
+  action:
+    - service: notify.ios_REDACTED_s_iphone
+      data:
+        message: _REDACTED_ Home
+        data:
+          push:
+            category: map
+          action_data:
+            latitude: _REDACTED_
+            longitude: _REDACTED_
+
+        #################################################################
+        ## _REDACTED_ Away Notification
+        #################################################################
+
+- alias: _REDACTED_ Away Notification
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._REDACTED_
+      from: 'home'
+      to: 'not_home'
+
+  action:
+    - service: notify.ios_REDACTED_s_iphone
+      data:
+        message: _REDACTED_ Away
+        data:
+          push:
+            category: map
+          action_data:
+            latitude: _REDACTED_
+            longitude: _REDACTED_
+
+        #################################################################
+        ## _REDACTED_ Left Work Notification
+        #################################################################
 
 - alias: _REDACTED_ Left Work Notification
 
@@ -3825,6 +3849,10 @@
     - service: notify.ios_REDACTED_s_iphone
       data:
         message: _REDACTED_ has left Work
+
+        #################################################################
+        ## Motion Alarm Notification
+        #################################################################
 
 - alias: Motion Based Security Notification
 
@@ -3848,6 +3876,10 @@
             category: camera
           entity_id: camera.garage_camera
 
+        #################################################################
+        ## Door Alarm Notification
+        #################################################################
+
 - alias: Security Door Open Notification
 
   trigger:
@@ -3870,6 +3902,32 @@
             category: camera
           entity_id: camera.garage_camera
 
+        #################################################################
+        ## Fireplace Alarm Notification
+        #################################################################
+
+- alias: Fireplace when Nobody Home Notification
+
+  trigger:
+    - platform: state
+      entity_id: switch.fireplace
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+
+  action:
+    - service: notify.ios_REDACTED_s_iphone
+      data:
+        message: Fireplae Turned On!
+
+        #################################################################
+        ## Home Assistant Started Notification
+        #################################################################
+
 - alias: Home Assistant Start Notification
 
   trigger:
@@ -3881,9 +3939,13 @@
       data:
         message: Home Assistant Started
 
-      #################################################################
-      ## Audio Notifications
-      #################################################################
+    #################################################################
+    ## Audio Notifications
+    #################################################################
+
+        ##########################################################
+        ## Alarm Audio Notification
+        ##########################################################
 
 - alias: Security Notify Audio
 
@@ -3899,12 +3961,20 @@
       state: 'not_home'
 
   action:
+    - service: media_player.volume_set
+      entity_id: media_player.living_room_sp, media_player.dining_room, media_player.kitchen, media_player.bathroom, media_player._REDACTED_s_office, media_player._REDACTED_s_office, media_player.basement
+      data:
+        volume_level: 1
     - service: script.turn_on
       entity_id: script.say
       data:
         variables:
-          where: 'media_player.media_center, media_player.living_room_sp, media_player.dining_room, media_player.kitchen, media_player.bathroom, media_player._REDACTED_s_office, media_player._REDACTED_s_office, media_player.basement'
+          where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen, media_player.bathroom, media_player._REDACTED_s_office, media_player._REDACTED_s_office, media_player.basement'
           what: 'You are not Authorized to be Here'
+
+        ##########################################################
+        ## Water Sensor Audio Notification
+        ##########################################################
 
 - alias: Basement Water Sensor Audio Notification
 
@@ -3914,13 +3984,582 @@
       from: 'off'
       to: 'on'
 
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
   action:
+    - service: media_player.volume_set
+      entity_id: media_player.living_room_sp, media_player.dining_room, media_player.kitchen, media_player.bathroom, media_player._REDACTED_s_office, media_player._REDACTED_s_office, media_player.basement
+      data:
+        volume_level: .8
     - service: script.turn_on
       entity_id: script.say
       data:
         variables:
           where: 'media_player.media_center, media_player.living_room_sp, media_player.dining_room, media_player.kitchen, media_player.bathroom, media_player._REDACTED_s_office, media_player._REDACTED_s_office, media_player.basement'
           what: 'Water Detected in Basement'
+
+        ##########################################################
+        ## Welcome Home _REDACTED_ Audio Greeting
+        ##########################################################
+
+- alias: Welcome Home _REDACTED_ Audio Notification
+
+  trigger:
+    - platform: state
+      entity_id: group.doors
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: device_tracker._REDACTED_
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean._REDACTED_greeting
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: time
+      after: '09:00'
+      before: '22:00'
+
+  action:
+    - service: media_player.volume_set
+      entity_id: media_player.living_room_sp, media_player.dining_room, media_player.kitchen
+      data:
+        volume_level: .4
+    - delay: '00:00:07'
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
+          what: 'Welcome Home _REDACTED_'
+    - delay: '00:00:60'
+    - service: homeassistant.turn_off
+      entity_id: input_boolean._REDACTED_greeting
+
+        ##########################################################
+        ## Notify _REDACTED_s Office that _REDACTED_ is Home
+        ##########################################################
+
+- alias: Notify _REDACTED_s Office that _REDACTED_ is Home
+
+  trigger:
+    - platform: state
+      entity_id: group.doors
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: device_tracker._REDACTED_
+      state: 'home'
+    - condition: state
+      entity_id: device_tracker._REDACTED_
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean._REDACTED_greeting
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean._REDACTED_greeting
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor._REDACTED_office_occupancy
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: time
+      after: '09:00'
+      before: '22:00'
+
+  action:
+    - service: media_player.volume_set
+      entity_id: media_player._REDACTED_s_office
+      data:
+        volume_level: .3
+    - delay: '00:00:11'
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          where: 'media_player._REDACTED_s_office'
+          what: '_REDACTED_ is Home'
+
+        ##########################################################
+        ## Welcome Home _REDACTED_ Audio Greeting
+        ##########################################################
+
+- alias: Welcome Home _REDACTED_ Audio Notification
+
+  trigger:
+    - platform: state
+      entity_id: group.doors
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: device_tracker._REDACTED_
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean._REDACTED_greeting
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: time
+      after: '09:00'
+      before: '22:00'
+
+  action:
+    - service: media_player.volume_set
+      entity_id: media_player.living_room_sp, media_player.dining_room, media_player.kitchen
+      data:
+        volume_level: .4
+    - delay: '00:00:09'
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
+          what: 'Welcome Home _REDACTED_'
+    - delay: '00:00:60'
+    - service: homeassistant.turn_off
+      entity_id: input_boolean._REDACTED_greeting
+
+        ##########################################################
+        ## Notify _REDACTED_s Office that _REDACTED_ is Home
+        ##########################################################
+
+- alias: Notify _REDACTED_s Office that _REDACTED_ is Home
+
+  trigger:
+    - platform: state
+      entity_id: group.doors
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: device_tracker._REDACTED_
+      state: 'home'
+    - condition: state
+      entity_id: device_tracker._REDACTED_
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean._REDACTED_greeting
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean._REDACTED_greeting
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.office_occupancy
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: time
+      after: '09:00'
+      before: '22:00'
+
+  action:
+    - service: media_player.volume_set
+      entity_id: media_player._REDACTED_s_office
+      data:
+        volume_level: .3
+    - delay: '00:00:11'
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          where: 'media_player._REDACTED_s_office'
+          what: '_REDACTED_ is Home'
+
+        ##########################################################
+        ## _REDACTED_ Audio Greeting
+        ##########################################################
+
+- alias: Welcome _REDACTED_ Audio Notification
+
+  trigger:
+    - platform: state
+      entity_id: group.doors
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: device_tracker._REDACTED_siphone
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean._REDACTED_visiting
+      state: 'off'
+    - condition: time
+      after: '09:00'
+      before: '22:00'
+
+  action:
+    - service: media_player.volume_set
+      entity_id: media_player.living_room_sp, media_player.dining_room, media_player.kitchen
+      data:
+        volume_level: .4
+    - delay: '00:00:13'
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
+          what: 'Welcome _REDACTED_, please remove your shoes'
+    - delay: '00:00:30'
+    - service: homeassistant.turn_on
+      entity_id: input_boolean._REDACTED_visiting
+
+        ##########################################################
+        ## _REDACTED_ Audio Greeting
+        ##########################################################
+
+- alias: Welcome _REDACTED_ Audio Notification
+
+  trigger:
+    - platform: state
+      entity_id: group.doors
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: device_tracker._REDACTED_siphone
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean._REDACTED_visiting
+      state: 'off'
+    - condition: time
+      after: '09:00'
+      before: '22:00'
+
+  action:
+    - service: media_player.volume_set
+      entity_id: media_player.living_room_sp, media_player.dining_room, media_player.kitchen
+      data:
+        volume_level: .4
+    - delay: '00:00:12'
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
+          what: 'Welcome _REDACTED_ley'
+    - delay: '00:00:30'
+    - service: homeassistant.turn_on
+      entity_id: input_boolean._REDACTED_visiting
+
+        ##########################################################
+        ## _REDACTED_ Audio Greeting
+        ##########################################################
+
+- alias: Welcome _REDACTED_ Audio Notification
+
+  trigger:
+    - platform: state
+      entity_id: group.doors
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: device_tracker._REDACTED_siphone3
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean._REDACTED_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean._REDACTED_visiting
+      state: 'off'
+    - condition: time
+      after: '09:00'
+      before: '22:00'
+
+  action:
+    - service: media_player.volume_set
+      entity_id: media_player.living_room_sp, media_player.dining_room, media_player.kitchen
+      data:
+        volume_level: .4
+    - delay: '00:00:12'
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
+          what: 'Welcome _REDACTED_'
+    - delay: '00:00:30'
+    - service: homeassistant.turn_on
+      entity_id: input_boolean._REDACTED_visiting
+
+        ##########################################################
+        ## _REDACTED_ Audio Greeting
+        ##########################################################
+
+- alias: Welcome _REDACTED_ Audio Notification
+
+  trigger:
+    - platform: state
+      entity_id: group.doors
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: device_tracker._REDACTED_siphone
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean._REDACTED_visiting
+      state: 'off'
+    - condition: time
+      after: '09:00'
+      before: '22:00'
+
+  action:
+    - service: media_player.volume_set
+      entity_id: media_player.living_room_sp, media_player.dining_room, media_player.kitchen
+      data:
+        volume_level: .4
+    - delay: '00:00:12'
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
+          what: 'Welcome _REDACTED_'
+    - delay: '00:00:30'
+    - service: homeassistant.turn_on
+      entity_id: input_boolean._REDACTED_visiting
+
+        ##########################################################
+        ## _REDACTED_ Audio Greeting
+        ##########################################################
+
+- alias: Welcome _REDACTED_ Audio Notification
+
+  trigger:
+    - platform: state
+      entity_id: group.doors
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: device_tracker.johnsiphone2
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean._REDACTED_visiting
+      state: 'off'
+    - condition: time
+      after: '09:00'
+      before: '22:00'
+
+  action:
+    - service: media_player.volume_set
+      entity_id: media_player.living_room_sp, media_player.dining_room, media_player.kitchen
+      data:
+        volume_level: .4
+    - delay: '00:00:12'
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
+          what: 'Welcome _REDACTED_'
+    - delay: '00:00:30'
+    - service: homeassistant.turn_on
+      entity_id: input_boolean._REDACTED_visiting
+
+        ##########################################################
+        ## _REDACTED_ Audio Greeting
+        ##########################################################
+
+- alias: Welcome _REDACTED_ Audio Notification
+
+  trigger:
+    - platform: state
+      entity_id: group.doors
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: device_tracker._REDACTED_suensiphone
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean._REDACTED_visiting
+      state: 'off'
+    - condition: time
+      after: '09:00'
+      before: '22:00'
+
+  action:
+    - service: media_player.volume_set
+      entity_id: media_player.living_room_sp, media_player.dining_room, media_player.kitchen
+      data:
+        volume_level: .4
+    - delay: '00:00:14'
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
+          what: 'Welcome _REDACTED_ eh.  Hello _REDACTED_'
+    - delay: '00:00:30'
+    - service: homeassistant.turn_on
+      entity_id: input_boolean._REDACTED_visiting
+
+#################################################################
+## Friends and Family Visiting
+#################################################################
+
+        ##########################################################
+        ## Set _REDACTED_ as No Longer Visiting after 1.5 Hours
+        ##########################################################
+
+- alias: Set _REDACTED_ as No Longer Visiting after 1.5 Hours
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._REDACTED_siphone
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 1
+        minutes: 30
+        seconds: 0
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean._REDACTED_visiting
+
+        ##########################################################
+        ## Set _REDACTED_ as No Longer Visiting after 1.5 Hour
+        ##########################################################
+
+- alias: Set _REDACTED_ as No Longer Visiting after 1.5 Hour
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._REDACTED_siphone
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 1
+        minutes: 30
+        seconds: 0
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean._REDACTED_visiting
+
+
+        ##########################################################
+        ## Set _REDACTED_ as No Longer Visiting after 1.5 Hours
+        ##########################################################
+
+- alias: Set _REDACTED_ as No Longer Visiting after 1.5 Hours
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._REDACTED_siphone3
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 1
+        minutes: 30
+        seconds: 0
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean._REDACTED_visiting
+
+        ##########################################################
+        ## Set _REDACTED_ as No Longer Visiting after 1.5 Hours
+        ##########################################################
+
+- alias: Set _REDACTED_ as No Longer Visiting after 1.5 Hours
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._REDACTED_siphone
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 1
+        minutes: 30
+        seconds: 0
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean._REDACTED_visiting
+
+        ##########################################################
+        ## Set _REDACTED_ as No Longer Visiting after 1.5 Hours
+        ##########################################################
+
+- alias: Set _REDACTED_ as No Longer Visiting after 1.5 Hours
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker.johnsiphone2
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 1
+        minutes: 30
+        seconds: 0
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean._REDACTED_visiting
+
+        ##########################################################
+        ## Set _REDACTED_ as No Longer Visiting after 1.5 Hours
+        ##########################################################
+
+- alias: Set _REDACTED_ as No Longer Visiting after 1.5 Hours
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._REDACTED_suensiphone
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 1
+        minutes: 30
+        seconds: 0
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean._REDACTED_visiting
 
 #################################################################
 ## Water Sensors
@@ -4003,6 +4642,28 @@
        flash: long
 
 #################################################################
+## Sonos
+#################################################################
+
+- alias: Ungroup Sonos Every Morning
+
+  trigger:
+    - platform: time
+      after: '06:00'
+
+  action:
+    - service: media_player.sonos_unjoin
+      entity_id:
+        - media_player.media_center
+        - media_player.living_room_sp
+        - media_player.dining_room
+        - media_player.kitchen
+        - media_player.bathroom
+        - media_player._REDACTED_s_office
+        - media_player._REDACTED_s_office
+        - media_player.basement
+
+#################################################################
 ## Work Arounds
 #################################################################
 
@@ -4082,6 +4743,8 @@
   action:
     - service: homeassistant.turn_on
       entity_id: input_boolean._REDACTED_away
+    - service: homeassistant.turn_on
+      entity_id: input_boolean._REDACTED_greeting
 
         ##########################################################
         ## Set _REDACTED_ Home after 10 Mins
@@ -4143,6 +4806,8 @@
   action:
     - service: homeassistant.turn_on
       entity_id: input_boolean._REDACTED_away
+    - service: homeassistant.turn_on
+      entity_id: input_boolean._REDACTED_greeting
 
         ##########################################################
         ## Set _REDACTED_ Home after 10 Mins
@@ -4376,9 +5041,13 @@
     - platform: state
       entity_id: input_boolean._REDACTED_away_driving
     - platform: state
+      entity_id: input_boolean._REDACTED_greeting
+    - platform: state
       entity_id: input_boolean._REDACTED_away
     - platform: state
       entity_id: input_boolean._REDACTED_away_driving
+    - platform: state
+      entity_id: input_boolean._REDACTED_greeting
     - platform: state
       entity_id: input_boolean.enable_security
     - platform: state
@@ -4508,7 +5177,7 @@
 ## Wink Bug Work Around
 ##########################################################
 
-- alias: Wink Failed Restarting
+- alias: Wink Failed
 
   trigger:
     - platform: state
@@ -4521,15 +5190,3 @@
     - service: notify.ios_REDACTED_s_iphone
       data:
         message: Wink Connection has Failed
-
-- alias: Wink Failed Restart HA
-
-  trigger:
-    - platform: state
-      entity_id: sensor.wink_status_logfile
-      from: 'ok'
-      to: 'failed'
-
-
-  action:
-    - service: homeassistant.restart

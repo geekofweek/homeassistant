@@ -2,7 +2,10 @@
 ## Customize
 #################################################################
 
-#thermostat
+        ##########################################################
+        ## Thermostat
+        ##########################################################
+
   climate.main_floor:
     friendly_name: Thermostat
   automation.turn_thermostat_on_summer:
@@ -35,7 +38,10 @@
   binary_sensor.main_floor_occupancy:
     friendly_name: Dining Room Occupancy
 
-#devices
+        ##########################################################
+        ## Device Trackers
+        ##########################################################
+
   device_tracker._REDACTED_:
     icon: mdi:human-male
     friendly_name: _REDACTED_
@@ -69,18 +75,50 @@
   device_tracker._REDACTED_smacbookair:
     icon: mdi:laptop-mac
 
-#doors
+        ##########################################################
+        ## Friends and Family
+        ##########################################################
+
+  device_tracker._REDACTED_:
+    icon: mdi:human-male
+    friendly_name: _REDACTED_
+  device_tracker._REDACTED_:
+    icon: mdi:human-female
+    friendly_name: _REDACTED_
+  device_tracker._REDACTED_:
+    icon: mdi:human-male
+    friendly_name: _REDACTED_
+  device_tracker._REDACTED_:
+    icon: mdi:human-male
+    friendly_name: _REDACTED_
+  device_tracker._REDACTED_:
+    icon: mdi:human-female
+    friendly_name: _REDACTED_
+  device_tracker._REDACTED_:
+    icon: mdi:human-male
+    friendly_name: _REDACTED_
+  device_tracker._REDACTED_:
+    icon: mdi:human-male
+    friendly_name: _REDACTED_
+  group.friends_and_family:
+    friendly_name: Friends & Family
+
+        ##########################################################
+        ##  Doors
+        ##########################################################
+
   cover.garage_door:
     icon: mdi:car
     emulated_hue: true
-
-#Wink Garage Door
   cover.garage_door_2:
     hidden: true
   cover.myq:
     hidden: true
 
-#Travel Times
+        ##########################################################
+        ## Travel Times
+        ##########################################################
+
   sensor._REDACTED_to_home:
     icon: mdi:car
   sensor._REDACTED_to_home:
@@ -92,7 +130,10 @@
   sensor._REDACTED_to_REDACTED_:
     icon: mdi:car
 
-#rooms
+        ##########################################################
+        ## Rooms
+        ##########################################################
+
   group.living_room:
     icon: mdi:sofa
   group.living_room_lights:
@@ -151,7 +192,10 @@
   group.basement_lights:
     icon: mdi:lightbulb
 
-#locks
+        ##########################################################
+        ## Locks
+        ##########################################################
+
   lock.front_door:
     friendly_name: Front Door Lock
   lock.back_door:
@@ -161,12 +205,15 @@
   group.all_locks:
     friendly_name: Door Locks
 
-#sensors
-  binary_sensor.front_door:
+        ##########################################################
+        ## Sensors
+        ##########################################################
+
+  binary_sensor.front_door_opened_opened:
     friendly_name: Front Door Open
-  binary_sensor.back_door:
+  binary_sensor.back_door_opened:
     friendly_name: Back Door Open
-  binary_sensor.basement_door:
+  binary_sensor.basement_door_opened:
     friendly_name: Basement Door Open
   sensor.cpu_use:
     friendly_name: CPU Usage
@@ -198,13 +245,13 @@
     icon: mdi:battery
   sensor.sump_pump_water_sensor_batt:
     icon: mdi:battery
-  binary_sensor.wink_hub_hub:
+  binary_sensor.wink_hub:
     friendly_name: Wink Hub
     icon: mdi:ethernet
-  binary_sensor.wink_relays_bottom_button_hub:
+  binary_sensor.wink_relay:
     friendly_name: Wink Relay
     icon: mdi:ethernet
-  binary_sensor.philips_hue_hub:
+  binary_sensor.philips_hue:
     friendly_name: Hue Hub
     icon: mdi:ethernet
   binary_sensor.basement_drain_water_sensor_liquid_detected:
@@ -212,7 +259,10 @@
   binary_sensor.sump_pump_water_sensor_liquid_detected:
     friendly_name: Sump Pump Water Sensor
 
-#switches
+        ##########################################################
+        ## Switches
+        ##########################################################
+
   switch.fireplace:
     icon: mdi:fire
     friendly_name: Fireplace
@@ -233,7 +283,10 @@
   switch.bottom_light_load:
     hidden: true
 
-#lights
+        ##########################################################
+        ## Lights
+        ##########################################################
+
   light.hallway_light:
     friendly_name: Hallway
     icon: mdi:lightbulb
@@ -292,7 +345,10 @@
   light.upper_patio_right:
     hidden: true
 
-#Hue Groups
+        ##########################################################
+        ## Hue Groups
+        ##########################################################
+
   light._REDACTED_s_office:
     hidden: true
   light.back_door:
@@ -326,7 +382,10 @@
   light.front_yard:
     hidden: true
 
-#weather
+        ##########################################################
+        ## Weather
+        ##########################################################
+
   sensor.dark_sky_temperature:
     friendly_name: 'Outdoor Temperature'
   sensor.dark_sky_summary:
@@ -379,7 +438,10 @@
   sensor.dark_sky_visibility:
     friendly_name: 'Visibility'
 
-#media players
+        ##########################################################
+        ## Media Players
+        ##########################################################
+
   media_player.living_room:
     friendly_name: Apple TV
   media_player.plex_for_vizio_vizio_mtk:
@@ -389,7 +451,10 @@
   media_player.roku_hd_18c23w020195:
     friendly_name: Guest Bedroom Roku
 
-#groups
+        ##########################################################
+        ## Groups
+        ##########################################################
+
   group.basement_occupancy:
     hidden: true
   group.home_lights:
@@ -403,7 +468,10 @@
   group.wink_lights_exterior:
     hidden: true
 
-#scene
+        ##########################################################
+        ## Scenes
+        ##########################################################
+
   scene.security:
     hidden: true
   scene.vacation:
@@ -413,7 +481,10 @@
   scene.vacation_enable_automation:
     hidden: true
 
-#Wink Ecobee
+        ##########################################################
+        ## Wink Ecobee
+        ##########################################################
+
   climate.main_floor_2:
     hidden: true
   sensor.bedroom_temperature_2:
@@ -453,7 +524,10 @@
   binary_sensor.laundry_room:
     hidden: true
 
-#Wink Hue Bulbs
+        ##########################################################
+        ## Wink Hue Bulbs
+        ##########################################################
+
   light.back_door_left_2:
     hidden: true
   light.back_door_right_2:
@@ -511,7 +585,10 @@
   light.media_center_lighting_2:
     hidden: true
 
-#Amazon Echo Integration
+        ##########################################################
+        ## Amazon Echo Integration
+        ##########################################################
+
   input_boolean.office_rainbow:
     emulated_hue: true
     emulated_hue_name: "Office Party"
@@ -537,7 +614,31 @@
     emulated_hue: true
     emulated_hue_name: "Bedtime"
 
-#Automations
+        ##########################################################
+        ## Input Boolean
+        ##########################################################
+
+  input_boolean._REDACTED_greeting:
+    hidden: true
+  input_boolean._REDACTED_greeting:
+    hidden: true
+  input_boolean._REDACTED_visiting:
+    hidden: true
+  input_boolean._REDACTED_visiting:
+    hidden: true
+  input_boolean._REDACTED_visiting:
+    hidden: true
+  input_boolean._REDACTED_visiting:
+    hidden: true
+  input_boolean._REDACTED_visiting:
+    hidden: true
+  input_boolean._REDACTED_visiting:
+    hidden: true
+
+        ##########################################################
+        ## Automations
+        ##########################################################
+
   automation.motion_based_security:
     icon: mdi:shield-outline
     friendly_name: Motion Security Enabled
@@ -545,7 +646,10 @@
     icon: mdi:shield-outline
     friendly_name: Door Security Enabled
 
-#sonos
+        ##########################################################
+        ## Sonos
+        ##########################################################
+
   media_player.media_center:
     icon: mdi:speaker
     freindly_name: Media Center Sonos
@@ -564,16 +668,25 @@
   media_player.basement:
     icon: mdi:speaker
 
-#remote
+        ##########################################################
+        ## Remote
+        ##########################################################
+
   sensor.media_center:
     icon: mdi:television
     freindly_name: Media Center Remote
 
-#basement Heater
+        ##########################################################
+        ## Basement Heater
+        ##########################################################
+
   switch.basement_heater:
     icon: mdi:radiator
 
-#wink workaround
+        ##########################################################
+        ## Wink Work Around
+        ##########################################################
+
   sensor.wink_status_logfile:
     icon: mdi:checkbox-marked-circle-outline
     friendly_name: Wink Status

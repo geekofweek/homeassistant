@@ -115,6 +115,7 @@
     entities:
       - group.household
       - group.device_location
+      - group.friends_and_family
       - group.weather
       - group.indoor_temperature
       - group.occupancy
@@ -167,11 +168,12 @@
     - input_boolean.occupancy_lights_off_disable
     - input_boolean.door_open_lights_on
     - input_boolean.occupancy_air_purifier_on_off_disable
-    - input_boolean.lights_morning_disable
     - input_boolean.office_lights_sunset
     - input_boolean.exterior_on_sunset
     - input_boolean.exterior_off_night
     - input_boolean.home_away
+    - input_boolean.disable_voice_greeting
+    - input_boolean.lights_morning_disable
 
   Location Controls:
     - input_boolean._REDACTED_away
@@ -208,13 +210,22 @@
     - device_tracker._REDACTED_smacbookair
     - device_tracker._REDACTED_smacbookair
 
+  Friends and Family:
+    - device_tracker._REDACTED_
+    - device_tracker._REDACTED_
+    - device_tracker._REDACTED_
+    - device_tracker._REDACTED_
+    - device_tracker._REDACTED_
+    - device_tracker._REDACTED_
+    - device_tracker._REDACTED_
+
   Living Room:
     - group.living_room_lamps
     - light.media_center_lighting
     - switch.fireplace
     - switch.living_room_ceiling_fan
     - lock.front_door
-    - binary_sensor.front_door
+    - binary_sensor.front_door_opened
     - binary_sensor.living_room_occupancy
     - sensor.living_room_temperature
 
@@ -245,7 +256,7 @@
     - light.kitchen_cabinets
     - light.kitchen_sink
     - lock.back_door
-    - binary_sensor.back_door
+    - binary_sensor.back_door_opened
     - binary_sensor.kitchen_occupancy
     - sensor.kitchen_temperature
 
@@ -300,7 +311,7 @@
     - group.basement_lights
     - switch.basement_heater
     - lock.basement_door
-    - binary_sensor.basement_door
+    - binary_sensor.basement_door_opened
     - binary_sensor.basement_occupancy
     - binary_sensor.laundry_room_occupancy
     - sensor.basement_temperature
@@ -491,6 +502,7 @@
 
   Home Lights:
     - light.kitchen_cabinets
+    - light.kitchen_sink
     - group.living_room_lights
     - light.hallway_light
     - group.back_door
@@ -501,9 +513,9 @@
     - light._REDACTED_s_office_ceiling_2
 
   Doors:
-    - binary_sensor.front_door
-    - binary_sensor.back_door
-    - binary_sensor.basement_door
+    - binary_sensor.front_door_opened
+    - binary_sensor.back_door_opened
+    - binary_sensor.basement_door_opened
 
   Travel Times:
     - sensor._REDACTED_to_home
@@ -523,9 +535,9 @@
     - sensor.ram_use
     - sensor.ram_free
     - sensor.since_last_boot
-    - binary_sensor.philips_hue_hub
-    - binary_sensor.wink_hub_hub
-    - binary_sensor.wink_relays_bottom_button_hub
+    - binary_sensor.philips_hue
+    - binary_sensor.wink_hub
+    - binary_sensor.wink_relay
     - sensor.wink_status_logfile
     - updater.updater
 
