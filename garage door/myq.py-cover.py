@@ -13,31 +13,31 @@ DEPENDENCIES = []
 
 CONF_BRAND = 'brand'
 
+DEFAULT_NAME = 'myq'
+
 LIFTMASTER = 'liftmaster'
 CHAMBERLAIN = 'chamberlain'
-CRAFTMASTER = 'craftmaster'
+CRAFTSMAN = 'craftsman'
+MERLIN = 'merlin'
 
-SUPPORTED_BRANDS = [LIFTMASTER, CHAMBERLAIN, CRAFTMASTER]
+SUPPORTED_BRANDS = [LIFTMASTER, CHAMBERLAIN, CRAFTSMAN, MERLIN]
 SUPPORTED_DEVICE_TYPE_NAMES = ['GarageDoorOpener', 'Garage Door Opener WGDO', 'VGDO']
 
-DEFAULT_BRAND = CHAMBERLAIN
-DEFAULT_NAME = "MyQ"
-
 APP_ID = 'app_id'
-HOST_URI = 'host_uri'
+HOST_URI = 'myqexternal.myqdevice.com'
 
 BRAND_MAPPINGS = {
     LIFTMASTER: {
-        APP_ID: 'JVM/G9Nwih5BwKgNCjLxiFUQxQijAebyyg8QUHr7JOrP+tuPb8iHfRHKwTmDzHOu',
-        HOST_URI: 'myqexternal.myqdevice.com'
+        APP_ID: 'Vj8pQggXLhLy0WHahglCD4N1nAkkXQtGYpq2HrHD7H1nvmbT55KqtN6RSF4ILB/i'
     },
     CHAMBERLAIN: {
-        APP_ID: 'Vj8pQggXLhLy0WHahglCD4N1nAkkXQtGYpq2HrHD7H1nvmbT55KqtN6RSF4ILB%2Fi',
-        HOST_URI: 'myqexternal.myqdevice.com'
+        APP_ID: 'OA9I/hgmPHFp9RYKJqCKfwnhh28uqLJzZ9KOJf1DXoo8N2XAaVX6A1wcLYyWsnnv'
     },
-    CRAFTMASTER: {
-        APP_ID: 'eU97d99kMG4t3STJZO/Mu2wt69yTQwM0WXZA5oZ74/ascQ2xQrLD/yjeVhEQccBZ',
-        HOST_URI: 'craftexternal.myqdevice.com'
+    CRAFTSMAN: {
+        APP_ID: 'YmiMRRS1juXdSd0KWsuKtHmQvh5RftEp5iewHdCvsNB77FnQbY+vjCVn2nMdIeN8'
+    },
+    MERLIN: {
+        APP_ID: '3004cac4e920426c823fa6c2ecf0cc28ef7d4a7b74b6470f8f0d94d6c39eb718'
     }
 }
 
@@ -67,12 +67,10 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
 class MyQAPI(object):
     """Class for interacting with the MyQ iOS App API."""
 
-    LOCALE = "en"
-    LOGIN_ENDPOINT = "api/user/validatewithculture"
-    DEVICE_LIST_ENDPOINT = "api/v4/userdevicedetails/get"
+    LOGIN_ENDPOINT = "api/v4/User/Validate"
+    DEVICE_LIST_ENDPOINT = "api/v4/UserDeviceDetails/Get"
     DEVICE_SET_ENDPOINT = "api/v4/DeviceAttribute/PutDeviceAttribute"
-    DEVICE_STATUS_ENDPOINT = "api/v4/userdevicedetails/get"
-    HEADERS = {'User-Agent': 'Chamberlain/3773 (iPhone; iOS 10.0.1; Scale/2.00)'}
+    USERAGENT = "Chamberlain/3773 (iPhone; iOS 10.0.1; Scale/2.00)"
 
     DOOR_STATE = {
         '1': STATE_OPEN, #'open',
@@ -97,17 +95,18 @@ class MyQAPI(object):
 
         params = {
             'username': self.username,
-            'password': self.password,
-            'appId': self.brand[APP_ID],
-            'culture': self.LOCALE
+            'password': self.password
         }
 
-        login = requests.get(
+        login = requests.post(
             'https://{host_uri}/{login_endpoint}'.format(
-                host_uri=self.brand[HOST_URI],
+                host_uri=HOST_URI,
                 login_endpoint=self.LOGIN_ENDPOINT),
-                params=params,
-                headers=self.HEADERS
+                json=params,
+                headers={
+                    'MyQApplicationId': self.brand[APP_ID],
+                    'User-Agent': self.USERAGENT
+                }
         )
 
         auth = login.json()
@@ -121,17 +120,15 @@ class MyQAPI(object):
         if not self._logged_in:
             self._logged_in = self.login()
 
-        params = {
-            'appId': self.brand[APP_ID],
-            'securityToken': self.security_token
-        }
-
         devices = requests.get(
             'https://{host_uri}/{device_list_endpoint}'.format(
-                host_uri=self.brand[HOST_URI],
+                host_uri=HOST_URI,
                 device_list_endpoint=self.DEVICE_LIST_ENDPOINT),
-                params=params,
-                headers=self.HEADERS
+                headers={
+                    'MyQApplicationId': self.brand[APP_ID],
+                    'SecurityToken': self.security_token,
+                    'User-Agent': self.USERAGENT
+                }
         )
 
         devices = devices.json()['Devices']
@@ -182,20 +179,19 @@ class MyQAPI(object):
     def set_state(self, device_id, state):
         """Set device state."""
         payload = {
-            'AttributeName': 'desireddoorstate',
-            'MyQDeviceId': device_id,
-            'ApplicationId': 'JVM/G9Nwih5BwKgNCjLxiFUQxQijAebyyg8QUHr7JOrP+tuPb8iHfRHKwTmDzHOu',
+            'attributeName': 'desireddoorstate',
+            'myQDeviceId': device_id,
             'AttributeValue': state,
-            'SecurityToken': self.security_token,
         }
         device_action = requests.put(
             'https://{host_uri}/{device_set_endpoint}'.format(
-                host_uri=self.brand[HOST_URI],
+                host_uri=HOST_URI,
                 device_set_endpoint=self.DEVICE_SET_ENDPOINT),
                 data=payload,
                 headers={
-                    'MyQApplicationId': 'JVM/G9Nwih5BwKgNCjLxiFUQxQijAebyyg8QUHr7JOrP+tuPb8iHfRHKwTmDzHOu',
-                    'SecurityToken': self.security_token
+                    'MyQApplicationId': self.brand[APP_ID],
+                    'SecurityToken': self.security_token,
+                    'User-Agent': self.USERAGENT
                 }
         )
 
@@ -226,11 +222,6 @@ class MyQCoverDevice(CoverDevice):
     def is_closed(self):
         """Return True if cover is closed, else False."""
         return self._status == STATE_CLOSED
-
-    @property
-    def current_cover_position(self):
-        """Return current position of cover."""
-        return 0 if self.is_closed else 100
 
     def close_cover(self):
         """Issue close command to cover."""
