@@ -3,7 +3,7 @@ Example [Home Assistant](https://home-assistant.io) Configs
 
 Home Assistant Version: 0.40.1
 
-#Devices
+# Devices
 
 * [Ecobee 3](http://www.amazon.com/ecobee3-Smarter-Thermostat-Remote-Generation/dp/B00ZIRV39M/ref=sr_1_1?ie=UTF8&qid=1461377268&sr=8-1&keywords=ecobee3) + 9 Sensors
 * [Hue Hub](http://www.amazon.com/Philips-458489-Hue-Bridge-Frustration/dp/B014H2P42K/ref=sr_1_1?ie=UTF8&qid=1461377320&sr=8-1&keywords=hue+hub)
