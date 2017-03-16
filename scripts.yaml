@@ -40,17 +40,33 @@ input_select_harmony:
         ##########################################################
         ## Sonos Text to Speech
         ##########################################################
+
 say:
-  alias: SONOS TTS
+  alias: Sonos TTS
   sequence:
     - service: media_player.sonos_snapshot
       data_template:
-        entity_id: "{{ where }}"
-    - service: tts.google_say
+        with_group: yes
+    - delay: '00:00:02'
+    - service: media_player.sonos_unjoin
       data_template:
         entity_id: "{{ where }}"
+    - delay: '00:00:01'
+    - service: media_player.sonos_join
+      data_template:
+        master: "{{ master }}"
+        entity_id: "{{ where }}"
+    - delay: '00:00:01'
+    - service: media_player.volume_set
+      data_template:
+        volume_level: "{{ volume }}"
+        entity_id: "{{ master }}"
+    - delay: '00:00:01'
+    - service: tts.google_say
+      data_template:
+        entity_id: "{{ master }}"
         message: "{{ what }}"
     - delay: '00:00:20'
     - service: media_player.sonos_restore
       data_template:
-        entity_id: "{{ where }}"
+        with_group: yes

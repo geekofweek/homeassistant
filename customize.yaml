@@ -8,6 +8,9 @@
 
   climate.main_floor:
     friendly_name: Thermostat
+  climate.window_unit:
+    friendly_name: Window Unit
+    icon: mdi:air-conditioner
   automation.turn_thermostat_on_summer:
     icon: mdi:sunglasses
     friendly_name: Auto on During Summer Enabled
@@ -32,74 +35,77 @@
     friendly_name: Winter Mode Enabled
   sensor.main_floor_humidity:
     icon: mdi:water-percent
-    friendly_name: Humidity
+    friendly_name: Dining Room Humidity
   sensor.main_floor_temperature:
     friendly_name: Dining Room Temperature
   binary_sensor.main_floor_occupancy:
     friendly_name: Dining Room Occupancy
+  sensor.wink_relay_sensor_humidity:
+    icon: mdi:water-percent
+    friendly_name: Living Room Humidity
 
         ##########################################################
         ## Device Trackers
         ##########################################################
 
-  device_tracker._REDACTED_:
+  device_tracker._USER1_:
     icon: mdi:human-male
-    friendly_name: _REDACTED_
-  device_tracker._REDACTED_s_iphone:
+    friendly_name: _USER1_
+  device_tracker._USER1_s_iphone:
     icon: mdi:cellphone-iphone
-    friendly_name: _REDACTED_'s iPhone (iOS)
-  device_tracker._REDACTED_siphone:
+    friendly_name: _USER1_'s iPhone (iOS)
+  device_tracker._USER1_siphone:
     icon: mdi:cellphone-iphone
-    friendly_name: _REDACTED_'s iPhone (Router)
-  device_tracker._REDACTED_s_iphone:
+    friendly_name: _USER1_'s iPhone (Router)
+  device_tracker._USER2_s_iphone:
     icon: mdi:cellphone-iphone
-    friendly_name: _REDACTED_'s iPhone (iOS)
-  device_tracker._REDACTED_siphone2:
+    friendly_name: _USER2_'s iPhone (iOS)
+  device_tracker._USER2_siphone2:
     icon: mdi:cellphone-iphone
-    friendly_name: _REDACTED_'s iPhone (Router)
-  device_tracker._REDACTED_:
+    friendly_name: _USER2_'s iPhone (Router)
+  device_tracker._USER2_:
     icon: mdi:human-female
-    friendly_name: _REDACTED_
-  device_tracker._REDACTED_sapplewatch:
+    friendly_name: _USER2_
+  device_tracker._USER1_sapplewatch:
     icon: mdi:watch
-  device_tracker._REDACTED_sapplewatch:
+  device_tracker._USER2_sapplewatch:
     icon: mdi:mdi:watch
-  device_tracker._REDACTED_sipad:
+  device_tracker._USER1_sipad:
     icon: mdi:tablet-ipad
-  device_tracker._REDACTED_sipad:
+  device_tracker._USER2_sipad:
     icon: mdi:tablet-ipad
-  device_tracker._REDACTED_smacbookair:
+  device_tracker._USER1_smacbookair:
     icon: mdi:laptop-mac
-  device_tracker._REDACTED_smacbookpro:
+  device_tracker._USER1_smacbookpro:
     icon: mdi:laptop-mac
-  device_tracker._REDACTED_smacbookair:
+  device_tracker._USER2_smacbookair:
     icon: mdi:laptop-mac
 
         ##########################################################
         ## Friends and Family
         ##########################################################
 
-  device_tracker._REDACTED_:
+  device_tracker._GUEST_:
     icon: mdi:human-male
-    friendly_name: _REDACTED_
-  device_tracker._REDACTED_:
+    friendly_name: _GUEST_
+  device_tracker._GUEST_:
     icon: mdi:human-female
-    friendly_name: _REDACTED_
-  device_tracker._REDACTED_:
+    friendly_name: _GUEST_
+  device_tracker._GUEST_:
     icon: mdi:human-male
-    friendly_name: _REDACTED_
-  device_tracker._REDACTED_:
+    friendly_name: _GUEST_
+  device_tracker._GUEST_:
     icon: mdi:human-male
-    friendly_name: _REDACTED_
-  device_tracker._REDACTED_:
+    friendly_name: _GUEST_
+  device_tracker._GUEST_:
     icon: mdi:human-female
-    friendly_name: _REDACTED_
-  device_tracker._REDACTED_:
+    friendly_name: _GUEST_
+  device_tracker._GUEST_:
     icon: mdi:human-male
-    friendly_name: _REDACTED_
-  device_tracker._REDACTED_:
+    friendly_name: _GUEST_
+  device_tracker._GUEST_:
     icon: mdi:human-male
-    friendly_name: _REDACTED_
+    friendly_name: _GUEST_
   group.friends_and_family:
     friendly_name: Friends & Family
 
@@ -114,20 +120,40 @@
     hidden: true
   cover.myq:
     hidden: true
+  binary_sensor.front_door_opened_opened:
+    friendly_name: Front Door Open
+  binary_sensor.back_door_opened:
+    friendly_name: Back Door Open
+  binary_sensor.basement_door_opened:
+    friendly_name: Basement Door Open
+
+        ##########################################################
+        ## Door Bell
+        ##########################################################
+
+  binary_sensor.front_door_button_pressed:
+    friendly_name: Door Bell
+    icon: mdi:bell-ring
+  binary_sensor.front_door_motion:
+    icon: mdi:bell-ring
+    friendly_name: Door Bell Motion
+  sensor.ring_front_door_battery:
+    friendly_name: Door Bell
+    icon: mdi:battery
 
         ##########################################################
         ## Travel Times
         ##########################################################
 
-  sensor._REDACTED_to_home:
+  sensor._USER1_to_home:
     icon: mdi:car
-  sensor._REDACTED_to_home:
+  sensor._USER2_to_home:
     icon: mdi:car
-  sensor._REDACTED_to_REDACTED_:
+  sensor._USER2_to_REDACTED_:
     icon: mdi:car
-  sensor._REDACTED_to_REDACTED_:
+  sensor._USER2_to_REDACTED_:
     icon: mdi:car
-  sensor._REDACTED_to_REDACTED_:
+  sensor._USER2_to_REDACTED_:
     icon: mdi:car
 
         ##########################################################
@@ -156,14 +182,14 @@
     friendly_name: Kitchen
   group.stairs:
     icon: mdi:stairs
-  group._REDACTED_office:
+  group._USER1_office:
     icon: mdi:desktop-mac
-  group._REDACTED_office_lights:
+  group._USER1_office_lights:
     icon: mdi:desktop-mac
-    friendly_name: _REDACTED_ Office
-  group._REDACTED_office_lights:
+    friendly_name: _USER1_ Office
+  group._USER2_office_lights:
     icon: mdi:desktop-mac
-    friendly_name: _REDACTED_ Office
+    friendly_name: _USER2_ Office
   group.guest_bedroom:
     icon: mdi:hotel
     friendly_name: Guest Bedroom
@@ -185,12 +211,12 @@
     icon: mdi:nature
   group.living_room_lamps:
     icon: mdi:lamp
-  group._REDACTED_office_ceiling:
-    icon: mdi:lightbulb
+  group._USER2_office_ceiling:
+    icon: mdi:ceiling-light
   group.interior:
     friendly_name: Interior Lights
   group.basement_lights:
-    icon: mdi:lightbulb
+    icon: mdi:ceiling-light
 
         ##########################################################
         ## Locks
@@ -209,12 +235,6 @@
         ## Sensors
         ##########################################################
 
-  binary_sensor.front_door_opened_opened:
-    friendly_name: Front Door Open
-  binary_sensor.back_door_opened:
-    friendly_name: Back Door Open
-  binary_sensor.basement_door_opened:
-    friendly_name: Basement Door Open
   sensor.cpu_use:
     friendly_name: CPU Usage
   sensor.ram_use:
@@ -278,7 +298,7 @@
     icon: mdi:shield-outline
     friendly_name: Alarm Siren
   switch.living_room_ceiling_fan:
-    icon: mdi:lightbulb
+    icon: mdi:ceiling-light
     friendly_name: Living Room Ceiling Fan
   switch.bottom_light_load:
     hidden: true
@@ -289,10 +309,10 @@
 
   light.hallway_light:
     friendly_name: Hallway
-    icon: mdi:lightbulb
+    icon: mdi:ceiling-light
   light.bathroom_vanity:
     icon: mdi:water-pump
-  light._REDACTED_s_nightstand:
+  light._USER1_s_nightstand:
     icon: mdi:lamp
   light.bedroom_lamp:
     icon: mdi:lamp
@@ -304,12 +324,26 @@
     icon: mdi:lamp
   light.office_lamp:
     icon: mdi:lamp
-  light._REDACTED_s_nightstand:
+  light.office_ceiling:
+    icon: mdi:ceiling-light
+  light._USER2_s_nightstand:
     icon: mdi:lamp
   light.garage_light:
     icon: mdi:spotlight-beam
   light.media_center_lighting:
     icon: mdi:television
+  light.basement_stairs:
+    icon: mdi:ceiling-light
+  light.dining_room_table:
+    icon: mdi:ceiling-light
+  light.dining_room_ceiling:
+    icon: mdi:ceiling-light
+  light.kitchen_sink:
+    icon: mdi:ceiling-light
+  light.kitchen_cabinets:
+    icon: mdi:ceiling-light
+  light.kitchen_ceiling:
+    icon: mdi:ceiling-light
   light.stairs_1:
     hidden: true
   light.stairs_2:
@@ -332,9 +366,9 @@
     hidden: true
   light.front_porch_right:
     hidden: true
-  light._REDACTED_s_office_ceiling_1:
+  light._USER2_s_office_ceiling_1:
     hidden: true
-  light._REDACTED_s_office_ceiling_2:
+  light._USER2_s_office_ceiling_2:
     hidden: true
   light.back_door_left:
     hidden: true
@@ -349,7 +383,7 @@
         ## Hue Groups
         ##########################################################
 
-  light._REDACTED_s_office:
+  light._USER1_s_office:
     hidden: true
   light.back_door:
     hidden: true
@@ -373,7 +407,7 @@
     hidden: true
   light.office:
     hidden: true
-  light._REDACTED_s_office:
+  light._USER2_s_office:
     hidden: true
   light.stairs:
     hidden: true
@@ -389,16 +423,12 @@
   sensor.dark_sky_temperature:
     friendly_name: 'Outdoor Temperature'
   sensor.dark_sky_summary:
-    icon: mdi:weather-sunny
     friendly_name: 'Summary'
   sensor.dark_sky_hourly_summary:
-    icon: mdi:weather-sunny
     friendly_name: 'Hourly Summary'
   sensor.dark_sky_minutely_summary:
-    icon: mdi:weather-sunny
     friendly_name: 'Minute Summary'
   sensor.dark_sky_daily_summary:
-    icon: mdi:weather-sunny
     friendly_name: 'Daily Summary'
   sensor.dark_sky_apparent_temperature:
     icon: mdi:thermometer-lines
@@ -442,10 +472,21 @@
         ## Media Players
         ##########################################################
 
+  media_player.living_room_apple_tv:
+    icon: mdi:apple
+  media_player.bedroom_apple_tv:
+    icon: mdi:apple
+  media_player._USER1_office_apple_tv:
+    icon: mdi:apple
   media_player.living_room:
-    friendly_name: Apple TV
+    friendly_name: Living Room Plex
+    icon: mdi:plex
+  media_player.bedroom:
+    friendly_name: Bedroom Plex
+    icon: mdi:plex
   media_player.plex_for_vizio_vizio_mtk:
-    friendly_name: Office TV
+    friendly_name: Office TV Plex
+    icon: mdi:plex
   sensor.gingerflix:
     icon: mdi:theater
   media_player.roku_hd_18c23w020195:
@@ -456,8 +497,6 @@
         ##########################################################
 
   group.basement_occupancy:
-    hidden: true
-  group.home_lights:
     hidden: true
   group.hue_lights:
     hidden: true
@@ -495,7 +534,7 @@
     hidden: true
   sensor.office_temperature_2:
     hidden: true
-  sensor._REDACTED_office_temperature_2:
+  sensor._USER2_office_temperature_2:
     hidden: true
   sensor.guest_bedroom_temperature_2:
     hidden: true
@@ -513,7 +552,7 @@
     hidden: true
   binary_sensor.office:
     hidden: true
-  binary_sensor._REDACTED_office:
+  binary_sensor._USER2_office:
     hidden: true
   binary_sensor.guest_bedroom:
     hidden: true
@@ -562,13 +601,13 @@
     hidden: true
   light.basement_stairs_2:
     hidden: true
-  light._REDACTED_s_office_ceiling_1_2:
+  light._USER2_s_office_ceiling_1_2:
     hidden: true
-  light._REDACTED_s_office_ceiling_2_2:
+  light._USER2_s_office_ceiling_2_2:
     hidden: true
-  light._REDACTED_s_nightstand_2:
+  light._USER2_s_nightstand_2:
     hidden: true
-  light._REDACTED_s_nightstand_2:
+  light._USER1_s_nightstand_2:
     hidden: true
   light.guest_bedroom_lamp_2:
     hidden: true
@@ -618,21 +657,21 @@
         ## Input Boolean
         ##########################################################
 
-  input_boolean._REDACTED_greeting:
+  input_boolean._USER2_greeting:
     hidden: true
-  input_boolean._REDACTED_greeting:
+  input_boolean._USER1_greeting:
     hidden: true
-  input_boolean._REDACTED_visiting:
+  input_boolean._GUEST_visiting:
     hidden: true
-  input_boolean._REDACTED_visiting:
+  input_boolean._GUEST_isiting:
     hidden: true
-  input_boolean._REDACTED_visiting:
+  input_boolean._GUEST_visiting:
     hidden: true
-  input_boolean._REDACTED_visiting:
+  input_boolean._GUEST_visiting:
     hidden: true
-  input_boolean._REDACTED_visiting:
+  input_boolean._GUEST_visiting:
     hidden: true
-  input_boolean._REDACTED_visiting:
+  input_boolean._GUEST_visiting:
     hidden: true
 
         ##########################################################
@@ -655,18 +694,25 @@
     freindly_name: Media Center Sonos
   media_player.living_room_sp:
     icon: mdi:speaker
+    friendly_name: Living Room Sonos
   media_player.dining_room:
     icon: mdi:speaker
+    friendly_name: Dining Room Sonos
   media_player.kitchen:
     icon: mdi:speaker
+    friendly_name: Kitchen Sonos
   media_player.bathroom:
     icon: mdi:speaker
-  media_player._REDACTED_s_office:
+    friendly_name: Bathroom Sonos
+  media_player._USER1_s_office:
     icon: mdi:speaker
-  media_player._REDACTED_s_office:
+    friendly_name: _USER1_'s Office Sonos
+  media_player._USER2_s_office:
     icon: mdi:speaker
+    friendly_name: _USER2_'s Office Sonos
   media_player.basement:
     icon: mdi:speaker
+    friendly_name: Basement Sonos
 
         ##########################################################
         ## Remote
@@ -682,11 +728,3 @@
 
   switch.basement_heater:
     icon: mdi:radiator
-
-        ##########################################################
-        ## Wink Work Around
-        ##########################################################
-
-  sensor.wink_status_logfile:
-    icon: mdi:checkbox-marked-circle-outline
-    friendly_name: Wink Status

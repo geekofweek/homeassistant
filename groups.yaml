@@ -11,8 +11,8 @@
       - group.kitchen
       - group.bedroom
       - group.bathroom
-      - group._REDACTED_office
-      - group._REDACTED_office
+      - group._USER1_office
+      - group._USER2_office
       - group.interior
       - group.basement
       - group.household
@@ -38,6 +38,7 @@
       - group.remote
       - media_player.media_center
       - media_player.living_room_sp
+      - media_player.living_room_apple_tv
       - media_player.living_room
 
   dining:
@@ -57,7 +58,9 @@
     entities:
       - group.bedroom
       - group.guest_bedroom
-      - media_player.roku_hd_18c23w020195
+      - media_player.bedroom_apple_tv
+      - media_player.bedroom
+      - media_player.roku_hd_REDACTED_
 
   bathrooms:
     name: Bathrooms
@@ -72,11 +75,12 @@
     view: yes
     icon: mdi:desktop-mac
     entities:
-      - group._REDACTED_office
-      - group._REDACTED_office
-      - media_player._REDACTED_s_office
-      - media_player._REDACTED_s_office
+      - group._USER1_office
+      - group._USER2_office
+      - media_player._USER1_s_office_apple_tv
       - media_player.plex_for_vizio_vizio_mtk
+      - media_player._USER1_s_office
+      - media_player._USER2_s_office
 
   basements:
     name: Basement
@@ -93,6 +97,7 @@
     icon: mdi:tree
     entities:
       - group.exterior_lights
+      - group.door_bell
       - group.garage
 
   automation:
@@ -105,8 +110,22 @@
       - group.automation_on_demand
       - group.location_controls
       - group.door_locks
-      - group.thermostat
       - group.party_modes
+
+  weatherdashboard:
+    name: Weather
+    view: yes
+    icon: mdi:weather-partlycloudy
+    entities:
+      - sensor.dark_sky_summary
+      - sensor.dark_sky_daily_summary
+      - sensor.dark_sky_hourly_summary
+      - sensor.dark_sky_minutely_summary
+      - group.thermostat
+      - group.indoor_temperature
+      - group.weather
+      - group.humidity
+      - group.weather_summary
 
   sensors:
     name: Sensors
@@ -116,10 +135,9 @@
       - group.household
       - group.device_location
       - group.friends_and_family
-      - group.weather
-      - group.indoor_temperature
       - group.occupancy
       - group.doors
+      - group.door_bell
       - group.water_sensors
       - group.speedtest
       - group.system
@@ -132,7 +150,7 @@
     entities:
       - group.remote
       - group.media_player
-      - group.speakers
+      - group.sonos
 
   cameras:
     name: Cameras
@@ -176,14 +194,14 @@
     - input_boolean.lights_morning_disable
 
   Location Controls:
-    - input_boolean._REDACTED_away
-    - input_boolean._REDACTED_away_driving
-    - input_boolean._REDACTED_away
-    - input_boolean._REDACTED_away_driving
-    - input_boolean._REDACTED_home
-    - input_boolean._REDACTED_home
-    - input_boolean.manual_REDACTED_away
-    - input_boolean.manual_REDACTED_away
+    - input_boolean._USER1_away
+    - input_boolean._USER1_away_driving
+    - input_boolean._USER2_away
+    - input_boolean._USER2_away_driving
+    - input_boolean._USER1_home
+    - input_boolean._USER2_home
+    - input_boolean.manual_USER1_away
+    - input_boolean.manual_USER2_away
 
   Automation On Demand:
     - input_boolean.lock_doors
@@ -200,24 +218,24 @@
     - input_boolean.interior_holiday
 
   Household:
-    - device_tracker._REDACTED_
-    - device_tracker._REDACTED_
+    - device_tracker._USER1_
+    - device_tracker._USER2_
 
   Device Location:
-    - device_tracker._REDACTED_sipad
-    - device_tracker._REDACTED_sipad
-    - device_tracker._REDACTED_smacbookpro
-    - device_tracker._REDACTED_smacbookair
-    - device_tracker._REDACTED_smacbookair
+    - device_tracker._USER1_sipad
+    - device_tracker._USER2_sipad
+    - device_tracker._USER1_smacbookpro
+    - device_tracker._USER1_smacbookair
+    - device_tracker._USER2_smacbookair
 
   Friends and Family:
-    - device_tracker._REDACTED_
-    - device_tracker._REDACTED_
-    - device_tracker._REDACTED_
-    - device_tracker._REDACTED_
-    - device_tracker._REDACTED_
-    - device_tracker._REDACTED_
-    - device_tracker._REDACTED_
+    - device_tracker._GUEST_
+    - device_tracker._GUEST_
+    - device_tracker._GUEST_
+    - device_tracker._GUEST_
+    - device_tracker._GUEST_
+    - device_tracker._GUEST_
+    - device_tracker._GUEST_
 
   Living Room:
     - group.living_room_lamps
@@ -238,16 +256,16 @@
     - light.media_center_lighting
 
   Bedroom:
-    - light._REDACTED_s_nightstand
-    - light._REDACTED_s_nightstand
+    - light._USER1_s_nightstand
+    - light._USER2_s_nightstand
     - light.bedroom_lamp
     - light.closet_lamp
     - binary_sensor.bedroom_occupancy
     - sensor.bedroom_temperature
 
   Bedroom Lights:
-    - light._REDACTED_s_nightstand
-    - light._REDACTED_s_nightstand
+    - light._USER1_s_nightstand
+    - light._USER2_s_nightstand
     - light.bedroom_lamp
     - light.closet_lamp
 
@@ -270,29 +288,33 @@
     - binary_sensor.bathroom_occupancy
     - sensor.bathroom_temperature
 
-  _REDACTED_ Office:
+  _USER1_ Office:
     - light.office_ceiling
     - light.office_lamp
     - switch.air_purifier
     - binary_sensor.office_occupancy
     - sensor.office_temperature
 
-  _REDACTED_ Office Lights:
+  _USER1_ Office Lights:
     - light.office_ceiling
     - light.office_lamp
 
-  _REDACTED_ Office:
-    - group._REDACTED_office_ceiling
-    - binary_sensor._REDACTED_office_occupancy
-    - sensor._REDACTED_office_temperature
+  _USER2_ Office:
+    - group._USER2_office_ceiling
+    - binary_sensor._USER2_office_occupancy
+    - sensor._USER2_office_temperature
 
-  _REDACTED_ Office Lights:
-    - group._REDACTED_office_ceiling
+  _USER2_ Office Lights:
+    - group._USER2_office_ceiling
 
   Stairs:
     - light.stairs_1
     - light.stairs_2
     - light.stairs_3
+
+  Door Bell:
+    - binary_sensor.front_door_button_pressed
+    - binary_sensor.front_door_motion
 
   Front Porch:
     - light.front_porch_left
@@ -367,8 +389,8 @@
     - group.bedroom_lights
     - group.kitchen_lights
     - group.stairs
-    - group._REDACTED_office_lights
-    - group._REDACTED_office_lights
+    - group._USER1_office_lights
+    - group._USER2_office_lights
     - group.guest_bedroom_lights
     - group.basement_lighting
     - light.bathroom_vanity
@@ -391,7 +413,8 @@
 
   Thermostat:
     - climate.main_floor
-    - sensor.main_floor_humidity
+    - climate.window_unit
+    - sensor.dark_sky_temperature
     - input_boolean.thermostat_away
     - group.summer_mode
     - group.winter_mode
@@ -406,21 +429,25 @@
 
   Media Player:
     - sensor.gingerflix
+    - media_player.living_room_apple_tv
     - media_player.living_room
+    - media_player.bedroom_apple_tv
+    - media_player.bedroom
+    - media_player._USER1_s_office_apple_tv
     - media_player.plex_for_vizio_vizio_mtk
-    - media_player._REDACTED_s_iphone
-    - media_player._REDACTED_s_ipad
+    - media_player._USER1_s_iphone
+    - media_player._USER1_s_ipad
     - media_player.macproprivate
     - media_player.roku_hd_18c23w020195
 
-  Speakers:
+  Sonos:
     - media_player.media_center
     - media_player.living_room_sp
     - media_player.dining_room
     - media_player.kitchen
     - media_player.bathroom
-    - media_player._REDACTED_s_office
-    - media_player._REDACTED_s_office
+    - media_player._USER1_s_office
+    - media_player._USER2_s_office
     - media_player.basement
 
   Remote:
@@ -436,23 +463,23 @@
     - lock.back_door
     - lock.basement_door
 
-  _REDACTED_ Door Codes:
-    - binary_sensor._REDACTED_front_door_code
-    - binary_sensor._REDACTED_back_door_code
-    - binary_sensor._REDACTED_basement_door_code
+  _USER1_ Door Codes:
+    - binary_sensor._USER1_front_door_code
+    - binary_sensor._USER1_back_door_code
+    - binary_sensor._USER1_basement_door_code
 
-  _REDACTED_ Door Codes:
-    - binary_sensor._REDACTED_front_door_code
-    - binary_sensor._REDACTED_back_door_code
-    - binary_sensor._REDACTED_basement_door_code
+  _USER2_ Door Codes:
+    - binary_sensor._USER2_front_door_code
+    - binary_sensor._USER2_back_door_code
+    - binary_sensor._USER2_basement_door_code
 
   Door Codes:
-    - binary_sensor._REDACTED_front_door_code
-    - binary_sensor._REDACTED_back_door_code
-    - binary_sensor._REDACTED_basement_door_code
-    - binary_sensor._REDACTED_front_door_code
-    - binary_sensor._REDACTED_back_door_code
-    - binary_sensor._REDACTED_basement_door_code
+    - binary_sensor._USER1_front_door_code
+    - binary_sensor._USER1_back_door_code
+    - binary_sensor._USER1_basement_door_code
+    - binary_sensor._USER2_front_door_code
+    - binary_sensor._USER2_back_door_code
+    - binary_sensor._USER2_basement_door_code
 
   Occupancy:
     - binary_sensor.living_room_occupancy
@@ -461,7 +488,7 @@
     - binary_sensor.bedroom_occupancy
     - binary_sensor.bathroom_occupancy
     - binary_sensor.office_occupancy
-    - binary_sensor._REDACTED_office_occupancy
+    - binary_sensor._USER2_office_occupancy
     - binary_sensor.guest_bedroom_occupancy
     - binary_sensor.basement_occupancy
     - binary_sensor.laundry_room_occupancy
@@ -477,15 +504,19 @@
     - sensor.bedroom_temperature
     - sensor.bathroom_temperature
     - sensor.office_temperature
-    - sensor._REDACTED_office_temperature
+    - sensor._USER2_office_temperature
     - sensor.guest_bedroom_temperature
     - sensor.basement_temperature
     - sensor.laundry_room_temperature
 
+  Humidity:
+    - sensor.main_floor_humidity
+    - sensor.wink_relay_sensor_humidity
+    - sensor.dark_sky_humidity
+
   Weather:
     - sun.sun
     - sensor.dark_sky_temperature
-    - sensor.dark_sky_summary
     - sensor.dark_sky_apparent_temperature
     - sensor.dark_sky_precip
     - sensor.dark_sky_precip_probability
@@ -500,17 +531,15 @@
     - sensor.dark_sky_ozone
     - sensor.dark_sky_pressure
 
-  Home Lights:
-    - light.kitchen_cabinets
-    - light.kitchen_sink
-    - group.living_room_lights
-    - light.hallway_light
-    - group.back_door
-    - light.dining_room_table
+  Weather Summary:
+    - sensor.dark_sky_summary
+    - sensor.dark_sky_minutely_summary
+    - sensor.dark_sky_hourly_summary
+    - sensor.dark_sky_daily_summary
 
-  _REDACTED_ Office Ceiling:
-    - light._REDACTED_s_office_ceiling_1
-    - light._REDACTED_s_office_ceiling_2
+  _USER2_ Office Ceiling:
+    - light._USER2_s_office_ceiling_1
+    - light._USER2_s_office_ceiling_2
 
   Doors:
     - binary_sensor.front_door_opened
@@ -518,11 +547,11 @@
     - binary_sensor.basement_door_opened
 
   Travel Times:
-    - sensor._REDACTED_to_home
-    - sensor._REDACTED_to_home
-    - sensor._REDACTED_to_REDACTED_
-    - sensor._REDACTED_to_REDACTED_
-    - sensor._REDACTED_to_REDACTED_
+    - sensor._USER1_to_home
+    - sensor._USER2_to_home
+    - sensor._USER2_to_REDACTED_
+    - sensor._USER2_to_REDACTED_
+    - sensor._USER2_to_REDACTED_
 
   speedtest:
     - sensor.speedtest_ping
@@ -542,18 +571,19 @@
     - updater.updater
 
   Battery Levels:
+    - sensor.ring_front_door_battery
     - sensor.front_door_lock_batt
     - sensor.back_door_lock_batt
     - sensor.basement_door_lock_batt
+    - sensor.siren_batt
     - sensor.front_door_sensor_batt
     - sensor.back_door_sensor_batt
     - sensor.basement_door_sensor_batt
     - sensor.basement_drain_water_sensor_batt
     - sensor.sump_pump_water_sensor_batt
-    - sensor.siren_batt
 
   Hue lights:
-    - light._REDACTED_s_nightstand
+    - light._USER1_s_nightstand
     - light.basement_light_1
     - light.basement_light_2
     - light.basement_light_3
@@ -565,9 +595,9 @@
     - light.living_room_lamp_1
     - light.living_room_lamp_2
     - light.office_lamp
-    - light._REDACTED_s_nightstand
-    - light._REDACTED_s_office_ceiling_1
-    - light._REDACTED_s_office_ceiling_2
+    - light._USER2_s_nightstand
+    - light._USER2_s_office_ceiling_1
+    - light._USER2_s_office_ceiling_2
     - light.stairs_1
     - light.stairs_2
     - light.stairs_3

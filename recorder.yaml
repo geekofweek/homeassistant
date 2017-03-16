@@ -2,7 +2,7 @@
 ## Recorder
 #################################################################
 
-  purge_days: 7
+  purge_days: 30
   db_url: mysql://_REDACTED_
 
   exclude:
@@ -20,12 +20,12 @@
       - binary_sensor.laundry_room
       - binary_sensor.living_room
       - binary_sensor.office
-      - binary_sensor._REDACTED_office
-      - camera.64_at_big_bend
+      - binary_sensor._USER2_office
+      - camera._REDACTED_
       - climate.main_floor_2
       - cover.garage_door_2
       - cover.myq
-      - group._REDACTED_office
+      - group._USER1_office
       - group.alarm
       - group.all_automations
       - group.all_covers
@@ -53,7 +53,6 @@
       - group.exterior_lights
       - group.garage
       - group.guest_bedroom
-      - group.home_lights
       - group.hue_lights
       - group.hue_lights_exterior
       - group.indoor_temperature
@@ -70,9 +69,9 @@
       - group.outdoors
       - group.party_modes
       - group.remote
-      - group._REDACTED_office
+      - group._USER2_office
       - group.sensors
-      - group.speakers
+      - group.sonos
       - group.speedtest
       - group.system
       - group.thermostat
@@ -80,23 +79,32 @@
       - group.traffic_camera_feeds
       - group.travel_times
       - group.weather
+      - group.humidity
+      - group.weather_summary
+      - group.weatherdashboard
       - group.wink_lights
       - group.wink_lights_exterior
-      - light._REDACTED_s_nightstand_2
-      - light._REDACTED_s_office
+      - light._USER1_s_nightstand_2
+      - light._USER1_s_office
       - light.back_door
       - light.back_door_left_2
       - light.back_door_right_2
       - light.back_porch
       - light.back_yard
+      - light.back_yard_2
       - light.basement
       - light.basement_2
+      - light.basement_light_1
       - light.basement_light_1_2
+      - light.basement_light_2
       - light.basement_light_2_2
+      - light.basement_light_3
       - light.basement_light_3_2
+      - light.basement_light_4
       - light.basement_light_4_2
       - light.basement_stairs_2
       - light.bedroom
+      - light.bedroom_2
       - light.bedroom_lamp_2
       - light.closet_lamp_2
       - light.dining_room
@@ -110,25 +118,31 @@
       - light.interior
       - light.kitchen
       - light.living_room
+      - light.living_room_2
       - light.living_room_lamp_1_2
       - light.living_room_lamp_2_2
       - light.media_center_lighting_2
       - light.office
       - light.office_lamp_2
-      - light._REDACTED_s_nightstand_2
-      - light._REDACTED_s_office
-      - light._REDACTED_s_office_ceiling_1_2
-      - light._REDACTED_s_office_ceiling_2_2
+      - light._USER2_s_nightstand_2
+      - light._USER2_s_office
+      - light._USER2_s_office_ceiling_1_2
+      - light._USER2_s_office_ceiling_2_2
       - light.stairs
+      - light.stairs_1
       - light.stairs_1_2
+      - light.stairs_2
       - light.stairs_2_2
+      - light.stairs_3
       - light.stairs_3_2
+      - light.stairs_3_3
+      - light.stairs_4
       - light.upper_patio_left_2
       - light.upper_patio_right_2
       - light.upstairs
       - script.input_select_harmony
       - script.say
-      - sensor._REDACTED_to_home
+      - sensor._USER1_to_home
       - sensor.basement_temperature_2
       - sensor.bathroom_temperature_2
       - sensor.bedroom_temperature_2
@@ -161,11 +175,11 @@
       - sensor.office_temperature_2
       - sensor.ram_free
       - sensor.ram_use
-      - sensor._REDACTED_office_temperature_2
-      - sensor._REDACTED_to_home
-      - sensor._REDACTED_to_REDACTED_
-      - sensor._REDACTED_to_REDACTED_
-      - sensor._REDACTED_to_REDACTED_
+      - sensor._USER2_office_temperature_2
+      - sensor._USER2_to_home
+      - sensor._USER2_to_REDACTED_
+      - sensor._USER2_to_REDACTED_
+      - sensor._USER2_to_REDACTED_
       - sensor.since_last_boot
       - sensor.since_last_boot
       - sensor.speedtest_download
@@ -179,33 +193,35 @@
       - remote.media_center
       - input_boolean.garage_door
       - group.friends_and_family
-      - device_tracker._REDACTED_
-      - device_tracker._REDACTED_
-      - device_tracker._REDACTED_siphone
-      - device_tracker._REDACTED_suensiphone
-      - device_tracker._REDACTED_siphone
-      - device_tracker._REDACTED_
-      - device_tracker._REDACTED_siphone3
-      - input_boolean._REDACTED_visiting
-      - input_boolean._REDACTED_visiting
-      - input_boolean._REDACTED_visiting
-      - input_boolean._REDACTED_visiting
-      - input_boolean._REDACTED_visiting
-      - input_boolean._REDACTED_visiting
-      - input_boolean._REDACTED_greeting
-      - input_boolean._REDACTED_greeting
+      - device_tracker._GUEST_
+      - device_tracker._GUEST_
+      - device_tracker._GUEST_
+      - device_tracker._GUEST_
+      - device_tracker._GUEST_
+      - device_tracker._GUEST_
+      - device_tracker._GUEST_
+      - input_boolean._GUEST_visiting
+      - input_boolean._GUEST_visiting
+      - input_boolean._GUEST_visiting
+      - input_boolean._GUEST_visiting
+      - input_boolean._GUEST_visiting
+      - input_boolean._GUEST_visiting
+      - input_boolean._USER1_greeting
+      - input_boolean._USER2_greeting
       - binary_sensor.philips_hue
       - binary_sensor.wink_hub
       - binary_sensor.wink_relay
-      - sensor._REDACTED_s_iphone_battery_level
-      - sensor._REDACTED_s_iphone_battery_level
-      - sensor._REDACTED_s_iphone_battery_state
-      - sensor._REDACTED_s_iphone_battery_state
-      - device_tracker._REDACTED_s_iphone
-      - device_tracker._REDACTED_s_iphone
+      - sensor._USER1_s_iphone_battery_level
+      - sensor._USER2_s_iphone_battery_level
+      - sensor._USER1_s_iphone_battery_state
+      - sensor._USER2_s_iphone_battery_state
+      - device_tracker._USER1_s_iphone
+      - device_tracker._USER2_s_iphone
       - binary_sensor.wink_relays_bottom_button
       - binary_sensor.wink_relays_top_button
       - binary_sensor.gang
-      - sensor.wink_relay_sensor_humidity
       - sensor.wink_relay_sensor_proximity
       - sensor.wink_relay_sensor_temperature
+      - binary_sensor.wink_relay_sensor_presence
+      - sensor.ring_downstairs_volume
+      - sensor.ring_front_door_volume

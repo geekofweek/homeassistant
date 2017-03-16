@@ -17,6 +17,7 @@ updater:
 sun:
 conversation:
 discovery:
+config:
 
 http:
   api_password: _REDACTED_
@@ -26,7 +27,8 @@ http:
   trusted_networks:
     - 127.0.0.1
     - _REDACTED_/24
-  ip_ban_enabled: True
+    - _REDACTED_/24
+  ip_ban_enabled: true
   login_attempts_threshold: 5
 
 #################################################################
@@ -35,7 +37,7 @@ http:
 
 ecobee:
   api_key: _REDACTED_
-  hold_temp: True
+  hold_temp: true
 
 light:
   platform: hue
@@ -45,6 +47,8 @@ light:
 emulated_hue:
   host_ip: _REDACTED_
   listen_port: 8300
+  type: alexa
+  upnp_bind_multicast: false
   off_maps_to_on_domains:
     - script
     - scene
@@ -52,6 +56,18 @@ emulated_hue:
 
 media_player:
   - platform: plex
+  - platform: apple_tv
+    host: _REDACTED_
+    login_id: _REDACTED_
+    name: Living Room Apple TV
+  - platform: apple_tv
+    host: _REDACTED_
+    login_id: _REDACTED_
+    name: _USER1_'s Office Apple TV
+  - platform: apple_tv
+    host: _REDACTED_
+    login_id: _REDACTED_
+    name: Bedroom Apple TV
   - platform: sonos
     hosts:
       - _REDACTED_
@@ -70,9 +86,6 @@ remote:
 
 ios:
 
-notify:
-  - platform: ios
-
 ifttt:
   key: _REDACTED_
 
@@ -81,8 +94,10 @@ device_tracker:
     host: _REDACTED_
     username: _REDACTED_
     password: _REDACTED_
+    protocol: telnet
     track_new_devices: no
     interval_seconds: 12
+    consider_home: 180
   - platform: locative
 
 cover:
@@ -90,7 +105,7 @@ cover:
   name: Garage Door
   username: _REDACTED_
   password: _REDACTED_
-  brand: chamberlain
+  type: chamberlain
 
 camera:
   - platform: foscam

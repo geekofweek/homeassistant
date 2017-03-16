@@ -3,14 +3,14 @@
 #################################################################
 
         ##########################################################
-        ## _REDACTED_ Home from Walking Unlock Doors
+        ## _USER1_ Home from Walking Unlock Doors
         ##########################################################
 
-- alias: _REDACTED_ Home from Waling Unlock Doors
+- alias: _USER1_ Home from Waling Unlock Doors
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER1_
       from: 'not_home'
       to: 'home'
 
@@ -19,10 +19,10 @@
       entity_id: input_boolean.home_away
       state: 'off'
     - condition: state
-      entity_id: input_boolean._REDACTED_away
+      entity_id: input_boolean._USER1_away
       state: 'on'
     - condition: state
-      entity_id: input_boolean._REDACTED_away_driving
+      entity_id: input_boolean._USER1_away_driving
       state: 'off'
 
   action:
@@ -30,14 +30,14 @@
       entity_id: lock.back_door, lock.front_door
 
         ##########################################################
-        ## _REDACTED_ Home from Driving Open Garage Door Unlock Door
+        ## _USER1_ Home from Driving Open Garage Door Unlock Door
         ##########################################################
 
-- alias: _REDACTED_ Home from Driving Open Garage Door Unlock Door
+- alias: _USER1_ Home from Driving Open Garage Door Unlock Door
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER1_
       from: 'not_home'
       to: 'home'
 
@@ -49,10 +49,10 @@
       entity_id: input_boolean.home_away
       state: 'off'
     - condition: state
-      entity_id: input_boolean._REDACTED_away
+      entity_id: input_boolean._USER1_away
       state: 'on'
     - condition: state
-      entity_id: input_boolean._REDACTED_away_driving
+      entity_id: input_boolean._USER1_away_driving
       state: 'on'
 
   action:
@@ -62,14 +62,14 @@
       entity_id: lock.back_door
 
         ##########################################################
-        ## After _REDACTED_ Home Lock Doors
+        ## After _USER1_ Home Lock Doors
         ########################################################
 
-- alias: _REDACTED_ Home Lock Doors
+- alias: _USER1_ Home Lock Doors
 
   trigger:
     - platform: state
-      entity_id: input_boolean._REDACTED_away
+      entity_id: input_boolean._USER1_away
       from: 'on'
       to: 'off'
 
@@ -89,14 +89,14 @@
       entity_id: lock.back_door, lock.front_door
 
         ##########################################################
-        ## After _REDACTED_ Home Close Garage Door
+        ## After _USER1_ Home Close Garage Door
         ########################################################
 
-- alias: _REDACTED_ Home Close Garage
+- alias: _USER1_ Home Close Garage
 
   trigger:
     - platform: state
-      entity_id: input_boolean._REDACTED_away
+      entity_id: input_boolean._USER1_away
       from: 'on'
       to: 'off'
 
@@ -110,14 +110,14 @@
       entity_id: cover.garage_door
 
         ##########################################################
-        ## _REDACTED_ Home from Waling Unlock Doors
+        ## _USER2_ Home from Waling Unlock Doors
         ##########################################################
 
-- alias: _REDACTED_ Home from Waling Unlock Doors
+- alias: _USER2_ Home from Waling Unlock Doors
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER2_
       from: 'not_home'
       to: 'home'
 
@@ -126,10 +126,10 @@
       entity_id: input_boolean.home_away
       state: 'off'
     - condition: state
-      entity_id: input_boolean._REDACTED_away
+      entity_id: input_boolean._USER2_away
       state: 'on'
     - condition: state
-      entity_id: input_boolean._REDACTED_away_driving
+      entity_id: input_boolean._USER2_away_driving
       state: 'off'
 
 
@@ -138,14 +138,14 @@
       entity_id: lock.back_door, lock.front_door
 
         ##########################################################
-        ## _REDACTED_ Home from Driving Open Garage Door Unlock Door
+        ## _USER2_ Home from Driving Open Garage Door Unlock Door
         ##########################################################
 
-- alias: _REDACTED_ Home from Driving Open Garage Door Unlock Door
+- alias: _USER2_ Home from Driving Open Garage Door Unlock Door
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER2_
       from: 'not_home'
       to: 'home'
 
@@ -157,10 +157,10 @@
       entity_id: input_boolean.home_away
       state: 'off'
     - condition: state
-      entity_id: input_boolean._REDACTED_away
+      entity_id: input_boolean._USER2_away
       state: 'on'
     - condition: state
-      entity_id: input_boolean._REDACTED_away_driving
+      entity_id: input_boolean._USER2_away_driving
       state: 'on'
 
   action:
@@ -170,14 +170,14 @@
       entity_id: lock.back_door
 
         ##########################################################
-        ## After _REDACTED_ Home Lock Doors
+        ## After _USER2_ Home Lock Doors
         ########################################################
 
-- alias: _REDACTED_ Home Lock Doors
+- alias: _USER2_ Home Lock Doors
 
   trigger:
     - platform: state
-      entity_id: input_boolean._REDACTED_away
+      entity_id: input_boolean._USER2_away
       from: 'on'
       to: 'off'
 
@@ -197,14 +197,14 @@
       entity_id: lock.back_door, lock.front_door
 
         ##########################################################
-        ## After _REDACTED_ Home Close Garage Door
+        ## After _USER2_ Home Close Garage Door
         ########################################################
 
-- alias: _REDACTED_ Home Close Garage
+- alias: _USER2_ Home Close Garage
 
   trigger:
     - platform: state
-      entity_id: input_boolean._REDACTED_away
+      entity_id: input_boolean._USER2_away
       from: 'on'
       to: 'off'
 
@@ -218,14 +218,14 @@
       entity_id: cover.garage_door
 
         ##########################################################
-        ## _REDACTED_ Home Turn on Lights
+        ## _USER1_ Home Turn on Lights
         ##########################################################
 
-- alias: _REDACTED_ Home Turn on Lights
+- alias: _USER1_ Home Turn on Lights
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER1_
       from: 'not_home'
       to: 'home'
 
@@ -237,29 +237,29 @@
       entity_id: input_boolean.home_away
       state: 'off'
     - condition: state
-      entity_id: input_boolean._REDACTED_away
+      entity_id: input_boolean._USER1_away
       state: 'on'
 
   action:
     - service: light.turn_on
-      entity_id: group.home_lights
+      entity_id: light.kitchen_cabinets, light.kitchen_sink, group.living_room_lights, light.hallway_light, light.dining_room_table
       data:
        xy_color: [ 0.5134, 0.4149 ]
        brightness: 150
     - service: light.turn_on
-      entity_id: group.front_porch
+      entity_id: group.front_porch, group.back_door
       data:
        brightness: 255
 
         ##########################################################
-        ## _REDACTED_ Home Reset Front Porch Brightness
+        ## _USER1_ Home Reset Front Porch Brightness
         ##########################################################
 
-- alias: _REDACTED_ Home Reset Front Porch Brightness
+- alias: _USER1_ Home Reset Front Porch Brightness
 
   trigger:
     - platform: state
-      entity_id: input_boolean._REDACTED_away
+      entity_id: input_boolean._USER1_away
       from: 'on'
       to: 'off'
 
@@ -279,14 +279,14 @@
         transition: 60
 
         ##########################################################
-        ## _REDACTED_ Home Turn on Lights
+        ## _USER2_ Home Turn on Lights
         ##########################################################
 
-- alias: _REDACTED_ Home Turn on Lights
+- alias: _USER2_ Home Turn on Lights
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER2_
       from: 'not_home'
       to: 'home'
 
@@ -298,29 +298,29 @@
       entity_id: input_boolean.home_away
       state: 'off'
     - condition: state
-      entity_id: input_boolean._REDACTED_away
+      entity_id: input_boolean._USER2_away
       state: 'on'
 
   action:
     - service: light.turn_on
-      entity_id: group.home_lights
+      entity_id: light.kitchen_cabinets, light.kitchen_sink, group.living_room_lights, light.hallway_light, light.dining_room_table
       data:
        xy_color: [ 0.5134, 0.4149 ]
        brightness: 150
     - service: light.turn_on
-      entity_id: group.front_porch
+      entity_id: group.front_porch, group.back_door
       data:
        brightness: 255
 
         ##########################################################
-        ## _REDACTED_ Home Reset Front Porch Brightness
+        ## _USER2_ Home Reset Front Porch Brightness
         ##########################################################
 
-- alias: _REDACTED_ Home Reset Front Porch Brightness
+- alias: _USER2_ Home Reset Front Porch Brightness
 
   trigger:
     - platform: state
-      entity_id: input_boolean._REDACTED_away
+      entity_id: input_boolean._USER2_away
       from: 'on'
       to: 'off'
 
@@ -371,26 +371,26 @@
       data:
         entity_id: input_select.remote
         option: "PowerOff"
-    - service: media_player.turn_off
+    - service: media_player.media_stop
       entity_id:
         - media_player.media_center
         - media_player.living_room_sp
         - media_player.dining_room
         - media_player.kitchen
         - media_player.bathroom
-        - media_player._REDACTED_s_office
-        - media_player._REDACTED_s_office
+        - media_player._USER1_s_office
+        - media_player._USER2_s_office
         - media_player.basement
 
         ##########################################################
-        ## Close Garage Door when _REDACTED_ Leaves
+        ## Close Garage Door when _USER1_ Leaves
         ##########################################################
 
-- alias: Close Garage when _REDACTED_ Leaves
+- alias: Close Garage when _USER1_ Leaves
 
   trigger:
     - platform: state
-      entity_id: input_boolean._REDACTED_away
+      entity_id: input_boolean._USER1_away
       from: 'off'
       to: 'on'
 
@@ -404,14 +404,14 @@
       entity_id: cover.garage_door
 
         ##########################################################
-        ## Close Garage Door when _REDACTED_ Leaves
+        ## Close Garage Door when _USER2_ Leaves
         ##########################################################
 
-- alias: Close Garage when _REDACTED_ Leaves
+- alias: Close Garage when _USER2_ Leaves
 
   trigger:
     - platform: state
-      entity_id: input_boolean._REDACTED_away
+      entity_id: input_boolean._USER2_away
       from: 'off'
       to: 'on'
 
@@ -529,6 +529,31 @@
       entity_id: group.winter_mode
 
         ##########################################################
+        ## Set Thermostat Home When _USER2_ Leaves Work
+        ##########################################################
+
+- alias: Set Thermostat Home When _USER2_ Leaves Work
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._USER2_
+      from: 'work'
+      to: 'not_home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.home_away
+      state: 'off'
+    - condition: state
+      entity_id: device_tracker._USER1_
+      state: 'not_home'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.thermostat_away
+
+
+        ##########################################################
         ## Turn Thermostat on Summer
         ##########################################################
 
@@ -582,7 +607,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.dark_sky_temperature
-      above: 65
+      above: 66
 
   action:
     - service: homeassistant.turn_on
@@ -633,6 +658,225 @@
     - service: homeassistant.turn_on
       entity_id: input_boolean.thermostat_away
 
+
+        ##########################################################
+        ## Turn On Front Porch when Door Bell Rings
+        ##########################################################
+
+- alias: Turn On Front Porch when Door Bell Rings
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_button_pressed
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.front_porch
+      data:
+        brightness: 255
+
+        ##########################################################
+        ## Reset Front Porch Brightness After Doorbell Rings
+        ##########################################################
+
+- alias: Reset Front Porch Brightness After Doorbell Rings
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_button_pressed
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.front_porch
+      data:
+        brightness: 100
+        transition: 300
+
+        ##########################################################
+        ## Turn On Front Porch when Motion Detected
+        ##########################################################
+
+- alias: Turn On Front Porch when Motion Detected
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.front_porch
+      data:
+        brightness: 255
+
+        ##########################################################
+        ## Reset Front Porch Brightness After Motion Detected
+        ##########################################################
+
+- alias: Reset Front Porch Brightness After Motion Detected
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.front_porch
+      data:
+        brightness: 100
+        transition: 300
+
+        ##########################################################
+        ## Turn On Lights when Door Bell Rings and Away
+        ##########################################################
+
+- alias: Turn On Lights when Door Bell Rings and Away
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_button_pressed
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.living_room_lights, light.office_lamp, light.closet_lamp, light.kitchen_ceiling
+      data:
+        brightness: 255
+
+        ##########################################################
+        ## Turn Off Lights After Door Bell Rings and Away
+        ##########################################################
+
+- alias: Turn Off Lights After Door Bell Rings and Away
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_button_pressed
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+
+  action:
+    - service: light.turn_off
+      entity_id: group.living_room_lights, light.office_lamp, light.closet_lamp
+      data:
+        transition: 900
+    - service: light.turn_off
+      entity_id: light.kitchen_ceiling
+
+        ##########################################################
+        ## Turn On Lights when Motion Detected and Away
+        ##########################################################
+
+- alias: Turn On Lights when Motion Detected and Away
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.living_room_lights, light.office_lamp, light.closet_lamp, light.kitchen_ceiling
+      data:
+        brightness: 255
+
+        ##########################################################
+        ## Turn Off Lights After Motion Detected and Away
+        ##########################################################
+
+- alias: Turn Off Lights After Motion Detected and Away
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+
+  action:
+    - service: light.turn_off
+      entity_id: group.living_room_lights, light.office_lamp, light.closet_lamp
+      data:
+        transition: 900
+    - service: light.turn_off
+      entity_id: light.kitchen_ceiling
+
         ##########################################################
         ## Turn On Front Porch when Door Opens
         ##########################################################
@@ -672,7 +916,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 3
+        minutes: 5
         seconds: 0
 
   condition:
@@ -694,13 +938,13 @@
       entity_id: group.front_porch
       data:
         brightness: 100
-        transition: 60
+        transition: 120
 
         ##########################################################
-        ## Turn off Front Porch when Door Closes after Midnight
+        ## Turn off Front Porch when Door Closes between 12-5a
         ##########################################################
 
-- alias: Turn off Front Porch when Door Closes after Midnight
+- alias: Turn off Front Porch when Door Closes between 12-5a
 
   trigger:
     - platform: state
@@ -709,12 +953,13 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 10
+        minutes: 15
         seconds: 0
 
   condition:
     - condition: time
-      after: '23:59'
+      after: '00:00'
+      before: '05:00'
     - condition: state
       entity_id: input_boolean.door_open_lights_on
       state: 'off'
@@ -729,42 +974,7 @@
     - service: light.turn_off
       entity_id: group.front_porch
       data:
-        transition: 60
-
-        ##########################################################
-        ## Turn off Front Porch when Door Closes before 4a
-        ##########################################################
-
-- alias: Turn off Front Porch when Door Closes before 4a
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.front_door_opened
-      from: 'on'
-      to: 'off'
-      for:
-        hours: 0
-        minutes: 10
-        seconds: 0
-
-  condition:
-    - condition: time
-      before: '04:00'
-    - condition: state
-      entity_id: input_boolean.door_open_lights_on
-      state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: input_select.holiday
-      state: 'None'
-
-  action:
-    - service: light.turn_off
-      entity_id: group.front_porch
-      data:
-        transition: 60
+        transition: 900
 
         ##########################################################
         ## Turn On Living Room when Door Opens
@@ -788,7 +998,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: group.living_room
+      entity_id: group.living_room_lights
       data:
        xy_color: [ 0.5134, 0.4149 ]
        brightness: 255
@@ -817,13 +1027,13 @@
     - service: light.turn_on
       entity_id: group.back_door
       data:
-       brightness: 200
+       brightness: 255
 
         ##########################################################
-        ## Turn off Back Door when Door Closes after 9:30p
+        ## Reset Back Door Brightness when Door Closes
         ##########################################################
 
-- alias: Turn off Back Door when Door Closes after 9:30p
+- alias: Reset Back Door Brightness when Door Closes
 
   trigger:
     - platform: state
@@ -836,24 +1046,25 @@
         seconds: 0
 
   condition:
-    - condition: time
-      after: '21:30'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
     - condition: state
       entity_id: input_boolean.door_open_lights_on
       state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
 
   action:
-    - service: light.turn_off
+    - service: light.turn_on
       entity_id: group.back_door
+      data:
+        brightness: 3
+        transition: 300
 
         ##########################################################
-        ## Turn off Back Door when Door Closes before 4:00a
+        ## Turn off Back Door when Door Closes between 12-5a
         ##########################################################
 
-- alias: Turn off Back Door when Door Closes before 4:00a
+- alias: Turn off Back Door when Door Closes between 12-5a
 
   trigger:
     - platform: state
@@ -862,12 +1073,13 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 10
+        minutes: 17
         seconds: 0
 
   condition:
     - condition: time
-      before: '04:00'
+      after: '00:00'
+      before: '05:00'
     - condition: state
       entity_id: input_boolean.door_open_lights_on
       state: 'off'
@@ -878,6 +1090,8 @@
   action:
     - service: light.turn_off
       entity_id: group.back_door
+      data:
+        transition: 900
 
         ##########################################################
         ## Turn off Garage Light when Garage Closed
@@ -1073,14 +1287,14 @@
       entity_id: lock.basement_door
 
         ##########################################################
-        ## Lock Back Door when _REDACTED_ Leaves in the Morning
+        ## Lock Back Door when _USER2_ Leaves in the Morning
         ##########################################################
 
-- alias: Lock Back Door when _REDACTED_ Leaves
+- alias: Lock Back Door when _USER2_ Leaves
 
   trigger:
      - platform: state
-       entity_id: device_tracker._REDACTED_
+       entity_id: device_tracker._USER2_
        from: 'home'
        to: 'not_home'
 
@@ -1179,14 +1393,37 @@
        transition: 300
 
         ##########################################################
-        ## Turn Off Back Door at 9:30 pm
+        ## Turn On Back Door at Sunset
         ##########################################################
 
-- alias: Back Door Off at 9:30p
+- alias: Turn On Back Door at Sunset
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:05:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.exterior_on_sunset
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.back_door
+      data:
+        brightness: 3
+        transition: 60
+
+        ##########################################################
+        ## Turn Off Back Door at Midnight
+        ##########################################################
+
+- alias: Back Door Off at Midnight
 
   trigger:
     - platform: time
-      after: '21:30'
+      after: '23:59'
 
   condition:
     - condition: state
@@ -1199,9 +1436,11 @@
   action:
    - service: light.turn_off
      entity_id: group.back_door
+     data:
+       transition: 300
 
         ##########################################################
-        ## Turn on Back Door at 5:00a if _REDACTED_ Home
+        ## Turn on Back Door at 5:00a if _USER2_ Home
         ##########################################################
 
 - alias: Back Door on at 5a
@@ -1212,7 +1451,7 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER2_
       state: 'home'
     - condition: state
       entity_id: sun.sun
@@ -1225,10 +1464,11 @@
     - service: light.turn_on
       entity_id: group.back_door
       data:
-       brightness: 200
+       brightness: 3
+       transition: 60
 
         ##########################################################
-        ## Turn on Lights at 5a if _REDACTED_ Home
+        ## Turn on Lights at 5a if _USER2_ Home
         ##########################################################
 
 - alias: Turn on Interior Lights at 5a
@@ -1239,7 +1479,7 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER2_
       state: 'home'
     - condition: state
       entity_id: sun.sun
@@ -1261,10 +1501,10 @@
        color_name: red
 
         ##########################################################
-        ## Open Garage Door when _REDACTED_ Leaves
+        ## Open Garage Door when _USER2_ Leaves
         ##########################################################
 
-- alias: _REDACTED_ Leaving Open Garage
+- alias: _USER2_ Leaving Open Garage
 
   trigger:
     - platform: state
@@ -1280,7 +1520,7 @@
       entity_id: input_boolean.disable_auto_garage
       state: 'off'
     - condition: state
-      entity_id: input_boolean._REDACTED_away
+      entity_id: input_boolean._USER2_away
       state: 'off'
 
   action:
@@ -1288,14 +1528,14 @@
       entity_id: cover.garage_door
 
         ##########################################################
-        ## Turn off Lights when _REDACTED_ Leaves
+        ## Turn off Lights when _USER2_ Leaves
         ##########################################################
 
-- alias: Turn off Lights when _REDACTED_ Leaves
+- alias: Turn off Lights when _USER2_ Leaves
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER2_
       from: 'home'
       to: 'not_home'
 
@@ -1347,7 +1587,7 @@
       entity_id: input_boolean.occupancy_air_purifier_on_off_disable
       state: 'off'
     - condition: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER1_
       state: 'home'
 
   action:
@@ -1403,41 +1643,41 @@
 
   action:
     - service: light.turn_off
-      entity_id: group._REDACTED_office
+      entity_id: group._USER1_office
 
         ##########################################################
-        ## Turn on _REDACTED_ Office when Occupied
+        ## Turn on _USER2_ Office when Occupied
         ##########################################################
 
-- alias: Turn on _REDACTED_ Office Light when Occupied
+- alias: Turn on _USER2_ Office Light when Occupied
 
   trigger:
     - platform: state
-      entity_id: binary_sensor._REDACTED_office_occupancy
+      entity_id: binary_sensor._USER2_office_occupancy
       from: 'off'
       to: 'on'
 
   condition:
     - condition: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER2_
       state: 'home'
 
   action:
     - service: light.turn_on
-      entity_id: group._REDACTED_office
+      entity_id: group._USER2_office
       data:
         transition: 300
         brightness: 130
 
         ##########################################################
-        ## Turn off _REDACTED_ Office when Unoccupied
+        ## Turn off _USER2_ Office when Unoccupied
         ##########################################################
 
-- alias: Turn off _REDACTED_ Office Light when Unoccupied
+- alias: Turn off _USER2_ Office Light when Unoccupied
 
   trigger:
     - platform: state
-      entity_id: binary_sensor._REDACTED_office_occupancy
+      entity_id: binary_sensor._USER2_office_occupancy
       from: 'on'
       to: 'off'
       for:
@@ -1452,7 +1692,7 @@
 
   action:
     - service: light.turn_off
-      entity_id: group._REDACTED_office
+      entity_id: group._USER2_office
 
         ##########################################################
         ## Turn off Bedroom when Unoccupied
@@ -1586,7 +1826,7 @@
         ## Turn off Stairs when Unoccupied
         ##########################################################
 
-- alias: Turn off Stairs when _REDACTED_ Unoccupied
+- alias: Turn off Stairs when _USER1_ Unoccupied
 
   trigger:
     - platform: state
@@ -1600,7 +1840,7 @@
 
   condition:
     - condition: state
-      entity_id: binary_sensor._REDACTED_office_occupancy
+      entity_id: binary_sensor._USER2_office_occupancy
       state: 'off'
     - condition: state
       entity_id: input_boolean.occupancy_lights_off_disable
@@ -1610,11 +1850,11 @@
     - service: light.turn_off
       entity_id: group.stairs
 
-- alias: Turn off Stairs when _REDACTED_ Office Unoccupied
+- alias: Turn off Stairs when _USER2_ Office Unoccupied
 
   trigger:
     - platform: state
-      entity_id: binary_sensor._REDACTED_office_occupancy
+      entity_id: binary_sensor._USER2_office_occupancy
       from: 'on'
       to: 'off'
       for:
@@ -1738,7 +1978,7 @@
       entity_id: input_boolean.office_lights_sunset
       state: 'off'
     - condition: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER1_
       state: 'home'
 
   action:
@@ -1750,10 +1990,10 @@
         profile: relax
 
         ##########################################################
-        ## Turn on _REDACTED_'s Office at Sunset when Occupied
+        ## Turn on _USER2_'s Office at Sunset when Occupied
         ##########################################################
 
-- alias: Turn on _REDACTED_ Office Lights at Sunset when Occupied
+- alias: Turn on _USER2_ Office Lights at Sunset when Occupied
 
   trigger:
     - platform: sun
@@ -1762,18 +2002,18 @@
 
   condition:
     - condition: state
-      entity_id: binary_sensor._REDACTED_office_occupancy
+      entity_id: binary_sensor._USER2_office_occupancy
       state: 'on'
     - condition: state
       entity_id: input_boolean.office_lights_sunset
       state: 'off'
     - condition: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER2_
       state: 'home'
 
   action:
     - service: light.turn_on
-      entity_id: group._REDACTED_office, group.stairs
+      entity_id: group._USER2_office, group.stairs
       data:
         transition: 900
         brightness: 255
@@ -1832,10 +2072,10 @@
       entity_id: group.living_room_lamps, light.kitchen_cabinets, light.dining_room_table, light.media_center_lighting, light.hallway_light
 
         ##########################################################
-        ## Turn On/Off _REDACTED_ Office During Rain
+        ## Turn On/Off _USER2_ Office During Rain
         ##########################################################
 
-- alias: Rainy Day _REDACTED_ Office
+- alias: Rainy Day _USER2_ Office
 
   trigger:
     - platform: numeric_state
@@ -1844,7 +2084,7 @@
 
   condition:
     - condition: state
-      entity_id: binary_sensor._REDACTED_office_occupancy
+      entity_id: binary_sensor._USER2_office_occupancy
       state: 'on'
     - condition: state
       entity_id: sun.sun
@@ -1853,16 +2093,16 @@
       entity_id: input_boolean.rainy_day_disable
       state: 'off'
     - condition: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER2_
       state: 'home'
 
   action:
     - service: light.turn_on
-      entity_id: group._REDACTED_office, group.stairs
+      entity_id: group._USER2_office, group.stairs
       data:
         brightness: 50
 
-- alias: Rain is over _REDACTED_ Office
+- alias: Rain is over _USER2_ Office
 
   trigger:
     - platform: numeric_state
@@ -1876,13 +2116,13 @@
 
   action:
     - service: light.turn_off
-      entity_id: group._REDACTED_office, group.stairs
+      entity_id: group._USER2_office, group.stairs
 
         ##########################################################
-        ## Turn On/Off _REDACTED_ Office During Rain
+        ## Turn On/Off _USER1_ Office During Rain
         ##########################################################
 
-- alias: Rainy Day _REDACTED_ Office
+- alias: Rainy Day _USER1_ Office
 
   trigger:
     - platform: numeric_state
@@ -1900,7 +2140,7 @@
       entity_id: input_boolean.rainy_day_disable
       state: 'off'
     - condition: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER1_
       state: 'home'
 
   action:
@@ -1910,7 +2150,7 @@
         brightness: 30
         xy_color: [0.139,0.081]
 
-- alias: Rain is over _REDACTED_ Office
+- alias: Rain is over _USER1_ Office
 
   trigger:
     - platform: numeric_state
@@ -1987,7 +2227,7 @@
         ## Turn Off Outdoor Lighting At Midnight on Weekends
         ##########################################################
 
-- alias: Turn Off Outdoor Lighting At Midnight on Weekends
+- alias: Turn off Outdoor Lighting at Midnight on Weekends
 
   trigger:
     - platform: time
@@ -2088,10 +2328,10 @@
       - condition: or
         conditions:
           - condition: state
-            entity_id: input_boolean._REDACTED_away
+            entity_id: input_boolean._USER1_away
             state: 'on'
           - condition: state
-            entity_id: input_boolean._REDACTED_away
+            entity_id: input_boolean._USER2_away
             state: 'on'
 
   action:
@@ -3328,10 +3568,10 @@
       to: 'off'
 
   action:
-    - entity_id: climate.main_floor
-      service: climate.set_away_mode
+    - service: climate.set_hold_mode
       data:
-        away_mode: 'False'
+        entity_id: climate.main_floor
+        hold_mode: None
 
 - alias: Thermostat On Demand Away
 
@@ -3342,10 +3582,10 @@
       to: 'on'
 
   action:
-    - entity_id: climate.main_floor
-      service: climate.set_away_mode
+    - service: climate.set_away_mode
       data:
-        away_mode: 'True'
+        entity_id: climate.main_floor
+        away_mode: true
 
         ##########################################################
         ## Panic Mode
@@ -3447,7 +3687,7 @@
     - service: light.turn_off
       entity_id: group.interior_lights
     - service: light.turn_off
-      entity_id: group.exterior_lights
+      entity_id: group.outdoor_lighting
     - service: switch.turn_off
       entity_id: switch.air_purifier, switch.lower_backyard_outdoor_lighting, switch.lower_patio_outdoor_lighting, switch.fireplace
     - service: cover.close_cover
@@ -3458,16 +3698,48 @@
       data:
         entity_id: input_select.remote
         option: "PowerOff"
-    - service: media_player.turn_off
+    - service: media_player.media_stop
       entity_id:
         - media_player.media_center
         - media_player.living_room_sp
         - media_player.dining_room
         - media_player.kitchen
         - media_player.bathroom
-        - media_player._REDACTED_s_office
-        - media_player._REDACTED_s_office
+        - media_player._USER1_s_office
+        - media_player._USER2_s_office
         - media_player.basement
+    - service: climate.set_hold_mode
+      data:
+        entity_id: climate.main_floor
+        hold_mode: sleep
+
+        ##########################################################
+        ## Bedtime after Midnight
+        ##########################################################
+
+- alias: Bedtime after Midnight
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      state: 'on'
+      for:
+        hours: 0
+        minutes: 4
+        seconds: 0
+
+  condition:
+    - condition: time
+      after: '00:00'
+      before: '06:00'
+
+  action:
+    - service: light.turn_off
+      entity_id: group.exterior_lights
+
+        ##########################################################
+        ## Reset Bedtime Switch
+        ##########################################################
 
 - alias: Reset Bedtime Switch
 
@@ -3539,7 +3811,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER1_
       from: 'not_home'
       to: 'vacation'
 
@@ -3560,7 +3832,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER1_
       from: 'not_home'
       to: 'lake'
 
@@ -3581,7 +3853,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER1_
       from: 'lake'
       to: 'not_home'
 
@@ -3628,13 +3900,13 @@
 
   action:
     - service: light.turn_off
-      entity_id: light.basement_stairs, group.living_room
+      entity_id: light.basement_stairs, group.living_room_lamps
 
 - alias: Vacation Mode Lights Off 10p
 
   trigger:
     - platform: time
-      after: '10:32'
+      after: '22:32'
 
   condition:
     - condition: state
@@ -3733,7 +4005,7 @@
       to: 'on'
 
   action:
-    - service: notify.ios_REDACTED_s_iphone
+    - service: notify.ios_USER1_s_iphone
       data:
         message: Alarm Tripped
         data:
@@ -3742,21 +4014,21 @@
           entity_id: camera.garage_camera
 
         #################################################################
-        ## _REDACTED_ Home Notification
+        ## _USER1_ Home Notification
         #################################################################
 
-- alias: _REDACTED_ Home Notification
+- alias: _USER1_ Home Notification
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER1_
       from: 'not_home'
       to: 'home'
 
   action:
-    - service: notify.ios_REDACTED_s_iphone
+    - service: notify.ios_USER1_s_iphone
       data:
-        message: _REDACTED_ Home
+        message: _USER1_ Home
         data:
           push:
             category: map
@@ -3765,21 +4037,21 @@
             longitude: _REDACTED_
 
         #################################################################
-        ## _REDACTED_ Away Notification
+        ## _USER1_ Away Notification
         #################################################################
 
-- alias: _REDACTED_ Away Notification
+- alias: _USER1_ Away Notification
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER1_
       from: 'home'
       to: 'not_home'
 
   action:
-    - service: notify.ios_REDACTED_s_iphone
+    - service: notify.ios_USER1_s_iphone
       data:
-        message: _REDACTED_ Away
+        message: _USER1_ Away
         data:
           push:
             category: map
@@ -3788,21 +4060,21 @@
             longitude: _REDACTED_
 
         #################################################################
-        ## _REDACTED_ Home Notification
+        ## _USER2_ Home Notification
         #################################################################
 
-- alias: _REDACTED_ Home Notification
+- alias: _USER2_ Home Notification
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER2_
       from: 'not_home'
       to: 'home'
 
   action:
-    - service: notify.ios_REDACTED_s_iphone
+    - service: notify.ios_USER1_s_iphone
       data:
-        message: _REDACTED_ Home
+        message: _USER2_ Home
         data:
           push:
             category: map
@@ -3811,21 +4083,21 @@
             longitude: _REDACTED_
 
         #################################################################
-        ## _REDACTED_ Away Notification
+        ## _USER2_ Away Notification
         #################################################################
 
-- alias: _REDACTED_ Away Notification
+- alias: _USER2_ Away Notification
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER2_
       from: 'home'
       to: 'not_home'
 
   action:
-    - service: notify.ios_REDACTED_s_iphone
+    - service: notify.ios_USER1_s_iphone
       data:
-        message: _REDACTED_ Away
+        message: _USER2_ Away
         data:
           push:
             category: map
@@ -3834,21 +4106,21 @@
             longitude: _REDACTED_
 
         #################################################################
-        ## _REDACTED_ Left Work Notification
+        ## _USER2_ Left Work Notification
         #################################################################
 
-- alias: _REDACTED_ Left Work Notification
+- alias: _USER2_ Left Work Notification
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER2_
       from: 'work'
       to: 'not_home'
 
   action:
-    - service: notify.ios_REDACTED_s_iphone
+    - service: notify.ios_USER1_s_iphone
       data:
-        message: _REDACTED_ has left Work
+        message: _USER2_ has left Work
 
         #################################################################
         ## Motion Alarm Notification
@@ -3868,7 +4140,7 @@
       state: 'not_home'
 
   action:
-    - service: notify.ios_REDACTED_s_iphone
+    - service: notify.ios_USER1_s_iphone
       data:
         message: Motion Detected
         data:
@@ -3894,7 +4166,7 @@
       state: 'not_home'
 
   action:
-    - service: notify.ios_REDACTED_s_iphone
+    - service: notify.ios_USER1_s_iphone
       data:
         message: Door Opened
         data:
@@ -3920,7 +4192,7 @@
       state: 'not_home'
 
   action:
-    - service: notify.ios_REDACTED_s_iphone
+    - service: notify.ios_USER1_s_iphone
       data:
         message: Fireplae Turned On!
 
@@ -3935,7 +4207,7 @@
       event_type: homeassistant_start
 
   action:
-    - service: notify.ios_REDACTED_s_iphone
+    - service: notify.ios_USER1_s_iphone
       data:
         message: Home Assistant Started
 
@@ -3961,15 +4233,13 @@
       state: 'not_home'
 
   action:
-    - service: media_player.volume_set
-      entity_id: media_player.living_room_sp, media_player.dining_room, media_player.kitchen, media_player.bathroom, media_player._REDACTED_s_office, media_player._REDACTED_s_office, media_player.basement
-      data:
-        volume_level: 1
     - service: script.turn_on
       entity_id: script.say
       data:
         variables:
-          where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen, media_player.bathroom, media_player._REDACTED_s_office, media_player._REDACTED_s_office, media_player.basement'
+          master: 'media_player.living_room_sp'
+          where: 'media_player.media_center, media_player.living_room_sp, media_player.dining_room, media_player.kitchen, media_player.bathroom, media_player._USER1_s_office, media_player._USER2_s_office, media_player.basement'
+          volume: '1'
           what: 'You are not Authorized to be Here'
 
         ##########################################################
@@ -3990,22 +4260,126 @@
       state: 'home'
 
   action:
-    - service: media_player.volume_set
-      entity_id: media_player.living_room_sp, media_player.dining_room, media_player.kitchen, media_player.bathroom, media_player._REDACTED_s_office, media_player._REDACTED_s_office, media_player.basement
-      data:
-        volume_level: .8
     - service: script.turn_on
       entity_id: script.say
       data:
         variables:
-          where: 'media_player.media_center, media_player.living_room_sp, media_player.dining_room, media_player.kitchen, media_player.bathroom, media_player._REDACTED_s_office, media_player._REDACTED_s_office, media_player.basement'
+          master: 'media_player.living_room_sp'
+          where: 'media_player.media_center, media_player.living_room_sp, media_player.dining_room, media_player.kitchen, media_player.bathroom, media_player._USER1_s_office, media_player._USER2_s_office, media_player.basement'
+          volume: '.9'
           what: 'Water Detected in Basement'
 
         ##########################################################
-        ## Welcome Home _REDACTED_ Audio Greeting
+        ## Front Door Bell Bathroom Audio Notification
         ##########################################################
 
-- alias: Welcome Home _REDACTED_ Audio Notification
+- alias: Front Door Bell Bathroom Audio Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_button_pressed
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.bathroom_occupancy
+      state: 'on'
+
+  action:
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.bathroom'
+          where: 'media_player.bathroom'
+          volume: '.6'
+          what: 'Someone is at the Front Door'
+
+        ##########################################################
+        ## Front Door Bell Basement Audio Notification
+        ##########################################################
+
+- alias: Front Door Bell Basement Audio Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_button_pressed
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: state
+      entity_id: group.basement
+      state: 'on'
+
+  action:
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.baement'
+          where: 'media_player.basement'
+          volume: '.5'
+          what: 'Someone is at the Front Door'
+
+        ##########################################################
+        ## Front Door Bell Office Audio Notification
+        ##########################################################
+
+- alias: Front Door Bell Office Audio Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_button_pressed
+      from: 'off'
+      to: 'on'
+
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: state
+        entity_id: input_boolean.disable_voice_greeting
+        state: 'off'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: binary_sensor.office_occupancy
+            state: 'on'
+          - condition: state
+            entity_id: binary_sensor._USER2_office_occupancy
+            state: 'on'
+
+  action:
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player._USER1_s_office'
+          where: 'media_player._USER1_s_office, media_player._USER2_s_office'
+          volume: '.5'
+          what: 'Someone is at the Front Door'
+
+        ##########################################################
+        ## Welcome Home _USER1_ Audio Greeting
+        ##########################################################
+
+- alias: Welcome Home _USER1_ Audio Notification
 
   trigger:
     - platform: state
@@ -4015,10 +4389,10 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER1_
       state: 'home'
     - condition: state
-      entity_id: input_boolean._REDACTED_greeting
+      entity_id: input_boolean._USER1_greeting
       state: 'on'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
@@ -4028,26 +4402,110 @@
       before: '22:00'
 
   action:
-    - service: media_player.volume_set
-      entity_id: media_player.living_room_sp, media_player.dining_room, media_player.kitchen
+    - delay: '00:00:03'
+    - service: script.turn_on
+      entity_id: script.say
       data:
-        volume_level: .4
+        variables:
+          master: 'media_player.living_room_sp'
+          where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
+          volume: '.5'
+          what: 'Welcome Home _USER1_'
+    - delay: '00:02:00'
+    - service: homeassistant.turn_off
+      entity_id: input_boolean._USER1_greeting
+
+        ##########################################################
+        ## Notify _USER2_s Office that _USER1_ is Home
+        ##########################################################
+
+- alias: Notify _USER2_s Office that _USER1_ is Home
+
+  trigger:
+    - platform: state
+      entity_id: group.doors
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: device_tracker._USER1_
+      state: 'home'
+    - condition: state
+      entity_id: device_tracker._USER2_
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean._USER1_greeting
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean._USER2_greeting
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor._USER2_office_occupancy
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: time
+      after: '09:00'
+      before: '22:00'
+
+  action:
+    - delay: '00:00:60'
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player._USER2_s_office'
+          where: 'media_player._USER2_s_office'
+          volume: '.5'
+          what: '_USER1_ is Home'
+
+        ##########################################################
+        ## Welcome Home _USER2_ Audio Greeting
+        ##########################################################
+
+- alias: Welcome Home _USER2_ Audio Notification
+
+  trigger:
+    - platform: state
+      entity_id: group.doors
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: device_tracker._USER2_
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean._USER2_greeting
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: time
+      after: '09:00'
+      before: '22:00'
+
+  action:
     - delay: '00:00:07'
     - service: script.turn_on
       entity_id: script.say
       data:
         variables:
+          master: 'media_player.living_room_sp'
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
-          what: 'Welcome Home _REDACTED_'
-    - delay: '00:00:60'
+          volume: '.5'
+          what: 'Welcome Home _USER2_'
+    - delay: '00:02:00'
     - service: homeassistant.turn_off
-      entity_id: input_boolean._REDACTED_greeting
+      entity_id: input_boolean._USER2_greeting
 
         ##########################################################
-        ## Notify _REDACTED_s Office that _REDACTED_ is Home
+        ## Notify _USER1_s Office that _USER2_ is Home
         ##########################################################
 
-- alias: Notify _REDACTED_s Office that _REDACTED_ is Home
+- alias: Notify _USER1_s Office that _USER2_ is Home
 
   trigger:
     - platform: state
@@ -4057,106 +4515,16 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER1_
       state: 'home'
     - condition: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER2_
       state: 'home'
     - condition: state
-      entity_id: input_boolean._REDACTED_greeting
-      state: 'on'
-    - condition: state
-      entity_id: input_boolean._REDACTED_greeting
+      entity_id: input_boolean._USER1_greeting
       state: 'off'
     - condition: state
-      entity_id: binary_sensor._REDACTED_office_occupancy
-      state: 'on'
-    - condition: state
-      entity_id: input_boolean.disable_voice_greeting
-      state: 'off'
-    - condition: time
-      after: '09:00'
-      before: '22:00'
-
-  action:
-    - service: media_player.volume_set
-      entity_id: media_player._REDACTED_s_office
-      data:
-        volume_level: .3
-    - delay: '00:00:11'
-    - service: script.turn_on
-      entity_id: script.say
-      data:
-        variables:
-          where: 'media_player._REDACTED_s_office'
-          what: '_REDACTED_ is Home'
-
-        ##########################################################
-        ## Welcome Home _REDACTED_ Audio Greeting
-        ##########################################################
-
-- alias: Welcome Home _REDACTED_ Audio Notification
-
-  trigger:
-    - platform: state
-      entity_id: group.doors
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: device_tracker._REDACTED_
-      state: 'home'
-    - condition: state
-      entity_id: input_boolean._REDACTED_greeting
-      state: 'on'
-    - condition: state
-      entity_id: input_boolean.disable_voice_greeting
-      state: 'off'
-    - condition: time
-      after: '09:00'
-      before: '22:00'
-
-  action:
-    - service: media_player.volume_set
-      entity_id: media_player.living_room_sp, media_player.dining_room, media_player.kitchen
-      data:
-        volume_level: .4
-    - delay: '00:00:09'
-    - service: script.turn_on
-      entity_id: script.say
-      data:
-        variables:
-          where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
-          what: 'Welcome Home _REDACTED_'
-    - delay: '00:00:60'
-    - service: homeassistant.turn_off
-      entity_id: input_boolean._REDACTED_greeting
-
-        ##########################################################
-        ## Notify _REDACTED_s Office that _REDACTED_ is Home
-        ##########################################################
-
-- alias: Notify _REDACTED_s Office that _REDACTED_ is Home
-
-  trigger:
-    - platform: state
-      entity_id: group.doors
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: device_tracker._REDACTED_
-      state: 'home'
-    - condition: state
-      entity_id: device_tracker._REDACTED_
-      state: 'home'
-    - condition: state
-      entity_id: input_boolean._REDACTED_greeting
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean._REDACTED_greeting
+      entity_id: input_boolean._USER2_greeting
       state: 'on'
     - condition: state
       entity_id: binary_sensor.office_occupancy
@@ -4169,23 +4537,87 @@
       before: '22:00'
 
   action:
-    - service: media_player.volume_set
-      entity_id: media_player._REDACTED_s_office
-      data:
-        volume_level: .3
-    - delay: '00:00:11'
+    - delay: '00:00:60'
     - service: script.turn_on
       entity_id: script.say
       data:
         variables:
-          where: 'media_player._REDACTED_s_office'
-          what: '_REDACTED_ is Home'
+          master: 'media_player._USER1_s_office'
+          where: 'media_player._USER1_s_office'
+          volume: '.5'
+          what: '_USER2_ is Home'
+
+        #################################################################
+        ## _USER2_ Left Work Audio Notification
+        #################################################################
+
+- alias: _USER2_ Left Work Audio Notification
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._USER2_
+      from: 'work'
+      to: 'not_home'
+
+  condition:
+    - condition: state
+      entity_id: device_tracker._USER1_
+      state: 'home'
+    - condition: state
+      entity_id: device_tracker._USER2_
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean._USER2_away
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: time
+      after: '09:00'
+      before: '22:00'
+
+  action:
+    - service: media_player.sonos_snapshot
+      data:
+        with_group: yes
+    - delay: '00:00:02'
+    - service: media_player.sonos_unjoin
+      entity_id:
+        - media_player.living_room_sp
+        - media_player.dining_room
+        - media_player.kitchen
+        - media_player.bathroom
+        - media_player._USER1_s_office
+    - delay: '00:00:01'
+    - service: media_player.sonos_join
+      data:
+        master: media_player._USER1_s_office
+      entity_id:
+        - media_player.living_room_sp
+        - media_player.dining_room
+        - media_player.kitchen
+        - media_player.bathroom
+        - media_player._USER1_s_office
+    - delay: '00:00:01'
+    - service: media_player.volume_set
+      entity_id: media_player._USER1_s_office
+      data:
+        volume_level: .6
+    - delay: '00:00:01'
+    - service: tts.google_say
+      data_template:
+        entity_id: media_player._USER1_s_office
+        message: "_USER2_ has left work and will arrive Home in about {{states('sensor._USER2_to_home')}} minutes"
+    - delay: '00:00:20'
+    - service: media_player.sonos_restore
+      data:
+        with_group: yes
 
         ##########################################################
-        ## _REDACTED_ Audio Greeting
+        ## _GUEST_ Audio Greeting
         ##########################################################
 
-- alias: Welcome _REDACTED_ Audio Notification
+- alias: Welcome _GUEST_ Audio Notification
 
   trigger:
     - platform: state
@@ -4195,39 +4627,37 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker._REDACTED_siphone
+      entity_id: device_tracker._GUEST_
       state: 'home'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
     - condition: state
-      entity_id: input_boolean._REDACTED_visiting
+      entity_id: input_boolean._GUEST_visiting
       state: 'off'
     - condition: time
       after: '09:00'
       before: '22:00'
 
   action:
-    - service: media_player.volume_set
-      entity_id: media_player.living_room_sp, media_player.dining_room, media_player.kitchen
-      data:
-        volume_level: .4
-    - delay: '00:00:13'
+    - delay: '00:00:09'
     - service: script.turn_on
       entity_id: script.say
       data:
         variables:
+          master: 'media_player.living_room_sp'
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
-          what: 'Welcome _REDACTED_, please remove your shoes'
+          volume: '.5'
+          what: 'Welcome _GUEST_, please remove your shoes'
     - delay: '00:00:30'
     - service: homeassistant.turn_on
-      entity_id: input_boolean._REDACTED_visiting
+      entity_id: input_boolean._GUEST_visiting
 
         ##########################################################
-        ## _REDACTED_ Audio Greeting
+        ## _GUEST_ Audio Greeting
         ##########################################################
 
-- alias: Welcome _REDACTED_ Audio Notification
+- alias: Welcome _GUEST_ Audio Notification
 
   trigger:
     - platform: state
@@ -4237,39 +4667,37 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker._REDACTED_siphone
+      entity_id: device_tracker._GUEST_siphone
       state: 'home'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
     - condition: state
-      entity_id: input_boolean._REDACTED_visiting
+      entity_id: input_boolean._GUEST_visiting
       state: 'off'
     - condition: time
       after: '09:00'
       before: '22:00'
 
   action:
-    - service: media_player.volume_set
-      entity_id: media_player.living_room_sp, media_player.dining_room, media_player.kitchen
-      data:
-        volume_level: .4
-    - delay: '00:00:12'
+    - delay: '00:00:08'
     - service: script.turn_on
       entity_id: script.say
       data:
         variables:
+          master: 'media_player.living_room_sp'
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
-          what: 'Welcome _REDACTED_ley'
+          volume: '.5'
+          what: 'Welcome _GUEST_'
     - delay: '00:00:30'
     - service: homeassistant.turn_on
-      entity_id: input_boolean._REDACTED_visiting
+      entity_id: input_boolean._GUEST_visiting
 
         ##########################################################
-        ## _REDACTED_ Audio Greeting
+        ## _GUEST_ Audio Greeting
         ##########################################################
 
-- alias: Welcome _REDACTED_ Audio Notification
+- alias: Welcome _GUEST_ Audio Notification
 
   trigger:
     - platform: state
@@ -4279,42 +4707,40 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker._REDACTED_siphone3
+      entity_id: device_tracker._GUEST_siphone3
       state: 'home'
     - condition: state
-      entity_id: input_boolean._REDACTED_away
+      entity_id: input_boolean._USER1_away
       state: 'off'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
     - condition: state
-      entity_id: input_boolean._REDACTED_visiting
+      entity_id: input_boolean._GUEST_visiting
       state: 'off'
     - condition: time
       after: '09:00'
       before: '22:00'
 
   action:
-    - service: media_player.volume_set
-      entity_id: media_player.living_room_sp, media_player.dining_room, media_player.kitchen
-      data:
-        volume_level: .4
-    - delay: '00:00:12'
+    - delay: '00:00:08'
     - service: script.turn_on
       entity_id: script.say
       data:
         variables:
+          master: 'media_player.living_room_sp'
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
-          what: 'Welcome _REDACTED_'
+          volume: '.5'
+          what: 'Welcome _GUEST_'
     - delay: '00:00:30'
     - service: homeassistant.turn_on
-      entity_id: input_boolean._REDACTED_visiting
+      entity_id: input_boolean._GUEST_visiting
 
         ##########################################################
-        ## _REDACTED_ Audio Greeting
+        ## _GUEST_ Audio Greeting
         ##########################################################
 
-- alias: Welcome _REDACTED_ Audio Notification
+- alias: Welcome _GUEST_ Audio Notification
 
   trigger:
     - platform: state
@@ -4324,39 +4750,37 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker._REDACTED_siphone
+      entity_id: device_tracker._GUEST_siphone
       state: 'home'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
     - condition: state
-      entity_id: input_boolean._REDACTED_visiting
+      entity_id: input_boolean._GUEST_visiting
       state: 'off'
     - condition: time
       after: '09:00'
       before: '22:00'
 
   action:
-    - service: media_player.volume_set
-      entity_id: media_player.living_room_sp, media_player.dining_room, media_player.kitchen
-      data:
-        volume_level: .4
-    - delay: '00:00:12'
+    - delay: '00:00:08'
     - service: script.turn_on
       entity_id: script.say
       data:
         variables:
+          master: 'media_player.living_room_sp'
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
-          what: 'Welcome _REDACTED_'
+          volume: '.5'
+          what: 'Welcome _GUEST_'
     - delay: '00:00:30'
     - service: homeassistant.turn_on
-      entity_id: input_boolean._REDACTED_visiting
+      entity_id: input_boolean._GUEST_visiting
 
         ##########################################################
-        ## _REDACTED_ Audio Greeting
+        ## _GUEST_ Audio Greeting
         ##########################################################
 
-- alias: Welcome _REDACTED_ Audio Notification
+- alias: Welcome _GUEST_ Audio Notification
 
   trigger:
     - platform: state
@@ -4372,33 +4796,31 @@
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
     - condition: state
-      entity_id: input_boolean._REDACTED_visiting
+      entity_id: input_boolean._GUEST_visiting
       state: 'off'
     - condition: time
       after: '09:00'
       before: '22:00'
 
   action:
-    - service: media_player.volume_set
-      entity_id: media_player.living_room_sp, media_player.dining_room, media_player.kitchen
-      data:
-        volume_level: .4
-    - delay: '00:00:12'
+    - delay: '00:00:08'
     - service: script.turn_on
       entity_id: script.say
       data:
         variables:
+          master: 'media_player.living_room_sp'
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
-          what: 'Welcome _REDACTED_'
+          volume: '.5'
+          what: 'Welcome _GUEST_'
     - delay: '00:00:30'
     - service: homeassistant.turn_on
-      entity_id: input_boolean._REDACTED_visiting
+      entity_id: input_boolean._GUEST_visiting
 
         ##########################################################
-        ## _REDACTED_ Audio Greeting
+        ## _GUEST_ Audio Greeting
         ##########################################################
 
-- alias: Welcome _REDACTED_ Audio Notification
+- alias: Welcome _GUEST_ Audio Notification
 
   trigger:
     - platform: state
@@ -4408,47 +4830,45 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker._REDACTED_suensiphone
+      entity_id: device_tracker._GUEST_
       state: 'home'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
     - condition: state
-      entity_id: input_boolean._REDACTED_visiting
+      entity_id: input_boolean.more_visiting
       state: 'off'
     - condition: time
       after: '09:00'
       before: '22:00'
 
   action:
-    - service: media_player.volume_set
-      entity_id: media_player.living_room_sp, media_player.dining_room, media_player.kitchen
-      data:
-        volume_level: .4
-    - delay: '00:00:14'
+    - delay: '00:00:10'
     - service: script.turn_on
       entity_id: script.say
       data:
         variables:
+          master: 'media_player.living_room_sp'
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
-          what: 'Welcome _REDACTED_ eh.  Hello _REDACTED_'
+          volume: '.5'
+          what: 'Welcome _GUEST_ eh.  Hello _GUEST_'
     - delay: '00:00:30'
     - service: homeassistant.turn_on
-      entity_id: input_boolean._REDACTED_visiting
+      entity_id: input_boolean.more_visiting
 
 #################################################################
 ## Friends and Family Visiting
 #################################################################
 
         ##########################################################
-        ## Set _REDACTED_ as No Longer Visiting after 1.5 Hours
+        ## Set _GUEST_ as No Longer Visiting after 1.5 Hours
         ##########################################################
 
-- alias: Set _REDACTED_ as No Longer Visiting after 1.5 Hours
+- alias: Set _GUEST_ as No Longer Visiting after 1.5 Hours
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_siphone
+      entity_id: device_tracker.thomassiphone
       from: 'home'
       to: 'not_home'
       for:
@@ -4458,17 +4878,17 @@
 
   action:
     - service: homeassistant.turn_off
-      entity_id: input_boolean._REDACTED_visiting
+      entity_id: input_boolean._GUEST_visiting
 
         ##########################################################
-        ## Set _REDACTED_ as No Longer Visiting after 1.5 Hour
+        ## Set _GUEST_ as No Longer Visiting after 1.5 Hour
         ##########################################################
 
-- alias: Set _REDACTED_ as No Longer Visiting after 1.5 Hour
+- alias: Set _GUEST_ as No Longer Visiting after 1.5 Hour
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_siphone
+      entity_id: device_tracker._GUEST_siphone
       from: 'home'
       to: 'not_home'
       for:
@@ -4478,18 +4898,18 @@
 
   action:
     - service: homeassistant.turn_off
-      entity_id: input_boolean._REDACTED_visiting
+      entity_id: input_boolean._GUEST_visiting
 
 
         ##########################################################
-        ## Set _REDACTED_ as No Longer Visiting after 1.5 Hours
+        ## Set _GUEST_ as No Longer Visiting after 1.5 Hours
         ##########################################################
 
-- alias: Set _REDACTED_ as No Longer Visiting after 1.5 Hours
+- alias: Set _GUEST_ as No Longer Visiting after 1.5 Hours
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_siphone3
+      entity_id: device_tracker._GUEST_siphone3
       from: 'home'
       to: 'not_home'
       for:
@@ -4499,17 +4919,17 @@
 
   action:
     - service: homeassistant.turn_off
-      entity_id: input_boolean._REDACTED_visiting
+      entity_id: input_boolean._GUEST_visiting
 
         ##########################################################
-        ## Set _REDACTED_ as No Longer Visiting after 1.5 Hours
+        ## Set _GUEST_ as No Longer Visiting after 1.5 Hours
         ##########################################################
 
-- alias: Set _REDACTED_ as No Longer Visiting after 1.5 Hours
+- alias: Set _GUEST_ as No Longer Visiting after 1.5 Hours
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_siphone
+      entity_id: device_tracker._GUEST_siphone
       from: 'home'
       to: 'not_home'
       for:
@@ -4519,13 +4939,13 @@
 
   action:
     - service: homeassistant.turn_off
-      entity_id: input_boolean._REDACTED_visiting
+      entity_id: input_boolean._GUEST_visiting
 
         ##########################################################
-        ## Set _REDACTED_ as No Longer Visiting after 1.5 Hours
+        ## Set _GUEST_ as No Longer Visiting after 1.5 Hours
         ##########################################################
 
-- alias: Set _REDACTED_ as No Longer Visiting after 1.5 Hours
+- alias: Set _GUEST_ as No Longer Visiting after 1.5 Hours
 
   trigger:
     - platform: state
@@ -4539,17 +4959,17 @@
 
   action:
     - service: homeassistant.turn_off
-      entity_id: input_boolean._REDACTED_visiting
+      entity_id: input_boolean._GUEST_visiting
 
         ##########################################################
-        ## Set _REDACTED_ as No Longer Visiting after 1.5 Hours
+        ## Set _GUEST_ as No Longer Visiting after 1.5 Hours
         ##########################################################
 
-- alias: Set _REDACTED_ as No Longer Visiting after 1.5 Hours
+- alias: Set More as No Longer Visiting after 1.5 Hours
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_suensiphone
+      entity_id: device_tracker.moresuensiphone
       from: 'home'
       to: 'not_home'
       for:
@@ -4559,7 +4979,7 @@
 
   action:
     - service: homeassistant.turn_off
-      entity_id: input_boolean._REDACTED_visiting
+      entity_id: input_boolean._GUEST_visiting
 
 #################################################################
 ## Water Sensors
@@ -4578,7 +4998,7 @@
       to: 'on'
 
   action:
-    - service: notify.ios_REDACTED_s_iphone
+    - service: notify.ios_USER1_s_iphone
       data:
         message: Water Detected in Basement!
 
@@ -4591,7 +5011,7 @@
       to: 'on'
 
   action:
-    - service: notify.ios_REDACTED_s_iphone
+    - service: notify.ios_USER1_s_iphone
       data:
         message: Water Detected in Sump Pump!
 
@@ -4659,8 +5079,8 @@
         - media_player.dining_room
         - media_player.kitchen
         - media_player.bathroom
-        - media_player._REDACTED_s_office
-        - media_player._REDACTED_s_office
+        - media_player._USER1_s_office
+        - media_player._USER2_s_office
         - media_player.basement
 
 #################################################################
@@ -4704,14 +5124,14 @@
       entity_id: input_boolean.enable_security
 
         ##########################################################
-        ## Set _REDACTED_ Away Driving
+        ## Set _USER1_ Away Driving
         ##########################################################
 
-- alias: Set _REDACTED_ Away Driving
+- alias: Set _USER1_ Away Driving
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER1_
       from: 'home'
       to: 'not_home'
 
@@ -4722,17 +5142,17 @@
 
   action:
     - service: homeassistant.turn_on
-      entity_id: input_boolean._REDACTED_away_driving
+      entity_id: input_boolean._USER1_away_driving
 
         ##########################################################
-        ## Set _REDACTED_ Away after 1 Min
+        ## Set _USER1_ Away after 1 Min
         ##########################################################
 
-- alias: Set _REDACTED_ Away after 1 Mins
+- alias: Set _USER1_ Away after 1 Mins
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER1_
       from: 'home'
       to: 'not_home'
       for:
@@ -4742,19 +5162,19 @@
 
   action:
     - service: homeassistant.turn_on
-      entity_id: input_boolean._REDACTED_away
+      entity_id: input_boolean._USER1_away
     - service: homeassistant.turn_on
-      entity_id: input_boolean._REDACTED_greeting
+      entity_id: input_boolean._USER1_greeting
 
         ##########################################################
-        ## Set _REDACTED_ Home after 10 Mins
+        ## Set _USER1_ Home after 10 Mins
         ##########################################################
 
-- alias: Set _REDACTED_ Home after 10 Mins
+- alias: Set _USER1_ Home after 10 Mins
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER1_
       from: 'not_home'
       to: 'home'
       for:
@@ -4764,17 +5184,17 @@
 
   action:
     - service: homeassistant.turn_off
-      entity_id: input_boolean._REDACTED_away, input_boolean._REDACTED_away_driving
+      entity_id: input_boolean._USER1_away, input_boolean._USER1_away_driving, input_boolean._USER1_greeting
 
         ##########################################################
-        ## Set _REDACTED_ Away Driving
+        ## Set _USER2_ Away Driving
         ##########################################################
 
-- alias: Set _REDACTED_ Away Driving
+- alias: Set _USER2_ Away Driving
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER2_
       from: 'home'
       to: 'not_home'
 
@@ -4785,17 +5205,17 @@
 
   action:
     - service: homeassistant.turn_on
-      entity_id: input_boolean._REDACTED_away_driving
+      entity_id: input_boolean._USER2_away_driving
 
         ##########################################################
-        ## Set _REDACTED_ Away after 1 Min
+        ## Set _USER2_ Away after 1 Min
         ##########################################################
 
-- alias: Set _REDACTED_ Away after 1 Mins
+- alias: Set _USER2_ Away after 1 Mins
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER2_
       from: 'home'
       to: 'not_home'
       for:
@@ -4805,19 +5225,19 @@
 
   action:
     - service: homeassistant.turn_on
-      entity_id: input_boolean._REDACTED_away
+      entity_id: input_boolean._USER2_away
     - service: homeassistant.turn_on
-      entity_id: input_boolean._REDACTED_greeting
+      entity_id: input_boolean._USER2_greeting
 
         ##########################################################
-        ## Set _REDACTED_ Home after 10 Mins
+        ## Set _USER2_ Home after 10 Mins
         ##########################################################
 
-- alias: Set _REDACTED_ Home after 10 Mins
+- alias: Set _USER2_ Home after 10 Mins
 
   trigger:
     - platform: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER2_
       from: 'not_home'
       to: 'home'
       for:
@@ -4827,31 +5247,31 @@
 
   action:
     - service: homeassistant.turn_off
-      entity_id: input_boolean._REDACTED_away, input_boolean._REDACTED_away_driving
+      entity_id: input_boolean._USER2_away, input_boolean._USER2_away_driving, input_boolean._USER2_greeting
 
         ##########################################################
-        ## Manually Set _REDACTED_ Home
+        ## Manually Set _USER1_ Home
         ##########################################################
 
-- alias: Manually Set _REDACTED_ Home
+- alias: Manually Set _USER1_ Home
 
   trigger:
     - platform: state
-      entity_id: input_boolean._REDACTED_home
+      entity_id: input_boolean._USER1_home
       from: 'off'
       to: 'on'
 
   action:
     - service: device_tracker.see
       data:
-        dev_id: _REDACTED_
+        dev_id: _USER1_
         location_name: 'home'
 
-- alias: Reset _REDACTED_ Home
+- alias: Reset _USER1_ Home
 
   trigger:
     - platform: state
-      entity_id: input_boolean._REDACTED_home
+      entity_id: input_boolean._USER1_home
       from: 'off'
       to: 'on'
       for:
@@ -4861,31 +5281,31 @@
 
   action:
     - service: homeassistant.turn_off
-      entity_id: input_boolean._REDACTED_home
+      entity_id: input_boolean._USER1_home
 
         ##########################################################
-        ## Manually Set _REDACTED_ Away
+        ## Manually Set _USER1_ Away
         ##########################################################
 
-- alias: Manually Set _REDACTED_ Away
+- alias: Manually Set _USER1_ Away
 
   trigger:
     - platform: state
-      entity_id: input_boolean.manual_REDACTED_away
+      entity_id: input_boolean.manual_USER1_away
       from: 'off'
       to: 'on'
 
   action:
     - service: device_tracker.see
       data:
-        dev_id: _REDACTED_
+        dev_id: _USER1_
         location_name: 'not_home'
 
-- alias: Reset Manually Set _REDACTED_ Away
+- alias: Reset Manually Set _USER1_ Away
 
   trigger:
     - platform: state
-      entity_id: input_boolean.manual_REDACTED_away
+      entity_id: input_boolean.manual_USER1_away
       from: 'off'
       to: 'on'
       for:
@@ -4895,31 +5315,31 @@
 
   action:
     - service: homeassistant.turn_off
-      entity_id: input_boolean.manual_REDACTED_away
+      entity_id: input_boolean.manual_USER1_away
 
         ##########################################################
-        ## Manually Set _REDACTED_ Home
+        ## Manually Set _USER2_ Home
         ##########################################################
 
-- alias: Manually Set _REDACTED_ Home
+- alias: Manually Set _USER2_ Home
 
   trigger:
     - platform: state
-      entity_id: input_boolean._REDACTED_home
+      entity_id: input_boolean._USER2_home
       from: 'off'
       to: 'on'
 
   action:
     - service: device_tracker.see
       data:
-        dev_id: _REDACTED_
+        dev_id: _USER2_
         location_name: 'home'
 
-- alias: Reset _REDACTED_ Home
+- alias: Reset _USER2_ Home
 
   trigger:
     - platform: state
-      entity_id: input_boolean._REDACTED_home
+      entity_id: input_boolean._USER2_home
       from: 'off'
       to: 'on'
       for:
@@ -4929,31 +5349,31 @@
 
   action:
     - service: homeassistant.turn_off
-      entity_id: input_boolean._REDACTED_home
+      entity_id: input_boolean._USER2_home
 
         ##########################################################
-        ## Manually Set _REDACTED_ Away
+        ## Manually Set _USER2_ Away
         ##########################################################
 
-- alias: Manually Set _REDACTED_ Away
+- alias: Manually Set _USER2_ Away
 
   trigger:
     - platform: state
-      entity_id: input_boolean.manual_REDACTED_away
+      entity_id: input_boolean.manual_USER2_away
       from: 'off'
       to: 'on'
 
   action:
     - service: device_tracker.see
       data:
-        dev_id: _REDACTED_
+        dev_id: _USER2_
         location_name: 'not_home'
 
-- alias: Reset _REDACTED_ Home
+- alias: Reset _USER2_ Home
 
   trigger:
     - platform: state
-      entity_id: input_boolean.manual_REDACTED_away
+      entity_id: input_boolean.manual_USER2_away
       from: 'off'
       to: 'on'
       for:
@@ -4963,7 +5383,7 @@
 
   action:
     - service: homeassistant.turn_off
-      entity_id: input_boolean.manual_REDACTED_away
+      entity_id: input_boolean.manual_USER2_away
 
         ##########################################################
         ## Turn off Back Patio Twice
@@ -4976,13 +5396,10 @@
       entity_id: group.back_door
       from: 'on'
       to: 'off'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 60
 
   action:
-    - service: homeassistant.turn_off
+    - delay: 00:00:90
+    - service: light.turn_off
       entity_id: light.upper_patio_left, light.upper_patio_right
 
         ##########################################################
@@ -4996,14 +5413,11 @@
       entity_id: group.back_porch
       from: 'on'
       to: 'off'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 15
 
   action:
-    - service: homeassistant.turn_off
-      entity_id: light.back_door_left, light.back_door_right
+    - delay: 00:03:00
+    - service: light.turn_off
+      entity_id: group.back_door
 
         ##########################################################
         ## Turn on Lower BackYard after Patio
@@ -5037,17 +5451,17 @@
     - platform: state
       entity_id: input_boolean.thermostat_away
     - platform: state
-      entity_id: input_boolean._REDACTED_away
+      entity_id: input_boolean._USER1_away
     - platform: state
-      entity_id: input_boolean._REDACTED_away_driving
+      entity_id: input_boolean._USER1_away_driving
     - platform: state
-      entity_id: input_boolean._REDACTED_greeting
+      entity_id: input_boolean._USER1_greeting
     - platform: state
-      entity_id: input_boolean._REDACTED_away
+      entity_id: input_boolean._USER2_away
     - platform: state
-      entity_id: input_boolean._REDACTED_away_driving
+      entity_id: input_boolean._USER2_away_driving
     - platform: state
-      entity_id: input_boolean._REDACTED_greeting
+      entity_id: input_boolean._USER2_greeting
     - platform: state
       entity_id: input_boolean.enable_security
     - platform: state
@@ -5061,9 +5475,9 @@
     - platform: state
       entity_id: input_select.remote
     - platform: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER1_
     - platform: state
-      entity_id: device_tracker._REDACTED_
+      entity_id: device_tracker._USER2_
 
   action:
     - service: shell_command.export_ha_states
@@ -5118,8 +5532,8 @@
 
   trigger:
     - platform: numeric_state
-      entity_id: sensor.dark_sky_temperature
-      above: 55
+      entity_id: sensor.basement_temperature
+      above: 57
 
   action:
     - service: switch.turn_off
@@ -5172,21 +5586,3 @@
   action:
     - service: switch.turn_off
       entity_id: switch.basement_heater
-
-##########################################################
-## Wink Bug Work Around
-##########################################################
-
-- alias: Wink Failed
-
-  trigger:
-    - platform: state
-      entity_id: sensor.wink_status_logfile
-      from: 'ok'
-      to: 'failed'
-
-
-  action:
-    - service: notify.ios_REDACTED_s_iphone
-      data:
-        message: Wink Connection has Failed

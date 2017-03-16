@@ -2,6 +2,13 @@
 ## Sensors
 #################################################################
 
+  - platform: ring
+    username: _REDACTED_
+    password: _REDACTED_
+    monitored_conditions:
+      - battery
+      - last_activity
+      - volume
   - platform: speedtest
     monitored_conditions:
       - ping
@@ -47,20 +54,20 @@
   - platform: template
     sensors:
       back_door_sensor_batt:
-        value_template: '{{ states.binary_sensor.back_door.attributes.battery_level }}'
+        value_template: '{{ states.binary_sensor.back_door_opened.attributes.battery_level }}'
         friendly_name: 'Back Door Sensor'
         unit_of_measurement: '%'
       basement_door_sensor_batt:
-        value_template: '{{ states.binary_sensor.basement_door.attributes.battery_level }}'
+        value_template: '{{ states.binary_sensor.basement_door_opened.attributes.battery_level }}'
         friendly_name: 'Basement Door Sensor'
         unit_of_measurement: '%'
       front_door_sensor_batt:
-        value_template: '{{ states.binary_sensor.front_door.attributes.battery_level }}'
+        value_template: '{{ states.binary_sensor.front_door_opened.attributes.battery_level }}'
         friendly_name: 'Front Door Sensor'
         unit_of_measurement: '%'
       siren_batt:
         value_template: '{{ states.switch.siren.attributes.battery_level }}'
-        friendly_name: 'Siren'
+        friendly_name: 'Alarm Siren'
         unit_of_measurement: '%'
       front_door_lock_batt:
         value_template: '{{ states.lock.front_door.attributes.battery_level }}'
@@ -88,31 +95,27 @@
         value_template: '{{ states.remote.media_center.attributes.current_activity }}'
         friendly_name: 'Media Center'
   - platform: google_travel_time
-    name: _REDACTED_ To Home
+    name: _USER2_ To Home
     api_key: _REDACTED_
-    origin: device_tracker._REDACTED_
+    origin: device_tracker._USER2_
     destination: zone.home
   - platform: google_travel_time
-    name: _REDACTED_ To Home
+    name: _USER1_ To Home
     api_key: _REDACTED_
-    origin: device_tracker._REDACTED_
+    origin: device_tracker._USER1_
     destination: zone.home
   - platform: google_travel_time
-    name: _REDACTED_ To _REDACTED_
+    name: _USER2_ To _REDACTED_
     api_key: _REDACTED_
-    origin: device_tracker._REDACTED_
+    origin: device_tracker._USER2_
+    destination: zone.work
+  - platform: google_travel_time
+    name: _USER2_ To _REDACTED_
+    api_key: _REDACTED_
+    origin: device_tracker._USER2_
     destination: zone.work_2
   - platform: google_travel_time
-    name: _REDACTED_ To _REDACTED_
+    name: _USER2_ To _REDACTED_
     api_key: _REDACTED_
-    origin: device_tracker._REDACTED_
+    origin: device_tracker._USER2_
     destination: zone.work_3
-  - platform: google_travel_time
-    name: _REDACTED_ To _REDACTED_
-    api_key: _REDACTED_
-    origin: device_tracker._REDACTED_
-    destination: zone.work
-  - platform: command_line
-    name: Wink Status Logfile
-    command: "/home/_REDACTED_/.homeassistant/winkLogCheck.sh"
-    scan_interval: 60
