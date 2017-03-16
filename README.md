@@ -21,6 +21,9 @@ Home Assistant Version: 0.40.1
 * [Aeon Labs Water Sensor](https://www.amazon.com/gp/product/B00H3TJ3P4/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1) - x2 (connected via Wink Hub)
 * [Foscam FI9800P](http://www.amazon.com/Wireless-Foscam-FI9800P-Waterproof-Detection/dp/B0173Z3NG2?ie=UTF8&psc=1&redirect=true&ref_=oh_aui_detailpage_o02_s01) - x1
 * [Chamberlain MYQ](http://www.amazon.com/Chamberlain-MYQ-G0201-MyQ-Garage-Controls-Smartphone/dp/B00EAD65UW) - x1
+* [Ring Doorbell](http://www.amazon.com/Ring-Wi-Fi-Enabled-Video-Doorbell/dp/B00TZAO9D0/ref=sr_1_4?ie=UTF8&qid=1461377085&sr=8-4&keywords=ring+doorbell) - x1
+* [Wink Relay](http://www.wink.com/products/wink-relay-touchscreen-controller/) - x2
+* [Quirky + GE Aros Window AC](http://www.amazon.com/Quirky-Aros-Smart-Window-Conditioner/dp/B00IDXGIAC?ie=UTF8&psc=1&redirect=true&ref_=oh_aui_detailpage_o03_s01) -x1
 * [Asus RT-AC88U Router](http://www.amazon.com/Dual-Band-Wireless-AC3100-Gigabit-Router-RT-AC88U/dp/B016EWKQAQ?ie=UTF8&psc=1&redirect=true&ref_=oh_aui_search_detailpage) (Device Tracking)
 * [Amazon Echo](http://www.amazon.com/Amazon-SK705DI-Echo/dp/B00X4WHP5E/ref=sr_1_1?ie=UTF8&qid=1461377119&sr=8-1&keywords=amazon+echo) - x1 (via Emulated Hue)
 * [Amazon Echo Dot](http://www.amazon.com/b/?node=14047587011) - x6 (via Emulated Hue)
@@ -32,11 +35,7 @@ Home Assistant Version: 0.40.1
 * [Plex Media Server](https://plex.tv)
 * [Homebridge](https://github.com/nfarina/homebridge) *for Apple HomeKit Support*
 
-#Devices not in Home Assistant:
 
-* [Ring Doorbell](http://www.amazon.com/Ring-Wi-Fi-Enabled-Video-Doorbell/dp/B00TZAO9D0/ref=sr_1_4?ie=UTF8&qid=1461377085&sr=8-4&keywords=ring+doorbell) - x1
-* [Wink Relay](http://www.wink.com/products/wink-relay-touchscreen-controller/) - x2
-* [Quirky + GE Aros Window AC](http://www.amazon.com/Quirky-Aros-Smart-Window-Conditioner/dp/B00IDXGIAC?ie=UTF8&psc=1&redirect=true&ref_=oh_aui_detailpage_o03_s01) -x1
 
 # Interface
 ![UI](images/home-screenshot.jpg)
@@ -49,6 +48,7 @@ Home Assistant Version: 0.40.1
 ![UI](images/basement-screenshot.jpg)
 ![UI](images/outdoor-screenshot.jpg)
 ![UI](images/automation-screenshot.jpg)
+![UI](images/weather-screenshot.jpg)
 ![UI](images/sensors-screenshot.jpg)
 ![UI](images/media-screenshot.jpg)
 ![UI](images/camera-screenshot.jpg)
