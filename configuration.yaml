@@ -132,12 +132,12 @@ tts:
 ## Includes
 #################################################################
 
+automation: !include_dir_merge_list automation
 recorder: !include recorder.yaml
 logbook: !include logbook.yaml
 history: !include history.yaml
 zone: !include zones.yaml
 group: !include groups.yaml
-automation: !include automation.yaml
 scene: !include scenes.yaml
 sensor: !include sensors.yaml
 input_boolean: !include input_boolean.yaml

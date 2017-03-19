@@ -1,0 +1,83 @@
+#################################################################
+## Water Sensor Automations
+#################################################################
+
+        ##########################################################
+        ## Send Notification for Water Detected Drain
+        ##########################################################
+
+- alias: Water Sensor - Basement Water Sensor Text Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
+      from: 'off'
+      to: 'on'
+
+  action:
+    - service: notify.ios_USER_s_iphone
+      data:
+        message: Water Detected in Basement!
+
+        ##########################################################
+        ## Send Notification for Water Detected Sump Pump
+        ##########################################################
+
+- alias: Water Sensor - Sump Pump Water Sensor Send Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.sump_pump_water_sensor_liquid_detected
+      from: 'off'
+      to: 'on'
+
+  action:
+    - service: notify.ios_USER_s_iphone
+      data:
+        message: Water Detected in Sump Pump!
+
+        ##########################################################
+        ## Sound Alarm When Water Detected
+        ##########################################################
+
+- alias: Water Sensor -  Sound Alarm When Water Detected Siren
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: switch.turn_on
+      entity_id: switch.siren
+
+        ##########################################################
+        ## Flash Lights when Water Detected
+        ##########################################################
+
+- alias: Water Sensor - Sound Alarm When Water Detected Lights
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.hue_lights
+      data:
+       brightness: 255
+       color_name: blue
+       flash: long

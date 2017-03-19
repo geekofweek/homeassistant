@@ -1,0 +1,447 @@
+#################################################################
+## Lighting Automations
+#################################################################
+
+        ##########################################################
+        ## Turn off Garage Light when Garage Closed
+        ##########################################################
+
+- alias: Lights - Turn off Garage Light when Garage Closed
+
+  trigger:
+    - platform: state
+      entity_id: cover.garage_door
+      from: 'open'
+      to: 'closed'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.door_open_lights_on
+      state: 'off'
+
+  action:
+    - service: light.turn_off
+      entity_id: light.garage_light
+
+        ##########################################################
+        ## Turn on Garage Light when Garage Open
+        ##########################################################
+
+- alias: Lights - Turn on Garage Light when Garage Open
+
+  trigger:
+    - platform: state
+      entity_id: cover.garage_door
+      from: 'closed'
+      to: 'open'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.door_open_lights_on
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.garage_light
+      data:
+       brightness: 255
+
+        ##########################################################
+        ## Turn off Garage Light after an Hour
+        ##########################################################
+
+- alias: Lights - Turn off Garage Light after an Hour
+
+  trigger:
+    - platform: state
+      entity_id: light.garage_light
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 60
+        seconds: 0
+
+  action:
+    - service: light.turn_off
+      entity_id: light.garage_light
+
+        ##########################################################
+        ## Turn On Front Porch at Sunset
+        ##########################################################
+
+- alias: Lights - Turn on Front Porch at Sunset
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:05:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.exterior_on_sunset
+      state: 'off'
+    - condition: state
+      entity_id: input_select.holiday
+      state: 'None'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.front_porch
+      data:
+        transition: 300
+        brightness: 100
+        profile: relax
+
+        ##########################################################
+        ## Turn Off Front Porch at Midnight
+        ##########################################################
+
+- alias: Lights - Turn Off Front Porch at Midnight
+
+  trigger:
+   - platform: time
+     after: '23:59'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.exterior_off_night
+      state: 'off'
+    - condition: state
+      entity_id: input_select.holiday
+      state: 'None'
+
+  action:
+    - service: light.turn_off
+      entity_id: group.front_porch
+      data:
+       transition: 300
+
+        ##########################################################
+        ## Turn On Back Door at Sunset
+        ##########################################################
+
+- alias: Lights - Turn On Back Door at Sunset
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:05:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.exterior_on_sunset
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.back_door
+      data:
+        brightness: 3
+        transition: 60
+
+        ##########################################################
+        ## Turn Off Back Door at Midnight
+        ##########################################################
+
+- alias: Lights - Back Door Off at Midnight
+
+  trigger:
+    - platform: time
+      after: '23:59'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.exterior_off_night
+      state: 'off'
+
+  action:
+   - service: light.turn_off
+     entity_id: group.back_door
+     data:
+       transition: 300
+
+        ##########################################################
+        ## Turn on Back Door at 5:00a if _USER2_ Home
+        ##########################################################
+
+- alias: Lights - Back Door on at 5a
+
+  trigger:
+    - platform: time
+      after: '05:00'
+
+  condition:
+    - condition: state
+      entity_id: device_tracker._USER2DEVICE_
+      state: 'home'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.lights_morning_disable
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.back_door
+      data:
+       brightness: 3
+       transition: 60
+
+        ##########################################################
+        ## Turn on Lights at 5a if _USER2_ Home
+        ##########################################################
+
+- alias: Lights - Turn on Interior Lights at 5a
+
+  trigger:
+    - platform: time
+      after: '05:00'
+
+  condition:
+    - condition: state
+      entity_id: device_tracker._USER2DEVICE_
+      state: 'home'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.lights_morning_disable
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.dining_room_table, light.kitchen_cabinets, light.kitchen_sink, group.living_room_lights, light.bahtroom_vanity
+      data:
+       brightness: 25
+       xy_color: [ 0.5134, 0.4149 ]
+    - service: light.turn_on
+      entity_id: light.hallway_light
+      data:
+       brightness: 50
+       color_name: red
+
+        ##########################################################
+        ## Turn off Lights at Sunrise
+        ##########################################################
+
+- alias: Lights - Turn off Lights at Sunrise
+
+  trigger:
+    - platform: sun
+      event: 'sunrise'
+      offset: '+00:20:00'
+
+  action:
+    - service: light.turn_off
+      entity_id: group.interior_lights, group.exterior_lights
+    - service: switch.turn_off
+      entity_id: switch.lower_backyard_outdoor_lighting
+    - service: switch.turn_off
+      entity_id: switch.lower_patio_outdoor_lighting
+
+
+        ##########################################################
+        ## Turn On Outdoor Lighting at Sunset
+        ##########################################################
+
+- alias: Lights - Turn on Outdoor Lighting at Sunset
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:05:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.exterior_on_sunset
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: switch.turn_on
+      entity_id: switch.lower_patio_outdoor_lighting
+    - service: switch.turn_on
+      entity_id: switch.lower_backyard_outdoor_lighting
+
+        ##########################################################
+        ## Turn Off Outdoor Lighting After 4 Hours
+        ##########################################################
+
+- alias: Lights - Turn off Outdoor Lighting After 4 Hours
+
+  trigger:
+    - platform: state
+      entity_id: group.outdoor_lighting
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 4
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.exterior_off_night
+      state: 'off'
+    - condition: time
+      after: '22:00'
+
+  action:
+    - service: switch.turn_off
+      entity_id: switch.lower_backyard_outdoor_lighting
+    - service: switch.turn_off
+      entity_id: switch.lower_patio_outdoor_lighting
+
+        ##########################################################
+        ## Turn Off Outdoor Lighting At Midnight on Weekends
+        ##########################################################
+
+- alias: Lights - Turn off Outdoor Lighting at Midnight on Weekends
+
+  trigger:
+    - platform: time
+      after: '23:59'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.exterior_off_night
+      state: 'off'
+    - condition: time
+      weekday:
+        - fri
+        - sat
+
+  action:
+    - service: switch.turn_off
+      entity_id: switch.lower_backyard_outdoor_lighting
+    - service: switch.turn_off
+      entity_id: switch.lower_patio_outdoor_lighting
+
+        ##########################################################
+        ## Turn Off Outdoor Lighting At 10:00p on Weekdays
+        ##########################################################
+
+- alias: Lights - Turn off Outdoor Lighting at 10p on Weekdays
+
+  trigger:
+    - platform: time
+      after: '22:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.exterior_off_night
+      state: 'off'
+    - condition: time
+      weekday:
+        - sun
+        - mon
+        - tue
+        - wed
+        - thu
+
+  action:
+    - service: switch.turn_off
+      entity_id: switch.lower_backyard_outdoor_lighting
+    - service: switch.turn_off
+      entity_id: switch.lower_patio_outdoor_lighting
+
+        ##########################################################
+        ## Turn Off Outdoor Lighting At 2a on Weekdays
+        ##########################################################
+
+- alias: Lights - Turn off Outdoor Lighting at 2a on Weekdays
+
+  trigger:
+    - platform: time
+      after: '02:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.exterior_off_night
+      state: 'off'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+
+  action:
+    - service: switch.turn_off
+      entity_id: switch.lower_backyard_outdoor_lighting
+    - service: switch.turn_off
+      entity_id: switch.lower_patio_outdoor_lighting
+
+        ##########################################################
+        ## Turn off Back Patio Twice
+        ##########################################################
+
+- alias: Lights - Turn off Back Patio Twice
+
+  trigger:
+    - platform: state
+      entity_id: group.back_door
+      from: 'on'
+      to: 'off'
+
+  action:
+    - delay: 00:00:90
+    - service: light.turn_off
+      entity_id: light.upper_patio_left, light.upper_patio_right
+
+        ##########################################################
+        ## Turn off Back Door Twice
+        ##########################################################
+
+- alias: Lights - Turn off Back Door Twice
+
+  trigger:
+    - platform: state
+      entity_id: group.back_porch
+      from: 'on'
+      to: 'off'
+
+  action:
+    - delay: 00:03:00
+    - service: light.turn_off
+      entity_id: group.back_door
+
+        ##########################################################
+        ## Turn on Lower BackYard after Patio
+        ##########################################################
+
+- alias: Lights - Turn on Lower BackYard after Patio
+
+  trigger:
+    - platform: state
+      entity_id: switch.lower_patio_outdoor_lighting
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 90
+
+  action:
+    - service: switch.turn_on
+      entity_id: switch.lower_backyard_outdoor_lighting

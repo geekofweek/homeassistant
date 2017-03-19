@@ -1,0 +1,109 @@
+#################################################################
+## Media Player Automations
+#################################################################
+
+        ##########################################################
+        ## Plex Lights On/Off
+        ##########################################################
+
+- alias: Media - Plex Stopped Lights On
+
+  trigger:
+    - platform: state
+      entity_id: media_player.living_room
+      from: 'playing'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.plex_lights_disable
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.living_room_lights
+      data:
+       transition: 3
+       profile: relax
+    - service: light.turn_on
+      entity_id: light.hallway_light
+      data:
+       brightness: 25
+    - service: light.turn_on
+      entity_id: light.dining_room_table, light.bathroom_vanity, light.kitchen_cabinets, light.kitchen_sink
+      data:
+       brightness: 100
+
+- alias: Media - Plex Started Lights Off
+
+  trigger:
+       - platform: state
+         entity_id: media_player.living_room
+         to: 'playing'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.plex_lights_disable
+      state: 'off'
+
+  action:
+    - service: light.turn_off
+      entity_id: group.living_room_lights, light.hallway_light
+      data:
+       transition: 5
+    - service: light.turn_off
+      entity_id: group.dining_room, group.kitchen, light.bathroom_vanity
+
+      #################################################################
+      ## Remote
+      #################################################################
+
+- alias: Media - Remote external update Media Center
+
+  trigger:
+    platform: state
+    entity_id: remote.media_center
+
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.remote
+        option: >
+          {{ states.remote.media_center.attributes.current_activity }}
+
+- alias: Media - Remote start activity from input select media center
+
+  trigger:
+    platform: state
+    entity_id: input_select.remote
+
+  action:
+    - service: script.turn_on
+      entity_id: script.input_select_harmony
+
+      #################################################################
+      ## Sonos
+      #################################################################
+
+- alias: Media - Ungroup Sonos Every Morning
+
+  trigger:
+    - platform: time
+      after: '06:00'
+
+  action:
+    - service: media_player.sonos_unjoin
+      entity_id:
+        - media_player.media_center
+        - media_player.living_room_sp
+        - media_player.dining_room
+        - media_player.kitchen
+        - media_player.bathroom
+        - media_player._USER2_s_office
+        - media_player._USER2_s_office
+        - media_player.basement

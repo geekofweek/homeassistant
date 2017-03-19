@@ -1,0 +1,192 @@
+#################################################################
+## Door Lock Automations
+#################################################################
+
+        ##########################################################
+        ## Lock Front Door After 30 Mins
+        ##########################################################
+
+- alias: Locks - Lock Front Door After 30 Mins
+
+  trigger:
+    - platform: state
+      entity_id: lock.front_door
+      from: 'locked'
+      to: 'unlocked'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_lock_unlock_doors
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.front_door_opened
+      state: 'off'
+    - condition: state
+      entity_id: lock.front_door
+      state: 'unlocked'
+
+  action:
+    - service: lock.lock
+      entity_id: lock.front_door
+
+        ##########################################################
+        ## Lock Back Door After 2 Hours
+        ##########################################################
+
+- alias: Locks - Lock Front Door After 2 Hours
+
+  trigger:
+    - platform: state
+      entity_id: lock.back_door
+      from: 'locked'
+      to: 'unlocked'
+      for:
+        hours: 2
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_lock_unlock_doors
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.back_door_opened
+      state: 'off'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+    - condition: state
+      entity_id: lock.back_door
+      state: 'unlocked'
+
+  action:
+    - service: lock.lock
+      entity_id: lock.back_door
+
+        ##########################################################
+        ## Lock Basement Door After 45 Mins
+        ##########################################################
+
+- alias: Locks - Lock Basement Door After 45 Mins
+
+  trigger:
+    - platform: state
+      entity_id: lock.basement_door
+      from: 'locked'
+      to: 'unlocked'
+      for:
+        hours: 0
+        minutes: 45
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_lock_unlock_doors
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.basement_door_opened
+      state: 'off'
+    - condition: state
+      entity_id: lock.basement_door
+      state: 'unlocked'
+
+  action:
+    - service: lock.lock
+      entity_id: lock.basement_door
+
+        ##########################################################
+        ## Lock Doors at 2a
+        ##########################################################
+
+- alias: Locks - Lock Doors at 2a
+
+  trigger:
+    - platform: time
+      after: '02:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_lock_unlock_doors
+      state: 'off'
+    - condition: state
+      entity_id: group.doors
+      state: 'off'
+
+  action:
+    - service: lock.lock
+      entity_id: group.all_locks
+
+        ##########################################################
+        ## Lock Doors on Demand
+        ##########################################################
+
+- alias: Locks - Lock Doors on Demand
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.lock_doors
+      state: 'on'
+
+  action:
+    service: lock.lock
+    entity_id: group.all_locks
+
+        ##########################################################
+        ## Reset Door Lock Switch
+        ##########################################################
+
+- alias: Locks - Reset Lock Doors Switch
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.lock_doors
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 60
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.lock_doors
+
+        ##########################################################
+        ## Unlock Doors on Demand
+        ##########################################################
+
+- alias: Locks - Unlock Doors on Demand
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.unlock_doors
+      state: 'on'
+
+  action:
+    service: lock.unlock
+    entity_id: group.all_locks
+
+        ##########################################################
+        ## Reset Unlock Door Switch
+        ##########################################################
+
+- alias: Locks - Reset Unlock Doors Switch
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.unlock_doors
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 60
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.unlock_doors

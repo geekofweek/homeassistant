@@ -1,0 +1,451 @@
+#################################################################
+## Occupancy Automations
+#################################################################
+
+        ##########################################################
+        ## Turn on Office Air Purifier when Occupied
+        ##########################################################
+
+- alias: Occupancy - Turn on Office Air Purifier when Occupied
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.office_occupancy
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.occupancy_air_purifier_on_off_disable
+      state: 'off'
+    - condition: state
+      entity_id: device_tracker._USER1DEVICE_
+      state: 'home'
+
+  action:
+    - service: switch.turn_on
+      entity_id: switch.air_purifier
+
+        ##########################################################
+        ## Turn off Office Air Purifier when Unoccupied
+        ##########################################################
+
+- alias: Occupancy - Turn off Office Air Purifier when Unoccupied
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.office_occupancy
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.occupancy_air_purifier_on_off_disable
+      state: 'off'
+
+  action:
+    - service: switch.turn_off
+      entity_id: switch.air_purifier
+
+        ##########################################################
+        ## Turn off Office when Unoccupied
+        ##########################################################
+
+- alias: Occupancy - Turn off Office Light when Unoccupied
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.office_occupancy
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.occupancy_lights_off_disable
+      state: 'off'
+
+
+  action:
+    - service: light.turn_off
+      entity_id: group._USER1_office
+
+        ##########################################################
+        ## Turn on _USER2_ Office when Occupied
+        ##########################################################
+
+- alias: Occupancy - Turn on _USER2_ Office Light when Occupied
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor._USER2_office_occupancy
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: device_tracker._USER2DEVICE_
+      state: 'home'
+
+  action:
+    - service: light.turn_on
+      entity_id: group._USER2_office
+      data:
+        transition: 300
+        brightness: 130
+
+        ##########################################################
+        ## Turn off _USER2_ Office when Unoccupied
+        ##########################################################
+
+- alias: Occupancy - Turn off _USER2_ Office Light when Unoccupied
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor._USER2_office_occupancy
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.occupancy_lights_off_disable
+      state: 'off'
+
+  action:
+    - service: light.turn_off
+      entity_id: group._USER2_office
+
+        ##########################################################
+        ## Turn off Bedroom when Unoccupied
+        ##########################################################
+
+- alias: Occupancy - Turn off Bedroom Lights when Unoccupied
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bedroom_occupancy
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.occupancy_lights_off_disable
+      state: 'off'
+
+  action:
+    - service: light.turn_off
+      entity_id: group.bedroom
+
+        ##########################################################
+        ## Turn off Guest Bedroom when Unoccupied
+        ##########################################################
+
+- alias: Occupancy - Turn off Guest Bedroom Lights when Unoccupied
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.guest_bedroom_occupancy
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.occupancy_lights_off_disable
+      state: 'off'
+
+  action:
+    - service: light.turn_off
+      entity_id: group.guest_bedroom
+
+        ##########################################################
+        ## Turn off Kitchen when Unoccupied
+        ##########################################################
+
+- alias: Occupancy - Turn off Kitchen Lights when Unoccupied
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.kitchen_occupancy
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.occupancy_lights_off_disable
+      state: 'off'
+
+  action:
+    - service: light.turn_off
+      entity_id: group.kitchen
+
+        ##########################################################
+        ## Turn off Dining Room / Hallway when Unoccupied
+        ##########################################################
+
+- alias: Occupancy - Turn off Dining Room Lights when Unoccupied
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.main_floor_occupancy
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.occupancy_lights_off_disable
+      state: 'off'
+
+  action:
+    - service: light.turn_off
+      entity_id: light.hallway_light, group.dining_room
+
+        ##########################################################
+        ## Turn off Living Room when Unoccupied
+        ##########################################################
+
+- alias: Occupancy - Turn off Living Room when Unoccupied
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.living_room_occupancy
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: binary_sensor.main_floor_occupancy
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.occupancy_lights_off_disable
+      state: 'off'
+
+  action:
+    - service: light.turn_off
+      entity_id: group.living_room
+
+        ##########################################################
+        ## Turn off Stairs when Unoccupied
+        ##########################################################
+
+- alias: Occupancy - Turn off Stairs when _USER1_ Office Unoccupied
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.office_occupancy
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: binary_sensor._USER2_office_occupancy
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.occupancy_lights_off_disable
+      state: 'off'
+
+  action:
+    - service: light.turn_off
+      entity_id: group.stairs
+
+- alias: Occupancy - Turn off Stairs when _USER2_ Office Unoccupied
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor._USER2_office_occupancy
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: binary_sensor.office_occupancy
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.occupancy_lights_off_disable
+      state: 'off'
+
+  action:
+    - service: light.turn_off
+      entity_id: group.stairs
+
+
+        ##########################################################
+        ## Turn off Basement when Unoccupied
+        ##########################################################
+
+- alias: Occupancy - Turn off Basement when Unoccupied
+
+  trigger:
+    - platform: state
+      entity_id: group.basement_occupancy
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.occupancy_lights_off_disable
+      state: 'off'
+
+  action:
+    - service: light.turn_off
+      entity_id: group.basement_lighting
+
+        ##########################################################
+        ## Turn on Living Room / Dining Room at Sunset when Occupied
+        ##########################################################
+
+- alias: Occupancy - Turn on Living Room / Dining Room at Sunset when Occupied
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:30:00'
+
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: binary_sensor.main_floor_occupancy
+            state: 'on'
+          - condition: state
+            entity_id: binary_sensor.living_room_occupancy
+            state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.living_room_lamps, light.dining_room_table, light.hallway_light, light.media_center_lighting
+      data:
+        transition: 900
+        xy_color: [ 0.5134, 0.4149 ]
+        brightness: 255
+
+        ##########################################################
+        ## Turn on Kitchen at Sunset when Occupied
+        ##########################################################
+
+- alias: Occupancy - Turn on Kitchen at Sunset when Occupied
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:30:00'
+
+  condition:
+    - condition: state
+      entity_id: binary_sensor.kitchen_occupancy
+      state: 'on'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.kitchen
+      data:
+        brightness: 255
+
+        ##########################################################
+        ## Turn on Office at Sunset when Occupied
+        ##########################################################
+
+- alias: Occupancy - Turn on Office Lights at Sunset when Occupied
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:10:00'
+
+  condition:
+    - condition: state
+      entity_id: binary_sensor.office_occupancy
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.office_lights_sunset
+      state: 'off'
+    - condition: state
+      entity_id: device_tracker._USER1DEVICE_
+      state: 'home'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.office_lamp, group.stairs
+      data:
+        transition: 900
+        brightness: 75
+        profile: relax
+
+        ##########################################################
+        ## Turn on _USER2_'s Office at Sunset when Occupied
+        ##########################################################
+
+- alias: Occupancy - Turn on _USER2_ Office Lights at Sunset when Occupied
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:30:00'
+
+  condition:
+    - condition: state
+      entity_id: binary_sensor._USER2_office_occupancy
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.office_lights_sunset
+      state: 'off'
+    - condition: state
+      entity_id: device_tracker._USER2DEVICE_
+      state: 'home'
+
+  action:
+    - service: light.turn_on
+      entity_id: group._USER2_office, group.stairs
+      data:
+        transition: 900
+        brightness: 255

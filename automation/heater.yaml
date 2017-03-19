@@ -1,0 +1,86 @@
+#################################################################
+## Basement Heater Automations
+#################################################################
+
+        ##########################################################
+        ## Turn on Basement Heater when Cold
+        ##########################################################
+
+- alias: Heater - Turn on Basement Heater when Cold
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.basement_temperature
+      below: 55
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: switch.turn_on
+      entity_id: switch.basement_heater
+
+        ##########################################################
+        ## Turn off Basement Heater when Warm
+        ##########################################################
+
+- alias: Heater - Turn off Basement Heater when Warm
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.basement_temperature
+      above: 57
+
+  action:
+    - service: switch.turn_off
+      entity_id: switch.basement_heater
+
+        ##########################################################
+        ## Turn on Basement Heater when Home
+        ##########################################################
+
+- alias: Heater - Turn on Basement Heater when Home
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.home_away
+      state: 'off'
+    - condition: numeric_state
+      entity_id: sensor.basement_temperature
+      below: 55
+
+  action:
+    - service: switch.turn_on
+      entity_id: switch.basement_heater
+
+        ##########################################################
+        ## Heater Bedtime
+        ##########################################################
+
+- alias: Heater - Bedtime
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      state: 'on'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.basement_temperature
+      above: 55
+
+  action:
+    - service: switch.turn_off
+      entity_id: switch.basement_heater

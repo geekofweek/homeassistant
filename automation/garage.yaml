@@ -1,0 +1,96 @@
+#################################################################
+## Garage Automations
+#################################################################
+
+        ##########################################################
+        ## Close Garage Door after 30 Mins
+        ##########################################################
+
+- alias: Garage - Close After 30 Mins
+
+  trigger:
+    - platform: state
+      entity_id: cover.garage_door
+      from: 'closed'
+      to: 'open'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_auto_garage
+      state: 'off'
+
+  action:
+    - service: cover.close_cover
+      entity_id: cover.garage_door
+
+        ##########################################################
+        ## Garage Door Open on Demand (Echo Integration)
+        ##########################################################
+
+- alias: Garage - Open on Demand
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.garage_door
+      state: 'on'
+
+  condition:
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'closed'
+
+  action:
+    - service: cover.open_cover
+      entity_id: cover.garage_door
+
+        ##########################################################
+        ## Garage Door Close on Demand (Echo Integration)
+        ##########################################################
+
+- alias: Garage - Close on Demand
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.garage_door
+      state: 'off'
+
+  condition:
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'open'
+
+  action:
+    - service: cover.close_cover
+      entity_id: cover.garage_door
+
+        ##########################################################
+        ## Reset Dummy Garage Door Switch
+        ##########################################################
+
+- alias: Garage - Reset Dummy Switch when Closed
+
+  trigger:
+    - platform: state
+      entity_id: cover.garage_door
+      from: 'open'
+      to: 'closed'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.garage_door
+
+- alias: Turn on Garage Door when Open
+
+  trigger:
+    - platform: state
+      entity_id: cover.garage_door
+      from: 'closed'
+      to: 'open'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.garage_door

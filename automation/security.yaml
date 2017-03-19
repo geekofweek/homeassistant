@@ -1,0 +1,102 @@
+#################################################################
+## Security Automations
+#################################################################
+
+        ##########################################################
+        ## Motion Mode
+        ##########################################################
+
+#- alias: Security - Motion Alarm
+#
+#  trigger:
+#    - platform: state
+#      entity_id: group.occupancy
+#      from: 'off'
+#      to: 'on'
+#
+#  condition:
+#    - condition: state
+#      entity_id: group.household
+#      state: 'not_home'
+#    - condition: state
+#      entity_id: input_boolean.enable_security
+#      state: 'on'
+#
+#  action:
+#    service: scene.turn_on
+#    entity_id: scene.security
+
+        ##########################################################
+        ## Door Alarm
+        ##########################################################
+
+- alias: Security - Door Alarm
+
+  trigger:
+    - platform: state
+      entity_id: group.doors
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.enable_security
+      state: 'on'
+
+  action:
+    - service: scene.turn_on
+      entity_id: scene.security
+
+        ##########################################################
+        ## Panic Mode
+        ##########################################################
+
+- alias: Security - Panic Mode
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.panic_mode
+      state: 'on'
+
+  action:
+    - service: scene.turn_on
+      entity_id: scene.security
+
+        ##########################################################
+        ## Disable Alarm when Home
+        ##########################################################
+
+- alias: Security - Disable Alarm when Home
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'not_home'
+      to: 'home'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.enable_security
+
+        ##########################################################
+        ## Enable Alarm when Away
+        ##########################################################
+
+- alias: Security - Enable Alarm when Away
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.enable_security

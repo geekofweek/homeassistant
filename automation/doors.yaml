@@ -1,0 +1,219 @@
+#################################################################
+## Door Automations
+#################################################################
+
+        ##########################################################
+        ## Turn On Front Porch when Front Door Opens
+        ##########################################################
+
+- alias: Doors - Turn on Front Porch when Front Opens
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_opened
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.door_open_lights_on
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.front_porch
+      data:
+        brightness: 255
+
+        ##########################################################
+        ## Reset Front Door Brightness when Front Door Closes
+        ##########################################################
+
+- alias: Doors - Reset Front Porch Brightness when Front Closes
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_opened
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.door_open_lights_on
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_select.holiday
+      state: 'None'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.front_porch
+      data:
+        brightness: 100
+        transition: 120
+
+        ##########################################################
+        ## Turn off Front Porch when Door Closes between 12-5a
+        ##########################################################
+
+- alias: Doors - Turn off Front Porch when Front Closes between 12-5a
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_opened
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+
+  condition:
+    - condition: time
+      after: '00:00'
+      before: '05:00'
+    - condition: state
+      entity_id: input_boolean.door_open_lights_on
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_select.holiday
+      state: 'None'
+
+  action:
+    - service: light.turn_off
+      entity_id: group.front_porch
+      data:
+        transition: 900
+
+        ##########################################################
+        ## Turn On Living Room when Front Door Opens
+        ##########################################################
+
+- alias: Doors - Turn on Front Porch when Front Opens
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_opened
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.door_open_lights_on
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.living_room_lights
+      data:
+       xy_color: [ 0.5134, 0.4149 ]
+       brightness: 255
+
+        ##########################################################
+        ## Turn On Back Door when Door Opens
+        ##########################################################
+
+- alias: Doors - Turn on Back Door when Back Opens
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.back_door_opened
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.door_open_lights_on
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.back_door
+      data:
+       brightness: 255
+
+        ##########################################################
+        ## Reset Back Door Brightness when Door Closes
+        ##########################################################
+
+- alias: Doors - Reset Back Brightness when Door Closes
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.back_door_opened
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.door_open_lights_on
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.back_door
+      data:
+        brightness: 3
+        transition: 300
+
+        ##########################################################
+        ## Turn off Back Door when Door Closes between 12-5a
+        ##########################################################
+
+- alias: Doors - Turn off Back when Door Closes between 12-5a
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.back_door_opened
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 17
+        seconds: 0
+
+  condition:
+    - condition: time
+      after: '00:00'
+      before: '05:00'
+    - condition: state
+      entity_id: input_boolean.door_open_lights_on
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: light.turn_off
+      entity_id: group.back_door
+      data:
+        transition: 900

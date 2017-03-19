@@ -1,0 +1,75 @@
+##################################################################
+## Party Mode Automations
+##################################################################
+
+        ##########################################################
+        ## Living Room Random Colors
+        ##########################################################
+
+- alias: Party - Set Living Room to Random Color
+
+  trigger:
+    - platform: time
+      minutes: '/2'
+      seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.livingroom_rainbow
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.living_room, light.hallway_light, light.media_center_lighting
+      data:
+        effect: random
+        transition: 5
+        brightness: 255
+
+        ##########################################################
+        ## Office Random Colors
+        ##########################################################
+
+- alias: Party - Set Office to Random Color
+
+  trigger:
+    - platform: time
+      minutes: '/2'
+      seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.office_rainbow
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.office_lamp
+      data:
+        effect: random
+        transition: 5
+        brightness: 255
+
+        ##########################################################
+        ## Front Porch Random Colors
+        ##########################################################
+
+- alias: Party - Set Front Porch to Random Color
+
+  trigger:
+    - platform: time
+      minutes: '/2'
+      seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.front_porch_rainbow
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.front_porch
+      data:
+        effect: random
+        transition: 5
+        brightness: 255

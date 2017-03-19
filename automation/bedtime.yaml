@@ -1,0 +1,94 @@
+#################################################################
+## Bedtime Automations
+#################################################################
+
+        ##########################################################
+        ## Bedtime
+        ##########################################################
+
+- alias: Bedtime
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      state: 'on'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  action:
+    - service: lock.lock
+      entity_id: group.all_locks
+    - service: light.turn_off
+      entity_id: group.interior_lights
+    - service: light.turn_off
+      entity_id: group.outdoor_lighting
+    - service: switch.turn_off
+      entity_id: switch.air_purifier, switch.lower_backyard_outdoor_lighting, switch.lower_patio_outdoor_lighting, switch.fireplace
+    - service: cover.close_cover
+      entity_id: cover.garage_door
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.interior_holiday, input_boolean.office_rainbow, input_boolean.livingroom_rainbow, input_boolean.front_porch_rainbow
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.remote
+        option: "PowerOff"
+    - service: media_player.media_stop
+      entity_id:
+        - media_player.media_center
+        - media_player.living_room_sp
+        - media_player.dining_room
+        - media_player.kitchen
+        - media_player.bathroom
+        - media_player._USER1_s_office
+        - media_player._USER2_s_office
+        - media_player.basement
+#    - service: climate.set_hold_mode
+#      data:
+#        entity_id: climate.main_floor
+#        hold_mode: sleep
+
+        ##########################################################
+        ## Bedtime after Midnight
+        ##########################################################
+
+- alias: Bedtime - After Midnight
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      state: 'on'
+      for:
+        hours: 0
+        minutes: 4
+        seconds: 0
+
+  condition:
+    - condition: time
+      after: '00:00'
+      before: '06:00'
+
+  action:
+    - service: light.turn_off
+      entity_id: group.exterior_lights
+
+        ##########################################################
+        ## Reset Bedtime Switch
+        ##########################################################
+
+- alias: Bedtime - Reset Switch
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 6
+        seconds: 0
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.bedtime

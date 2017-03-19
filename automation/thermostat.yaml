@@ -1,0 +1,216 @@
+#################################################################
+## Thermostat Automations
+#################################################################
+
+        ##########################################################
+        ## Set Thermostat Away/Home
+        ##########################################################
+
+- alias: Thermostat - Home
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.home_away
+      state: 'off'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.thermostat_away
+#     re-enable Summer or Winter Mode
+#    - service: homeassistant.turn_on
+#      entity_id: group.summer_mode
+    - service: homeassistant.turn_on
+      entity_id: group.winter_mode
+
+- alias: Thermostat - Away
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'home'
+      to: 'not_home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.home_away
+      state: 'off'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.thermostat_away
+    - service: homeassistant.turn_off
+      entity_id: group.summer_mode
+    - service: homeassistant.turn_off
+      entity_id: group.winter_mode
+
+        ##########################################################
+        ## Set Thermostat Home When _USER2_ Leaves Work
+        ##########################################################
+
+- alias: Thermostat - Set Home When _USER2_ Leaves Work
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker._USER2DEVICE_
+      from: 'work'
+      to: 'not_home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.home_away
+      state: 'off'
+    - condition: state
+      entity_id: device_tracker._USER1DEVICE_
+      state: 'not_home'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.thermostat_away
+
+
+        ##########################################################
+        ## Turn Thermostat on Summer
+        ##########################################################
+
+- alias: Thermostat - Turn on Summer
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.dark_sky_temperature
+      above: 70
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.thermostat_away
+
+        ##########################################################
+        ## Turn Thermostat off Summer
+        ##########################################################
+
+- alias: Thermostat - Turn off Summer
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.dark_sky_temperature
+      below: 69
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.thermostat_away
+
+        ##########################################################
+        ## Turn Thermostat on Winter
+        ##########################################################
+
+- alias: Thermostat - Turn on Winter
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.dark_sky_temperature
+      below: 65
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.thermostat_away
+
+        ##########################################################
+        ## Turn Thermostat off Winter
+        ##########################################################
+
+- alias: Thermostat - Turn off Winter
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.dark_sky_temperature
+      above: 66
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.thermostat_away
+
+        ##########################################################
+        ## Disable Summer / Winter Mode on Start
+        ##########################################################
+
+- alias: Thermostat - Disable Summer or Winter Mode on Start
+
+  trigger:
+    - platform: event
+      event_type: homeassistant_start
+
+  action:
+#     Disable Summer or Winter Mode
+    - service: homeassistant.turn_off
+      entity_id: group.summer_mode
+#    - service: homeassistant.turn_on
+#      entity_id: group.winter_mode
+
+        ##########################################################
+        ## Turn off Thermostat when Door Opens for Extended Period
+        ##########################################################
+
+- alias: Thermostat - Turn off when Door Opens for Extended Period
+
+  trigger:
+    - platform: state
+      entity_id: group.doors
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.summer_mode
+      state: 'on'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.thermostat_away
+
+        ##########################################################
+        ## Thermostat on Demand Home
+        ##########################################################
+
+- alias: Thermostat - On Demand Home
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.thermostat_away
+      from: 'on'
+      to: 'off'
+
+  action:
+    - service: climate.set_hold_mode
+      data:
+        entity_id: climate.main_floor
+        hold_mode: None
+
+        ##########################################################
+        ## Thermostat on Demand Away
+        ##########################################################
+
+- alias: Thermostat - On Demand Away
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.thermostat_away
+      from: 'off'
+      to: 'on'
+
+  action:
+    - service: climate.set_away_mode
+      data:
+        entity_id: climate.main_floor
+        away_mode: true

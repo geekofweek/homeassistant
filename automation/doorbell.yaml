@@ -1,0 +1,221 @@
+#################################################################
+## Doorbell Automations
+#################################################################
+
+        ##########################################################
+        ## Turn On Front Porch when Door Bell Rings
+        ##########################################################
+
+- alias: Doorbell - Turn On Front Porch when Rung
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_button_pressed
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.front_porch
+      data:
+        brightness: 255
+
+        ##########################################################
+        ## Reset Front Porch Brightness After Doorbell Rings
+        ##########################################################
+
+- alias: Doorbell - Reset Front Porch Brightness After Ring
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_button_pressed
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.front_porch
+      data:
+        brightness: 100
+        transition: 300
+
+        ##########################################################
+        ## Turn On Front Porch when Motion Detected
+        ##########################################################
+
+- alias: Doorbell - Turn On Front Porch when Motion Detected
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.front_porch
+      data:
+        brightness: 255
+
+        ##########################################################
+        ## Reset Front Porch Brightness After Motion Detected
+        ##########################################################
+
+- alias: Doorbell - Reset Front Porch Brightness After Motion Detected
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.front_porch
+      data:
+        brightness: 100
+        transition: 300
+
+        ##########################################################
+        ## Turn On Lights when Door Bell Rings and Away
+        ##########################################################
+
+- alias: Doorbell - Turn On Lights when Ring and Away
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_button_pressed
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.living_room_lights, light.office_lamp, light.closet_lamp, light.kitchen_ceiling
+      data:
+        brightness: 255
+
+        ##########################################################
+        ## Turn Off Lights After Door Bell Rings and Away
+        ##########################################################
+
+- alias: Doorbell - Turn Off Lights After Ring and Away
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_button_pressed
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+
+  action:
+    - service: light.turn_off
+      entity_id: group.living_room_lights, light.office_lamp, light.closet_lamp
+      data:
+        transition: 900
+    - service: light.turn_off
+      entity_id: light.kitchen_ceiling
+
+        ##########################################################
+        ## Turn On Lights when Motion Detected and Away
+        ##########################################################
+
+- alias: Doorbell - Turn On Lights when Motion Detected and Away
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.living_room_lights, light.office_lamp, light.closet_lamp, light.kitchen_ceiling
+      data:
+        brightness: 255
+
+        ##########################################################
+        ## Turn Off Lights After Motion Detected and Away
+        ##########################################################
+
+- alias: Doorbell - Turn Off Lights After Motion Detected and Away
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+
+  action:
+    - service: light.turn_off
+      entity_id: group.living_room_lights, light.office_lamp, light.closet_lamp
+      data:
+        transition: 900
+    - service: light.turn_off
+      entity_id: light.kitchen_ceiling
