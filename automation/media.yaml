@@ -3,7 +3,7 @@
 #################################################################
 
         ##########################################################
-        ## Plex Lights On/Off
+        ## Plex Lights On
         ##########################################################
 
 - alias: Media - Plex Stopped Lights On
@@ -35,6 +35,10 @@
       entity_id: light.dining_room_table, light.bathroom_vanity, light.kitchen_cabinets, light.kitchen_sink
       data:
        brightness: 100
+
+        ##########################################################
+        ## Plex Lights Off
+        ##########################################################
 
 - alias: Media - Plex Started Lights Off
 
@@ -104,6 +108,6 @@
         - media_player.dining_room
         - media_player.kitchen
         - media_player.bathroom
-        - media_player._USER2_s_office
+        - media_player._USER1_s_office
         - media_player._USER2_s_office
         - media_player.basement
