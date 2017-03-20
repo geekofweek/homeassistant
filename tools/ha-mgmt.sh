@@ -12,7 +12,7 @@ hauser="USER_ACCOUNT"
 habin="/usr/local/bin/hass"
 haconfigdir="/home/USER/.homeassistant"
 hahost="HOSTNAME/IP"
-localuser="USER_ACCOUNT"
+localuser="LOCAL_USER_ACCOUNT"
 localhost="HOSTNAME/IP"
 localpath="PATH_TO_LOCAL_HA_CONFIGS"
 
@@ -39,11 +39,12 @@ do
  echo "6) Check Database Size - (sudo Required)"
  echo "7) Validate Home Assistant Config"
  echo "8) Backup Home Assistant"
- echo "9) Exit"
+ echo "9) Renew SSL Certificate"
+ echo "x) Exit"
  echo " "
  read action
 
- if [ "$action" != "1" -a "$action" != "2" -a "$action" != "3" -a "$action" != "4" -a "$action" != "5" -a "$action" != "6" -a "$action" != "7" -a "$action" != "8" -a "$action" != "9"  ];then
+ if [ "$action" != "1" -a "$action" != "2" -a "$action" != "3" -a "$action" != "4" -a "$action" != "5" -a "$action" != "6" -a "$action" != "7" -a "$action" != "8" -a "$action" != "9" -a "$action" != "x" ];then
  		echo ":-("
  		echo "Error!"
  		echo "Invalid Option Stupid"
@@ -159,13 +160,23 @@ do
 
  if [ "$action" == "9" ];then
    clear
+   echo "Renewing SSL Certificate..."
+   echo " "
+   ssh -t $hauser@$hahost "./certbot/certbot-auto renew --quiet --no-self-upgrade --standalone \
+                     --standalone-supported-challenges http-01"
+   echo " "
+   echo "Home Assistant SSL Ceretificate Renewal Complete"
+   echo " "
+ fi
+
+ if [ "$action" == "x" ];then
+   clear
    echo " "
    echo ":-("
    echo "Exiting"
    echo " "
    exit
  fi
-
 
 echo " "
 echo "Do You Want to Perform Another Task?"
