@@ -60,10 +60,10 @@
       entity_id: group.living_room_lamps, light.kitchen_cabinets, light.dining_room_table, light.media_center_lighting, light.hallway_light
 
         ##########################################################
-        ## Turn On _USER2_ Office During Rain
+        ## Turn On USER2 Office During Rain
         ##########################################################
 
-- alias: Weather - Rain _USER2_ Office Lights On
+- alias: Weather - Rain USER2 Office Lights On
 
   trigger:
     - platform: numeric_state
@@ -72,7 +72,7 @@
 
   condition:
     - condition: state
-      entity_id: binary_sensor._USER2_office_occupancy
+      entity_id: binary_sensor.USER2_office_occupancy
       state: 'on'
     - condition: state
       entity_id: sun.sun
@@ -81,20 +81,20 @@
       entity_id: input_boolean.rainy_day_disable
       state: 'off'
     - condition: state
-      entity_id: device_tracker._USER2DEVICE_
+      entity_id: device_tracker.USER2DEVICE
       state: 'home'
 
   action:
     - service: light.turn_on
-      entity_id: group._USER2_office, group.stairs
+      entity_id: group.USER2_office, group.stairs
       data:
         brightness: 50
 
         ##########################################################
-        ## Turn Off _USER2_ Office During Rain
+        ## Turn Off USER2 Office During Rain
         ##########################################################
 
-- alias: Weather - Rain is over _USER2_ Office Lights Off
+- alias: Weather - Rain is over USER2 Office Lights Off
 
   trigger:
     - platform: numeric_state
@@ -108,13 +108,13 @@
 
   action:
     - service: light.turn_off
-      entity_id: group._USER2_office, group.stairs
+      entity_id: group.USER2_office, group.stairs
 
         ##########################################################
-        ## Turn On _USER1_ Office During Rain
+        ## Turn On USER1 Office During Rain
         ##########################################################
 
-- alias: Weather - Rain _USER1_ Office Lights On
+- alias: Weather - Rain USER1 Office Lights On
 
   trigger:
     - platform: numeric_state
@@ -132,7 +132,7 @@
       entity_id: input_boolean.rainy_day_disable
       state: 'off'
     - condition: state
-      entity_id: device_tracker._USER1DEVICE_
+      entity_id: device_tracker.USER1DEVICE
       state: 'home'
 
   action:
@@ -143,10 +143,10 @@
         xy_color: [0.139,0.081]
 
         ##########################################################
-        ## Turn Off _USER1_ Office During Rain
+        ## Turn Off USER1 Office During Rain
         ##########################################################
 
-- alias: Weather - Rain is over _USER1_ Office Lights Off
+- alias: Weather - Rain is over USER1 Office Lights Off
 
   trigger:
     - platform: numeric_state

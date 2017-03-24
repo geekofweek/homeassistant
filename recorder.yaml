@@ -3,7 +3,7 @@
 #################################################################
 
   purge_days: 30
-  db_url: mysql://_REDACTED_
+  db_url: mysql://REDACTED@REDACTED/REDACTED
 
   exclude:
     domains:
@@ -20,12 +20,12 @@
       - binary_sensor.laundry_room
       - binary_sensor.living_room
       - binary_sensor.office
-      - binary_sensor._USER2_office
-      - camera._REDACTED_
+      - binary_sensor.USER2_office
+      - camera.REDACTED
       - climate.main_floor_2
       - cover.garage_door_2
       - cover.myq
-      - group._USER1_office
+      - group.USER1_office
       - group.alarm
       - group.all_automations
       - group.all_covers
@@ -67,9 +67,10 @@
       - group.media_player
       - group.offices
       - group.outdoors
+      - group.overnight_guests
       - group.party_modes
       - group.remote
-      - group._USER2_office
+      - group.USER2_office
       - group.sensors
       - group.sonos
       - group.speedtest
@@ -84,8 +85,8 @@
       - group.weatherdashboard
       - group.wink_lights
       - group.wink_lights_exterior
-      - light._USER1_s_nightstand_2
-      - light._USER1_s_office
+      - light.USER1s_nightstand_2
+      - light.USER1s_office
       - light.back_door
       - light.back_door_left_2
       - light.back_door_right_2
@@ -124,10 +125,10 @@
       - light.media_center_lighting_2
       - light.office
       - light.office_lamp_2
-      - light._USER2_s_nightstand_2
-      - light._USER2_s_office
-      - light._USER2_s_office_ceiling_1_2
-      - light._USER2_s_office_ceiling_2_2
+      - light.USER2s_nightstand_2
+      - light.USER2s_office
+      - light.USER2s_office_ceiling_1_2
+      - light.USER2s_office_ceiling_2_2
       - light.stairs
       - light.stairs_1
       - light.stairs_1_2
@@ -142,7 +143,7 @@
       - light.upstairs
       - script.input_select_harmony
       - script.say
-      - sensor._USER1_to_home
+      - sensor.USER1_to_home
       - sensor.basement_temperature_2
       - sensor.bathroom_temperature_2
       - sensor.bedroom_temperature_2
@@ -167,7 +168,7 @@
       - sensor.dark_sky_visibility
       - sensor.dark_sky_wind_bearing
       - sensor.dark_sky_wind_speed
-      - sensor._REDACTED_
+      - sensor.REDACTED
       - sensor.guest_bedroom_temperature_2
       - sensor.kitchen_temperature_2
       - sensor.laundry_room_temperature_2
@@ -175,11 +176,11 @@
       - sensor.office_temperature_2
       - sensor.ram_free
       - sensor.ram_use
-      - sensor._USER2_office_temperature_2
-      - sensor._USER2_to_home
-      - sensor._USER2_to_REDACTED_
-      - sensor._USER2_to_REDACTED_
-      - sensor._USER2_to_REDACTED_
+      - sensor.USER2_office_temperature_2
+      - sensor.USER2_to_home
+      - sensor.USER2_to_REDACTED
+      - sensor.USER2_to_REDACTED
+      - sensor.USER2_to_REDACTED
       - sensor.since_last_boot
       - sensor.since_last_boot
       - sensor.speedtest_download
@@ -193,30 +194,30 @@
       - remote.media_center
       - input_boolean.garage_door
       - group.friends_and_family
-      - device_tracker._GUEST_
-      - device_tracker._GUEST_
-      - device_tracker._GUEST_
-      - device_tracker._GUEST_
-      - device_tracker._GUEST_
-      - device_tracker._GUEST_
-      - device_tracker._GUEST_
-      - input_boolean._GUEST_visiting
-      - input_boolean._GUEST_visiting
-      - input_boolean._GUEST_visiting
-      - input_boolean._GUEST_visiting
-      - input_boolean._GUEST_visiting
-      - input_boolean._GUEST_visiting
-      - input_boolean._USER1_greeting
-      - input_boolean._USER2_greeting
+      - device_tracker.REDACTED
+      - device_tracker.REDACTED
+      - device_tracker.REDACTED
+      - device_tracker.REDACTED
+      - device_tracker.REDACTED
+      - device_tracker.REDACTED
+      - device_tracker.REDACTED
+      - input_boolean.REDACTED_visiting
+      - input_boolean.REDACTED_visiting
+      - input_boolean.REDACTED_visiting
+      - input_boolean.REDACTED_visiting
+      - input_boolean.REDACTED_visiting
+      - input_boolean.REDACTED_visiting
+      - input_boolean.USER1_greeting
+      - input_boolean.USER2_greeting
       - binary_sensor.philips_hue
       - binary_sensor.wink_hub
       - binary_sensor.wink_relay
-      - sensor._USER1_s_iphone_battery_level
-      - sensor._USER2_s_iphone_battery_level
-      - sensor._USER1_s_iphone_battery_state
-      - sensor._USER2_s_iphone_battery_state
-      - device_tracker._USER1_s_iphone
-      - device_tracker._USER2_s_iphone
+      - sensor.USER1s_iphone_battery_level
+      - sensor.USER2s_iphone_battery_level
+      - sensor.USER1s_iphone_battery_state
+      - sensor.USER2s_iphone_battery_state
+      - device_tracker.USER1s_iphone
+      - device_tracker.USER2s_iphone
       - binary_sensor.wink_relays_bottom_button
       - binary_sensor.wink_relays_top_button
       - binary_sensor.gang

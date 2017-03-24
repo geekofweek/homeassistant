@@ -3,8 +3,8 @@
 #################################################################
 
   - platform: ring
-    username: _REDACTED_
-    password: _REDACTED_
+    username: REDACTED
+    password: REDACTED
     monitored_conditions:
       - battery
       - last_activity
@@ -15,12 +15,13 @@
       - download
       - upload
   - platform: darksky
-    api_key: _REDACTED_
+    api_key: REDACTED
     monitored_conditions:
       - summary
       - minutely_summary
       - hourly_summary
       - daily_summary
+#      - icon
       - nearest_storm_distance
       - nearest_storm_bearing
       - precip_type
@@ -45,12 +46,12 @@
       - type: processor_use
       - type: since_last_boot
   - platform: plex
-    name: _REDACTED_
-    host: _REDACTED_
-    port: _REDACTED_
-    username: _REDACTED_
-    password: _REDACTED_
-    server: _REDACTED_
+    name: REDACTED
+    host: REDACTED.101
+    port: REDACTED
+    username: REDACTED
+    password: REDACTED
+    server: REDACTED
   - platform: template
     sensors:
       back_door_sensor_batt:
@@ -95,27 +96,27 @@
         value_template: '{{ states.remote.media_center.attributes.current_activity }}'
         friendly_name: 'Media Center'
   - platform: google_travel_time
-    name: _USER2_ To Home
-    api_key: _REDACTED_
-    origin: device_tracker._USER2_
+    name: USER2 To Home
+    api_key: REDACTED
+    origin: device_tracker.USER2DEVICE
     destination: zone.home
   - platform: google_travel_time
-    name: _USER1_ To Home
-    api_key: _REDACTED_
-    origin: device_tracker._USER1_
+    name: USER1 To Home
+    api_key: REDACTED
+    origin: device_tracker.USER1DEVICE
     destination: zone.home
   - platform: google_travel_time
-    name: _USER2_ To _REDACTED_
-    api_key: _REDACTED_
-    origin: device_tracker._USER2_
+    name: USER2 To REDACTED
+    api_key: REDACTED
+    origin: device_tracker.USER2DEVICE
     destination: zone.work
   - platform: google_travel_time
-    name: _USER2_ To _REDACTED_
-    api_key: _REDACTED_
-    origin: device_tracker._USER2_
+    name: USER2 To REDACTED
+    api_key: REDACTED
+    origin: device_tracker.USER2DEVICE
     destination: zone.work_2
   - platform: google_travel_time
-    name: _USER2_ To _REDACTED_
-    api_key: _REDACTED_
-    origin: device_tracker._USER2_
+    name: USER2 To REDACTED
+    api_key: REDACTED
+    origin: device_tracker.USER2DEVICE
     destination: zone.work_3

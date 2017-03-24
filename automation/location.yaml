@@ -3,14 +3,14 @@
 #################################################################
 
         ##########################################################
-        ## _USER1_ Home from Walking Unlock Doors
+        ## USER1 Home from Walking Unlock Doors
         ##########################################################
 
-- alias: Location - _USER1_ Home from Waling Unlock Doors
+- alias: Location - USER1 Home from Waling Unlock Doors
 
   trigger:
     - platform: state
-      entity_id: device_tracker._USER1DEVICE_
+      entity_id: device_tracker.USER1DEVICE
       from: 'not_home'
       to: 'home'
 
@@ -19,10 +19,10 @@
       entity_id: input_boolean.home_away
       state: 'off'
     - condition: state
-      entity_id: input_boolean._USER1_away
+      entity_id: input_boolean.USER1_away
       state: 'on'
     - condition: state
-      entity_id: input_boolean._USER1_away_driving
+      entity_id: input_boolean.USER1_away_driving
       state: 'off'
 
   action:
@@ -30,14 +30,14 @@
       entity_id: lock.back_door, lock.front_door
 
         ##########################################################
-        ## _USER1_ Home from Driving Open Garage Door Unlock Door
+        ## USER1 Home from Driving Open Garage Door Unlock Door
         ##########################################################
 
-- alias: Location - _USER1_ Home from Driving Open Garage Door Unlock Door
+- alias: Location - USER1 Home from Driving Open Garage Door Unlock Door
 
   trigger:
     - platform: state
-      entity_id: device_tracker._USER1DEVICE_
+      entity_id: device_tracker.USER1DEVICE
       from: 'not_home'
       to: 'home'
 
@@ -49,10 +49,10 @@
       entity_id: input_boolean.home_away
       state: 'off'
     - condition: state
-      entity_id: input_boolean._USER1_away
+      entity_id: input_boolean.USER1_away
       state: 'on'
     - condition: state
-      entity_id: input_boolean._USER1_away_driving
+      entity_id: input_boolean.USER1_away_driving
       state: 'on'
 
   action:
@@ -62,14 +62,14 @@
       entity_id: lock.back_door
 
         ##########################################################
-        ## After _USER1_ Home Lock Doors
+        ## After USER1 Home Lock Doors
         ########################################################
 
-- alias: Location - _USER1_ Home Lock Doors
+- alias: Location - USER1 Home Lock Doors
 
   trigger:
     - platform: state
-      entity_id: input_boolean._USER1_away
+      entity_id: input_boolean.USER1_away
       from: 'on'
       to: 'off'
 
@@ -89,14 +89,14 @@
       entity_id: lock.back_door, lock.front_door
 
         ##########################################################
-        ## After _USER1_ Home Close Garage Door
+        ## After USER1 Home Close Garage Door
         ########################################################
 
-- alias: Location - _USER1_ Home Close Garage
+- alias: Location - USER1 Home Close Garage
 
   trigger:
     - platform: state
-      entity_id: input_boolean._USER1_away
+      entity_id: input_boolean.USER1_away
       from: 'on'
       to: 'off'
 
@@ -110,14 +110,14 @@
       entity_id: cover.garage_door
 
         ##########################################################
-        ## _USER2_ Home from Waling Unlock Doors
+        ## USER2 Home from Waling Unlock Doors
         ##########################################################
 
-- alias: Location - _USER2_ Home from Waling Unlock Doors
+- alias: Location - USER2 Home from Waling Unlock Doors
 
   trigger:
     - platform: state
-      entity_id: device_tracker._USER2DEVICE_
+      entity_id: device_tracker.USER2DEVICE
       from: 'not_home'
       to: 'home'
 
@@ -126,10 +126,10 @@
       entity_id: input_boolean.home_away
       state: 'off'
     - condition: state
-      entity_id: input_boolean._USER2_away
+      entity_id: input_boolean.USER2_away
       state: 'on'
     - condition: state
-      entity_id: input_boolean._USER2_away_driving
+      entity_id: input_boolean.USER2_away_driving
       state: 'off'
 
 
@@ -138,14 +138,14 @@
       entity_id: lock.back_door, lock.front_door
 
         ##########################################################
-        ## _USER2_ Home from Driving Open Garage Door Unlock Door
+        ## USER2 Home from Driving Open Garage Door Unlock Door
         ##########################################################
 
-- alias: Location - _USER2_ Home from Driving Open Garage Door Unlock Door
+- alias: Location - USER2 Home from Driving Open Garage Door Unlock Door
 
   trigger:
     - platform: state
-      entity_id: device_tracker._USER2DEVICE_
+      entity_id: device_tracker.USER2DEVICE
       from: 'not_home'
       to: 'home'
 
@@ -157,10 +157,10 @@
       entity_id: input_boolean.home_away
       state: 'off'
     - condition: state
-      entity_id: input_boolean._USER2_away
+      entity_id: input_boolean.USER2_away
       state: 'on'
     - condition: state
-      entity_id: input_boolean._USER2_away_driving
+      entity_id: input_boolean.USER2_away_driving
       state: 'on'
 
   action:
@@ -170,14 +170,14 @@
       entity_id: lock.back_door
 
         ##########################################################
-        ## After _USER2_ Home Lock Doors
+        ## After USER2 Home Lock Doors
         ########################################################
 
-- alias: Location - _USER2_ Home Lock Doors
+- alias: Location - USER2 Home Lock Doors
 
   trigger:
     - platform: state
-      entity_id: input_boolean._USER2_away
+      entity_id: input_boolean.USER2_away
       from: 'on'
       to: 'off'
 
@@ -197,14 +197,14 @@
       entity_id: lock.back_door, lock.front_door
 
         ##########################################################
-        ## After _USER2_ Home Close Garage Door
+        ## After USER2 Home Close Garage Door
         ########################################################
 
-- alias: Location - _USER2_ Home Close Garage
+- alias: Location - USER2 Home Close Garage
 
   trigger:
     - platform: state
-      entity_id: input_boolean._USER2_away
+      entity_id: input_boolean.USER2_away
       from: 'on'
       to: 'off'
 
@@ -218,14 +218,14 @@
       entity_id: cover.garage_door
 
         ##########################################################
-        ## _USER1_ Home Turn on Lights
+        ## USER1 Home Turn on Lights
         ##########################################################
 
-- alias: Location - _USER1_ Home Turn on Lights
+- alias: Location - USER1 Home Turn on Lights
 
   trigger:
     - platform: state
-      entity_id: device_tracker._USER1DEVICE_
+      entity_id: device_tracker.USER1DEVICE
       from: 'not_home'
       to: 'home'
 
@@ -237,7 +237,7 @@
       entity_id: input_boolean.home_away
       state: 'off'
     - condition: state
-      entity_id: input_boolean._USER1_away
+      entity_id: input_boolean.USER1_away
       state: 'on'
 
   action:
@@ -252,14 +252,14 @@
        brightness: 255
 
         ##########################################################
-        ## _USER1_ Home Reset Front Porch Brightness
+        ## USER1 Home Reset Front Porch Brightness
         ##########################################################
 
-- alias: Location - _USER1_ Home Reset Front Porch Brightness
+- alias: Location - USER1 Home Reset Front Porch Brightness
 
   trigger:
     - platform: state
-      entity_id: input_boolean._USER1_away
+      entity_id: input_boolean.USER1_away
       from: 'on'
       to: 'off'
 
@@ -279,14 +279,14 @@
         transition: 60
 
         ##########################################################
-        ## _USER2_ Home Turn on Lights
+        ## USER2 Home Turn on Lights
         ##########################################################
 
-- alias: Location - _USER2_ Home Turn on Lights
+- alias: Location - USER2 Home Turn on Lights
 
   trigger:
     - platform: state
-      entity_id: device_tracker._USER2DEVICE_
+      entity_id: device_tracker.USER2DEVICE
       from: 'not_home'
       to: 'home'
 
@@ -298,7 +298,7 @@
       entity_id: input_boolean.home_away
       state: 'off'
     - condition: state
-      entity_id: input_boolean._USER2_away
+      entity_id: input_boolean.USER2_away
       state: 'on'
 
   action:
@@ -313,14 +313,14 @@
        brightness: 255
 
         ##########################################################
-        ## _USER2_ Home Reset Front Porch Brightness
+        ## USER2 Home Reset Front Porch Brightness
         ##########################################################
 
-- alias: Location - _USER2_ Home Reset Front Porch Brightness
+- alias: Location - USER2 Home Reset Front Porch Brightness
 
   trigger:
     - platform: state
-      entity_id: input_boolean._USER2_away
+      entity_id: input_boolean.USER2_away
       from: 'on'
       to: 'off'
 
@@ -366,7 +366,7 @@
     - service: cover.close_cover
       entity_id: cover.garage_door
     - service: homeassistant.turn_off
-      entity_id: input_boolean.interior_holiday, input_boolean.office_rainbow, input_boolean.livingroom_rainbow, input_boolean.front_porch_rainbow
+      entity_id: input_boolean.guest_mode, input_boolean.interior_holiday, input_boolean.office_rainbow, input_boolean.livingroom_rainbow, input_boolean.front_porch_rainbow
     - service: input_select.select_option
       data:
         entity_id: input_select.remote
@@ -378,19 +378,19 @@
         - media_player.dining_room
         - media_player.kitchen
         - media_player.bathroom
-        - media_player._USER1_s_office
-        - media_player._USER2_s_office
+        - media_player.USER1s_office
+        - media_player.USER2s_office
         - media_player.basement
 
         ##########################################################
-        ## Close Garage Door when _USER1_ Leaves
+        ## Close Garage Door when USER1 Leaves
         ##########################################################
 
-- alias: Location - Close Garage when _USER1_ Leaves
+- alias: Location - Close Garage when USER1 Leaves
 
   trigger:
     - platform: state
-      entity_id: input_boolean._USER1_away
+      entity_id: input_boolean.USER1_away
       from: 'off'
       to: 'on'
 
@@ -404,14 +404,14 @@
       entity_id: cover.garage_door
 
         ##########################################################
-        ## Close Garage Door when _USER2_ Leaves
+        ## Close Garage Door when USER2 Leaves
         ##########################################################
 
-- alias: Location - Close Garage when _USER2_ Leaves
+- alias: Location - Close Garage when USER2 Leaves
 
   trigger:
     - platform: state
-      entity_id: input_boolean._USER2_away
+      entity_id: input_boolean.USER2_away
       from: 'off'
       to: 'on'
 
@@ -425,14 +425,14 @@
       entity_id: cover.garage_door
 
         ##########################################################
-        ## Lock Back Door when _USER2_ Leaves in the Morning
+        ## Lock Back Door when USER2 Leaves in the Morning
         ##########################################################
 
-- alias: Location - Lock Back Door when _USER2_ Leaves
+- alias: Location - Lock Back Door when USER2 Leaves
 
   trigger:
      - platform: state
-       entity_id: device_tracker._USER2DEVICE_
+       entity_id: device_tracker.USER2DEVICE
        from: 'home'
        to: 'not_home'
 
@@ -456,10 +456,10 @@
 
 
         ##########################################################
-        ## Open Garage Door when _USER2_ Leaves
+        ## Open Garage Door when USER2 Leaves
         ##########################################################
 
-- alias: Location - _USER2_ Leaving Open Garage
+- alias: Location - USER2 Leaving Open Garage
 
   trigger:
     - platform: state
@@ -475,7 +475,7 @@
       entity_id: input_boolean.disable_auto_garage
       state: 'off'
     - condition: state
-      entity_id: input_boolean._USER2_away
+      entity_id: input_boolean.USER2_away
       state: 'off'
 
   action:
@@ -483,14 +483,14 @@
       entity_id: cover.garage_door
 
         ##########################################################
-        ## Turn off Lights when _USER2_ Leaves
+        ## Turn off Lights when USER2 Leaves
         ##########################################################
 
-- alias: Location - Turn off Lights when _USER2_ Leaves
+- alias: Location - Turn off Lights when USER2 Leaves
 
   trigger:
     - platform: state
-      entity_id: device_tracker._USER2DEVICE_
+      entity_id: device_tracker.USER2DEVICE
       from: 'home'
       to: 'not_home'
 
@@ -530,10 +530,10 @@
       - condition: or
         conditions:
           - condition: state
-            entity_id: input_boolean._USER1_away
+            entity_id: input_boolean.USER1_away
             state: 'on'
           - condition: state
-            entity_id: input_boolean._USER2_away
+            entity_id: input_boolean.USER2_away
             state: 'on'
 
   action:
@@ -543,14 +543,14 @@
       entity_id: switch.lower_backyard_outdoor_lighting
 
         ##########################################################
-        ## Set _USER1_ Away Driving
+        ## Set USER1 Away Driving
         ##########################################################
 
-- alias: Location - Set _USER1_ Away Driving
+- alias: Location - Set USER1 Away Driving
 
   trigger:
     - platform: state
-      entity_id: device_tracker._USER1DEVICE_
+      entity_id: device_tracker.USER1DEVICE
       from: 'home'
       to: 'not_home'
 
@@ -561,17 +561,17 @@
 
   action:
     - service: homeassistant.turn_on
-      entity_id: input_boolean._USER1_away_driving
+      entity_id: input_boolean.USER1_away_driving
 
         ##########################################################
-        ## Set _USER1_ Away after 1 Min
+        ## Set USER1 Away after 1 Min
         ##########################################################
 
-- alias: Location - Set _USER1_ Away after 1 Mins
+- alias: Location - Set USER1 Away after 1 Mins
 
   trigger:
     - platform: state
-      entity_id: device_tracker._USER1DEVICE_
+      entity_id: device_tracker.USER1DEVICE
       from: 'home'
       to: 'not_home'
       for:
@@ -581,19 +581,19 @@
 
   action:
     - service: homeassistant.turn_on
-      entity_id: input_boolean._USER1_away
+      entity_id: input_boolean.USER1_away
     - service: homeassistant.turn_on
-      entity_id: input_boolean._USER1_greeting
+      entity_id: input_boolean.USER1_greeting
 
         ##########################################################
-        ## Set _USER1_ Home after 10 Mins
+        ## Set USER1 Home after 10 Mins
         ##########################################################
 
-- alias: Location - Set _USER1_ Home after 10 Mins
+- alias: Location - Set USER1 Home after 10 Mins
 
   trigger:
     - platform: state
-      entity_id: device_tracker._USER1DEVICE_
+      entity_id: device_tracker.USER1DEVICE
       from: 'not_home'
       to: 'home'
       for:
@@ -603,17 +603,17 @@
 
   action:
     - service: homeassistant.turn_off
-      entity_id: input_boolean._USER1_away, input_boolean._USER1_away_driving, input_boolean._USER1_greeting
+      entity_id: input_boolean.USER1_away, input_boolean.USER1_away_driving, input_boolean.USER1_greeting
 
         ##########################################################
-        ## Set _USER2_ Away Driving
+        ## Set USER2 Away Driving
         ##########################################################
 
-- alias: Location - Set _USER2_ Away Driving
+- alias: Location - Set USER2 Away Driving
 
   trigger:
     - platform: state
-      entity_id: device_tracker._USER2DEVICE_
+      entity_id: device_tracker.USER2DEVICE
       from: 'home'
       to: 'not_home'
 
@@ -624,17 +624,17 @@
 
   action:
     - service: homeassistant.turn_on
-      entity_id: input_boolean._USER2_away_driving
+      entity_id: input_boolean.USER2_away_driving
 
         ##########################################################
-        ## Set _USER2_ Away after 1 Min
+        ## Set USER2 Away after 1 Min
         ##########################################################
 
-- alias: Location - Set _USER2_ Away after 1 Mins
+- alias: Location - Set USER2 Away after 1 Mins
 
   trigger:
     - platform: state
-      entity_id: device_tracker._USER2DEVICE_
+      entity_id: device_tracker.USER2DEVICE
       from: 'home'
       to: 'not_home'
       for:
@@ -644,19 +644,19 @@
 
   action:
     - service: homeassistant.turn_on
-      entity_id: input_boolean._USER2_away
+      entity_id: input_boolean.USER2_away
     - service: homeassistant.turn_on
-      entity_id: input_boolean._USER2_greeting
+      entity_id: input_boolean.USER2_greeting
 
         ##########################################################
-        ## Set _USER2_ Home after 10 Mins
+        ## Set USER2 Home after 10 Mins
         ##########################################################
 
-- alias: Location - Set _USER2_ Home after 10 Mins
+- alias: Location - Set USER2 Home after 10 Mins
 
   trigger:
     - platform: state
-      entity_id: device_tracker._USER2DEVICE_
+      entity_id: device_tracker.USER2DEVICE
       from: 'not_home'
       to: 'home'
       for:
@@ -666,31 +666,35 @@
 
   action:
     - service: homeassistant.turn_off
-      entity_id: input_boolean._USER2_away, input_boolean._USER2_away_driving, input_boolean._USER2_greeting
+      entity_id: input_boolean.USER2_away, input_boolean.USER2_away_driving, input_boolean.USER2_greeting
 
         ##########################################################
-        ## Manually Set _USER1_ Home
+        ## Manually Set USER1 Home
         ##########################################################
 
-- alias: Location - Manually Set _USER1_ Home
+- alias: Location - Manually Set USER1 Home
 
   trigger:
     - platform: state
-      entity_id: input_boolean._USER1_home
+      entity_id: input_boolean.USER1_home
       from: 'off'
       to: 'on'
 
   action:
     - service: device_tracker.see
       data:
-        dev_id: _USER1DEVICE_
+        dev_id: USER1DEVICE
         location_name: 'home'
 
-- alias: Location - Reset _USER1_ Home
+        ##########################################################
+        ## Reset Manually Set USER1 Home Switch
+        ##########################################################
+
+- alias: Location - Reset USER1 Home
 
   trigger:
     - platform: state
-      entity_id: input_boolean._USER1_home
+      entity_id: input_boolean.USER1_home
       from: 'off'
       to: 'on'
       for:
@@ -700,13 +704,13 @@
 
   action:
     - service: homeassistant.turn_off
-      entity_id: input_boolean._USER1_home
+      entity_id: input_boolean.USER1_home
 
         ##########################################################
-        ## Manually Set _USER1_ Away
+        ## Manually Set USER1 Away
         ##########################################################
 
-- alias: Location - Manually Set _USER1_ Away
+- alias: Location - Manually Set USER1 Away
 
   trigger:
     - platform: state
@@ -717,10 +721,14 @@
   action:
     - service: device_tracker.see
       data:
-        dev_id: _USER1DEVICE_
+        dev_id: USER1DEVICE
         location_name: 'not_home'
 
-- alias: Location - Reset Manually Set _USER1_ Away
+        ##########################################################
+        ## Reset Manually Set USER1 Away Switch
+        ##########################################################
+
+- alias: Location - Reset Manually Set USER1 Away
 
   trigger:
     - platform: state
@@ -737,28 +745,32 @@
       entity_id: input_boolean.manual_USER1_away
 
         ##########################################################
-        ## Manually Set _USER2_ Home
+        ## Manually Set USER2 Home
         ##########################################################
 
-- alias: Location - Manually Set _USER2_ Home
+- alias: Location - Manually Set USER2 Home
 
   trigger:
     - platform: state
-      entity_id: input_boolean._USER2_home
+      entity_id: input_boolean.USER2_home
       from: 'off'
       to: 'on'
 
   action:
     - service: device_tracker.see
       data:
-        dev_id: _USER2DEVICE_
+        dev_id: USER2DEVICE
         location_name: 'home'
 
-- alias: Location - Reset _USER2_ Home
+        ##########################################################
+        ## Reset Manually Set USER2 Home Switch
+        ##########################################################
+
+- alias: Location - Reset USER2 Home
 
   trigger:
     - platform: state
-      entity_id: input_boolean._USER2_home
+      entity_id: input_boolean.USER2_home
       from: 'off'
       to: 'on'
       for:
@@ -768,13 +780,13 @@
 
   action:
     - service: homeassistant.turn_off
-      entity_id: input_boolean._USER2_home
+      entity_id: input_boolean.USER2_home
 
         ##########################################################
-        ## Manually Set _USER2_ Away
+        ## Manually Set USER2 Away
         ##########################################################
 
-- alias: Location - Manually Set _USER2_ Away
+- alias: Location - Manually Set USER2 Away
 
   trigger:
     - platform: state
@@ -785,10 +797,14 @@
   action:
     - service: device_tracker.see
       data:
-        dev_id: _USER2DEVICE_
+        dev_id: USER2DEVICE
         location_name: 'not_home'
 
-- alias: Location - Reset _USER2_ Home
+        ##########################################################
+        ## Reset Manually Set USER2 Away Switch
+        ##########################################################
+
+- alias: Location - Reset USER2 Home
 
   trigger:
     - platform: state
@@ -803,3 +819,61 @@
   action:
     - service: homeassistant.turn_off
       entity_id: input_boolean.manual_USER2_away
+
+        ##########################################################
+        ## Enable Guest Mode Before Midnight
+        ##########################################################
+
+- alias: Location - Enable Guest Mode Before Midnight
+
+  trigger:
+    - platform: state
+      entity_id: group.overnight_guests
+      state: 'on'
+
+  condition:
+    - condition: time
+      after: '23:00'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.guest_mode
+
+        ##########################################################
+        ## Enable Guest Mode after Midnight
+        ##########################################################
+
+- alias: Location - Enable Guest Mode after Midnight
+
+  trigger:
+    - platform: state
+      entity_id: group.overnight_guests
+      state: 'on'
+
+  condition:
+    - condition: time
+      after: '00:00'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.guest_mode
+
+        ##########################################################
+        ## Turn off Guest Mode During the Day
+        ##########################################################
+
+- alias: Location - Turn off Guest Mode During the Day
+
+  trigger:
+    - platform: time
+      after: '10:00'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.guest_mode

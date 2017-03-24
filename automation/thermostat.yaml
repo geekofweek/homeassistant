@@ -3,7 +3,7 @@
 #################################################################
 
         ##########################################################
-        ## Set Thermostat Away/Home
+        ## Set Thermostat Home
         ##########################################################
 
 - alias: Thermostat - Home
@@ -28,6 +28,10 @@
     - service: homeassistant.turn_on
       entity_id: group.winter_mode
 
+        ##########################################################
+        ## Set Thermostat Away
+        ##########################################################
+
 - alias: Thermostat - Away
 
   trigger:
@@ -48,16 +52,20 @@
       entity_id: group.summer_mode
     - service: homeassistant.turn_off
       entity_id: group.winter_mode
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.window_unit
+        operation_mode: off
 
         ##########################################################
-        ## Set Thermostat Home When _USER2_ Leaves Work
+        ## Set Thermostat Home When USER2 Leaves Work
         ##########################################################
 
-- alias: Thermostat - Set Home When _USER2_ Leaves Work
+- alias: Thermostat - Set Home When USER2 Leaves Work
 
   trigger:
     - platform: state
-      entity_id: device_tracker._USER2DEVICE_
+      entity_id: device_tracker.USER2DEVICE
       from: 'work'
       to: 'not_home'
 
@@ -66,13 +74,12 @@
       entity_id: input_boolean.home_away
       state: 'off'
     - condition: state
-      entity_id: device_tracker._USER1DEVICE_
+      entity_id: device_tracker.USER1DEVICE
       state: 'not_home'
 
   action:
     - service: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
-
 
         ##########################################################
         ## Turn Thermostat on Summer
@@ -214,3 +221,285 @@
       data:
         entity_id: climate.main_floor
         away_mode: true
+
+        ##########################################################
+        ## Turn on Window Unit at 10a
+        ##########################################################
+
+- alias: Thermostat - Turn on Window Unit at 10a
+
+  trigger:
+    - platform: time
+      after: '10:00'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.summer_mode
+      state: 'on'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+
+  action:
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.window_unit
+        operation_mode: eco
+    - service: climate.fan_mode
+      data:
+        entity_id: climate.window_unit
+        operation_mode: high
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.window_unit
+        temperature: 68
+
+        ##########################################################
+        ## Turn off Window Unit at 9p
+        ##########################################################
+
+- alias: Thermostat - Turn off Window Unit at 9p
+
+  trigger:
+    - platform: time
+      after: '21:00'
+
+  action:
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.window_unit
+        operation_mode: off
+
+        ##########################################################
+        ## Turn on Window Unit when Office is Hot
+        ##########################################################
+
+- alias: Thermostat - Turn on Window Unit when Office is Hot
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.office_temperature
+      above: 87
+
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: group.summer_mode
+        state: 'on'
+      - condition: state
+        entity_id: group.household
+        state: 'not_home'
+
+  action:
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.window_unit
+        operation_mode: eco
+    - service: climate.fan_mode
+      data:
+        entity_id: climate.window_unit
+        operation_mode: high
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.window_unit
+        temperature: 68
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Office is Hot Turning on Window Unit
+
+        ##########################################################
+        ## Turn on Window Unit when Hot Outside
+        ##########################################################
+
+- alias: Thermostat - Turn on Window Unit when Hot Outside
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.dark_sky_temperature
+      above: 95
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.summer_mode
+      state: 'on'
+
+  action:
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.window_unit
+        operation_mode: eco
+    - service: climate.fan_mode
+      data:
+        entity_id: climate.window_unit
+        operation_mode: high
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.window_unit
+        temperature: 68
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Hot Outside Turning on Window Unit
+
+        ##########################################################
+        ## Turn off Winodw Unit When below 80 Outside and Away
+        ##########################################################
+
+- alias: Thermostat - Turn off Winodw Unit When below 80 Outside and Away
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.dark_sky_temperature
+      below: 80
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+
+  action:
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.window_unit
+        operation_mode: off
+
+        ##########################################################
+        ## Turn off Winodw Unit When below 68 Outside
+        ##########################################################
+
+- alias: Thermostat - Turn off Winodw Unit When below 68 Outside
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.dark_sky_temperature
+      below: 68
+
+  action:
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.window_unit
+        operation_mode: off
+
+        ##########################################################
+        ## Adjust Thermostat for Overnight Guests before Midnight
+        ##########################################################
+
+- alias: Thermostat - Turn on Guest Settings before Midnight
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.guest_mode
+      state: 'on'
+
+  condition:
+    - condition: time
+      after: '23:31'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.summer_mode
+      state: 'on'
+
+  action:
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.window_unit
+        operation_mode: eco
+    - service: climate.fan_mode
+      data:
+        entity_id: climate.window_unit
+        operation_mode: high
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.window_unit
+        temperature: 68
+    - service: climate.set_hold_mode
+      data:
+        entity_id: climate.main_floor
+        #Guest = smart3
+        hold_mode: smart3
+
+        ##########################################################
+        ## Adjust Thermostat for Overnight Guests after Midnight
+        ##########################################################
+
+- alias: Thermostat - Turn on Guest Settings after Midnight
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.guest_mode
+      state: 'on'
+
+  condition:
+    - condition: time
+      after: '00:00'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.summer_mode
+      state: 'on'
+
+  action:
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.window_unit
+        operation_mode: eco
+    - service: climate.fan_mode
+      data:
+        entity_id: climate.window_unit
+        operation_mode: high
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.window_unit
+        temperature: 68
+    - service: climate.set_hold_mode
+      data:
+        entity_id: climate.main_floor
+        #Guest = smart3
+        hold_mode: smart3
+
+        ##########################################################
+        ## If USER1 is not Home Override WFH Mode
+        ##########################################################
+
+- alias: Thermostat - Override WFH Mode
+
+  trigger:
+    - platform: time
+      after: '10:01'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.thermostat_away
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: device_tracker.USER1DEVICE
+      state: 'not_home'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+
+  action:
+    - service: climate.set_hold_mode
+      data:
+        entity_id: climate.main_floor
+        hold_mode: home

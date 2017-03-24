@@ -4,9 +4,9 @@
 
 homeassistant:
   name: Home
-  latitude: _REDACTED_
-  longitude: _REDACTED_
-  elevation: _REDACTED_
+  latitude: REDACTED
+  longitude: REDACTED
+  elevation: REDACTED
   unit_system: imperial
   time_zone: America/Chicago
   customize: !include customize.yaml
@@ -17,17 +17,19 @@ updater:
 sun:
 conversation:
 discovery:
+  ignore:
+    - apple_tv
 config:
 
 http:
-  api_password: _REDACTED_
-  ssl_certificate: _REDACTED_
-  ssl_key: _REDACTED_
-  base_url: _REDACTED_
+  api_password: REDACTED
+  ssl_certificate: /etc/letsencrypt/live/REDACTED/REDACTED
+  ssl_key: /etc/letsencrypt/live/REDACTED/REDACTED
+  base_url: REDACTED
   trusted_networks:
     - 127.0.0.1
-    - _REDACTED_/24
-    - _REDACTED_/24
+    - REDACTED.0/24
+    - REDACTED.0/24
   ip_ban_enabled: true
   login_attempts_threshold: 5
 
@@ -36,16 +38,16 @@ http:
 #################################################################
 
 ecobee:
-  api_key: _REDACTED_
+  api_key: REDACTED
   hold_temp: true
 
 light:
   platform: hue
-  host: _REDACTED_
+  host: REDACTED.106
   allow_unreachable: true
 
 emulated_hue:
-  host_ip: _REDACTED_
+  host_ip: REDACTED.105
   listen_port: 8300
   type: alexa
   upnp_bind_multicast: false
@@ -57,43 +59,43 @@ emulated_hue:
 media_player:
   - platform: plex
   - platform: apple_tv
-    host: _REDACTED_
-    login_id: _REDACTED_
+    host: REDACTED.150
+    login_id: REDACTED
     name: Living Room Apple TV
   - platform: apple_tv
-    host: _REDACTED_
-    login_id: _REDACTED_
-    name: _USER1_'s Office Apple TV
+    host: REDACTED.151
+    login_id: REDACTED
+    name: USER1's Office Apple TV
   - platform: apple_tv
-    host: _REDACTED_
-    login_id: _REDACTED_
+    host: REDACTED.152
+    login_id: REDACTED
     name: Bedroom Apple TV
   - platform: sonos
     hosts:
-      - _REDACTED_
-      - _REDACTED_
-      - _REDACTED_
-      - _REDACTED_
-      - _REDACTED_
-      - _REDACTED_
-      - _REDACTED_
-      - _REDACTED_
+      - REDACTED.200
+      - REDACTED.201
+      - REDACTED.202
+      - REDACTED.203
+      - REDACTED.204
+      - REDACTED.205
+      - REDACTED.206
+      - REDACTED.208
 
 remote:
   - platform: harmony
     name: Media Center
-    host: _REDACTED_
+    host: REDACTED.109
 
 ios:
 
 ifttt:
-  key: _REDACTED_
+  key: REDACTED
 
 device_tracker:
   - platform: asuswrt
-    host: _REDACTED_
-    username: _REDACTED_
-    password: _REDACTED_
+    host: REDACTED.1
+    username: REDACTED
+    password: REDACTED
     protocol: telnet
     track_new_devices: no
     interval_seconds: 12
@@ -103,27 +105,27 @@ device_tracker:
 cover:
   platform: myq
   name: Garage Door
-  username: _REDACTED_
-  password: _REDACTED_
+  username: REDACTED
+  password: REDACTED
   type: chamberlain
 
 camera:
   - platform: foscam
-    ip: _REDACTED_
+    ip: REDACTED.107
     name: Garage Camera
-    port: _REDACTED_
-    username: _REDACTED_
-    password: _REDACTED_
+    port: REDACTED
+    username: REDACTED
+    password: REDACTED
   - platform: ffmpeg
-    input: http://_REDACTED_
-    name: _REDACTED_
-    extra_arguments: '-headers "X-Forwarded-For: _REDACTED_"'
+    input: http://REDACTED/rtplive/REDACTED/playlist.m3u8
+    name: REDACTED
+    extra_arguments: '-headers "X-ForREDACTEDed-For: REDACTED"'
 
 wink:
-  email: _REDACTED_
-  password: _REDACTED_
-  client_id: _REDACTED_
-  client_secret: _REDACTED_
+  email: REDACTED
+  password: REDACTED
+  client_id: REDACTED
+  client_secret: REDACTED
 
 tts:
   - platform: google

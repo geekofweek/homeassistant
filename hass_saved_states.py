@@ -10,9 +10,9 @@ import json
 """
 BEGIN CUSTOMIZE
 """
-path = "/home/_REDACTED_/.homeassistant/ha_saved_states.out"
-host = "_REDACTED_"
-api_key = "_REDACTED_"
+path = "REDACTED"
+host = "REDACTED"
+api_key = "REDACTED"
 
 """
 END CUSTOMIZE

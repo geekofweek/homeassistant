@@ -17,6 +17,11 @@
         minutes: 5
         seconds: 0
 
+  condition:
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+
   action:
     - service: lock.lock
       entity_id: group.all_locks
@@ -41,13 +46,93 @@
         - media_player.dining_room
         - media_player.kitchen
         - media_player.bathroom
-        - media_player._USER1_s_office
-        - media_player._USER2_s_office
+        - media_player.USER1s_office
+        - media_player.USER2s_office
         - media_player.basement
-#    - service: climate.set_hold_mode
-#      data:
-#        entity_id: climate.main_floor
-#        hold_mode: sleep
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.window_unit
+        operation_mode: off
+
+        ##########################################################
+        ## Bedtime Guest Mode
+        ##########################################################
+
+- alias: Bedtime - Guest Mode
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      state: 'on'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'on'
+
+  action:
+    - service: lock.lock
+      entity_id: group.all_locks
+    - service: light.turn_off
+      entity_id: group.interior_lights
+    - service: light.turn_off
+      entity_id: group.outdoor_lighting
+    - service: switch.turn_off
+      entity_id: switch.air_purifier, switch.lower_backyard_outdoor_lighting, switch.lower_patio_outdoor_lighting, switch.fireplace
+    - service: cover.close_cover
+      entity_id: cover.garage_door
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.interior_holiday, input_boolean.office_rainbow, input_boolean.livingroom_rainbow, input_boolean.front_porch_rainbow
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.remote
+        option: "PowerOff"
+    - service: media_player.media_stop
+      entity_id:
+        - media_player.media_center
+        - media_player.living_room_sp
+        - media_player.dining_room
+        - media_player.kitchen
+        - media_player.bathroom
+        - media_player.USER1s_office
+        - media_player.USER2s_office
+        - media_player.basement
+    - service: climate.set_hold_mode
+      data:
+        entity_id: climate.main_floor
+        hold_mode: smart3
+
+        ##########################################################
+        ## Bedtime Before 11:30p
+        ##########################################################
+
+- alias: Bedtime - Before 11:30p
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      state: 'on'
+      for:
+        hours: 0
+        minutes: 4
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+    - condition: time
+      before: '23:30'
+
+  action:
+    - service: climate.set_hold_mode
+      data:
+        entity_id: climate.main_floor
+        hold_mode: sleep
 
         ##########################################################
         ## Bedtime after Midnight

@@ -14,17 +14,17 @@
     - platform: state
       entity_id: input_boolean.thermostat_away
     - platform: state
-      entity_id: input_boolean._USER1_away
+      entity_id: input_boolean.USER1_away
     - platform: state
-      entity_id: input_boolean._USER1_away_driving
+      entity_id: input_boolean.USER1_away_driving
     - platform: state
-      entity_id: input_boolean._USER1_greeting
+      entity_id: input_boolean.USER1_greeting
     - platform: state
-      entity_id: input_boolean._USER2_away
+      entity_id: input_boolean.USER2_away
     - platform: state
-      entity_id: input_boolean._USER2_away_driving
+      entity_id: input_boolean.USER2_away_driving
     - platform: state
-      entity_id: input_boolean._USER2_greeting
+      entity_id: input_boolean.USER2_greeting
     - platform: state
       entity_id: input_boolean.enable_security
     - platform: state
@@ -38,9 +38,9 @@
     - platform: state
       entity_id: input_select.remote
     - platform: state
-      entity_id: device_tracker._USER1DEVICE_
+      entity_id: device_tracker.USER1DEVICE
     - platform: state
-      entity_id: device_tracker._USER2DEVICE_
+      entity_id: device_tracker.USER2DEVICE
 
   action:
     - service: shell_command.export_ha_states

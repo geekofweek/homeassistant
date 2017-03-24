@@ -19,7 +19,7 @@
       entity_id: input_boolean.occupancy_air_purifier_on_off_disable
       state: 'off'
     - condition: state
-      entity_id: device_tracker._USER1DEVICE_
+      entity_id: device_tracker.USER1DEVICE
       state: 'home'
 
   action:
@@ -75,41 +75,41 @@
 
   action:
     - service: light.turn_off
-      entity_id: group._USER1_office
+      entity_id: group.USER1_office
 
         ##########################################################
-        ## Turn on _USER2_ Office when Occupied
+        ## Turn on USER2 Office when Occupied
         ##########################################################
 
-- alias: Occupancy - Turn on _USER2_ Office Light when Occupied
+- alias: Occupancy - Turn on USER2 Office Light when Occupied
 
   trigger:
     - platform: state
-      entity_id: binary_sensor._USER2_office_occupancy
+      entity_id: binary_sensor.USER2_office_occupancy
       from: 'off'
       to: 'on'
 
   condition:
     - condition: state
-      entity_id: device_tracker._USER2DEVICE_
+      entity_id: device_tracker.USER2DEVICE
       state: 'home'
 
   action:
     - service: light.turn_on
-      entity_id: group._USER2_office
+      entity_id: group.USER2_office
       data:
         transition: 300
         brightness: 130
 
         ##########################################################
-        ## Turn off _USER2_ Office when Unoccupied
+        ## Turn off USER2 Office when Unoccupied
         ##########################################################
 
-- alias: Occupancy - Turn off _USER2_ Office Light when Unoccupied
+- alias: Occupancy - Turn off USER2 Office Light when Unoccupied
 
   trigger:
     - platform: state
-      entity_id: binary_sensor._USER2_office_occupancy
+      entity_id: binary_sensor.USER2_office_occupancy
       from: 'on'
       to: 'off'
       for:
@@ -124,7 +124,7 @@
 
   action:
     - service: light.turn_off
-      entity_id: group._USER2_office
+      entity_id: group.USER2_office
 
         ##########################################################
         ## Turn off Bedroom when Unoccupied
@@ -258,7 +258,7 @@
         ## Turn off Stairs when Unoccupied
         ##########################################################
 
-- alias: Occupancy - Turn off Stairs when _USER1_ Office Unoccupied
+- alias: Occupancy - Turn off Stairs when USER1 Office Unoccupied
 
   trigger:
     - platform: state
@@ -272,7 +272,7 @@
 
   condition:
     - condition: state
-      entity_id: binary_sensor._USER2_office_occupancy
+      entity_id: binary_sensor.USER2_office_occupancy
       state: 'off'
     - condition: state
       entity_id: input_boolean.occupancy_lights_off_disable
@@ -282,11 +282,11 @@
     - service: light.turn_off
       entity_id: group.stairs
 
-- alias: Occupancy - Turn off Stairs when _USER2_ Office Unoccupied
+- alias: Occupancy - Turn off Stairs when USER2 Office Unoccupied
 
   trigger:
     - platform: state
-      entity_id: binary_sensor._USER2_office_occupancy
+      entity_id: binary_sensor.USER2_office_occupancy
       from: 'on'
       to: 'off'
       for:
@@ -410,7 +410,7 @@
       entity_id: input_boolean.office_lights_sunset
       state: 'off'
     - condition: state
-      entity_id: device_tracker._USER1DEVICE_
+      entity_id: device_tracker.USER1DEVICE
       state: 'home'
 
   action:
@@ -422,10 +422,10 @@
         profile: relax
 
         ##########################################################
-        ## Turn on _USER2_'s Office at Sunset when Occupied
+        ## Turn on USER2's Office at Sunset when Occupied
         ##########################################################
 
-- alias: Occupancy - Turn on _USER2_ Office Lights at Sunset when Occupied
+- alias: Occupancy - Turn on USER2 Office Lights at Sunset when Occupied
 
   trigger:
     - platform: sun
@@ -434,18 +434,18 @@
 
   condition:
     - condition: state
-      entity_id: binary_sensor._USER2_office_occupancy
+      entity_id: binary_sensor.USER2_office_occupancy
       state: 'on'
     - condition: state
       entity_id: input_boolean.office_lights_sunset
       state: 'off'
     - condition: state
-      entity_id: device_tracker._USER2DEVICE_
+      entity_id: device_tracker.USER2DEVICE
       state: 'home'
 
   action:
     - service: light.turn_on
-      entity_id: group._USER2_office, group.stairs
+      entity_id: group.USER2_office, group.stairs
       data:
         transition: 900
         brightness: 255

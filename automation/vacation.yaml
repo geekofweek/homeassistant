@@ -56,7 +56,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._USER1DEVICE_
+      entity_id: device_tracker.USER1DEVICE
       from: 'not_home'
       to: 'vacation'
 
@@ -77,7 +77,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._USER1DEVICE_
+      entity_id: device_tracker.USER1DEVICE
       from: 'not_home'
       to: 'lake'
 
@@ -98,7 +98,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker._USER1DEVICE_
+      entity_id: device_tracker.USER1DEVICE
       from: 'lake'
       to: 'not_home'
 

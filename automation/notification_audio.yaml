@@ -25,7 +25,7 @@
       data:
         variables:
           master: 'media_player.living_room_sp'
-          where: 'media_player.media_center, media_player.living_room_sp, media_player.dining_room, media_player.kitchen, media_player.bathroom, media_player._USER1_s_office, media_player._USER2_s_office, media_player.basement'
+          where: 'media_player.media_center, media_player.living_room_sp, media_player.dining_room, media_player.kitchen, media_player.bathroom, media_player.USER1s_office, media_player.USER2s_office, media_player.basement'
           volume: '1'
           what: 'You are not Authorized to be Here'
 
@@ -52,7 +52,7 @@
       data:
         variables:
           master: 'media_player.living_room_sp'
-          where: 'media_player.media_center, media_player.living_room_sp, media_player.dining_room, media_player.kitchen, media_player.bathroom, media_player._USER1_s_office, media_player._USER2_s_office, media_player.basement'
+          where: 'media_player.media_center, media_player.living_room_sp, media_player.dining_room, media_player.kitchen, media_player.bathroom, media_player.USER1s_office, media_player.USER2s_office, media_player.basement'
           volume: '.9'
           what: 'Water Detected in Basement'
 
@@ -149,7 +149,7 @@
             entity_id: binary_sensor.office_occupancy
             state: 'on'
           - condition: state
-            entity_id: binary_sensor._USER2_office_occupancy
+            entity_id: binary_sensor.USER2_office_occupancy
             state: 'on'
 
   action:
@@ -157,16 +157,16 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player._USER1_s_office'
-          where: 'media_player._USER1_s_office, media_player._USER2_s_office'
+          master: 'media_player.USER1s_office'
+          where: 'media_player.USER1s_office, media_player.USER2s_office'
           volume: '.5'
           what: 'Someone is at the Front Door'
 
         ##########################################################
-        ## Welcome Home _USER1_ Audio Greeting
+        ## Welcome Home USER1 Audio Greeting
         ##########################################################
 
-- alias: Notification Audio - Welcome Home _USER1_
+- alias: Notification Audio - Welcome Home USER1
 
   trigger:
     - platform: state
@@ -176,10 +176,10 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker._USER1DEVICE_
+      entity_id: device_tracker.USER1DEVICE
       state: 'home'
     - condition: state
-      entity_id: input_boolean._USER1_greeting
+      entity_id: input_boolean.USER1_greeting
       state: 'on'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
@@ -197,16 +197,16 @@
           master: 'media_player.living_room_sp'
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
           volume: '.5'
-          what: 'Welcome Home _USER1_'
+          what: 'Welcome Home USER1'
     - delay: '00:02:00'
     - service: homeassistant.turn_off
-      entity_id: input_boolean._USER1_greeting
+      entity_id: input_boolean.USER1_greeting
 
         ##########################################################
-        ## Notify _USER2_s Office that _USER1_ is Home
+        ## Notify USER2s Office that USER1 is Home
         ##########################################################
 
-- alias: Notification Audio - Notify _USER2_s Office that _USER1_ is Home
+- alias: Notification Audio - Notify USER2s Office that USER1 is Home
 
   trigger:
     - platform: state
@@ -216,19 +216,19 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker._USER1DEVICE_
+      entity_id: device_tracker.USER1DEVICE
       state: 'home'
     - condition: state
-      entity_id: device_tracker._USER2DEVICE_
+      entity_id: device_tracker.USER2DEVICE
       state: 'home'
     - condition: state
-      entity_id: input_boolean._USER1_greeting
+      entity_id: input_boolean.USER1_greeting
       state: 'on'
     - condition: state
-      entity_id: input_boolean._USER2_greeting
+      entity_id: input_boolean.USER2_greeting
       state: 'off'
     - condition: state
-      entity_id: binary_sensor._USER2_office_occupancy
+      entity_id: binary_sensor.USER2_office_occupancy
       state: 'on'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
@@ -243,16 +243,16 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player._USER2_s_office'
-          where: 'media_player._USER2_s_office'
+          master: 'media_player.USER2s_office'
+          where: 'media_player.USER2s_office'
           volume: '.5'
-          what: '_USER1_ is Home'
+          what: 'USER1 is Home'
 
         ##########################################################
-        ## Welcome Home _USER2_ Audio Greeting
+        ## Welcome Home USER2 Audio Greeting
         ##########################################################
 
-- alias: Notification Audio - Welcome Home _USER2_
+- alias: Notification Audio - Welcome Home USER2
 
   trigger:
     - platform: state
@@ -262,10 +262,10 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker._USER2DEVICE_
+      entity_id: device_tracker.USER2DEVICE
       state: 'home'
     - condition: state
-      entity_id: input_boolean._USER2_greeting
+      entity_id: input_boolean.USER2_greeting
       state: 'on'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
@@ -283,16 +283,16 @@
           master: 'media_player.living_room_sp'
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
           volume: '.5'
-          what: 'Welcome Home _USER2_'
+          what: 'Welcome Home USER2'
     - delay: '00:02:00'
     - service: homeassistant.turn_off
-      entity_id: input_boolean._USER2_greeting
+      entity_id: input_boolean.USER2_greeting
 
         ##########################################################
-        ## Notify _USER1_s Office that _USER2_ is Home
+        ## Notify USER1s Office that USER2 is Home
         ##########################################################
 
-- alias: Notification Audio - Notify _USER1_s Office that _USER2_ is Home
+- alias: Notification Audio - Notify USER1s Office that USER2 is Home
 
   trigger:
     - platform: state
@@ -302,16 +302,16 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker._USER1DEVICE_
+      entity_id: device_tracker.USER1DEVICE
       state: 'home'
     - condition: state
-      entity_id: device_tracker._USER2DEVICE_
+      entity_id: device_tracker.USER2DEVICE
       state: 'home'
     - condition: state
-      entity_id: input_boolean._USER1_greeting
+      entity_id: input_boolean.USER1_greeting
       state: 'off'
     - condition: state
-      entity_id: input_boolean._USER2_greeting
+      entity_id: input_boolean.USER2_greeting
       state: 'on'
     - condition: state
       entity_id: binary_sensor.office_occupancy
@@ -329,32 +329,32 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player._USER1_s_office'
-          where: 'media_player._USER1_s_office'
+          master: 'media_player.USER1s_office'
+          where: 'media_player.USER1s_office'
           volume: '.5'
-          what: '_USER2_ is Home'
+          what: 'USER2 is Home'
 
         #################################################################
-        ## _USER2_ Left Work Audio Notification
+        ## USER2 Left Work Audio Notification
         #################################################################
 
-- alias: Notification Audio - _USER2_ Left Work
+- alias: Notification Audio - USER2 Left Work
 
   trigger:
     - platform: state
-      entity_id: device_tracker._USER2DEVICE_
+      entity_id: device_tracker.USER2DEVICE
       from: 'work'
       to: 'not_home'
 
   condition:
     - condition: state
-      entity_id: device_tracker._USER1DEVICE_
+      entity_id: device_tracker.USER1DEVICE
       state: 'home'
     - condition: state
-      entity_id: device_tracker._USER2DEVICE_
+      entity_id: device_tracker.USER2DEVICE
       state: 'not_home'
     - condition: state
-      entity_id: input_boolean._USER2_away
+      entity_id: input_boolean.USER2_away
       state: 'on'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
@@ -374,37 +374,37 @@
         - media_player.dining_room
         - media_player.kitchen
         - media_player.bathroom
-        - media_player._USER1_s_office
+        - media_player.USER1s_office
     - delay: '00:00:01'
     - service: media_player.sonos_join
       data:
-        master: media_player._USER1_s_office
+        master: media_player.USER1s_office
       entity_id:
         - media_player.living_room_sp
         - media_player.dining_room
         - media_player.kitchen
         - media_player.bathroom
-        - media_player._USER1_s_office
+        - media_player.USER1s_office
     - delay: '00:00:01'
     - service: media_player.volume_set
-      entity_id: media_player._USER1_s_office
+      entity_id: media_player.USER1s_office
       data:
         volume_level: .6
     - delay: '00:00:01'
     - service: tts.google_say
       data_template:
-        entity_id: media_player._USER1_s_office
-        message: "_USER2_ has left work and will arrive Home in about {{states('sensor._USER2_to_home')}} minutes"
+        entity_id: media_player.USER1s_office
+        message: "USER2 has left work and will arrive Home in about {{states('sensor.USER2_to_home')}} minutes"
     - delay: '00:00:20'
     - service: media_player.sonos_restore
       data:
         with_group: yes
 
         ##########################################################
-        ## _GUEST_ Audio Greeting
+        ## REDACTED Audio Greeting
         ##########################################################
 
-- alias: Notification Audio - Welcome _GUEST_
+- alias: Notification Audio - Welcome REDACTED
 
   trigger:
     - platform: state
@@ -414,13 +414,13 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker._GUEST_siphone
+      entity_id: device_tracker.REDACTED
       state: 'home'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
     - condition: state
-      entity_id: input_boolean._GUEST_visiting
+      entity_id: input_boolean.REDACTED_visiting
       state: 'off'
     - condition: time
       after: '09:00'
@@ -435,16 +435,16 @@
           master: 'media_player.living_room_sp'
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
           volume: '.5'
-          what: 'Welcome _GUEST_, please remove your shoes'
+          what: 'Welcome REDACTED, please remove your shoes'
     - delay: '00:00:30'
     - service: homeassistant.turn_on
-      entity_id: input_boolean._GUEST_visiting
+      entity_id: input_boolean.REDACTED_visiting
 
         ##########################################################
-        ## _GUEST_ Audio Greeting
+        ## REDACTED Audio Greeting
         ##########################################################
 
-- alias: Notification Audio - Welcome _GUEST_
+- alias: Notification Audio - Welcome REDACTED
 
   trigger:
     - platform: state
@@ -454,13 +454,13 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker._GUEST_siphone
+      entity_id: device_tracker.REDACTED
       state: 'home'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
     - condition: state
-      entity_id: input_boolean._GUEST_visiting
+      entity_id: input_boolean.REDACTED_visiting
       state: 'off'
     - condition: time
       after: '09:00'
@@ -475,16 +475,16 @@
           master: 'media_player.living_room_sp'
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
           volume: '.5'
-          what: 'Welcome _GUEST_'
+          what: 'Welcome REDACTED'
     - delay: '00:00:30'
     - service: homeassistant.turn_on
-      entity_id: input_boolean._GUEST_visiting
+      entity_id: input_boolean.REDACTED_visiting
 
         ##########################################################
-        ## _GUEST_ Audio Greeting
+        ## REDACTED Audio Greeting
         ##########################################################
 
-- alias: Notification Audio - Welcome _GUEST_
+- alias: Notification Audio - Welcome REDACTED
 
   trigger:
     - platform: state
@@ -494,16 +494,16 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker._GUEST_
+      entity_id: device_tracker.REDACTED
       state: 'home'
     - condition: state
-      entity_id: input_boolean._USER1_away
+      entity_id: input_boolean.USER1_away
       state: 'off'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
     - condition: state
-      entity_id: input_boolean._GUEST_visiting
+      entity_id: input_boolean.REDACTED_visiting
       state: 'off'
     - condition: time
       after: '09:00'
@@ -518,16 +518,16 @@
           master: 'media_player.living_room_sp'
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
           volume: '.5'
-          what: 'Welcome _GUEST_'
+          what: 'Welcome REDACTED, Noob'
     - delay: '00:00:30'
     - service: homeassistant.turn_on
-      entity_id: input_boolean._GUEST_visiting
+      entity_id: input_boolean.REDACTED_visiting
 
         ##########################################################
-        ## _GUEST_ Audio Greeting
+        ## REDACTED Audio Greeting
         ##########################################################
 
-- alias: Notification Audio - Welcome _GUEST_
+- alias: Notification Audio - Welcome REDACTED
 
   trigger:
     - platform: state
@@ -537,13 +537,13 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker._GUEST_siphone
+      entity_id: device_tracker.REDACTED
       state: 'home'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
     - condition: state
-      entity_id: input_boolean._GUEST_visiting
+      entity_id: input_boolean.REDACTED_visiting
       state: 'off'
     - condition: time
       after: '09:00'
@@ -558,16 +558,16 @@
           master: 'media_player.living_room_sp'
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
           volume: '.5'
-          what: 'Welcome _GUEST_'
+          what: 'Welcome REDACTED'
     - delay: '00:00:30'
     - service: homeassistant.turn_on
-      entity_id: input_boolean._GUEST_visiting
+      entity_id: input_boolean.REDACTED_visiting
 
         ##########################################################
-        ## _GUEST_ Audio Greeting
+        ## REDACTED Audio Greeting
         ##########################################################
 
-- alias: Notification Audio - Welcome _GUEST_
+- alias: Notification Audio - Welcome REDACTED
 
   trigger:
     - platform: state
@@ -577,13 +577,13 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker.johnsiphone2
+      entity_id: device_tracker.REDACTED
       state: 'home'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
     - condition: state
-      entity_id: input_boolean._GUEST_visiting
+      entity_id: input_boolean.REDACTED_visiting
       state: 'off'
     - condition: time
       after: '09:00'
@@ -598,16 +598,16 @@
           master: 'media_player.living_room_sp'
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
           volume: '.5'
-          what: 'Welcome _GUEST_'
+          what: 'Welcome REDACTED'
     - delay: '00:00:30'
     - service: homeassistant.turn_on
-      entity_id: input_boolean._GUEST_visiting
+      entity_id: input_boolean.REDACTED_visiting
 
         ##########################################################
-        ## _GUEST_ Audio Greeting
+        ## REDACTED Audio Greeting
         ##########################################################
 
-- alias: Notification Audio - Welcome _GUEST_
+- alias: Notification Audio - Welcome REDACTED
 
   trigger:
     - platform: state
@@ -617,13 +617,13 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker.moresuensiphone
+      entity_id: device_tracker.REDACTED
       state: 'home'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
     - condition: state
-      entity_id: input_boolean.more_visiting
+      entity_id: input_boolean.REDACTED_visiting
       state: 'off'
     - condition: time
       after: '09:00'
@@ -638,24 +638,24 @@
           master: 'media_player.living_room_sp'
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
           volume: '.5'
-          what: 'Welcome _GUEST_.  Hello _GUEST_'
+          what: 'Welcome REDACTED.  Hello REDACTED'
     - delay: '00:00:30'
     - service: homeassistant.turn_on
-      entity_id: input_boolean.more_visiting
+      entity_id: input_boolean.REDACTED_visiting
 
 #################################################################
 ## Friends and Family Visiting
 #################################################################
 
         ##########################################################
-        ## Set _GUEST_ as No Longer Visiting after 1.5 Hours
+        ## Set REDACTED as No Longer Visiting after 1.5 Hours
         ##########################################################
 
-- alias: Notification Audio - Set _GUEST_ as No Longer Visiting after 1.5 Hours
+- alias: Notification Audio - Set REDACTED as No Longer Visiting after 1.5 Hours
 
   trigger:
     - platform: state
-      entity_id: device_tracker._GUEST_siphone
+      entity_id: device_tracker.REDACTED
       from: 'home'
       to: 'not_home'
       for:
@@ -665,17 +665,17 @@
 
   action:
     - service: homeassistant.turn_off
-      entity_id: input_boolean._GUEST_visiting
+      entity_id: input_boolean.REDACTED_visiting
 
         ##########################################################
-        ## Set _GUEST_ as No Longer Visiting after 1.5 Hour
+        ## Set REDACTED as No Longer Visiting after 1.5 Hour
         ##########################################################
 
-- alias: Notification Audio - Set _GUEST_ as No Longer Visiting after 1.5 Hour
+- alias: Notification Audio - Set REDACTED as No Longer Visiting after 1.5 Hour
 
   trigger:
     - platform: state
-      entity_id: device_tracker._GUEST_siphone
+      entity_id: device_tracker.REDACTED
       from: 'home'
       to: 'not_home'
       for:
@@ -685,18 +685,18 @@
 
   action:
     - service: homeassistant.turn_off
-      entity_id: input_boolean._GUEST_visiting
+      entity_id: input_boolean.REDACTED_visiting
 
 
         ##########################################################
-        ## Set _GUEST_ as No Longer Visiting after 1.5 Hours
+        ## Set REDACTED as No Longer Visiting after 1.5 Hours
         ##########################################################
 
-- alias: Notification Audio - Set _GUEST_ as No Longer Visiting after 1.5 Hours
+- alias: Notification Audio - Set REDACTED as No Longer Visiting after 1.5 Hours
 
   trigger:
     - platform: state
-      entity_id: device_tracker._GUEST_
+      entity_id: device_tracker.REDACTED
       from: 'home'
       to: 'not_home'
       for:
@@ -706,17 +706,17 @@
 
   action:
     - service: homeassistant.turn_off
-      entity_id: input_boolean._GUEST_visiting
+      entity_id: input_boolean.REDACTED_visiting
 
         ##########################################################
-        ## Set _GUEST_ as No Longer Visiting after 1.5 Hours
+        ## Set REDACTED as No Longer Visiting after 1.5 Hours
         ##########################################################
 
-- alias: Notification Audio - Set _GUEST_ as No Longer Visiting after 1.5 Hours
+- alias: Notification Audio - Set REDACTED as No Longer Visiting after 1.5 Hours
 
   trigger:
     - platform: state
-      entity_id: device_tracker._GUEST_siphone
+      entity_id: device_tracker.REDACTED
       from: 'home'
       to: 'not_home'
       for:
@@ -726,17 +726,17 @@
 
   action:
     - service: homeassistant.turn_off
-      entity_id: input_boolean._GUEST_visiting
+      entity_id: input_boolean.REDACTED_visiting
 
         ##########################################################
-        ## Set _GUEST_ as No Longer Visiting after 1.5 Hours
+        ## Set REDACTED as No Longer Visiting after 1.5 Hours
         ##########################################################
 
-- alias: Notification Audio - Set _GUEST_ as No Longer Visiting after 1.5 Hours
+- alias: Notification Audio - Set REDACTED as No Longer Visiting after 1.5 Hours
 
   trigger:
     - platform: state
-      entity_id: device_tracker.johnsiphone2
+      entity_id: device_tracker.REDACTED
       from: 'home'
       to: 'not_home'
       for:
@@ -746,17 +746,17 @@
 
   action:
     - service: homeassistant.turn_off
-      entity_id: input_boolean._GUEST_visiting
+      entity_id: input_boolean.REDACTED_visiting
 
         ##########################################################
-        ## Set _GUEST_ as No Longer Visiting after 1.5 Hours
+        ## Set REDACTED as No Longer Visiting after 1.5 Hours
         ##########################################################
 
-- alias: Notification Audio - Set _GUEST_ as No Longer Visiting after 1.5 Hours
+- alias: Notification Audio - Set REDACTED as No Longer Visiting after 1.5 Hours
 
   trigger:
     - platform: state
-      entity_id: device_tracker._GUEST_
+      entity_id: device_tracker.REDACTED
       from: 'home'
       to: 'not_home'
       for:
@@ -766,4 +766,4 @@
 
   action:
     - service: homeassistant.turn_off
-      entity_id: input_boolean._GUEST_visiting
+      entity_id: input_boolean.REDACTED_visiting

@@ -19,16 +19,13 @@
 
   - name: Vacation
     entities:
-        group.back_door:
-            state: on
-            brightness: 50
         light.office_ceiling:
             state: on
-            brightness: 10
+            brightness: 3
         light.basement_stairs:
             state: on
             brightness: 100
-        group.living_room:
+        group.living_room_lamps:
             state: on
             brightness: 50
         light.closet_lamp:
@@ -72,4 +69,3 @@
             state: off
         input_boolean.thermostat_away:
             state: off
-
