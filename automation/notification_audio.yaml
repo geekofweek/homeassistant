@@ -424,10 +424,10 @@
       state: 'off'
     - condition: time
       after: '09:00'
-      before: '22:00'
+      before: '23:59'
 
   action:
-    - delay: '00:00:09'
+    - delay: '00:00:60'
     - service: script.turn_on
       entity_id: script.say
       data:
@@ -435,8 +435,8 @@
           master: 'media_player.living_room_sp'
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
           volume: '.5'
-          what: 'Welcome REDACTED, please remove your shoes'
-    - delay: '00:00:30'
+          what: 'Welcome REDACTED, REDACTED'
+    - delay: '00:00:90'
     - service: homeassistant.turn_on
       entity_id: input_boolean.REDACTED_visiting
 
@@ -467,7 +467,47 @@
       before: '22:00'
 
   action:
-    - delay: '00:00:08'
+    - delay: '00:00:60'
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.living_room_sp'
+          where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
+          volume: '.5'
+          what: 'Welcome REDACTED, please remove your shoes'
+    - delay: '00:00:90'
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.REDACTED_visiting
+
+        ##########################################################
+        ## REDACTED Audio Greeting
+        ##########################################################
+
+- alias: Notification Audio - Welcome REDACTED
+
+  trigger:
+    - platform: state
+      entity_id: group.doors
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: device_tracker.REDACTED
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.REDACTED_visiting
+      state: 'off'
+    - condition: time
+      after: '09:00'
+      before: '22:00'
+
+  action:
+    - delay: '00:00:60'
     - service: script.turn_on
       entity_id: script.say
       data:
@@ -476,7 +516,7 @@
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
           volume: '.5'
           what: 'Welcome REDACTED'
-    - delay: '00:00:30'
+    - delay: '00:00:90'
     - service: homeassistant.turn_on
       entity_id: input_boolean.REDACTED_visiting
 
@@ -510,7 +550,7 @@
       before: '22:00'
 
   action:
-    - delay: '00:00:08'
+    - delay: '00:00:60'
     - service: script.turn_on
       entity_id: script.say
       data:
@@ -519,7 +559,7 @@
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
           volume: '.5'
           what: 'Welcome REDACTED, Noob'
-    - delay: '00:00:30'
+    - delay: '00:00:90'
     - service: homeassistant.turn_on
       entity_id: input_boolean.REDACTED_visiting
 
@@ -550,7 +590,7 @@
       before: '22:00'
 
   action:
-    - delay: '00:00:08'
+    - delay: '00:00:60'
     - service: script.turn_on
       entity_id: script.say
       data:
@@ -559,7 +599,7 @@
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
           volume: '.5'
           what: 'Welcome REDACTED'
-    - delay: '00:00:30'
+    - delay: '00:00:90'
     - service: homeassistant.turn_on
       entity_id: input_boolean.REDACTED_visiting
 
@@ -590,7 +630,7 @@
       before: '22:00'
 
   action:
-    - delay: '00:00:08'
+    - delay: '00:00:60'
     - service: script.turn_on
       entity_id: script.say
       data:
@@ -599,7 +639,7 @@
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
           volume: '.5'
           what: 'Welcome REDACTED'
-    - delay: '00:00:30'
+    - delay: '00:00:90'
     - service: homeassistant.turn_on
       entity_id: input_boolean.REDACTED_visiting
 
@@ -630,7 +670,7 @@
       before: '22:00'
 
   action:
-    - delay: '00:00:10'
+    - delay: '00:00:60'
     - service: script.turn_on
       entity_id: script.say
       data:
@@ -639,13 +679,33 @@
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
           volume: '.5'
           what: 'Welcome REDACTED.  Hello REDACTED'
-    - delay: '00:00:30'
+    - delay: '00:00:90'
     - service: homeassistant.turn_on
       entity_id: input_boolean.REDACTED_visiting
 
 #################################################################
 ## Friends and Family Visiting
 #################################################################
+
+        ##########################################################
+        ## Set REDACTED as No Longer Visiting after 1.5 Hours
+        ##########################################################
+
+- alias: Notification Audio - Set REDACTED as No Longer Visiting after 1.5 Hours
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker.REDACTED
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 1
+        minutes: 30
+        seconds: 0
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.REDACTED_visiting
 
         ##########################################################
         ## Set REDACTED as No Longer Visiting after 1.5 Hours
