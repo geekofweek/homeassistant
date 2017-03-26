@@ -279,6 +279,33 @@
         transition: 60
 
         ##########################################################
+        ## USER1 Home Reset Back Door Brightness
+        ##########################################################
+
+- alias: Location - USER1 Home Reset Back Door Brightness
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_away
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.home_away
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.back_door
+      data:
+        brightness: 3
+        transition: 60
+
+        ##########################################################
         ## USER2 Home Turn on Lights
         ##########################################################
 
@@ -337,6 +364,33 @@
       entity_id: group.front_porch
       data:
         brightness: 100
+        transition: 60
+
+        ##########################################################
+        ## USER2 Home Reset Back Door Brightness
+        ##########################################################
+
+- alias: Location - USER2 Home Reset Back Door Brightness
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER2_away
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.home_away
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.back_door
+      data:
+        brightness: 3
         transition: 60
 
         ##########################################################

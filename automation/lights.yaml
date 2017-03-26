@@ -128,6 +128,37 @@
        transition: 300
 
         ##########################################################
+        ## Turn off Front Porch After Midnight
+        ##########################################################
+
+- alias: Lights - Turn off Front Porch After Midnight
+
+  trigger:
+    - platform: state
+      entity_id: group.front_porch
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: time
+      after: '00:00'
+      before: '05:00'
+    - condition: state
+      entity_id: input_boolean.exterior_off_night
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: light.turn_off
+      entity_id: group.front_porch
+
+        ##########################################################
         ## Turn On Back Door at Sunset
         ##########################################################
 
@@ -173,6 +204,37 @@
      entity_id: group.back_door
      data:
        transition: 300
+
+        ##########################################################
+        ## Turn off Back Door After Midnight
+        ##########################################################
+
+- alias: Lights - Turn off Back Door After Midnight
+
+  trigger:
+    - platform: state
+      entity_id: group.back_door
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: time
+      after: '00:00'
+      before: '05:00'
+    - condition: state
+      entity_id: input_boolean.exterior_off_night
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: light.turn_off
+      entity_id: group.back_door
 
         ##########################################################
         ## Turn on Back Door at 5:00a if USER2 Home
