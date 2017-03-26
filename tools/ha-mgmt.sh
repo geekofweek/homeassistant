@@ -8,12 +8,12 @@
 ## Variables
 ##########################################################
 
-hauser="USER_ACCOUNT"
+hauser="HA_USER_ACCOUNT"
 habin="/usr/local/bin/hass"
 haconfigdir="/home/USER/.homeassistant"
 hahost="HOSTNAME/IP"
 localuser="LOCAL_USER_ACCOUNT"
-localhost="HOSTNAME/IP"
+localhost="LOCAL_HOSTNAME/IP"
 localpath="PATH_TO_LOCAL_HA_CONFIGS"
 
 
@@ -39,12 +39,13 @@ do
  echo "6) Check Database Size - (sudo Required)"
  echo "7) Validate Home Assistant Config"
  echo "8) Backup Home Assistant"
- echo "9) Renew SSL Certificate"
+ echo "9) Copy Configs to GitHub"
+ echo "10) Renew SSL Certificate"
  echo "x) Exit"
  echo " "
  read action
 
- if [ "$action" != "1" -a "$action" != "2" -a "$action" != "3" -a "$action" != "4" -a "$action" != "5" -a "$action" != "6" -a "$action" != "7" -a "$action" != "8" -a "$action" != "9" -a "$action" != "x" ];then
+ if [ "$action" != "1" -a "$action" != "2" -a "$action" != "3" -a "$action" != "4" -a "$action" != "5" -a "$action" != "6" -a "$action" != "7" -a "$action" != "8" -a "$action" != "9" -a "$action" != "10" -a "$action" != "x" ];then
  		echo ":-("
  		echo "Error!"
  		echo "Invalid Option Stupid"
@@ -159,6 +160,16 @@ do
  fi
 
  if [ "$action" == "9" ];then
+   clear
+   echo "Copy Files for GitHub Publishing"
+   echo " "
+   ./ha-github-scrub.sh
+   echo " "
+   echo "Files Copied to GitHub Directory"
+   echo " "
+ fi
+
+ if [ "$action" == "10" ];then
    clear
    echo "Renewing SSL Certificate..."
    echo " "
