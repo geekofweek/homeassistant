@@ -508,7 +508,6 @@
     - service: lock.lock
       entity_id: lock.back_door
 
-
         ##########################################################
         ## Open Garage Door when USER2 Leaves
         ##########################################################
@@ -531,6 +530,9 @@
     - condition: state
       entity_id: input_boolean.USER2_away
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER2_working
+      state: 'on'
 
   action:
     - service: cover.open_cover

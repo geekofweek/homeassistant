@@ -2,6 +2,9 @@
 ## Sensors
 #################################################################
 
+  - platform: time_date
+    display_options:
+      - 'date_time'
   - platform: ring
     username: REDACTED
     password: REDACTED
@@ -95,6 +98,16 @@
       media_center:
         value_template: '{{ states.remote.media_center.attributes.current_activity }}'
         friendly_name: 'Media Center'
+  - platform: template
+    sensors:
+      USER2_work_offset:
+        entity_id: sensor.date__time
+        value_template: '{{ (as_timestamp(states.calendar.work.attributes.start_time) - as_timestamp(now()) ) }}'
+  - platform: template
+    sensors:
+      holidays_calendar:
+        friendly_name: 'Holiday'
+        value_template: '{{ states.calendar.holidays_in_united_states.attributes.message }}'
   - platform: google_travel_time
     name: USER2 To Home
     api_key: REDACTED

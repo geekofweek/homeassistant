@@ -3,6 +3,33 @@
 ##################################################################
 
         ##########################################################
+        ## Enable Christmas Lighting
+        ##########################################################
+
+- alias: Holiday - Enable Christmas Lighting
+
+  trigger:
+    - platform: state
+      entity_id: calendar.holidays_in_united_states
+      to: 'on'
+
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: sensor.holidays_calendar
+        state: 'Christmas Eve'
+      - condition: state
+        entity_id: sensor.holidays_calendar
+        state: 'Christmas Day'
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.holiday
+        option: 'Christmas'
+
+        ##########################################################
         ## Christmas Lighting
         ##########################################################
 
@@ -164,6 +191,28 @@
         color_name: red
 
         ##########################################################
+        ## Enable Halloween Lighting
+        ##########################################################
+
+- alias: Holiday - Enable Halloween Lighting
+
+  trigger:
+    - platform: state
+      entity_id: calendar.holidays_in_united_states
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sensor.holidays_calendar
+      state: 'Halloween'
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.holiday
+        option: 'Halloween'
+
+        ##########################################################
         ## Halloween Lighting
         ##########################################################
 
@@ -199,6 +248,28 @@
         xy_color: [ 0.6164, 0.3645 ]
 
         ##########################################################
+        ## Enable St. Patricks Day Lighting
+        ##########################################################
+
+- alias: Holiday - Enable St. Patricks Day Lighting
+
+  trigger:
+    - platform: state
+      entity_id: calendar.holidays_in_united_states
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sensor.holidays_calendar
+      state: "St. Patricks Day"
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.holiday
+        option: "St. Patricks Day"
+
+        ##########################################################
         ## St. Patricks Day Lighting
         ##########################################################
 
@@ -230,6 +301,28 @@
         transition: 900
         brightness: 255
         color_name: green
+
+        ##########################################################
+        ## Enable Valentine's Day Lighting
+        ##########################################################
+
+- alias: Holiday - Enable Valentine's Day Lighting
+
+  trigger:
+    - platform: state
+      entity_id: calendar.holidays_in_united_states
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sensor.holidays_calendar
+      state: "Valentine's Day"
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.holiday
+        option: "Valentine's Day"
 
         ##########################################################
         ## Valentine's Day Lighting
@@ -331,6 +424,28 @@
         color_name: blue
 
         ##########################################################
+        ## Enable Easter Lighting
+        ##########################################################
+
+- alias: Holiday - Enable Easter Lighting
+
+  trigger:
+    - platform: state
+      entity_id: calendar.holidays_in_united_states
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sensor.holidays_calendar
+      state: "Easter Sunday"
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.holiday
+        option: 'Easter'
+
+        ##########################################################
         ## Easter Lighting
         ##########################################################
 
@@ -362,6 +477,29 @@
         transition: 900
         brightness: 255
         xy_color: [ 0.4283, 0.2298 ]
+
+        ##########################################################
+        ## Enable Thanksgiving Lighting
+        ##########################################################
+
+- alias: Holiday - Enable Thanksgiving Lighting
+
+  trigger:
+    - platform: state
+      entity_id: calendar.holidays_in_united_states
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sensor.holidays_calendar
+      state: "Thanksgiving Day"
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.holiday
+        option: 'Thanksgiving'
+
 
         ##########################################################
         ## Thanksgiving Lighting
@@ -396,6 +534,94 @@
         transition: 900
         brightness: 255
         xy_color: [ 0.4862, 0.4599 ]
+
+        ##########################################################
+        ## Enable Independence Day Lighting
+        ##########################################################
+
+- alias: Holiday - Enable Independence Day Lighting
+
+  trigger:
+    - platform: state
+      entity_id: calendar.holidays_in_united_states
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sensor.holidays_calendar
+      state: "Independence Day"
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.holiday
+        option: 'Independence Day'
+
+        ##########################################################
+        ## Enable Memorial Day Lighting
+        ##########################################################
+
+- alias: Holiday - Enable Memorial Day Lighting
+
+  trigger:
+    - platform: state
+      entity_id: calendar.holidays_in_united_states
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sensor.holidays_calendar
+      state: "Memorial Day"
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.holiday
+        option: 'Memorial Day'
+
+        ##########################################################
+        ## Enable Veterans Day Lighting
+        ##########################################################
+
+- alias: Holiday - Enable Veterans Day Lighting
+
+  trigger:
+    - platform: state
+      entity_id: calendar.holidays_in_united_states
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sensor.holidays_calendar
+      state: "Veterans Day"
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.holiday
+        option: 'Veterans Day'
+
+        ##########################################################
+        ## Enable Labor Day Lighting
+        ##########################################################
+
+- alias: Holiday - Enable Labor Day Lighting
+
+  trigger:
+    - platform: state
+      entity_id: calendar.holidays_in_united_states
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sensor.holidays_calendar
+      state: "Labor Day"
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.holiday
+        option: 'Labor Day'
 
         ##########################################################
         ## Independence / Memorial / Veterans / Labor Day Lighting

@@ -256,6 +256,9 @@
     - condition: state
       entity_id: input_boolean.lights_morning_disable
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER2_working
+      state: 'on'
 
   action:
     - service: light.turn_on
