@@ -8,6 +8,10 @@
       - updater
       - media_player
       - input_boolean
+      - weblink
+      - camera
+      - scene
+      - script
     entities:
       - light.back_door_left
       - light.back_door_right
@@ -21,15 +25,9 @@
       - light.living_room_lamp_2
       - light.USER2s_office_ceiling_1
       - light.USER2s_office_ceiling_2
-      - light.stairs
       - light.stairs_1
-      - light.stairs_1_2
       - light.stairs_2
-      - light.stairs_2_2
       - light.stairs_3
-      - light.stairs_3_2
-      - light.stairs_3_3
-      - light.stairs_4
       - light.upper_patio_left
       - light.upper_patio_right
       - group.winter_mode
@@ -62,15 +60,11 @@
       - group.basement_lighting
       - group.basement_occupancy
       - group.water_sensors
-      - sensor.wink_status_logfile
       - switch.living_room_ceiling_fan
       - sensor.media_center
-      - group.all_locks
-      - group.weather_summary
-      - group.humidity
-      - sensor.ring_downstairs_volume
-      - sensor.ring_front_door_volume
       - sensor.ring_front_door_last_activity
+#Temp until DB purge
+      - group.all_locks
       - calendar.personal
       - calendar.work
       - calendar.holidays_in_united_states
@@ -80,3 +74,5 @@
       - group.calendar
       - calendar.REDACTED
       - calendar.REDACTED
+      - light.stairs_2_3
+      - group.plex
