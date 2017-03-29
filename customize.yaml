@@ -14,19 +14,15 @@
   automation.thermostat__turn_on_summer:
     icon: mdi:sunglasses
     friendly_name: Auto on During Summer Enabled
-    hidden: true
   automation.thermostat__turn_off_summer:
     icon: mdi:sunglasses
     friendly_name: Auto off During Summer Enabled
-    hidden: true
   automation.thermostat__turn_on_winter:
     icon: mdi:snowman
     friendly_name: Auto on During Winter Enabled
-    hidden: true
   automation.thermostat__turn_off_winter:
     icon: mdi:snowman
     friendly_name: Auto off During Winter Enabled
-    hidden: true
   group.summer_mode:
     icon: mdi:sunglasses
     friendly_name: Summer Mode Enabled
@@ -115,10 +111,6 @@
 
   cover.garage_door:
     icon: mdi:car
-  cover.garage_door_2:
-    hidden: true
-  cover.myq:
-    hidden: true
   binary_sensor.front_door_opened_opened:
     friendly_name: Front Door Open
   binary_sensor.back_door_opened:
@@ -216,7 +208,6 @@
     friendly_name: Interior Lights
   group.basement_lights:
     icon: mdi:ceiling-light
-    #icon: mdi:lightbulb
 
         ##########################################################
         ## Locks
@@ -289,8 +280,6 @@
   switch.fireplace:
     icon: mdi:fire
     friendly_name: Fireplace
-    emulated_hue: true
-    emulated_hue_name: "Harmony Fireplace"
   switch.air_purifier:
     icon: mdi:fan
     friendly_name: Air Purifier
@@ -303,8 +292,6 @@
   switch.living_room_ceiling_fan:
     icon: mdi:ceiling-light
     friendly_name: Living Room Ceiling Fan
-  switch.bottom_light_load:
-    hidden: true
 
         ##########################################################
         ## Lights
@@ -347,40 +334,6 @@
     icon: mdi:ceiling-light
   light.kitchen_ceiling:
     icon: mdi:ceiling-light
-  light.stairs_1:
-    hidden: true
-  light.stairs_2:
-    hidden: true
-  light.stairs_3:
-    hidden: true
-  light.living_room_lamp_1:
-    hidden: true
-  light.living_room_lamp_2:
-    hidden: true
-  light.basement_light_1:
-    hidden: true
-  light.basement_light_2:
-    hidden: true
-  light.basement_light_3:
-    hidden: true
-  light.basement_light_4:
-    hidden: true
-  light.front_porch_left:
-    hidden: true
-  light.front_porch_right:
-    hidden: true
-  light.USER2s_office_ceiling_1:
-    hidden: true
-  light.USER2s_office_ceiling_2:
-    hidden: true
-  light.back_door_left:
-    hidden: true
-  light.back_door_right:
-    hidden: true
-  light.upper_patio_left:
-    hidden: true
-  light.upper_patio_right:
-    hidden: true
 
         ##########################################################
         ## Weather
@@ -459,138 +412,6 @@
     friendly_name: Guest Bedroom Roku
 
         ##########################################################
-        ## Groups
-        ##########################################################
-
-  group.basement_occupancy:
-    hidden: true
-  group.hue_lights:
-    hidden: true
-  group.wink_lights:
-    hidden: true
-  group.hue_lights_exterior:
-    hidden: true
-  group.wink_lights_exterior:
-    hidden: true
-  group.overnight_guests:
-    hidden: true
-
-        ##########################################################
-        ## Scenes
-        ##########################################################
-
-  scene.security:
-    hidden: true
-  scene.vacation:
-    hidden: true
-  scene.vacation_disable_automation:
-    hidden: true
-  scene.vacation_enable_automation:
-    hidden: true
-
-        ##########################################################
-        ## Wink Ecobee
-        ##########################################################
-
-  climate.main_floor_2:
-    hidden: true
-  sensor.bedroom_temperature_2:
-    hidden: true
-  sensor.kitchen_temperature_2:
-    hidden: true
-  sensor.living_room_temperature_2:
-    hidden: true
-  sensor.office_temperature_2:
-    hidden: true
-  sensor.USER2_office_temperature_2:
-    hidden: true
-  sensor.guest_bedroom_temperature_2:
-    hidden: true
-  sensor.basement_temperature_2:
-    hidden: true
-  sensor.bathroom_temperature_2:
-    hidden: true
-  sensor.laundry_room_temperature_2:
-    hidden: true
-  binary_sensor.bedroom:
-    hidden: true
-  binary_sensor.kitchen:
-    hidden: true
-  binary_sensor.living_room:
-    hidden: true
-  binary_sensor.office:
-    hidden: true
-  binary_sensor.USER2_office:
-    hidden: true
-  binary_sensor.guest_bedroom:
-    hidden: true
-  binary_sensor.basement:
-    hidden: true
-  binary_sensor.bathroom:
-    hidden: true
-  binary_sensor.laundry_room:
-    hidden: true
-
-        ##########################################################
-        ## Wink Hue Bulbs
-        ##########################################################
-
-  light.back_door_left_2:
-    hidden: true
-  light.back_door_right_2:
-    hidden: true
-  light.bedroom_lamp_2:
-    hidden: true
-  light.closet_lamp_2:
-    hidden: true
-  light.front_porch_left_2:
-    hidden: true
-  light.front_porch_right_2:
-    hidden: true
-  light.hallway_light_2:
-    hidden: true
-  light.living_room_lamp_1_2:
-    hidden: true
-  light.living_room_lamp_2_2:
-    hidden: true
-  light.office_lamp_2:
-    hidden: true
-  light.stairs_1_2:
-    hidden: true
-  light.stairs_2_2:
-    hidden: true
-  light.stairs_3_2:
-    hidden: true
-  light.upper_patio_left_2:
-    hidden: true
-  light.upper_patio_right_2:
-    hidden: true
-  light.basement_stairs_2:
-    hidden: true
-  light.USER2s_office_ceiling_1_2:
-    hidden: true
-  light.USER2s_office_ceiling_2_2:
-    hidden: true
-  light.USER2s_nightstand_2:
-    hidden: true
-  light.USER1s_nightstand_2:
-    hidden: true
-  light.guest_bedroom_lamp_2:
-    hidden: true
-  light.guest_bedroom_nightstand_2:
-    hidden: true
-  light.basement_light_1_2:
-    hidden: true
-  light.basement_light_2_2:
-    hidden: true
-  light.basement_light_3_2:
-    hidden: true
-  light.basement_light_4_2:
-    hidden: true
-  light.media_center_lighting_2:
-    hidden: true
-
-        ##########################################################
         ## Amazon Echo Integration
         ##########################################################
 
@@ -618,27 +439,6 @@
   input_boolean.bedtime:
     emulated_hue: true
     emulated_hue_name: "Bedtime"
-
-        ##########################################################
-        ## Input Boolean
-        ##########################################################
-
-  input_boolean.USER2_greeting:
-    hidden: true
-  input_boolean.USER1_greeting:
-    hidden: true
-  input_boolean.REDACTED_visiting:
-    hidden: true
-  input_boolean.REDACTED_visiting:
-    hidden: true
-  input_boolean.REDACTED_visiting:
-    hidden: true
-  input_boolean.REDACTED_visiting:
-    hidden: true
-  input_boolean.REDACTED_visiting:
-    hidden: true
-  input_boolean.REDACTED_visiting:
-    hidden: true
 
         ##########################################################
         ## Automations
