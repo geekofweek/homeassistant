@@ -167,6 +167,13 @@
       - group.traffic_camera_feeds
       - camera.REDACTED
 
+#  troubleshooting:
+#    name: Troubleshooting
+#    view: yes
+#    icon: mdi:exclamation
+#    entities:
+#      - group.all_automations
+
   Traffic Camera Feeds:
     - weblink.REDACTED
     - weblink.REDACTED
@@ -189,6 +196,7 @@
     - input_boolean.exterior_on_sunset
     - input_boolean.exterior_off_night
     - input_boolean.home_away
+    - input_boolean.disable_water_sensors
     - input_boolean.disable_voice_greeting
     - input_boolean.lights_morning_disable
 
@@ -529,12 +537,11 @@
     - sun.sun
     - sensor.dark_sky_temperature
     - sensor.dark_sky_apparent_temperature
+    - sensor.dark_sky_humidity
+    - sensor.dark_sky_cloud_coverage
     - sensor.dark_sky_precip
     - sensor.dark_sky_precip_probability
     - sensor.dark_sky_precip_intensity
-    - sensor.dark_sky_humidity
-    - sensor.dark_sky_dew_point
-    - sensor.dark_sky_cloud_cover
     - sensor.dark_sky_nearest_storm_distance
 #    - sensor.weather_nearest_storm_bearing
     - sensor.dark_sky_wind_speed
@@ -542,6 +549,7 @@
     - sensor.dark_sky_visibility
     - sensor.dark_sky_ozone
     - sensor.dark_sky_pressure
+    - sensor.dark_sky_dew_point
 
   Weather Summary:
     - sensor.dark_sky_summary

@@ -14,6 +14,11 @@
       from: 'off'
       to: 'on'
 
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_water_sensors
+      state: 'off'
+
   action:
     - service: notify.ios_USER1s_iphone
       data:
@@ -30,6 +35,11 @@
       entity_id: binary_sensor.sump_pump_water_sensor_liquid_detected
       from: 'off'
       to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_water_sensors
+      state: 'off'
 
   action:
     - service: notify.ios_USER1s_iphone
@@ -52,6 +62,9 @@
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_water_sensors
+      state: 'off'
 
   action:
     - service: switch.turn_on
@@ -73,6 +86,9 @@
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_water_sensors
+      state: 'off'
 
   action:
     - service: light.turn_on
@@ -81,3 +97,33 @@
        brightness: 255
        color_name: blue
        flash: long
+
+        ##########################################################
+        ## Water Sensor Audio Notification
+        ##########################################################
+
+- alias: Water Sensor - Basement Water Sensor
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_water_sensors
+      state: 'off'
+
+  action:
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.living_room_sp'
+          where: 'media_player.media_center, media_player.living_room_sp, media_player.dining_room, media_player.kitchen, media_player.bathroom, media_player.USER1s_office, media_player.USER2s_office, media_player.basement'
+          volume: '.9'
+          what: 'Water Detected in Basement'
