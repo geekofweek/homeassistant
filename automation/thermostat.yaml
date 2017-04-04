@@ -260,6 +260,8 @@
       data:
         entity_id: climate.window_unit
         temperature: 68
+    - service: switch.turn_on
+      entity_id: switch.hallway_fan
 
         ##########################################################
         ## Turn off Window Unit at 9p
@@ -276,6 +278,8 @@
       data:
         entity_id: climate.window_unit
         operation_mode: off
+    - service: switch.turn_off
+      entity_id: switch.hallway_fan
 
         ##########################################################
         ## Turn on Window Unit when Office is Hot
@@ -311,6 +315,8 @@
       data:
         entity_id: climate.window_unit
         temperature: 68
+    - service: switch.turn_on
+      entity_id: switch.hallway_fan
     - service: notify.ios_USER1s_iphone
       data:
         message: Office is Hot Turning on Window Unit
@@ -347,6 +353,8 @@
       data:
         entity_id: climate.window_unit
         temperature: 68
+    - service: switch.turn_on
+      entity_id: switch.hallway_fan
     - service: notify.ios_USER1s_iphone
       data:
         message: Hot Outside Turning on Window Unit
@@ -372,6 +380,8 @@
       data:
         entity_id: climate.window_unit
         operation_mode: off
+    - service: switch.turn_off
+      entity_id: switch.hallway_fan
 
         ##########################################################
         ## Turn off Winodw Unit When below 68 Outside
@@ -389,12 +399,39 @@
       data:
         entity_id: climate.window_unit
         operation_mode: off
+    - service: switch.turn_off
+      entity_id: switch.hallway_fan
 
         ##########################################################
         ## Adjust Thermostat for Overnight Guests before Midnight
         ##########################################################
 
 - alias: Thermostat - Turn on Guest Settings before Midnight
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.guest_mode
+      state: 'on'
+
+  condition:
+    - condition: time
+      after: '23:31'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: climate.set_hold_mode
+      data:
+        entity_id: climate.main_floor
+        #Guest = smart3
+        hold_mode: smart3
+
+        ##########################################################
+        ## Turn on Window Unit When Guests Staying before Midnight
+        ##########################################################
+
+- alias: Thermostat - Turn on Window Unit When Guests Staying before Midnight
 
   trigger:
     - platform: state
@@ -424,11 +461,8 @@
       data:
         entity_id: climate.window_unit
         temperature: 68
-    - service: climate.set_hold_mode
-      data:
-        entity_id: climate.main_floor
-        #Guest = smart3
-        hold_mode: smart3
+    - service: switch.turn_on
+      entity_id: switch.hallway_fan
 
         ##########################################################
         ## Adjust Thermostat for Overnight Guests after Midnight
@@ -444,6 +478,33 @@
   condition:
     - condition: time
       after: '00:00'
+      before: '04:59'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: climate.set_hold_mode
+      data:
+        entity_id: climate.main_floor
+        #Guest = smart3
+        hold_mode: smart3
+
+        ##########################################################
+        ## Adjust Turn on Window Unit When Guests Staying after Midnight
+        ##########################################################
+
+- alias: Thermostat - Adjust Turn on Window Unit When Guests Staying after Midnight
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.guest_mode
+      state: 'on'
+
+  condition:
+    - condition: time
+      after: '00:00'
+      before: '04:59'
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -464,11 +525,8 @@
       data:
         entity_id: climate.window_unit
         temperature: 68
-    - service: climate.set_hold_mode
-      data:
-        entity_id: climate.main_floor
-        #Guest = smart3
-        hold_mode: smart3
+    - service: switch.turn_on
+      entity_id: switch.hallway_fan
 
         ##########################################################
         ## If USER1 is not Home Override WFH Mode
@@ -503,3 +561,68 @@
       data:
         entity_id: climate.main_floor
         hold_mode: home
+
+        ##########################################################
+        ## Set Thermostat Home if USER2 Working at 5a
+        ##########################################################
+
+- alias: Thermostat - Set Thermostat Home if USER2 Working at 5a
+
+  trigger:
+    - platform: time
+      after: '05:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.thermostat_away
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.USER2_working
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.home_away
+      state: 'off'
+    - condition: state
+      entity_id: device_tracker.USER2DEVICE
+      state: 'home'
+
+  action:
+    - service: climate.set_hold_mode
+      data:
+        entity_id: climate.main_floor
+        hold_mode: home
+
+        ##########################################################
+        ## Reset Thermostat when USER2 Leaves
+        ##########################################################
+
+- alias: Thermostat - Reset Thermostat when USER2 Leaves
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER2DEVICE
+      from: 'home'
+      to: 'not_home'
+
+  condition:
+    - condition: time
+      after: '05:00'
+      before: '07:00'
+    - condition: state
+      entity_id: input_boolean.home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.thermostat_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER2_working
+      state: 'on'
+
+  action:
+    - service: climate.set_hold_mode
+      data:
+        entity_id: climate.main_floor
+        hold_mode: None

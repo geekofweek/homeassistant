@@ -268,10 +268,10 @@
        transition: 60
 
         ##########################################################
-        ## Turn on Lights at 5a if USER2 Home
+        ## Turn on Lights at 5a if USER2 Home and Working
         ##########################################################
 
-- alias: Lights - Turn on Interior Lights at 5a
+- alias: Lights - Turn on Interior Lights at 5a if USER2 Home and Working
 
   trigger:
     - platform: time
@@ -287,6 +287,9 @@
     - condition: state
       entity_id: input_boolean.lights_morning_disable
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER2_working
+      state: 'on'
 
   action:
     - service: light.turn_on

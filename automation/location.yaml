@@ -110,10 +110,10 @@
       entity_id: cover.garage_door
 
         ##########################################################
-        ## USER2 Home from Waling Unlock Doors
+        ## USER2 Home from Walking Unlock Doors
         ##########################################################
 
-- alias: Location - USER2 Home from Waling Unlock Doors
+- alias: Location - USER2 Home from Walking Unlock Doors
 
   trigger:
     - platform: state
@@ -416,7 +416,7 @@
     - service: light.turn_off
       entity_id: group.interior_lights
     - service: switch.turn_off
-      entity_id: switch.air_purifier, switch.basement_heater, switch.lower_backyard_outdoor_lighting, switch.lower_patio_outdoor_lighting, switch.fireplace
+      entity_id: switch.air_purifier, switch.basement_heater, switch.hallway_fan, switch.lower_backyard_outdoor_lighting, switch.lower_patio_outdoor_lighting, switch.fireplace
     - service: cover.close_cover
       entity_id: cover.garage_door
     - service: homeassistant.turn_off
@@ -893,6 +893,9 @@
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: group.overnight_guests
+      state: 'home'
 
   action:
     - service: homeassistant.turn_on
@@ -912,6 +915,7 @@
   condition:
     - condition: time
       after: '00:00'
+      before: '06:00'
     - condition: state
       entity_id: group.household
       state: 'home'

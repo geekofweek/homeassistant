@@ -30,7 +30,7 @@
     - service: light.turn_off
       entity_id: group.outdoor_lighting
     - service: switch.turn_off
-      entity_id: switch.air_purifier, switch.lower_backyard_outdoor_lighting, switch.lower_patio_outdoor_lighting, switch.fireplace
+      entity_id: switch.air_purifier, switch.hallway_fan, switch.lower_backyard_outdoor_lighting, switch.lower_patio_outdoor_lighting, switch.fireplace
     - service: cover.close_cover
       entity_id: cover.garage_door
     - service: homeassistant.turn_off
