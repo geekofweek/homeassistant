@@ -12,6 +12,27 @@
       - battery
       - last_activity
       - volume
+  - platform: qnap
+    host: REDACTED.101
+    port: 443
+    username: REDACTED
+    password: REDACTED
+    ssl: true
+    verify_ssl: false
+    monitored_conditions:
+      - status
+      - memory_percent_used
+      - system_temp
+      - cpu_usage
+      - cpu_temp
+      - network_link_status
+      - network_tx
+      - network_rx
+      - drive_temp
+      - volume_size_free
+      - volume_size_used
+      - drive_smart_status
+      - volume_percentage_used
   - platform: speedtest
     monitored_conditions:
       - ping

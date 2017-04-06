@@ -362,7 +362,7 @@
     - service: media_player.volume_set
       entity_id: media_player.USER1s_office
       data:
-        volume_level: .6
+        volume_level: '.6'
     - delay: '00:00:01'
     - service: tts.google_say
       data_template:
@@ -407,7 +407,7 @@
         variables:
           master: 'media_player.living_room_sp'
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
-          volume: '.5'
+          volume: '.7'
           what: 'Welcome REDACTED, REDACTED'
     - delay: '00:00:90'
     - service: homeassistant.turn_on
@@ -447,7 +447,7 @@
         variables:
           master: 'media_player.living_room_sp'
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
-          volume: '.5'
+          volume: '.7'
           what: 'Welcome REDACTED, please remove your shoes'
     - delay: '00:00:90'
     - service: homeassistant.turn_on
@@ -487,7 +487,7 @@
         variables:
           master: 'media_player.living_room_sp'
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
-          volume: '.5'
+          volume: '.7'
           what: 'Welcome REDACTED'
     - delay: '00:00:90'
     - service: homeassistant.turn_on
@@ -530,7 +530,7 @@
         variables:
           master: 'media_player.living_room_sp'
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
-          volume: '.5'
+          volume: '.7'
           what: 'Welcome REDACTED, Noob'
     - delay: '00:00:90'
     - service: homeassistant.turn_on
@@ -570,7 +570,7 @@
         variables:
           master: 'media_player.living_room_sp'
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
-          volume: '.5'
+          volume: '.7'
           what: 'Welcome REDACTED'
     - delay: '00:00:90'
     - service: homeassistant.turn_on
@@ -610,7 +610,7 @@
         variables:
           master: 'media_player.living_room_sp'
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
-          volume: '.5'
+          volume: '.7'
           what: 'Welcome REDACTED'
     - delay: '00:00:90'
     - service: homeassistant.turn_on
@@ -650,7 +650,7 @@
         variables:
           master: 'media_player.living_room_sp'
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
-          volume: '.5'
+          volume: '.7'
           what: 'Welcome REDACTED.  Hello REDACTED'
     - delay: '00:00:90'
     - service: homeassistant.turn_on

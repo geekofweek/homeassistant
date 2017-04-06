@@ -52,7 +52,7 @@
     - service: climate.set_operation_mode
       data:
         entity_id: climate.window_unit
-        operation_mode: off
+        operation_mode: 'off'
 
         ##########################################################
         ## Bedtime Guest Mode
@@ -124,6 +124,9 @@
   condition:
     - condition: state
       entity_id: input_boolean.guest_mode
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.thermostat_away
       state: 'off'
     - condition: time
       before: '23:30'

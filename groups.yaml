@@ -138,6 +138,7 @@
       - group.doors
       - group.door_bell
       - group.water_sensors
+      - group.nas
       - group.speedtest
       - group.system
       - group.battery_levels
@@ -589,6 +590,20 @@
     - binary_sensor.wink_hub
     - binary_sensor.wink_relay
     - updater.updater
+
+  NAS:
+    - sensor.nas_status
+    - sensor.nas_smart_status_drive_01
+    - sensor.nas_smart_status_drive_02
+    - sensor.nas_smart_status_drive_03
+    - sensor.nas_smart_status_drive_04
+    - sensor.nas_network_link_eth0
+    - sensor.nas_network_link_eth1
+    - sensor.nas_volume_used_storage
+    - sensor.nas_volume_used_backup
+    - sensor.nas_cpu_usage
+    - sensor.nas_memory_usage
+    - sensor.nas_system_temperature
 
   Battery Levels:
     - sensor.ring_front_door_battery
