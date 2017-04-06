@@ -242,10 +242,14 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.kitchen_cabinets, light.kitchen_sink, group.living_room_lights, light.hallway_light, light.dining_room_table
+      entity_id: light.kitchen_sink, group.living_room_lights, light.hallway_light, light.dining_room_table
       data:
        xy_color: [ 0.5134, 0.4149 ]
        brightness: 150
+    - service: light.turn_on
+      entity_id: light.kitchen_cabinets
+      data:
+       brightness: 2
     - service: light.turn_on
       entity_id: group.front_porch, group.back_door
       data:
@@ -330,10 +334,14 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.kitchen_cabinets, light.kitchen_sink, group.living_room_lights, light.hallway_light, light.dining_room_table
+      entity_id: light.kitchen_sink, group.living_room_lights, light.hallway_light, light.dining_room_table
       data:
        xy_color: [ 0.5134, 0.4149 ]
        brightness: 150
+    - service: light.turn_on
+      entity_id: light.kitchen_cabinets
+      data:
+       brightness: 2
     - service: light.turn_on
       entity_id: group.front_porch, group.back_door
       data:

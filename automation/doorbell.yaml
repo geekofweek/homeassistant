@@ -96,6 +96,13 @@
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
+    - condition: state
+      entity_id: group.front_porch
+      state: 'on'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
 
   action:
     - service: light.turn_on
@@ -126,7 +133,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: group.living_room_lights, light.office_lamp, light.closet_lamp, light.kitchen_ceiling
+      entity_id: group.living_room_lights, light.office_lamp, light.closet_lamp, light.kitchen_sink
       data:
         brightness: 255
 
@@ -160,7 +167,7 @@
       data:
         transition: 900
     - service: light.turn_off
-      entity_id: light.kitchen_ceiling
+      entity_id: light.kitchen_sink
 
         ##########################################################
         ## Turn On Lights when Motion Detected and Away
@@ -184,7 +191,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: group.living_room_lights, light.office_lamp, light.closet_lamp, light.kitchen_ceiling
+      entity_id: group.living_room_lights, light.office_lamp, light.closet_lamp, light.kitchen_sink
       data:
         brightness: 255
 
@@ -218,4 +225,4 @@
       data:
         transition: 900
     - service: light.turn_off
-      entity_id: light.kitchen_ceiling
+      entity_id: light.kitchen_sink

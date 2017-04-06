@@ -32,9 +32,13 @@
       data:
        brightness: 25
     - service: light.turn_on
-      entity_id: light.dining_room_table, light.bathroom_vanity, light.kitchen_cabinets, light.kitchen_sink
+      entity_id: light.dining_room_table, light.bathroom_vanity, light.kitchen_sink
       data:
        brightness: 100
+    - service: light.turn_on
+      entity_id: light.kitchen_cabinets
+      data:
+       brightness: 2
 
         ##########################################################
         ## Plex Lights Off
@@ -62,6 +66,188 @@
        transition: 5
     - service: light.turn_off
       entity_id: group.dining_room, group.kitchen, light.bathroom_vanity
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.watching_plex
+
+        ##########################################################
+        ## Turn Off Watching Plex Boolean
+        ##########################################################
+
+- alias: Media - Turn Off Watching Plex Boolean
+
+  trigger:
+       - platform: state
+         entity_id: media_player.living_room
+         state: 'idle'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.watching_plex
+
+        ##########################################################
+        ## Late Night TV Watching before Midnight Lights On
+        ##########################################################
+
+- alias: Media - Late Night TV Watching Lights On before Midnight
+
+  trigger:
+    - platform: state
+      entity_id: media_player.living_room_apple_tv
+      from: 'playing'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.plex_lights_disable
+      state: 'off'
+    - condition: time
+      after: '21:30'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.watching_plex
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.living_room_lights
+      data:
+       transition: 3
+       profile: relax
+       brightness: 25
+    - service: light.turn_on
+      entity_id: light.hallway_light
+      data:
+       transition: 3
+       profile: relax
+       brightness: 3
+    - service: light.turn_on
+      entity_id: light.dining_room_table, light.bathroom_vanity, light.kitchen_sink, light.kitchen_cabinets
+      data:
+       brightness: 2
+
+        ##########################################################
+        ## Late Night TV Watching after Midnight Lights On
+        ##########################################################
+
+- alias: Media - Late Night TV Watching Lights On after Midnight
+
+  trigger:
+    - platform: state
+      entity_id: media_player.living_room_apple_tv
+      from: 'playing'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.plex_lights_disable
+      state: 'off'
+    - condition: time
+      after: '00:00'
+      before: '03:00'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.watching_plex
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.living_room_lights
+      data:
+       transition: 3
+       profile: relax
+       brightness: 25
+    - service: light.turn_on
+      entity_id: light.hallway_light
+      data:
+       transition: 3
+       profile: relax
+       brightness: 3
+    - service: light.turn_on
+      entity_id: light.dining_room_table, light.bathroom_vanity, light.kitchen_sink, light.kitchen_cabinets
+      data:
+       brightness: 2
+
+        ##########################################################
+        ## Late Night TV Watching after Midnight Lights Off
+        ##########################################################
+
+- alias: Media - Late Night TV Watching Lights Off after Midnight
+
+  trigger:
+       - platform: state
+         entity_id: media_player.living_room_apple_tv
+         to: 'playing'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.plex_lights_disable
+      state: 'off'
+    - condition: time
+      after: '00:00'
+      before: '03:00'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.watching_plex
+      state: 'off'
+
+  action:
+    - service: light.turn_off
+      entity_id: group.living_room_lights, light.hallway_light
+      data:
+       transition: 5
+    - service: light.turn_off
+      entity_id: group.dining_room, group.kitchen, light.bathroom_vanity
+
+        ##########################################################
+        ## Late Night TV Watching before Midnight Lights Off
+        ##########################################################
+
+- alias: Media - Late Night TV Watching Lights Off before Midnight
+
+  trigger:
+       - platform: state
+         entity_id: media_player.living_room_apple_tv
+         to: 'playing'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.plex_lights_disable
+      state: 'off'
+    - condition: time
+      after: '21:30'
+    - condition: state
+      entity_id: input_boolean.watching_plex
+      state: 'off'
+
+  action:
+    - service: light.turn_off
+      entity_id: group.living_room_lights, light.hallway_light
+      data:
+       transition: 5
+    - service: light.turn_off
+      entity_id: group.dining_room, group.kitchen, light.bathroom_vanity
+
 
       #################################################################
       ## Remote

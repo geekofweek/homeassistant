@@ -387,9 +387,14 @@
 
   action:
     - service: light.turn_on
-      entity_id: group.kitchen
+      entity_id: light.kitchen_ceiling
       data:
         brightness: 255
+    - service: light.turn_on
+      entity_id: light.kitchen_cabinets, light.kitchen_sink
+      data:
+        brightness: 2
+
 
         ##########################################################
         ## Turn on Office at Sunset when Occupied

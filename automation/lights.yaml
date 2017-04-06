@@ -293,10 +293,14 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.dining_room_table, light.kitchen_cabinets, light.kitchen_sink, group.living_room_lights, light.bahtroom_vanity
+      entity_id: light.dining_room_table, group.living_room_lights, light.bahtroom_vanity
       data:
        brightness: 25
        xy_color: [ 0.5134, 0.4149 ]
+    - service: light.turn_on
+      entity_id: light.kitchen_cabinets, light.kitchen_sink
+      data:
+       brightness: 2
     - service: light.turn_on
       entity_id: light.hallway_light
       data:
