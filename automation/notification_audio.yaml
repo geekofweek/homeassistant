@@ -92,7 +92,40 @@
         variables:
           master: 'media_player.baement'
           where: 'media_player.basement'
-          volume: '.5'
+          volume: '.6'
+          what: 'Someone is at the Front Door'
+
+        ##########################################################
+        ## Front Door Bell Kitchen Audio Notification
+        ##########################################################
+
+- alias: Notification Audio - Front Doorbell Kitchen
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_button_pressed
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.kitchen_occupancy
+      state: 'on'
+
+  action:
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.kitchen'
+          where: 'media_player.kitchen'
+          volume: '.6'
           what: 'Someone is at the Front Door'
 
         ##########################################################
@@ -132,7 +165,7 @@
         variables:
           master: 'media_player.USER1s_office'
           where: 'media_player.USER1s_office, media_player.USER2s_office'
-          volume: '.5'
+          volume: '.6'
           what: 'Someone is at the Front Door'
 
         ##########################################################

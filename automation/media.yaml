@@ -79,6 +79,10 @@
        - platform: state
          entity_id: media_player.living_room
          state: 'idle'
+         for:
+          hours: 0
+          minutes: 15
+          seconds: 0
 
   condition:
     - condition: state
