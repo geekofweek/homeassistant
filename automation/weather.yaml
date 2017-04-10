@@ -3,15 +3,15 @@
 #################################################################
 
         ##########################################################
-        ## Turn On First Floor Lights when Cloudy
+        ## Turn On First Floor Lights when Raining
         ##########################################################
 
-- alias: Weather - Cloudy First Floor Lights On
+- alias: Weather - Rain First Floor Lights On
 
   trigger:
-    - platform: numeric_state
-      entity_id: sensor.dark_sky_cloud_coverage
-      above: 80
+    - platform: state
+      entity_id: sensor.dark_sky_precip
+      to: 'rain'
 
   condition:
     - condition: state
@@ -37,18 +37,22 @@
       entity_id: group.living_room_lamps, light.kitchen_cabinets, light.dining_room_table, light.media_center_lighting, light.hallway_light
       data:
         xy_color: [ 0.5134, 0.4149 ]
-        brightness: 50
+        brightness: 3
 
         ##########################################################
-        ## Turn Off First Floor Lights when no Longer Cloudy
+        ## Turn Off First Floor Lights when no Longer Raining
         ##########################################################
 
-- alias: Weather - Cloud Cover is over First Floor Lights Off
+- alias: Weather - Rain is over First Floor Lights Off
 
   trigger:
-    - platform: numeric_state
-      entity_id: sensor.dark_sky_cloud_coverage
-      below: 50
+    - platform: state
+      entity_id: sensor.dark_sky_precip
+      to: 'unknown'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
 
   condition:
     - condition: state
@@ -57,21 +61,24 @@
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: input_boolean.rainy_day_disable
+      state: 'off'
 
   action:
     - service: light.turn_off
       entity_id: group.living_room_lamps, light.kitchen_cabinets, light.dining_room_table, light.media_center_lighting, light.hallway_light
 
         ##########################################################
-        ## Turn On USER2 Office when Cloudy
+        ## Turn On USER2 Office when Raining
         ##########################################################
 
-- alias: Weather - Cloudy USER2 Office Lights On
+- alias: Weather - Rain USER2 Office Lights On
 
   trigger:
-    - platform: numeric_state
-      entity_id: sensor.dark_sky_cloud_coverage
-      above: 80
+    - platform: state
+      entity_id: sensor.dark_sky_precip
+      to: 'rain'
 
   condition:
     - condition: state
@@ -89,23 +96,31 @@
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: group.USER2_office
+      state: 'off'
 
   action:
     - service: light.turn_on
       entity_id: group.USER2_office, group.stairs
       data:
-        brightness: 50
+        transition: 300
+        brightness: 255
 
         ##########################################################
-        ## Turn Off USER2 Office when no Longer Cloudy
+        ## Turn Off USER2 Office when no Longer Raining
         ##########################################################
 
-- alias: Weather - Cloud Cover is over USER2 Office Lights Off
+- alias: Weather - Rain is over USER2 Office Lights Off
 
   trigger:
-    - platform: numeric_state
-      entity_id: sensor.dark_sky_cloud_coverage
-      below: 50
+    - platform: state
+      entity_id: sensor.dark_sky_precip
+      to: 'unknown'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
 
   condition:
     - condition: state
@@ -114,21 +129,26 @@
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: input_boolean.rainy_day_disable
+      state: 'off'
 
   action:
     - service: light.turn_off
       entity_id: group.USER2_office, group.stairs
+      data:
+        transition: 900
 
         ##########################################################
-        ## Turn On USER1 Office when Cloudy
+        ## Turn On USER1 Office when Raining
         ##########################################################
 
-- alias: Weather - Cloudy USER1 Office Lights On
+- alias: Weather - Rain USER1 Office Lights On
 
   trigger:
-    - platform: numeric_state
-      entity_id: sensor.dark_sky_cloud_coverage
-      above: 90
+    - platform: state
+      entity_id: sensor.dark_sky_precip
+      to: 'rain'
 
   condition:
     - condition: state
@@ -151,19 +171,23 @@
     - service: light.turn_on
       entity_id: light.office_lamp, group.stairs
       data:
-        brightness: 30
+        brightness: 3
         xy_color: [0.139,0.081]
 
         ##########################################################
-        ## Turn Off USER1 Office when no Longer Cloudy
+        ## Turn Off USER1 Office when no Longer Raining
         ##########################################################
 
-- alias: Weather - Cloud Cover is over USER1 Office Lights Off
+- alias: Weather - Rain is over USER1 Office Lights Off
 
   trigger:
-    - platform: numeric_state
-      entity_id: sensor.dark_sky_cloud_coverage
-      below: 80
+    - platform: state
+      entity_id: sensor.dark_sky_precip
+      to: 'unknown'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
 
   condition:
     - condition: state
@@ -172,6 +196,9 @@
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: input_boolean.rainy_day_disable
+      state: 'off'
 
   action:
     - service: light.turn_off

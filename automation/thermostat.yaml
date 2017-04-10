@@ -23,10 +23,10 @@
     - service: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
 #     re-enable Summer or Winter Mode
-#    - service: homeassistant.turn_on
-#      entity_id: group.summer_mode
     - service: homeassistant.turn_on
-      entity_id: group.winter_mode
+      entity_id: group.summer_mode
+#    - service: homeassistant.turn_on
+#      entity_id: group.winter_mode
 
         ##########################################################
         ## Set Thermostat Away
@@ -90,7 +90,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.dark_sky_temperature
-      above: 70
+      above: 75
 
   action:
     - service: homeassistant.turn_off
@@ -105,7 +105,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.dark_sky_temperature
-      below: 69
+      below: 74
 
   action:
     - service: homeassistant.turn_on
@@ -148,15 +148,15 @@
 - alias: Thermostat - Disable Summer or Winter Mode on Start
 
   trigger:
-    - platform: event
-      event_type: homeassistant_start
+    - platform: homeassistant
+      event: start
 
   action:
 #     Disable Summer or Winter Mode
+#    - service: homeassistant.turn_off
+#      entity_id: group.summer_mode
     - service: homeassistant.turn_off
-      entity_id: group.summer_mode
-#    - service: homeassistant.turn_on
-#      entity_id: group.winter_mode
+      entity_id: group.winter_mode
 
         ##########################################################
         ## Turn off Thermostat when Door Opens for Extended Period
@@ -259,7 +259,7 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
-        temperature: 68
+        temperature: '68'
     - service: switch.turn_on
       entity_id: switch.hallway_fan
 
@@ -314,7 +314,7 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
-        temperature: 68
+        temperature: '68'
     - service: switch.turn_on
       entity_id: switch.hallway_fan
     - service: notify.ios_USER1s_iphone
@@ -352,7 +352,7 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
-        temperature: 68
+        temperature: '68'
     - service: switch.turn_on
       entity_id: switch.hallway_fan
     - service: notify.ios_USER1s_iphone
@@ -425,7 +425,7 @@
       data:
         entity_id: climate.main_floor
         #Guest = smart3
-        hold_mode: smart3
+        hold_mode: 'smart3'
 
         ##########################################################
         ## Turn on Window Unit When Guests Staying before Midnight
@@ -460,7 +460,7 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
-        temperature: 68
+        temperature: '68'
     - service: switch.turn_on
       entity_id: switch.hallway_fan
 
@@ -488,7 +488,7 @@
       data:
         entity_id: climate.main_floor
         #Guest = smart3
-        hold_mode: smart3
+        hold_mode: 'smart3'
 
         ##########################################################
         ## Adjust Turn on Window Unit When Guests Staying after Midnight
@@ -524,7 +524,7 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
-        temperature: 68
+        temperature: '68'
     - service: switch.turn_on
       entity_id: switch.hallway_fan
 
@@ -560,7 +560,7 @@
     - service: climate.set_hold_mode
       data:
         entity_id: climate.main_floor
-        hold_mode: home
+        hold_mode: 'home'
 
         ##########################################################
         ## Set Thermostat Home if USER2 Working at 5a
@@ -593,7 +593,7 @@
     - service: climate.set_hold_mode
       data:
         entity_id: climate.main_floor
-        hold_mode: home
+        hold_mode: 'home'
 
         ##########################################################
         ## Reset Thermostat when USER2 Leaves

@@ -6,11 +6,11 @@
     display_options:
       - 'date_time'
   - platform: ring
-    username: REDACTED
-    password: REDACTED
     monitored_conditions:
       - battery
       - last_activity
+      - last_ding
+      - last_motion
       - volume
   - platform: qnap
     host: REDACTED.101

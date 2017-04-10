@@ -205,8 +205,8 @@
 - alias: Notification Text - Home Assistant Start
 
   trigger:
-    - platform: event
-      event_type: homeassistant_start
+    - platform: homeassistant
+      event: start
 
   action:
     - service: notify.ios_USER1s_iphone

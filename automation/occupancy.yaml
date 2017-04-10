@@ -98,8 +98,13 @@
     - service: light.turn_on
       entity_id: group.USER2_office
       data:
-        transition: 300
-        brightness: 130
+        transition: 900
+        brightness: 255
+    - service: light.turn_on
+      entity_id: group.stairs
+      data:
+        transition: 3
+        brightness: 3
 
         ##########################################################
         ## Turn off USER2 Office when Unoccupied

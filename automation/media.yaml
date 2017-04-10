@@ -47,9 +47,9 @@
 - alias: Media - Plex Started Lights Off
 
   trigger:
-       - platform: state
-         entity_id: media_player.living_room
-         to: 'playing'
+    - platform: state
+      entity_id: media_player.living_room
+      to: 'playing'
 
   condition:
     - condition: state
@@ -76,13 +76,13 @@
 - alias: Media - Turn Off Watching Plex Boolean
 
   trigger:
-       - platform: state
-         entity_id: media_player.living_room
-         state: 'idle'
-         for:
-          hours: 0
-          minutes: 15
-          seconds: 0
+    - platform: state
+      entity_id: media_player.living_room
+      state: 'idle'
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
 
   condition:
     - condition: state
@@ -119,18 +119,21 @@
     - condition: state
       entity_id: input_boolean.watching_plex
       state: 'off'
+    - condition: state
+      entity_id: input_select.remote
+      state: 'Watch TV'
 
   action:
     - service: light.turn_on
       entity_id: group.living_room_lights
       data:
-       transition: 3
+       transition: 1
        profile: relax
        brightness: 25
     - service: light.turn_on
       entity_id: light.hallway_light
       data:
-       transition: 3
+       transition: 1
        profile: relax
        brightness: 3
     - service: light.turn_on
@@ -165,18 +168,21 @@
     - condition: state
       entity_id: input_boolean.watching_plex
       state: 'off'
+    - condition: state
+      entity_id: input_select.remote
+      state: 'Watch TV'
 
   action:
     - service: light.turn_on
       entity_id: group.living_room_lights
       data:
-       transition: 3
+       transition: 1
        profile: relax
        brightness: 25
     - service: light.turn_on
       entity_id: light.hallway_light
       data:
-       transition: 3
+       transition: 1
        profile: relax
        brightness: 3
     - service: light.turn_on
@@ -191,9 +197,9 @@
 - alias: Media - Late Night TV Watching Lights Off after Midnight
 
   trigger:
-       - platform: state
-         entity_id: media_player.living_room_apple_tv
-         to: 'playing'
+    - platform: state
+      entity_id: media_player.living_room_apple_tv
+      to: 'playing'
 
   condition:
     - condition: state
@@ -211,12 +217,15 @@
     - condition: state
       entity_id: input_boolean.watching_plex
       state: 'off'
+    - condition: state
+      entity_id: input_select.remote
+      state: 'Watch TV'
 
   action:
     - service: light.turn_off
       entity_id: group.living_room_lights, light.hallway_light
       data:
-       transition: 5
+       transition: 1
     - service: light.turn_off
       entity_id: group.dining_room, group.kitchen, light.bathroom_vanity
 
@@ -227,9 +236,9 @@
 - alias: Media - Late Night TV Watching Lights Off before Midnight
 
   trigger:
-       - platform: state
-         entity_id: media_player.living_room_apple_tv
-         to: 'playing'
+    - platform: state
+      entity_id: media_player.living_room_apple_tv
+      to: 'playing'
 
   condition:
     - condition: state
@@ -243,12 +252,15 @@
     - condition: state
       entity_id: input_boolean.watching_plex
       state: 'off'
+    - condition: state
+      entity_id: input_select.remote
+      state: 'Watch TV'
 
   action:
     - service: light.turn_off
       entity_id: group.living_room_lights, light.hallway_light
       data:
-       transition: 5
+       transition: 1
     - service: light.turn_off
       entity_id: group.dining_room, group.kitchen, light.bathroom_vanity
 
@@ -260,8 +272,8 @@
 - alias: Media - Remote external update Media Center
 
   trigger:
-    platform: state
-    entity_id: remote.media_center
+    - platform: state
+      entity_id: remote.media_center
 
   action:
     - service: input_select.select_option
@@ -273,8 +285,8 @@
 - alias: Media - Remote start activity from input select media center
 
   trigger:
-    platform: state
-    entity_id: input_select.remote
+    - platform: state
+      entity_id: input_select.remote
 
   action:
     - service: script.turn_on

@@ -10,7 +10,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door_button_pressed
+      entity_id: binary_sensor.ring_front_door_ding
       from: 'off'
       to: 'on'
 
@@ -33,7 +33,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door_button_pressed
+      entity_id: binary_sensor.ring_front_door_ding
       from: 'on'
       to: 'off'
       for:
@@ -61,7 +61,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door_motion
+      entity_id: binary_sensor.ring_front_door_motion
       from: 'off'
       to: 'on'
 
@@ -84,7 +84,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door_motion
+      entity_id: binary_sensor.ring_front_door_motion
       from: 'on'
       to: 'off'
       for:
@@ -119,7 +119,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door_button_pressed
+      entity_id: binary_sensor.ring_front_door_ding
       from: 'off'
       to: 'on'
 
@@ -145,7 +145,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door_button_pressed
+      entity_id: binary_sensor.ring_front_door_ding
       from: 'on'
       to: 'off'
       for:
@@ -177,7 +177,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door_motion
+      entity_id: binary_sensor.ring_front_door_motion
       from: 'off'
       to: 'on'
 
@@ -203,7 +203,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door_motion
+      entity_id: binary_sensor.ring_front_door_motion
       from: 'on'
       to: 'off'
       for:
