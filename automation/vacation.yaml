@@ -20,7 +20,7 @@
 
   condition:
     - condition: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.disable_home_away
       state: 'off'
 
   action:
@@ -41,7 +41,7 @@
 
   condition:
     - condition: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.disable_home_away
       state: 'off'
 
   action:
@@ -62,7 +62,7 @@
 
   condition:
     - condition: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.disable_home_away
       state: 'off'
 
   action:
@@ -83,7 +83,7 @@
 
   condition:
     - condition: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.disable_home_away
       state: 'off'
 
   action:
@@ -104,7 +104,7 @@
 
   condition:
     - condition: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.disable_home_away
       state: 'off'
 
   action:
@@ -133,14 +133,14 @@
       entity_id: scene.vacation
 
         ##########################################################
-        ## Vacation Mode Lights off at 1a
+        ## Vacation Mode Lights off at Midnight
         ##########################################################
 
-- alias: Vacation - Lights Off 1a
+- alias: Vacation - Lights Off Midnight
 
   trigger:
     - platform: time
-      after: '01:12'
+      after: '00:12'
 
   condition:
     - condition: state
@@ -149,7 +149,7 @@
 
   action:
     - service: light.turn_off
-      entity_id: light.basement_stairs, group.living_room_lamps
+      entity_id: light.kitchen_sink, group.living_room_lamps
 
         ##########################################################
         ## Vacation Mode Lights off at 10p
@@ -159,7 +159,7 @@
 
   trigger:
     - platform: time
-      after: '22:32'
+      after: '22:07'
 
   condition:
     - condition: state

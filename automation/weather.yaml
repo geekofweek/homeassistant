@@ -26,7 +26,7 @@
       entity_id: binary_sensor.main_floor_occupancy
       state: 'on'
     - condition: state
-      entity_id: input_boolean.rainy_day_disable
+      entity_id: input_boolean.disable_rainy_day
       state: 'off'
     - condition: state
       entity_id: group.household
@@ -37,37 +37,12 @@
       entity_id: group.living_room_lamps, light.kitchen_cabinets, light.dining_room_table, light.media_center_lighting, light.hallway_light
       data:
         xy_color: [ 0.5134, 0.4149 ]
-        brightness: 3
-
-        ##########################################################
-        ## Turn Off First Floor Lights when no Longer Raining
-        ##########################################################
-
-- alias: Weather - Rain is over First Floor Lights Off
-
-  trigger:
-    - platform: state
-      entity_id: sensor.dark_sky_precip
-      to: 'unknown'
-      for:
-        hours: 0
-        minutes: 30
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: sun.sun
-      state: 'above_horizon'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: input_boolean.rainy_day_disable
-      state: 'off'
-
-  action:
-    - service: light.turn_off
-      entity_id: group.living_room_lamps, light.kitchen_cabinets, light.dining_room_table, light.media_center_lighting, light.hallway_light
+        brightness: 85
+        transition: 300
+    - service: light.turn_on
+      entity_id: light.kitchen_cabinets, light.dining_room_table, light.kitchen_sink
+      data:
+        brightness: 2
 
         ##########################################################
         ## Turn On USER2 Office when Raining
@@ -88,7 +63,7 @@
       entity_id: sun.sun
       state: 'above_horizon'
     - condition: state
-      entity_id: input_boolean.rainy_day_disable
+      entity_id: input_boolean.disable_rainy_day
       state: 'off'
     - condition: state
       entity_id: device_tracker.USER2DEVICE
@@ -106,38 +81,6 @@
       data:
         transition: 300
         brightness: 255
-
-        ##########################################################
-        ## Turn Off USER2 Office when no Longer Raining
-        ##########################################################
-
-- alias: Weather - Rain is over USER2 Office Lights Off
-
-  trigger:
-    - platform: state
-      entity_id: sensor.dark_sky_precip
-      to: 'unknown'
-      for:
-        hours: 0
-        minutes: 30
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: sun.sun
-      state: 'above_horizon'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: input_boolean.rainy_day_disable
-      state: 'off'
-
-  action:
-    - service: light.turn_off
-      entity_id: group.USER2_office, group.stairs
-      data:
-        transition: 900
 
         ##########################################################
         ## Turn On USER1 Office when Raining
@@ -158,7 +101,7 @@
       entity_id: sun.sun
       state: 'above_horizon'
     - condition: state
-      entity_id: input_boolean.rainy_day_disable
+      entity_id: input_boolean.disable_rainy_day
       state: 'off'
     - condition: state
       entity_id: device_tracker.USER1DEVICE
@@ -197,7 +140,7 @@
       entity_id: group.household
       state: 'home'
     - condition: state
-      entity_id: input_boolean.rainy_day_disable
+      entity_id: input_boolean.disable_rainy_day
       state: 'off'
 
   action:

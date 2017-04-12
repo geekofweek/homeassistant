@@ -16,7 +16,7 @@
 
   condition:
     - condition: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.disable_home_away
       state: 'off'
 
   action:
@@ -42,7 +42,7 @@
 
   condition:
     - condition: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.disable_home_away
       state: 'off'
 
   action:
@@ -71,7 +71,7 @@
 
   condition:
     - condition: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.disable_home_away
       state: 'off'
     - condition: state
       entity_id: device_tracker.USER1DEVICE
@@ -290,7 +290,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.office_temperature
-      above: 87
+      above: 86
 
   condition:
     condition: or
@@ -330,7 +330,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.dark_sky_temperature
-      above: 95
+      above: 80
 
   condition:
     - condition: state
@@ -339,6 +339,9 @@
     - condition: state
       entity_id: group.summer_mode
       state: 'on'
+    - condition: time
+      after: '10:00'
+      before: '21:00'
 
   action:
     - service: climate.set_operation_mode
@@ -355,9 +358,6 @@
         temperature: '68'
     - service: switch.turn_on
       entity_id: switch.hallway_fan
-    - service: notify.ios_USER1s_iphone
-      data:
-        message: Hot Outside Turning on Window Unit
 
         ##########################################################
         ## Turn off Winodw Unit When below 80 Outside and Away
@@ -425,7 +425,7 @@
       data:
         entity_id: climate.main_floor
         #Guest = smart3
-        hold_mode: 'smart3'
+        hold_mode: "smart3"
 
         ##########################################################
         ## Turn on Window Unit When Guests Staying before Midnight
@@ -488,13 +488,13 @@
       data:
         entity_id: climate.main_floor
         #Guest = smart3
-        hold_mode: 'smart3'
+        hold_mode: "smart3"
 
         ##########################################################
-        ## Adjust Turn on Window Unit When Guests Staying after Midnight
+        ## Turn on Window Unit When Guests Staying after Midnight
         ##########################################################
 
-- alias: Thermostat - Adjust Turn on Window Unit When Guests Staying after Midnight
+- alias: Thermostat - Turn on Window Unit When Guests Staying after Midnight
 
   trigger:
     - platform: state
@@ -560,7 +560,7 @@
     - service: climate.set_hold_mode
       data:
         entity_id: climate.main_floor
-        hold_mode: 'home'
+        hold_mode: "home"
 
         ##########################################################
         ## Set Thermostat Home if USER2 Working at 5a
@@ -583,7 +583,7 @@
       entity_id: input_boolean.USER2_working
       state: 'on'
     - condition: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.disable_home_away
       state: 'off'
     - condition: state
       entity_id: device_tracker.USER2DEVICE
@@ -593,7 +593,7 @@
     - service: climate.set_hold_mode
       data:
         entity_id: climate.main_floor
-        hold_mode: 'home'
+        hold_mode: "home"
 
         ##########################################################
         ## Reset Thermostat when USER2 Leaves
@@ -612,7 +612,7 @@
       after: '05:00'
       before: '07:00'
     - condition: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.disable_home_away
       state: 'off'
     - condition: state
       entity_id: input_boolean.thermostat_away

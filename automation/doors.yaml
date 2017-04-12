@@ -19,7 +19,7 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: state
-      entity_id: input_boolean.door_open_lights_on
+      entity_id: input_boolean.disable_door_open_lights_on
       state: 'off'
 
   action:
@@ -49,7 +49,7 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: state
-      entity_id: input_boolean.door_open_lights_on
+      entity_id: input_boolean.disable_door_open_lights_on
       state: 'off'
     - condition: state
       entity_id: group.household
@@ -86,7 +86,7 @@
       after: '00:00'
       before: '05:00'
     - condition: state
-      entity_id: input_boolean.door_open_lights_on
+      entity_id: input_boolean.disable_door_open_lights_on
       state: 'off'
     - condition: state
       entity_id: group.household
@@ -118,7 +118,7 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: state
-      entity_id: input_boolean.door_open_lights_on
+      entity_id: input_boolean.disable_door_open_lights_on
       state: 'off'
 
   action:
@@ -145,7 +145,7 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: state
-      entity_id: input_boolean.door_open_lights_on
+      entity_id: input_boolean.disable_door_open_lights_on
       state: 'off'
 
   action:
@@ -175,7 +175,7 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: state
-      entity_id: input_boolean.door_open_lights_on
+      entity_id: input_boolean.disable_door_open_lights_on
       state: 'off'
 
   action:
@@ -206,7 +206,7 @@
       after: '00:00'
       before: '05:00'
     - condition: state
-      entity_id: input_boolean.door_open_lights_on
+      entity_id: input_boolean.disable_door_open_lights_on
       state: 'off'
     - condition: state
       entity_id: group.household

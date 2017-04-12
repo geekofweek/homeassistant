@@ -18,7 +18,7 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: state
-      entity_id: input_boolean.plex_lights_disable
+      entity_id: input_boolean.disable_media_lights
       state: 'off'
 
   action:
@@ -56,7 +56,7 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: state
-      entity_id: input_boolean.plex_lights_disable
+      entity_id: input_boolean.disable_media_lights
       state: 'off'
 
   action:
@@ -102,14 +102,18 @@
   trigger:
     - platform: state
       entity_id: media_player.living_room_apple_tv
-      from: 'playing'
+      to: 'paused'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 5
 
   condition:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: state
-      entity_id: input_boolean.plex_lights_disable
+      entity_id: input_boolean.disable_media_lights
       state: 'off'
     - condition: time
       after: '21:30'
@@ -150,14 +154,18 @@
   trigger:
     - platform: state
       entity_id: media_player.living_room_apple_tv
-      from: 'playing'
+      to: 'paused'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 5
 
   condition:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: state
-      entity_id: input_boolean.plex_lights_disable
+      entity_id: input_boolean.disable_media_lights
       state: 'off'
     - condition: time
       after: '00:00'
@@ -200,13 +208,17 @@
     - platform: state
       entity_id: media_player.living_room_apple_tv
       to: 'playing'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 10
 
   condition:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: state
-      entity_id: input_boolean.plex_lights_disable
+      entity_id: input_boolean.disable_media_lights
       state: 'off'
     - condition: time
       after: '00:00'
@@ -239,13 +251,17 @@
     - platform: state
       entity_id: media_player.living_room_apple_tv
       to: 'playing'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 10
 
   condition:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: state
-      entity_id: input_boolean.plex_lights_disable
+      entity_id: input_boolean.disable_media_lights
       state: 'off'
     - condition: time
       after: '21:30'

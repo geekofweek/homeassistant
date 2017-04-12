@@ -18,6 +18,9 @@
     - condition: state
       entity_id: group.household
       state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.enable_security
+      state: 'on'
 
   action:
     - service: script.turn_on
@@ -27,7 +30,7 @@
           master: 'media_player.living_room_sp'
           where: 'media_player.media_center, media_player.living_room_sp, media_player.dining_room, media_player.kitchen, media_player.bathroom, media_player.USER1s_office, media_player.USER2s_office, media_player.basement'
           volume: '1'
-          what: 'You are not Authorized to be Here'
+          what: 'You are not Authorized to be Here. Law Enforcement Has Been Notified'
 
         ##########################################################
         ## Front Door Bell Bathroom Audio Notification
@@ -47,6 +50,9 @@
       state: 'home'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
       state: 'off'
     - condition: state
       entity_id: binary_sensor.bathroom_occupancy
@@ -82,6 +88,9 @@
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
     - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: state
       entity_id: group.basement
       state: 'on'
 
@@ -113,6 +122,9 @@
       state: 'home'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
       state: 'off'
     - condition: state
       entity_id: binary_sensor.kitchen_occupancy
@@ -148,6 +160,9 @@
         state: 'home'
       - condition: state
         entity_id: input_boolean.disable_voice_greeting
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.disable_doorbell
         state: 'off'
       - condition: or
         conditions:

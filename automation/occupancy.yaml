@@ -16,7 +16,7 @@
 
   condition:
     - condition: state
-      entity_id: input_boolean.occupancy_air_purifier_on_off_disable
+      entity_id: input_boolean.disable_occupancy
       state: 'off'
     - condition: state
       entity_id: device_tracker.USER1DEVICE
@@ -44,7 +44,7 @@
 
   condition:
     - condition: state
-      entity_id: input_boolean.occupancy_air_purifier_on_off_disable
+      entity_id: input_boolean.disable_occupancy
       state: 'off'
 
   action:
@@ -69,7 +69,7 @@
 
   condition:
     - condition: state
-      entity_id: input_boolean.occupancy_lights_off_disable
+      entity_id: input_boolean.disable_occupancy
       state: 'off'
 
 
@@ -93,13 +93,16 @@
     - condition: state
       entity_id: device_tracker.USER2DEVICE
       state: 'home'
+    - condition: state
+      entity_id: group.USER2_office_lights
+      state: 'off'
 
   action:
     - service: light.turn_on
       entity_id: group.USER2_office
       data:
-        transition: 900
-        brightness: 255
+        transition: 300
+        brightness: 127
     - service: light.turn_on
       entity_id: group.stairs
       data:
@@ -124,7 +127,7 @@
 
   condition:
     - condition: state
-      entity_id: input_boolean.occupancy_lights_off_disable
+      entity_id: input_boolean.disable_occupancy
       state: 'off'
 
   action:
@@ -149,7 +152,7 @@
 
   condition:
     - condition: state
-      entity_id: input_boolean.occupancy_lights_off_disable
+      entity_id: input_boolean.disable_occupancy
       state: 'off'
 
   action:
@@ -174,7 +177,7 @@
 
   condition:
     - condition: state
-      entity_id: input_boolean.occupancy_lights_off_disable
+      entity_id: input_boolean.disable_occupancy
       state: 'off'
 
   action:
@@ -199,7 +202,7 @@
 
   condition:
     - condition: state
-      entity_id: input_boolean.occupancy_lights_off_disable
+      entity_id: input_boolean.disable_occupancy
       state: 'off'
 
   action:
@@ -224,7 +227,7 @@
 
   condition:
     - condition: state
-      entity_id: input_boolean.occupancy_lights_off_disable
+      entity_id: input_boolean.disable_occupancy
       state: 'off'
 
   action:
@@ -252,7 +255,7 @@
       entity_id: binary_sensor.main_floor_occupancy
       state: 'off'
     - condition: state
-      entity_id: input_boolean.occupancy_lights_off_disable
+      entity_id: input_boolean.disable_occupancy
       state: 'off'
 
   action:
@@ -280,7 +283,7 @@
       entity_id: binary_sensor.USER2_office_occupancy
       state: 'off'
     - condition: state
-      entity_id: input_boolean.occupancy_lights_off_disable
+      entity_id: input_boolean.disable_occupancy
       state: 'off'
 
   action:
@@ -304,13 +307,12 @@
       entity_id: binary_sensor.office_occupancy
       state: 'off'
     - condition: state
-      entity_id: input_boolean.occupancy_lights_off_disable
+      entity_id: input_boolean.disable_occupancy
       state: 'off'
 
   action:
     - service: light.turn_off
       entity_id: group.stairs
-
 
         ##########################################################
         ## Turn off Basement when Unoccupied
@@ -330,7 +332,7 @@
 
   condition:
     - condition: state
-      entity_id: input_boolean.occupancy_lights_off_disable
+      entity_id: input_boolean.disable_occupancy
       state: 'off'
 
   action:
@@ -354,6 +356,9 @@
       - condition: state
         entity_id: group.household
         state: 'home'
+      - condition: state
+        entity_id: input_boolean.disable_interior_lights_sunset
+        state: 'off'
       - condition: or
         conditions:
           - condition: state
@@ -365,11 +370,15 @@
 
   action:
     - service: light.turn_on
-      entity_id: group.living_room_lamps, light.dining_room_table, light.hallway_light, light.media_center_lighting
+      entity_id: group.living_room_lights, light.hallway_light
       data:
         transition: 900
         xy_color: [ 0.5134, 0.4149 ]
         brightness: 255
+    - service: light.turn_on
+      entity_id: light.dining_room_table
+      data:
+        brightness: 127
 
         ##########################################################
         ## Turn on Kitchen at Sunset when Occupied
@@ -389,6 +398,9 @@
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_interior_lights_sunset
+      state: 'off'
 
   action:
     - service: light.turn_on
@@ -417,7 +429,7 @@
       entity_id: binary_sensor.office_occupancy
       state: 'on'
     - condition: state
-      entity_id: input_boolean.office_lights_sunset
+      entity_id: input_boolean.disable_interior_lights_sunset
       state: 'off'
     - condition: state
       entity_id: device_tracker.USER1DEVICE
@@ -427,7 +439,7 @@
     - service: light.turn_on
       entity_id: light.office_lamp, group.stairs
       data:
-        transition: 900
+        transition: 60
         brightness: 75
         profile: relax
 
@@ -447,7 +459,7 @@
       entity_id: binary_sensor.USER2_office_occupancy
       state: 'on'
     - condition: state
-      entity_id: input_boolean.office_lights_sunset
+      entity_id: input_boolean.disable_interior_lights_sunset
       state: 'off'
     - condition: state
       entity_id: device_tracker.USER2DEVICE
@@ -457,5 +469,5 @@
     - service: light.turn_on
       entity_id: group.USER2_office, group.stairs
       data:
-        transition: 900
+        transition: 300
         brightness: 255

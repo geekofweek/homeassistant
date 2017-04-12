@@ -11,7 +11,13 @@
             flash: long
             brightness: 255
             xy_color: [0.6531,0.2834]
+        group.hue_lights_exterior:
+            state: on
+            brightness: 255
         group.wink_lights:
+            state: on
+            brightness: 255
+        group.wink_exterior:
             state: on
             brightness: 255
         switch.siren:
@@ -27,45 +33,42 @@
             brightness: 2
         group.living_room_lamps:
             state: on
-            brightness: 50
+            brightness: 130
+            profile: relax
         light.closet_lamp:
             state: on
-            brightness: 100
+            brightness: 130
 
   - name: Vacation Disable Automation
     entities:
-        input_boolean.lights_morning_disable:
+        input_boolean.disable_lights_morning:
             state: on
-        input_boolean.exterior_off_night:
+        input_boolean.disable_exterior_off_night:
             state: on
-        input_boolean.rainy_day_disable:
+        input_boolean.disable_rainy_day:
             state: on
-        input_boolean.office_lights_sunset:
+        input_boolean.disable_interior_lights_sunset:
             state: on
-        input_boolean.occupancy_air_purifier_on_off_disable:
+        input_boolean.disable_media_lights:
             state: on
-        input_boolean.plex_lights_disable:
-            state: on
-        input_boolean.occupancy_lights_off_disable:
+        input_boolean.disable_occupancy:
             state: on
         input_boolean.thermostat_away:
             state: on
 
   - name: Vacation Enable Automation
     entities:
-        input_boolean.lights_morning_disable:
+        input_boolean.disable_lights_morning:
             state: off
-        input_boolean.exterior_off_night:
+        input_boolean.disable_exterior_off_night:
             state: off
-        input_boolean.rainy_day_disable:
+        input_boolean.disable_rainy_day:
             state: off
-        input_boolean.office_lights_sunset:
+        input_boolean.disable_interior_lights_sunset:
             state: off
-        input_boolean.occupancy_air_purifier_on_off_disable:
+        input_boolean.disable_media_lights:
             state: off
-        input_boolean.plex_lights_disable:
-            state: off
-        input_boolean.occupancy_lights_off_disable:
+        input_boolean.disable_occupancy:
             state: off
         input_boolean.thermostat_away:
             state: off

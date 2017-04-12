@@ -10,8 +10,6 @@
 
   trigger:
     - platform: state
-      entity_id: input_boolean.lights_morning_disable
-    - platform: state
       entity_id: input_boolean.thermostat_away
     - platform: state
       entity_id: input_boolean.USER1_away
@@ -30,7 +28,7 @@
     - platform: state
       entity_id: input_boolean.vacation_mode
     - platform: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.disable_home_away
     - platform: state
       entity_id: input_boolean.garage_door
     - platform: state

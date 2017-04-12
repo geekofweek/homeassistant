@@ -16,7 +16,7 @@
 
   condition:
     - condition: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.disable_home_away
       state: 'off'
     - condition: state
       entity_id: input_boolean.USER1_away
@@ -46,7 +46,7 @@
       entity_id: input_boolean.disable_auto_garage
       state: 'off'
     - condition: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.disable_home_away
       state: 'off'
     - condition: state
       entity_id: input_boolean.USER1_away
@@ -123,7 +123,7 @@
 
   condition:
     - condition: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.disable_home_away
       state: 'off'
     - condition: state
       entity_id: input_boolean.USER2_away
@@ -154,7 +154,7 @@
       entity_id: input_boolean.disable_auto_garage
       state: 'off'
     - condition: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.disable_home_away
       state: 'off'
     - condition: state
       entity_id: input_boolean.USER2_away
@@ -234,7 +234,7 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.disable_home_away
       state: 'off'
     - condition: state
       entity_id: input_boolean.USER1_away
@@ -272,7 +272,7 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.disable_home_away
       state: 'off'
 
   action:
@@ -299,7 +299,7 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.disable_home_away
       state: 'off'
 
   action:
@@ -326,7 +326,7 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.disable_home_away
       state: 'off'
     - condition: state
       entity_id: input_boolean.USER2_away
@@ -364,7 +364,7 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.disable_home_away
       state: 'off'
 
   action:
@@ -391,7 +391,7 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.disable_home_away
       state: 'off'
 
   action:
@@ -415,7 +415,7 @@
 
   condition:
     - condition: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.disable_home_away
       state: 'off'
 
   action:
@@ -563,7 +563,7 @@
       after: '05:00'
       before: '07:00'
     - condition: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.disable_home_away
       state: 'off'
 
   action:
@@ -586,7 +586,7 @@
     condition: and
     conditions:
       - condition: state
-        entity_id: input_boolean.home_away
+        entity_id: input_boolean.disable_home_away
         state: 'off'
       - condition: state
         entity_id: sun.sun

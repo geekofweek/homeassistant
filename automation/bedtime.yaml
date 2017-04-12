@@ -104,7 +104,7 @@
     - service: climate.set_hold_mode
       data:
         entity_id: climate.main_floor
-        hold_mode: smart3
+        hold_mode: "smart3"
 
         ##########################################################
         ## Bedtime Before 11:30p
@@ -135,7 +135,7 @@
     - service: climate.set_hold_mode
       data:
         entity_id: climate.main_floor
-        hold_mode: sleep
+        hold_mode: "sleep"
 
         ##########################################################
         ## Bedtime after Midnight

@@ -51,7 +51,7 @@
 
   condition:
     - condition: state
-      entity_id: input_boolean.home_away
+      entity_id: input_boolean.disable_home_away
       state: 'off'
     - condition: numeric_state
       entity_id: sensor.basement_temperature

@@ -33,11 +33,6 @@
       - volume_size_used
       - drive_smart_status
       - volume_percentage_used
-  - platform: speedtest
-    monitored_conditions:
-      - ping
-      - download
-      - upload
   - platform: darksky
     api_key: REDACTED
     monitored_conditions:
