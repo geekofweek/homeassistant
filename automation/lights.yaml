@@ -293,12 +293,17 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.dining_room_table, group.living_room_lights, light.bahtroom_vanity
+      entity_id:
+        - light.dining_room_table
+        - group.living_room_lights
+        - light.bahtroom_vanity
       data:
        brightness: 25
        xy_color: [ 0.5134, 0.4149 ]
     - service: light.turn_on
-      entity_id: light.kitchen_cabinets, light.kitchen_sink
+      entity_id:
+        - light.kitchen_cabinets
+        - light.kitchen_sink
       data:
        brightness: 2
     - service: light.turn_on
@@ -320,7 +325,9 @@
 
   action:
     - service: light.turn_off
-      entity_id: group.interior_lights, group.exterior_lights
+      entity_id:
+        - group.interior_lights
+        - group.exterior_lights
     - service: switch.turn_off
       entity_id: switch.lower_backyard_outdoor_lighting
     - service: switch.turn_off
@@ -479,7 +486,9 @@
   action:
     - delay: 00:00:90
     - service: light.turn_off
-      entity_id: light.upper_patio_left, light.upper_patio_right
+      entity_id:
+        - light.upper_patio_left
+        - light.upper_patio_right
 
         ##########################################################
         ## Turn off Back Door Twice

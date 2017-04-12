@@ -27,7 +27,9 @@
 
   action:
     - service: lock.unlock
-      entity_id: lock.back_door, lock.front_door
+      entity_id:
+        - lock.back_door
+        - lock.front_door
 
         ##########################################################
         ## USER1 Home from Driving Open Garage Door Unlock Door
@@ -86,7 +88,9 @@
 
   action:
     - service: lock.lock
-      entity_id: lock.back_door, lock.front_door
+      entity_id:
+        - lock.back_door
+        - lock.front_door
 
         ##########################################################
         ## After USER1 Home Close Garage Door
@@ -135,7 +139,9 @@
 
   action:
     - service: lock.unlock
-      entity_id: lock.back_door, lock.front_door
+      entity_id:
+        - lock.back_door
+        - lock.front_door
 
         ##########################################################
         ## USER2 Home from Driving Open Garage Door Unlock Door
@@ -194,7 +200,9 @@
 
   action:
     - service: lock.lock
-      entity_id: lock.back_door, lock.front_door
+      entity_id:
+        - lock.back_door
+        - lock.front_door
 
         ##########################################################
         ## After USER2 Home Close Garage Door
@@ -242,7 +250,11 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.kitchen_sink, group.living_room_lights, light.hallway_light, light.dining_room_table
+      entity_id:
+        - light.kitchen_sink
+        - group.living_room_lights
+        - light.hallway_light
+        - light.dining_room_table
       data:
        xy_color: [ 0.5134, 0.4149 ]
        brightness: 150
@@ -251,7 +263,9 @@
       data:
        brightness: 2
     - service: light.turn_on
-      entity_id: group.front_porch, group.back_door
+      entity_id:
+        - group.front_porch
+        - group.back_door
       data:
        brightness: 255
 
@@ -334,7 +348,11 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.kitchen_sink, group.living_room_lights, light.hallway_light, light.dining_room_table
+      entity_id:
+        - light.kitchen_sink
+        - group.living_room_lights
+        - light.hallway_light
+        - light.dining_room_table
       data:
        xy_color: [ 0.5134, 0.4149 ]
        brightness: 150
@@ -343,7 +361,9 @@
       data:
        brightness: 2
     - service: light.turn_on
-      entity_id: group.front_porch, group.back_door
+      entity_id:
+        - group.front_porch
+        - group.back_door
       data:
        brightness: 255
 
@@ -424,11 +444,22 @@
     - service: light.turn_off
       entity_id: group.interior_lights
     - service: switch.turn_off
-      entity_id: switch.air_purifier, switch.basement_heater, switch.hallway_fan, switch.lower_backyard_outdoor_lighting, switch.lower_patio_outdoor_lighting, switch.fireplace
+      entity_id:
+        - switch.air_purifier
+        - switch.basement_heater
+        - switch.hallway_fan
+        - switch.lower_backyard_outdoor_lighting
+        - switch.lower_patio_outdoor_lighting
+        - switch.fireplace
     - service: cover.close_cover
       entity_id: cover.garage_door
     - service: homeassistant.turn_off
-      entity_id: input_boolean.guest_mode, input_boolean.interior_holiday, input_boolean.office_rainbow, input_boolean.livingroom_rainbow, input_boolean.front_porch_rainbow
+      entity_id:
+        - input_boolean.guest_mode
+        - input_boolean.interior_holiday
+        - input_boolean.office_rainbow
+        - input_boolean.livingroom_rainbow
+        - input_boolean.front_porch_rainbow
     - service: input_select.select_option
       data:
         entity_id: input_select.remote
@@ -568,7 +599,9 @@
 
   action:
     - service: light.turn_off
-      entity_id: group.interior_lights, group.back_door
+      entity_id:
+        - group.interior_lights
+        - group.back_door
 
         ##########################################################
         ## Turn on Outdoor Lighting when Home
@@ -645,9 +678,9 @@
 
   action:
     - service: homeassistant.turn_on
-      entity_id: input_boolean.USER1_away
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.USER1_greeting
+      entity_id:
+        - input_boolean.USER1_away
+        - input_boolean.USER1_greeting
 
         ##########################################################
         ## Set USER1 Home after 10 Mins
@@ -667,7 +700,10 @@
 
   action:
     - service: homeassistant.turn_off
-      entity_id: input_boolean.USER1_away, input_boolean.USER1_away_driving, input_boolean.USER1_greeting
+      entity_id:
+        - input_boolean.USER1_away
+        - input_boolean.USER1_away_driving
+        - input_boolean.USER1_greeting
 
         ##########################################################
         ## Set USER2 Away Driving
@@ -708,9 +744,9 @@
 
   action:
     - service: homeassistant.turn_on
-      entity_id: input_boolean.USER2_away
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.USER2_greeting
+      entity_id:
+        - input_boolean.USER2_away
+        - input_boolean.USER2_greeting
 
         ##########################################################
         ## Set USER2 Home after 10 Mins
@@ -730,7 +766,10 @@
 
   action:
     - service: homeassistant.turn_off
-      entity_id: input_boolean.USER2_away, input_boolean.USER2_away_driving, input_boolean.USER2_greeting
+      entity_id:
+        - input_boolean.USER2_away
+        - input_boolean.USER2_away_driving
+        - input_boolean.USER2_greeting
 
         ##########################################################
         ## Manually Set USER1 Home
@@ -883,65 +922,3 @@
   action:
     - service: homeassistant.turn_off
       entity_id: input_boolean.manual_USER2_away
-
-        ##########################################################
-        ## Enable Guest Mode Before Midnight
-        ##########################################################
-
-- alias: Location - Enable Guest Mode Before Midnight
-
-  trigger:
-    - platform: state
-      entity_id: group.overnight_guests
-      state: 'home'
-
-  condition:
-    - condition: time
-      after: '23:00'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: group.overnight_guests
-      state: 'home'
-
-  action:
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.guest_mode
-
-        ##########################################################
-        ## Enable Guest Mode after Midnight
-        ##########################################################
-
-- alias: Location - Enable Guest Mode after Midnight
-
-  trigger:
-    - platform: state
-      entity_id: group.overnight_guests
-      state: 'home'
-
-  condition:
-    - condition: time
-      after: '00:00'
-      before: '06:00'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-
-  action:
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.guest_mode
-
-        ##########################################################
-        ## Turn off Guest Mode During the Day
-        ##########################################################
-
-- alias: Location - Turn off Guest Mode During the Day
-
-  trigger:
-    - platform: time
-      after: '10:00'
-
-  action:
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.guest_mode

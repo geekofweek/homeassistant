@@ -32,7 +32,10 @@
       data:
        brightness: 25
     - service: light.turn_on
-      entity_id: light.dining_room_table, light.bathroom_vanity, light.kitchen_sink
+      entity_id:
+        - light.dining_room_table
+        - light.bathroom_vanity
+        - light.kitchen_sink
       data:
        brightness: 100
     - service: light.turn_on
@@ -61,11 +64,16 @@
 
   action:
     - service: light.turn_off
-      entity_id: group.living_room_lights, light.hallway_light
+      entity_id:
+        - group.living_room_lights
+        - light.hallway_light
       data:
        transition: 5
     - service: light.turn_off
-      entity_id: group.dining_room, group.kitchen, light.bathroom_vanity
+      entity_id:
+        - group.dining_room
+        - group.kitchen
+        - light.bathroom_vanity
     - service: homeassistant.turn_on
       entity_id: input_boolean.watching_plex
 
@@ -141,7 +149,11 @@
        profile: relax
        brightness: 3
     - service: light.turn_on
-      entity_id: light.dining_room_table, light.bathroom_vanity, light.kitchen_sink, light.kitchen_cabinets
+      entity_id:
+        - light.dining_room_table
+        - light.bathroom_vanity
+        - light.kitchen_sink
+        - light.kitchen_cabinets
       data:
        brightness: 2
 
@@ -194,7 +206,11 @@
        profile: relax
        brightness: 3
     - service: light.turn_on
-      entity_id: light.dining_room_table, light.bathroom_vanity, light.kitchen_sink, light.kitchen_cabinets
+      entity_id:
+        - light.dining_room_table
+        - light.bathroom_vanity
+        - light.kitchen_sink
+        - light.kitchen_cabinets
       data:
        brightness: 2
 
@@ -235,11 +251,16 @@
 
   action:
     - service: light.turn_off
-      entity_id: group.living_room_lights, light.hallway_light
+      entity_id:
+        - group.living_room_lights
+        - light.hallway_light
       data:
        transition: 1
     - service: light.turn_off
-      entity_id: group.dining_room, group.kitchen, light.bathroom_vanity
+      entity_id:
+        - group.dining_room
+        - group.kitchen
+        - light.bathroom_vanity
 
         ##########################################################
         ## Late Night TV Watching before Midnight Lights Off
@@ -274,12 +295,16 @@
 
   action:
     - service: light.turn_off
-      entity_id: group.living_room_lights, light.hallway_light
+      entity_id:
+        - group.living_room_lights
+        - light.hallway_light
       data:
        transition: 1
     - service: light.turn_off
-      entity_id: group.dining_room, group.kitchen, light.bathroom_vanity
-
+      entity_id:
+        - group.dining_room
+        - group.kitchen
+        - light.bathroom_vanity
 
       #################################################################
       ## Remote

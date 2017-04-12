@@ -34,13 +34,18 @@
 
   action:
     - service: light.turn_on
-      entity_id: group.living_room_lamps, light.kitchen_cabinets, light.dining_room_table, light.media_center_lighting, light.hallway_light
+      entity_id:
+        - group.living_room_lights
+        - light.hallway_light
       data:
         xy_color: [ 0.5134, 0.4149 ]
         brightness: 85
         transition: 300
     - service: light.turn_on
-      entity_id: light.kitchen_cabinets, light.dining_room_table, light.kitchen_sink
+      entity_id:
+        - light.kitchen_cabinets
+        - light.dining_room_table
+        - light.kitchen_sink
       data:
         brightness: 2
 
@@ -77,7 +82,9 @@
 
   action:
     - service: light.turn_on
-      entity_id: group.USER2_office, group.stairs
+      entity_id:
+        - group.USER2_office
+        - group.stairs
       data:
         transition: 300
         brightness: 255
@@ -112,7 +119,9 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.office_lamp, group.stairs
+      entity_id:
+        - light.office_lamp
+        - group.stairs
       data:
         brightness: 3
         xy_color: [0.139,0.081]
@@ -145,4 +154,6 @@
 
   action:
     - service: light.turn_off
-      entity_id: light.office_lamp, group.stairs
+      entity_id:
+        - light.office_lamp
+        - group.stairs

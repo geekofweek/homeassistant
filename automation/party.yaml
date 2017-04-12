@@ -20,7 +20,9 @@
 
   action:
     - service: light.turn_on
-      entity_id: group.living_room, light.hallway_light, light.media_center_lighting
+      entity_id:
+        - group.living_room_lights
+        - light.hallway_light
       data:
         effect: random
         transition: 5

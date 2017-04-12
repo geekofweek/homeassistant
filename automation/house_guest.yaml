@@ -1,0 +1,299 @@
+        ##########################################################
+        ## House Guest Unlock Doors
+        ##########################################################
+
+- alias: Guest - House Guest Unlock Doors
+
+  trigger:
+    - platform: state
+      entity_id: group.house_guest
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.house_guest_away
+      state: 'on'
+
+  action:
+    - service: lock.unlock
+      entity_id:
+        - lock.back_door
+        - lock.front_door
+
+        ##########################################################
+        ## After Guest Home Lock Doors
+        ########################################################
+
+- alias: Guest - After Guest Home Lock Doors
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.house_guest_away
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_lock_unlock_doors
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.front_door_opened
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.back_door_opened
+      state: 'off'
+
+  action:
+    - service: lock.lock
+      entity_id:
+        - lock.back_door
+        - lock.front_door
+
+        ##########################################################
+        ## House Guest Home Turn on Lights
+        ##########################################################
+
+- alias: Guest - House Guest Turn on Lights
+
+  trigger:
+    - platform: state
+      entity_id: group.house_guest
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.house_guest_away
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.kitchen_sink
+        - group.living_room_lights
+        - light.hallway_light
+        - light.dining_room_table
+        - group.stairs
+        - group.guest_bedroom
+      data:
+       xy_color: [ 0.5134, 0.4149 ]
+       brightness: 150
+    - service: light.turn_on
+      entity_id: light.kitchen_cabinets
+      data:
+       brightness: 2
+    - service: light.turn_on
+      entity_id:
+        - group.front_porch
+        - group.back_door
+        - light.garage_light
+      data:
+       brightness: 255
+
+        ##########################################################
+        ## House Guest Home Reset Front Porch Brightness
+        ##########################################################
+
+- alias: Guest - House Guest Reset Front Porch Brightness
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.house_guest_away
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.front_porch
+      data:
+        brightness: 100
+        transition: 60
+
+        ##########################################################
+        ## House Guest Home Reset Back Door Brightness
+        ##########################################################
+
+- alias: Guest - House Guest Reset Back Door Brightness
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.house_guest_away
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.back_door
+      data:
+        brightness: 3
+        transition: 60
+
+        ##########################################################
+        ## Set House Guest Away after 5 Min
+        ##########################################################
+
+- alias: Guest - Set House Guest Away after 5 Mins
+
+  trigger:
+    - platform: state
+      entity_id: group.house_guest
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.house_guest_away
+
+        ##########################################################
+        ## Set House Guest after 10 Mins
+        ##########################################################
+
+- alias: Guest - Set House Guest Home after 10 Mins
+
+  trigger:
+    - platform: state
+      entity_id: group.house_guest
+      from: 'not_home'
+      to: 'home'
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.house_guest_away
+
+        #################################################################
+        ## House Guest Has Arrived Notification
+        #################################################################
+
+- alias: Guest - House Guest Has Arrived Notification
+
+  trigger:
+    - platform: state
+      entity_id: group.house_guest
+      from: 'not_home'
+      to: 'home'
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: House Guest has Arrived
+        data:
+          push:
+            category: camera
+          entity_id: camera.garage_camera
+
+        #################################################################
+        ## House Guest Has Departed Notification
+        #################################################################
+
+- alias: Guest - House Guest Has Departed Notification
+
+  trigger:
+    - platform: state
+      entity_id: group.house_guest
+      from: 'home'
+      to: 'not_home'
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: House Guest Has Departed
+        data:
+          push:
+            category: camera
+          entity_id: camera.garage_camera
+
+        ##########################################################
+        ## Enable Guest Mode Before Midnight
+        ##########################################################
+
+- alias: Guest - Enable Guest Mode Before Midnight
+
+  trigger:
+    - platform: state
+      entity_id: group.overnight_guests
+      state: 'home'
+
+  condition:
+    - condition: time
+      after: '23:00'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.overnight_guests
+      state: 'home'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.guest_mode
+
+        ##########################################################
+        ## Enable Guest Mode after Midnight
+        ##########################################################
+
+- alias: Guest - Enable Guest Mode after Midnight
+
+  trigger:
+    - platform: state
+      entity_id: group.overnight_guests
+      state: 'home'
+
+  condition:
+    - condition: time
+      after: '00:00'
+      before: '06:00'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.guest_mode
+
+        ##########################################################
+        ## Turn off Guest Mode During the Day
+        ##########################################################
+
+- alias: Guest - Turn off Guest Mode During the Day
+
+  trigger:
+    - platform: time
+      after: '10:00'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.guest_mode

@@ -148,7 +148,11 @@
 
   action:
     - service: light.turn_on
-      entity_id: group.living_room_lights, light.office_lamp, light.closet_lamp, light.kitchen_sink
+      entity_id:
+        - group.living_room_lights
+        - light.office_lamp
+        - light.closet_lamp
+        - light.kitchen_sink
       data:
         brightness: 255
 
@@ -181,7 +185,10 @@
 
   action:
     - service: light.turn_off
-      entity_id: group.living_room_lights, light.office_lamp, light.closet_lamp
+      entity_id:
+        - group.living_room_lights
+        - light.office_lamp
+        - light.closet_lamp
       data:
         transition: 900
     - service: light.turn_off
@@ -212,7 +219,11 @@
 
   action:
     - service: light.turn_on
-      entity_id: group.living_room_lights, light.office_lamp, light.closet_lamp, light.kitchen_sink
+      entity_id:
+        - group.living_room_lights
+        - light.office_lamp
+        - light.closet_lamp
+        - light.kitchen_sink
       data:
         brightness: 255
 
@@ -245,7 +256,10 @@
 
   action:
     - service: light.turn_off
-      entity_id: group.living_room_lights, light.office_lamp, light.closet_lamp
+      entity_id:
+        - group.living_room_lights
+        - light.office_lamp
+        - light.closet_lamp
       data:
         transition: 900
     - service: light.turn_off
