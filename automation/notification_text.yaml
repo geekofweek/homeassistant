@@ -55,6 +55,11 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: USER1 Home
+        data:
+          push:
+            category: camera
+          entity_id: camera.garage_camera
+
 
         #################################################################
         ## USER1 Away Notification
@@ -89,6 +94,11 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: USER2 Home
+        data:
+          push:
+            category: camera
+          entity_id: camera.garage_camera
+
 
         #################################################################
         ## USER2 Away Notification

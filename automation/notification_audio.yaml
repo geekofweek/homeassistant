@@ -388,7 +388,7 @@
     - service: media_player.sonos_snapshot
       data:
         with_group: yes
-    - delay: '00:00:02'
+    - delay: '00:00:03'
     - service: media_player.sonos_unjoin
       entity_id:
         - media_player.living_room_sp
@@ -408,15 +408,20 @@
         - media_player.USER1s_office
     - delay: '00:00:01'
     - service: media_player.volume_set
-      entity_id: media_player.USER1s_office
+      entity_id:
+        - media_player.living_room_sp
+        - media_player.dining_room
+        - media_player.kitchen
+        - media_player.bathroom
+        - media_player.USER1s_office
       data:
         volume_level: '.6'
-    - delay: '00:00:01'
+    - delay: '00:00:02'
     - service: tts.google_say
       data_template:
         entity_id: media_player.USER1s_office
         message: "USER2 has left work and will arrive Home in about {{states('sensor.USER2_to_home')}} minutes"
-    - delay: '00:00:20'
+    - delay: '00:00:25'
     - service: media_player.sonos_restore
       data:
         with_group: yes
@@ -619,7 +624,7 @@
           master: 'media_player.living_room_sp'
           where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
           volume: '.7'
-          what: 'Welcome REDACTED'
+          what: 'Welcome REDACTED. Your face looks nice'
     - delay: '00:00:90'
     - service: homeassistant.turn_on
       entity_id: input_boolean.REDACTED_visiting

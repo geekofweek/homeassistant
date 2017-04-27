@@ -243,13 +243,10 @@
 - alias: Guest - Enable Guest Mode Before Midnight
 
   trigger:
-    - platform: state
-      entity_id: group.overnight_guests
-      state: 'home'
+    - platform: time
+      after: '23:00'
 
   condition:
-    - condition: time
-      after: '23:00'
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -270,7 +267,8 @@
   trigger:
     - platform: state
       entity_id: group.overnight_guests
-      state: 'home'
+      from: 'not_home'
+      to: 'home'
 
   condition:
     - condition: time

@@ -63,19 +63,19 @@
       state: 'off'
 
   action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.watching_plex
     - service: light.turn_off
       entity_id:
         - group.living_room_lights
         - light.hallway_light
       data:
-       transition: 5
+       transition: 10
     - service: light.turn_off
       entity_id:
         - group.dining_room
         - group.kitchen
         - light.bathroom_vanity
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.watching_plex
 
         ##########################################################
         ## Turn Off Watching Plex Boolean
@@ -89,7 +89,7 @@
       state: 'idle'
       for:
         hours: 0
-        minutes: 10
+        minutes: 7
         seconds: 0
 
   condition:
@@ -227,7 +227,7 @@
       for:
         hours: 0
         minutes: 0
-        seconds: 10
+        seconds: 30
 
   condition:
     - condition: state
@@ -275,7 +275,7 @@
       for:
         hours: 0
         minutes: 0
-        seconds: 10
+        seconds: 30
 
   condition:
     - condition: state
@@ -286,6 +286,9 @@
       state: 'off'
     - condition: time
       after: '21:30'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
     - condition: state
       entity_id: input_boolean.watching_plex
       state: 'off'

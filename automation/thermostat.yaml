@@ -239,6 +239,9 @@
     - condition: state
       entity_id: group.summer_mode
       state: 'on'
+    - condition: state
+      entity_id: input_boolean.thermostat_away
+      state: 'off'
     - condition: time
       weekday:
         - mon

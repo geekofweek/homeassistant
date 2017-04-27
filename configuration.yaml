@@ -81,6 +81,7 @@ media_player:
       - REDACTED.205
       - REDACTED.206
       - REDACTED.208
+  - platform: roku
 
 remote:
   - platform: harmony
@@ -104,7 +105,7 @@ device_tracker:
     protocol: telnet
     track_new_devices: no
     interval_seconds: 12
-    consider_home: 180
+    consider_home: 300
   - platform: locative
 
 cover:

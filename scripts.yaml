@@ -47,7 +47,7 @@ say:
     - service: media_player.sonos_snapshot
       data_template:
         with_group: yes
-    - delay: '00:00:02'
+    - delay: '00:00:03'
     - service: media_player.sonos_unjoin
       data_template:
         entity_id: "{{ where }}"
@@ -59,14 +59,14 @@ say:
     - delay: '00:00:01'
     - service: media_player.volume_set
       data_template:
+        entity_id: "{{ where }}"
         volume_level: "{{ volume }}"
-        entity_id: "{{ master }}"
-    - delay: '00:00:01'
+    - delay: '00:00:02'
     - service: tts.google_say
       data_template:
         entity_id: "{{ master }}"
         message: "{{ what }}"
-    - delay: '00:00:20'
+    - delay: '00:00:25'
     - service: media_player.sonos_restore
       data_template:
         with_group: yes
