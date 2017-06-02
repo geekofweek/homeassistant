@@ -270,6 +270,48 @@
        brightness: 255
 
         ##########################################################
+        ## USER1 Home Turn on Lights during Rain
+        ##########################################################
+
+- alias: Location - USER1 Home Turn on Lights during Rain
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER1DEVICE
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER1_away
+      state: 'on'
+    - condition: state
+      entity_id: sensor.dark_sky_precip
+      state: 'rain'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - group.living_room_lights
+        - light.hallway_light
+      data:
+       xy_color: [ 0.5134, 0.4149 ]
+       brightness: 50
+    - service: light.turn_on
+      entity_id:
+        - light.kitchen_cabinets
+        - light.kitchen_sink
+        - light.dining_room_table
+      data:
+       brightness: 2
+
+        ##########################################################
         ## USER1 Home Reset Front Porch Brightness
         ##########################################################
 
@@ -366,6 +408,48 @@
         - group.back_door
       data:
        brightness: 255
+
+        ##########################################################
+        ## USER2 Home Turn on Lights during Rain
+        ##########################################################
+
+- alias: Location - USER2 Home Turn on Lights during Rain
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER2DEVICE
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER2_away
+      state: 'on'
+    - condition: state
+      entity_id: sensor.dark_sky_precip
+      state: 'rain'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - group.living_room_lights
+        - light.hallway_light
+      data:
+       xy_color: [ 0.5134, 0.4149 ]
+       brightness: 50
+    - service: light.turn_on
+      entity_id:
+        - light.kitchen_cabinets
+        - light.kitchen_sink
+        - light.dining_room_table
+      data:
+       brightness: 2
 
         ##########################################################
         ## USER2 Home Reset Front Porch Brightness

@@ -55,7 +55,7 @@
     - service: climate.set_operation_mode
       data:
         entity_id: climate.window_unit
-        operation_mode: off
+        operation_mode: 'off'
 
         ##########################################################
         ## Set Thermostat Home When USER2 Leaves Work
@@ -90,7 +90,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.dark_sky_temperature
-      above: 75
+      above: 70
 
   action:
     - service: homeassistant.turn_off
@@ -105,7 +105,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.dark_sky_temperature
-      below: 74
+      below: 69
 
   action:
     - service: homeassistant.turn_on
@@ -242,6 +242,9 @@
     - condition: state
       entity_id: input_boolean.thermostat_away
       state: 'off'
+    - condition: numeric_state
+      entity_id: sensor.dark_sky_temperature
+      above: 68
     - condition: time
       weekday:
         - mon
@@ -450,6 +453,9 @@
     - condition: state
       entity_id: group.summer_mode
       state: 'on'
+    - condition: numeric_state
+      entity_id: sensor.dark_sky_temperature
+      above: 68
 
   action:
     - service: climate.set_operation_mode
@@ -514,6 +520,9 @@
     - condition: state
       entity_id: group.summer_mode
       state: 'on'
+    - condition: numeric_state
+      entity_id: sensor.dark_sky_temperature
+      above: 68
 
   action:
     - service: climate.set_operation_mode
