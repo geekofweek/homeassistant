@@ -59,7 +59,7 @@
   trigger:
     - platform: state
       entity_id: input_boolean.panic_mode
-      state: 'on'
+      to: 'on'
 
   action:
     - service: scene.turn_on

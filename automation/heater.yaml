@@ -70,7 +70,7 @@
   trigger:
     - platform: state
       entity_id: input_boolean.bedtime
-      state: 'on'
+      to: 'on'
       for:
         hours: 0
         minutes: 1

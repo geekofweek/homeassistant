@@ -107,7 +107,7 @@
 
   trigger:
     - platform: time
-      after: '02:00'
+      at: '02:00'
 
   condition:
     - condition: state
@@ -130,7 +130,7 @@
   trigger:
     - platform: state
       entity_id: input_boolean.lock_doors
-      state: 'on'
+      to: 'on'
 
   action:
     service: lock.lock
@@ -165,7 +165,7 @@
   trigger:
     - platform: state
       entity_id: input_boolean.unlock_doors
-      state: 'on'
+      to: 'on'
 
   action:
     service: lock.unlock

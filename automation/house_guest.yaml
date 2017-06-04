@@ -244,7 +244,7 @@
 
   trigger:
     - platform: time
-      after: '23:00'
+      at: '23:00'
 
   condition:
     - condition: state
@@ -290,7 +290,7 @@
 
   trigger:
     - platform: time
-      after: '10:00'
+      at: '10:00'
 
   action:
     - service: homeassistant.turn_off

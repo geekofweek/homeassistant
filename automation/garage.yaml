@@ -36,7 +36,7 @@
   trigger:
     - platform: state
       entity_id: input_boolean.garage_door
-      state: 'on'
+      to: 'on'
 
   condition:
     - condition: state
@@ -56,7 +56,7 @@
   trigger:
     - platform: state
       entity_id: input_boolean.garage_door
-      state: 'off'
+      to: 'off'
 
   condition:
     - condition: state

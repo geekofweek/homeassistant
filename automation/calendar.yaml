@@ -21,7 +21,7 @@
 
   trigger:
     - platform: time
-      after: '21:00'
+      at: '21:00'
 
   action:
     - service: homeassistant.turn_off
@@ -35,7 +35,7 @@
 
   trigger:
     - platform: time
-      after: '23:00'
+      at: '23:00'
 
   action:
     - service: homeassistant.turn_off

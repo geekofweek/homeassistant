@@ -86,10 +86,10 @@
   trigger:
     - platform: state
       entity_id: media_player.living_room
-      state: 'idle'
+      to: 'idle'
       for:
         hours: 0
-        minutes: 7
+        minutes: 5
         seconds: 0
 
   condition:
@@ -344,7 +344,7 @@
 
   trigger:
     - platform: time
-      after: '06:00'
+      at: '06:00'
 
   action:
     - service: media_player.sonos_unjoin
