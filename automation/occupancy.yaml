@@ -359,6 +359,12 @@
       - condition: state
         entity_id: input_boolean.disable_interior_lights_sunset
         state: 'off'
+      - condition: state
+        entity_id: group.living_room_lights
+        state: 'off'
+      - condition: state
+        entity_id: group.dining_room_lights
+        state: 'off'
       - condition: or
         conditions:
           - condition: state
@@ -403,6 +409,9 @@
     - condition: state
       entity_id: input_boolean.disable_interior_lights_sunset
       state: 'off'
+    - condition: state
+      entity_id: group.kitchen_lights
+      state: 'off'
 
   action:
     - service: light.turn_on
@@ -438,6 +447,9 @@
     - condition: state
       entity_id: device_tracker.USER1DEVICE
       state: 'home'
+    - condition: state
+      entity_id: group.USER1_office_lights
+      state: 'off'
 
   action:
     - service: light.turn_on
@@ -470,6 +482,9 @@
     - condition: state
       entity_id: device_tracker.USER2DEVICE
       state: 'home'
+    - condition: state
+      entity_id: group.USER2_office_lights
+      state: 'off'
 
   action:
     - service: light.turn_on

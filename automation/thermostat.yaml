@@ -223,6 +223,39 @@
         away_mode: true
 
         ##########################################################
+        ## Set Thermostat WFH Mode when Hot on Weekends
+        ##########################################################
+
+- alias: Thermostat - Set Thermostat WFH Mode when Hot on Weekends
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.dark_sky_temperature
+      above: 90
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.summer_mode
+      state: 'on'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: time
+      weekday:
+        - sat
+        - sun
+
+  action:
+    - service: climate.set_hold_mode
+      data:
+        entity_id: climate.main_floor
+        #WFH = smart2
+        hold_mode: "smart2"
+
+        ##########################################################
         ## Turn on Window Unit at 10a
         ##########################################################
 
@@ -239,9 +272,6 @@
     - condition: state
       entity_id: group.summer_mode
       state: 'on'
-    - condition: state
-      entity_id: input_boolean.thermostat_away
-      state: 'off'
     - condition: numeric_state
       entity_id: sensor.dark_sky_temperature
       above: 68
@@ -272,14 +302,14 @@
       entity_id: switch.hallway_fan
 
         ##########################################################
-        ## Turn off Window Unit at 9p
+        ## Turn off Window Unit at 10p
         ##########################################################
 
-- alias: Thermostat - Turn off Window Unit at 9p
+- alias: Thermostat - Turn off Window Unit at 10p
 
   trigger:
     - platform: time
-      at: '21:00'
+      at: '22:00'
 
   action:
     - service: climate.set_operation_mode
@@ -328,6 +358,44 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Office is Hot Turning on Window Unit
+
+        ##########################################################
+        ## Turn on Window Unit when Returning Home
+        ##########################################################
+
+- alias: Thermostat - Turn on Window Unit when Returning Home
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: group.summer_mode
+      state: 'on'
+    - condition: numeric_state
+      entity_id: sensor.dark_sky_temperature
+      above: 68
+    - condition: time
+      after: '10:00'
+      before: '22:00'
+
+  action:
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.window_unit
+        operation_mode: 'eco'
+    - service: climate.fan_mode
+      data:
+        entity_id: climate.window_unit
+        fan_mode: 'high'
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.window_unit
+        temperature: '68'
+    - service: switch.turn_on
+      entity_id: switch.hallway_fan
 
         ##########################################################
         ## Turn on Window Unit when Hot Outside
@@ -417,16 +485,19 @@
 - alias: Thermostat - Turn on Guest Settings before Midnight
 
   trigger:
-    - platform: state
-      entity_id: input_boolean.guest_mode
-      to: 'on'
+    - platform: time
+      at: '23:31'
 
   condition:
-    - condition: time
-      after: '23:31'
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: group.overnight_guests
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'on'
 
   action:
     - service: climate.set_hold_mode
@@ -442,13 +513,16 @@
 - alias: Thermostat - Turn on Window Unit When Guests Staying before Midnight
 
   trigger:
-    - platform: state
-      entity_id: input_boolean.guest_mode
-      to: 'on'
+    - platform: time
+      at: '23:31'
 
   condition:
-    - condition: time
-      after: '23:31'
+    - condition: state
+      entity_id: group.overnight_guests
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'on'
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -467,7 +541,7 @@
     - service: climate.fan_mode
       data:
         entity_id: climate.window_unit
-        fan_mode: 'high'
+        fan_mode: 'low'
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
@@ -534,7 +608,7 @@
     - service: climate.fan_mode
       data:
         entity_id: climate.window_unit
-        fan_mode: 'high'
+        fan_mode: 'low'
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit

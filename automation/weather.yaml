@@ -31,6 +31,15 @@
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: group.living_room_lights
+      state: 'off'
+    - condition: state
+      entity_id: group.dining_room_lights
+      state: 'off'
+    - condition: state
+      entity_id: group.kitchen_lights
+      state: 'off'
 
   action:
     - service: light.turn_on
@@ -79,6 +88,9 @@
     - condition: state
       entity_id: group.USER2_office
       state: 'off'
+    - condition: state
+      entity_id: group.USER2_office_lights
+      state: 'off'
 
   action:
     - service: light.turn_on
@@ -116,6 +128,9 @@
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: group.USER1_office_lights
+      state: 'off'
 
   action:
     - service: light.turn_on
