@@ -167,12 +167,17 @@
       - group.traffic_camera_feeds
       - camera.REDACTED
 
-#  troubleshooting:
-#    name: Troubleshooting
-#    view: yes
-#    icon: mdi:exclamation
-#    entities:
-#      - group.all_automations
+  troubleshooting:
+    name: Troubleshooting
+    view: yes
+    icon: mdi:exclamation
+    entities:
+      - group.all_automations
+      - group.all_scripts
+      - group.input_boolean
+      - group.calendars
+      - group.scenes
+      - group.overnight_guests
 
   Traffic Camera Feeds:
     - weblink.REDACTED
@@ -241,8 +246,10 @@
     - device_tracker.REDACTED
     - device_tracker.REDACTED
     - device_tracker.REDACTED
+    - device_tracker.REDACTED
 
   Overnight Guests:
+    - device_tracker.REDACTED
     - device_tracker.REDACTED
     - device_tracker.REDACTED
     - device_tracker.REDACTED
@@ -657,3 +664,30 @@
 
   Wink Lights Exterior:
     - light.garge_light
+
+  Input Boolean:
+    - input_boolean.USER1_greeting
+    - input_boolean.REDACTED_visiting
+    - input_boolean.garage_door
+    - input_boolean.REDACTED_visiting
+    - input_boolean.REDACTED_visiting
+    - input_boolean.REDACTED_visiting
+    - input_boolean.REDACTED_visiting
+    - input_boolean.USER2_greeting
+    - input_boolean.USER2_working
+    - input_boolean.REDACTED_visiting
+    - input_boolean.REDACTED_visiting
+    - input_boolean.watching_plex
+
+  Calendars:
+    - calendar.holidays_in_united_states
+    - calendar.personal
+    - calendar.REDACTED
+    - calendar.work
+    - sensor.USER2_work_offset
+
+  Scenes:
+    - scene.security
+    - scene.vacation
+    - scene.vacation_disable_automation
+    - scene.vacation_enable_automation

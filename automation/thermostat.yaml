@@ -311,6 +311,11 @@
     - platform: time
       at: '22:00'
 
+  condition:
+    - condition: state
+      entity_id: group.overnight_guests
+      state: 'not_home'
+
   action:
     - service: climate.set_operation_mode
       data:
