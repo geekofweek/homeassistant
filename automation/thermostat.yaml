@@ -376,9 +376,6 @@
       to: 'home'
 
   condition:
-    - condition: state
-      entity_id: group.summer_mode
-      state: 'on'
     - condition: numeric_state
       entity_id: sensor.dark_sky_temperature
       above: 68

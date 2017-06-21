@@ -126,9 +126,6 @@
     - condition: time
       after: '21:30'
     - condition: state
-      entity_id: group.friends_and_family
-      state: 'not_home'
-    - condition: state
       entity_id: input_boolean.watching_plex
       state: 'off'
     - condition: state
@@ -182,9 +179,6 @@
     - condition: time
       after: '00:00'
       before: '03:00'
-    - condition: state
-      entity_id: group.friends_and_family
-      state: 'not_home'
     - condition: state
       entity_id: input_boolean.watching_plex
       state: 'off'
@@ -240,9 +234,6 @@
       after: '00:00'
       before: '03:00'
     - condition: state
-      entity_id: group.friends_and_family
-      state: 'not_home'
-    - condition: state
       entity_id: input_boolean.watching_plex
       state: 'off'
     - condition: state
@@ -286,9 +277,6 @@
       state: 'off'
     - condition: time
       after: '21:30'
-    - condition: state
-      entity_id: group.friends_and_family
-      state: 'not_home'
     - condition: state
       entity_id: input_boolean.watching_plex
       state: 'off'

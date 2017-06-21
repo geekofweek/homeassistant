@@ -203,9 +203,6 @@
       entity_id: input_boolean.USER1_greeting
       state: 'on'
     - condition: state
-      entity_id: input_boolean.USER2_greeting
-      state: 'off'
-    - condition: state
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
     - condition: time
@@ -213,7 +210,7 @@
       before: '22:00'
 
   action:
-    - delay: '00:00:03'
+    - delay: '00:00:04'
     - service: script.turn_on
       entity_id: script.say
       data:
@@ -292,9 +289,6 @@
       entity_id: input_boolean.USER2_greeting
       state: 'on'
     - condition: state
-      entity_id: input_boolean.USER1_greeting
-      state: 'off'
-    - condition: state
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
     - condition: time
@@ -302,7 +296,7 @@
       before: '22:00'
 
   action:
-    - delay: '00:00:03'
+    - delay: '00:00:04'
     - service: script.turn_on
       entity_id: script.say
       data:
