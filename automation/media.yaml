@@ -325,10 +325,10 @@
       entity_id: script.input_select_harmony
 
       #################################################################
-      ## Sonos
+      ## Reset Sonos Every Morning
       #################################################################
 
-- alias: Media - Ungroup Sonos Every Morning
+- alias: Media - Reset Sonos Every Morning
 
   trigger:
     - platform: time
@@ -345,3 +345,343 @@
         - media_player.USER1s_office
         - media_player.USER2s_office
         - media_player.basement
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.pop_music
+        - input_boolean.jazz_music
+        - input_boolean.chill_music
+        - input_boolean.electronic_music
+        - input_boolean.classical_music
+        - input_boolean.adele_music
+        - input_boolean.group_all_sonos
+
+        ##########################################################
+        ## Group All Sonos
+        ##########################################################
+
+- alias: Media - Group All Sonos
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.group_all_sonos
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: media_player.sonos_join
+      data:
+        master: media_player.living_room_sp
+      entity_id:
+        - media_player.living_room_sp
+        - media_player.media_center
+        - media_player.dining_room
+        - media_player.kitchen
+        - media_player.bathroom
+        - media_player.USER1s_office
+        - media_player.USER2s_office
+        - media_player.basement
+
+        ##########################################################
+        ## Play Pop Music
+        ##########################################################
+
+- alias: Media - Play Pop Music
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.pop_music
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: media_player.sonos_join
+      data:
+        master: media_player.living_room_sp
+      entity_id:
+        - media_player.living_room_sp
+        - media_player.media_center
+        - media_player.dining_room
+        - media_player.kitchen
+        - media_player.bathroom
+    - delay: '00:00:02'
+    - service: media_player.volume_set
+      entity_id:
+        - media_player.living_room_sp
+        - media_player.media_center
+        - media_player.dining_room
+        - media_player.kitchen
+        - media_player.bathroom
+      data:
+        volume_level: '.4'
+    - delay: '00:00:01'
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.living_room_sp
+        source: 'Pure Pop'
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.classical_music
+        - input_boolean.jazz_music
+        - input_boolean.chill_music
+        - input_boolean.electronic_music
+        - input_boolean.adele_music
+
+        ##########################################################
+        ## Play Jazz Music
+        ##########################################################
+
+- alias: Media - Play Jazz Music
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.jazz_music
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: media_player.sonos_join
+      data:
+        master: media_player.living_room_sp
+      entity_id:
+        - media_player.living_room_sp
+        - media_player.media_center
+        - media_player.dining_room
+        - media_player.kitchen
+        - media_player.bathroom
+    - delay: '00:00:02'
+    - service: media_player.volume_set
+      entity_id:
+        - media_player.living_room_sp
+        - media_player.media_center
+        - media_player.dining_room
+        - media_player.kitchen
+        - media_player.bathroom
+      data:
+        volume_level: '.4'
+    - delay: '00:00:01'
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.living_room_sp
+        source: 'Smooth Jazz'
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.classical_music
+        - input_boolean.pop_music
+        - input_boolean.chill_music
+        - input_boolean.electronic_music
+        - input_boolean.adele_music
+
+        ##########################################################
+        ## Play Classical Music
+        ##########################################################
+
+- alias: Media - Play Classical Music
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.classical_music
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: media_player.sonos_join
+      data:
+        master: media_player.living_room_sp
+      entity_id:
+        - media_player.living_room_sp
+        - media_player.media_center
+        - media_player.dining_room
+        - media_player.kitchen
+        - media_player.bathroom
+    - delay: '00:00:02'
+    - service: media_player.volume_set
+      entity_id:
+        - media_player.living_room_sp
+        - media_player.media_center
+        - media_player.dining_room
+        - media_player.kitchen
+        - media_player.bathroom
+      data:
+        volume_level: '.4'
+    - delay: '00:00:01'
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.living_room_sp
+        source: 'Classical'
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.jazz_music
+        - input_boolean.pop_music
+        - input_boolean.chill_music
+        - input_boolean.electronic_music
+        - input_boolean.adele_music
+
+        ##########################################################
+        ## Play Electronic Music
+        ##########################################################
+
+- alias: Media - Play Electronic Music
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.electronic_music
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: media_player.sonos_join
+      data:
+        master: media_player.living_room_sp
+      entity_id:
+        - media_player.living_room_sp
+        - media_player.media_center
+        - media_player.dining_room
+        - media_player.kitchen
+        - media_player.bathroom
+    - delay: '00:00:02'
+    - service: media_player.volume_set
+      entity_id:
+        - media_player.living_room_sp
+        - media_player.media_center
+        - media_player.dining_room
+        - media_player.kitchen
+        - media_player.bathroom
+      data:
+        volume_level: '.4'
+    - delay: '00:00:01'
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.living_room_sp
+        source: 'Atmospheric Electronic'
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.jazz_music
+        - input_boolean.pop_music
+        - input_boolean.chill_music
+        - input_boolean.classical_music
+        - input_boolean.adele_music
+
+        ##########################################################
+        ## Play Chill Music
+        ##########################################################
+
+- alias: Media - Play Chill Music
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.chill_music
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: media_player.sonos_join
+      data:
+        master: media_player.living_room_sp
+      entity_id:
+        - media_player.living_room_sp
+        - media_player.media_center
+        - media_player.dining_room
+        - media_player.kitchen
+        - media_player.bathroom
+    - delay: '00:00:02'
+    - service: media_player.volume_set
+      entity_id:
+        - media_player.living_room_sp
+        - media_player.media_center
+        - media_player.dining_room
+        - media_player.kitchen
+        - media_player.bathroom
+      data:
+        volume_level: '.4'
+    - delay: '00:00:01'
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.living_room_sp
+        source: 'Chill'
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.jazz_music
+        - input_boolean.electronic_music
+        - input_boolean.pop_music
+        - input_boolean.classical_music
+        - input_boolean.adele_music
+
+        ##########################################################
+        ## Play Adele Music
+        ##########################################################
+
+- alias: Media - Play Adele Music
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.adele_music
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: media_player.sonos_join
+      data:
+        master: media_player.living_room_sp
+      entity_id:
+        - media_player.living_room_sp
+        - media_player.media_center
+        - media_player.dining_room
+        - media_player.kitchen
+        - media_player.bathroom
+    - delay: '00:00:02'
+    - service: media_player.volume_set
+      entity_id:
+        - media_player.living_room_sp
+        - media_player.media_center
+        - media_player.dining_room
+        - media_player.kitchen
+        - media_player.bathroom
+      data:
+        volume_level: '.4'
+    - delay: '00:00:01'
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.living_room_sp
+        source: 'Adele'
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.jazz_music
+        - input_boolean.electronic_music
+        - input_boolean.chill_music
+        - input_boolean.classical_music
+        - input_boolean.chill_music

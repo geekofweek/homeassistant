@@ -27,14 +27,12 @@
       entity_id: group.all_locks
     - service: light.turn_off
       entity_id: group.interior_lights
-    - service: light.turn_off
-      entity_id: group.outdoor_lighting
     - service: switch.turn_off
       entity_id:
         - switch.air_purifier
         - switch.hallway_fan
-        - switch.lower_backyard_outdoor_lighting
-        - switch.lower_patio_outdoor_lighting
+        - switch.lower_backyard_lighting
+        - switch.backyard_patio_lighting
         - switch.fireplace
     - service: cover.close_cover
       entity_id: cover.garage_door
@@ -44,6 +42,13 @@
         - input_boolean.office_rainbow
         - input_boolean.livingroom_rainbow
         - input_boolean.front_porch_rainbow
+        - input_boolean.pop_music
+        - input_boolean.jazz_music
+        - input_boolean.chill_music
+        - input_boolean.electronic_music
+        - input_boolean.classical_music
+        - input_boolean.adele_music
+        - input_boolean.group_all_sonos
     - service: input_select.select_option
       data:
         entity_id: input_select.remote
@@ -88,14 +93,11 @@
       entity_id: group.all_locks
     - service: light.turn_off
       entity_id: group.interior_lights
-    - service: light.turn_off
-      entity_id: group.outdoor_lighting
     - service: switch.turn_off
       entity_id:
         - switch.air_purifier
-        - switch.hallway_fan
-        - switch.lower_backyard_outdoor_lighting
-        - switch.lower_patio_outdoor_lighting
+        - switch.lower_backyard_lighting
+        - switch.backyard_patio_lighting
         - switch.fireplace
     - service: cover.close_cover
       entity_id: cover.garage_door
@@ -105,6 +107,13 @@
         - input_boolean.office_rainbow
         - input_boolean.livingroom_rainbow
         - input_boolean.front_porch_rainbow
+        - input_boolean.pop_music
+        - input_boolean.jazz_music
+        - input_boolean.chill_music
+        - input_boolean.electronic_music
+        - input_boolean.classical_music
+        - input_boolean.adele_music
+        - input_boolean.group_all_sonos
     - service: input_select.select_option
       data:
         entity_id: input_select.remote

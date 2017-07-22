@@ -48,10 +48,9 @@ light:
   allow_unreachable: true
 
 emulated_hue:
+  type: google_home
   host_ip: REDACTED.105
   listen_port: 8300
-  type: alexa
-  upnp_bind_multicast: false
   off_maps_to_on_domains:
     - script
     - scene
@@ -59,18 +58,6 @@ emulated_hue:
 
 media_player:
   - platform: plex
-  - platform: apple_tv
-    host: REDACTED.150
-    login_id: REDACTED
-    name: Living Room Apple TV
-  - platform: apple_tv
-    host: REDACTED.151
-    login_id: REDACTED
-    name: USER1's Office Apple TV
-  - platform: apple_tv
-    host: REDACTED.152
-    login_id: REDACTED
-    name: Bedroom Apple TV
   - platform: sonos
     hosts:
       - REDACTED.200
@@ -83,6 +70,20 @@ media_player:
       - REDACTED.208
   - platform: roku
 
+apple_tv:
+  - name: Living Room Apple TV
+    host: REDACTED.150
+    login_id: REDACTED
+    start_off: false
+  - name: Bedroom Apple TV
+    host: REDACTED.153
+    login_id: REDACTED
+    start_off: false
+  - name: USER1's Office Apple TV
+    host: REDACTED.151
+    login_id: REDACTED
+    start_off: false
+
 remote:
   - platform: harmony
     name: Media Center
@@ -93,19 +94,19 @@ ios:
 wemo:
   static:
     - REDACTED.111
+    - REDACTED.112
 
 ifttt:
   key: REDACTED
 
 device_tracker:
-  - platform: asuswrt
-    host: REDACTED.1
+  - platform: unifi
     username: REDACTED
     password: REDACTED
-    protocol: telnet
-    track_new_devices: no
-    interval_seconds: 12
-    consider_home: 300
+    host: REDACTED.3
+    verify_ssl: false
+    track_new_devices: false
+    consider_home: 180
   - platform: locative
 
 cover:

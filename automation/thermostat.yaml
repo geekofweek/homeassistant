@@ -500,6 +500,9 @@
     - condition: state
       entity_id: input_boolean.guest_mode
       state: 'on'
+    - condition: state
+      entity_id: input_boolean.thermostat_away
+      state: 'off'
 
   action:
     - service: climate.set_hold_mode

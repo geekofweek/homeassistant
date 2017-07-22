@@ -148,6 +148,7 @@
     icon: mdi:play-circle-outline
     entities:
       - group.remote
+      - group.music
       - group.media_player
       - group.sonos
 
@@ -167,17 +168,17 @@
       - group.traffic_camera_feeds
       - camera.REDACTED
 
-#  troubleshooting:
-#    name: Troubleshooting
-#    view: yes
-#    icon: mdi:exclamation
-#    entities:
-#      - group.all_automations
+  troubleshooting:
+    name: Troubleshooting
+    view: yes
+    icon: mdi:exclamation
+    entities:
+      - group.all_automations
 #      - group.all_scripts
-#      - group.input_boolean
+      - group.input_boolean
 #      - group.calendars
 #      - group.scenes
-#      - group.overnight_guests
+      - group.overnight_guests
 
   Traffic Camera Feeds:
     - weblink.REDACTED
@@ -225,7 +226,7 @@
   Household:
     - device_tracker.USER1DEVICE
     - device_tracker.USER2DEVICE
-  #  - group.house_guest
+    - group.house_guest
 
   House Guest:
     - device_tracker.REDACTED
@@ -233,11 +234,13 @@
   Device Location:
     - device_tracker.USER1sipad
     - device_tracker.USER2sipad
-    - device_tracker.USER1smacbookpro
+    - device_tracker.asuemann0617mac
     - device_tracker.USER1smacbookair
     - device_tracker.USER2smacbookair
 
   Friends and Family:
+    - device_tracker.REDACTED
+    - device_tracker.REDACTED
     - device_tracker.REDACTED
     - device_tracker.REDACTED
     - device_tracker.REDACTED
@@ -252,7 +255,9 @@
     - device_tracker.REDACTED
     - device_tracker.REDACTED
     - device_tracker.REDACTED
-  #  - device_tracker.REDACTED
+    - device_tracker.REDACTED
+#    - device_tracker.REDACTED
+#    - device_tracker.REDACTED
 
   Party Modes:
     - input_boolean.livingroom_rainbow
@@ -358,7 +363,6 @@
   Basement:
     - light.basement_stairs
     - group.basement_lights
-    - switch.basement_heater
     - lock.basement_door
     - binary_sensor.basement_door_opened
     - binary_sensor.basement_occupancy
@@ -402,9 +406,9 @@
     - cover.garage_door
     - garage_door.garage_door
 
-  Outdoor Lighting:
-    - switch.lower_patio_outdoor_lighting
-    - switch.lower_backyard_outdoor_lighting
+  Backyard Lighting:
+    - switch.backyard_patio_lighting
+    - switch.lower_backyard_lighting
 
   Interior:
     - light.hallway_light
@@ -427,7 +431,8 @@
     - group.front_porch
     - group.back_door
     - group.back_porch
-    - group.outdoor_lighting
+    - switch.front_yard_lighting
+    - group.backyard_lighting
     - light.garage_light
 
   Alarm:
@@ -475,6 +480,15 @@
     - media_player.USER1s_office
     - media_player.USER2s_office
     - media_player.basement
+
+  Music:
+    - input_boolean.group_all_sonos
+    - input_boolean.pop_music
+    - input_boolean.jazz_music
+    - input_boolean.chill_music
+    - input_boolean.electronic_music
+    - input_boolean.classical_music
+
 
   Plex:
     - media_player.living_room
@@ -604,8 +618,6 @@
     - sensor.nas_smart_status_drive_02
     - sensor.nas_smart_status_drive_03
     - sensor.nas_smart_status_drive_04
-    - sensor.nas_network_link_eth0
-    - sensor.nas_network_link_eth1
     - sensor.nas_volume_used_storage
     - sensor.nas_volume_used_backup
     - sensor.nas_system_temperature

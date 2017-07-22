@@ -70,9 +70,9 @@
     icon: mdi:tablet-ipad
   device_tracker.USER2sipad:
     icon: mdi:tablet-ipad
-  device_tracker.USER1smacbookair:
+  device_tracker.asuemann0617mac:
     icon: mdi:laptop-mac
-  device_tracker.USER1smacbookpro:
+  device_tracker.USER1smacbookair:
     icon: mdi:laptop-mac
   device_tracker.USER2smacbookair:
     icon: mdi:laptop-mac
@@ -105,6 +105,12 @@
   device_tracker.REDACTED:
     icon: mdi:human-female
     friendly_name: REDACTED
+  device_tracker.REDACTED:
+    icon: mdi:human-male
+    friendly_name: REDACTED
+  device_tracker.REDACTED:
+    icon: mdi:human-female
+    friendly_name: REDACTED
   group.friends_and_family:
     friendly_name: Friends & Family
   group.house_guest:
@@ -117,12 +123,17 @@
 
   cover.garage_door:
     icon: mdi:car
+    homebridge_cover_type: garage_door
   binary_sensor.front_door_opened:
     friendly_name: Front Door Open
   binary_sensor.back_door_opened:
     friendly_name: Back Door Open
   binary_sensor.basement_door_opened:
     friendly_name: Basement Door Open
+  cover.garage_door_2:
+    homebridge_hidden: true
+  cover.myq:
+    homebridge_hidden: true
 
         ##########################################################
         ## Door Bell
@@ -131,6 +142,11 @@
   binary_sensor.ring_front_door_ding:
     icon: mdi:bell-ring
     friendly_name: Front Door Ring
+    homebridge_hidden: true
+  binary_sensor.ring_front_door_motion:
+    homebridge_hidden: true
+  binary_sensor.front_door_motion:
+    homebridge_hidden: true
   sensor.ring_front_door_battery:
     friendly_name: Door Bell
     icon: mdi:battery
@@ -203,7 +219,7 @@
     icon: mdi:home
   group.back_porch:
     icon: mdi:home
-  group.outdoor_lighting:
+  group.backyard_lighting:
     icon: mdi:nature
   group.living_room_lamps:
     icon: mdi:lamp
@@ -265,12 +281,17 @@
   binary_sensor.wink_hub:
     friendly_name: Wink Hub
     icon: mdi:ethernet
+    homebridge_hidden: true
   binary_sensor.wink_relay:
     friendly_name: Wink Relay
     icon: mdi:ethernet
+    homebridge_hidden: true
+  binary_sensor.wink_relay_sensor_presence:
+    homebridge_hidden: true
   binary_sensor.philips_hue:
     friendly_name: Hue Hub
     icon: mdi:ethernet
+    homebridge_hidden: true
   binary_sensor.basement_drain_water_sensor_liquid_detected:
     friendly_name: Basement Drain Water Sensor
   binary_sensor.sump_pump_water_sensor_liquid_detected:
@@ -289,20 +310,26 @@
   switch.air_purifier:
     icon: mdi:fan
     friendly_name: Air Purifier
+    homebridge_hidden: true
   switch.hallway_fan:
     icon: mdi:fan
     friendly_name: Hallway Fan
   switch.basement_heater:
     icon: mdi:radiator
+    homebridge_hidden: true
   switch.christmas_tree:
     icon: mdi:pine-tree
     friendly_name: Christmas Tree
   switch.siren:
     icon: mdi:shield-outline
     friendly_name: Alarm Siren
+    homebridge_hidden: true
   switch.living_room_ceiling_fan:
     icon: mdi:ceiling-light
     friendly_name: Living Room Ceiling Fan
+    homebridge_hidden: true
+  switch.front_yard_lighting:
+    icon: mdi:nature
 
         ##########################################################
         ## Lights
@@ -450,6 +477,27 @@
   input_boolean.bedtime:
     emulated_hue: true
     emulated_hue_name: "Bedtime"
+  input_boolean.pop_music:
+    emulated_hue: true
+    emulated_hue_name: "Pop Music"
+  input_boolean.jazz_music:
+    emulated_hue: true
+    emulated_hue_name: "Jazz Music"
+  input_boolean.classical_music:
+    emulated_hue: true
+    emulated_hue_name: "Classical Music"
+  input_boolean.electronic_music:
+    emulated_hue: true
+    emulated_hue_name: "Electronic Music"
+  input_boolean.chill_music:
+    emulated_hue: true
+    emulated_hue_name: "Chill Music"
+  input_boolean.adele_music:
+    emulated_hue: true
+    emulated_hue_name: "Adele Music"
+  input_boolean.group_all_sonos:
+    emulated_hue: true
+    emulated_hue_name: "All Speakers"
 
         ##########################################################
         ## Automations
@@ -561,12 +609,17 @@
   sensor.nas_temperature_drive_04:
     friendly_name: Drive 4 Temprature
 
+        ##########################################################
+        ## Homebridge
+        ##########################################################
+
+
 
         ##########################################################
         ## All Groups / Troubleshooting
         ##########################################################
 
-  #group.all_automations:
-  #  hidden: false
+  group.all_automations:
+    hidden: false
   #group.all_scripts:
   #  hidden: false
