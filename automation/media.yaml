@@ -354,6 +354,10 @@
         - input_boolean.classical_music
         - input_boolean.adele_music
         - input_boolean.group_all_sonos
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.sonos
+        option: "None"
 
         ##########################################################
         ## Group All Sonos
@@ -435,6 +439,10 @@
         - input_boolean.chill_music
         - input_boolean.electronic_music
         - input_boolean.adele_music
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.sonos
+        option: "Play Pop Music"
 
         ##########################################################
         ## Play Jazz Music
@@ -485,6 +493,10 @@
         - input_boolean.chill_music
         - input_boolean.electronic_music
         - input_boolean.adele_music
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.sonos
+        option: "Play Jazz Music"
 
         ##########################################################
         ## Play Classical Music
@@ -535,6 +547,10 @@
         - input_boolean.chill_music
         - input_boolean.electronic_music
         - input_boolean.adele_music
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.sonos
+        option: "Play Classical Music"
 
         ##########################################################
         ## Play Electronic Music
@@ -585,6 +601,10 @@
         - input_boolean.chill_music
         - input_boolean.classical_music
         - input_boolean.adele_music
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.sonos
+        option: "Play Electronic Music"
 
         ##########################################################
         ## Play Chill Music
@@ -635,6 +655,10 @@
         - input_boolean.pop_music
         - input_boolean.classical_music
         - input_boolean.adele_music
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.sonos
+        option: "Play Chill Music"
 
         ##########################################################
         ## Play Adele Music
@@ -685,3 +709,120 @@
         - input_boolean.chill_music
         - input_boolean.classical_music
         - input_boolean.chill_music
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.sonos
+        option: "Play Adele Music Station"
+
+        ##########################################################
+        ## Sonos start activity from input select Pop Music
+        ##########################################################
+
+- alias: Media - Sonos start activity from input select Pop Music
+
+  trigger:
+    - platform: state
+      entity_id: input_select.sonos
+      to: 'Play Pop Music'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.pop_music
+
+        ##########################################################
+        ## Sonos start activity from input select Jazz Music
+        ##########################################################
+
+- alias: Media - Sonos start activity from input select Jazz Music
+
+  trigger:
+    - platform: state
+      entity_id: input_select.sonos
+      to: 'Play Jazz Music'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.jazz_music
+
+        ##########################################################
+        ## Sonos start activity from input select Chill Music
+        ##########################################################
+
+- alias: Media - Sonos start activity from input select Chill Music
+
+  trigger:
+    - platform: state
+      entity_id: input_select.sonos
+      to: 'Play Chill Music'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.chill_music
+
+        ##########################################################
+        ## Sonos start activity from input select Electronic Music
+        ##########################################################
+
+- alias: Media - Sonos start activity from input select Electronic Music
+
+  trigger:
+    - platform: state
+      entity_id: input_select.sonos
+      to: 'Play Electronic Music'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.electronic_music
+
+        ##########################################################
+        ## Sonos start activity from input select Classical Music
+        ##########################################################
+
+- alias: Media - Sonos start activity from input select Classical Music
+
+  trigger:
+    - platform: state
+      entity_id: input_select.sonos
+      to: 'Play Classical Music'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.classical_music
+
+        ##########################################################
+        ## Sonos start activity from input select Adele Music Station
+        ##########################################################
+
+- alias: Media - Sonos start activity from input select Adele Music Station
+
+  trigger:
+    - platform: state
+      entity_id: input_select.sonos
+      to: 'Play Adele Music Station'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.adele_music
+
+        ##########################################################
+        ## Sonos stop activity from input select Off
+        ##########################################################
+
+- alias: Media - Sonos stop activity from input select Off
+
+  trigger:
+    - platform: state
+      entity_id: input_select.sonos
+      to: 'None'
+
+  action:
+    - service: media_player.media_stop
+      entity_id:
+        - media_player.media_center
+        - media_player.living_room_sp
+        - media_player.dining_room
+        - media_player.kitchen
+        - media_player.bathroom
+        - media_player.USER1s_office
+        - media_player.USER2s_office
+        - media_player.basement

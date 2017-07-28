@@ -216,12 +216,13 @@
     - input_boolean.manual_USER1_away
     - input_boolean.manual_USER2_away
     - input_boolean.house_guest_away
+    - input_boolean.guest_mode
 
   Automation On Demand:
     - input_boolean.bedtime
     - input_boolean.vacation_mode
-    - input_boolean.guest_mode
     - input_select.remote
+    - input_select.sonos
 
   Household:
     - device_tracker.USER1DEVICE
@@ -245,7 +246,7 @@
     - device_tracker.REDACTED
     - device_tracker.REDACTED
     - device_tracker.REDACTED
-    - device_tracker.REDACTED
+#    - device_tracker.REDACTED
     - device_tracker.REDACTED
     - device_tracker.REDACTED
     - device_tracker.REDACTED
@@ -256,8 +257,8 @@
     - device_tracker.REDACTED
     - device_tracker.REDACTED
     - device_tracker.REDACTED
-#    - device_tracker.REDACTED
-#    - device_tracker.REDACTED
+    - device_tracker.REDACTED
+    - device_tracker.REDACTED
 
   Party Modes:
     - input_boolean.livingroom_rainbow
@@ -481,23 +482,15 @@
     - media_player.USER2s_office
     - media_player.basement
 
-  Music:
-    - input_boolean.group_all_sonos
-    - input_boolean.pop_music
-    - input_boolean.jazz_music
-    - input_boolean.chill_music
-    - input_boolean.electronic_music
-    - input_boolean.classical_music
-
-
   Plex:
     - media_player.living_room
     - media_player.bedroom
     - media_player.plex_for_vizio_vizio_mtk
 
   Remote:
-    - sensor.media_center
     - input_select.remote
+    - input_select.sonos
+    - input_boolean.group_all_sonos
 
   Water Sensors:
     - binary_sensor.basement_drain_water_sensor_liquid_detected
