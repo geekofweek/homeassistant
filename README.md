@@ -1,7 +1,7 @@
 # Home Assistant
 Example [Home Assistant](https://home-assistant.io) Configs
 
-Home Assistant Version: 0.50.0
+Home Assistant Version: 0.50.2
 
 # Devices
 
@@ -31,6 +31,11 @@ Home Assistant Version: 0.50.0
 * [Sonos CONNECT](https://www.amazon.com/Sonos-Wireless-Receiver-Component-Streaming/dp/B001CROHX6/ref=sr_1_3?s=aht&ie=UTF8&qid=1480883287&sr=1-3&keywords=Sonos+Connect) - x1
 * [Sonos CONNECT:AMP](https://www.amazon.com/Sonos-CONNECT-Wireless-Amplifier-Streaming/dp/B001CROHU4/ref=sr_1_2?ie=UTF8&qid=1501368078&sr=8-2&keywords=sonos+connect+amp) - x1
 * [Harmony Hub](https://www.amazon.com/Logitech-Harmony-Companion-Control-Entertainment/dp/B00N3RFC4G/ref=sr_1_2?s=aht&ie=UTF8&qid=1479756420&sr=1-2&keywords=harmony+hub) - x1
+* [Ubiquiti Unifi Security Gateway](https://www.amazon.com/Ubiquiti-Unifi-Security-Gateway-USG/dp/B00LV8YZLK/ref=sr_1_5?s=electronics&ie=UTF8&qid=1501612028&sr=1-5&keywords=unifi) - x1
+* [Ubiquiti UniFi Switch - 24 Ports](https://www.amazon.com/Ubiquiti-UniFi-Switch-Managed-US-24-250W/dp/B00OJZUQ24/ref=pd_sbs_147_1?_encoding=UTF8&pd_rd_i=B00OJZUQ24&pd_rd_r=Y91CYDQDH8YKZCGFK62R&pd_rd_w=b1TBc&pd_rd_wg=RWi2l&psc=1&refRID=Y91CYDQDH8YKZCGFK62R) - x1
+* [Ubiquiti Networks Unifi AC PRO](https://www.amazon.com/Ubiquiti-Networks-802-11ac-Dual-Radio-UAP-AC-PRO-US/dp/B015PRO512/ref=sr_1_1?ie=UTF8&qid=1501612450&sr=8-1&keywords=unifi+ap) - x2
+* [Ubiquiti Networks Unifi AC LR](https://www.amazon.com/Ubiquiti-Networks-802-11ac-Dual-Radio-UAP-AC-PRO-US/dp/B015PRCBBI/ref=sr_1_1?ie=UTF8&qid=1501612450&sr=8-1&keywords=unifi%2Bap&th=1) - x1
+* [Ubiquiti Unifi Cloud Key](https://www.amazon.com/Ubiquiti-Unifi-Cloud-Key-Control/dp/B017T2QB22/ref=sr_1_1?s=electronics&ie=UTF8&qid=1501612546&sr=1-1&keywords=unifi+cloud+key) - x1
 * [iOS App](https://home-assistant.io/ecosystem/ios/) (iOS Device Tracking)
 * [Locative App](https://my.locative.io) (iOS Device Tracking)
 * [Plex Media Server](https://plex.tv)
