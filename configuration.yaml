@@ -102,11 +102,10 @@ ifttt:
   key: REDACTED
 
 device_tracker:
-  - platform: unifi
-    username: REDACTED
-    password: REDACTED
-    host: REDACTED.3
-    verify_ssl: false
+  - platform: snmp
+    host: REDACTED.1
+    community: public
+    baseoid: 1.3.6.1.2.1.4.22.1.2
     track_new_devices: false
     consider_home: 180
   - platform: locative
