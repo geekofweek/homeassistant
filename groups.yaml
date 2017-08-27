@@ -18,6 +18,8 @@
       - group.household
       - group.automation_on_demand
       - group.garage
+      - camera.front_porch
+      - camera.garage
       - persistent_notification.1
 
   lights:
@@ -97,20 +99,9 @@
       - group.exterior_lights
       - group.door_bell
       - group.garage
+      - camera.front_porch
+      - camera.garage
       - media_player.backyard_patio
-
-  automation:
-    name: Automation
-    view: yes
-    icon: mdi:robot
-    entities:
-      - group.alarm
-      - group.automation_override
-      - group.automation_on_demand
-      - group.location_controls
-      - group.door_locks
-      - group.holiday_modes
-      - group.party_modes
 
   weatherdashboard:
     name: Weather
@@ -127,22 +118,6 @@
       - group.humidity
       - group.weather_summary
 
-  sensors:
-    name: Sensors
-    view: yes
-    icon: mdi:gauge
-    entities:
-      - group.household
-      - group.device_location
-      - group.friends_and_family
-      - group.occupancy
-      - group.doors
-      - group.door_bell
-      - group.water_sensors
-      - group.nas
-      - group.system
-      - group.battery_levels
-
   media:
     name: Media
     view: yes
@@ -158,7 +133,38 @@
     view: yes
     icon: mdi:camera
     entities:
-      - camera.garage_camera
+      - camera.front_porch
+      - camera.garage
+
+  automation:
+    name: Automation
+    view: yes
+    icon: mdi:robot
+    entities:
+      - group.alarm
+      - group.automation_override
+      - group.automation_on_demand
+      - group.location_controls
+      - group.door_locks
+      - group.holiday_modes
+      - group.party_modes
+
+  sensors:
+    name: Sensors
+    view: yes
+    icon: mdi:gauge
+    entities:
+      - group.household
+      - group.device_location
+      - group.friends_and_family
+      - group.occupancy
+      - group.doors
+      - group.door_bell
+      - group.water_sensors
+      - group.nas
+      - group.system
+      - group.battery_levels
+      - group.dns
 
   traffic:
     name: Traffic
@@ -217,20 +223,22 @@
     - input_boolean.manual_USER1_away
     - input_boolean.manual_USER2_away
     - input_boolean.house_guest_away
+    - input_boolean.vacation_mode
     - input_boolean.guest_mode
 
   Automation On Demand:
     - input_boolean.bedtime
-    - input_boolean.vacation_mode
     - input_select.remote
     - input_select.sonos
 
   Household:
     - device_tracker.USER1DEVICE
     - device_tracker.USER2DEVICE
-#    - group.house_guest
+    - group.house_guest
 
   House Guest:
+    - device_tracker.REDACTED
+    - device_tracker.REDACTED
     - device_tracker.REDACTED
 
   Device Location:
@@ -252,10 +260,12 @@
     - device_tracker.REDACTED
     - device_tracker.REDACTED
     - device_tracker.REDACTED
+    - device_tracker.REDACTED
     - device_tracker.REDACTEDiphone
     - device_tracker.REDACTEDiphone
 
   Overnight Guests:
+    - device_tracker.REDACTED
     - device_tracker.REDACTED
     - device_tracker.REDACTED
     - device_tracker.REDACTED
@@ -405,10 +415,8 @@
     - light.guest_bedroom_nightstand
 
   Garage:
-    - camera.garage_camera
     - light.garage_light
     - cover.garage_door
-    - garage_door.garage_door
 
   Backyard Lighting:
     - switch.backyard_patio_lighting
@@ -630,6 +638,12 @@
     - sensor.basement_door_sensor_batt
     - sensor.basement_drain_water_sensor_batt
     - sensor.sump_pump_water_sensor_batt
+
+  DNS:
+    - sensor.pihole_ads_blocked_today
+    - sensor.pihole_ads_blocked_today_2
+    - sensor.pihole_ads_percentage_blocked_today
+    - sensor.pihole_ads_percentage_blocked_today_2
 
   Hue lights:
     - light.USER1s_nightstand

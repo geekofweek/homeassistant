@@ -125,6 +125,9 @@
   device_tracker.REDACTED:
     icon: mdi:human-female
     friendly_name: REDACTED
+  device_tracker.REDACTED:
+    icon: mdi:human-female
+    friendly_name: REDACTED
 
         ##########################################################
         ##  Doors
@@ -622,10 +625,21 @@
     friendly_name: Drive 4 Temprature
 
         ##########################################################
-        ## Homebridge
+        ## DNS
         ##########################################################
 
-
+  sensor.pihole_ads_blocked_today:
+    friendly_name: DNS 1 Queries Blocked
+    icon: mdi:dns
+  sensor.pihole_ads_blocked_today_2:
+    friendly_name: DNS 2 Queries Blocked
+    icon: mdi:dns
+  sensor.pihole_ads_percentage_blocked_today:
+    friendly_name: DNS 1 Percentage Blocked
+    icon: mdi:dns
+  sensor.pihole_ads_percentage_blocked_today_2:
+    friendly_name: DNS 2 Percentage Blocked
+    icon: mdi:dns
 
         ##########################################################
         ## All Groups / Troubleshooting

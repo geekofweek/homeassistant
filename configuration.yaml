@@ -128,11 +128,9 @@ binary_sensor:
       - motion
 
 camera:
-  - platform: foscam
-    ip: REDACTED.107
-    name: Garage Camera
-    port: REDACTED
-    username: REDACTED
+  - platform: uvc
+    nvr: REDACTED.99
+    key: REDACTED
     password: REDACTED
   - platform: ffmpeg
     input: http://REDACTED/rtplive/REDACTED/playlist.m3u8
