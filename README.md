@@ -57,11 +57,11 @@ Home Assistant Version: 0.52.0
 ![UI](images/offices-screenshot.jpg)
 ![UI](images/basement-screenshot.jpg)
 ![UI](images/outdoor-screenshot.jpg)
-![UI](images/automation-screenshot.jpg)
 ![UI](images/weather-screenshot.jpg)
-![UI](images/sensors-screenshot.jpg)
 ![UI](images/media-screenshot.jpg)
 ![UI](images/camera-screenshot.jpg)
+![UI](images/automation-screenshot.jpg)
+![UI](images/sensors-screenshot.jpg)
 ![UI](images/traffic-screenshot.jpg)
 
 
