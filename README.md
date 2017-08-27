@@ -43,7 +43,7 @@ Home Assistant Version: 0.52.0
 * [iOS App](https://home-assistant.io/ecosystem/ios/) (iOS Device Tracking)
 * [Locative App](https://my.locative.io) (iOS Device Tracking)
 * [Plex Media Server](https://plex.tv)
-* [Homebridge](https://github.com/nfarina/homebridge) *for Apple HomeKit Support*
+* [Homebridge](https://github.com/nfarina/homebridge) (Apple HomeKit Support)
 
 
 
