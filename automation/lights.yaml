@@ -69,6 +69,11 @@
         minutes: 60
         seconds: 0
 
+  condition:
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+
   action:
     - service: light.turn_off
       entity_id: light.garage_light

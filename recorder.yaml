@@ -3,7 +3,7 @@
 #################################################################
 
   purge_days: 30
-  db_url: mysql://REDACTED@REDACTED/REDACTED
+  db_url: mysql://REDACTED@REDACTED.101/REDACTED
 
   exclude:
     domains:
@@ -125,6 +125,11 @@
       - light.stairs_3_2
       - light.upper_patio_left_2
       - light.upper_patio_right_2
+      - light.bathroom
+      - light.dining_room
+      - light.interior
+      - light.kitchen
+      - light.upstairs
       - sensor.USER1_to_home
       - sensor.basement_temperature_2
       - sensor.bathroom_temperature_2
@@ -254,3 +259,5 @@
       - remote.USER1s_office_apple_tv
       - remote.office_apple_tv
       - remote.bedroom
+      - device_tracker.REDACTED
+      - device_tracker.REDACTEDiphone

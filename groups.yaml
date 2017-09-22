@@ -198,33 +198,37 @@
     - weblink.REDACTED
 
   Automation Override:
-    - input_boolean.disable_voice_greeting
-    - input_boolean.disable_doorbell
-    - input_boolean.disable_door_open_lights_on
-    - input_boolean.disable_exterior_on_sunset
-    - input_boolean.disable_exterior_off_night
-    - input_boolean.disable_auto_garage
-    - input_boolean.disable_home_away
-    - input_boolean.disable_interior_lights_sunset
-    - input_boolean.disable_lights_morning
-    - input_boolean.disable_lock_unlock_doors
-    - input_boolean.disable_media_lights
-    - input_boolean.disable_occupancy
-    - input_boolean.disable_rainy_day
-    - input_boolean.disable_water_sensors
+    control: hidden
+    entities:
+      - input_boolean.disable_voice_greeting
+      - input_boolean.disable_doorbell
+      - input_boolean.disable_door_open_lights_on
+      - input_boolean.disable_exterior_on_sunset
+      - input_boolean.disable_exterior_off_night
+      - input_boolean.disable_auto_garage
+      - input_boolean.disable_home_away
+      - input_boolean.disable_interior_lights_sunset
+      - input_boolean.disable_lights_morning
+      - input_boolean.disable_lock_unlock_doors
+      - input_boolean.disable_media_lights
+      - input_boolean.disable_occupancy
+      - input_boolean.disable_rainy_day
+      - input_boolean.disable_water_sensors
 
   Location Controls:
-    - input_boolean.USER1_away
-    - input_boolean.USER1_away_driving
-    - input_boolean.USER2_away
-    - input_boolean.USER2_away_driving
-    - input_boolean.USER1_home
-    - input_boolean.USER2_home
-    - input_boolean.manual_USER1_away
-    - input_boolean.manual_USER2_away
-    - input_boolean.house_guest_away
-    - input_boolean.vacation_mode
-    - input_boolean.guest_mode
+    control: hidden
+    entities:
+      - input_boolean.USER1_away
+      - input_boolean.USER1_away_driving
+      - input_boolean.USER2_away
+      - input_boolean.USER2_away_driving
+      - input_boolean.USER1_home
+      - input_boolean.USER2_home
+      - input_boolean.manual_USER1_away
+      - input_boolean.manual_USER2_away
+      - input_boolean.house_guest_away
+      - input_boolean.vacation_mode
+      - input_boolean.guest_mode
 
   Automation On Demand:
     - input_boolean.bedtime
@@ -237,7 +241,7 @@
     - group.house_guest
 
   House Guest:
-    - device_tracker.REDACTED
+  #  - device_tracker.REDACTED
     - device_tracker.REDACTED
     - device_tracker.REDACTED
 
@@ -251,7 +255,7 @@
   Friends and Family:
     - device_tracker.REDACTED
     - device_tracker.REDACTED
-    - device_tracker.REDACTED
+  #  - device_tracker.REDACTED
     - device_tracker.REDACTED
     - device_tracker.REDACTED
     - device_tracker.REDACTED
@@ -274,9 +278,11 @@
     - device_tracker.REDACTED
 
   Party Modes:
-    - input_boolean.livingroom_rainbow
-    - input_boolean.office_rainbow
-    - input_boolean.front_porch_rainbow
+    control: hidden
+    entities:
+      - input_boolean.livingroom_rainbow
+      - input_boolean.office_rainbow
+      - input_boolean.front_porch_rainbow
 
   Holiday Modes:
     - sensor.holidays_calendar
@@ -284,14 +290,16 @@
     - input_boolean.interior_holiday
 
   Living Room:
-    - group.living_room_lamps
-    - light.media_center_lighting
-    - switch.fireplace
-    - switch.living_room_ceiling_fan
-    - lock.front_door
-    - binary_sensor.front_door_opened
-    - binary_sensor.living_room_occupancy
-    - sensor.living_room_temperature
+    control: hidden
+    entities:
+      - group.living_room_lamps
+      - light.media_center_lighting
+      - switch.fireplace
+      - switch.living_room_ceiling_fan
+      - lock.front_door
+      - binary_sensor.front_door_opened
+      - binary_sensor.living_room_occupancy
+      - sensor.living_room_temperature
 
   Living Room Lamps:
     - light.living_room_lamp_1
@@ -302,12 +310,14 @@
     - light.media_center_lighting
 
   Bedroom:
-    - light.USER1s_nightstand
-    - light.USER2s_nightstand
-    - light.bedroom_lamp
-    - light.closet_lamp
-    - binary_sensor.bedroom_occupancy
-    - sensor.bedroom_temperature
+    control: hidden
+    entities:
+      - light.USER1s_nightstand
+      - light.USER2s_nightstand
+      - light.bedroom_lamp
+      - light.closet_lamp
+      - binary_sensor.bedroom_occupancy
+      - sensor.bedroom_temperature
 
   Bedroom Lights:
     - light.USER1s_nightstand
@@ -316,13 +326,15 @@
     - light.closet_lamp
 
   Kitchen:
-    - light.kitchen_ceiling
-    - light.kitchen_cabinets
-    - light.kitchen_sink
-    - lock.back_door
-    - binary_sensor.back_door_opened
-    - binary_sensor.kitchen_occupancy
-    - sensor.kitchen_temperature
+    control: hidden
+    entities:
+      - light.kitchen_ceiling
+      - light.kitchen_cabinets
+      - light.kitchen_sink
+      - lock.back_door
+      - binary_sensor.back_door_opened
+      - binary_sensor.kitchen_occupancy
+      - sensor.kitchen_temperature
 
   Kitchen Lights:
     - light.kitchen_ceiling
@@ -330,25 +342,31 @@
     - light.kitchen_sink
 
   Bathroom:
-    - light.bathroom_vanity
-    - binary_sensor.bathroom_occupancy
-    - sensor.bathroom_temperature
+    control: hidden
+    entities:
+      - light.bathroom_vanity
+      - binary_sensor.bathroom_occupancy
+      - sensor.bathroom_temperature
 
   USER1 Office:
-    - light.office_ceiling
-    - light.office_lamp
-    - switch.air_purifier
-    - binary_sensor.office_occupancy
-    - sensor.office_temperature
+    control: hidden
+    entities:
+      - light.office_ceiling
+      - light.office_lamp
+      - switch.air_purifier
+      - binary_sensor.office_occupancy
+      - sensor.office_temperature
 
   USER1 Office Lights:
     - light.office_ceiling
     - light.office_lamp
 
   USER2 Office:
-    - group.USER2_office_ceiling
-    - binary_sensor.USER2_office_occupancy
-    - sensor.USER2_office_temperature
+    control: hidden
+    entities:
+      - group.USER2_office_ceiling
+      - binary_sensor.USER2_office_occupancy
+      - sensor.USER2_office_temperature
 
   USER2 Office Lights:
     - group.USER2_office_ceiling
@@ -375,14 +393,16 @@
     - light.upper_patio_right
 
   Basement:
-    - light.basement_stairs
-    - group.basement_lights
-    - lock.basement_door
-    - binary_sensor.basement_door_opened
-    - binary_sensor.basement_occupancy
-    - binary_sensor.laundry_room_occupancy
-    - sensor.basement_temperature
-    - sensor.laundry_room_temperature
+    control: hidden
+    entities:
+      - light.basement_stairs
+      - group.basement_lights
+      - lock.basement_door
+      - binary_sensor.basement_door_opened
+      - binary_sensor.basement_occupancy
+      - binary_sensor.laundry_room_occupancy
+      - sensor.basement_temperature
+      - sensor.laundry_room_temperature
 
   Basement Lighting:
     - light.basement_stairs
@@ -395,36 +415,44 @@
     - light.basement_light_4
 
   Dining Room:
-    - light.dining_room_table
-    - light.dining_room_ceiling
-    - binary_sensor.main_floor_occupancy
-    - sensor.main_floor_temperature
+    control: hidden
+    entities:
+      - light.dining_room_table
+      - light.dining_room_ceiling
+      - binary_sensor.main_floor_occupancy
+      - sensor.main_floor_temperature
 
   Dining Room Lights:
     - light.dining_room_table
     - light.dining_room_ceiling
 
   Guest Bedroom:
-    - light.guest_bedroom_lamp
-    - light.guest_bedroom_nightstand
-    - binary_sensor.guest_bedroom_occupancy
-    - sensor.guest_bedroom_temperature
+    control: hidden
+    entities:
+      - light.guest_bedroom_lamp
+      - light.guest_bedroom_nightstand
+      - binary_sensor.guest_bedroom_occupancy
+      - sensor.guest_bedroom_temperature
 
   Guest Bedroom Lights:
     - light.guest_bedroom_lamp
     - light.guest_bedroom_nightstand
 
   Garage:
-    - light.garage_light
-    - cover.garage_door
+    control: hidden
+    entities:
+      - light.garage_light
+      - cover.garage_door
 
   Backyard Lighting:
     - switch.backyard_patio_lighting
     - switch.lower_backyard_lighting
 
   Interior:
-    - light.hallway_light
-    - group.stairs
+    control: hidden
+    entities:
+      - light.hallway_light
+      - group.stairs
 
   Interior Lights:
     - group.living_room_lights
@@ -448,21 +476,25 @@
     - light.garage_light
 
   Alarm:
-    - input_boolean.enable_security
-    - automation.security__motion_alarm
-    - automation.security__door_alarm
-    - input_boolean.panic_mode
-    - input_boolean.alarm_tripped
-    - switch.siren
+    control: hidden
+    entities:
+      - input_boolean.enable_security
+      - automation.security__motion_alarm
+      - automation.security__door_alarm
+      - input_boolean.panic_mode
+      - input_boolean.alarm_tripped
+      - switch.siren
 
   Thermostat:
-    - climate.main_floor
-    - climate.window_unit
-    - sensor.dark_sky_temperature
-    - input_boolean.thermostat_away
-    - switch.hallway_fan
-    - group.summer_mode
-    - group.winter_mode
+    control: hidden
+    entities:
+      - climate.main_floor
+      - climate.window_unit
+      - sensor.dark_sky_temperature
+      - input_boolean.thermostat_away
+      - switch.hallway_fan
+      - group.summer_mode
+      - group.winter_mode
 
   Summer Mode:
     - automation.thermostat__turn_on_summer
@@ -509,11 +541,13 @@
     - binary_sensor.sump_pump_water_sensor_liquid_detected
 
   Door Locks:
-    - input_boolean.lock_doors
-    - input_boolean.unlock_doors
-    - lock.front_door
-    - lock.back_door
-    - lock.basement_door
+    control: hidden
+    entities:
+      - input_boolean.lock_doors
+      - input_boolean.unlock_doors
+      - lock.front_door
+      - lock.back_door
+      - lock.basement_door
 
   USER1 Door Codes:
     - binary_sensor.USER1_front_door_code

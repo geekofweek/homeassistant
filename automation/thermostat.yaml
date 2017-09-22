@@ -302,14 +302,14 @@
       entity_id: switch.hallway_fan
 
         ##########################################################
-        ## Turn off Window Unit at 10p
+        ## Turn off Window Unit at 9p
         ##########################################################
 
-- alias: Thermostat - Turn off Window Unit at 10p
+- alias: Thermostat - Turn off Window Unit at 9p
 
   trigger:
     - platform: time
-      at: '22:00'
+      at: '21:00'
 
   condition:
     - condition: state
