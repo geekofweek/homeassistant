@@ -40,7 +40,7 @@
       - group.remote
       - media_player.media_center
       - media_player.living_room_apple_tv
-      - media_player.living_room_sp
+      - media_player.living_room
 
   dining:
     name: Dining
@@ -60,7 +60,8 @@
       - group.bedroom
       - group.guest_bedroom
       - media_player.bedroom_apple_tv
-      - media_player.roku_hd__REDACTED
+      - media_player.bedroom
+      - media_player.roku_REDACTED
 
   bathrooms:
     name: Bathrooms
@@ -174,6 +175,8 @@
       - group.travel_times
       - group.traffic_camera_feeds
       - camera.REDACTED
+      - camera.USER1
+      - camera.USER2
 
   troubleshooting:
     name: Troubleshooting
@@ -231,9 +234,11 @@
       - input_boolean.guest_mode
 
   Automation On Demand:
-    - input_boolean.bedtime
-    - input_select.remote
-    - input_select.sonos
+    control: hidden
+    entities:
+      - input_boolean.bedtime
+      - input_select.remote
+      - input_select.sonos
 
   Household:
     - device_tracker.USER1DEVICE
@@ -265,6 +270,7 @@
     - device_tracker.REDACTED
     - device_tracker.REDACTED
     - device_tracker.REDACTED
+    - device_tracker.REDACTED
     - device_tracker.REDACTEDiphone
     - device_tracker.REDACTEDiphone
 
@@ -285,9 +291,11 @@
       - input_boolean.front_porch_rainbow
 
   Holiday Modes:
-    - sensor.holidays_calendar
-    - input_select.holiday
-    - input_boolean.interior_holiday
+    control: hidden
+    entities:
+      - sensor.holidays_calendar
+      - input_select.holiday
+      - input_boolean.interior_holiday
 
   Living Room:
     control: hidden
@@ -509,36 +517,41 @@
     - media_player.living_room_apple_tv
     - media_player.bedroom_apple_tv
     - media_player.USER1s_office_apple_tv
-    - media_player.plex_for_vizio_vizio_mtk
-    - media_player.USER1s_iphone
-    - media_player.USER1s_ipad
-    - media_player.macproprivate
-    - media_player.roku_hd__REDACTED
+    - media_player.plex_plex_for_vizio_vizio_mtk
+    - media_player.plex_USER1s_iphone
+    - media_player.plex_USER1s_ipad
+    - media_player.roku_REDACTED
 
   Sonos:
     - media_player.media_center
-    - media_player.living_room_sp
+    - media_player.living_room
     - media_player.dining_room
     - media_player.kitchen
     - media_player.bathroom
+    - media_player.bedroom
     - media_player.USER1s_office
     - media_player.USER2s_office
     - media_player.basement
     - media_player.backyard_patio
 
   Plex:
-    - media_player.living_room
-    - media_player.bedroom
-    - media_player.plex_for_vizio_vizio_mtk
+    - media_player.plex_living_room
+    - media_player.plex_bedroom
+    - media_player.plex_office
+    - media_player.plex_plex_for_vizio_vizio_mtk
 
   Remote:
-    - input_select.remote
-    - input_select.sonos
-    - input_boolean.group_all_sonos
+    control: hidden
+    entities:
+      - input_select.remote
+      - input_select.sonos
+      - input_boolean.group_all_sonos
 
   Water Sensors:
-    - binary_sensor.basement_drain_water_sensor_liquid_detected
-    - binary_sensor.sump_pump_water_sensor_liquid_detected
+    control: hidden
+    entities:
+      - binary_sensor.basement_drain_water_sensor_liquid_detected
+      - binary_sensor.sump_pump_water_sensor_liquid_detected
 
   Door Locks:
     control: hidden
@@ -644,7 +657,6 @@
     - sensor.cpu
     - sensor.cpu_use
     - sensor.ram_use
-    - sensor.ram_free
     - sensor.since_last_boot
     - binary_sensor.philips_hue
     - binary_sensor.wink_hub

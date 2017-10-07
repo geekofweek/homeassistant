@@ -80,7 +80,7 @@
     - service: light.turn_on
       entity_id:
         - light.kitchen_sink
-        - group.living_room_lights
+        - group.living_room_lamps
         - light.hallway_light
         - light.dining_room_table
         - group.stairs
@@ -88,6 +88,12 @@
       data:
        xy_color: [ 0.5134, 0.4149 ]
        brightness: 150
+    - service: light.turn_on
+      entity_id: light.media_center_lighting
+      data:
+       transition: 5
+       effect: random
+       brightness_pct: 75
     - service: light.turn_on
       entity_id: light.kitchen_cabinets
       data:

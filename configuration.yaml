@@ -59,6 +59,7 @@ emulated_hue:
 
 media_player:
   - platform: plex
+    entity_namespace: 'plex'
   - platform: sonos
     hosts:
       - REDACTED.200
@@ -70,6 +71,7 @@ media_player:
       - REDACTED.206
       - REDACTED.208
       - REDACTED.209
+      - REDACTED.210
   - platform: roku
 
 apple_tv:
@@ -132,10 +134,16 @@ camera:
     nvr: REDACTED.99
     key: REDACTED
     password: REDACTED
-  - platform: ffmpeg
-    input: http://REDACTED/rtplive/REDACTED/playlist.m3u8
-    name: REDACTED
-    extra_arguments: '-headers "X-ForREDACTEDed-For: REDACTED"'
+#  - platform: foscam
+#    ip: REDACTED.107
+#    name: Server Rack
+#    port: REDACTED
+#    username: REDACTED
+#    password: REDACTED
+#  - platform: ffmpeg
+#    input: http://REDACTED/rtplive/REDACTED/playlist.m3u8
+#    name: REDACTED
+#    extra_arguments: '-headers "X-ForREDACTEDed-For: REDACTED"'
 
 tts:
   - platform: google

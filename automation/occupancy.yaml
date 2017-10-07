@@ -377,12 +377,18 @@
   action:
     - service: light.turn_on
       entity_id:
-        - group.living_room_lights
+        - group.living_room_lamps
         - light.hallway_light
       data:
         transition: 900
         xy_color: [ 0.5134, 0.4149 ]
         brightness: 255
+    - service: light.turn_on
+      entity_id: light.media_center_lighting
+      data:
+       transition: 900
+       effect: random
+       brightness: 255
     - service: light.turn_on
       entity_id: light.dining_room_table
       data:

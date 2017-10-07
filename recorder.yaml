@@ -2,7 +2,8 @@
 ## Recorder
 #################################################################
 
-  purge_days: 30
+  purge_interval: 1
+  purge_keep_days: 30
   db_url: mysql://REDACTED@REDACTED.101/REDACTED
 
   exclude:
@@ -182,6 +183,8 @@
       - sensor.USER2s_iphone_battery_state
       - device_tracker.USER1s_iphone
       - device_tracker.USER2s_iphone
+      - device_tracker.USER1siphone
+      - device_tracker.USER2siphone
       - binary_sensor.wink_relays_bottom_button
       - binary_sensor.wink_relays_top_button
       - binary_sensor.gang

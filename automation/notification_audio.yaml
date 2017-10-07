@@ -27,8 +27,8 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.living_room_sp'
-          where: 'media_player.media_center, media_player.living_room_sp, media_player.dining_room, media_player.kitchen, media_player.bathroom, media_player.USER1s_office, media_player.USER2s_office, media_player.basement'
+          master: 'media_player.living_room'
+          where: 'media_player.media_center, media_player.living_room, media_player.dining_room, media_player.kitchen, media_player.bathroom, media_player.bedroom, media_player.USER1s_office, media_player.USER2s_office, media_player.basement'
           volume: '1'
           what: 'You are not Authorized to be Here. Law Enforcement Has Been Notified'
 
@@ -215,8 +215,8 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.living_room_sp'
-          where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
+          master: 'media_player.living_room'
+          where: 'media_player.living_room, media_player.dining_room, media_player.kitchen'
           volume: '.5'
           what: 'Welcome Home USER1'
     - delay: '00:02:00'
@@ -301,8 +301,8 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.living_room_sp'
-          where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
+          master: 'media_player.living_room'
+          where: 'media_player.living_room, media_player.dining_room, media_player.kitchen'
           volume: '.5'
           what: 'Welcome Home USER2'
     - delay: '00:02:00'
@@ -393,8 +393,8 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.living_room_sp'
-          where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
+          master: 'media_player.living_room'
+          where: 'media_player.living_room, media_player.dining_room, media_player.kitchen'
           volume: '.5'
           what: 'Welcome Home USER1 and USER2'
     - delay: '00:02:00'
@@ -437,7 +437,7 @@
     - delay: '00:00:03'
     - service: media_player.sonos_unjoin
       entity_id:
-        - media_player.living_room_sp
+        - media_player.living_room
         - media_player.dining_room
         - media_player.kitchen
         - media_player.bathroom
@@ -447,18 +447,20 @@
       data:
         master: media_player.USER1s_office
       entity_id:
-        - media_player.living_room_sp
+        - media_player.living_room
         - media_player.dining_room
         - media_player.kitchen
         - media_player.bathroom
+        - media_player.bedroom
         - media_player.USER1s_office
     - delay: '00:00:01'
     - service: media_player.volume_set
       entity_id:
-        - media_player.living_room_sp
+        - media_player.living_room
         - media_player.dining_room
         - media_player.kitchen
         - media_player.bathroom
+        - media_player.bedroom
         - media_player.USER1s_office
       data:
         volume_level: '.6'
@@ -504,8 +506,8 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.living_room_sp'
-          where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
+          master: 'media_player.living_room'
+          where: 'media_player.living_room, media_player.dining_room, media_player.kitchen'
           volume: '.7'
           what: 'Welcome REDACTED, REDACTED'
     - delay: '00:00:90'
@@ -544,8 +546,8 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.living_room_sp'
-          where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
+          master: 'media_player.living_room'
+          where: 'media_player.living_room, media_player.dining_room, media_player.kitchen'
           volume: '.7'
           what: 'Welcome REDACTED, please remove your shoes'
     - delay: '00:00:90'
@@ -584,8 +586,8 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.living_room_sp'
-          where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
+          master: 'media_player.living_room'
+          where: 'media_player.living_room, media_player.dining_room, media_player.kitchen'
           volume: '.7'
           what: 'Welcome REDACTED'
     - delay: '00:00:90'
@@ -627,8 +629,8 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.living_room_sp'
-          where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
+          master: 'media_player.living_room'
+          where: 'media_player.living_room, media_player.dining_room, media_player.kitchen'
           volume: '.7'
           what: 'Welcome REDACTED, Happy Now'
     - delay: '00:00:90'
@@ -667,8 +669,8 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.living_room_sp'
-          where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
+          master: 'media_player.living_room'
+          where: 'media_player.living_room, media_player.dining_room, media_player.kitchen'
           volume: '.7'
           what: 'Welcome REDACTED'
     - delay: '00:00:90'
@@ -707,8 +709,8 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.living_room_sp'
-          where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
+          master: 'media_player.living_room'
+          where: 'media_player.living_room, media_player.dining_room, media_player.kitchen'
           volume: '.7'
           what: 'Welcome REDACTED'
     - delay: '00:00:90'
@@ -747,8 +749,8 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.living_room_sp'
-          where: 'media_player.living_room_sp, media_player.dining_room, media_player.kitchen'
+          master: 'media_player.living_room'
+          where: 'media_player.living_room, media_player.dining_room, media_player.kitchen'
           volume: '.7'
           what: 'Welcome REDACTED.  Hello REDACTED'
     - delay: '00:00:90'

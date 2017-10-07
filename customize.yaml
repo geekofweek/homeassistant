@@ -56,7 +56,7 @@
   device_tracker.USER2s_iphone:
     icon: mdi:cellphone-iphone
     friendly_name: USER2's iPhone (iOS)
-  device_tracker.USER2siphone2:
+  device_tracker.USER2siphone:
     icon: mdi:cellphone-iphone
     friendly_name: USER2's iPhone (Router)
   device_tracker.USER2DEVICE:
@@ -127,6 +127,9 @@
     friendly_name: REDACTED
   device_tracker.REDACTED:
     icon: mdi:human-female
+    friendly_name: REDACTED
+  device_tracker.REDACTED:
+    icon: mdi:human-male
     friendly_name: REDACTED
 
         ##########################################################
@@ -248,10 +251,16 @@
 
   lock.front_door:
     friendly_name: Front Door Lock
+    homebridge_mfg: Schlage
+    homebridge_model: BE469
   lock.back_door:
     friendly_name: Back Door Lock
+    homebridge_mfg: Schlage
+    homebridge_model: BE469
   lock.basement_door:
     friendly_name: Basement Door Lock
+    homebridge_mfg: Schlage
+    homebridge_model: BE469
   group.all_locks:
     friendly_name: Door Locks
 
@@ -447,18 +456,21 @@
     icon: mdi:apple
   media_player.USER1_office_apple_tv:
     icon: mdi:apple
-  media_player.living_room:
+  media_player.plex_living_room:
     friendly_name: Living Room Plex
     icon: mdi:plex
-  media_player.bedroom:
+  media_player.plex_bedroom:
     friendly_name: Bedroom Plex
     icon: mdi:plex
-  media_player.plex_for_vizio_vizio_mtk:
+  media_player.plex_office:
+    friendly_name: Office Plex
+    icon: mdi:plex
+  media_player.plex_plex_for_vizio_vizio_mtk:
     friendly_name: Office TV Plex
     icon: mdi:plex
   sensor.REDACTED:
     icon: mdi:theater
-  media_player.roku_hd__REDACTED:
+  media_player.roku_REDACTED:
     friendly_name: Guest Bedroom Roku
 
         ##########################################################
@@ -529,7 +541,7 @@
   media_player.media_center:
     icon: mdi:speaker
     friendly_name: Media Center Sonos
-  media_player.living_room_sp:
+  media_player.living_room:
     icon: mdi:speaker
     friendly_name: Living Room Sonos
   media_player.dining_room:
@@ -553,6 +565,9 @@
   media_player.backyard_patio:
     icon: mdi:speaker
     friendly_name: Backyard Patio Sonos
+  media_player.bedroom:
+    icon: mdi:speaker
+    friendly_name: Bedroom Sonos
 
         ##########################################################
         ## Remote
