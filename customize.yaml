@@ -341,9 +341,6 @@
   switch.christmas_tree:
     icon: mdi:pine-tree
     friendly_name: Christmas Tree
-  switch.siren:
-    icon: mdi:shield-outline
-    friendly_name: Alarm Siren
     homebridge_hidden: true
   switch.living_room_ceiling_fan:
     icon: mdi:ceiling-light
@@ -524,7 +521,7 @@
     emulated_hue_name: "All Speakers"
 
         ##########################################################
-        ## Automations
+        ## Alarm
         ##########################################################
 
   automation.security__motion_alarm:
@@ -533,6 +530,9 @@
   automation.security__door_alarm:
     icon: mdi:shield-outline
     friendly_name: Door Security Enabled
+  wink.siren:
+    friendly_name: Alarm Siren
+    icon: mdi:alarm-bell
 
         ##########################################################
         ## Sonos

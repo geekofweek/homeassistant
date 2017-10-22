@@ -95,13 +95,8 @@
       to: 'idle'
       for:
         hours: 0
-        minutes: 5
+        minutes: 3
         seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
 
   action:
     - service: homeassistant.turn_off
@@ -127,7 +122,7 @@
       for:
         hours: 0
         minutes: 0
-        seconds: 15
+        seconds: 7
 
   condition:
     - condition: state
@@ -193,7 +188,7 @@
       for:
         hours: 0
         minutes: 0
-        seconds: 15
+        seconds: 7
 
   condition:
     - condition: state
@@ -340,6 +335,7 @@
       entity_id: remote.media_center
 
   action:
+    - delay: '00:00:20'
     - service: input_select.select_option
       data_template:
         entity_id: input_select.remote
@@ -368,6 +364,18 @@
 
   action:
     - service: media_player.sonos_unjoin
+      entity_id:
+        - media_player.media_center
+        - media_player.living_room
+        - media_player.dining_room
+        - media_player.kitchen
+        - media_player.bathroom
+        - media_player.bedroom
+        - media_player.USER1s_office
+        - media_player.USER2s_office
+        - media_player.basement
+        - media_player.backyard_patio
+    - service: media_player.clear_playlist
       entity_id:
         - media_player.media_center
         - media_player.living_room

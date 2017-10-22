@@ -23,8 +23,8 @@
     - service: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
 #     re-enable Summer or Winter Mode
-    - service: homeassistant.turn_on
-      entity_id: group.summer_mode
+#    - service: homeassistant.turn_on
+#      entity_id: group.summer_mode
 #    - service: homeassistant.turn_on
 #      entity_id: group.winter_mode
 
@@ -153,8 +153,8 @@
 
   action:
 #     Disable Summer or Winter Mode
-#    - service: homeassistant.turn_off
-#      entity_id: group.summer_mode
+    - service: homeassistant.turn_off
+      entity_id: group.summer_mode
     - service: homeassistant.turn_off
       entity_id: group.winter_mode
 

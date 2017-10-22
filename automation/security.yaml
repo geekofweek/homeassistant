@@ -49,6 +49,10 @@
   action:
     - service: scene.turn_on
       entity_id: scene.security
+    - service: wink.enable_siren
+      data:
+        entity_id: wink.siren
+        enabled: 'true'
 
         ##########################################################
         ## Panic Mode
@@ -64,6 +68,27 @@
   action:
     - service: scene.turn_on
       entity_id: scene.security
+    - service: wink.enable_siren
+      data:
+        entity_id: wink.siren
+        enabled: 'true'
+
+        ##########################################################
+        ## Shut Off Alarm Manually
+        ##########################################################
+
+- alias: Security - Shut Off Alarm Manually
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.alarm_tripped
+      to: 'off'
+
+  action:
+    - service: wink.enable_siren
+      data:
+        entity_id: wink.siren
+        enabled: 'false'
 
         ##########################################################
         ## Disable Alarm when Home

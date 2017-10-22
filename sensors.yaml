@@ -56,14 +56,7 @@
       - pressure
       - visibility
       - ozone
-  - platform: cpuspeed
-    name: CPU
-  - platform: systemmonitor
-    resources:
-      - type: memory_free
-      - type: memory_use_percent
-      - type: processor_use
-      - type: since_last_boot
+  - platform: uptime
   - platform: plex
     name: REDACTED
     host: REDACTED.101
@@ -90,7 +83,7 @@
         friendly_name: 'Front Door Sensor'
         unit_of_measurement: '%'
       siren_batt:
-        value_template: '{{ states.switch.siren.attributes.battery_level }}'
+        value_template: '{{ states.wink.siren.attributes.battery_level }}'
         friendly_name: 'Alarm Siren'
         unit_of_measurement: '%'
       front_door_lock_batt:

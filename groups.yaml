@@ -491,7 +491,7 @@
       - automation.security__door_alarm
       - input_boolean.panic_mode
       - input_boolean.alarm_tripped
-      - switch.siren
+      - wink.siren
 
   Thermostat:
     control: hidden
@@ -654,17 +654,15 @@
     - sensor.USER2_to_REDACTED
 
   System:
-    - sensor.cpu
-    - sensor.cpu_use
-    - sensor.ram_use
-    - sensor.since_last_boot
-    - binary_sensor.philips_hue
+    - sensor.uptime
     - binary_sensor.wink_hub
     - binary_sensor.wink_relay
     - updater.updater
 
   NAS:
     - sensor.nas_status
+    - sensor.nas_cpu_usage
+    - sensor.nas_memory_usage
     - sensor.nas_smart_status_drive_01
     - sensor.nas_smart_status_drive_02
     - sensor.nas_smart_status_drive_03

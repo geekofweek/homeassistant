@@ -471,22 +471,6 @@
     - service: switch.turn_off
       entity_id: switch.backyard_patio_lighting
 
-        ##########################################################
-        ## Turn off Back Door Twice
-        ##########################################################
-
-- alias: Lights - Turn off Back Door Twice
-
-  trigger:
-    - platform: state
-      entity_id: group.back_porch
-      from: 'on'
-      to: 'off'
-
-  action:
-    - delay: 00:03:00
-    - service: light.turn_off
-      entity_id: group.back_door
 
         ##########################################################
         ## Turn on Lower BackYard after Patio
@@ -507,3 +491,33 @@
   action:
     - service: switch.turn_on
       entity_id: switch.lower_backyard_lighting
+
+        ##########################################################
+        ## Media Center Lighting Random Color Every Hour
+        ##########################################################
+
+- alias: Lights - Media Center Lighting Random Color Every Hour
+
+  trigger:
+    - platform: time
+      minutes: 0
+      seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: light.media_center_lighting
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.livingroom_rainbow
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.media_center_lighting
+      data:
+        effect: random
+        transition: 300
