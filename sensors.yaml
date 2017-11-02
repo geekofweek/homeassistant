@@ -74,38 +74,128 @@
         value_template: '{{ states.binary_sensor.back_door_opened.attributes.battery_level }}'
         friendly_name: 'Back Door Sensor'
         unit_of_measurement: '%'
+        icon_template: >
+          {% set battery_level = states.binary_sensor.back_door_opened.attributes.battery_level | default(0) | int %}
+          {% set battery_round = (battery_level / 10) |int * 10 %}
+          {% if battery_round >= 100 %}
+            mdi:battery
+          {% elif battery_round > 0 %}
+            mdi:battery-{{ battery_round }}
+          {% else %}
+            mdi:battery-alert
+          {% endif %}
       basement_door_sensor_batt:
         value_template: '{{ states.binary_sensor.basement_door_opened.attributes.battery_level }}'
         friendly_name: 'Basement Door Sensor'
         unit_of_measurement: '%'
+        icon_template: >
+          {% set battery_level = states.binary_sensor.basement_door_opened.attributes.battery_level | default(0) | int %}
+          {% set battery_round = (battery_level / 10) |int * 10 %}
+          {% if battery_round >= 100 %}
+            mdi:battery
+          {% elif battery_round > 0 %}
+            mdi:battery-{{ battery_round }}
+          {% else %}
+            mdi:battery-alert
+          {% endif %}
       front_door_sensor_batt:
         value_template: '{{ states.binary_sensor.front_door_opened.attributes.battery_level }}'
         friendly_name: 'Front Door Sensor'
         unit_of_measurement: '%'
+        icon_template: >
+          {% set battery_level = states.binary_sensor.front_door_opened.attributes.battery_level | default(0) | int %}
+          {% set battery_round = (battery_level / 10) |int * 10 %}
+          {% if battery_round >= 100 %}
+            mdi:battery
+          {% elif battery_round > 0 %}
+            mdi:battery-{{ battery_round }}
+          {% else %}
+            mdi:battery-alert
+          {% endif %}
       siren_batt:
         value_template: '{{ states.wink.siren.attributes.battery_level }}'
         friendly_name: 'Alarm Siren'
         unit_of_measurement: '%'
+        icon_template: >
+          {% set battery_level = states.wink.siren.attributes.battery_level | default(0) | int %}
+          {% set battery_round = (battery_level / 10) |int * 10 %}
+          {% if battery_round >= 100 %}
+            mdi:battery
+          {% elif battery_round > 0 %}
+            mdi:battery-{{ battery_round }}
+          {% else %}
+            mdi:battery-alert
+          {% endif %}
       front_door_lock_batt:
         value_template: '{{ states.lock.front_door.attributes.battery_level }}'
         friendly_name: 'Front Door Lock'
         unit_of_measurement: '%'
+        icon_template: >
+          {% set battery_level = states.lock.front_door.attributes.battery_level | default(0) | int %}
+          {% set battery_round = (battery_level / 10) |int * 10 %}
+          {% if battery_round >= 100 %}
+            mdi:battery
+          {% elif battery_round > 0 %}
+            mdi:battery-{{ battery_round }}
+          {% else %}
+            mdi:battery-alert
+          {% endif %}
       back_door_lock_batt:
         value_template: '{{ states.lock.back_door.attributes.battery_level }}'
         friendly_name: 'Back Door Lock'
         unit_of_measurement: '%'
+        icon_template: >
+          {% set battery_level = states.lock.back_door.attributes.battery_level | default(0) | int %}
+          {% set battery_round = (battery_level / 10) |int * 10 %}
+          {% if battery_round >= 100 %}
+            mdi:battery
+          {% elif battery_round > 0 %}
+            mdi:battery-{{ battery_round }}
+          {% else %}
+            mdi:battery-alert
+          {% endif %}
       basement_door_lock_batt:
         value_template: '{{ states.lock.basement_door.attributes.battery_level }}'
         friendly_name: 'Basement Door Lock'
         unit_of_measurement: '%'
+        icon_template: >
+          {% set battery_level = states.lock.basement_door.attributes.battery_level | default(0) | int %}
+          {% set battery_round = (battery_level / 10) |int * 10 %}
+          {% if battery_round >= 100 %}
+            mdi:battery
+          {% elif battery_round > 0 %}
+            mdi:battery-{{ battery_round }}
+          {% else %}
+            mdi:battery-alert
+          {% endif %}
       basement_drain_water_sensor_batt:
         value_template: '{{ states.binary_sensor.basement_drain_water_sensor_liquid_detected.attributes.battery_level }}'
         friendly_name: 'Basement Drain Water Sensor'
         unit_of_measurement: '%'
+        icon_template: >
+          {% set battery_level = states.binary_sensor.basement_drain_water_sensor_liquid_detected.attributes.battery_level | default(0) | int %}
+          {% set battery_round = (battery_level / 10) |int * 10 %}
+          {% if battery_round >= 100 %}
+            mdi:battery
+          {% elif battery_round > 0 %}
+            mdi:battery-{{ battery_round }}
+          {% else %}
+            mdi:battery-alert
+          {% endif %}
       sump_pump_water_sensor_batt:
         value_template: '{{ states.binary_sensor.sump_pump_water_sensor_liquid_detected.attributes.battery_level }}'
         friendly_name: 'Sump Pump Water Sensor'
         unit_of_measurement: '%'
+        icon_template: >
+          {% set battery_level = states.binary_sensor.sump_pump_water_sensor_liquid_detected.attributes.battery_level | default(0) | int %}
+          {% set battery_round = (battery_level / 10) |int * 10 %}
+          {% if battery_round >= 100 %}
+            mdi:battery
+          {% elif battery_round > 0 %}
+            mdi:battery-{{ battery_round }}
+          {% else %}
+            mdi:battery-alert
+          {% endif %}
   - platform: template
     sensors:
       media_center:
