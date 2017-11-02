@@ -12,6 +12,10 @@
     - platform: state
       entity_id: calendar.holidays_in_united_states
       to: 'on'
+      for:
+        hours: 9
+        minutes: 0
+        seconds: 0
 
   condition:
     condition: or
@@ -216,6 +220,10 @@
     - platform: state
       entity_id: calendar.holidays_in_united_states
       to: 'on'
+      for:
+        hours: 9
+        minutes: 0
+        seconds: 0
 
   condition:
     - condition: state
@@ -273,6 +281,10 @@
     - platform: state
       entity_id: calendar.holidays_in_united_states
       to: 'on'
+      for:
+        hours: 9
+        minutes: 0
+        seconds: 0
 
   condition:
     - condition: state
@@ -328,6 +340,10 @@
     - platform: state
       entity_id: calendar.holidays_in_united_states
       to: 'on'
+      for:
+        hours: 9
+        minutes: 0
+        seconds: 0
 
   condition:
     - condition: state
@@ -449,6 +465,10 @@
     - platform: state
       entity_id: calendar.holidays_in_united_states
       to: 'on'
+      for:
+        hours: 9
+        minutes: 0
+        seconds: 0
 
   condition:
     - condition: state
@@ -504,6 +524,10 @@
     - platform: state
       entity_id: calendar.holidays_in_united_states
       to: 'on'
+      for:
+        hours: 9
+        minutes: 0
+        seconds: 0
 
   condition:
     - condition: state
@@ -561,6 +585,10 @@
     - platform: state
       entity_id: calendar.holidays_in_united_states
       to: 'on'
+      for:
+        hours: 9
+        minutes: 0
+        seconds: 0
 
   condition:
     - condition: state
@@ -583,6 +611,10 @@
     - platform: state
       entity_id: calendar.holidays_in_united_states
       to: 'on'
+      for:
+        hours: 9
+        minutes: 0
+        seconds: 0
 
   condition:
     - condition: state
@@ -605,6 +637,10 @@
     - platform: state
       entity_id: calendar.holidays_in_united_states
       to: 'on'
+      for:
+        hours: 9
+        minutes: 0
+        seconds: 0
 
   condition:
     - condition: state
@@ -627,6 +663,10 @@
     - platform: state
       entity_id: calendar.holidays_in_united_states
       to: 'on'
+      for:
+        hours: 9
+        minutes: 0
+        seconds: 0
 
   condition:
     - condition: state
@@ -1186,11 +1226,11 @@
         ## Turn Off Holiday Lighting at 1:00 am
         ##########################################################
 
-- alias: Holiday - Turn Off Lighting at at 1a
+- alias: Holiday - Turn Off Lighting at at 2a
 
   trigger:
     - platform: time
-      at: '01:00'
+      at: '02:00'
 
   condition:
     condition: or

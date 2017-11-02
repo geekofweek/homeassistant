@@ -25,8 +25,8 @@
 #     re-enable Summer or Winter Mode
 #    - service: homeassistant.turn_on
 #      entity_id: group.summer_mode
-#    - service: homeassistant.turn_on
-#      entity_id: group.winter_mode
+    - service: homeassistant.turn_on
+      entity_id: group.winter_mode
 
         ##########################################################
         ## Set Thermostat Away
@@ -155,8 +155,8 @@
 #     Disable Summer or Winter Mode
     - service: homeassistant.turn_off
       entity_id: group.summer_mode
-    - service: homeassistant.turn_off
-      entity_id: group.winter_mode
+#    - service: homeassistant.turn_off
+#      entity_id: group.winter_mode
 
         ##########################################################
         ## Turn off Thermostat when Door Opens for Extended Period
