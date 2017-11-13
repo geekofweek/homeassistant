@@ -30,7 +30,7 @@
     - service: switch.turn_off
       entity_id:
         - switch.air_purifier
-        - switch.hallway_fan
+        - switch.office_fan
         - switch.lower_backyard_lighting
         - switch.backyard_patio_lighting
         - switch.fireplace
@@ -105,6 +105,7 @@
         - switch.lower_backyard_lighting
         - switch.backyard_patio_lighting
         - switch.fireplace
+        - switch.office_fan
     - service: cover.close_cover
       entity_id: cover.garage_door
     - service: homeassistant.turn_off

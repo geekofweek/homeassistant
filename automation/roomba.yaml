@@ -1,0 +1,140 @@
+        ##########################################################
+        ## Run Roomba when Away
+        ##########################################################
+
+- alias: Roomba - Run Roomba when Away
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 20
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+
+  action:
+    - service: vacuum.turn_on
+      entity_id:
+        - vacuum.roomba
+
+        ##########################################################
+        ## Shut Off Roomba when Home
+        ##########################################################
+
+- alias: Roomba - Shut Off Roomba when Home
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+
+  action:
+    - service: vacuum.return_to_base
+      entity_id:
+        - vacuum.roomba
+
+        ##########################################################
+        ## Run Roomba Weekdays
+        ##########################################################
+
+- alias: Roomba - Run Roomba Weekdays
+
+  trigger:
+   - platform: time
+     at: '10:00'
+
+  condition:
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: device_tracker.USER2DEVICE
+        state: 'not_home'
+      - condition: state
+        entity_id: device_tracker.USER2DEVICE
+        state: 'work'
+
+  action:
+    - service: vacuum.turn_on
+      entity_id:
+        - vacuum.roomba
+
+        ##########################################################
+        ## Turn on low lights at night for Roomba
+        ##########################################################
+
+- alias: Roomba - Turn on low lights at night for Roomba
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.roomba
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.living_room_lights
+        - light.hallway_light
+        - light.closet_lamp
+        - light.kitchen_sink
+        - light.bedroom_lamp
+      data:
+       brightness_pct: 1
+       profile: relax
+
+        ##########################################################
+        ## Turn off lights at night when Roomba finished
+        ##########################################################
+
+- alias: Roomba - Turn off lights at night when Roomba finished
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.roomba
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.living_room_lights
+        - light.hallway_light
+        - light.closet_lamp
+        - light.kitchen_sink
+        - light.bedroom_lamp

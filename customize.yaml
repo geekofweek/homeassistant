@@ -139,14 +139,17 @@
   cover.garage_door:
     icon: mdi:car
     homebridge_cover_type: garage_door
+  cover.wink_garage_door:
+    icon: mdi:car
+    homebridge_cover_type: garage_door
+    homebridge_hidden: true
+    friendly_name: Garage Door
   binary_sensor.front_door_opened:
     friendly_name: Front Door Open
   binary_sensor.back_door_opened:
     friendly_name: Back Door Open
   binary_sensor.basement_door_opened:
     friendly_name: Basement Door Open
-  cover.garage_door_2:
-    homebridge_hidden: true
   cover.myq:
     homebridge_hidden: true
 
@@ -164,7 +167,6 @@
     homebridge_hidden: true
   sensor.ring_front_door_battery:
     friendly_name: Door Bell
-    icon: mdi:battery
   sensor.ring_front_door_last_ding:
     friendly_name: Front Door Last Ring
 
@@ -281,24 +283,6 @@
     icon: mdi:speedometer
   sensor.speedtest_upload:
     icon: mdi:speedometer
-  sensor.back_door_sensor_batt:
-    icon: mdi:battery
-  sensor.basement_door_sensor_batt:
-    icon: mdi:battery
-  sensor.front_door_sensor_batt:
-    icon: mdi:battery
-  sensor.siren_batt:
-    icon: mdi:battery
-  sensor.front_door_lock_batt:
-    icon: mdi:battery
-  sensor.back_door_lock_batt:
-    icon: mdi:battery
-  sensor.basement_door_lock_batt:
-    icon: mdi:battery
-  sensor.basement_drain_water_sensor_batt:
-    icon: mdi:battery
-  sensor.sump_pump_water_sensor_batt:
-    icon: mdi:battery
   binary_sensor.wink_hub:
     friendly_name: Wink Hub
     icon: mdi:ethernet
@@ -332,9 +316,9 @@
     icon: mdi:fan
     friendly_name: Air Purifier
     homebridge_hidden: true
-  switch.hallway_fan:
+  switch.office_fan:
     icon: mdi:fan
-    friendly_name: Hallway Fan
+    friendly_name: Office Fan
   switch.basement_heater:
     icon: mdi:radiator
     homebridge_hidden: true
@@ -475,49 +459,49 @@
         ##########################################################
 
   input_boolean.office_rainbow:
-    emulated_hue: true
+    emulated_hue_hidden: false
     emulated_hue_name: "Office Party"
   input_boolean.livingroom_rainbow:
-    emulated_hue: true
+    emulated_hue_hidden: false
     emulated_hue_name: "Living Room Party"
   input_boolean.front_porch_rainbow:
-    emulated_hue: true
+    emulated_hue_hidden: false
     emulated_hue_name: "Front Porch Party"
   input_boolean.vacation_mode:
-    emulated_hue: true
+    emulated_hue_hidden: false
     emulated_hue_name: "Vacation Mode"
   input_boolean.garage_door:
-    emulated_hue: true
+    emulated_hue_hidden: false
     emulated_hue_name: "Garage Door"
   input_boolean.unlock_doors:
-    emulated_hue: true
+    emulated_hue_hidden: false
     emulated_hue_name: "Unlock Doors"
   input_boolean.lock_doors:
-    emulated_hue: true
+    emulated_hue_hidden: false
     emulated_hue_name: "Lock Doors"
   input_boolean.bedtime:
-    emulated_hue: true
+    emulated_hue_hidden: false
     emulated_hue_name: "Bedtime"
   input_boolean.pop_music:
-    emulated_hue: true
+    emulated_hue_hidden: false
     emulated_hue_name: "Pop Music"
   input_boolean.jazz_music:
-    emulated_hue: true
+    emulated_hue_hidden: false
     emulated_hue_name: "Jazz Music"
   input_boolean.classical_music:
-    emulated_hue: true
+    emulated_hue_hidden: false
     emulated_hue_name: "Classical Music"
   input_boolean.electronic_music:
-    emulated_hue: true
+    emulated_hue_hidden: false
     emulated_hue_name: "Electronic Music"
   input_boolean.chill_music:
-    emulated_hue: true
+    emulated_hue_hidden: false
     emulated_hue_name: "Chill Music"
   input_boolean.adele_music:
-    emulated_hue: true
+    emulated_hue_hidden: false
     emulated_hue_name: "Adele Music"
   input_boolean.group_all_sonos:
-    emulated_hue: true
+    emulated_hue_hidden: false
     emulated_hue_name: "All Speakers"
 
         ##########################################################

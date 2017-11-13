@@ -24,7 +24,9 @@
 
   action:
     - service: switch.turn_on
-      entity_id: switch.air_purifier
+      entity_id:
+        - switch.air_purifier
+        - switch.office_fan
 
         ##########################################################
         ## Turn off Office Air Purifier when Unoccupied
@@ -49,7 +51,9 @@
 
   action:
     - service: switch.turn_off
-      entity_id: switch.air_purifier
+      entity_id:
+        - switch.air_purifier
+        - switch.office_fan
 
         ##########################################################
         ## Turn off Office when Unoccupied

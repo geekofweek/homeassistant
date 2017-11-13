@@ -197,6 +197,20 @@
           {% else %}
             mdi:battery-alert
           {% endif %}
+      roomba_batt:
+        value_template: '{{ states.vacuum.roomba.attributes.battery_level }}'
+        friendly_name: 'Roomba'
+        unit_of_measurement: '%'
+        icon_template: >
+          {% set battery_level = states.vacuum.roomba.attributes.battery_level | default(0) | int %}
+          {% set battery_round = (battery_level / 10) |int * 10 %}
+          {% if battery_round >= 100 %}
+            mdi:battery
+          {% elif battery_round > 0 %}
+            mdi:battery-{{ battery_round }}
+          {% else %}
+            mdi:battery-alert
+          {% endif %}
   - platform: template
     sensors:
       media_center:

@@ -97,6 +97,13 @@
         hours: 0
         minutes: 3
         seconds: 0
+    - platform: state
+      entity_id: media_player.plex_living_room
+      to: 'paused'
+      for:
+        hours: 0
+        minutes: 3
+        seconds: 0
 
   action:
     - service: homeassistant.turn_off

@@ -11,7 +11,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.basement_temperature
-      below: 59
+      below: 60
 
   condition:
     - condition: state
@@ -31,7 +31,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.basement_temperature
-      above: 63
+      above: 60
 
   action:
     - service: switch.turn_off

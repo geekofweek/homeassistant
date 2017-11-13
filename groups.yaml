@@ -6,6 +6,9 @@
     view: yes
     icon: mdi:home
     entities:
+      - persistent_notification.1
+      - group.automation_on_demand
+      - group.household
       - group.living_room
       - group.dining_room
       - group.kitchen
@@ -13,14 +16,11 @@
       - group.bathroom
       - group.USER1_office
       - group.USER2_office
-      - group.interior
       - group.basement
-      - group.household
-      - group.automation_on_demand
+      - group.interior
       - group.garage
       - camera.front_porch
       - camera.garage
-      - persistent_notification.1
 
   lights:
     name: Lights
@@ -102,6 +102,7 @@
       - group.garage
       - camera.front_porch
       - camera.garage
+      - camera.ring_front_door
       - media_player.backyard_patio
 
   weatherdashboard:
@@ -136,19 +137,20 @@
     entities:
       - camera.front_porch
       - camera.garage
+      - camera.ring_front_door
 
   automation:
     name: Automation
     view: yes
     icon: mdi:robot
     entities:
-      - group.alarm
-      - group.automation_override
       - group.automation_on_demand
-      - group.location_controls
-      - group.door_locks
       - group.holiday_modes
       - group.party_modes
+      - group.alarm
+      - group.door_locks
+      - group.location_controls
+      - group.automation_override
 
   sensors:
     name: Sensors
@@ -183,12 +185,12 @@
     view: yes
     icon: mdi:exclamation
     entities:
+      - group.overnight_guests
+      - group.input_boolean
       - group.all_automations
 #      - group.all_scripts
-      - group.input_boolean
 #      - group.calendars
 #      - group.scenes
-      - group.overnight_guests
 
   Traffic Camera Feeds:
     - weblink.REDACTED
@@ -237,6 +239,7 @@
     control: hidden
     entities:
       - input_boolean.bedtime
+      - vacuum.roomba
       - input_select.remote
       - input_select.sonos
 
@@ -362,6 +365,7 @@
       - light.office_ceiling
       - light.office_lamp
       - switch.air_purifier
+      - switch.office_fan
       - binary_sensor.office_occupancy
       - sensor.office_temperature
 
@@ -673,6 +677,7 @@
     - sensor.nas_system_temperature
 
   Battery Levels:
+    - sensor.roomba_batt
     - sensor.ring_front_door_battery
     - sensor.front_door_lock_batt
     - sensor.back_door_lock_batt

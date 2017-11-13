@@ -49,7 +49,7 @@ light:
   allow_unreachable: true
 
 emulated_hue:
-  type: google_home
+#  type: google_home
   host_ip: REDACTED.105
   listen_port: 8300
   off_maps_to_on_domains:
@@ -115,11 +115,12 @@ device_tracker:
   - platform: locative
 
 cover:
-  platform: myq
-  name: Garage Door
-  username: REDACTED
-  password: REDACTED
-  type: chamberlain
+  - platform: myq
+    username: REDACTED
+    password: REDACTED
+    type: chamberlain
+  - platform: wink
+    entity_namespace: wink
 
 ring:
     username: REDACTED
@@ -136,6 +137,8 @@ camera:
     nvr: REDACTED.99
     key: REDACTED
     password: REDACTED
+#  - platform: ring
+#    entity_namespace: ring
 #  - platform: foscam
 #    ip: REDACTED.107
 #    name: Server Rack
@@ -156,6 +159,12 @@ google:
   track_new_calendar: true
 
 wink:
+
+vacuum:
+  - platform: roomba
+    host: REDACTED.228
+    username: REDACTED
+    password: REDACTED
 
 #################################################################
 ## Includes
