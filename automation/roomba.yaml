@@ -11,13 +11,22 @@
       to: 'not_home'
       for:
         hours: 0
-        minutes: 20
+        minutes: 15
         seconds: 0
 
   condition:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
+    - condition: time
+      after: '10:01'
+      before: '23:59'
+    - condition: state
+      entity_id: vacuum.roomba
+      state: 'off'
+    - condition: numeric_state
+      entity_id: sensor.roomba_batt
+      above: 99
 
   action:
     - service: vacuum.turn_on
@@ -40,6 +49,9 @@
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
+    - condition: state
+      entity_id: vacuum.roomba
+      state: 'on'
 
   action:
     - service: vacuum.return_to_base
@@ -64,6 +76,44 @@
         - wed
         - thu
         - fri
+    - condition: state
+      entity_id: vacuum.roomba
+      state: 'off'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: device_tracker.USER2DEVICE
+        state: 'not_home'
+      - condition: state
+        entity_id: device_tracker.USER2DEVICE
+        state: 'work'
+
+  action:
+    - service: vacuum.turn_on
+      entity_id:
+        - vacuum.roomba
+
+        ##########################################################
+        ## Run Roomba Weekends
+        ##########################################################
+
+- alias: Roomba - Run Roomba Weekends
+
+  trigger:
+   - platform: time
+     at: '13:00'
+
+  condition:
+    - condition: time
+      weekday:
+        - sat
+        - sun
+    - condition: state
+      entity_id: vacuum.roomba
+      state: 'off'
+    - condition: numeric_state
+      entity_id: sensor.roomba_batt
+      above: 99
     - condition: or
       conditions:
       - condition: state
@@ -101,13 +151,22 @@
   action:
     - service: light.turn_on
       entity_id:
-        - light.living_room_lights
+        - group.living_room_lamps
         - light.hallway_light
         - light.closet_lamp
         - light.kitchen_sink
         - light.bedroom_lamp
+        - light.bathroom_vanity
+        - light.dining_room_table
+        - light.basement_stairs
       data:
-       brightness_pct: 1
+       brightness_pct: 25
+       profile: relax
+    - service: light.turn_on
+      entity_id:
+        - light.media_center_lighting
+      data:
+       brightness_pct: 75
        profile: relax
 
         ##########################################################
@@ -133,8 +192,127 @@
   action:
     - service: light.turn_off
       entity_id:
-        - light.living_room_lights
+        - group.living_room_lights
         - light.hallway_light
         - light.closet_lamp
         - light.kitchen_sink
         - light.bedroom_lamp
+        - light.bathroom_vanity
+        - light.dining_room_table
+        - light.basement_stairs
+
+        ##########################################################
+        ## Run Roomba when USER2 Leaves
+        ##########################################################
+
+- alias: Roomba - Run Roomba when USER2 Leaves
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER2DEVICE
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: time
+      after: '10:01'
+      before: '17:00'
+    - condition: state
+      entity_id: vacuum.roomba
+      state: 'off'
+    - condition: numeric_state
+      entity_id: sensor.roomba_batt
+      above: 99
+    - condition: state
+      entity_id: input_boolean.USER1_away
+      state: 'off'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+
+  action:
+    - service: vacuum.turn_on
+      entity_id:
+        - vacuum.roomba
+
+        ##########################################################
+        ## Turn off Roomba when USER2 Home
+        ##########################################################
+
+- alias: Roomba - Turn off Roomba when USER2 Home
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER2DEVICE
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: time
+      after: '10:01'
+      before: '18:30'
+    - condition: state
+      entity_id: vacuum.roomba
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.USER1_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER2_away
+      state: 'on'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+
+  action:
+    - service: vacuum.return_to_base
+      entity_id:
+        - vacuum.roomba
+
+        ##########################################################
+        ## Roomba is Stuck Notification
+        ##########################################################
+
+- alias: Roomba - Stuck Notification
+
+  trigger:
+    - platform: template
+      value_template: "{%if is_state_attr('vacuum.roomba', 'status', 'Stuck') %}true{%endif%}"
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Roomba is Stuck, Please Help
+
+        ##########################################################
+        ## Roomba is Full Notification
+        ##########################################################
+
+- alias: Roomba - Full Notification
+
+  trigger:
+    - platform: template
+      value_template: "{%if is_state_attr('vacuum.roomba', 'bin_full', true) %}true{%endif%}"
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Roomba is Full, Empty It

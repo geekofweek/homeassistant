@@ -12,6 +12,7 @@ homeassistant:
   customize: !include customize.yaml
 
 frontend:
+  javascript_version: latest
 updater:
   reporting: no
 sun:
@@ -49,7 +50,6 @@ light:
   allow_unreachable: true
 
 emulated_hue:
-#  type: google_home
   host_ip: REDACTED.105
   listen_port: 8300
   off_maps_to_on_domains:
