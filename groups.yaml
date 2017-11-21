@@ -9,26 +9,12 @@
       - persistent_notification.1
       - group.automation_on_demand
       - group.household
-      - group.living_room
-      - group.dining_room
-      - group.kitchen
-      - group.bedroom
-      - group.bathroom
-      - group.USER1_office
-      - group.USER2_office
-      - group.basement
-      - group.interior
+      - group.interior_lights
+      - group.exterior_lights
+      - group.locks
       - group.garage
       - camera.front_porch
       - camera.garage
-
-  lights:
-    name: Lights
-    view: yes
-    icon: mdi:lightbulb-outline
-    entities:
-      - group.interior_lights
-      - group.exterior_lights
 
   living:
     name: Living
@@ -36,7 +22,6 @@
     icon: mdi:sofa
     entities:
       - group.living_room
-      - group.interior
       - group.remote
       - media_player.media_center
       - media_player.living_room_apple_tv
@@ -160,10 +145,10 @@
       - group.doors
       - group.door_bell
       - group.water_sensors
-      - group.nas
-      - group.system
       - group.battery_levels
       - group.dns
+      - group.nas
+      - group.system
 
   traffic:
     name: Traffic
@@ -505,6 +490,12 @@
       - group.summer_mode
       - group.winter_mode
 
+  Climate Control:
+    control: hidden
+    entities:
+      - climate.main_floor
+      - climate.window_unit
+
   Summer Mode:
     - automation.thermostat__turn_on_summer
     - automation.thermostat__turn_off_summer
@@ -559,6 +550,13 @@
     entities:
       - input_boolean.lock_doors
       - input_boolean.unlock_doors
+      - lock.front_door
+      - lock.back_door
+      - lock.basement_door
+
+  Locks:
+    control: hidden
+    entities:
       - lock.front_door
       - lock.back_door
       - lock.basement_door

@@ -254,6 +254,10 @@
       entity_id: device_tracker.USER2DEVICE
       from: 'not_home'
       to: 'home'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 45
 
   condition:
     - condition: state

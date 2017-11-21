@@ -380,10 +380,10 @@
         transition: 60
 
         ##########################################################
-        ## USER1 Home Turn off Garage Light after 16 Mins
+        ## USER1 Home Turn Dim Garage Light after 16 Mins
         ##########################################################
 
-- alias: Location - USER1 Home Turn off Garage Light after 16 Mins
+- alias: Location - USER1 Home Turn Dim Garage Light after 16 Mins
 
   trigger:
     - platform: state
@@ -397,15 +397,17 @@
 
   condition:
     - condition: state
-      entity_id: group.friends_and_family
-      state: 'not_home'
+      entity_id: sun.sun
+      state: 'below_horizon'
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
 
   action:
-    - service: light.turn_off
+    - service: light.turn_on
       entity_id: light.garage_light
+      data:
+       brightness_pct: 15
 
         ##########################################################
         ## USER2 Home Turn on Lights
@@ -562,10 +564,10 @@
         transition: 60
 
         ##########################################################
-        ## USER2 Home Turn off Garage Light after 16 Mins
+        ## USER2 Home Dim Garage Light after 16 Mins
         ##########################################################
 
-- alias: Location - USER2 Home Turn off Garage Light after 16 Mins
+- alias: Location - USER2 Home Dim Garage Light after 16 Mins
 
   trigger:
     - platform: state
@@ -579,15 +581,17 @@
 
   condition:
     - condition: state
-      entity_id: group.friends_and_family
-      state: 'not_home'
-    - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
 
   action:
-    - service: light.turn_off
+    - service: light.turn_on
       entity_id: light.garage_light
+      data:
+       brightness_pct: 15
 
         ##########################################################
         ## Household Away Mode
@@ -783,6 +787,7 @@
       entity_id:
         - group.interior_lights
         - group.back_door
+        - light.garage_light
 
         ##########################################################
         ## Turn on Outdoor Lighting when Home

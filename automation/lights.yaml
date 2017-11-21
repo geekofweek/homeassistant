@@ -3,10 +3,10 @@
 #################################################################
 
         ##########################################################
-        ## Turn off Garage Light when Garage Closed
+        ## Reset Garage Light Brightness when Garage Closed
         ##########################################################
 
-- alias: Lights - Turn off Garage Light when Garage Closed
+- alias: Lights - Reset Garage Light Brightness when Garage Closed
 
   trigger:
     - platform: state
@@ -22,10 +22,15 @@
     - condition: state
       entity_id: input_boolean.disable_door_open_lights_on
       state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
 
   action:
-    - service: light.turn_off
+    - service: light.turn_on
       entity_id: light.garage_light
+      data:
+       brightness_pct: 15
 
         ##########################################################
         ## Turn on Garage Light when Garage Open
@@ -54,10 +59,10 @@
        brightness: 255
 
         ##########################################################
-        ## Turn off Garage Light after an Hour
+        ## Turn Off Garage Light After 1 Hour
         ##########################################################
 
-- alias: Lights - Turn off Garage Light after an Hour
+- alias: Lights - Turn Off Garage Light After 1 Hour
 
   trigger:
     - platform: state
@@ -65,13 +70,57 @@
       from: 'off'
       to: 'on'
       for:
-        hours: 0
-        minutes: 60
+        hours: 1
+        minutes: 0
         seconds: 0
 
   condition:
+    - condition: time
+      after: '00:00'
+      before: '04:00'
+
+  action:
+    - service: light.turn_off
+      entity_id: light.garage_light
+
+        ##########################################################
+        ## Turn On Garage Light at Sunset
+        ##########################################################
+
+- alias: Lights - Turn On Garage Light at Sunset
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:15:00'
+
+  condition:
     - condition: state
-      entity_id: input_boolean.vacation_mode
+      entity_id: input_boolean.disable_exterior_on_sunset
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.garage_light
+      data:
+       brightness_pct: 15
+
+        ##########################################################
+        ## Turn Off Garage Light at Midnight
+        ##########################################################
+
+- alias: Lights - Turn Off Garage Light at Midnight
+
+  trigger:
+   - platform: time
+     at: '23:59'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_exterior_off_night
       state: 'off'
 
   action:
@@ -258,7 +307,7 @@
   condition:
     - condition: time
       after: '00:00'
-      before: '05:00'
+      before: '04:59'
     - condition: state
       entity_id: input_boolean.disable_exterior_off_night
       state: 'off'
@@ -269,37 +318,6 @@
   action:
     - service: light.turn_off
       entity_id: group.back_door
-
-        ##########################################################
-        ## Turn on Back Door at 5:00a if USER2 Home
-        ##########################################################
-
-- alias: Lights - Back Door on at 5a
-
-  trigger:
-    - platform: time
-      at: '05:00'
-
-  condition:
-    - condition: state
-      entity_id: device_tracker.USER2DEVICE
-      state: 'home'
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: state
-      entity_id: input_boolean.disable_lights_morning
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.USER2_working
-      state: 'on'
-
-  action:
-    - service: light.turn_on
-      entity_id: group.back_door
-      data:
-       brightness: 3
-       transition: 60
 
         ##########################################################
         ## Turn on Lights at 5a if USER2 Home and Working
@@ -345,6 +363,11 @@
       data:
        brightness: 3
        color_name: red
+    - service: light.turn_on
+      entity_id: group.back_door
+      data:
+       brightness: 3
+       transition: 60
 
         ##########################################################
         ## Turn off Lights at Sunrise
@@ -355,7 +378,7 @@
   trigger:
     - platform: sun
       event: 'sunrise'
-      offset: '+00:15:00'
+      offset: '+00:30:00'
 
   action:
     - service: light.turn_off
