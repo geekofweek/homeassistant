@@ -151,23 +151,27 @@
   action:
     - service: light.turn_on
       entity_id:
-        - group.living_room_lamps
+        - group.bedroom_lights
+        - group.stairs
         - light.hallway_light
-        - light.closet_lamp
-        - light.kitchen_sink
-        - light.bedroom_lamp
-        - light.bathroom_vanity
-        - light.dining_room_table
         - light.basement_stairs
       data:
        brightness_pct: 25
        profile: relax
     - service: light.turn_on
       entity_id:
-        - light.media_center_lighting
+        - group.living_room_lights
       data:
-       brightness_pct: 75
+       brightness_pct: 50
        profile: relax
+    - service: light.turn_on
+      entity_id:
+        - light.dining_room_table
+        - light.bathroom_vanity
+        - light.kitchen_sink
+        - light.kitchen_cabinets
+      data:
+       brightness_pct: 1
 
         ##########################################################
         ## Turn off lights at night when Roomba finished
@@ -192,14 +196,7 @@
   action:
     - service: light.turn_off
       entity_id:
-        - group.living_room_lights
-        - light.hallway_light
-        - light.closet_lamp
-        - light.kitchen_sink
-        - light.bedroom_lamp
-        - light.bathroom_vanity
-        - light.dining_room_table
-        - light.basement_stairs
+        - group.interior_lights
 
         ##########################################################
         ## Run Roomba when USER2 Leaves
