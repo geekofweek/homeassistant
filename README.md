@@ -51,7 +51,6 @@ Home Assistant Version: 0.58.1
 
 # Interface
 ![UI](images/home-screenshot.jpg)
-![UI](images/lights-screenshot.jpg)
 ![UI](images/living-room-screenshot.jpg)
 ![UI](images/dining-screenshot.jpg)
 ![UI](images/bedrooms-screenshot.jpg)
