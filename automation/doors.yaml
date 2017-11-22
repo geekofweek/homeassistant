@@ -26,7 +26,7 @@
     - service: light.turn_on
       entity_id: group.front_porch
       data:
-        brightness: 255
+        brightness_pct: 100
 
         ##########################################################
         ## Reset Front Door Brightness when Front Door Closes
@@ -62,7 +62,7 @@
     - service: light.turn_on
       entity_id: group.front_porch
       data:
-        brightness: 100
+        brightness_pct: 40
         transition: 120
 
         ##########################################################
@@ -126,7 +126,7 @@
       entity_id: group.living_room_lights
       data:
        xy_color: [ 0.5134, 0.4149 ]
-       brightness: 255
+       brightness_pct: 100
 
         ##########################################################
         ## Turn On Back Door when Door Opens
@@ -152,7 +152,7 @@
     - service: light.turn_on
       entity_id: group.back_door
       data:
-       brightness: 255
+       brightness_pct: 100
 
         ##########################################################
         ## Reset Back Door Brightness when Door Closes
@@ -182,7 +182,7 @@
     - service: light.turn_on
       entity_id: group.back_door
       data:
-        brightness: 3
+        brightness_pct: 1
         transition: 300
 
         ##########################################################

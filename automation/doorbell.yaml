@@ -26,7 +26,7 @@
     - service: light.turn_on
       entity_id: group.front_porch
       data:
-        brightness: 255
+        brightness_pct: 100
 
         ##########################################################
         ## Reset Front Porch Brightness After Doorbell Rings
@@ -56,7 +56,7 @@
     - service: light.turn_on
       entity_id: group.front_porch
       data:
-        brightness: 100
+        brightness_pct: 40
         transition: 300
 
         ##########################################################
@@ -83,7 +83,7 @@
     - service: light.turn_on
       entity_id: group.front_porch
       data:
-        brightness: 255
+        brightness_pct: 100
 
         ##########################################################
         ## Reset Front Porch Brightness After Motion Detected
@@ -120,7 +120,7 @@
     - service: light.turn_on
       entity_id: group.front_porch
       data:
-        brightness: 100
+        brightness_pct: 40
         transition: 300
 
         ##########################################################
@@ -154,7 +154,7 @@
         - light.closet_lamp
         - light.kitchen_sink
       data:
-        brightness: 255
+        brightness_pct: 100
         profile: relax
 
         ##########################################################
@@ -226,7 +226,7 @@
         - light.closet_lamp
         - light.kitchen_sink
       data:
-        brightness: 255
+        brightness_pct: 100
         profile: relax
 
         ##########################################################

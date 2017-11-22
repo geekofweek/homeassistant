@@ -30,7 +30,7 @@
     - service: light.turn_on
       entity_id: light.garage_light
       data:
-       brightness_pct: 15
+       brightness_pct: 1
 
         ##########################################################
         ## Turn on Garage Light when Garage Open
@@ -56,7 +56,7 @@
     - service: light.turn_on
       entity_id: light.garage_light
       data:
-       brightness: 255
+       brightness_pct: 100
 
         ##########################################################
         ## Turn Off Garage Light After 1 Hour
@@ -103,7 +103,7 @@
     - service: light.turn_on
       entity_id: light.garage_light
       data:
-       brightness_pct: 15
+       brightness_pct: 1
 
         ##########################################################
         ## Turn Off Garage Light at Midnight
@@ -151,7 +151,7 @@
       entity_id: group.front_porch
       data:
         transition: 900
-        brightness: 100
+        brightness_pct: 40
         profile: relax
 
         ##########################################################
@@ -261,7 +261,7 @@
     - service: light.turn_on
       entity_id: group.back_door
       data:
-        brightness: 3
+        brightness_pct: 1
         transition: 60
 
         ##########################################################
@@ -346,27 +346,27 @@
   action:
     - service: light.turn_on
       entity_id:
-        - light.dining_room_table
         - group.living_room_lights
-        - light.bahtroom_vanity
       data:
-       brightness: 25
+       brightness_pct: 25
        xy_color: [ 0.5134, 0.4149 ]
     - service: light.turn_on
       entity_id:
+        - light.dining_room_table
+        - light.bahtroom_vanity
         - light.kitchen_cabinets
         - light.kitchen_sink
       data:
-       brightness: 2
+       brightness_pct: 1
     - service: light.turn_on
       entity_id: light.hallway_light
       data:
-       brightness: 3
+       brightness_pct: 1
        color_name: red
     - service: light.turn_on
       entity_id: group.back_door
       data:
-       brightness: 3
+       brightness_pct: 1
        transition: 60
 
         ##########################################################

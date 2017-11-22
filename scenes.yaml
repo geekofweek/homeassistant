@@ -9,33 +9,33 @@
         group.hue_lights:
             state: on
             flash: long
-            brightness: 255
+            brightness_pct: 100
             xy_color: [0.6531,0.2834]
         group.hue_lights_exterior:
             state: on
-            brightness: 255
+            brightness_pct: 100
         group.wink_lights:
             state: on
-            brightness: 255
+            brightness_pct: 100
         group.wink_exterior:
             state: on
-            brightness: 255
+            brightness_pct: 100
 
   - name: Vacation
     entities:
         light.office_ceiling:
             state: on
-            brightness: 2
+            brightness_pct: 1
         light.kitchen_sink:
             state: on
-            brightness: 2
+            brightness_pct: 1
         group.living_room_lamps:
             state: on
-            brightness: 130
+            brightness_pct: 25
             profile: relax
         light.closet_lamp:
             state: on
-            brightness: 130
+            brightness_pct: 25
 
   - name: Vacation Disable Automation
     entities:

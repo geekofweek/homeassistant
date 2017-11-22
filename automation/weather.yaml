@@ -48,7 +48,7 @@
         - light.hallway_light
       data:
         xy_color: [ 0.5134, 0.4149 ]
-        brightness: 85
+        brightness_pct: 50
         transition: 300
     - service: light.turn_on
       entity_id:
@@ -56,7 +56,7 @@
         - light.dining_room_table
         - light.kitchen_sink
       data:
-        brightness: 2
+        brightness_pct: 1
 
         ##########################################################
         ## Turn On USER2 Office when Raining
@@ -96,7 +96,12 @@
     - service: light.turn_on
       entity_id:
         - group.USER2_office
-        - group.stairs
       data:
         transition: 300
-        brightness: 255
+        brightness_pct: 50
+    - service: light.turn_on
+      entity_id:
+        - group.stairs
+      data:
+        transition: 10
+        brightness_pct: 1

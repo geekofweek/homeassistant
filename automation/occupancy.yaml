@@ -106,12 +106,12 @@
       entity_id: group.USER2_office
       data:
         transition: 300
-        brightness: 127
+        brightness_pct: 50
     - service: light.turn_on
       entity_id: group.stairs
       data:
         transition: 3
-        brightness: 3
+        brightness_pct: 1
 
         ##########################################################
         ## Turn off USER2 Office when Unoccupied
@@ -386,17 +386,17 @@
       data:
         transition: 900
         xy_color: [ 0.5134, 0.4149 ]
-        brightness: 255
+        brightness_pct: 100
     - service: light.turn_on
       entity_id: light.media_center_lighting
       data:
        transition: 900
        effect: random
-       brightness: 255
+       brightness_pct: 100
     - service: light.turn_on
       entity_id: light.dining_room_table
       data:
-        brightness: 127
+        brightness_pct: 50
 
         ##########################################################
         ## Turn on Kitchen at Sunset when Occupied
@@ -427,13 +427,13 @@
     - service: light.turn_on
       entity_id: light.kitchen_ceiling
       data:
-        brightness: 255
+        brightness_pct: 100
     - service: light.turn_on
       entity_id:
         - light.kitchen_cabinets
         - light.kitchen_sink
       data:
-        brightness: 2
+        brightness_pct: 1
 
 
         ##########################################################
@@ -468,7 +468,7 @@
         - group.stairs
       data:
         transition: 60
-        brightness: 75
+        brightness_pct: 50
         profile: relax
 
         ##########################################################
@@ -500,7 +500,12 @@
     - service: light.turn_on
       entity_id:
         - group.USER2_office
+      data:
+        transition: 300
+        brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - group.stairs
       data:
         transition: 300
-        brightness: 255
+        brightness_pct: 50

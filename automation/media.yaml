@@ -27,6 +27,7 @@
       data:
        transition: 5
        profile: relax
+       brightness_pct: 65
     - service: light.turn_on
       entity_id: light.media_center_lighting
       data:
@@ -36,18 +37,20 @@
     - service: light.turn_on
       entity_id: light.hallway_light
       data:
-       brightness: 25
+       transition: 5
+       profile: relax
+       brightness_pct: 10
     - service: light.turn_on
       entity_id:
         - light.dining_room_table
         - light.bathroom_vanity
         - light.kitchen_sink
       data:
-       brightness: 100
+       brightness_pct: 40
     - service: light.turn_on
       entity_id: light.kitchen_cabinets
       data:
-       brightness: 2
+       brightness_pct: 1
 
         ##########################################################
         ## Plex Lights Off
@@ -153,7 +156,7 @@
       data:
        transition: 5
        profile: relax
-       brightness: 128
+       brightness_pct: 50
     - service: light.turn_on
       entity_id: light.media_center_lighting
       data:
@@ -165,7 +168,7 @@
       data:
        transition: 1
        profile: relax
-       brightness: 3
+       brightness_pct: 1
     - service: light.turn_on
       entity_id:
         - light.dining_room_table
@@ -173,7 +176,7 @@
         - light.kitchen_sink
         - light.kitchen_cabinets
       data:
-       brightness: 2
+       brightness_pct: 1
 
         ##########################################################
         ## Late Night TV Watching after Midnight Lights On
@@ -220,7 +223,7 @@
       data:
        transition: 5
        profile: relax
-       brightness: 128
+       brightness_pct: 50
     - service: light.turn_on
       entity_id: light.media_center_lighting
       data:
@@ -232,7 +235,7 @@
       data:
        transition: 1
        profile: relax
-       brightness: 3
+       brightness_pct: 1
     - service: light.turn_on
       entity_id:
         - light.dining_room_table
@@ -240,7 +243,7 @@
         - light.kitchen_sink
         - light.kitchen_cabinets
       data:
-       brightness: 2
+       brightness_pct: 1
 
         ##########################################################
         ## Late Night TV Watching after Midnight Lights Off
