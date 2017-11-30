@@ -230,9 +230,9 @@
     - group.house_guest
 
   House Guest:
+    - device_tracker.REDACTED
   #  - device_tracker.REDACTED
-    - device_tracker.REDACTED
-    - device_tracker.REDACTED
+  #  - device_tracker.REDACTED
 
   Device Location:
     - device_tracker.USER1sipad
@@ -286,6 +286,7 @@
     entities:
       - group.living_room_lamps
       - light.media_center_lighting
+      - switch.christmas_tree
       - switch.fireplace
       - switch.living_room_ceiling_fan
       - lock.front_door
@@ -484,6 +485,7 @@
     entities:
       - climate.main_floor
       - climate.window_unit
+      - switch.basement_heater
       - sensor.dark_sky_temperature
       - input_boolean.thermostat_away
       - switch.hallway_fan
@@ -495,6 +497,7 @@
     entities:
       - climate.main_floor
       - climate.window_unit
+      - switch.basement_heater
 
   Summer Mode:
     - automation.thermostat__turn_on_summer

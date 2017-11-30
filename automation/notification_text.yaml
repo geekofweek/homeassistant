@@ -209,6 +209,27 @@
         message: Fireplace Turned On!
 
         #################################################################
+        ## Garage Door Still Open Notification
+        #################################################################
+
+- alias: Notification Text - Garage Door Still Open
+
+  trigger:
+    - platform: state
+      entity_id: cover.garage_door
+      from: 'closed'
+      to: 'open'
+      for:
+        hours: 0
+        minutes: 35
+        seconds: 0
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Garage Door is Still Open!
+
+        #################################################################
         ## DNS Server 1 Down
         #################################################################
 

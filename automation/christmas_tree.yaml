@@ -1,0 +1,118 @@
+        ##########################################################
+        ## Christmas Tree Away Mode
+        ##########################################################
+
+- alias: Christmas - Tree Away Mode
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'home'
+      to: 'not_home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.christmas_tree
+
+        ##########################################################
+        ## Christmas Tree Home Mode
+        ##########################################################
+
+- alias: Christmas - Tree Home Mode
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: input_boolean.USER1_away
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.USER2_away
+        state: 'on'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.christmas_tree
+
+        ##########################################################
+        ## Turn on Christmas Tree at Sunset
+        ##########################################################
+
+- alias: Christmas - Turn on Christmas Tree at Sunset
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:30:00'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_interior_lights_sunset
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.christmas_tree
+
+        ##########################################################
+        ## Turn on Christmas Tree when USER2 Home
+        ##########################################################
+
+- alias: Christmas - Turn on Tree when USER2 Home
+
+  trigger:
+   - platform: time
+     at: '09:00'
+
+  condition:
+    - condition: state
+      entity_id: vacuum.roomba
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.christmas_tree
+
+        ##########################################################
+        ## Christmas Tree Bedtime
+        ##########################################################
+
+- alias: Christmas - Tree Bedtime
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.christmas_tree

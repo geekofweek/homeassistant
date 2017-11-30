@@ -11,12 +11,15 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.basement_temperature
-      below: 60
+      below: 63
 
   condition:
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: group.winter_mode
+      state: 'on'
 
   action:
     - service: switch.turn_on
@@ -31,7 +34,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.basement_temperature
-      above: 60
+      above: 63
 
   action:
     - service: switch.turn_off
@@ -53,9 +56,12 @@
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
+    - condition: state
+      entity_id: group.winter_mode
+      state: 'on'
     - condition: numeric_state
       entity_id: sensor.basement_temperature
-      below: 59
+      below: 63
 
   action:
     - service: switch.turn_on
@@ -79,7 +85,7 @@
   condition:
     - condition: numeric_state
       entity_id: sensor.basement_temperature
-      above: 58
+      above: 60
 
   action:
     - service: switch.turn_off

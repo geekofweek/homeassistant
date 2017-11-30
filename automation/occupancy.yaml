@@ -82,6 +82,41 @@
       entity_id: group.USER1_office
 
         ##########################################################
+        ## Turn on USER1's Office when Occupied after Dark
+        ##########################################################
+
+- alias: Occupancy - Turn on USER1's Office when Occupied after Dark
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.office_occupancy
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: device_tracker.USER1DEVICE
+      state: 'home'
+    - condition: state
+      entity_id: group.USER1_office_lights
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.office_lamp
+      data:
+        transition: 300
+        brightness_pct: 75
+    - service: light.turn_on
+      entity_id: group.stairs
+      data:
+        transition: 3
+        brightness_pct: 25
+
+        ##########################################################
         ## Turn on USER2 Office when Occupied
         ##########################################################
 
