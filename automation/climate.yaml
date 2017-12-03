@@ -6,7 +6,7 @@
         ## Set Thermostat Home
         ##########################################################
 
-- alias: Thermostat - Home
+- alias: Climate - Home
 
   trigger:
     - platform: state
@@ -32,7 +32,7 @@
         ## Set Thermostat Away
         ##########################################################
 
-- alias: Thermostat - Away
+- alias: Climate - Away
 
   trigger:
     - platform: state
@@ -61,7 +61,7 @@
         ## Set Thermostat Home When USER2 Leaves Work
         ##########################################################
 
-- alias: Thermostat - Set Home When USER2 Leaves Work
+- alias: Climate - Set Home When USER2 Leaves Work
 
   trigger:
     - platform: state
@@ -85,7 +85,7 @@
         ## Turn Thermostat on Summer
         ##########################################################
 
-- alias: Thermostat - Turn on Summer
+- alias: Climate - Turn on Summer
 
   trigger:
     - platform: numeric_state
@@ -100,7 +100,7 @@
         ## Turn Thermostat off Summer
         ##########################################################
 
-- alias: Thermostat - Turn off Summer
+- alias: Climate - Turn off Summer
 
   trigger:
     - platform: numeric_state
@@ -115,7 +115,7 @@
         ## Turn Thermostat on Winter
         ##########################################################
 
-- alias: Thermostat - Turn on Winter
+- alias: Climate - Turn on Winter
 
   trigger:
     - platform: numeric_state
@@ -130,7 +130,7 @@
         ## Turn Thermostat off Winter
         ##########################################################
 
-- alias: Thermostat - Turn off Winter
+- alias: Climate - Turn off Winter
 
   trigger:
     - platform: numeric_state
@@ -145,7 +145,7 @@
         ## Disable Summer / Winter Mode on Start
         ##########################################################
 
-- alias: Thermostat - Disable Summer or Winter Mode on Start
+- alias: Climate - Disable Summer or Winter Mode on Start
 
   trigger:
     - platform: homeassistant
@@ -162,7 +162,7 @@
         ## Turn off Thermostat when Door Opens for Extended Period
         ##########################################################
 
-- alias: Thermostat - Turn off when Door Opens for Extended Period
+- alias: Climate - Turn off when Door Opens for Extended Period
 
   trigger:
     - platform: state
@@ -190,7 +190,7 @@
         ## Thermostat on Demand Home
         ##########################################################
 
-- alias: Thermostat - On Demand Home
+- alias: Climate - On Demand Home
 
   trigger:
     - platform: state
@@ -208,7 +208,7 @@
         ## Thermostat on Demand Away
         ##########################################################
 
-- alias: Thermostat - On Demand Away
+- alias: Climate - On Demand Away
 
   trigger:
     - platform: state
@@ -226,7 +226,7 @@
         ## Set Thermostat WFH Mode when Hot on Weekends
         ##########################################################
 
-- alias: Thermostat - Set Thermostat WFH Mode when Hot on Weekends
+- alias: Climate - Set Thermostat WFH Mode when Hot on Weekends
 
   trigger:
     - platform: numeric_state
@@ -256,10 +256,254 @@
         hold_mode: "smart2"
 
         ##########################################################
+        ## Adjust Thermostat for Overnight Guests before Midnight
+        ##########################################################
+
+- alias: Climate - Turn on Guest Settings before Midnight
+
+  trigger:
+    - platform: time
+      at: '23:31'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.overnight_guests
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.thermostat_away
+      state: 'off'
+
+  action:
+    - service: climate.set_hold_mode
+      data:
+        entity_id: climate.main_floor
+        #Guest = smart3
+        hold_mode: "smart3"
+
+        ##########################################################
+        ## Turn on Window Unit When Guests Staying before Midnight
+        ##########################################################
+
+- alias: Climate - Turn on Window Unit When Guests Staying before Midnight
+
+  trigger:
+    - platform: time
+      at: '23:31'
+
+  condition:
+    - condition: state
+      entity_id: group.overnight_guests
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'on'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.summer_mode
+      state: 'on'
+    - condition: numeric_state
+      entity_id: sensor.dark_sky_temperature
+      above: 62
+
+  action:
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.window_unit
+        operation_mode: 'eco'
+    - service: climate.fan_mode
+      data:
+        entity_id: climate.window_unit
+        fan_mode: 'low'
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.window_unit
+        temperature: '68'
+    - service: switch.turn_on
+      entity_id: switch.hallway_fan
+
+        ##########################################################
+        ## Adjust Thermostat for Overnight Guests after Midnight
+        ##########################################################
+
+- alias: Climate - Turn on Guest Settings after Midnight
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.guest_mode
+      to: 'on'
+
+  condition:
+    - condition: time
+      after: '00:00'
+      before: '04:59'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: climate.set_hold_mode
+      data:
+        entity_id: climate.main_floor
+        #Guest = smart3
+        hold_mode: "smart3"
+
+        ##########################################################
+        ## Turn on Window Unit When Guests Staying after Midnight
+        ##########################################################
+
+- alias: Climate - Turn on Window Unit When Guests Staying after Midnight
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.guest_mode
+      to: 'on'
+
+  condition:
+    - condition: time
+      after: '00:00'
+      before: '04:59'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.summer_mode
+      state: 'on'
+    - condition: numeric_state
+      entity_id: sensor.dark_sky_temperature
+      above: 62
+
+  action:
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.window_unit
+        operation_mode: 'eco'
+    - service: climate.fan_mode
+      data:
+        entity_id: climate.window_unit
+        fan_mode: 'low'
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.window_unit
+        temperature: '68'
+    - service: switch.turn_on
+      entity_id: switch.hallway_fan
+
+        ##########################################################
+        ## If USER1 is not Home Override WFH Mode
+        ##########################################################
+
+- alias: Climate - Override WFH Mode
+
+  trigger:
+    - platform: time
+      at: '10:01'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.thermostat_away
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: device_tracker.USER2DEVICE
+      state: 'home'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+
+  action:
+    - service: climate.set_hold_mode
+      data:
+        entity_id: climate.main_floor
+        hold_mode: "home"
+
+        ##########################################################
+        ## Set Thermostat Home if USER2 Working at 5a
+        ##########################################################
+
+- alias: Climate - Set Thermostat Home if USER2 Working at 5a
+
+  trigger:
+    - platform: time
+      at: '05:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.thermostat_away
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.USER2_working
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: device_tracker.USER2DEVICE
+      state: 'home'
+
+  action:
+    - service: climate.set_hold_mode
+      data:
+        entity_id: climate.main_floor
+        hold_mode: "home"
+
+        ##########################################################
+        ## Reset Thermostat when USER2 Leaves
+        ##########################################################
+
+- alias: Climate - Reset Thermostat when USER2 Leaves
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER2DEVICE
+      from: 'home'
+      to: 'not_home'
+
+  condition:
+    - condition: time
+      after: '05:00'
+      before: '07:00'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.thermostat_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER2_working
+      state: 'on'
+
+  action:
+    - service: climate.set_hold_mode
+      data:
+        entity_id: climate.main_floor
+        hold_mode: None
+
+#################################################################
+## Window Unit Automations
+#################################################################
+
+        ##########################################################
         ## Turn on Window Unit at 10a
         ##########################################################
 
-- alias: Thermostat - Turn on Window Unit at 10a
+- alias: Climate - Turn on Window Unit at 10a
 
   trigger:
     - platform: time
@@ -305,7 +549,7 @@
         ## Turn off Window Unit at 8p
         ##########################################################
 
-- alias: Thermostat - Turn off Window Unit at 8p
+- alias: Climate - Turn off Window Unit at 8p
 
   trigger:
     - platform: time
@@ -328,7 +572,7 @@
         ## Turn on Window Unit when Office is Hot
         ##########################################################
 
-- alias: Thermostat - Turn on Window Unit when Office is Hot
+- alias: Climate - Turn on Window Unit when Office is Hot
 
   trigger:
     - platform: numeric_state
@@ -368,7 +612,7 @@
         ## Turn on Window Unit when Returning Home
         ##########################################################
 
-- alias: Thermostat - Turn on Window Unit when Returning Home
+- alias: Climate - Turn on Window Unit when Returning Home
 
   trigger:
     - platform: state
@@ -403,7 +647,7 @@
         ## Turn on Window Unit when Hot Outside
         ##########################################################
 
-- alias: Thermostat - Turn on Window Unit when Hot Outside
+- alias: Climate - Turn on Window Unit when Hot Outside
 
   trigger:
     - platform: numeric_state
@@ -441,7 +685,7 @@
         ## Turn off Winodw Unit When below 80 Outside and Away
         ##########################################################
 
-- alias: Thermostat - Turn off Winodw Unit When below 80 Outside and Away
+- alias: Climate - Turn off Winodw Unit When below 80 Outside and Away
 
   trigger:
     - platform: numeric_state
@@ -465,7 +709,7 @@
         ## Turn off Winodw Unit When below 68 Outside
         ##########################################################
 
-- alias: Thermostat - Turn off Winodw Unit When below 68 Outside
+- alias: Climate - Turn off Winodw Unit When below 68 Outside
 
   trigger:
     - platform: numeric_state
@@ -480,242 +724,141 @@
     - service: switch.turn_off
       entity_id: switch.hallway_fan
 
-        ##########################################################
-        ## Adjust Thermostat for Overnight Guests before Midnight
-        ##########################################################
-
-- alias: Thermostat - Turn on Guest Settings before Midnight
-
-  trigger:
-    - platform: time
-      at: '23:31'
-
-  condition:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: group.overnight_guests
-      state: 'home'
-    - condition: state
-      entity_id: input_boolean.guest_mode
-      state: 'on'
-    - condition: state
-      entity_id: input_boolean.thermostat_away
-      state: 'off'
-
-  action:
-    - service: climate.set_hold_mode
-      data:
-        entity_id: climate.main_floor
-        #Guest = smart3
-        hold_mode: "smart3"
+#################################################################
+## Basement Heater Automations
+#################################################################
 
         ##########################################################
-        ## Turn on Window Unit When Guests Staying before Midnight
+        ## When Ecobee Away Mode off Turn on Basement Heater
         ##########################################################
 
-- alias: Thermostat - Turn on Window Unit When Guests Staying before Midnight
-
-  trigger:
-    - platform: time
-      at: '23:31'
-
-  condition:
-    - condition: state
-      entity_id: group.overnight_guests
-      state: 'home'
-    - condition: state
-      entity_id: input_boolean.guest_mode
-      state: 'on'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: group.summer_mode
-      state: 'on'
-    - condition: numeric_state
-      entity_id: sensor.dark_sky_temperature
-      above: 62
-
-  action:
-    - service: climate.set_operation_mode
-      data:
-        entity_id: climate.window_unit
-        operation_mode: 'eco'
-    - service: climate.fan_mode
-      data:
-        entity_id: climate.window_unit
-        fan_mode: 'low'
-    - service: climate.set_temperature
-      data:
-        entity_id: climate.window_unit
-        temperature: '68'
-    - service: switch.turn_on
-      entity_id: switch.hallway_fan
-
-        ##########################################################
-        ## Adjust Thermostat for Overnight Guests after Midnight
-        ##########################################################
-
-- alias: Thermostat - Turn on Guest Settings after Midnight
+- alias: Climate - When Ecobee Away Mode off Turn on Basement Heater
 
   trigger:
     - platform: state
-      entity_id: input_boolean.guest_mode
-      to: 'on'
-
-  condition:
-    - condition: time
-      after: '00:00'
-      before: '04:59'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-
-  action:
-    - service: climate.set_hold_mode
-      data:
-        entity_id: climate.main_floor
-        #Guest = smart3
-        hold_mode: "smart3"
-
-        ##########################################################
-        ## Turn on Window Unit When Guests Staying after Midnight
-        ##########################################################
-
-- alias: Thermostat - Turn on Window Unit When Guests Staying after Midnight
-
-  trigger:
-    - platform: state
-      entity_id: input_boolean.guest_mode
-      to: 'on'
-
-  condition:
-    - condition: time
-      after: '00:00'
-      before: '04:59'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: group.summer_mode
-      state: 'on'
-    - condition: numeric_state
-      entity_id: sensor.dark_sky_temperature
-      above: 62
-
-  action:
-    - service: climate.set_operation_mode
-      data:
-        entity_id: climate.window_unit
-        operation_mode: 'eco'
-    - service: climate.fan_mode
-      data:
-        entity_id: climate.window_unit
-        fan_mode: 'low'
-    - service: climate.set_temperature
-      data:
-        entity_id: climate.window_unit
-        temperature: '68'
-    - service: switch.turn_on
-      entity_id: switch.hallway_fan
-
-        ##########################################################
-        ## If USER1 is not Home Override WFH Mode
-        ##########################################################
-
-- alias: Thermostat - Override WFH Mode
-
-  trigger:
-    - platform: time
-      at: '10:01'
-
-  condition:
-    - condition: state
       entity_id: input_boolean.thermostat_away
-      state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: device_tracker.USER2DEVICE
-      state: 'home'
-    - condition: time
-      weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
-
-  action:
-    - service: climate.set_hold_mode
-      data:
-        entity_id: climate.main_floor
-        hold_mode: "home"
-
-        ##########################################################
-        ## Set Thermostat Home if USER2 Working at 5a
-        ##########################################################
-
-- alias: Thermostat - Set Thermostat Home if USER2 Working at 5a
-
-  trigger:
-    - platform: time
-      at: '05:00'
+      from: 'on'
+      to: 'off'
 
   condition:
-    - condition: state
-      entity_id: input_boolean.thermostat_away
-      state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: input_boolean.USER2_working
-      state: 'on'
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
     - condition: state
-      entity_id: device_tracker.USER2DEVICE
-      state: 'home'
+      entity_id: group.winter_mode
+      state: 'on'
 
   action:
-    - service: climate.set_hold_mode
+    - service: climate.set_temperature
       data:
-        entity_id: climate.main_floor
-        hold_mode: "home"
+        entity_id: climate.basement_heater
+        temperature: '68'
 
         ##########################################################
-        ## Reset Thermostat when USER2 Leaves
+        ## When Ecobee Away Mode on Turn off Basement Heater
         ##########################################################
 
-- alias: Thermostat - Reset Thermostat when USER2 Leaves
+- alias: Climate - When Ecobee Away Mode on Turn off Basement Heater
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2DEVICE
-      from: 'home'
-      to: 'not_home'
+      entity_id: input_boolean.thermostat_away
+      from: 'off'
+      to: 'on'
 
   condition:
-    - condition: time
-      after: '05:00'
-      before: '07:00'
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
+
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.basement_heater
+        temperature: '45'
+
+        ##########################################################
+        ## Basement Heater Bedtime
+        ##########################################################
+
+- alias: Climate - Basement Heater Bedtime
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.winter_mode
+      state: 'on'
     - condition: state
       entity_id: input_boolean.thermostat_away
       state: 'off'
     - condition: state
-      entity_id: input_boolean.USER2_working
-      state: 'on'
+      entity_id: group.household
+      state: 'home'
 
   action:
-    - service: climate.set_hold_mode
+    - service: climate.set_temperature
       data:
-        entity_id: climate.main_floor
-        hold_mode: None
+        entity_id: climate.basement_heater
+        temperature: '60'
+
+        ##########################################################
+        ## Basement Heater Schedule Sleep Mode
+        ##########################################################
+
+- alias: Climate - Basement Heater Schedule Sleep Mode
+
+  trigger:
+    - platform: time
+      at: '23:30'
+
+  condition:
+    - condition: state
+      entity_id: group.winter_mode
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.thermostat_away
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.basement_heater
+        temperature: '60'
+
+        ##########################################################
+        ## Basement Heater Schedule Home Mode
+        ##########################################################
+
+- alias: Climate - Basement Heater Schedule Home Mode
+
+  trigger:
+    - platform: time
+      at: '09:00'
+
+  condition:
+    - condition: state
+      entity_id: group.winter_mode
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.thermostat_away
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.basement_heater
+        temperature: '68'

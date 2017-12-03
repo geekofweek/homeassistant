@@ -12,6 +12,7 @@
       - group.interior_lights
       - group.exterior_lights
       - group.locks
+      - group.climate_control
       - group.garage
       - camera.front_porch
       - camera.garage
@@ -485,6 +486,7 @@
     entities:
       - climate.main_floor
       - climate.window_unit
+      - climate.basement_heater
       - switch.basement_heater
       - sensor.dark_sky_temperature
       - input_boolean.thermostat_away
@@ -497,15 +499,15 @@
     entities:
       - climate.main_floor
       - climate.window_unit
-      - switch.basement_heater
+      - climate.basement_heater
 
   Summer Mode:
-    - automation.thermostat__turn_on_summer
-    - automation.thermostat__turn_off_summer
+    - automation.climate__turn_on_summer
+    - automation.climate__turn_off_summer
 
   Winter Mode:
-    - automation.thermostat__turn_on_winter
-    - automation.thermostat__turn_off_winter
+    - automation.climate__turn_on_winter
+    - automation.climate__turn_off_winter
 
   Media Player:
     - sensor.REDACTED

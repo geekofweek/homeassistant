@@ -153,6 +153,8 @@
         - light.office_lamp
         - light.closet_lamp
         - light.kitchen_sink
+        - group.back_door
+        - light.garage_light
       data:
         brightness_pct: 100
         profile: relax
@@ -194,6 +196,12 @@
         transition: 900
     - service: light.turn_off
       entity_id: light.kitchen_sink
+    - service: light.turn_on
+      entity_id:
+        - group.back_door
+        - light.garage_light
+      data:
+        brightness_pct: 1
 
         ##########################################################
         ## Turn On Lights when Motion Detected and Away
@@ -225,6 +233,8 @@
         - light.office_lamp
         - light.closet_lamp
         - light.kitchen_sink
+        - group.back_door
+        - light.garage_light
       data:
         brightness_pct: 100
         profile: relax
@@ -266,3 +276,9 @@
         transition: 900
     - service: light.turn_off
       entity_id: light.kitchen_sink
+    - service: light.turn_on
+      entity_id:
+        - group.back_door
+        - light.garage_light
+      data:
+        brightness_pct: 1
