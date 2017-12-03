@@ -749,6 +749,10 @@
       state: 'on'
 
   action:
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.basement_heater
+        operation_mode: 'auto'
     - service: climate.set_temperature
       data:
         entity_id: climate.basement_heater
@@ -772,10 +776,10 @@
       state: 'off'
 
   action:
-    - service: climate.set_temperature
+    - service: climate.set_operation_mode
       data:
         entity_id: climate.basement_heater
-        temperature: '45'
+        operation_mode: 'off'
 
         ##########################################################
         ## Basement Heater Bedtime
@@ -804,10 +808,10 @@
       state: 'home'
 
   action:
-    - service: climate.set_temperature
+    - service: climate.set_operation_mode
       data:
         entity_id: climate.basement_heater
-        temperature: '60'
+        operation_mode: 'off'
 
         ##########################################################
         ## Basement Heater Schedule Sleep Mode
@@ -821,9 +825,6 @@
 
   condition:
     - condition: state
-      entity_id: group.winter_mode
-      state: 'on'
-    - condition: state
       entity_id: input_boolean.thermostat_away
       state: 'off'
     - condition: state
@@ -831,10 +832,10 @@
       state: 'home'
 
   action:
-    - service: climate.set_temperature
+    - service: climate.set_operation_mode
       data:
         entity_id: climate.basement_heater
-        temperature: '60'
+        operation_mode: 'off'
 
         ##########################################################
         ## Basement Heater Schedule Home Mode
@@ -858,7 +859,39 @@
       state: 'home'
 
   action:
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.basement_heater
+        operation_mode: 'Auto'
     - service: climate.set_temperature
       data:
         entity_id: climate.basement_heater
         temperature: '68'
+
+        #################################################################
+        ## Disable Heater On Startup During Summer
+        #################################################################
+
+- alias: Climate - Disable Heater On Startup During Summer
+
+  trigger:
+    - platform: homeassistant
+      event: start
+
+  condition:
+    - condition: state
+      entity_id: group.winter_mode
+      state: 'off'
+    - condition: state
+      entity_id: group.summer_mode
+      state: 'on'
+
+  action:
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.basement_heater
+        operation_mode: 'off'
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.basement_heater
+        temperature: '45'

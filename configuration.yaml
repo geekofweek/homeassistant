@@ -172,10 +172,14 @@ climate:
     name: Basement Heater
     heater: switch.basement_heater
     target_sensor: sensor.laundry_room_temperature
+    #Winter Temp
     target_temp: 68
+    #Summer Temp
+    #target_temp: 45
     min_cycle_duration: 15
     cold_tolerance: 1
     hot_tolerance: .5
+    max_temp: 78
 
 #################################################################
 ## Includes
