@@ -11,7 +11,18 @@
   trigger:
     - platform: state
       entity_id: media_player.plex_living_room
-      from: 'playing'
+      to: 'idle'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 3
+    - platform: state
+      entity_id: media_player.plex_living_room
+      to: 'paused'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 3
 
   condition:
     - condition: state
