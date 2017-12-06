@@ -151,16 +151,17 @@
       - group.nas
       - group.system
 
-  traffic:
-    name: Traffic
+  auto:
+    name: Auto
     view: yes
     icon: mdi:car
     entities:
+      - group.garage
+      - group.garage_outlets
+      - camera.garage
       - group.travel_times
       - group.traffic_camera_feeds
       - camera.REDACTED
-      - camera.USER1
-      - camera.USER2
 
   troubleshooting:
     name: Troubleshooting
@@ -228,10 +229,13 @@
   Household:
     - device_tracker.USER1DEVICE
     - device_tracker.USER2DEVICE
-    - group.house_guest
+  #  - group.house_guest
 
   House Guest:
-    - device_tracker.REDACTED
+  #  - device_tracker.REDACTED
+  #  - device_tracker.REDACTED
+  #  - device_tracker.REDACTED
+  #  - device_tracker.REDACTED
   #  - device_tracker.REDACTED
   #  - device_tracker.REDACTED
 
@@ -245,7 +249,7 @@
   Friends and Family:
     - device_tracker.REDACTED
     - device_tracker.REDACTED
-  #  - device_tracker.REDACTED
+    - device_tracker.REDACTED
     - device_tracker.REDACTED
     - device_tracker.REDACTED
     - device_tracker.REDACTED
@@ -619,6 +623,7 @@
 
   Weather:
     - sun.sun
+    - sensor.moon
     - sensor.dark_sky_temperature
     - sensor.dark_sky_apparent_temperature
     - sensor.dark_sky_humidity
@@ -693,6 +698,9 @@
     - sensor.pihole_ads_blocked_today_2
     - sensor.pihole_ads_percentage_blocked_today
     - sensor.pihole_ads_percentage_blocked_today_2
+
+  Garage Outlets:
+    - switch.myq_garage_outlet
 
   Hue lights:
     - light.USER1s_nightstand
