@@ -28,6 +28,8 @@ Home Assistant Version: 0.59.2
 * [Quirky + GE Aros Window AC](http://www.amazon.com/Quirky-Aros-Smart-Window-Conditioner/dp/B00IDXGIAC?ie=UTF8&psc=1&redirect=true&ref_=oh_aui_detailpage_o03_s01) -x1
 * [Amazon Echo](http://www.amazon.com/Amazon-SK705DI-Echo/dp/B00X4WHP5E/ref=sr_1_1?ie=UTF8&qid=1461377119&sr=8-1&keywords=amazon+echo) - x1 (via Emulated Hue)
 * [Amazon Echo Dot](http://www.amazon.com/b/?node=14047587011) - x6 (via Emulated Hue)
+* [Amazon Echo Show](https://www.amazon.com/Amazon-Echo-Show-Alexa-Enabled-White/dp/B010CEHQTG/ref=sr_1_2?ie=UTF8&qid=1513364215&sr=8-2&keywords=echo+show) - x1 (via Emulated Hue)
+* [Amazon Echo Spot](https://www.amazon.com/Amazon-VN94DQ-Introducing-Echo-Spot/dp/B073SQYXTW/ref=sr_1_1?s=amazon-devices&ie=UTF8&qid=1513364246&sr=1-1&keywords=echo+spot) - x1 (via Emulated Hue)
 * [Sonos PLAY:1](https://www.amazon.com/Sonos-PLAY-Compact-Wireless-Streaming/dp/B00EWCUK1Q/ref=sr_1_1?s=aht&ie=UTF8&qid=1480883246&sr=1-1&keywords=Sonos+play+1) - x10
 * [Sonos CONNECT](https://www.amazon.com/Sonos-Wireless-Receiver-Component-Streaming/dp/B001CROHX6/ref=sr_1_3?s=aht&ie=UTF8&qid=1480883287&sr=1-3&keywords=Sonos+Connect) - x1
 * [Sonos CONNECT:AMP](https://www.amazon.com/Sonos-CONNECT-Wireless-Amplifier-Streaming/dp/B001CROHU4/ref=sr_1_2?ie=UTF8&qid=1501368078&sr=8-2&keywords=sonos+connect+amp) - x1
