@@ -1,7 +1,7 @@
 # Home Assistant
 Example [Home Assistant](https://home-assistant.io) Configs
 
-Home Assistant Version: 0.59.2
+Home Assistant Version: 0.60.0
 
 # Devices
 
