@@ -156,7 +156,7 @@
         - light.hallway_light
         - light.basement_stairs
       data:
-       brightness_pct: 25
+       brightness_pct: 35
        profile: relax
     - service: light.turn_on
       entity_id:
@@ -172,6 +172,9 @@
         - light.kitchen_cabinets
       data:
        brightness_pct: 1
+    - service: homeassistant.turn_on
+      entity_id:
+        - input_boolean.disable_occupancy
 
         ##########################################################
         ## Turn off lights at night when Roomba finished
@@ -197,6 +200,9 @@
     - service: light.turn_off
       entity_id:
         - group.interior_lights
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.disable_occupancy
 
         ##########################################################
         ## Run Roomba when USER2 Leaves

@@ -300,6 +300,50 @@
         - switch.christmas_tree
 
         ##########################################################
+        ## Late Night TV Watching after Midnight Christmas Tree on
+        ##########################################################
+
+- alias: Christmas - Late Night TV Watching after Midnight Tree on
+
+  trigger:
+    - platform: state
+      entity_id: media_player.living_room_apple_tv
+      to: 'paused'
+      for:
+        hours: 0
+        minutes: 3
+        seconds: 0
+    - platform: state
+      entity_id: media_player.living_room_apple_tv
+      to: 'idle'
+      for:
+        hours: 0
+        minutes: 3
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_media_lights
+      state: 'off'
+    - condition: time
+      after: '00:00'
+      before: '03:00'
+    - condition: state
+      entity_id: input_boolean.watching_plex
+      state: 'off'
+    - condition: state
+      entity_id: input_select.remote
+      state: 'Watch TV'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.christmas_tree
+
+        ##########################################################
         ## Late Night TV Watching after Midnight Christmas Tree On
         ##########################################################
 
@@ -334,9 +378,6 @@
     - condition: state
       entity_id: input_boolean.watching_plex
       state: 'off'
-    - condition: state
-      entity_id: input_select.remote
-      state: 'Watch TV'
 
   action:
     - service: switch.turn_on

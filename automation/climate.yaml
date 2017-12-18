@@ -739,6 +739,10 @@
       entity_id: input_boolean.thermostat_away
       from: 'on'
       to: 'off'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
 
   condition:
     - condition: state
@@ -895,3 +899,74 @@
       data:
         entity_id: climate.basement_heater
         temperature: '45'
+
+#################################################################
+## Fireplace
+#################################################################
+
+        #################################################################
+        ## Adjust Thermostat if Fireplace On
+        #################################################################
+
+- alias: Climate - Adjust Thermostat if Fireplace On
+
+  trigger:
+    - platform: state
+      entity_id: switch.fireplace
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.winter_mode
+      state: 'on'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.thermostat_away
+      state: 'off'
+
+  action:
+    - service: climate.set_hold_mode
+      data:
+        entity_id: climate.main_floor
+        #Fireplace = smart4
+        hold_mode: "smart4"
+
+        #################################################################
+        ## Reset Thermostat when Fireplace off
+        #################################################################
+
+- alias: Climate - Reset Thermostat when Fireplace off
+
+  trigger:
+    - platform: state
+      entity_id: switch.fireplace
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.winter_mode
+      state: 'on'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.thermostat_away
+      state: 'off'
+
+  action:
+    - service: climate.set_hold_mode
+      data:
+        entity_id: climate.main_floor
+        hold_mode: None

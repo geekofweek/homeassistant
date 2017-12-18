@@ -12,6 +12,7 @@ homeassistant:
   customize: !include customize.yaml
 
 frontend:
+  javascript_version: es5
 updater:
   reporting: no
 sun:
@@ -42,11 +43,11 @@ ecobee:
   api_key: REDACTED
   hold_temp: true
 
-light:
-  platform: hue
-  host: REDACTED.106
-  allow_hue_groups: false
-  allow_unreachable: true
+hue:
+  bridges:
+    - host: REDACTED.106
+      allow_hue_groups: false
+      allow_unreachable: true
 
 emulated_hue:
   host_ip: REDACTED.105
@@ -142,15 +143,15 @@ camera:
     nvr: REDACTED.99
     key: REDACTED
     password: REDACTED
+  - platform: foscam
+    ip: REDACTED.107
+    name: Garage Interior
+    port: REDACTED
+    username: REDACTED
+    password: REDACTED
 # ffmpeg Crashing Docker Container // Removing until resolved
 #  - platform: ring
 #    entity_namespace: ring
-#  - platform: foscam
-#    ip: REDACTED.107
-#    name: Server Rack
-#    port: REDACTED
-#    username: REDACTED
-#    password: REDACTED
 #  - platform: ffmpeg
 #    input: http://REDACTED/rtplive/REDACTED/playlist.m3u8
 #    name: REDACTED
