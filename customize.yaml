@@ -133,6 +133,9 @@
   device_tracker.REDACTED:
     icon: mdi:human-male
     friendly_name: REDACTED
+  device_tracker.REDACTED:
+    icon: mdi:human-male
+    friendly_name: REDACTED
 
         ##########################################################
         ##  Doors
@@ -196,23 +199,33 @@
   group.living_room_lights:
     icon: mdi:sofa
     friendly_name: Living Room
+    emulated_hue_hidden: false
+    emulated_hue_name: "Remote LVNGRM"
   group.dining_room:
     icon: mdi:silverware-variant
   group.dining_room_lights:
     icon: mdi:silverware-variant
     friendly_name: Dining Room
+    emulated_hue_hidden: false
+    emulated_hue_name: "Remote DNGRM"
   group.bedroom:
     icon: mdi:hotel
   group.bedroom_lights:
     icon: mdi:hotel
     friendly_name: Bedroom
+    emulated_hue_hidden: false
+    emulated_hue_name: "Remote BDRM"
   group.kitchen:
     icon: mdi:fridge
   group.kitchen_lights:
     icon: mdi:fridge
     friendly_name: Kitchen
+    emulated_hue_hidden: false
+    emulated_hue_name: "Remote KTCHN"
   group.stairs:
     icon: mdi:stairs
+    emulated_hue_hidden: false
+    emulated_hue_name: "Remote STRS"
   group.USER1_office:
     icon: mdi:desktop-mac
   group.USER1_office_lights:
@@ -314,6 +327,8 @@
   switch.fireplace:
     icon: mdi:fire
     friendly_name: Fireplace
+    emulated_hue_hidden: false
+    emulated_hue_name: "Remote FRPLC"
   switch.air_purifier:
     icon: mdi:fan
     friendly_name: Air Purifier
@@ -344,8 +359,12 @@
   light.hallway_light:
     friendly_name: Hallway
     icon: mdi:ceiling-light
+    emulated_hue_hidden: false
+    emulated_hue_name: "Remote HLLWY"
   light.bathroom_vanity:
     icon: mdi:water-pump
+    emulated_hue_hidden: false
+    emulated_hue_name: "Remote BTH"
   light.USER1s_nightstand:
     icon: mdi:lamp
   light.bedroom_lamp:
@@ -439,6 +458,8 @@
     icon: mdi:apple
   media_player.bedroom_apple_tv:
     icon: mdi:apple
+  media_player.guest_bedroom_apple_tv:
+    icon: mdi:apple
   media_player.USER1_office_apple_tv:
     icon: mdi:apple
   media_player.plex_living_room:
@@ -450,13 +471,10 @@
   media_player.plex_office:
     friendly_name: Office Plex
     icon: mdi:plex
-  media_player.plex_plex_for_vizio_vizio_mtk:
-    friendly_name: Office TV Plex
-    icon: mdi:plex
   sensor.REDACTED:
     icon: mdi:theater
   media_player.roku_REDACTED:
-    friendly_name: Guest Bedroom Roku
+    friendly_name: Basement Roku
 
         ##########################################################
         ## Amazon Echo Integration
@@ -507,6 +525,9 @@
   input_boolean.group_all_sonos:
     emulated_hue_hidden: false
     emulated_hue_name: "All Speakers"
+  input_boolean.bedroom_tv:
+    emulated_hue_hidden: false
+    emulated_hue_name: "Bedroom TV"
 
         ##########################################################
         ## Alarm

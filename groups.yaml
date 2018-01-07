@@ -48,7 +48,8 @@
       - group.guest_bedroom
       - media_player.bedroom_apple_tv
       - media_player.bedroom
-      - media_player.roku_REDACTED
+      - media_player.guest_bedroom_apple_tv
+      - media_player.roku_hd__REDACTED
 
   bathrooms:
     name: Bathrooms
@@ -78,6 +79,7 @@
       - group.basement
       - group.water_sensors
       - media_player.basement
+      - media_player.roku_hd__REDACTED
 
   outdoors:
     name: Outdoors
@@ -228,6 +230,7 @@
       - input_boolean.bedtime
       - vacuum.roomba
       - input_select.remote
+      - input_select.bedroom_remote
       - input_select.sonos
 
   Household:
@@ -264,10 +267,12 @@
     - device_tracker.REDACTED
     - device_tracker.REDACTED
     - device_tracker.REDACTED
+    - device_tracker.REDACTED
     - device_tracker.REDACTEDiphone
     - device_tracker.REDACTEDiphone
 
   Overnight Guests:
+    - device_tracker.REDACTED
     - device_tracker.REDACTED
     - device_tracker.REDACTED
     - device_tracker.REDACTED
@@ -295,7 +300,6 @@
     entities:
       - group.living_room_lamps
       - light.media_center_lighting
-      - switch.christmas_tree
       - switch.fireplace
       - switch.living_room_ceiling_fan
       - lock.front_door
@@ -522,10 +526,11 @@
     - media_player.living_room_apple_tv
     - media_player.bedroom_apple_tv
     - media_player.USER1s_office_apple_tv
+    - media_player.guest_bedroom_apple_tv
     - media_player.plex_plex_for_vizio_vizio_mtk
     - media_player.plex_USER1s_iphone
     - media_player.plex_USER1s_ipad
-    - media_player.roku_REDACTED
+    - media_player.roku_hd__REDACTED
 
   Sonos:
     - media_player.media_center
@@ -543,12 +548,13 @@
     - media_player.plex_living_room
     - media_player.plex_bedroom
     - media_player.plex_office
-    - media_player.plex_plex_for_vizio_vizio_mtk
+    - media_player.plex_guest_bedroom
 
   Remote:
     control: hidden
     entities:
       - input_select.remote
+      - input_select.bedroom_remote
       - input_select.sonos
       - input_boolean.group_all_sonos
 
@@ -762,6 +768,7 @@
     - input_boolean.REDACTED_visiting
     - input_boolean.REDACTED_visiting
     - input_boolean.watching_plex
+    - input_boolean.bedroom_tv
 
   Calendars:
     - calendar.holidays_in_united_states

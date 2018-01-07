@@ -156,7 +156,7 @@
         - light.hallway_light
         - light.basement_stairs
       data:
-       brightness_pct: 35
+       brightness_pct: 50
        profile: relax
     - service: light.turn_on
       entity_id:
@@ -171,7 +171,7 @@
         - light.kitchen_sink
         - light.kitchen_cabinets
       data:
-       brightness_pct: 1
+       brightness_pct: 25
     - service: homeassistant.turn_on
       entity_id:
         - input_boolean.disable_occupancy

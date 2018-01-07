@@ -17,10 +17,6 @@ input_select_harmony:
               -1
           {% elif is_state("input_select.remote", "Watch TV") %}
               22106204
-          {% elif is_state("input_select.remote", "Watch Netflix") %}
-              22107142
-          {% elif is_state("input_select.remote", "Watch Amazon") %}
-              22107067
           {% elif is_state("input_select.remote", "Watch Over the Air TV") %}
               22109519
           {% elif is_state("input_select.remote", "Play Xbox One") %}
@@ -33,6 +29,19 @@ input_select_harmony:
               22815026
           {% elif is_state("input_select.remote", "Turn on Receiver") %}
               22107111
+          {% endif %}
+
+input_select_bedroom_harmony:
+  alias: "Start Bedroom Remote activity from input select"
+  sequence:
+      service: remote.turn_on
+      data_template:
+        entity_id: remote.bedroom_tv
+        activity: >
+          {% if is_state("input_select.bedroom_remote", "PowerOff") %}
+              -1
+          {% elif is_state("input_select.bedroom_remote", "Watch TV") %}
+              31071991
           {% endif %}
 
         ##########################################################

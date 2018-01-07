@@ -346,7 +346,7 @@
         - light.bathroom_vanity
 
       #################################################################
-      ## Remote
+      ## Living Room / Media Center Remote
       #################################################################
 
 - alias: Media - Remote external update Media Center
@@ -371,7 +371,99 @@
 
   action:
     - service: script.turn_on
-      entity_id: script.input_select_harmony
+      entity_id: script.input_select_bedroom_harmon
+
+      #################################################################
+      ## Bedroom Remote
+      #################################################################
+
+- alias: Media - Remote external update Bedroom TV
+
+  trigger:
+    - platform: state
+      entity_id: remote.bedroom_tv
+
+  action:
+    - delay: '00:00:10'
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.bedroom_remote
+        option: >
+          {{ states.remote.bedroom_tv.attributes.current_activity }}
+
+- alias: Media - Remote start activity from input select Bedroom TV
+
+  trigger:
+    - platform: state
+      entity_id: input_select.bedroom_remote
+
+  action:
+    - service: script.turn_on
+      entity_id: script.input_select_bedroom_harmony
+
+        ##########################################################
+        ## Bedroom Harmony turn on Boolean
+        ##########################################################
+
+- alias: Media - Bedroom Harmony turn on Boolean
+
+  trigger:
+    - platform: state
+      entity_id: input_select.bedroom_remote
+      to: 'Watch TV'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.bedroom_tv
+
+        ##########################################################
+        ## Bedroom Harmony Input Select on from Boolean
+        ##########################################################
+
+- alias: Media - Bedroom Harmony Input Select on from Boolean
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedroom_tv
+      to: 'on'
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.bedroom_remote
+        option: "Watch TV"
+
+        ##########################################################
+        ## Bedroom Harmony turn off Boolean
+        ##########################################################
+
+- alias: Media - Bedroom Harmony turn off Boolean
+
+  trigger:
+    - platform: state
+      entity_id: input_select.bedroom_remote
+      to: 'PowerOff'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.bedroom_tv
+
+        ##########################################################
+        ## Bedroom Harmony Input Select off from Boolean
+        ##########################################################
+
+- alias: Media - Bedroom Harmony Input Select off from Boolean
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedroom_tv
+      to: 'off'
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.bedroom_remote
+        option: "PowerOff"
 
       #################################################################
       ## Reset Sonos Every Morning
@@ -971,3 +1063,29 @@
         - media_player.backyard_patio
       data:
         volume_level: '.2'
+
+        ##########################################################
+        ## Turn Off Bedroom TV at 6a (Sleep Timer Fix)
+        ##########################################################
+
+- alias: Media - Turn Off Bedroom TV at 6a
+
+  trigger:
+   - platform: time
+     at: '06:00'
+
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: media_player.bedroom_apple_tv
+        state: 'paused'
+      - condition: state
+        entity_id: media_player.bedroom_apple_tv
+        state: 'idle'
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.bedroom_remote
+        option: "PowerOff"

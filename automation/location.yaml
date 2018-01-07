@@ -644,6 +644,10 @@
         option: "PowerOff"
     - service: input_select.select_option
       data:
+        entity_id: input_select.bedroom_remote
+        option: "PowerOff"
+    - service: input_select.select_option
+      data:
         entity_id: input_select.sonos
         option: "None"
     - service: media_player.media_stop

@@ -12,7 +12,6 @@ homeassistant:
   customize: !include customize.yaml
 
 frontend:
-  javascript_version: es5
 updater:
   reporting: no
 sun:
@@ -21,6 +20,7 @@ discovery:
   ignore:
     - apple_tv
     - sonos
+    - harmony
 config:
 
 http:
@@ -79,8 +79,12 @@ apple_tv:
     host: REDACTED.150
     login_id: REDACTED
     start_off: false
-  - name: Bedroom Apple TV
+  - name: Guest Bedroom Apple TV
     host: REDACTED.153
+    login_id: REDACTED
+    start_off: false
+  - name: Bedroom Apple TV
+    host: REDACTED.152
     login_id: REDACTED
     start_off: false
   - name: USER1's Office Apple TV
@@ -92,6 +96,9 @@ remote:
   - platform: harmony
     name: Media Center
     host: REDACTED.109
+  - platform: harmony
+    name: Bedroom TV
+    host: REDACTED.247
 
 ios:
 
@@ -112,12 +119,15 @@ ifttt:
   key: REDACTED
 
 device_tracker:
-  - platform: snmp
-    host: REDACTED.1
-    community: public
-    baseoid: 1.3.6.1.2.1.4.22.1.2
-    track_new_devices: false
+  - platform: unifi
+    username: REDACTED
+    password: REDACTED
+    host: REDACTED.3
+    verify_ssl: false
     consider_home: 180
+    new_device_defaults:
+      track_new_devices: False
+      hide_if_away: False
   - platform: locative
 
 cover:

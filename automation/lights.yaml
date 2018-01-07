@@ -534,6 +534,9 @@
       entity_id: input_boolean.livingroom_rainbow
       state: 'off'
     - condition: state
+      entity_id: input_boolean.interior_holiday
+      state: 'off'
+    - condition: state
       entity_id: group.household
       state: 'home'
 

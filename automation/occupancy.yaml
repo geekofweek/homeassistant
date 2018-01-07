@@ -3,10 +3,10 @@
 #################################################################
 
         ##########################################################
-        ## Turn on Office Air Purifier when Occupied
+        ## Turn on Office Fans when Occupied
         ##########################################################
 
-- alias: Occupancy - Turn on Office Air Purifier when Occupied
+- alias: Occupancy - Turn on Office Fans when Occupied
 
   trigger:
     - platform: state
@@ -29,10 +29,10 @@
         - switch.office_fan
 
         ##########################################################
-        ## Turn off Office Air Purifier when Unoccupied
+        ## Turn off Office Fans when Unoccupied
         ##########################################################
 
-- alias: Occupancy - Turn off Office Air Purifier when Unoccupied
+- alias: Occupancy - Turn off Office Fans when Unoccupied
 
   trigger:
     - platform: state
@@ -109,7 +109,8 @@
       entity_id: light.office_lamp
       data:
         transition: 300
-        brightness_pct: 75
+        brightness_pct: 100
+        effect: colorloop
     - service: light.turn_on
       entity_id: group.stairs
       data:
@@ -500,11 +501,16 @@
     - service: light.turn_on
       entity_id:
         - light.office_lamp
+      data:
+        transition: 60
+        brightness_pct: 100
+        effect: colorloop
+    - service: light.turn_on
+      entity_id:
         - group.stairs
       data:
         transition: 60
         brightness_pct: 50
-        profile: relax
 
         ##########################################################
         ## Turn on USER2's Office at Sunset when Occupied
