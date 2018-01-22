@@ -262,6 +262,22 @@
         message: DNS Server 2 Not Responding
 
         #################################################################
+        ## Weather Lookup Failing
+        #################################################################
+
+- alias: Notification Text - Weather Lookup Failing
+
+  trigger:
+    - platform: state
+      entity_id: sensor.dark_sky_humidity
+      to: 'unknown'
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Weather Lookup Problem!
+
+        #################################################################
         ## Home Assistant Started Notification
         #################################################################
 

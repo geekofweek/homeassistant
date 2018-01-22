@@ -142,21 +142,24 @@
         ##########################################################
 
   cover.garage_door:
-    icon: mdi:car
+    icon: mdi:garage
     homebridge_cover_type: garage_door
   cover.wink_garage_door:
     icon: mdi:car
     homebridge_cover_type: garage_door
     homebridge_hidden: true
     friendly_name: Garage Door
-  binary_sensor.front_door_opened:
-    friendly_name: Front Door Open
-  binary_sensor.back_door_opened:
-    friendly_name: Back Door Open
-  binary_sensor.basement_door_opened:
-    friendly_name: Basement Door Open
   cover.myq:
     homebridge_hidden: true
+  binary_sensor.front_door_opened:
+    friendly_name: Front Door
+    icon: mdi:door
+  binary_sensor.back_door_opened:
+    friendly_name: Back Door
+    icon: mdi:door
+  binary_sensor.basement_door_opened:
+    friendly_name: Basement Door
+    icon: mdi:door
 
         ##########################################################
         ## Door Bell

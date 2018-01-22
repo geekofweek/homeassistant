@@ -737,8 +737,8 @@
   trigger:
     - platform: state
       entity_id: input_boolean.thermostat_away
-      from: 'on'
-      to: 'off'
+      from: 'off'
+      to: 'on'
       for:
         hours: 0
         minutes: 5
@@ -756,7 +756,7 @@
     - service: climate.set_operation_mode
       data:
         entity_id: climate.basement_heater
-        operation_mode: 'auto'
+        operation_mode: 'heat'
     - service: climate.set_temperature
       data:
         entity_id: climate.basement_heater
@@ -866,7 +866,7 @@
     - service: climate.set_operation_mode
       data:
         entity_id: climate.basement_heater
-        operation_mode: 'auto'
+        operation_mode: 'heat'
     - service: climate.set_temperature
       data:
         entity_id: climate.basement_heater
