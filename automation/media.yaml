@@ -371,7 +371,7 @@
 
   action:
     - service: script.turn_on
-      entity_id: script.input_select_bedroom_harmon
+      entity_id: script.input_select_harmony
 
       #################################################################
       ## Bedroom Remote
@@ -1083,6 +1083,12 @@
       - condition: state
         entity_id: media_player.bedroom_apple_tv
         state: 'idle'
+      - condition: state
+        entity_id: media_player.bedroom_apple_tv
+        state: 'off'
+      - condition: state
+        entity_id: media_player.bedroom_apple_tv
+        state: 'unknown'
 
   action:
     - service: input_select.select_option
