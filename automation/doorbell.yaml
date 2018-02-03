@@ -282,3 +282,154 @@
         - light.garage_light
       data:
         brightness_pct: 1
+
+        ##########################################################
+        ## Front Door Bell Bathroom Audio Notification
+        ##########################################################
+
+- alias: Doorbell - Front Door Bell Bathroom Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.bathroom_occupancy
+      state: 'on'
+
+  action:
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.bathroom'
+          where: 'media_player.bathroom'
+          volume: '.6'
+          what: 'Someone is at the Front Door'
+
+        ##########################################################
+        ## Front Door Bell Basement Audio Notification
+        ##########################################################
+
+- alias: Doorbell - Front Doorbell Basement Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: state
+      entity_id: group.basement
+      state: 'on'
+
+  action:
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.baement'
+          where: 'media_player.basement'
+          volume: '.6'
+          what: 'Someone is at the Front Door'
+
+        ##########################################################
+        ## Front Door Bell Kitchen Audio Notification
+        ##########################################################
+
+- alias: Doorbell - Front Doorbell Kitchen Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.kitchen_occupancy
+      state: 'on'
+
+  action:
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.kitchen'
+          where: 'media_player.kitchen'
+          volume: '.6'
+          what: 'Someone is at the Front Door'
+
+        ##########################################################
+        ## Front Door Bell Office Audio Notification
+        ##########################################################
+
+- alias: Doorbell - Front Doorbell Office Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: state
+        entity_id: input_boolean.disable_voice_greeting
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.disable_doorbell
+        state: 'off'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: binary_sensor.office_occupancy
+            state: 'on'
+          - condition: state
+            entity_id: binary_sensor.USER2_office_occupancy
+            state: 'on'
+
+  action:
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.USER1s_office'
+          where: 'media_player.USER1s_office, media_player.USER2s_office'
+          volume: '.6'
+          what: 'Someone is at the Front Door'
