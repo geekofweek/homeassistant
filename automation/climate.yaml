@@ -737,8 +737,8 @@
   trigger:
     - platform: state
       entity_id: input_boolean.thermostat_away
-      from: 'off'
-      to: 'on'
+      from: 'on'
+      to: 'off'
       for:
         hours: 0
         minutes: 5
@@ -760,7 +760,7 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.basement_heater
-        temperature: '68'
+        temperature: '65'
 
         ##########################################################
         ## When Ecobee Away Mode on Turn off Basement Heater
@@ -870,7 +870,7 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.basement_heater
-        temperature: '68'
+        temperature: '65'
 
         #################################################################
         ## Disable Heater On Startup During Summer

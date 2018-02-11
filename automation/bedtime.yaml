@@ -59,16 +59,16 @@
         option: "None"
     - service: media_player.media_stop
       entity_id:
-        - media_player.media_center
-        - media_player.living_room
-        - media_player.dining_room
-        - media_player.kitchen
-        - media_player.bathroom
-        - media_player.bedroom
-        - media_player.USER1s_office
-        - media_player.USER2s_office
-        - media_player.basement
-        - media_player.backyard_patio
+        - media_player.sonos_media_center
+        - media_player.sonos_living_room
+        - media_player.sonos_dining_room
+        - media_player.sonos_kitchen
+        - media_player.sonos_bathroom
+        - media_player.sonos_bedroom
+        - media_player.sonos_USER1s_office
+        - media_player.sonos_USER2s_office
+        - media_player.sonos_basement
+        - media_player.sonos_backyard_patio
     - service: climate.set_operation_mode
       data:
         entity_id: climate.window_unit
@@ -131,16 +131,16 @@
         option: "None"
     - service: media_player.media_stop
       entity_id:
-        - media_player.media_center
-        - media_player.living_room
-        - media_player.dining_room
-        - media_player.kitchen
-        - media_player.bathroom
-        - media_player.bedroom
-        - media_player.USER1s_office
-        - media_player.USER2s_office
-        - media_player.basement
-        - media_player.backyard_patio
+        - media_player.sonos_media_center
+        - media_player.sonos_living_room
+        - media_player.sonos_dining_room
+        - media_player.sonos_kitchen
+        - media_player.sonos_bathroom
+        - media_player.sonos_bedroom
+        - media_player.sonos_USER1s_office
+        - media_player.sonos_USER2s_office
+        - media_player.sonos_basement
+        - media_player.sonos_backyard_patio
     - service: climate.set_hold_mode
       data:
         entity_id: climate.main_floor

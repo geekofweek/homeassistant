@@ -478,28 +478,28 @@
   action:
     - service: media_player.sonos_unjoin
       entity_id:
-        - media_player.media_center
-        - media_player.living_room
-        - media_player.dining_room
-        - media_player.kitchen
-        - media_player.bathroom
-        - media_player.bedroom
-        - media_player.USER1s_office
-        - media_player.USER2s_office
-        - media_player.basement
-        - media_player.backyard_patio
+        - media_player.sonos_media_center
+        - media_player.sonos_living_room
+        - media_player.sonos_dining_room
+        - media_player.sonos_kitchen
+        - media_player.sonos_bathroom
+        - media_player.sonos_bedroom
+        - media_player.sonos_USER1s_office
+        - media_player.sonos_USER2s_office
+        - media_player.sonos_basement
+        - media_player.sonos_backyard_patio
     - service: media_player.clear_playlist
       entity_id:
-        - media_player.media_center
-        - media_player.living_room
-        - media_player.dining_room
-        - media_player.kitchen
-        - media_player.bathroom
-        - media_player.bedroom
-        - media_player.USER1s_office
-        - media_player.USER2s_office
-        - media_player.basement
-        - media_player.backyard_patio
+        - media_player.sonos_media_center
+        - media_player.sonos_living_room
+        - media_player.sonos_dining_room
+        - media_player.sonos_kitchen
+        - media_player.sonos_bathroom
+        - media_player.sonos_bedroom
+        - media_player.sonos_USER1s_office
+        - media_player.sonos_USER2s_office
+        - media_player.sonos_basement
+        - media_player.sonos_backyard_patio
     - service: homeassistant.turn_off
       entity_id:
         - input_boolean.pop_music
@@ -534,17 +534,17 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.living_room
+        master: media_player.sonos_living_room
       entity_id:
-        - media_player.living_room
-        - media_player.media_center
-        - media_player.dining_room
-        - media_player.kitchen
-        - media_player.bathroom
-        - media_player.bedroom
-        - media_player.USER1s_office
-        - media_player.USER2s_office
-        - media_player.basement
+        - media_player.sonos_living_room
+        - media_player.sonos_media_center
+        - media_player.sonos_dining_room
+        - media_player.sonos_kitchen
+        - media_player.sonos_bathroom
+        - media_player.sonos_bedroom
+        - media_player.sonos_USER1s_office
+        - media_player.sonos_USER2s_office
+        - media_player.sonos_basement
 
         ##########################################################
         ## Play Pop Music
@@ -566,27 +566,27 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.living_room
+        master: media_player.sonos_living_room
       entity_id:
-        - media_player.living_room
-        - media_player.media_center
-        - media_player.dining_room
-        - media_player.kitchen
-        - media_player.bathroom
+        - media_player.sonos_living_room
+        - media_player.sonos_media_center
+        - media_player.sonos_dining_room
+        - media_player.sonos_kitchen
+        - media_player.sonos_bathroom
     - delay: '00:00:02'
     - service: media_player.volume_set
       entity_id:
-        - media_player.living_room
-        - media_player.media_center
-        - media_player.dining_room
-        - media_player.kitchen
-        - media_player.bathroom
+        - media_player.sonos_living_room
+        - media_player.sonos_media_center
+        - media_player.sonos_dining_room
+        - media_player.sonos_kitchen
+        - media_player.sonos_bathroom
       data:
         volume_level: '.4'
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
-        entity_id: media_player.living_room
+        entity_id: media_player.sonos_living_room
         source: 'Pure Pop'
     - service: homeassistant.turn_off
       entity_id:
@@ -620,27 +620,27 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.living_room
+        master: media_player.sonos_living_room
       entity_id:
-        - media_player.living_room
-        - media_player.media_center
-        - media_player.dining_room
-        - media_player.kitchen
-        - media_player.bathroom
+        - media_player.sonos_living_room
+        - media_player.sonos_media_center
+        - media_player.sonos_dining_room
+        - media_player.sonos_kitchen
+        - media_player.sonos_bathroom
     - delay: '00:00:02'
     - service: media_player.volume_set
       entity_id:
-        - media_player.living_room
-        - media_player.media_center
-        - media_player.dining_room
-        - media_player.kitchen
-        - media_player.bathroom
+        - media_player.sonos_living_room
+        - media_player.sonos_media_center
+        - media_player.sonos_dining_room
+        - media_player.sonos_kitchen
+        - media_player.sonos_bathroom
       data:
         volume_level: '.4'
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
-        entity_id: media_player.living_room
+        entity_id: media_player.sonos_living_room
         source: 'Smooth Jazz'
     - service: homeassistant.turn_off
       entity_id:
@@ -674,27 +674,27 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.living_room
+        master: media_player.sonos_living_room
       entity_id:
-        - media_player.living_room
-        - media_player.media_center
-        - media_player.dining_room
-        - media_player.kitchen
-        - media_player.bathroom
+        - media_player.sonos_living_room
+        - media_player.sonos_media_center
+        - media_player.sonos_dining_room
+        - media_player.sonos_kitchen
+        - media_player.sonos_bathroom
     - delay: '00:00:02'
     - service: media_player.volume_set
       entity_id:
-        - media_player.living_room
-        - media_player.media_center
-        - media_player.dining_room
-        - media_player.kitchen
-        - media_player.bathroom
+        - media_player.sonos_living_room
+        - media_player.sonos_media_center
+        - media_player.sonos_dining_room
+        - media_player.sonos_kitchen
+        - media_player.sonos_bathroom
       data:
         volume_level: '.4'
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
-        entity_id: media_player.living_room
+        entity_id: media_player.sonos_living_room
         source: 'Classical'
     - service: homeassistant.turn_off
       entity_id:
@@ -728,27 +728,27 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.living_room
+        master: media_player.sonos_living_room
       entity_id:
-        - media_player.living_room
-        - media_player.media_center
-        - media_player.dining_room
-        - media_player.kitchen
-        - media_player.bathroom
+        - media_player.sonos_living_room
+        - media_player.sonos_media_center
+        - media_player.sonos_dining_room
+        - media_player.sonos_kitchen
+        - media_player.sonos_bathroom
     - delay: '00:00:02'
     - service: media_player.volume_set
       entity_id:
-        - media_player.living_room
-        - media_player.media_center
-        - media_player.dining_room
-        - media_player.kitchen
-        - media_player.bathroom
+        - media_player.sonos_living_room
+        - media_player.sonos_media_center
+        - media_player.sonos_dining_room
+        - media_player.sonos_kitchen
+        - media_player.sonos_bathroom
       data:
         volume_level: '.4'
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
-        entity_id: media_player.living_room
+        entity_id: media_player.sonos_living_room
         source: 'Atmospheric Electronic'
     - service: homeassistant.turn_off
       entity_id:
@@ -782,27 +782,27 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.living_room
+        master: media_player.sonos_living_room
       entity_id:
-        - media_player.living_room
-        - media_player.media_center
-        - media_player.dining_room
-        - media_player.kitchen
-        - media_player.bathroom
+        - media_player.sonos_living_room
+        - media_player.sonos_media_center
+        - media_player.sonos_dining_room
+        - media_player.sonos_kitchen
+        - media_player.sonos_bathroom
     - delay: '00:00:02'
     - service: media_player.volume_set
       entity_id:
-        - media_player.living_room
-        - media_player.media_center
-        - media_player.dining_room
-        - media_player.kitchen
-        - media_player.bathroom
+        - media_player.sonos_living_room
+        - media_player.sonos_media_center
+        - media_player.sonos_dining_room
+        - media_player.sonos_kitchen
+        - media_player.sonos_bathroom
       data:
         volume_level: '.4'
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
-        entity_id: media_player.living_room
+        entity_id: media_player.sonos_living_room
         source: 'Chill'
     - service: homeassistant.turn_off
       entity_id:
@@ -836,27 +836,27 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.living_room
+        master: media_player.sonos_living_room
       entity_id:
-        - media_player.living_room
-        - media_player.media_center
-        - media_player.dining_room
-        - media_player.kitchen
-        - media_player.bathroom
+        - media_player.sonos_living_room
+        - media_player.sonos_media_center
+        - media_player.sonos_dining_room
+        - media_player.sonos_kitchen
+        - media_player.sonos_bathroom
     - delay: '00:00:02'
     - service: media_player.volume_set
       entity_id:
-        - media_player.living_room
-        - media_player.media_center
-        - media_player.dining_room
-        - media_player.kitchen
-        - media_player.bathroom
+        - media_player.sonos_living_room
+        - media_player.sonos_media_center
+        - media_player.sonos_dining_room
+        - media_player.sonos_kitchen
+        - media_player.sonos_bathroom
       data:
         volume_level: '.4'
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
-        entity_id: media_player.living_room
+        entity_id: media_player.sonos_living_room
         source: 'Adele'
     - service: homeassistant.turn_off
       entity_id:
@@ -974,14 +974,14 @@
   action:
     - service: media_player.media_stop
       entity_id:
-        - media_player.media_center
-        - media_player.living_room
-        - media_player.dining_room
-        - media_player.kitchen
-        - media_player.bathroom
-        - media_player.USER1s_office
-        - media_player.USER2s_office
-        - media_player.basement
+        - media_player.sonos_media_center
+        - media_player.sonos_living_room
+        - media_player.sonos_dining_room
+        - media_player.sonos_kitchen
+        - media_player.sonos_bathroom
+        - media_player.sonos_USER1s_office
+        - media_player.sonos_USER2s_office
+        - media_player.sonos_basement
 
         ##########################################################
         ## Turn Down Backyard Sonos at 10p
@@ -996,7 +996,7 @@
   action:
     - service: media_player.volume_set
       entity_id:
-        - media_player.backyard_patio
+        - media_player.sonos_backyard_patio
       data:
         volume_level: '.3'
 
@@ -1013,7 +1013,7 @@
   action:
     - service: media_player.media_stop
       entity_id:
-        - media_player.backyard_patio
+        - media_player.sonos_backyard_patio
 
         ##########################################################
         ## Reset Backyard Sonos Volume if after 10p
@@ -1023,7 +1023,7 @@
 
   trigger:
    - platform: numeric_state
-     entity_id: media_player.backyard_patio
+     entity_id: media_player.sonos_backyard_patio
      value_template: '{{ state.attributes.volume_level }}'
      above: '0.3'
 
@@ -1035,7 +1035,7 @@
   action:
     - service: media_player.volume_set
       entity_id:
-        - media_player.backyard_patio
+        - media_player.sonos_backyard_patio
       data:
         volume_level: '.3'
 
@@ -1048,7 +1048,7 @@
 
   trigger:
    - platform: numeric_state
-     entity_id: media_player.backyard_patio
+     entity_id: media_player.sonos_backyard_patio
      value_template: '{{ state.attributes.volume_level }}'
      above: '0.2'
 
@@ -1060,7 +1060,7 @@
   action:
     - service: media_player.volume_set
       entity_id:
-        - media_player.backyard_patio
+        - media_player.sonos_backyard_patio
       data:
         volume_level: '.2'
 

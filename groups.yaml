@@ -25,9 +25,9 @@
     entities:
       - group.living_room
       - group.remote
-      - media_player.media_center
+      - media_player.sonos_media_center
       - media_player.living_room_apple_tv
-      - media_player.living_room
+      - media_player.sonos_living_room
 
   dining:
     name: Dining
@@ -36,8 +36,8 @@
     entities:
       - group.kitchen
       - group.dining_room
-      - media_player.dining_room
-      - media_player.kitchen
+      - media_player.sonos_dining_room
+      - media_player.sonos_kitchen
 
   bedrooms:
     name: Bedrooms
@@ -47,9 +47,8 @@
       - group.bedroom
       - group.guest_bedroom
       - media_player.bedroom_apple_tv
-      - media_player.bedroom
+      - media_player.sonos_bedroom
       - media_player.guest_bedroom_apple_tv
-      - media_player.roku_hd__REDACTED
 
   bathrooms:
     name: Bathrooms
@@ -57,7 +56,7 @@
     icon: mdi:water-pump
     entities:
       - group.bathroom
-      - media_player.bathroom
+      - media_player.sonos_bathroom
 
   offices:
     name: Offices
@@ -68,8 +67,8 @@
       - group.USER2_office
       - media_player.USER1s_office_apple_tv
       - media_player.plex_for_vizio_vizio_mtk
-      - media_player.USER1s_office
-      - media_player.USER2s_office
+      - media_player.sonos_USER1s_office
+      - media_player.sonos_USER2s_office
 
   basements:
     name: Basement
@@ -78,7 +77,7 @@
     entities:
       - group.basement
       - group.water_sensors
-      - media_player.basement
+      - media_player.sonos_basement
       - media_player.roku_hd__REDACTED
 
   outdoors:
@@ -93,7 +92,7 @@
       - camera.garage
       - camera.garage_interior
       - camera.ring_front_door
-      - media_player.backyard_patio
+      - media_player.sonos_backyard_patio
 
   weatherdashboard:
     name: Weather
@@ -535,16 +534,16 @@
     - media_player.roku_hd__REDACTED
 
   Sonos:
-    - media_player.media_center
-    - media_player.living_room
-    - media_player.dining_room
-    - media_player.kitchen
-    - media_player.bathroom
-    - media_player.bedroom
-    - media_player.USER1s_office
-    - media_player.USER2s_office
-    - media_player.basement
-    - media_player.backyard_patio
+    - media_player.sonos_media_center
+    - media_player.sonos_living_room
+    - media_player.sonos_dining_room
+    - media_player.sonos_kitchen
+    - media_player.sonos_bathroom
+    - media_player.sonos_bedroom
+    - media_player.sonos_USER1s_office
+    - media_player.sonos_USER2s_office
+    - media_player.sonos_basement
+    - media_player.sonos_backyard_patio
 
   Plex:
     - media_player.plex_living_room
