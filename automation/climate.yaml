@@ -618,8 +618,15 @@
     - platform: state
       entity_id: group.household
       to: 'home'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
 
   condition:
+    - condition: state
+      entity_id: group.summer_mode
+      state: 'on'
     - condition: numeric_state
       entity_id: sensor.dark_sky_temperature
       above: 68
