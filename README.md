@@ -66,7 +66,7 @@ Home Assistant Version: 0.63.3
 ![UI](images/camera-screenshot.jpg)
 ![UI](images/automation-screenshot.jpg)
 ![UI](images/sensors-screenshot.jpg)
-![UI](images/traffic-screenshot.jpg)
+![UI](images/auto-screenshot.jpg)
 
 
 
