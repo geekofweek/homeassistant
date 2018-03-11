@@ -37,6 +37,7 @@
   sensor.main_floor_temperature:
     friendly_name: Dining Room Temperature
   binary_sensor.main_floor_occupancy:
+    device_class: occupancy
     friendly_name: Dining Room Occupancy
   sensor.wink_relay_sensor_humidity:
     icon: mdi:water-percent
@@ -49,35 +50,29 @@
   device_tracker.USER1DEVICE:
     icon: mdi:human-male
     friendly_name: USER1
-  device_tracker.USER1s_iphone:
-    icon: mdi:cellphone-iphone
-    friendly_name: USER1's iPhone (iOS)
-  device_tracker.USER1siphone:
-    icon: mdi:cellphone-iphone
-    friendly_name: USER1's iPhone (Router)
-  device_tracker.USER2s_iphone:
-    icon: mdi:cellphone-iphone
-    friendly_name: USER2's iPhone (iOS)
-  device_tracker.USER2siphone:
-    icon: mdi:cellphone-iphone
-    friendly_name: USER2's iPhone (Router)
   device_tracker.USER2DEVICE:
     icon: mdi:human-female
     friendly_name: USER2
-  device_tracker.USER1sapplewatch:
-    icon: mdi:watch
-  device_tracker.USER2sapplewatch:
-    icon: mdi:mdi:watch
+  device_tracker.USER1siphone:
+    icon: mdi:cellphone-iphone
+    friendly_name: USER1's iPhone
+  device_tracker.USER2siphone:
+    icon: mdi:cellphone-iphone
+    friendly_name: USER2's iPhone
   device_tracker.USER1sipad:
     icon: mdi:tablet-ipad
   device_tracker.USER2sipad:
     icon: mdi:tablet-ipad
-  device_tracker.asuemann0617mac:
+  device_tracker.USER1smacbookpro:
     icon: mdi:laptop-mac
   device_tracker.USER1smacbookair:
     icon: mdi:laptop-mac
   device_tracker.USER2smacbookair:
     icon: mdi:laptop-mac
+  device_tracker.USER1simac:
+    icon: mdi:desktop-mac
+  device_tracker.USER2simac:
+    icon: mdi:desktop-mac
 
         ##########################################################
         ## Friends and Family
@@ -102,9 +97,6 @@
     icon: mdi:human-male
     friendly_name: REDACTED
   device_tracker.REDACTED:
-    icon: mdi:human-male
-    friendly_name: REDACTED
-  device_tracker.REDACTED:
     icon: mdi:human-female
     friendly_name: REDACTED
   device_tracker.REDACTED:
@@ -118,9 +110,6 @@
   group.house_guest:
     hidden: true
     icon: mdi:human-male-female
-  device_tracker.REDACTEDiphone:
-    icon: mdi:human-male
-    friendly_name: REDACTED
   device_tracker.REDACTEDiphone:
     icon: mdi:human-male
     friendly_name: REDACTED
@@ -142,24 +131,25 @@
         ##########################################################
 
   cover.garage_door:
-    icon: mdi:garage
+    device_class: garage
     homebridge_cover_type: garage_door
   cover.wink_garage_door:
-    icon: mdi:car
-    homebridge_cover_type: garage_door
+    device_class: garage
     homebridge_hidden: true
-    friendly_name: Garage Door
+    friendly_name: Wink Garage Door
   cover.myq:
+    device_class: garage
     homebridge_hidden: true
+    friendly_name: MyQ Garage Door
   binary_sensor.front_door_opened:
+    device_class: door
     friendly_name: Front Door
-    icon: mdi:door
   binary_sensor.back_door_opened:
+    device_class: door
     friendly_name: Back Door
-    icon: mdi:door
   binary_sensor.basement_door_opened:
+    device_class: door
     friendly_name: Basement Door
-    icon: mdi:door
 
         ##########################################################
         ## Door Bell
@@ -254,22 +244,28 @@
   sensor.speedtest_upload:
     icon: mdi:speedometer
   binary_sensor.wink_hub:
+    decice_class: connectivity
     friendly_name: Wink Hub
     icon: mdi:ethernet
     homebridge_hidden: true
   binary_sensor.wink_relay:
+    decice_class: connectivity
     friendly_name: Wink Relay
     icon: mdi:ethernet
     homebridge_hidden: true
   binary_sensor.wink_relay_sensor_presence:
+    device_class: occupancy
     homebridge_hidden: true
   binary_sensor.philips_hue:
+    decice_class: connectivity
     friendly_name: Hue Hub
     icon: mdi:ethernet
     homebridge_hidden: true
   binary_sensor.basement_drain_water_sensor_liquid_detected:
+    device_class: moisture
     friendly_name: Basement Drain Water Sensor
   binary_sensor.sump_pump_water_sensor_liquid_detected:
+    device_class: moisture
     friendly_name: Sump Pump Water Sensor
   sensor.holidays_calendar:
     icon: mdi:calendar
@@ -674,5 +670,17 @@
 
   group.all_automations:
     hidden: false
-  #group.all_scripts:
-  #  hidden: false
+  group.all_lights:
+    hidden: false
+  group.all_switches:
+    hidden: false
+  group.all_scripts:
+    hidden: false
+  group.all_devices:
+    hidden: false
+  group.all_covers:
+    hidden: false
+  group.all_remotes:
+    hidden: false
+  group.all_vacuum_cleaners:
+    hidden: false
