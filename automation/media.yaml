@@ -34,7 +34,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: group.living_room_lamps
+      entity_id: light.living_room_lamps
       data:
        transition: 5
        profile: relax
@@ -87,14 +87,14 @@
       entity_id: input_boolean.watching_plex
     - service: light.turn_off
       entity_id:
-        - group.living_room_lights
+        - light.living_room_lights
         - light.hallway_light
       data:
        transition: 10
     - service: light.turn_off
       entity_id:
-        - group.dining_room
-        - group.kitchen
+        - light.dining_room_lights
+        - light.kitchen_lights
         - light.bathroom_vanity
 
         ##########################################################
@@ -163,7 +163,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: group.living_room_lamps
+      entity_id: light.living_room_lamps
       data:
        transition: 5
        profile: relax
@@ -230,7 +230,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: group.living_room_lamps
+      entity_id: light.living_room_lamps
       data:
        transition: 5
        profile: relax
@@ -291,14 +291,14 @@
   action:
     - service: light.turn_off
       entity_id:
-        - group.living_room_lights
+        - light.living_room_lights
         - light.hallway_light
       data:
        transition: 10
     - service: light.turn_off
       entity_id:
-        - group.dining_room
-        - group.kitchen
+        - light.dining_room_lights
+        - light.kitchen_lights
         - light.bathroom_vanity
 
         ##########################################################
@@ -335,14 +335,14 @@
   action:
     - service: light.turn_off
       entity_id:
-        - group.living_room_lights
+        - light.living_room_lights
         - light.hallway_light
       data:
        transition: 10
     - service: light.turn_off
       entity_id:
-        - group.dining_room
-        - group.kitchen
+        - light.dining_room_lights
+        - light.kitchen_lights
         - light.bathroom_vanity
 
       #################################################################

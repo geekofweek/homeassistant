@@ -6,18 +6,18 @@
     entities:
         input_boolean.alarm_tripped:
             state: on
-        group.hue_lights:
+        light.hue_lights:
             state: on
             flash: long
             brightness_pct: 100
             xy_color: [0.6531,0.2834]
-        group.hue_lights_exterior:
+        light.hue_lights_exterior:
             state: on
             brightness_pct: 100
-        group.wink_lights:
+        light.wink_lights:
             state: on
             brightness_pct: 100
-        group.wink_exterior:
+        light.wink_exterior:
             state: on
             brightness_pct: 100
 
@@ -29,7 +29,7 @@
         light.kitchen_sink:
             state: on
             brightness_pct: 1
-        group.living_room_lamps:
+        light.living_room_lamps:
             state: on
             brightness_pct: 25
             profile: relax

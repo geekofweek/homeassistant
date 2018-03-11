@@ -299,7 +299,7 @@
   Living Room:
     control: hidden
     entities:
-      - group.living_room_lamps
+      - light.living_room_lamps
       - light.media_center_lighting
       - switch.fireplace
       - switch.living_room_ceiling_fan
@@ -307,14 +307,6 @@
       - binary_sensor.front_door_opened
       - binary_sensor.living_room_occupancy
       - sensor.living_room_temperature
-
-  Living Room Lamps:
-    - light.living_room_lamp_1
-    - light.living_room_lamp_2
-
-  Living Room Lights:
-    - group.living_room_lamps
-    - light.media_center_lighting
 
   Bedroom:
     control: hidden
@@ -326,12 +318,6 @@
       - binary_sensor.bedroom_occupancy
       - sensor.bedroom_temperature
 
-  Bedroom Lights:
-    - light.USER1s_nightstand
-    - light.USER2s_nightstand
-    - light.bedroom_lamp
-    - light.closet_lamp
-
   Kitchen:
     control: hidden
     entities:
@@ -342,11 +328,6 @@
       - binary_sensor.back_door_opened
       - binary_sensor.kitchen_occupancy
       - sensor.kitchen_temperature
-
-  Kitchen Lights:
-    - light.kitchen_ceiling
-    - light.kitchen_cabinets
-    - light.kitchen_sink
 
   Bathroom:
     control: hidden
@@ -365,46 +346,22 @@
       - binary_sensor.office_occupancy
       - sensor.office_temperature
 
-  USER1 Office Lights:
-    - light.office_ceiling
-    - light.office_lamp
-
   USER2 Office:
     control: hidden
     entities:
-      - group.USER2_office_ceiling
+      - light.USER2_office_ceiling
       - binary_sensor.USER2_office_occupancy
       - sensor.USER2_office_temperature
-
-  USER2 Office Lights:
-    - group.USER2_office_ceiling
-
-  Stairs:
-    - light.stairs_1
-    - light.stairs_2
-    - light.stairs_3
 
   Door Bell:
     - binary_sensor.ring_front_door_ding
     - binary_sensor.ring_front_door_motion
 
-  Front Porch:
-    - light.front_porch_left
-    - light.front_porch_right
-
-  Back Door:
-    - light.back_door_left
-    - light.back_door_right
-
-  Back Porch:
-    - light.upper_patio_left
-    - light.upper_patio_right
-
   Basement:
     control: hidden
     entities:
       - light.basement_stairs
-      - group.basement_lights
+      - light.basement_lights
       - switch.basement_heater
       - lock.basement_door
       - binary_sensor.basement_door_opened
@@ -412,16 +369,6 @@
       - binary_sensor.laundry_room_occupancy
       - sensor.basement_temperature
       - sensor.laundry_room_temperature
-
-  Basement Lighting:
-    - light.basement_stairs
-    - group.basement_lights
-
-  Basement Lights:
-    - light.basement_light_1
-    - light.basement_light_2
-    - light.basement_light_3
-    - light.basement_light_4
 
   Dining Room:
     control: hidden
@@ -431,10 +378,6 @@
       - binary_sensor.main_floor_occupancy
       - sensor.main_floor_temperature
 
-  Dining Room Lights:
-    - light.dining_room_table
-    - light.dining_room_ceiling
-
   Guest Bedroom:
     control: hidden
     entities:
@@ -442,10 +385,6 @@
       - light.guest_bedroom_nightstand
       - binary_sensor.guest_bedroom_occupancy
       - sensor.guest_bedroom_temperature
-
-  Guest Bedroom Lights:
-    - light.guest_bedroom_lamp
-    - light.guest_bedroom_nightstand
 
   Garage:
     control: hidden
@@ -461,25 +400,25 @@
     control: hidden
     entities:
       - light.hallway_light
-      - group.stairs
+      - light.stairs
 
   Interior Lights:
-    - group.living_room_lights
-    - group.dining_room_lights
-    - group.bedroom_lights
-    - group.kitchen_lights
-    - group.stairs
-    - group.USER1_office_lights
-    - group.USER2_office_lights
-    - group.guest_bedroom_lights
-    - group.basement_lighting
+    - light.living_room_lights
+    - light.dining_room_lights
+    - light.bedroom_lights
+    - light.kitchen_lights
+    - light.stairs
+    - light.USER1_office_lights
+    - light.USER2_office_lights
+    - light.guest_bedroom_lights
+    - light.basement_lighting
     - light.bathroom_vanity
     - light.hallway_light
 
   Exterior Lights:
-    - group.front_porch
-    - group.back_door
-    - group.back_porch
+    - light.front_porch
+    - light.back_door
+    - light.back_porch
     - switch.front_yard_lighting
     - group.backyard_lighting
     - light.garage_light
@@ -657,10 +596,6 @@
     - sensor.dark_sky_hourly_summary
     - sensor.dark_sky_daily_summary
 
-  USER2 Office Ceiling:
-    - light.USER2s_office_ceiling_1
-    - light.USER2s_office_ceiling_2
-
   Doors:
     - binary_sensor.front_door_opened
     - binary_sensor.back_door_opened
@@ -712,49 +647,6 @@
 
   Garage Outlets:
     - switch.myq_garage_outlet
-
-  Hue lights:
-    - light.USER1s_nightstand
-    - light.basement_light_1
-    - light.basement_light_2
-    - light.basement_light_3
-    - light.basement_light_4
-    - light.basement_stairs
-    - light.bedroom_lamp
-    - light.closet_lamp
-    - light.hallway_light
-    - light.living_room_lamp_1
-    - light.living_room_lamp_2
-    - light.office_lamp
-    - light.USER2s_nightstand
-    - light.USER2s_office_ceiling_1
-    - light.USER2s_office_ceiling_2
-    - light.stairs_1
-    - light.stairs_2
-    - light.stairs_3
-    - light.guest_bedroom_lamp
-    - light.guest_bedroom_nightstand
-    - light.media_center_lighting
-
-  Hue Lights Exterior:
-    - light.back_door_left
-    - light.back_door_right
-    - light.front_porch_left
-    - light.front_porch_right
-    - light.upper_patio_left
-    - light.upper_patio_right
-
-  Wink Lights:
-    - light.dining_room_ceiling
-    - light.dining_room_table
-    - light.kitchen_cabinets
-    - light.kitchen_ceiling
-    - light.kitchen_sink
-    - light.office_ceiling
-    - light.bathroom_vanity
-
-  Wink Lights Exterior:
-    - light.garge_light
 
   Input Boolean:
     - input_boolean.USER1_greeting

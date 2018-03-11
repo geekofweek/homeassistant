@@ -24,7 +24,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: group.front_porch
+      entity_id: light.front_porch
       data:
         brightness_pct: 100
 
@@ -54,7 +54,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: group.front_porch
+      entity_id: light.front_porch
       data:
         brightness_pct: 40
         transition: 300
@@ -81,7 +81,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: group.front_porch
+      entity_id: light.front_porch
       data:
         brightness_pct: 100
 
@@ -109,7 +109,7 @@
       entity_id: input_boolean.disable_doorbell
       state: 'off'
     - condition: state
-      entity_id: group.front_porch
+      entity_id: light.front_porch
       state: 'on'
       for:
         hours: 0
@@ -118,7 +118,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: group.front_porch
+      entity_id: light.front_porch
       data:
         brightness_pct: 40
         transition: 300
@@ -149,11 +149,11 @@
   action:
     - service: light.turn_on
       entity_id:
-        - group.living_room_lights
+        - light.living_room_lights
         - light.office_lamp
         - light.closet_lamp
         - light.kitchen_sink
-        - group.back_door
+        - light.back_door
         - light.garage_light
       data:
         brightness_pct: 100
@@ -189,7 +189,7 @@
   action:
     - service: light.turn_off
       entity_id:
-        - group.living_room_lights
+        - light.living_room_lights
         - light.office_lamp
         - light.closet_lamp
       data:
@@ -198,7 +198,7 @@
       entity_id: light.kitchen_sink
     - service: light.turn_on
       entity_id:
-        - group.back_door
+        - light.back_door
         - light.garage_light
       data:
         brightness_pct: 1
@@ -229,11 +229,11 @@
   action:
     - service: light.turn_on
       entity_id:
-        - group.living_room_lights
+        - light.living_room_lights
         - light.office_lamp
         - light.closet_lamp
         - light.kitchen_sink
-        - group.back_door
+        - light.back_door
         - light.garage_light
       data:
         brightness_pct: 100
@@ -269,7 +269,7 @@
   action:
     - service: light.turn_off
       entity_id:
-        - group.living_room_lights
+        - light.living_room_lights
         - light.office_lamp
         - light.closet_lamp
       data:
@@ -278,7 +278,7 @@
       entity_id: light.kitchen_sink
     - service: light.turn_on
       entity_id:
-        - group.back_door
+        - light.back_door
         - light.garage_light
       data:
         brightness_pct: 1
@@ -342,7 +342,7 @@
       entity_id: input_boolean.disable_doorbell
       state: 'off'
     - condition: state
-      entity_id: group.basement
+      entity_id: group.basement_occupancy
       state: 'on'
 
   action:

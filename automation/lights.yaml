@@ -148,7 +148,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: group.front_porch
+      entity_id: light.front_porch
       data:
         transition: 900
         brightness_pct: 40
@@ -177,7 +177,7 @@
 
   action:
     - service: light.turn_off
-      entity_id: group.front_porch
+      entity_id: light.front_porch
       data:
        transition: 300
 
@@ -189,7 +189,7 @@
 
   trigger:
     - platform: state
-      entity_id: group.front_porch
+      entity_id: light.front_porch
       from: 'off'
       to: 'on'
       for:
@@ -210,7 +210,7 @@
 
   action:
     - service: light.turn_off
-      entity_id: group.front_porch
+      entity_id: light.front_porch
 
         ##########################################################
         ## Turn On Front Yard Outdoor Lighting at Sunset
@@ -259,7 +259,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: group.back_door
+      entity_id: light.back_door
       data:
         brightness_pct: 1
         transition: 60
@@ -284,7 +284,7 @@
 
   action:
    - service: light.turn_off
-     entity_id: group.back_door
+     entity_id: light.back_door
      data:
        transition: 300
 
@@ -296,7 +296,7 @@
 
   trigger:
     - platform: state
-      entity_id: group.back_door
+      entity_id: light.back_door
       from: 'off'
       to: 'on'
       for:
@@ -317,7 +317,7 @@
 
   action:
     - service: light.turn_off
-      entity_id: group.back_door
+      entity_id: light.back_door
 
         ##########################################################
         ## Turn on Lights at 5a if USER2 Home and Working
@@ -346,7 +346,7 @@
   action:
     - service: light.turn_on
       entity_id:
-        - group.living_room_lights
+        - light.living_room_lights
       data:
        brightness_pct: 25
        xy_color: [ 0.5134, 0.4149 ]
@@ -364,7 +364,7 @@
        brightness_pct: 1
        color_name: red
     - service: light.turn_on
-      entity_id: group.back_door
+      entity_id: light.back_door
       data:
        brightness_pct: 1
        transition: 60

@@ -32,19 +32,19 @@
       entity_id: group.household
       state: 'home'
     - condition: state
-      entity_id: group.living_room_lights
+      entity_id: light.living_room_lights
       state: 'off'
     - condition: state
-      entity_id: group.dining_room_lights
+      entity_id: light.dining_room_lights
       state: 'off'
     - condition: state
-      entity_id: group.kitchen_lights
+      entity_id: light.kitchen_lights
       state: 'off'
 
   action:
     - service: light.turn_on
       entity_id:
-        - group.living_room_lights
+        - light.living_room_lights
         - light.hallway_light
       data:
         xy_color: [ 0.5134, 0.4149 ]
@@ -86,22 +86,19 @@
       entity_id: group.household
       state: 'home'
     - condition: state
-      entity_id: group.USER2_office
-      state: 'off'
-    - condition: state
-      entity_id: group.USER2_office_lights
+      entity_id: light.USER2_office_lights
       state: 'off'
 
   action:
     - service: light.turn_on
       entity_id:
-        - group.USER2_office
+        - light.USER2_office_lights
       data:
         transition: 300
         brightness_pct: 50
     - service: light.turn_on
       entity_id:
-        - group.stairs
+        - light.stairs
       data:
         transition: 10
         brightness_pct: 1

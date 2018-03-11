@@ -204,10 +204,13 @@
   action:
     - service: light.turn_off
       entity_id:
-        - group.front_porch
-        - group.back_door
-        - group.backyard_lighting
+        - light.front_porch
+        - light.back_door
         - light.garage_light
+    - service: switch.turn_off
+      entity_id:
+        - switch.lower_backyard_lighting
+        - switch.backyard_patio_lighting
 
         ##########################################################
         ## Bedtime after Midnight Holiday
@@ -264,9 +267,12 @@
   action:
     - service: light.turn_off
       entity_id:
-        - group.back_door
-        - group.backyard_lighting
+        - light.back_door
         - light.garage_light
+    - service: switch.turn_off
+      entity_id:
+        - switch.lower_backyard_lighting
+        - switch.backyard_patio_lighting
 
         ##########################################################
         ## Reset Bedtime Switch

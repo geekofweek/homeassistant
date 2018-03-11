@@ -1,0 +1,155 @@
+#################################################################
+## Light Group
+#################################################################
+
+  - platform: group
+    name: Living Room Lamps
+    entities:
+      - light.living_room_lamp_1
+      - light.living_room_lamp_2
+
+  - platform: group
+    name: Living Room Lights
+    entities:
+      - light.living_room_lamps
+      - light.media_center_lighting
+
+  - platform: group
+    name: Bedroom Lights
+    entities:
+      - light.USER1s_nightstand
+      - light.USER2s_nightstand
+      - light.bedroom_lamp
+      - light.closet_lamp
+
+  - platform: group
+    name: Kitchen Lights
+    entities:
+      - light.kitchen_ceiling
+      - light.kitchen_cabinets
+      - light.kitchen_sink
+
+  - platform: group
+    name: Dining Room Lights
+    entities:
+      - light.dining_room_table
+      - light.dining_room_ceiling
+
+  - platform: group
+    name: Interior
+    entities:
+      - light.hallway_light
+      - light.stairs
+
+  - platform: group
+    name: USER1 Office Lights
+    entities:
+      - light.office_ceiling
+      - light.office_lamp
+
+  - platform: group
+    name: USER2 Office Ceiling
+    entities:
+      - light.USER2s_office_ceiling_1
+      - light.USER2s_office_ceiling_2
+
+  - platform: group
+    name: USER2 Office Lights
+    entities:
+      - light.USER2_office_ceiling
+
+  - platform: group
+    name: Guest Bedroom Lights
+    entities:
+      - light.guest_bedroom_lamp
+      - light.guest_bedroom_nightstand
+
+  - platform: group
+    name: Stairs
+    entities:
+      - light.stairs_1
+      - light.stairs_2
+      - light.stairs_3
+
+  - platform: group
+    name: Basement Lights
+    entities:
+      - light.basement_light_1
+      - light.basement_light_2
+      - light.basement_light_3
+      - light.basement_light_4
+
+  - platform: group
+    name: Basement Lighting
+    entities:
+      - light.basement_stairs
+      - light.basement_lights
+
+  - platform: group
+    name: Front Porch
+    entities:
+      - light.front_porch_left
+      - light.front_porch_right
+
+  - platform: group
+    name: Back Door
+    entities:
+      - light.back_door_left
+      - light.back_door_right
+
+  - platform: group
+    name: Back Porch
+    entities:
+      - light.upper_patio_left
+      - light.upper_patio_right
+
+  - platform: group
+    name: Hue lights
+    entities:
+      - light.USER1s_nightstand
+      - light.basement_light_1
+      - light.basement_light_2
+      - light.basement_light_3
+      - light.basement_light_4
+      - light.basement_stairs
+      - light.bedroom_lamp
+      - light.closet_lamp
+      - light.hallway_light
+      - light.living_room_lamp_1
+      - light.living_room_lamp_2
+      - light.office_lamp
+      - light.USER2s_nightstand
+      - light.USER2s_office_ceiling_1
+      - light.USER2s_office_ceiling_2
+      - light.stairs_1
+      - light.stairs_2
+      - light.stairs_3
+      - light.guest_bedroom_lamp
+      - light.guest_bedroom_nightstand
+      - light.media_center_lighting
+
+  - platform: group
+    name: Hue Lights Exterior
+    entities:
+      - light.back_door_left
+      - light.back_door_right
+      - light.front_porch_left
+      - light.front_porch_right
+      - light.upper_patio_left
+      - light.upper_patio_right
+
+  - platform: group
+    name: Wink Lights
+    entities:
+      - light.dining_room_ceiling
+      - light.dining_room_table
+      - light.kitchen_cabinets
+      - light.kitchen_ceiling
+      - light.kitchen_sink
+      - light.office_ceiling
+      - light.bathroom_vanity
+
+  - platform: group
+    name: Wink Lights Exterior
+    entities:
+      - light.garge_light

@@ -252,7 +252,7 @@
     - service: light.turn_on
       entity_id:
         - light.kitchen_sink
-        - group.living_room_lamps
+        - light.living_room_lamps
         - light.hallway_light
         - light.dining_room_table
       data:
@@ -269,8 +269,8 @@
        brightness_pct: 1
     - service: light.turn_on
       entity_id:
-        - group.front_porch
-        - group.back_door
+        - light.front_porch
+        - light.back_door
         - light.garage_light
       data:
        brightness_pct: 100
@@ -304,7 +304,7 @@
   action:
     - service: light.turn_on
       entity_id:
-        - group.living_room_lamps
+        - light.living_room_lamps
         - light.hallway_light
       data:
        xy_color: [ 0.5134, 0.4149 ]
@@ -347,7 +347,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: group.front_porch
+      entity_id: light.front_porch
       data:
         brightness_pct: 40
         transition: 60
@@ -374,7 +374,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: group.back_door
+      entity_id: light.back_door
       data:
         brightness_pct: 1
         transition: 60
@@ -418,7 +418,7 @@
   trigger:
     - platform: state
       entity_id: device_tracker.USER2DEVICE
-      from: 'not_home'
+      #from: 'not_home'
       to: 'home'
 
   condition:
@@ -436,7 +436,7 @@
     - service: light.turn_on
       entity_id:
         - light.kitchen_sink
-        - group.living_room_lamps
+        - light.living_room_lamps
         - light.hallway_light
         - light.dining_room_table
       data:
@@ -453,8 +453,8 @@
        brightness_pct: 1
     - service: light.turn_on
       entity_id:
-        - group.front_porch
-        - group.back_door
+        - light.front_porch
+        - light.back_door
         - light.garage_light
       data:
        brightness_pct: 100
@@ -488,7 +488,7 @@
   action:
     - service: light.turn_on
       entity_id:
-        - group.living_room_lamps
+        - light.living_room_lamps
         - light.hallway_light
       data:
        xy_color: [ 0.5134, 0.4149 ]
@@ -531,7 +531,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: group.front_porch
+      entity_id: light.front_porch
       data:
         brightness_pct: 40
         transition: 60
@@ -558,7 +558,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: group.back_door
+      entity_id: light.back_door
       data:
         brightness_pct: 1
         transition: 60
@@ -789,7 +789,7 @@
     - service: light.turn_off
       entity_id:
         - group.interior_lights
-        - group.back_door
+        - light.back_door
         - light.garage_light
 
         ##########################################################

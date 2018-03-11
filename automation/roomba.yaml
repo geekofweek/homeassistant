@@ -151,8 +151,8 @@
   action:
     - service: light.turn_on
       entity_id:
-        - group.bedroom_lights
-        - group.stairs
+        - light.bedroom_lights
+        - light.stairs
         - light.hallway_light
         - light.basement_stairs
       data:
@@ -160,7 +160,7 @@
        profile: relax
     - service: light.turn_on
       entity_id:
-        - group.living_room_lights
+        - light.living_room_lights
       data:
        brightness_pct: 50
        profile: relax

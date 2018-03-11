@@ -79,7 +79,7 @@
 
   action:
     - service: light.turn_off
-      entity_id: group.USER1_office
+      entity_id: light.USER1_office_lights
 
         ##########################################################
         ## Turn on USER1's Office when Occupied after Dark
@@ -98,7 +98,7 @@
       entity_id: device_tracker.USER1DEVICE
       state: 'home'
     - condition: state
-      entity_id: group.USER1_office_lights
+      entity_id: light.USER1_office_lights
       state: 'off'
     - condition: state
       entity_id: sun.sun
@@ -112,7 +112,7 @@
         brightness_pct: 100
         effect: colorloop
     - service: light.turn_on
-      entity_id: group.stairs
+      entity_id: light.stairs
       data:
         transition: 3
         brightness_pct: 25
@@ -134,17 +134,17 @@
       entity_id: device_tracker.USER2DEVICE
       state: 'home'
     - condition: state
-      entity_id: group.USER2_office_lights
+      entity_id: light.USER2_office_lights
       state: 'off'
 
   action:
     - service: light.turn_on
-      entity_id: group.USER2_office
+      entity_id: light.USER2_office_lights
       data:
         transition: 300
         brightness_pct: 50
     - service: light.turn_on
-      entity_id: group.stairs
+      entity_id: light.stairs
       data:
         transition: 3
         brightness_pct: 1
@@ -172,7 +172,7 @@
 
   action:
     - service: light.turn_off
-      entity_id: group.USER2_office
+      entity_id: light.USER2_office_lights
 
         ##########################################################
         ## Turn off Bedroom when Unoccupied
@@ -197,7 +197,7 @@
 
   action:
     - service: light.turn_off
-      entity_id: group.bedroom
+      entity_id: light.bedroom_lights
 
         ##########################################################
         ## Turn off Guest Bedroom when Unoccupied
@@ -222,7 +222,7 @@
 
   action:
     - service: light.turn_off
-      entity_id: group.guest_bedroom
+      entity_id: light.guest_bedroom_lights
 
         ##########################################################
         ## Turn off Kitchen when Unoccupied
@@ -247,7 +247,7 @@
 
   action:
     - service: light.turn_off
-      entity_id: group.kitchen
+      entity_id: light.kitchen_lights
 
         ##########################################################
         ## Turn off Dining Room / Hallway when Unoccupied
@@ -272,7 +272,7 @@
 
   action:
     - service: light.turn_off
-      entity_id: light.hallway_light, group.dining_room
+      entity_id: light.hallway_light, light.dining_room_lights
 
         ##########################################################
         ## Turn off Living Room when Unoccupied
@@ -300,7 +300,7 @@
 
   action:
     - service: light.turn_off
-      entity_id: group.living_room
+      entity_id: light.living_room_lights
 
         ##########################################################
         ## Turn off Stairs when Unoccupied
@@ -328,7 +328,7 @@
 
   action:
     - service: light.turn_off
-      entity_id: group.stairs
+      entity_id: light.stairs
 
 - alias: Occupancy - Turn off Stairs when USER2 Office Unoccupied
 
@@ -352,7 +352,7 @@
 
   action:
     - service: light.turn_off
-      entity_id: group.stairs
+      entity_id: light.stairs
 
         ##########################################################
         ## Turn off Basement when Unoccupied
@@ -377,7 +377,7 @@
 
   action:
     - service: light.turn_off
-      entity_id: group.basement_lighting
+      entity_id: light.basement_lighting
 
         ##########################################################
         ## Turn on Living Room / Dining Room at Sunset when Occupied
@@ -400,10 +400,10 @@
         entity_id: input_boolean.disable_interior_lights_sunset
         state: 'off'
       - condition: state
-        entity_id: group.living_room_lights
+        entity_id: light.living_room_lights
         state: 'off'
       - condition: state
-        entity_id: group.dining_room_lights
+        entity_id: light.dining_room_lights
         state: 'off'
       - condition: or
         conditions:
@@ -417,7 +417,7 @@
   action:
     - service: light.turn_on
       entity_id:
-        - group.living_room_lamps
+        - light.living_room_lamps
         - light.hallway_light
       data:
         transition: 900
@@ -456,7 +456,7 @@
       entity_id: input_boolean.disable_interior_lights_sunset
       state: 'off'
     - condition: state
-      entity_id: group.kitchen_lights
+      entity_id: light.kitchen_lights_lights
       state: 'off'
 
   action:
@@ -494,7 +494,7 @@
       entity_id: device_tracker.USER1DEVICE
       state: 'home'
     - condition: state
-      entity_id: group.USER1_office_lights
+      entity_id: light.USER1_office_lights
       state: 'off'
 
   action:
@@ -507,7 +507,7 @@
         effect: colorloop
     - service: light.turn_on
       entity_id:
-        - group.stairs
+        - light.stairs
       data:
         transition: 60
         brightness_pct: 50
@@ -534,19 +534,19 @@
       entity_id: device_tracker.USER2DEVICE
       state: 'home'
     - condition: state
-      entity_id: group.USER2_office_lights
+      entity_id: light.USER2_office_lights
       state: 'off'
 
   action:
     - service: light.turn_on
       entity_id:
-        - group.USER2_office
+        - light.USER2_office_lights
       data:
         transition: 300
         brightness_pct: 100
     - service: light.turn_on
       entity_id:
-        - group.stairs
+        - light.stairs
       data:
         transition: 300
         brightness_pct: 50

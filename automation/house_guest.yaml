@@ -80,11 +80,11 @@
     - service: light.turn_on
       entity_id:
         - light.kitchen_sink
-        - group.living_room_lamps
+        - light.living_room_lamps
         - light.hallway_light
         - light.dining_room_table
-        - group.stairs
-        - group.guest_bedroom
+        - light.stairs
+        - light.guest_bedroom_lights
       data:
        xy_color: [ 0.5134, 0.4149 ]
        brightness_pct: 50
@@ -100,8 +100,8 @@
        brightness_pct: 1
     - service: light.turn_on
       entity_id:
-        - group.front_porch
-        - group.back_door
+        - light.front_porch
+        - light.back_door
         - light.garage_light
       data:
        brightness_pct: 100
@@ -128,7 +128,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: group.front_porch
+      entity_id: light.front_porch
       data:
         brightness_pct: 40
         transition: 60
@@ -155,7 +155,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: group.back_door
+      entity_id: light.back_door
       data:
         brightness_pct: 1
         transition: 60
