@@ -200,9 +200,24 @@
     - service: light.turn_off
       entity_id:
         - group.interior_lights
+
+        ##########################################################
+        ## Enable Occupancy Automations when Roomba finished
+        ##########################################################
+
+- alias: Roomba - Enable Occupancy Automations when Roomba finished
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.roomba
+      from: 'on'
+      to: 'off'
+
+  action:
     - service: homeassistant.turn_off
       entity_id:
         - input_boolean.disable_occupancy
+
 
         ##########################################################
         ## Run Roomba when USER2 Leaves

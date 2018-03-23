@@ -176,16 +176,16 @@
     entities:
       - group.overnight_guests
       - group.plex
+      - group.all_devices
       - group.all_input_boolean
-      - group.all_automations
       - group.all_lights
       - group.all_switches
       - group.all_locks
       - group.all_covers
       - group.all_remotes
-      - group.all_scripts
-      - group.all_devices
+      - group.all_automations
       - group.calendars
+      - group.all_scripts
       - group.scenes
 
   Traffic Camera Feeds:
@@ -670,9 +670,28 @@
     - input_boolean.USER1_away
     - input_boolean.USER1_away_driving
     - input_boolean.USER1_home
-    - input_boolean.adele_music
-    - input_boolean.alarm_tripped
+    - input_boolean.manual_USER1_away
+    - input_boolean.USER2_away
+    - input_boolean.USER2_away_driving
+    - input_boolean.USER2_home
+    - input_boolean.manual_USER2_away
+    - input_boolean.thermostat_away
+    - input_boolean.house_guest_away
+    - input_boolean.guest_mode
+    - input_boolean.vacation_mode
     - input_boolean.bedtime
+    - input_boolean.unlock_doors
+    - input_boolean.lock_doors
+    - input_boolean.interior_holiday
+    - input_boolean.livingroom_rainbow
+    - input_boolean.office_rainbow
+    - input_boolean.front_porch_rainbow
+    - input_boolean.enable_security
+    - input_boolean.alarm_tripped
+    - input_boolean.panic_mode
+    - input_boolean.jazz_music
+    - input_boolean.pop_music
+    - input_boolean.adele_music
     - input_boolean.chill_music
     - input_boolean.classical_music
     - input_boolean.disable_auto_garage
@@ -690,26 +709,6 @@
     - input_boolean.disable_voice_greeting
     - input_boolean.disable_water_sensors
     - input_boolean.electronic_music
-    - input_boolean.enable_security
-    - input_boolean.front_porch_rainbow
-    - input_boolean.group_all_sonos
-    - input_boolean.guest_mode
-    - input_boolean.house_guest_away
-    - input_boolean.interior_holiday
-    - input_boolean.jazz_music
-    - input_boolean.livingroom_rainbow
-    - input_boolean.lock_doors
-    - input_boolean.manual_USER1_away
-    - input_boolean.manual_USER2_away
-    - input_boolean.office_rainbow
-    - input_boolean.panic_mode
-    - input_boolean.pop_music
-    - input_boolean.USER2_away
-    - input_boolean.USER2_away_driving
-    - input_boolean.USER2_home
-    - input_boolean.thermostat_away
-    - input_boolean.unlock_doors
-    - input_boolean.vacation_mode
 
   Calendars:
     - calendar.holidays_in_united_states
