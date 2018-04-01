@@ -1,7 +1,7 @@
 # Home Assistant
 Example [Home Assistant](https://home-assistant.io) Configs
 
-Home Assistant Version: 0.65.6
+Home Assistant Version: 0.66.0
 
 # Devices
 
@@ -31,6 +31,8 @@ Home Assistant Version: 0.65.6
 * [Amazon Echo Dot](http://www.amazon.com/b/?node=14047587011) - x6 (via Emulated Hue)
 * [Amazon Echo Show](https://www.amazon.com/Amazon-Echo-Show-Alexa-Enabled-White/dp/B010CEHQTG/ref=sr_1_2?ie=UTF8&qid=1513364215&sr=8-2&keywords=echo+show) - x1 (via Emulated Hue)
 * [Amazon Echo Spot](https://www.amazon.com/Amazon-VN94DQ-Introducing-Echo-Spot/dp/B073SQYXTW/ref=sr_1_1?s=amazon-devices&ie=UTF8&qid=1513364246&sr=1-1&keywords=echo+spot) - x1 (via Emulated Hue)
+* [Apple TV 4k](https://www.amazon.com/Apple-MQD22LL-A-TV-4K/dp/B075NCMLYL/ref=sr_1_2?s=electronics&ie=UTF8&qid=1522253522&sr=1-2&keywords=Apple+TV+4k) - x2
+* [Apple TV 4](https://www.amazon.com/Apple-TV-32GB-4th-Generation/dp/B075NFX24M/ref=sr_1_1?s=electronics&ie=UTF8&qid=1522253585&sr=1-1&keywords=Apple+TV) - x2
 * [Sonos PLAY:1](https://www.amazon.com/Sonos-PLAY-Compact-Wireless-Streaming/dp/B00EWCUK1Q/ref=sr_1_1?s=aht&ie=UTF8&qid=1480883246&sr=1-1&keywords=Sonos+play+1) - x10
 * [Sonos CONNECT](https://www.amazon.com/Sonos-Wireless-Receiver-Component-Streaming/dp/B001CROHX6/ref=sr_1_3?s=aht&ie=UTF8&qid=1480883287&sr=1-3&keywords=Sonos+Connect) - x1
 * [Sonos CONNECT:AMP](https://www.amazon.com/Sonos-CONNECT-Wireless-Amplifier-Streaming/dp/B001CROHU4/ref=sr_1_2?ie=UTF8&qid=1501368078&sr=8-2&keywords=sonos+connect+amp) - x1
