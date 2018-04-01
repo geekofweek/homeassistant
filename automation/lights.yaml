@@ -152,7 +152,7 @@
       data:
         transition: 900
         brightness_pct: 40
-        profile: relax
+        color_temp: 447
 
         ##########################################################
         ## Turn Off Front Porch at Midnight
@@ -211,6 +211,8 @@
   action:
     - service: light.turn_off
       entity_id: light.front_porch
+      data:
+       transition: 300
 
         ##########################################################
         ## Turn On Front Yard Outdoor Lighting at Sunset
