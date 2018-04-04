@@ -133,13 +133,12 @@
   cover.garage_door:
     device_class: garage
     homebridge_cover_type: garage_door
+    homebridge_visible: true
   cover.wink_garage_door:
     device_class: garage
-    homebridge_hidden: true
     friendly_name: Wink Garage Door
   cover.myq:
     device_class: garage
-    homebridge_hidden: true
     friendly_name: MyQ Garage Door
   binary_sensor.front_door_opened:
     device_class: door
@@ -158,11 +157,8 @@
   binary_sensor.ring_front_door_ding:
     icon: mdi:bell-ring
     friendly_name: Front Door Ring
-    homebridge_hidden: true
   binary_sensor.ring_front_door_motion:
-    homebridge_hidden: true
-  binary_sensor.front_door_motion:
-    homebridge_hidden: true
+    friendly_name: Front Door Motion
   sensor.ring_front_door_battery:
     friendly_name: Door Bell
   sensor.ring_front_door_last_ding:
@@ -204,6 +200,7 @@
     icon: mdi:stairs
   group.backyard_lighting:
     icon: mdi:nature
+    homebridge_visible: true
   group.interior:
     friendly_name: Interior Lights
 
@@ -215,14 +212,17 @@
     friendly_name: Front Door Lock
     homebridge_mfg: Schlage
     homebridge_model: BE469
+    homebridge_visible: true
   lock.back_door:
     friendly_name: Back Door Lock
     homebridge_mfg: Schlage
     homebridge_model: BE469
+    homebridge_visible: true
   lock.basement_door:
     friendly_name: Basement Door Lock
     homebridge_mfg: Schlage
     homebridge_model: BE469
+    homebridge_visible: true
   group.all_locks:
     friendly_name: Door Locks
 
@@ -247,20 +247,16 @@
     decice_class: connectivity
     friendly_name: Wink Hub
     icon: mdi:ethernet
-    homebridge_hidden: true
   binary_sensor.wink_relay:
     decice_class: connectivity
     friendly_name: Wink Relay
     icon: mdi:ethernet
-    homebridge_hidden: true
   binary_sensor.wink_relay_sensor_presence:
     device_class: occupancy
-    homebridge_hidden: true
   binary_sensor.philips_hue:
     decice_class: connectivity
     friendly_name: Hue Hub
     icon: mdi:ethernet
-    homebridge_hidden: true
   binary_sensor.basement_drain_water_sensor_liquid_detected:
     device_class: moisture
     friendly_name: Basement Drain Water Sensor
@@ -280,26 +276,24 @@
     friendly_name: Fireplace
     emulated_hue_hidden: false
     emulated_hue_name: "Remote FRPLC"
+    homebridge_visible: true
   switch.air_purifier:
     icon: mdi:fan
     friendly_name: Air Purifier
-    homebridge_hidden: true
   switch.office_fan:
     icon: mdi:fan
     friendly_name: Office Fan
   switch.basement_heater:
     icon: mdi:radiator
-    homebridge_hidden: true
   switch.christmas_tree:
     icon: mdi:pine-tree
     friendly_name: Christmas Tree
-    homebridge_hidden: true
   switch.living_room_ceiling_fan:
     icon: mdi:ceiling-light
     friendly_name: Living Room Ceiling Fan
-    homebridge_hidden: true
   switch.front_yard_lighting:
     icon: mdi:nature
+    homebridge_visible: true
   switch.myq_garage_outlet:
     icon: mdi:power-socket-us
 
@@ -312,10 +306,12 @@
     icon: mdi:ceiling-light
     emulated_hue_hidden: false
     emulated_hue_name: "Remote HLLWY"
+    homebridge_visible: true
   light.bathroom_vanity:
     icon: mdi:water-pump
     emulated_hue_hidden: false
     emulated_hue_name: "Remote BTH"
+    homebridge_visible: true
   light.USER1s_nightstand:
     icon: mdi:lamp
   light.bedroom_lamp:
@@ -334,6 +330,7 @@
     icon: mdi:lamp
   light.garage_light:
     icon: mdi:spotlight-beam
+    homebridge_visible: true
   light.media_center_lighting:
     icon: mdi:television
   light.basement_stairs:
@@ -353,43 +350,55 @@
     friendly_name: Living Room
     emulated_hue_hidden: false
     emulated_hue_name: "Remote LVNGRM"
+    homebridge_visible: true
   light.dining_room_lights:
     icon: mdi:silverware-variant
     friendly_name: Dining Room
     emulated_hue_hidden: false
     emulated_hue_name: "Remote DNGRM"
+    homebridge_visible: true
   light.bedroom_lights:
     icon: mdi:hotel
     friendly_name: Bedroom
     emulated_hue_hidden: false
     emulated_hue_name: "Remote BDRM"
+    homebridge_visible: true
   light.kitchen_lights:
     icon: mdi:fridge
     friendly_name: Kitchen
     emulated_hue_hidden: false
     emulated_hue_name: "Remote KTCHN"
+    homebridge_visible: true
   light.stairs:
     icon: mdi:stairs
     emulated_hue_hidden: false
     emulated_hue_name: "Remote STRS"
+    homebridge_visible: true
   light.USER1_office_lights:
     icon: mdi:desktop-mac
     friendly_name: USER1 Office
+    homebridge_visible: true
   light.USER2_office_lights:
     icon: mdi:desktop-mac
     friendly_name: USER2 Office
+    homebridge_visible: true
   light.guest_bedroom_lights:
     icon: mdi:hotel
     friendly_name: Guest Bedroom
+    homebridge_visible: true
   light.basement_lighting:
     icon: mdi:stairs
     friendly_name: Basement
+    homebridge_visible: true
   light.front_porch:
     icon: mdi:home
+    homebridge_visible: true
   light.back_door:
     icon: mdi:home
+    homebridge_visible: true
   light.back_porch:
     icon: mdi:home
+    homebridge_visible: true
   light.living_room_lamps:
     icon: mdi:lamp
   light.USER2_office_ceiling:
@@ -474,6 +483,13 @@
     icon: mdi:theater
   media_player.roku_REDACTED:
     friendly_name: Basement Roku
+
+        ##########################################################
+        ## Vacuums
+        ##########################################################
+
+  vacuum.roomba:
+    homebridge_visible: true
 
         ##########################################################
         ## Amazon Echo Integration
@@ -635,17 +651,17 @@
   sensor.nas_network_down_eth1:
     friendly_name: eth1 Download
   sensor.nas_system_temperature:
-    friendly_name: System Temprature
+    friendly_name: System Temperature
   sensor.nas_cpu_temperature:
-    friendly_name: CPU Temprature
+    friendly_name: CPU Temperature
   sensor.nas_temperature_drive_01:
-    friendly_name: Drive 1 Temprature
+    friendly_name: Drive 1 Temperature
   sensor.nas_temperature_drive_02:
-    friendly_name: Drive 2 Temprature
+    friendly_name: Drive 2 Temperature
   sensor.nas_temperature_drive_03:
-    friendly_name: Drive 3 Temprature
+    friendly_name: Drive 3 Temperature
   sensor.nas_temperature_drive_04:
-    friendly_name: Drive 4 Temprature
+    friendly_name: Drive 4 Temperature
 
         ##########################################################
         ## DNS

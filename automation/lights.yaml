@@ -351,7 +351,7 @@
         - light.living_room_lights
       data:
        brightness_pct: 25
-       xy_color: [ 0.5134, 0.4149 ]
+       color_temp: 447
     - service: light.turn_on
       entity_id:
         - light.dining_room_table
@@ -549,3 +549,28 @@
       data:
         effect: random
         transition: 300
+
+        ##########################################################
+        ## Turn on Lower BackYard after Patio
+        ##########################################################
+
+- alias: Lights - Turn on Lower BackYard after Patio
+
+  trigger:
+    - platform: state
+      entity_id: switch.backyard_patio_lighting
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 90
+
+  condition:
+    - condition: state
+      entity_id: switch.lower_backyard_lighting
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id: switch.lower_backyard_lighting
