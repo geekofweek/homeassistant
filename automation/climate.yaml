@@ -739,35 +739,35 @@
         ## When Ecobee Away Mode off Turn on Basement Heater
         ##########################################################
 
-- alias: Climate - When Ecobee Away Mode off Turn on Basement Heater
+#- alias: Climate - When Ecobee Away Mode off Turn on Basement Heater
 
-  trigger:
-    - platform: state
-      entity_id: input_boolean.thermostat_away
-      from: 'on'
-      to: 'off'
-      for:
-        hours: 0
-        minutes: 5
-        seconds: 0
+#  trigger:
+#    - platform: state
+#      entity_id: input_boolean.thermostat_away
+#      from: 'on'
+#      to: 'off'
+#      for:
+#        hours: 0
+#        minutes: 5
+#        seconds: 0
 
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_home_away
-      state: 'off'
-    - condition: state
-      entity_id: group.winter_mode
-      state: 'on'
+#  condition:
+#    - condition: state
+#      entity_id: input_boolean.disable_home_away
+#      state: 'off'
+#    - condition: state
+#      entity_id: group.winter_mode
+#      state: 'on'
 
-  action:
-    - service: climate.set_operation_mode
-      data:
-        entity_id: climate.basement_heater
-        operation_mode: 'heat'
-    - service: climate.set_temperature
-      data:
-        entity_id: climate.basement_heater
-        temperature: '65'
+#  action:
+#    - service: climate.set_operation_mode
+#      data:
+#        entity_id: climate.basement_heater
+#        operation_mode: 'heat'
+#    - service: climate.set_temperature
+#      data:
+#        entity_id: climate.basement_heater
+#        temperature: '65'
 
         ##########################################################
         ## When Ecobee Away Mode on Turn off Basement Heater
@@ -852,60 +852,60 @@
         ## Basement Heater Schedule Home Mode
         ##########################################################
 
-- alias: Climate - Basement Heater Schedule Home Mode
+#- alias: Climate - Basement Heater Schedule Home Mode
 
-  trigger:
-    - platform: time
-      at: '09:00'
+#  trigger:
+#    - platform: time
+#      at: '09:00'
 
-  condition:
-    - condition: state
-      entity_id: group.winter_mode
-      state: 'on'
-    - condition: state
-      entity_id: input_boolean.thermostat_away
-      state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
+#  condition:
+#    - condition: state
+#      entity_id: group.winter_mode
+#      state: 'on'
+#    - condition: state
+#      entity_id: input_boolean.thermostat_away
+#      state: 'off'
+#    - condition: state
+#      entity_id: group.household
+#      state: 'home'
 
-  action:
-    - service: climate.set_operation_mode
-      data:
-        entity_id: climate.basement_heater
-        operation_mode: 'heat'
-    - service: climate.set_temperature
-      data:
-        entity_id: climate.basement_heater
-        temperature: '65'
+#  action:
+#    - service: climate.set_operation_mode
+#      data:
+#        entity_id: climate.basement_heater
+#        operation_mode: 'heat'
+#    - service: climate.set_temperature
+#      data:
+#        entity_id: climate.basement_heater
+#        temperature: '65'
 
         #################################################################
         ## Disable Heater On Startup During Summer
         #################################################################
 
-- alias: Climate - Disable Heater On Startup During Summer
+#- alias: Climate - Disable Heater On Startup During Summer
 
-  trigger:
-    - platform: homeassistant
-      event: start
+#  trigger:
+#    - platform: homeassistant
+#      event: start
 
-  condition:
-    - condition: state
-      entity_id: group.winter_mode
-      state: 'off'
-    - condition: state
-      entity_id: group.summer_mode
-      state: 'on'
+#  condition:
+#    - condition: state
+#      entity_id: group.winter_mode
+#      state: 'off'
+#    - condition: state
+#      entity_id: group.summer_mode
+#      state: 'on'
 
-  action:
-    - service: climate.set_operation_mode
-      data:
-        entity_id: climate.basement_heater
-        operation_mode: 'off'
-    - service: climate.set_temperature
-      data:
-        entity_id: climate.basement_heater
-        temperature: '45'
+#  action:
+#    - service: climate.set_operation_mode
+#      data:
+#        entity_id: climate.basement_heater
+#        operation_mode: 'off'
+#    - service: climate.set_temperature
+#      data:
+#        entity_id: climate.basement_heater
+#        temperature: '45'
 
 #################################################################
 ## Fireplace
