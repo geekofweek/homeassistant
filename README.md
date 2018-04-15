@@ -17,7 +17,7 @@ Home Assistant Version: 0.67.0
 * [Schlage Connect](https://www.amazon.com/Schlage-Connect-BE469NX-Touchscreen-Deadbolt/dp/B00AGK9KUU/ref=sr_1_3?ie=UTF8&qid=1482945181&sr=8-3&keywords=schlage%2Bconnect&th=1) - x3 (connected via Wink Hub)
 * [GoControl Z-Wave Home Security Suite](http://www.amazon.com/GOCONTROL-WNK01-311KIT-Premium-Z-Wave-Security/dp/B00XUXYT6K/ref=sr_1_1?ie=UTF8&qid=1465167435&sr=8-1&keywords=go+control) - x1 (connected via Wink Hub)
 * [GE Z-Wave Wireless Lighting Control Outdoor Module](https://www.amazon.com/GE-Wireless-Lighting-Control-Outdoor/dp/B0013V8K3O/ref=sr_1_1?ie=UTF8&qid=1466468235&sr=8-1&keywords=ge+outdoor+zwave) - x2 (connected via Wink Hub)
-* [iHome WiFI Smart Plug](https://www.amazon.com/iHome-Smart-Apple-HomeKit-Amazon/dp/B010ACFEI0/ref=sr_1_1?ie=UTF8&qid=1467576017&sr=8-1&keywords=ihome+smart+plug) - x2 (connected via Wink Hub)
+* ~[iHome WiFI Smart Plug](https://www.amazon.com/iHome-Smart-Apple-HomeKit-Amazon/dp/B010ACFEI0/ref=sr_1_1?ie=UTF8&qid=1467576017&sr=8-1&keywords=ihome+smart+plug) - x2 (connected via Wink Hub)~
 * [Wemo Mini Smart Plug](https://www.amazon.com/gp/product/B01NBI0A6R/ref=oh_aui_detailpage_o01_s01?ie=UTF8&psc=1) - x4
 * [TP-Link Smart Plug HS100](https://www.amazon.com/gp/product/B0178IC734/ref=oh_aui_detailpage_o03_s00?ie=UTF8&psc=1) - x1
 * [Remotec Zwave Dry Contact Fixture Module](https://www.amazon.com/gp/product/B00913ATFI/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1) - *Gas Fireplace Control* - x1 (connected via Wink Hub)
