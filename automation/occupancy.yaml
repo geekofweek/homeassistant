@@ -433,6 +433,10 @@
       entity_id: light.dining_room_table
       data:
         brightness_pct: 50
+    - service: light.turn_on
+      entity_id: light.bathroom_vanity
+      data:
+        brightness_pct: 40
 
         ##########################################################
         ## Turn on Kitchen at Sunset when Occupied

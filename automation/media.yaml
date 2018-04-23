@@ -190,11 +190,15 @@
     - service: light.turn_on
       entity_id:
         - light.dining_room_table
-        - light.bathroom_vanity
         - light.kitchen_sink
         - light.kitchen_cabinets
       data:
        brightness_pct: 1
+    - service: light.turn_on
+      entity_id:
+        - light.bathroom_vanity
+      data:
+       brightness_pct: 30
 
         ##########################################################
         ## Late Night TV Watching after Midnight Lights On
@@ -257,11 +261,15 @@
     - service: light.turn_on
       entity_id:
         - light.dining_room_table
-        - light.bathroom_vanity
         - light.kitchen_sink
         - light.kitchen_cabinets
       data:
        brightness_pct: 1
+    - service: light.turn_on
+      entity_id:
+        - light.bathroom_vanity
+      data:
+       brightness_pct: 30
 
         ##########################################################
         ## Late Night TV Watching after Midnight Lights Off

@@ -51,8 +51,20 @@
       from: 'not_home'
       to: 'home'
 
+  condition:
+    - condition: state
+      entity_id: input_boolean.USER1_away
+      state: 'on'
+
   action:
     - service: notify.ios_USER1s_iphone
+      data:
+        message: USER1 Home
+        data:
+          push:
+            category: camera
+          entity_id: camera.garage
+    - service: notify.ios_USER2s_iphone
       data:
         message: USER1 Home
         data:
@@ -89,6 +101,11 @@
       entity_id: device_tracker.USER2DEVICE
       from: 'not_home'
       to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.USER2_away
+      state: 'on'
 
   action:
     - service: notify.ios_USER1s_iphone
@@ -154,11 +171,19 @@
   action:
     - service: notify.ios_USER1s_iphone
       data:
-        message: Motion Detected
+        message: Motion Detected Alarm!
         data:
           push:
             category: camera
           entity_id: camera.garage
+    - service: notify.ios_USER2s_iphone
+      data:
+        message: Motion Detected Alarm!
+        data:
+          push:
+            category: camera
+          entity_id: camera.garage
+
 
         #################################################################
         ## Door Alarm Notification
@@ -180,7 +205,14 @@
   action:
     - service: notify.ios_USER1s_iphone
       data:
-        message: Door Opened
+        message: Door Opened Alarm!
+        data:
+          push:
+            category: camera
+          entity_id: camera.garage
+    - service: notify.ios_USER2s_iphone
+      data:
+        message: Door Opened Alarm!
         data:
           push:
             category: camera
@@ -226,6 +258,9 @@
 
   action:
     - service: notify.ios_USER1s_iphone
+      data:
+        message: Garage Door is Still Open!
+    - service: notify.ios_USER2s_iphone
       data:
         message: Garage Door is Still Open!
 
