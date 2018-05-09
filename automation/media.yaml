@@ -597,7 +597,7 @@
         - media_player.sonos_kitchen
         - media_player.sonos_bathroom
       data:
-        volume_level: '.4'
+        volume_level: '0.4'
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
@@ -651,7 +651,7 @@
         - media_player.sonos_kitchen
         - media_player.sonos_bathroom
       data:
-        volume_level: '.4'
+        volume_level: '0.4'
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
@@ -705,7 +705,7 @@
         - media_player.sonos_kitchen
         - media_player.sonos_bathroom
       data:
-        volume_level: '.4'
+        volume_level: '0.4'
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
@@ -759,7 +759,7 @@
         - media_player.sonos_kitchen
         - media_player.sonos_bathroom
       data:
-        volume_level: '.4'
+        volume_level: '0.4'
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
@@ -813,7 +813,7 @@
         - media_player.sonos_kitchen
         - media_player.sonos_bathroom
       data:
-        volume_level: '.4'
+        volume_level: '0.4'
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
@@ -867,7 +867,7 @@
         - media_player.sonos_kitchen
         - media_player.sonos_bathroom
       data:
-        volume_level: '.4'
+        volume_level: '0.4'
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
@@ -1022,7 +1022,7 @@
       entity_id:
         - media_player.sonos_backyard_patio
       data:
-        volume_level: '.3'
+        volume_level: '0.3'
 
         ##########################################################
         ## Turn Off Backyard Sonos at Midnight
@@ -1061,7 +1061,7 @@
       entity_id:
         - media_player.sonos_backyard_patio
       data:
-        volume_level: '.3'
+        volume_level: '0.3'
 
 
         ##########################################################
@@ -1074,7 +1074,7 @@
    - platform: numeric_state
      entity_id: media_player.sonos_backyard_patio
      value_template: '{{ state.attributes.volume_level }}'
-     above: '0.2'
+     above: '0.3'
 
   condition:
     - condition: time
@@ -1086,7 +1086,7 @@
       entity_id:
         - media_player.sonos_backyard_patio
       data:
-        volume_level: '.2'
+        volume_level: '0.3'
 
         ##########################################################
         ## Turn Off Bedroom TV at 6a (Sleep Timer Fix)

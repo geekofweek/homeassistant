@@ -260,9 +260,17 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Garage Door is Still Open!
+        data:
+          push:
+            category: camera
+          entity_id: camera.garage_interior
     - service: notify.ios_USER2s_iphone
       data:
         message: Garage Door is Still Open!
+        data:
+          push:
+            category: camera
+          entity_id: camera.garage_interior
 
         #################################################################
         ## Weather Lookup Failing

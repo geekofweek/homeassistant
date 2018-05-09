@@ -30,7 +30,7 @@
           master: 'media_player.sonos_living_room'
           where: 'media_player.sonos_media_center, media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen, media_player.sonos_bathroom, media_player.sonos_bedroom, media_player.sonos_USER1s_office, media_player.sonos_USER2s_office, media_player.sonos_basement'
           volume: '1'
-          what: 'You are not Authorized to be Here. Law Enforcement Has Been Notified'
+          what: 'You are not Authorized to be Here. Law Enforcement Has Been Notified!'
 
         ##########################################################
         ## Welcome Home USER1 Audio Greeting
@@ -66,8 +66,8 @@
         variables:
           master: 'media_player.sonos_living_room'
           where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen'
-          volume: '.5'
-          what: 'Welcome Home USER1'
+          volume: '0.5'
+          what: 'Welcome home, USER1.'
     - delay: '00:02:00'
     - service: homeassistant.turn_off
       entity_id: input_boolean.USER1_greeting
@@ -115,8 +115,8 @@
         variables:
           master: 'media_player.sonos_USER2s_office'
           where: 'media_player.sonos_USER2s_office'
-          volume: '.5'
-          what: 'USER1 is Home'
+          volume: '0.5'
+          what: 'USER1, is Home.'
 
         ##########################################################
         ## Welcome Home USER2 Audio Greeting
@@ -152,8 +152,8 @@
         variables:
           master: 'media_player.sonos_living_room'
           where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen'
-          volume: '.5'
-          what: 'Welcome Home USER2'
+          volume: '0.5'
+          what: 'Welcome home, USER2.'
     - delay: '00:02:00'
     - service: homeassistant.turn_off
       entity_id: input_boolean.USER2_greeting
@@ -201,8 +201,8 @@
         variables:
           master: 'media_player.sonos_USER1s_office'
           where: 'media_player.sonos_USER1s_office'
-          volume: '.5'
-          what: 'USER2 is Home'
+          volume: '0.5'
+          what: 'USER2, is Home'
 
         ##########################################################
         ## Welcome Home USER1 and USER2 Audio Greeting
@@ -244,8 +244,8 @@
         variables:
           master: 'media_player.sonos_living_room'
           where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen'
-          volume: '.5'
-          what: 'Welcome Home USER1 and USER2'
+          volume: '0.5'
+          what: 'Welcome Home, USER1 and USER2'
     - delay: '00:02:00'
     - service: homeassistant.turn_off
       entity_id: input_boolean.USER1_greeting, input_boolean.USER2_greeting
@@ -312,12 +312,12 @@
         - media_player.sonos_bedroom
         - media_player.sonos_USER1s_office
       data:
-        volume_level: '.6'
+        volume_level: '0.6'
     - delay: '00:00:02'
-    - service: tts.google_say
+    - service: tts.amazon_polly_say
       data_template:
         entity_id: media_player.sonos_USER1s_office
-        message: "USER2 has left work and will arrive Home in about {{states('sensor.USER2_to_home')}} minutes"
+        message: "USER2 has left work, and will arrive Home in about, {{states('sensor.USER2_to_home')}} minutes"
     - delay: '00:00:25'
     - service: media_player.sonos_restore
       data:

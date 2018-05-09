@@ -23,10 +23,10 @@
     - service: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
 #     re-enable Summer or Winter Mode
-#    - service: homeassistant.turn_on
-#      entity_id: group.summer_mode
     - service: homeassistant.turn_on
-      entity_id: group.winter_mode
+      entity_id: group.summer_mode
+#    - service: homeassistant.turn_on
+#      entity_id: group.winter_mode
 
         ##########################################################
         ## Set Thermostat Away
@@ -105,7 +105,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.dark_sky_temperature
-      below: 69
+      below: 68
 
   action:
     - service: homeassistant.turn_on
@@ -325,7 +325,7 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
-        temperature: '68'
+        temperature: '70'
     - service: switch.turn_on
       entity_id: switch.hallway_fan
 
@@ -392,7 +392,7 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
-        temperature: '68'
+        temperature: '70'
     - service: switch.turn_on
       entity_id: switch.hallway_fan
 
@@ -541,7 +541,7 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
-        temperature: '68'
+        temperature: '70'
     - service: switch.turn_on
       entity_id: switch.hallway_fan
 
@@ -601,7 +601,7 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
-        temperature: '68'
+        temperature: '70'
     - service: switch.turn_on
       entity_id: switch.hallway_fan
     - service: notify.ios_USER1s_iphone
@@ -646,7 +646,7 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
-        temperature: '68'
+        temperature: '70'
     - service: switch.turn_on
       entity_id: switch.hallway_fan
 
@@ -684,7 +684,7 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
-        temperature: '68'
+        temperature: '70'
     - service: switch.turn_on
       entity_id: switch.hallway_fan
 

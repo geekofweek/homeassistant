@@ -33,7 +33,7 @@ http:
     - REDACTED.0/24
     - REDACTED.0/24
   ip_ban_enabled: true
-  login_attempts_threshold: 5
+  login_attempts_threshold: 3
 
 #################################################################
 ## Components
@@ -164,16 +164,11 @@ camera:
   - platform: generic
     still_image_url: https://icons.wxug.com/data/weather-maps/radar/united-states/jefferson-city-missouri-region-current-radar-animation.gif
     name: MO Weather Radar
-# ffmpeg Crashing Docker Container // Removing until resolved
-#  - platform: ring
-#    entity_namespace: ring
-#  - platform: ffmpeg
-#    input: http://REDACTED/rtplive/REDACTED/playlist.m3u8
-#    name: REDACTED
-#    extra_arguments: '-headers "X-ForREDACTEDed-For: REDACTED"'
 
 tts:
-  - platform: google
+  - platform: amazon_polly
+    aws_access_key_id: 'REDACTED'
+    aws_secret_access_key: 'REDACTED'
 
 google:
   client_id: REDACTED
@@ -187,22 +182,6 @@ vacuum:
     host: REDACTED.228
     username: REDACTED
     password: REDACTED
-
-climate:
-  - platform: generic_thermostat
-    name: Basement Heater
-    heater: switch.basement_heater
-    target_sensor: sensor.laundry_room_temperature
-    initial_operation_mode: 'off'
-    #Winter Temp
-    target_temp: 65
-    #Summer Temp
-    #target_temp: 45
-    min_cycle_duration: 15
-    cold_tolerance: 1
-    hot_tolerance: .5
-    max_temp: 78
-    away_temp: 33
 
 #################################################################
 ## Includes

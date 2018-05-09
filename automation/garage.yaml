@@ -62,6 +62,10 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Garage Door Did not Close, Power Cycling MyQ
+        data:
+          push:
+            category: camera
+          entity_id: camera.garage_interior
 
         ##########################################################
         ## Garage Door Open on Demand (Echo Integration)
