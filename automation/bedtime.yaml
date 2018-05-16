@@ -127,6 +127,10 @@
         option: "PowerOff"
     - service: input_select.select_option
       data:
+        entity_id: input_select.office_remote
+        option: "PowerOff"
+    - service: input_select.select_option
+      data:
         entity_id: input_select.sonos
         option: "None"
     - service: media_player.media_stop
@@ -273,6 +277,39 @@
       entity_id:
         - switch.lower_backyard_lighting
         - switch.backyard_patio_lighting
+
+        ##########################################################
+        ## Portable AC Bedtime
+        ##########################################################
+
+- alias: Bedtime - Portable AC Bedtime
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 4
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_portable_ac
+      state: 'off'
+    - condition: state
+      entity_id: group.overnight_guests
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.portable_ac
+      state: 'on'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.portable_ac
 
         ##########################################################
         ## Reset Bedtime Switch

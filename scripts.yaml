@@ -44,6 +44,19 @@ input_select_bedroom_harmony:
               31071991
           {% endif %}
 
+input_select_office_harmony:
+  alias: "Start Office Remote activity from input select"
+  sequence:
+      service: remote.turn_on
+      data_template:
+        entity_id: remote.office_tv
+        activity: >
+          {% if is_state("input_select.office_remote", "PowerOff") %}
+              -1
+          {% elif is_state("input_select.office_remote", "Watch TV") %}
+              33663475
+          {% endif %}
+
         ##########################################################
         ## Sonos Text to Speech
         ##########################################################

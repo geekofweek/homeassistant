@@ -90,7 +90,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.dark_sky_temperature
-      above: 69
+      above: 70
 
   action:
     - service: homeassistant.turn_off
@@ -105,7 +105,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.dark_sky_temperature
-      below: 68
+      below: 70
 
   action:
     - service: homeassistant.turn_on
@@ -153,10 +153,10 @@
 
   action:
 #     Disable Summer or Winter Mode
-    - service: homeassistant.turn_off
-      entity_id: group.summer_mode
 #    - service: homeassistant.turn_off
-#      entity_id: group.winter_mode
+#      entity_id: group.summer_mode
+    - service: homeassistant.turn_off
+      entity_id: group.winter_mode
 
         ##########################################################
         ## Turn off Thermostat when Door Opens for Extended Period
@@ -223,15 +223,15 @@
         away_mode: true
 
         ##########################################################
-        ## Set Thermostat WFH Mode when Hot on Weekends
+        ## Set Thermostat Upstairs Mode when Hot
         ##########################################################
 
-- alias: Climate - Set Thermostat WFH Mode when Hot on Weekends
+- alias: Climate - Set Thermostat Upstairs Mode when Hot
 
   trigger:
     - platform: numeric_state
       entity_id: sensor.dark_sky_temperature
-      above: 90
+      above: 91
 
   condition:
     - condition: state
@@ -240,19 +240,16 @@
     - condition: state
       entity_id: group.summer_mode
       state: 'on'
-    - condition: state
-      entity_id: sun.sun
-      state: 'above_horizon'
     - condition: time
-      weekday:
-        - sat
-        - sun
+      after: '10:00'
+      before: '19:59'
+
 
   action:
     - service: climate.set_hold_mode
       data:
         entity_id: climate.main_floor
-        #WFH = smart2
+        #Upstairs = smart2
         hold_mode: "smart2"
 
         ##########################################################
@@ -318,7 +315,7 @@
       data:
         entity_id: climate.window_unit
         operation_mode: 'eco'
-    - service: climate.fan_mode
+    - service: climate.set_fan_mode
       data:
         entity_id: climate.window_unit
         fan_mode: 'low'
@@ -326,8 +323,6 @@
       data:
         entity_id: climate.window_unit
         temperature: '70'
-    - service: switch.turn_on
-      entity_id: switch.hallway_fan
 
         ##########################################################
         ## Adjust Thermostat for Overnight Guests after Midnight
@@ -385,7 +380,7 @@
       data:
         entity_id: climate.window_unit
         operation_mode: 'eco'
-    - service: climate.fan_mode
+    - service: climate.set_fan_mode
       data:
         entity_id: climate.window_unit
         fan_mode: 'low'
@@ -393,14 +388,12 @@
       data:
         entity_id: climate.window_unit
         temperature: '70'
-    - service: switch.turn_on
-      entity_id: switch.hallway_fan
 
         ##########################################################
-        ## If USER1 is not Home Override WFH Mode
+        ## If USER1 is not Home Override Upstairs Mode
         ##########################################################
 
-- alias: Climate - Override WFH Mode
+- alias: Climate - Override Upstairs Mode
 
   trigger:
     - platform: time
@@ -413,6 +406,9 @@
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: group.winter_mode
+      state: 'on'
     - condition: state
       entity_id: device_tracker.USER2DEVICE
       state: 'home'
@@ -447,6 +443,9 @@
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: group.winter_mode
+      state: 'on'
     - condition: state
       entity_id: input_boolean.USER2_working
       state: 'on'
@@ -534,26 +533,24 @@
       data:
         entity_id: climate.window_unit
         operation_mode: 'eco'
-    - service: climate.fan_mode
+    - service: climate.set_fan_mode
       data:
         entity_id: climate.window_unit
-        fan_mode: 'high'
+        fan_mode: 'medium'
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
         temperature: '70'
-    - service: switch.turn_on
-      entity_id: switch.hallway_fan
 
         ##########################################################
-        ## Turn off Window Unit at 8p
+        ## Turn off Window Unit at 9p
         ##########################################################
 
-- alias: Climate - Turn off Window Unit at 8p
+- alias: Climate - Turn off Window Unit at 9p
 
   trigger:
     - platform: time
-      at: '20:00'
+      at: '21:00'
 
   condition:
     - condition: state
@@ -565,8 +562,6 @@
       data:
         entity_id: climate.window_unit
         operation_mode: 'off'
-    - service: switch.turn_off
-      entity_id: switch.hallway_fan
 
         ##########################################################
         ## Turn on Window Unit when Office is Hot
@@ -577,7 +572,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.office_temperature
-      above: 86
+      above: REDACTED
 
   condition:
     condition: or
@@ -594,7 +589,7 @@
       data:
         entity_id: climate.window_unit
         operation_mode: 'eco'
-    - service: climate.fan_mode
+    - service: climate.set_fan_mode
       data:
         entity_id: climate.window_unit
         fan_mode: 'high'
@@ -602,8 +597,6 @@
       data:
         entity_id: climate.window_unit
         temperature: '70'
-    - service: switch.turn_on
-      entity_id: switch.hallway_fan
     - service: notify.ios_USER1s_iphone
       data:
         message: Office is Hot Turning on Window Unit
@@ -639,16 +632,14 @@
       data:
         entity_id: climate.window_unit
         operation_mode: 'eco'
-    - service: climate.fan_mode
+    - service: climate.set_fan_mode
       data:
         entity_id: climate.window_unit
-        fan_mode: 'high'
+        fan_mode: 'medium'
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
         temperature: '70'
-    - service: switch.turn_on
-      entity_id: switch.hallway_fan
 
         ##########################################################
         ## Turn on Window Unit when Hot Outside
@@ -677,16 +668,14 @@
       data:
         entity_id: climate.window_unit
         operation_mode: 'eco'
-    - service: climate.fan_mode
+    - service: climate.set_fan_mode
       data:
         entity_id: climate.window_unit
-        fan_mode: 'high'
+        fan_mode: 'medium'
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
         temperature: '70'
-    - service: switch.turn_on
-      entity_id: switch.hallway_fan
 
         ##########################################################
         ## Turn off Winodw Unit When below 80 Outside and Away
@@ -709,8 +698,6 @@
       data:
         entity_id: climate.window_unit
         operation_mode: 'off'
-    - service: switch.turn_off
-      entity_id: switch.hallway_fan
 
         ##########################################################
         ## Turn off Winodw Unit When below 68 Outside
@@ -728,184 +715,230 @@
       data:
         entity_id: climate.window_unit
         operation_mode: 'off'
-    - service: switch.turn_off
-      entity_id: switch.hallway_fan
 
 #################################################################
-## Basement Heater Automations
+## Portable AC
 #################################################################
 
         ##########################################################
-        ## When Ecobee Away Mode off Turn on Basement Heater
+        ## Portable AC Input Boolean On
         ##########################################################
 
-#- alias: Climate - When Ecobee Away Mode off Turn on Basement Heater
-
-#  trigger:
-#    - platform: state
-#      entity_id: input_boolean.thermostat_away
-#      from: 'on'
-#      to: 'off'
-#      for:
-#        hours: 0
-#        minutes: 5
-#        seconds: 0
-
-#  condition:
-#    - condition: state
-#      entity_id: input_boolean.disable_home_away
-#      state: 'off'
-#    - condition: state
-#      entity_id: group.winter_mode
-#      state: 'on'
-
-#  action:
-#    - service: climate.set_operation_mode
-#      data:
-#        entity_id: climate.basement_heater
-#        operation_mode: 'heat'
-#    - service: climate.set_temperature
-#      data:
-#        entity_id: climate.basement_heater
-#        temperature: '65'
-
-        ##########################################################
-        ## When Ecobee Away Mode on Turn off Basement Heater
-        ##########################################################
-
-- alias: Climate - When Ecobee Away Mode on Turn off Basement Heater
+- alias: Climate - Portable AC Input Boolean On
 
   trigger:
     - platform: state
-      entity_id: input_boolean.thermostat_away
+      entity_id: input_boolean.portable_ac
       from: 'off'
       to: 'on'
 
   condition:
     - condition: state
-      entity_id: input_boolean.disable_home_away
+      entity_id: input_boolean.disable_portable_ac
       state: 'off'
 
   action:
-    - service: climate.set_operation_mode
+    - service: remote.send_command
+      entity_id: remote.office_tv
       data:
-        entity_id: climate.basement_heater
-        operation_mode: 'off'
+        device: 54737244
+        command: PowerToggle
+    - delay: '00:00:10'
+    - service: remote.send_command
+      entity_id: remote.office_tv
+      data:
+        device: 54737244
+        command: TempUp
+        num_repeats: 5
+        delay_secs: 1
 
         ##########################################################
-        ## Basement Heater Bedtime
+        ## Portable AC Input Boolean Off
         ##########################################################
 
-- alias: Climate - Basement Heater Bedtime
+- alias: Climate - Portable AC Input Boolean Off
 
   trigger:
     - platform: state
-      entity_id: input_boolean.bedtime
-      to: 'on'
-      for:
-        hours: 0
-        minutes: 1
-        seconds: 0
+      entity_id: input_boolean.portable_ac
+      from: 'on'
+      to: 'off'
 
   condition:
     - condition: state
-      entity_id: group.winter_mode
-      state: 'on'
-    - condition: state
-      entity_id: input_boolean.thermostat_away
+      entity_id: input_boolean.disable_portable_ac
       state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
 
   action:
-    - service: climate.set_operation_mode
+    - service: remote.send_command
+      entity_id: remote.office_tv
       data:
-        entity_id: climate.basement_heater
-        operation_mode: 'off'
+        device: 54737244
+        command: PowerToggle
+        num_repeats: 2
+        delay_secs: 2
 
         ##########################################################
-        ## Basement Heater Schedule Sleep Mode
+        ## Turn on Portable AC at 10a
         ##########################################################
 
-- alias: Climate - Basement Heater Schedule Sleep Mode
+- alias: Climate - Turn on Portable AC at 10a
 
   trigger:
     - platform: time
-      at: '23:30'
+      at: '10:00'
 
   condition:
     - condition: state
-      entity_id: input_boolean.thermostat_away
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: device_tracker.USER1DEVICE
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_portable_ac
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.portable_ac
+      state: 'off'
+    - condition: state
+      entity_id: group.summer_mode
+      state: 'on'
+    - condition: numeric_state
+      entity_id: sensor.dark_sky_temperature
+      above: 68
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.portable_ac
+
+        ##########################################################
+        ## Turn off Portable AC at 10p
+        ##########################################################
+
+- alias: Climate - Turn off Portable AC at 10p
+
+  trigger:
+    - platform: time
+      at: '22:00'
+
+  condition:
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
+    - condition: state
+      entity_id: group.overnight_guests
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.disable_portable_ac
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.portable_ac
+      state: 'on'
 
   action:
-    - service: climate.set_operation_mode
-      data:
-        entity_id: climate.basement_heater
-        operation_mode: 'off'
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.portable_ac
 
         ##########################################################
-        ## Basement Heater Schedule Home Mode
+        ## Turn on Portable AC when Office is Occupied
         ##########################################################
 
-#- alias: Climate - Basement Heater Schedule Home Mode
+- alias: Climate - Turn on Portable AC when Office is Occupied
 
-#  trigger:
-#    - platform: time
-#      at: '09:00'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.office_occupancy
+      from: 'off'
+      to: 'on'
 
-#  condition:
-#    - condition: state
-#      entity_id: group.winter_mode
-#      state: 'on'
-#    - condition: state
-#      entity_id: input_boolean.thermostat_away
-#      state: 'off'
-#    - condition: state
-#      entity_id: group.household
-#      state: 'home'
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_occupancy
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_portable_ac
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.portable_ac
+      state: 'off'
+    - condition: state
+      entity_id: device_tracker.USER1DEVICE
+      state: 'home'
 
-#  action:
-#    - service: climate.set_operation_mode
-#      data:
-#        entity_id: climate.basement_heater
-#        operation_mode: 'heat'
-#    - service: climate.set_temperature
-#      data:
-#        entity_id: climate.basement_heater
-#        temperature: '65'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.portable_ac
 
-        #################################################################
-        ## Disable Heater On Startup During Summer
-        #################################################################
+        ##########################################################
+        ## Portable AC Away Mode
+        ##########################################################
 
-#- alias: Climate - Disable Heater On Startup During Summer
+- alias: Climate - Portable AC Away Mode
 
-#  trigger:
-#    - platform: homeassistant
-#      event: start
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'home'
+      to: 'not_home'
 
-#  condition:
-#    - condition: state
-#      entity_id: group.winter_mode
-#      state: 'off'
-#    - condition: state
-#      entity_id: group.summer_mode
-#      state: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_portable_ac
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.portable_ac
+      state: 'on'
 
-#  action:
-#    - service: climate.set_operation_mode
-#      data:
-#        entity_id: climate.basement_heater
-#        operation_mode: 'off'
-#    - service: climate.set_temperature
-#      data:
-#        entity_id: climate.basement_heater
-#        temperature: '45'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.portable_ac
+
+        ##########################################################
+        ## Turn Off Portable AC when USER1 Leaves
+        ##########################################################
+
+- alias: Climate - Turn Off Portable AC when USER1 Leaves
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_away
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_portable_ac
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.portable_ac
+      state: 'on'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
+    - condition: state
+      entity_id: group.overnight_guests
+      state: 'not_home'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.portable_ac
 
 #################################################################
 ## Fireplace

@@ -481,6 +481,99 @@
         option: "PowerOff"
 
       #################################################################
+      ## Office Remote
+      #################################################################
+
+- alias: Media - Remote external update Office TV
+
+  trigger:
+    - platform: state
+      entity_id: remote.office_tv
+
+  action:
+    - delay: '00:00:10'
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.office_remote
+        option: >
+          {{ states.remote.office_tv.attributes.current_activity }}
+
+- alias: Media - Remote start activity from input select Office TV
+
+  trigger:
+    - platform: state
+      entity_id: input_select.office_remote
+
+  action:
+    - service: script.turn_on
+      entity_id: script.input_select_office_harmony
+
+        ##########################################################
+        ## Office Harmony turn on Boolean
+        ##########################################################
+
+- alias: Media - Office Harmony turn on Boolean
+
+  trigger:
+    - platform: state
+      entity_id: input_select.office_tv
+      to: 'Watch TV'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.office_tv
+
+        ##########################################################
+        ## Office Harmony Input Select on from Boolean
+        ##########################################################
+
+- alias: Media - Office Harmony Input Select on from Boolean
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.office_tv
+      to: 'on'
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.office_remote
+        option: "Watch TV"
+
+        ##########################################################
+        ## Office Harmony turn off Boolean
+        ##########################################################
+
+- alias: Media - Office Harmony turn off Boolean
+
+  trigger:
+    - platform: state
+      entity_id: input_select.office_remote
+      to: 'PowerOff'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.office_tv
+
+        ##########################################################
+        ## Office Harmony Input Select off from Boolean
+        ##########################################################
+
+- alias: Media - Office Harmony Input Select off from Boolean
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.office_tv
+      to: 'off'
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.office_remote
+        option: "PowerOff"
+
+
+      #################################################################
       ## Reset Sonos Every Morning
       #################################################################
 

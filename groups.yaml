@@ -215,6 +215,7 @@
       - input_boolean.disable_occupancy
       - input_boolean.disable_rainy_day
       - input_boolean.disable_water_sensors
+      - input_boolean.disable_portable_ac
 
   Location Controls:
     control: hidden
@@ -238,6 +239,7 @@
       - vacuum.roomba
       - input_select.remote
       - input_select.bedroom_remote
+      - input_select.office_remote
       - input_select.sonos
 
   Household:
@@ -354,7 +356,7 @@
       - light.office_ceiling
       - light.office_lamp
       - switch.air_purifier
-      - switch.office_fan
+  #    - switch.office_fan
       - binary_sensor.office_occupancy
       - sensor.office_temperature
 
@@ -374,7 +376,6 @@
     entities:
       - light.basement_stairs
       - light.basement_lights
-      - switch.basement_heater
       - lock.basement_door
       - binary_sensor.basement_door_opened
       - binary_sensor.basement_occupancy
@@ -450,9 +451,9 @@
     entities:
       - climate.main_floor
       - climate.window_unit
+      - input_boolean.portable_ac
       - sensor.dark_sky_temperature
       - input_boolean.thermostat_away
-      - switch.hallway_fan
       - group.summer_mode
       - group.winter_mode
 
@@ -461,6 +462,7 @@
     entities:
       - climate.main_floor
       - climate.window_unit
+      - input_boolean.portable_ac
 
   Summer Mode:
     - automation.climate__turn_on_summer
@@ -504,6 +506,7 @@
     entities:
       - input_select.remote
       - input_select.bedroom_remote
+      - input_select.office_remote
       - input_select.sonos
       - input_boolean.group_all_sonos
 
@@ -663,6 +666,7 @@
     - input_boolean.USER2_working
     - input_boolean.bedroom_tv
     - input_boolean.watching_plex
+    - input_boolean.office_tv
     - input_boolean.garage_door
     - input_boolean.USER1_away
     - input_boolean.USER1_away_driving
@@ -691,6 +695,7 @@
     - input_boolean.adele_music
     - input_boolean.chill_music
     - input_boolean.classical_music
+    - input_boolean.electronic_music
     - input_boolean.disable_auto_garage
     - input_boolean.disable_door_open_lights_on
     - input_boolean.disable_doorbell
@@ -705,7 +710,7 @@
     - input_boolean.disable_rainy_day
     - input_boolean.disable_voice_greeting
     - input_boolean.disable_water_sensors
-    - input_boolean.electronic_music
+    - input_boolean.disable_portable_ac
 
   Calendars:
     - calendar.holidays_in_united_states
