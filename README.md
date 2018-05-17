@@ -5,28 +5,49 @@ Home Assistant Version: 0.69.0
 
 # Devices
 
-* [Ecobee 3](http://www.amazon.com/ecobee3-Smarter-Thermostat-Remote-Generation/dp/B00ZIRV39M/ref=sr_1_1?ie=UTF8&qid=1461377268&sr=8-1&keywords=ecobee3)
-* [Ecobee Room Sensor](https://www.amazon.com/ecobee-Room-Sensor-Pack-Stands/dp/B00NXRYOIQ/ref=sr_1_1?ie=UTF8&qid=1520872570&sr=8-1&keywords=ecobee+remote+sensor) - x9 (temperature sensor and binary_sensor for occupancy per room) 
-* [Hue Hub](http://www.amazon.com/Philips-458489-Hue-Bridge-Frustration/dp/B014H2P42K/ref=sr_1_1?ie=UTF8&qid=1461377320&sr=8-1&keywords=hue+hub)
-* [Wink Hub](http://www.amazon.com/Wink-PWHUB-WH17-Connected-Home-Hub/dp/B00PV6GAI4/ref=sr_1_1?ie=UTF8&qid=1461377299&sr=8-1&keywords=wink+hub)
-* [Hue Color](http://www.amazon.com/Philips-456186-Ambiance-Extension-Generation/dp/B014H2OZJS/ref=sr_1_1?ie=UTF8&qid=1461377356&sr=8-1&keywords=hue+color) - x6 (connected via Hue Hub)
-* [Hue White](http://www.amazon.com/Philips-455295-White-Equivalent-Single/dp/B01C5C9ZLK/ref=sr_1_1?ie=UTF8&qid=1461377384&sr=8-1&keywords=hue+white) - x7 (connected via Hue Hub)
-* [Hue Lightstrip Plus](https://www.amazon.com/dp/B0167H33DU/ref=twister_B01M8JU79M?_encoding=UTF8&psc=1) - x1 (connected via Hue Hub)
-* [Cree Connected](http://www.amazon.com/dp/B01701DKVM/ref=twister_B017DJNMU0?_encoding=UTF8&psc=1) - x12 (connected via Hue Hub)
-* [Lutron Caseta Wireless Dimmer](http://www.amazon.com/Lutron-PD-6WCL-WH-Caseta-Wireless-150-Watt/dp/B00KLAXFQA/ref=sr_1_4?s=hi&ie=UTF8&qid=1461376977&sr=1-4&keywords=caseta+wireless) - x8 (connected via Wink Hub)
+## Hubs
+
+| Device  | Quantity | Connection | Notes |
+| ------------- | :---: | :---: | ------------- |
+| [Hue Hub v2](https://amzn.to/2IpNA3G) | 1 | Ethernet | Used to control all Zigbee smart bulbs |
+| [Wink Hub v1](https://amzn.to/2wMUjis) | 1 | Wi-Fi | Used as a dumb hub to connect Z-Wave and Lutron devices. No Wink Robots or schedules being utilized|
+
+## Lighting
+
+| Device  | Quantity | Connection | Notes |
+| ------------- | :---: | :---: | ------------- |
+| [Philips Hue White and Color Ambiance](https://amzn.to/2Ip8waU) | 6 | Ethernet | Color changing smart bulbs|
+| [Philips Hue White and Color Ambiance LightStrip Plus Dimmable](https://amzn.to/2Kx27qF) | 1 | Hue Hub (Zigbee)| Color changing smart led strip. Used as accent lighting|
+| [Philips Hue White](https://amzn.to/2LaUFTd) | 7 | Hue Hub (Zigbee)| Non color changing smart bulbs|
+| [Cree Connected](https://amzn.to/2IpKAnZ) | 12 | Hue Hub (Zigbee)| Non color changing smart bulbs|
+| [Lutron Caseta Wireless Dimmer](https://amzn.to/2KwDJWc) | 8 | Wink Hub (Z-Wave)| Smart dimmer switches that do not require a neutral wire|
+
+## Climate
+
+| Device  | Quantity | Connection | Notes |
+| ------------- | :---: | :---: | ------------- |
+| [Ecobee 3](https://amzn.to/2L72d9A) | 1 | Wi-Fi | Used as primary thermostat |
+| [Ecobee Room Sensor](https://amzn.to/2L9cORm) | 9 | Ecobee3 | Provides room temperature and room occupancy.|
+| [Quirky + GE Aros Smart Window Air Conditioner](https://amzn.to/2ImtdEi) | 1 | Wi-Fi | Used to augment cooling on 2nd floor|
+| [Frigidaire Cool Connect Smart Portable Air Conditioner](https://amzn.to/2k7kszE) | 1 | Wi-Fi / Harmony Hub | Used to augment cooling on 2nd floor|
+
+## Outlets
+
+| Device  | Quantity | Connection | Notes |
+| ------------- | :---: | :---: | ------------- |
+| [Wemo Mini Smart Plug](https://amzn.to/2wQ05jE) | 4 | Wi-Fi | Smart outlets utilized to control various devices via powering the outlet on/off (fans, etc) |
+| [GE Z-Wave Wireless Smart Lighting Control Outdoor Module](https://amzn.to/2KuFRxN) | 2 | Wink Hub (Z-Wave)| Used to control low voltage outdoor lighting transformers |
+| [TP-Link Smart Plug HS100](https://amzn.to/2L5Bt9r) | 1 | Wi-Fi | Smart outlet used to control power to MyQ Device|
+| [iHome WiFI Smart Plug](https://amzn.to/2rReF4z) | 2 | Wi-Fi | Smart Outlets. Not using these anymore due to overall poor reliability |
+
 * [Schlage Connect](https://www.amazon.com/Schlage-Connect-BE469NX-Touchscreen-Deadbolt/dp/B00AGK9KUU/ref=sr_1_3?ie=UTF8&qid=1482945181&sr=8-3&keywords=schlage%2Bconnect&th=1) - x3 (connected via Wink Hub)
 * [GoControl Z-Wave Home Security Suite](http://www.amazon.com/GOCONTROL-WNK01-311KIT-Premium-Z-Wave-Security/dp/B00XUXYT6K/ref=sr_1_1?ie=UTF8&qid=1465167435&sr=8-1&keywords=go+control) - x1 (connected via Wink Hub)
-* [GE Z-Wave Wireless Lighting Control Outdoor Module](https://www.amazon.com/GE-Wireless-Lighting-Control-Outdoor/dp/B0013V8K3O/ref=sr_1_1?ie=UTF8&qid=1466468235&sr=8-1&keywords=ge+outdoor+zwave) - x2 (connected via Wink Hub)
-* ~[iHome WiFI Smart Plug](https://www.amazon.com/iHome-Smart-Apple-HomeKit-Amazon/dp/B010ACFEI0/ref=sr_1_1?ie=UTF8&qid=1467576017&sr=8-1&keywords=ihome+smart+plug) - x2 (connected via Wink Hub)~
-* [Wemo Mini Smart Plug](https://www.amazon.com/gp/product/B01NBI0A6R/ref=oh_aui_detailpage_o01_s01?ie=UTF8&psc=1) - x4
-* [TP-Link Smart Plug HS100](https://www.amazon.com/gp/product/B0178IC734/ref=oh_aui_detailpage_o03_s00?ie=UTF8&psc=1) - x1
 * [Remotec Zwave Dry Contact Fixture Module](https://www.amazon.com/gp/product/B00913ATFI/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1) - *Gas Fireplace Control* - x1 (connected via Wink Hub)
 * [Aeon Labs Water Sensor](https://www.amazon.com/gp/product/B00H3TJ3P4/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1) - x2 (connected via Wink Hub)
 * [Foscam FI9800P](http://www.amazon.com/Wireless-Foscam-FI9800P-Waterproof-Detection/dp/B0173Z3NG2?ie=UTF8&psc=1&redirect=true&ref_=oh_aui_detailpage_o02_s01) - x1
 * [Chamberlain MYQ](http://www.amazon.com/Chamberlain-MYQ-G0201-MyQ-Garage-Controls-Smartphone/dp/B00EAD65UW) - x1
 * [Ring Doorbell](http://www.amazon.com/Ring-Wi-Fi-Enabled-Video-Doorbell/dp/B00TZAO9D0/ref=sr_1_4?ie=UTF8&qid=1461377085&sr=8-4&keywords=ring+doorbell) - x1
 * [Wink Relay](http://www.wink.com/products/wink-relay-touchscreen-controller/) - x2
-* [Quirky + GE Aros Window AC](http://www.amazon.com/Quirky-Aros-Smart-Window-Conditioner/dp/B00IDXGIAC?ie=UTF8&psc=1&redirect=true&ref_=oh_aui_detailpage_o03_s01) -x1
 * [Amazon Echo](http://www.amazon.com/Amazon-SK705DI-Echo/dp/B00X4WHP5E/ref=sr_1_1?ie=UTF8&qid=1461377119&sr=8-1&keywords=amazon+echo) - x1 (via Emulated Hue)
 * [Amazon Echo Dot](http://www.amazon.com/b/?node=14047587011) - x6 (via Emulated Hue)
 * [Amazon Echo Show](https://www.amazon.com/Amazon-Echo-Show-Alexa-Enabled-White/dp/B010CEHQTG/ref=sr_1_2?ie=UTF8&qid=1513364215&sr=8-2&keywords=echo+show) - x1 (via Emulated Hue)
