@@ -36,7 +36,7 @@ Home Assistant Version: 0.69.0
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
-| [Wemo Mini Smart Plug](https://amzn.to/2wQ05jE) | 4 | Wi-Fi | [Belkin WeMo](https://www.home-assistant.io/components/wemo/) | Smart outlets utilized to control various devices via powering the outlet on/off (fans, etc) |
+| [Wemo Mini Smart Plug](https://amzn.to/2wQ05jE) | 4 | Wi-Fi | [Belkin WeMo](https://www.home-assistant.io/components/wemo/) | Smart outlets utilized to control various devices via powering the outlet on/off (fans, Christmas Tree, etc) |
 | [GE Z-Wave Wireless Smart Lighting Control Outdoor Module](https://amzn.to/2KuFRxN) | 2 | Wink Hub (Z-Wave)| [Wink Switch](https://www.home-assistant.io/components/switch.wink/) | Used to control low voltage outdoor lighting transformers |
 | [Remotec Zwave Dry Contact Fixture Module](https://amzn.to/2rOmcBW) | 1 | Wink Hub (Z-Wave)| [Wink Switch](https://www.home-assistant.io/components/switch.wink/) | Used to control gas fireplace |
 | [TP-Link Smart Plug HS100](https://amzn.to/2L5Bt9r) | 1 | Wi-Fi | [TP-Link Switch](https://www.home-assistant.io/components/switch.tplink/) | Smart outlet used to control power to MyQ Device|
