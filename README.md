@@ -82,26 +82,54 @@ Home Assistant Version: 0.69.0
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [Aeon Labs Water Sensor](https://amzn.to/2rM6KFE) | 2 | Wink Hub (Z-Wave) | [Wink Binary Sensor](https://www.home-assistant.io/components/binary_sensor.wink/) | Water sensors used to detect water in basement as a preventive measure |
 
-* [Foscam FI9800P](http://www.amazon.com/Wireless-Foscam-FI9800P-Waterproof-Detection/dp/B0173Z3NG2?ie=UTF8&psc=1&redirect=true&ref_=oh_aui_detailpage_o02_s01) - x1
-* [Chamberlain MYQ](http://www.amazon.com/Chamberlain-MYQ-G0201-MyQ-Garage-Controls-Smartphone/dp/B00EAD65UW) - x1
-* [Ring Doorbell](http://www.amazon.com/Ring-Wi-Fi-Enabled-Video-Doorbell/dp/B00TZAO9D0/ref=sr_1_4?ie=UTF8&qid=1461377085&sr=8-4&keywords=ring+doorbell) - x1
-* [Wink Relay](http://www.wink.com/products/wink-relay-touchscreen-controller/) - x2
-* [iRobot Roomba 980](https://www.amazon.com/iRobot-Roomba-Robot-Vacuum-Connectivity/dp/B013E9L4ZS/ref=sr_1_3?ie=UTF8&qid=1510543522&sr=8-3&keywords=roomba+980&dpID=51FYAIctNNL&preST=_SY300_QL70_&dpSrc=srch) - x1
-* [iRobot Roomba 650](https://www.amazon.com/iRobot-Roomba-650-Robot-Vacuum/dp/B008LX6OC6/ref=sr_1_3?ie=UTF8&qid=1511129827&sr=8-3&keywords=roomba+660&dpID=519S5LhxhkL&preST=_SY300_QL70_&dpSrc=srch) - x1 (Not Automated)
-* [Ubiquiti Unifi Security Gateway](https://www.amazon.com/Ubiquiti-Unifi-Security-Gateway-USG/dp/B00LV8YZLK/ref=sr_1_5?s=electronics&ie=UTF8&qid=1501612028&sr=1-5&keywords=unifi) - x1
-* [Ubiquiti UniFi Switch - 24 Ports](https://www.amazon.com/Ubiquiti-UniFi-Switch-Managed-US-24-250W/dp/B00OJZUQ24/ref=pd_sbs_147_1?_encoding=UTF8&pd_rd_i=B00OJZUQ24&pd_rd_r=Y91CYDQDH8YKZCGFK62R&pd_rd_w=b1TBc&pd_rd_wg=RWi2l&psc=1&refRID=Y91CYDQDH8YKZCGFK62R) - x1
-* [Ubiquiti UniFi Switch - 8 Ports](https://www.amazon.com/Ubiquiti-Networks-Managed-Gigabit-US-8-150W/dp/B01DKXT4CI/ref=sr_1_2?ie=UTF8&qid=1503435496&sr=8-2&keywords=unifi+8+port+switch) - x1
-* [Ubiquiti Networks Unifi AC PRO](https://www.amazon.com/Ubiquiti-Networks-802-11ac-Dual-Radio-UAP-AC-PRO-US/dp/B015PRO512/ref=sr_1_1?ie=UTF8&qid=1501612450&sr=8-1&keywords=unifi+ap) - x3
-* [Ubiquiti Networks Unifi AC LR](https://www.amazon.com/Ubiquiti-Networks-802-11ac-Dual-Radio-UAP-AC-PRO-US/dp/B015PRCBBI/ref=sr_1_1?ie=UTF8&qid=1501612450&sr=8-1&keywords=unifi%2Bap&th=1) - x1
-* [Ubiquiti Unifi Cloud Key](https://www.amazon.com/Ubiquiti-Unifi-Cloud-Key-Control/dp/B017T2QB22/ref=sr_1_1?s=electronics&ie=UTF8&qid=1501612546&sr=1-1&keywords=unifi+cloud+key) - x1
-* [Ubiquiti UVC-G3 UniFi Video Camera](https://www.amazon.com/Ubiquiti-UVC-G3-UniFi-Video-Camera/dp/B01EZYTYLC/ref=sr_1_1?s=electronics&ie=UTF8&qid=1503435626&sr=1-1&keywords=unifi+camera) - x2
-* [Ubiquiti airGateway LR](https://www.amazon.com/gp/product/B00HXT84UO/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1) - x1 (used to connect UVC-G3 Wireless)
-* [QNAP TS-453 Pro](https://www.amazon.com/gp/product/B00MEVUL6G/ref=oh_aui_search_detailpage?ie=UTF8&th=1) - x1
-* [iOS App](https://home-assistant.io/ecosystem/ios/) (iOS Device Tracking)
-* [Locative App](https://my.locative.io) (iOS Device Tracking)
-* [Plex Media Server](https://plex.tv)
-* [Homebridge](https://github.com/nfarina/homebridge) (Apple HomeKit Support)
+## Cameras
 
+| Device  | Quantity | Connection | Home Assistant | Notes |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| [Ring Video Doorbell](https://amzn.to/2KvrzwP) | 1 | Wi-Fi | [Ring](https://www.home-assistant.io/components/ring/) / [Ring Binary Sensor](https://www.home-assistant.io/components/binary_sensor.ring/) | Automated around binary sensors via motion or doorbell button press |
+| [Ubiquiti UVC-G3 UniFi Video Camera](https://amzn.to/2L987ah) | 2 | Ethernet | [UniFi Video Camera](https://www.home-assistant.io/components/camera.uvc/) | 1080p POE Camera. NVR storage on QNAP NAS |
+| [Foscam FI9800P](https://amzn.to/2Gu6r7I | 1 | Wi-Fi | [Foscam IP Camera](https://www.home-assistant.io/components/camera.foscam/) | 720p Wi-Fi Camera. NVR storage on QNAP NA |
+
+## Garage
+
+| Device  | Quantity | Connection | Home Assistant | Notes |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| [MyQ Smart Garage Door Opener](https://amzn.to/2Iu4Joy) | 1 | Wi-Fi | [MyQ Cover](https://www.amazon.com/gp/product/B075H7Z5L8?ie=UTF8)| Automated to open / close garage door on location and auto close after specific time intervals |
+
+## Vacuum
+
+| Device  | Quantity | Connection | Home Assistant | Notes |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| [iRobot Roomba 980](https://amzn.to/2L9q1tm) | 1 | Wi-Fi | [iRobot Roomba](https://www.home-assistant.io/components/vacuum.roomba/)| Automated to run at specific times based on presence detection |
+| [iRobot Roomba 650](https://amzn.to/2wO2w60) | 1 | NA | NA | Currently not integrated into Home Assistant. Investigating options for future integration |
+
+## Network
+
+| Device  | Quantity | Connection | Home Assistant | Notes |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| [Ubiquiti Networks Unifi Security Gateway (USG)](https://amzn.to/2wM62hk) | 1 | Ethernet | [Ubiquiti Unifi WAP](https://www.home-assistant.io/components/device_tracker.unifi/)| Primary Router. Presence detection for non household members and devices |
+| [Ubiquiti Networks UniFi Switch - 24 Ports (US-24-250W)](https://amzn.to/2LbWLlJ) | 1 | Ethernet | [Ubiquiti Unifi WAP](https://www.home-assistant.io/components/device_tracker.unifi/)| Primary Switch. Presence detection for non household members and devices |
+| [Ubiquiti Networks 8-Port UniFi Switch (US-8-150W)](https://amzn.to/2Iuoah9) | 1 | Ethernet | [Ubiquiti Unifi WAP](https://www.home-assistant.io/components/device_tracker.unifi/)| Secondary Switch. Presence detection for non household members and devices |
+| [Ubiquiti Networks Unifi AP PRO (UAP-AC-PRO-US)](https://amzn.to/2rP3BFJ) | 3 | Ethernet | [Ubiquiti Unifi WAP](https://www.home-assistant.io/components/device_tracker.unifi/)| Wireless Access Point for interior and exterior use. Presence detection for non household members and devices. |
+| [Ubiquiti Networks Unifi AP Long Range (UAP-AC-LR-US)](https://amzn.to/2IsvLwD) | 1 | Ethernet | [Ubiquiti Unifi WAP](https://www.home-assistant.io/components/device_tracker.unifi/)| Wireless Access Point for interior use. Presence detection for non household members and devices. |
+| [Ubiquiti Networks airGateway LR Wireless AP ](https://amzn.to/2Kzbg2d) | 1 | Wi-Fi | NA | Used to connect Ubiquiti UVC-G3 UniFi Video Camera to the wireless network where running an ethernet cable wasn't feasible. Connects to POE injector |
+
+## Software
+
+| Device  | Quantity | Connection | Home Assistant | Notes |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| [iOS App](https://itunes.apple.com/us/app/home-assistant-open-source-home-automation/id1099568401?mt=8) | 2 | NA | [iOS](https://www.home-assistant.io/docs/ecosystem/ios/)| Used as Home Assistant interface on mobile devices, not actively using for presence detection |
+| [Locative iOS App](https://itunes.apple.com/us/app/locative/id725198453?mt=8) | 2 | NA | [Locative](https://www.home-assistant.io/components/device_tracker.locative/) | Primary method of presence detection. App is no longer under active development but has been the most reliable solution with no battery impact |
+| [Homebridge](https://github.com/nfarina/homebridge) | 1 | NA | NA | Current method of HomeKit integration.  Plan to migrate to native support in the near future |
+| [Docker](https://www.docker.com) | 1 | Ethernet | [Installation on Docker](https://www.home-assistant.io/docs/installation/docker/) | Home Assistant install runs as a Docker Container |
+| [Pi-hole](https://pi-hole.net) | 2 | Ethernet / Wi-Fi | [Pi-Hole Sensor](https://www.home-assistant.io/components/sensor.pi_hole/) | Ad blocking. Primary instance runs within a Docker container and the secondary runs on a [Raspberry-pi Zero W](https://amzn.to/2Kwcz1S) |
+
+## Other Hardware
+
+| Device  | Quantity | Connection | Home Assistant | Notes |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| [QNAP TS-453 Pro](https://amzn.to/2wRmtJh) | 1 | Ethernet | [QNAP Sensor](https://www.home-assistant.io/components/sensor.qnap/)| Main storage array. Docker Containers and Plex media server run off this device. Configured with 4x [WD Red Pro 4TB NAS Hard Disk Drives](https://amzn.to/2IvE7DO) |
+| [Wink Relay](https://amzn.to/2GtKAx3) | 2 | Wi-Fi | [Wink](https://www.home-assistant.io/components/wink/)| Wall mounted touch screen. Wink interface was rubbish and was replaced with the Home Assistant dashboard. It provides binary sensors for the two push buttons, temperature, and humidity sensors. Doesn't get used much but looks cool. |
 
 
 # Interface
