@@ -1,5 +1,5 @@
 # Home Assistant
-Example [Home Assistant](https://home-assistant.io) configuration with 300+ automations.
+[Home Assistant](https://home-assistant.io) configuration with 300+ automations.
 
 Home Assistant Version: 0.69.1
 
