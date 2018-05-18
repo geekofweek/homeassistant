@@ -154,6 +154,7 @@ Since I don’t use the network equipment as my primary presence detection metho
 | [Homebridge](https://github.com/nfarina/homebridge) | 1 | NA | NA | Current method of HomeKit integration.  Plan to migrate to native support in the near future |
 | [Docker](https://www.docker.com) | 1 | Ethernet | [Installation on Docker](https://www.home-assistant.io/docs/installation/docker/) | Home Assistant install runs as a Docker Container |
 | [Pi-hole](https://pi-hole.net) | 2 | Ethernet / Wi-Fi | [Pi-Hole Sensor](https://www.home-assistant.io/components/sensor.pi_hole/) | Ad blocking. Primary instance runs within a Docker container and the secondary runs on a [Raspberry-pi Zero W](https://amzn.to/2Kwcz1S) |
+| [Home Assistant Managment Tool](https://github.com/geekofweek/homeassistant/blob/master/tools/ha-mgmt-docker.sh) | 1 | Ethernet | NA | Custom Shell script for managing Home Assistant |
 
 The iOS app is used for some notifications in [notification_text.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/notification_text.yaml). Locative is the main method of doing any location based automations via [location.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml) and many of the conditions I use are based on presence detection of household members provided by Locative.
 
