@@ -1,58 +1,168 @@
 # Home Assistant
-Example [Home Assistant](https://home-assistant.io) Configs
+[Home Assistant](https://home-assistant.io) configuration with 300+ automations.
 
-Home Assistant Version: 0.68.1
+Home Assistant Version: 0.69.1
 
 # Devices
 
-* [Ecobee 3](http://www.amazon.com/ecobee3-Smarter-Thermostat-Remote-Generation/dp/B00ZIRV39M/ref=sr_1_1?ie=UTF8&qid=1461377268&sr=8-1&keywords=ecobee3)
-* [Ecobee Room Sensor](https://www.amazon.com/ecobee-Room-Sensor-Pack-Stands/dp/B00NXRYOIQ/ref=sr_1_1?ie=UTF8&qid=1520872570&sr=8-1&keywords=ecobee+remote+sensor) - x9 (temperature sensor and binary_sensor for occupancy per room) 
-* [Hue Hub](http://www.amazon.com/Philips-458489-Hue-Bridge-Frustration/dp/B014H2P42K/ref=sr_1_1?ie=UTF8&qid=1461377320&sr=8-1&keywords=hue+hub)
-* [Wink Hub](http://www.amazon.com/Wink-PWHUB-WH17-Connected-Home-Hub/dp/B00PV6GAI4/ref=sr_1_1?ie=UTF8&qid=1461377299&sr=8-1&keywords=wink+hub)
-* [Hue Color](http://www.amazon.com/Philips-456186-Ambiance-Extension-Generation/dp/B014H2OZJS/ref=sr_1_1?ie=UTF8&qid=1461377356&sr=8-1&keywords=hue+color) - x6 (connected via Hue Hub)
-* [Hue White](http://www.amazon.com/Philips-455295-White-Equivalent-Single/dp/B01C5C9ZLK/ref=sr_1_1?ie=UTF8&qid=1461377384&sr=8-1&keywords=hue+white) - x7 (connected via Hue Hub)
-* [Hue Lightstrip Plus](https://www.amazon.com/dp/B0167H33DU/ref=twister_B01M8JU79M?_encoding=UTF8&psc=1) - x1 (connected via Hue Hub)
-* [Cree Connected](http://www.amazon.com/dp/B01701DKVM/ref=twister_B017DJNMU0?_encoding=UTF8&psc=1) - x12 (connected via Hue Hub)
-* [Lutron Caseta Wireless Dimmer](http://www.amazon.com/Lutron-PD-6WCL-WH-Caseta-Wireless-150-Watt/dp/B00KLAXFQA/ref=sr_1_4?s=hi&ie=UTF8&qid=1461376977&sr=1-4&keywords=caseta+wireless) - x8 (connected via Wink Hub)
-* [Schlage Connect](https://www.amazon.com/Schlage-Connect-BE469NX-Touchscreen-Deadbolt/dp/B00AGK9KUU/ref=sr_1_3?ie=UTF8&qid=1482945181&sr=8-3&keywords=schlage%2Bconnect&th=1) - x3 (connected via Wink Hub)
-* [GoControl Z-Wave Home Security Suite](http://www.amazon.com/GOCONTROL-WNK01-311KIT-Premium-Z-Wave-Security/dp/B00XUXYT6K/ref=sr_1_1?ie=UTF8&qid=1465167435&sr=8-1&keywords=go+control) - x1 (connected via Wink Hub)
-* [GE Z-Wave Wireless Lighting Control Outdoor Module](https://www.amazon.com/GE-Wireless-Lighting-Control-Outdoor/dp/B0013V8K3O/ref=sr_1_1?ie=UTF8&qid=1466468235&sr=8-1&keywords=ge+outdoor+zwave) - x2 (connected via Wink Hub)
-* ~[iHome WiFI Smart Plug](https://www.amazon.com/iHome-Smart-Apple-HomeKit-Amazon/dp/B010ACFEI0/ref=sr_1_1?ie=UTF8&qid=1467576017&sr=8-1&keywords=ihome+smart+plug) - x2 (connected via Wink Hub)~
-* [Wemo Mini Smart Plug](https://www.amazon.com/gp/product/B01NBI0A6R/ref=oh_aui_detailpage_o01_s01?ie=UTF8&psc=1) - x4
-* [TP-Link Smart Plug HS100](https://www.amazon.com/gp/product/B0178IC734/ref=oh_aui_detailpage_o03_s00?ie=UTF8&psc=1) - x1
-* [Remotec Zwave Dry Contact Fixture Module](https://www.amazon.com/gp/product/B00913ATFI/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1) - *Gas Fireplace Control* - x1 (connected via Wink Hub)
-* [Aeon Labs Water Sensor](https://www.amazon.com/gp/product/B00H3TJ3P4/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1) - x2 (connected via Wink Hub)
-* [Foscam FI9800P](http://www.amazon.com/Wireless-Foscam-FI9800P-Waterproof-Detection/dp/B0173Z3NG2?ie=UTF8&psc=1&redirect=true&ref_=oh_aui_detailpage_o02_s01) - x1
-* [Chamberlain MYQ](http://www.amazon.com/Chamberlain-MYQ-G0201-MyQ-Garage-Controls-Smartphone/dp/B00EAD65UW) - x1
-* [Ring Doorbell](http://www.amazon.com/Ring-Wi-Fi-Enabled-Video-Doorbell/dp/B00TZAO9D0/ref=sr_1_4?ie=UTF8&qid=1461377085&sr=8-4&keywords=ring+doorbell) - x1
-* [Wink Relay](http://www.wink.com/products/wink-relay-touchscreen-controller/) - x2
-* [Quirky + GE Aros Window AC](http://www.amazon.com/Quirky-Aros-Smart-Window-Conditioner/dp/B00IDXGIAC?ie=UTF8&psc=1&redirect=true&ref_=oh_aui_detailpage_o03_s01) -x1
-* [Amazon Echo](http://www.amazon.com/Amazon-SK705DI-Echo/dp/B00X4WHP5E/ref=sr_1_1?ie=UTF8&qid=1461377119&sr=8-1&keywords=amazon+echo) - x1 (via Emulated Hue)
-* [Amazon Echo Dot](http://www.amazon.com/b/?node=14047587011) - x6 (via Emulated Hue)
-* [Amazon Echo Show](https://www.amazon.com/Amazon-Echo-Show-Alexa-Enabled-White/dp/B010CEHQTG/ref=sr_1_2?ie=UTF8&qid=1513364215&sr=8-2&keywords=echo+show) - x1 (via Emulated Hue)
-* [Amazon Echo Spot](https://www.amazon.com/Amazon-VN94DQ-Introducing-Echo-Spot/dp/B073SQYXTW/ref=sr_1_1?s=amazon-devices&ie=UTF8&qid=1513364246&sr=1-1&keywords=echo+spot) - x1 (via Emulated Hue)
-* [Apple TV 4k](https://www.amazon.com/Apple-MQD22LL-A-TV-4K/dp/B075NCMLYL/ref=sr_1_2?s=electronics&ie=UTF8&qid=1522253522&sr=1-2&keywords=Apple+TV+4k) - x2
-* [Apple TV 4](https://www.amazon.com/Apple-TV-32GB-4th-Generation/dp/B075NFX24M/ref=sr_1_1?s=electronics&ie=UTF8&qid=1522253585&sr=1-1&keywords=Apple+TV) - x2
-* [Sonos PLAY:1](https://www.amazon.com/Sonos-PLAY-Compact-Wireless-Streaming/dp/B00EWCUK1Q/ref=sr_1_1?s=aht&ie=UTF8&qid=1480883246&sr=1-1&keywords=Sonos+play+1) - x10
-* [Sonos CONNECT](https://www.amazon.com/Sonos-Wireless-Receiver-Component-Streaming/dp/B001CROHX6/ref=sr_1_3?s=aht&ie=UTF8&qid=1480883287&sr=1-3&keywords=Sonos+Connect) - x1
-* [Sonos CONNECT:AMP](https://www.amazon.com/Sonos-CONNECT-Wireless-Amplifier-Streaming/dp/B001CROHU4/ref=sr_1_2?ie=UTF8&qid=1501368078&sr=8-2&keywords=sonos+connect+amp) - x1
-* [iRobot Roomba 980](https://www.amazon.com/iRobot-Roomba-Robot-Vacuum-Connectivity/dp/B013E9L4ZS/ref=sr_1_3?ie=UTF8&qid=1510543522&sr=8-3&keywords=roomba+980&dpID=51FYAIctNNL&preST=_SY300_QL70_&dpSrc=srch) - x1
-* [iRobot Roomba 650](https://www.amazon.com/iRobot-Roomba-650-Robot-Vacuum/dp/B008LX6OC6/ref=sr_1_3?ie=UTF8&qid=1511129827&sr=8-3&keywords=roomba+660&dpID=519S5LhxhkL&preST=_SY300_QL70_&dpSrc=srch) - x1 (Not Automated)
-* [Harmony Hub](https://www.amazon.com/Logitech-Harmony-Companion-Control-Entertainment/dp/B00N3RFC4G/ref=sr_1_2?s=aht&ie=UTF8&qid=1479756420&sr=1-2&keywords=harmony+hub) - x2
-* [Ubiquiti Unifi Security Gateway](https://www.amazon.com/Ubiquiti-Unifi-Security-Gateway-USG/dp/B00LV8YZLK/ref=sr_1_5?s=electronics&ie=UTF8&qid=1501612028&sr=1-5&keywords=unifi) - x1
-* [Ubiquiti UniFi Switch - 24 Ports](https://www.amazon.com/Ubiquiti-UniFi-Switch-Managed-US-24-250W/dp/B00OJZUQ24/ref=pd_sbs_147_1?_encoding=UTF8&pd_rd_i=B00OJZUQ24&pd_rd_r=Y91CYDQDH8YKZCGFK62R&pd_rd_w=b1TBc&pd_rd_wg=RWi2l&psc=1&refRID=Y91CYDQDH8YKZCGFK62R) - x1
-* [Ubiquiti UniFi Switch - 8 Ports](https://www.amazon.com/Ubiquiti-Networks-Managed-Gigabit-US-8-150W/dp/B01DKXT4CI/ref=sr_1_2?ie=UTF8&qid=1503435496&sr=8-2&keywords=unifi+8+port+switch) - x1
-* [Ubiquiti Networks Unifi AC PRO](https://www.amazon.com/Ubiquiti-Networks-802-11ac-Dual-Radio-UAP-AC-PRO-US/dp/B015PRO512/ref=sr_1_1?ie=UTF8&qid=1501612450&sr=8-1&keywords=unifi+ap) - x3
-* [Ubiquiti Networks Unifi AC LR](https://www.amazon.com/Ubiquiti-Networks-802-11ac-Dual-Radio-UAP-AC-PRO-US/dp/B015PRCBBI/ref=sr_1_1?ie=UTF8&qid=1501612450&sr=8-1&keywords=unifi%2Bap&th=1) - x1
-* [Ubiquiti Unifi Cloud Key](https://www.amazon.com/Ubiquiti-Unifi-Cloud-Key-Control/dp/B017T2QB22/ref=sr_1_1?s=electronics&ie=UTF8&qid=1501612546&sr=1-1&keywords=unifi+cloud+key) - x1
-* [Ubiquiti UVC-G3 UniFi Video Camera](https://www.amazon.com/Ubiquiti-UVC-G3-UniFi-Video-Camera/dp/B01EZYTYLC/ref=sr_1_1?s=electronics&ie=UTF8&qid=1503435626&sr=1-1&keywords=unifi+camera) - x2
-* [Ubiquiti airGateway LR](https://www.amazon.com/gp/product/B00HXT84UO/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1) - x1 (used to connect UVC-G3 Wireless)
-* [QNAP TS-453 Pro](https://www.amazon.com/gp/product/B00MEVUL6G/ref=oh_aui_search_detailpage?ie=UTF8&th=1) - x1
-* [iOS App](https://home-assistant.io/ecosystem/ios/) (iOS Device Tracking)
-* [Locative App](https://my.locative.io) (iOS Device Tracking)
-* [Plex Media Server](https://plex.tv)
-* [Homebridge](https://github.com/nfarina/homebridge) (Apple HomeKit Support)
+## Hubs
 
+| Device  | Quantity | Connection | Home Assistant | Notes |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| [Hue Hub v2](https://amzn.to/2IpNA3G) | 1 | Ethernet | [Philips Hue](https://www.home-assistant.io/components/hue/) | Used to control all Zigbee smart bulbs |
+| [Wink Hub v1](https://amzn.to/2wMUjis) | 1 | Wi-Fi | [Wink](https://www.home-assistant.io/components/wink/) | Used as a dumb hub to connect Z-Wave and Lutron devices. No Wink Robots or schedules being utilized|
+
+Relevant hub configurations can be found within [configuration.yaml](https://github.com/geekofweek/homeassistant/blob/master/configuration.yaml)
+
+## Lighting
+
+| Device  | Quantity | Connection | Home Assistant | Notes |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| [Philips Hue White and Color Ambiance](https://amzn.to/2Ip8waU) | 6 | Ethernet | [Philips Hue Light](https://www.home-assistant.io/components/light.hue/) | Color changing smart bulbs|
+| [Philips Hue White and Color Ambiance LightStrip Plus Dimmable](https://amzn.to/2Kx27qF) | 1 | Hue Hub (Zigbee)| [Philips Hue Light](https://www.home-assistant.io/components/light.hue/) | Color changing smart led strip. Used as accent lighting|
+| [Philips Hue White](https://amzn.to/2LaUFTd) | 7 | Hue Hub (Zigbee)| [Philips Hue Light](https://www.home-assistant.io/components/light.hue/) | Non color changing smart bulbs|
+| [Cree Connected](https://amzn.to/2IpKAnZ) | 12 | Hue Hub (Zigbee)| [Philips Hue Light](https://www.home-assistant.io/components/light.hue/) | Non color changing smart bulbs|
+| [Lutron Caseta Wireless Dimmer](https://amzn.to/2KwDJWc) | 8 | Wink Hub (Z-Wave)| [Wink Light](https://www.home-assistant.io/components/light.wink/) | Smart dimmer switches that do not require a neutral wire|
+
+Many of my automations rely on some form of lighting but many examples can be found in [lights.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/lights.yaml) and [location.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml).
+
+Lights are grouped via [light_group.yaml](https://github.com/geekofweek/homeassistant/blob/master/light_group.yaml)
+
+## Climate
+
+| Device  | Quantity | Connection | Home Assistant | Notes |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| [Ecobee 3](https://amzn.to/2L72d9A) | 1 | Wi-Fi | [ecobee](https://www.home-assistant.io/components/ecobee/) / [Ecobee Thermostat](https://www.home-assistant.io/components/climate.ecobee/) | Used as primary thermostat |
+| [Ecobee Room Sensor](https://amzn.to/2L9cORm) | 9 | Ecobee3 | [Ecobee Binary Sensor](https://www.home-assistant.io/components/binary_sensor.ecobee/) | Provides room temperature and room occupancy.|
+| [Quirky + GE Aros Smart Window Air Conditioner](https://amzn.to/2ImtdEi) | 1 | Wi-Fi | [Wink Climate](https://www.home-assistant.io/components/climate.wink/) | Used to augment cooling on 2nd floor|
+| [Frigidaire Cool Connect Smart Portable Air Conditioner](https://amzn.to/2k7kszE) | 1 | Wi-Fi | [Harmony Hub Remote](https://www.home-assistant.io/components/remote.harmony/) | Used to augment cooling on 2nd floor|
+
+I utilize a number of automations that adjust climate controls.  Mostly they can be found in [climate.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/climate.yaml). Ecobee room sensors are heavily used in [occupancy.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/occupancy.yaml) and as conditions in many automations
+
+## Outlets / Switches
+
+| Device  | Quantity | Connection | Home Assistant | Notes |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| [Wemo Mini Smart Plug](https://amzn.to/2wQ05jE) | 4 | Wi-Fi | [Belkin WeMo](https://www.home-assistant.io/components/wemo/) | Smart outlets utilized to control various devices via powering the outlet on/off (fans, Christmas Tree, etc) |
+| [GE Z-Wave Wireless Smart Lighting Control Outdoor Module](https://amzn.to/2KuFRxN) | 2 | Wink Hub (Z-Wave)| [Wink Switch](https://www.home-assistant.io/components/switch.wink/) | Used to control low voltage outdoor lighting transformers |
+| [Remotec Zwave Dry Contact Fixture Module](https://amzn.to/2rOmcBW) | 1 | Wink Hub (Z-Wave)| [Wink Switch](https://www.home-assistant.io/components/switch.wink/) | Used to control gas fireplace |
+| [TP-Link Smart Plug HS100](https://amzn.to/2L5Bt9r) | 1 | Wi-Fi | [TP-Link Switch](https://www.home-assistant.io/components/switch.tplink/) | Smart outlet used to control power to MyQ Device|
+| [iHome WiFI Smart Plug](https://amzn.to/2rReF4z) | 2 | Wink Hub (Wi-Fi) | [Wink Switch](https://www.home-assistant.io/components/switch.wink/) | Smart Outlets. Not using these anymore due to overall poor reliability |
+
+Switches and outlets are used in various capacities, some are for lighting and some are for fans type devices.  [lights.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/lights.yaml) and [occupancy.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/occupancy.yaml) should have some good examples.
+
+## Locks
+
+| Device  | Quantity | Connection | Home Assistant | Notes |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| [Schlage Connect Touchscreen Deadbolt](https://amzn.to/2KwXltd) | 3 | Wink Hub (Z-Wave) | [Wink Lock](https://www.home-assistant.io/components/lock.wink/) | Smart locks used in automations to auto lock / unlock doors |
+
+Locks are used mostly as a way to lock / unlock doors based on locations, see [location.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml) and [locks.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/locks.yaml) for some examples
+
+## Security
+
+| Device  | Quantity | Connection | Home Assistant | Notes |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| [GoControl Door/Window Sensor](https://amzn.to/2wOhLfn) | 3 | Wink Hub (Z-Wave) | [Wink Binary Sensor](https://www.home-assistant.io/components/binary_sensor.wink/) | Door sensors to detect if exterior doors have been opened / closed |
+| [GoControl Siren and Strobe](https://amzn.to/2k4bK4U) | 1 | Wink Hub (Z-Wave) | [Wink Alarm](https://www.home-assistant.io/components/alarm_control_panel.wink/) | Alarm used for when alarm is triggered or when you want to get someone's attention|
+
+Door sensors are used in many different ways. I trigger on them via [doors.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/doors.yaml), use them for security in [security.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/security.yaml), and as various conditions in [notification_audio.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/notification_audio.yaml) and [climate.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/climate.yaml).
+The alarm siren is used in [security.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/security.yaml) and in the security [scene](https://github.com/geekofweek/homeassistant/blob/master/scenes.yaml). I've also implemented the alarm as part of [water_sensors.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/water_sensors.yaml).
+
+## Voice Assistant
+
+| Device  | Quantity | Connection | Home Assistant | Notes |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| [Amazon Echo](https://amzn.to/2KuPHjd) | 1 | Wi-Fi | [Emulated Hue Bridge](https://www.home-assistant.io/components/emulated_hue/) | Audio only Voice Assistant |
+| [Amazon Echo Dot](https://amzn.to/2wSreSW) | 6 | Wi-Fi | [Emulated Hue Bridge](https://www.home-assistant.io/components/emulated_hue/) | Audio only Voice Assistant |
+| [Amazon Echo Spot](https://amzn.to/2rOVZ6a) | 1 | Wi-Fi | [Emulated Hue Bridge](https://www.home-assistant.io/components/emulated_hue/) | Voice Assistant with small display |
+| [Amazon Echo Show](https://amzn.to/2rRhN0n) | 1 | Wi-Fi |  [Emulated Hue Bridge](https://www.home-assistant.io/components/emulated_hue/) |Voice Assistant with display |
+
+I go for native Echo integration wherever possible, but a few devices are not currently supported where I've had to implement some work arounds via emulated hue.  Most of these are just exposed via an [input_boolean]( https://github.com/geekofweek/homeassistant/blob/master/input_boolean.yaml) and [customize.yaml]( https://github.com/geekofweek/homeassistant/blob/master/customize.yaml).  This allows the ability to have echo turn on or off an [input_boolean]( https://github.com/geekofweek/homeassistant/blob/master/input_boolean.yaml)  in turn triggering an automation.
+
+## Media
+
+| Device  | Quantity | Connection | Home Assistant | Notes |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| [Apple TV 4k](https://www.amazon.com/Apple-MQD22LL-A-TV-4K/dp/B075NCMLYL/ref=sr_1_2?ie=UTF8&qid=1526581374&sr=8-2&keywords=Apple+TV) | 2 | Wi-Fi | [Apple TV](https://www.home-assistant.io/components/apple_tv/) | Used for media playback on 4k TVs |
+| [Apple TV 4](https://www.amazon.com/Apple-TV-32GB-4th-Generation/dp/B075NFX24M/ref=sr_1_1?s=electronics&ie=UTF8&qid=1526581435&sr=1-1&keywords=Apple+TV) | 2 | Wi-Fi | [Apple TV](https://www.home-assistant.io/components/apple_tv/) | Used for media playback on TVs |
+| [Sonos Play:1](https://amzn.to/2IrsIor) | 10 | Wi-Fi | [Sonos](https://www.home-assistant.io/components/media_player.sonos/) | Audio playback and Home Assistant TTS |
+| [Sonos Connect](https://amzn.to/2wSsup8) | 1 | Ethernet |  [Sonos](https://www.home-assistant.io/components/media_player.sonos/) | Audio playback and Home Assistant TTS. Connects Sonos to existing surround sound system |
+| [Sonos Connect:AMP](https://amzn.to/2rQ0XzM) | 1 | Wi-Fi |  [Sonos](https://www.home-assistant.io/components/media_player.sonos/) | Audio playback and Home Assistant TTS. Connects Sonos to outdoor speakers |
+| [Logitech Harmony Hub](https://amzn.to/2IuEvlS) | 3 | Wi-Fi | [Harmony Hub Remote](https://www.home-assistant.io/components/remote.harmony/) | Controls various AV equipment and other devices that utilize infrared remotes |
+| [Plex Media Server](https://plex.tv) | 1 | Ethernet | [Plex](https://www.home-assistant.io/components/media_player.plex) / [Plex Activity Monitor](https://www.home-assistant.io/components/sensor.plex/) |  Media Server|  
+
+Most media player based automations can be found in [media.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/media.yaml) and some Text to Speech (TTS) based automation in [notification_audio.yaml
+]( https://github.com/geekofweek/homeassistant/blob/master/automation/notification_audio.yaml).
+
+Harmony Hubs work via a combination of [input_selects]( https://github.com/geekofweek/homeassistant/blob/master/input_select.yaml), [scripts]( https://github.com/geekofweek/homeassistant/blob/master/scripts.yaml), and automations in [media.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/media.yaml).
+
+## Sensors
+
+| Device  | Quantity | Connection | Home Assistant | Notes |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| [Aeon Labs Water Sensor](https://amzn.to/2rM6KFE) | 2 | Wink Hub (Z-Wave) | [Wink Binary Sensor](https://www.home-assistant.io/components/binary_sensor.wink/) | Water sensors used to detect water in basement as a preventive measure |
+
+Water sensors serve one major function, to alert me to the presence of water.  Almost all of those automations can be fond via [water_sensors.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/water_sensors.yaml)
+
+## Cameras
+
+| Device  | Quantity | Connection | Home Assistant | Notes |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| [Ring Video Doorbell](https://amzn.to/2KvrzwP) | 1 | Wi-Fi | [Ring](https://www.home-assistant.io/components/ring/) / [Ring Binary Sensor](https://www.home-assistant.io/components/binary_sensor.ring/) | Automated around binary sensors via motion or doorbell button press |
+| [Ubiquiti UVC-G3 UniFi Video Camera](https://amzn.to/2L987ah) | 2 | Ethernet | [UniFi Video Camera](https://www.home-assistant.io/components/camera.uvc/) | 1080p POE Camera. NVR storage on QNAP NAS |
+| [Foscam FI9800P](https://amzn.to/2Gu6r7I) | 1 | Wi-Fi | [Foscam IP Camera](https://www.home-assistant.io/components/camera.foscam/) | 720p Wi-Fi Camera. NVR storage on QNAP NA |
+
+Nothing is currently automated around cameras, just a [UI](https://github.com/geekofweek/homeassistant/blob/master/images/camera-screenshot.jpg) element.  The Ring doorbell is used in a number of ways to trigger an action based on motion detection or someone ringing the doorbell.  Examples can be found in [doorbell.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/doorbell.yaml)
+
+## Garage
+
+| Device  | Quantity | Connection | Home Assistant | Notes |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| [MyQ Smart Garage Door Opener](https://amzn.to/2Iu4Joy) | 1 | Wi-Fi | [MyQ Cover](https://www.amazon.com/gp/product/B075H7Z5L8?ie=UTF8)| Automated to open / close garage door on location and auto close after specific time intervals |
+
+Similar to locks, the Garage door is mostly automated to open / close based on location and after a set amount of time.  Examples can be found in [location.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml) and [garage.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/garage.yaml)
+
+## Vacuum
+
+| Device  | Quantity | Connection | Home Assistant | Notes |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| [iRobot Roomba 980](https://amzn.to/2L9q1tm) | 1 | Wi-Fi | [iRobot Roomba](https://www.home-assistant.io/components/vacuum.roomba/)| Automated to run at specific times based on presence detection |
+| [iRobot Roomba 650](https://amzn.to/2wO2w60) | 1 | NA | NA | Currently not integrated into Home Assistant. Investigating options for future integration |
+
+All Roomba related automations can be found in [roomba.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/roomba.yaml)
+
+## Network
+
+| Device  | Quantity | Connection | Home Assistant | Notes |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| [Ubiquiti Networks Unifi Security Gateway (USG)](https://amzn.to/2wM62hk) | 1 | Ethernet | [Ubiquiti Unifi WAP](https://www.home-assistant.io/components/device_tracker.unifi/)| Primary Router. Presence detection for non household members and devices |
+| [Ubiquiti Networks UniFi Switch - 24 Ports (US-24-250W)](https://amzn.to/2LbWLlJ) | 1 | Ethernet | [Ubiquiti Unifi WAP](https://www.home-assistant.io/components/device_tracker.unifi/)| Primary Switch. Presence detection for non household members and devices |
+| [Ubiquiti Networks 8-Port UniFi Switch (US-8-150W)](https://amzn.to/2Iuoah9) | 1 | Ethernet | [Ubiquiti Unifi WAP](https://www.home-assistant.io/components/device_tracker.unifi/)| Secondary Switch. Presence detection for non household members and devices |
+| [Ubiquiti Networks Unifi AP PRO (UAP-AC-PRO-US)](https://amzn.to/2rP3BFJ) | 3 | Ethernet | [Ubiquiti Unifi WAP](https://www.home-assistant.io/components/device_tracker.unifi/)| Wireless Access Point for interior and exterior use. Presence detection for non household members and devices. |
+| [Ubiquiti Networks Unifi AP Long Range (UAP-AC-LR-US)](https://amzn.to/2IsvLwD) | 1 | Ethernet | [Ubiquiti Unifi WAP](https://www.home-assistant.io/components/device_tracker.unifi/)| Wireless Access Point for interior use. Presence detection for non household members and devices. |
+| [Ubiquiti Networks airGateway LR Wireless AP ](https://amzn.to/2Kzbg2d) | 1 | Wi-Fi | NA | Used to connect Ubiquiti UVC-G3 UniFi Video Camera to the wireless network where running an ethernet cable wasn't feasible. Connects to POE injector |
+
+Since I don’t use the network equipment as my primary presence detection method most of the automation is around house guests via [house_guest.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/house_guest.yaml).  The main function of the network equipment is to be network equipment for my fiber internet service.
+
+## Software
+
+| Device  | Quantity | Connection | Home Assistant | Notes |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| [iOS App](https://itunes.apple.com/us/app/home-assistant-open-source-home-automation/id1099568401?mt=8) | 2 | NA | [iOS](https://www.home-assistant.io/docs/ecosystem/ios/)| Used as Home Assistant interface on mobile devices, not actively using for presence detection |
+| [Locative iOS App](https://itunes.apple.com/us/app/locative/id725198453?mt=8) | 2 | NA | [Locative](https://www.home-assistant.io/components/device_tracker.locative/) | Primary method of presence detection. App is no longer under active development but has been the most reliable solution with no battery impact |
+| [Homebridge](https://github.com/nfarina/homebridge) | 1 | NA | NA | Current method of HomeKit integration.  Plan to migrate to native support in the near future |
+| [Docker](https://www.docker.com) | 1 | Ethernet | [Installation on Docker](https://www.home-assistant.io/docs/installation/docker/) | Home Assistant install runs as a Docker Container |
+| [Pi-hole](https://pi-hole.net) | 2 | Ethernet / Wi-Fi | [Pi-Hole Sensor](https://www.home-assistant.io/components/sensor.pi_hole/) | Ad blocking. Primary instance runs within a Docker container and the secondary runs on a [Raspberry-pi Zero W](https://amzn.to/2Kwcz1S) |
+
+The iOS app is used for some notifications in [notification_text.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/notification_text.yaml). Locative is the main method of doing any location based automations via [location.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml) and many of the conditions I use are based on presence detection of household members provided by Locative.
+
+## Other Hardware
+
+| Device  | Quantity | Connection | Home Assistant | Notes |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| [QNAP TS-453 Pro](https://amzn.to/2wRmtJh) | 1 | Ethernet | [QNAP Sensor](https://www.home-assistant.io/components/sensor.qnap/)| Main storage array. Docker Containers and Plex media server run off this device. Configured with 4x [WD Red Pro 4TB NAS Hard Disk Drives](https://amzn.to/2IvE7DO) |
+| [Wink Relay](https://amzn.to/2GtKAx3) | 2 | Wi-Fi | [Wink](https://www.home-assistant.io/components/wink/)| Wall mounted touch screen. Wink interface was rubbish and was replaced with the Home Assistant dashboard. It provides binary sensors for the two push buttons, temperature, and humidity sensors. Doesn't get used much but looks cool. |
 
 
 # Interface
