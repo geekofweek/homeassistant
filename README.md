@@ -12,6 +12,8 @@ Home Assistant Version: 0.69.1
 | [Hue Hub v2](https://amzn.to/2IpNA3G) | 1 | Ethernet | [Philips Hue](https://www.home-assistant.io/components/hue/) | Used to control all Zigbee smart bulbs |
 | [Wink Hub v1](https://amzn.to/2wMUjis) | 1 | Wi-Fi | [Wink](https://www.home-assistant.io/components/wink/) | Used as a dumb hub to connect Z-Wave and Lutron devices. No Wink Robots or schedules being utilized|
 
+Relevant hub configurations can be found within [configuration.yaml](https://github.com/geekofweek/homeassistant/blob/master/configuration.yaml)
+
 ## Lighting
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
@@ -22,6 +24,10 @@ Home Assistant Version: 0.69.1
 | [Cree Connected](https://amzn.to/2IpKAnZ) | 12 | Hue Hub (Zigbee)| [Philips Hue Light](https://www.home-assistant.io/components/light.hue/) | Non color changing smart bulbs|
 | [Lutron Caseta Wireless Dimmer](https://amzn.to/2KwDJWc) | 8 | Wink Hub (Z-Wave)| [Wink Light](https://www.home-assistant.io/components/light.wink/) | Smart dimmer switches that do not require a neutral wire|
 
+Many of my automations rely on some form of lighting but many examples can be found in [lights.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/lights.yaml) and [location.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml).
+
+Lights are grouped via [light_group.yaml](https://github.com/geekofweek/homeassistant/blob/master/light_group.yaml)
+
 ## Climate
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
@@ -31,6 +37,7 @@ Home Assistant Version: 0.69.1
 | [Quirky + GE Aros Smart Window Air Conditioner](https://amzn.to/2ImtdEi) | 1 | Wi-Fi | [Wink Climate](https://www.home-assistant.io/components/climate.wink/) | Used to augment cooling on 2nd floor|
 | [Frigidaire Cool Connect Smart Portable Air Conditioner](https://amzn.to/2k7kszE) | 1 | Wi-Fi | [Harmony Hub Remote](https://www.home-assistant.io/components/remote.harmony/) | Used to augment cooling on 2nd floor|
 
+I utilize a number of automations that adjust climate controls.  Mostly they can be found in [climate.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/climate.yaml). Ecobee room sensors are heavily used in [occupancy.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/occupancy.yaml) and as conditions in many automations
 
 ## Outlets / Switches
 
@@ -42,11 +49,15 @@ Home Assistant Version: 0.69.1
 | [TP-Link Smart Plug HS100](https://amzn.to/2L5Bt9r) | 1 | Wi-Fi | [TP-Link Switch](https://www.home-assistant.io/components/switch.tplink/) | Smart outlet used to control power to MyQ Device|
 | [iHome WiFI Smart Plug](https://amzn.to/2rReF4z) | 2 | Wink Hub (Wi-Fi) | [Wink Switch](https://www.home-assistant.io/components/switch.wink/) | Smart Outlets. Not using these anymore due to overall poor reliability |
 
+Switches and outlets are used in various capacities, some are for lighting and some are for fans type devices.  [lights.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/lights.yaml) and [occupancy.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/occupancy.yaml) should have some good examples.
+
 ## Locks
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [Schlage Connect Touchscreen Deadbolt](https://amzn.to/2KwXltd) | 3 | Wink Hub (Z-Wave) | [Wink Lock](https://www.home-assistant.io/components/lock.wink/) | Smart locks used in automations to auto lock / unlock doors |
+
+Locks are used mostly as a way to lock / unlock doors based on locations, see [location.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml) and [locks.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/locks.yaml) for some examples
 
 ## Security
 
@@ -54,6 +65,9 @@ Home Assistant Version: 0.69.1
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [GoControl Door/Window Sensor](https://amzn.to/2wOhLfn) | 3 | Wink Hub (Z-Wave) | [Wink Binary Sensor](https://www.home-assistant.io/components/binary_sensor.wink/) | Door sensors to detect if exterior doors have been opened / closed |
 | [GoControl Siren and Strobe](https://amzn.to/2k4bK4U) | 1 | Wink Hub (Z-Wave) | [Wink Alarm](https://www.home-assistant.io/components/alarm_control_panel.wink/) | Alarm used for when alarm is triggered or when you want to get someone's attention|
+
+Door sensors are used in many different ways. I trigger on them via [doors.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/doors.yaml), use them for security in [security.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/security.yaml), and as various conditions in [notification_audio.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/notification_audio.yaml) and [climate.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/climate.yaml).
+The alarm siren is used in [security.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/security.yaml) and in the security [scene](https://github.com/geekofweek/homeassistant/blob/master/scenes.yaml). I've also implemented the alarm as part of [water_sensors.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/water_sensors.yaml).
 
 ## Voice Assistant
 
