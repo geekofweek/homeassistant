@@ -145,6 +145,13 @@ All Roomba related automations can be found in [roomba.yaml]( https://github.com
 
 Since I don’t use the network equipment as my primary presence detection method most of the automation is around house guests via [house_guest.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/house_guest.yaml).  The main function of the network equipment is to be network equipment for my fiber internet service.
 
+## Other Hardware
+
+| Device  | Quantity | Connection | Home Assistant | Notes |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| [QNAP TS-453 Pro](https://amzn.to/2wRmtJh) | 1 | Ethernet | [QNAP Sensor](https://www.home-assistant.io/components/sensor.qnap/)| Main storage array. Docker Containers and Plex media server run off this device. Configured with 4x [WD Red Pro 4TB NAS Hard Disk Drives](https://amzn.to/2IvE7DO) |
+| [Wink Relay](https://amzn.to/2GtKAx3) | 2 | Wi-Fi | [Wink](https://www.home-assistant.io/components/wink/)| Wall mounted touch screen. Wink interface was rubbish and was replaced with the Home Assistant dashboard. It provides binary sensors for the two push buttons, temperature, and humidity sensors. Doesn't get used much but looks cool. |
+
 ## Software
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
@@ -158,12 +165,71 @@ Since I don’t use the network equipment as my primary presence detection metho
 
 The iOS app is used for some notifications in [notification_text.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/notification_text.yaml). Locative is the main method of doing any location based automations via [location.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml) and many of the conditions I use are based on presence detection of household members provided by Locative.
 
-## Other Hardware
+The [Home Assistant Management Tool](https://github.com/geekofweek/homeassistant/blob/master/tools/ha-mgmt-docker.sh) is something I built for my personal use, but can easily be modified to suite different setups.  Adjust the variables to your settings and setup shared SSH keys (if desired).  Probably a million other more efficient ways to do this, but it has worked out so far for me.  I had a previous version that I was using before converting to a Docker based installation. That one works with a more traditional installation.  You can check out that version [here]( https://github.com/geekofweek/homeassistant/blob/master/tools/ha-mgmt.sh)
 
-| Device  | Quantity | Connection | Home Assistant | Notes |
-| ------------- | :---: | ------------- | ------------- | ------------- |
-| [QNAP TS-453 Pro](https://amzn.to/2wRmtJh) | 1 | Ethernet | [QNAP Sensor](https://www.home-assistant.io/components/sensor.qnap/)| Main storage array. Docker Containers and Plex media server run off this device. Configured with 4x [WD Red Pro 4TB NAS Hard Disk Drives](https://amzn.to/2IvE7DO) |
-| [Wink Relay](https://amzn.to/2GtKAx3) | 2 | Wi-Fi | [Wink](https://www.home-assistant.io/components/wink/)| Wall mounted touch screen. Wink interface was rubbish and was replaced with the Home Assistant dashboard. It provides binary sensors for the two push buttons, temperature, and humidity sensors. Doesn't get used much but looks cool. |
+#### Overview:
+
+- Bash Shell script, should work anywhere you can use Bash
+- All HA configs are stored on my local workstation within Dropbox (doesn’t have to be but I like the versioning and access to it from any machine).
+- Edit locally with Text Editor.  Currently using [Atom]( https://atom.io).
+
+#### Options:
+
+1.	Deploy Home Assistant Configs
+    - Creates tar file of current configs
+    - Backs up tar file to local workstation (I use a Dropbox Folder)
+    - rsyncs config directory from local workstation (Dropbox Folder)
+2.	Restart Home Assistant
+    - Restarts the Docker container and restarts
+3. 	Stop Home Assistant
+    - Stops the Home Assistant Docker Container
+4.	Start Home Assistant
+    - Starts the Home Assistant Docker Container
+5.	Upgrade Home Assistant
+    - Does a docker pull for the latest version of Home Assistant
+    - Stops the Home Assistant Docker Container
+    - Deletes the Home Assistant Docker Container
+    - Creates a new Home Assistant Docker Container
+6.	Check Database Size
+    - Check the size of the MySQL Database
+7. 	Validate Home Assistant Config
+    - Runs a config check using a Docker Container
+8. 	Backup Home Assistant
+    - Creates tar file of current configs
+    - Backs up tar file to local workstation (Dropbox Folder)
+9. 	Copy Configs to GitHub
+    - Copy’s current config to local workstation Github, scrubs any data that is listed in [redacted.txt]( https://github.com/geekofweek/homeassistant/blob/master/tools/redacted.txt) using [ha-github-scrub.sh]( https://github.com/geekofweek/homeassistant/blob/master/tools/ha-github-scrub.sh).  
+10.	Renew SSL Certificate
+    - Runs a certbot (Let's Encrypt) Docker container that generates a new SSL certificate
+
+x)  Exit
+    – I shouldn’t need to explain that one
+
+#### Variables:
+
+hauser=“USER_ACCOUNT” **<-- Home Assistant User Account**
+
+habin="/usr/local/bin/hass" **<-- Home Assistant Binary**
+
+haconfigdir="/home/USER/.homeassistant" **<-- Home Assistant Config Directory**
+
+hahost=“HOSTNAME/IP” **<-- Home Assistant Hostname or IP address**
+
+localuser=“USER_ACCOUNT” **<-- Local Computer Username, account from where this shell script will run**
+
+localhost=“HOSTNAME/IP” **<-- Local Computer Hostname or IP address**
+
+localpath=“PATH_TO_LOCAL_HA_CONFIGS” **<-- Where I store my local HA configs and backups**
+
+docker="/PATH/TO/DOCKER/bin " **<-- Docker Binary**
+
+
+Within the local folder, variable localpath="PATH_TO_LOCAL_HA_CONFIGS", I have two folders:
+
+**Config:** All of the .yaml files for Home Assistant
+
+**Backup:** Place for backup tar file
+
 
 
 # Interface
