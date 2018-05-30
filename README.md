@@ -1,7 +1,7 @@
 # Home Assistant
 [Home Assistant](https://home-assistant.io) configuration with 300+ automations.
 
-Home Assistant Version: 0.69.1
+Home Assistant Version: 0.70.0
 
 # Devices
 
@@ -20,7 +20,7 @@ Relevant hub configurations can be found within [configuration.yaml](https://git
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [Philips Hue White and Color Ambiance](https://amzn.to/2Ip8waU) | 6 | Ethernet | [Philips Hue Light](https://www.home-assistant.io/components/light.hue/) | Color changing smart bulbs|
 | [Philips Hue White and Color Ambiance LightStrip Plus Dimmable](https://amzn.to/2Kx27qF) | 1 | Hue Hub (Zigbee)| [Philips Hue Light](https://www.home-assistant.io/components/light.hue/) | Color changing smart led strip. Used as accent lighting|
-| [Philips Hue White](https://amzn.to/2LaUFTd) | 7 | Hue Hub (Zigbee)| [Philips Hue Light](https://www.home-assistant.io/components/light.hue/) | Non color changing smart bulbs|
+| [Philips Hue White](https://amzn.to/2LaUFTd) | 10 | Hue Hub (Zigbee)| [Philips Hue Light](https://www.home-assistant.io/components/light.hue/) | Non color changing smart bulbs|
 | [Cree Connected](https://amzn.to/2IpKAnZ) | 12 | Hue Hub (Zigbee)| [Philips Hue Light](https://www.home-assistant.io/components/light.hue/) | Non color changing smart bulbs|
 | [Lutron Caseta Wireless Dimmer](https://amzn.to/2KwDJWc) | 8 | Wink Hub (Z-Wave)| [Wink Light](https://www.home-assistant.io/components/light.wink/) | Smart dimmer switches that do not require a neutral wire|
 
