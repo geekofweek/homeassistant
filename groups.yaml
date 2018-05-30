@@ -78,7 +78,7 @@
       - group.basement
       - group.water_sensors
       - media_player.sonos_basement
-      - media_player.roku_hd__REDACTED
+      - media_player.roku_basement_tv
 
   outdoors:
     name: Outdoors
@@ -132,8 +132,8 @@
     icon: mdi:robot
     entities:
       - group.automation_on_demand
-      - group.holiday_modes
       - group.party_modes
+      - group.holiday_modes
       - group.alarm
       - group.door_locks
       - group.location_controls
@@ -329,6 +329,7 @@
       - light.USER2s_nightstand
       - light.bedroom_lamp
       - light.closet_lamp
+      - light.bedroom_closet_ceiling
       - binary_sensor.bedroom_occupancy
       - sensor.bedroom_temperature
 
@@ -356,6 +357,7 @@
       - light.office_ceiling
       - light.office_lamp
       - switch.air_purifier
+      - input_boolean.portable_ac
   #    - switch.office_fan
       - binary_sensor.office_occupancy
       - sensor.office_temperature
@@ -432,9 +434,10 @@
     - light.front_porch
     - light.back_door
     - light.back_porch
+    - light.backyard_patio
+    - light.garage_light
     - switch.front_yard_lighting
     - group.backyard_lighting
-    - light.garage_light
 
   Alarm:
     control: hidden

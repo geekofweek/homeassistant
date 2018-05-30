@@ -1,0 +1,76 @@
+#################################################################
+## HomeKit
+#################################################################
+
+  filter:
+    exclude_domains:
+      - light
+      - device_tracker
+      - input_boolean
+      - remote
+      - script
+      - alarm_control_panel
+      - cover
+      - sensor
+    include_entities:
+      - cover.garage_door
+      - light.hallway_light
+      - light.bathroom_vanity
+      - light.garage_light
+      - light.living_room_lights
+      - light.dining_room_lights
+      - light.bedroom_lights
+      - light.kitchen_lights
+      - light.stairs
+      - light.USER1_office_lights
+      - light.USER2_office_lights
+      - light.guest_bedroom_lights
+      - light.basement_lighting
+      - light.front_porch
+      - light.back_door
+      - light.back_porch
+      - light.backyard_patio
+      - sensor.living_room_temperature
+      - sensor.main_floor_temperature
+      - sensor.kitchen_temperature
+      - sensor.bedroom_temperature
+      - sensor.bathroom_temperature
+      - sensor.office_temperature
+      - sensor.USER2_office_temperature
+      - sensor.guest_bedroom_temperature
+      - sensor.basement_temperature
+      - sensor.laundry_room_temperature
+      - binary_sensor.front_door_opened
+      - binary_sensor.back_door_opened
+      - binary_sensor.basement_door_opened
+      - binary_sensor.living_room_occupancy
+      - binary_sensor.main_floor_occupancy
+      - binary_sensor.kitchen_occupancy
+      - binary_sensor.bedroom_occupancy
+      - binary_sensor.bathroom_occupancy
+      - binary_sensor.office_occupancy
+      - binary_sensor.USER2_office_occupancy
+      - binary_sensor.guest_bedroom_occupancy
+      - binary_sensor.basement_occupancy
+      - binary_sensor.laundry_room_occupancy
+    exclude_entities:
+      - switch.living_room_ceiling_fan
+      - switch.myq_garage_outlet
+      - binary_sensor.ring_front_door_ding
+      - binary_sensor.ring_front_door_motion
+      - binary_sensor.basement_drain_water_sensor_liquid_detected
+      - binary_sensor.sump_pump_water_sensor_liquid_detected
+      - binary_sensor.USER1_front_door_code
+      - binary_sensor.USER1_back_door_code
+      - binary_sensor.USER1_basement_door_code
+      - binary_sensor.USER2_front_door_code
+      - binary_sensor.USER2_back_door_code
+      - binary_sensor.USER2_basement_door_code
+      - binary_sensor.ed_basement_door_code
+      - sensor.wink_relay_sensor_humidity
+      - binary_sensor.wink_relay
+      - binary_sensor.gang
+      - binary_sensor.wink_relays_bottom_button
+      - binary_sensor.wink_relays_top_button
+      - binary_sensor.wink_hub
+      - binary_sensor.wink_relay_sensor_presence

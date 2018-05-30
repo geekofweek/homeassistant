@@ -39,6 +39,10 @@
       entity_id: group.household
       from: 'home'
       to: 'not_home'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
 
   condition:
     - condition: state
@@ -223,36 +227,6 @@
         away_mode: true
 
         ##########################################################
-        ## Set Thermostat Upstairs Mode when Hot
-        ##########################################################
-
-- alias: Climate - Set Thermostat Upstairs Mode when Hot
-
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.dark_sky_temperature
-      above: 91
-
-  condition:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: group.summer_mode
-      state: 'on'
-    - condition: time
-      after: '10:00'
-      before: '19:59'
-
-
-  action:
-    - service: climate.set_hold_mode
-      data:
-        entity_id: climate.main_floor
-        #Upstairs = smart2
-        hold_mode: "smart2"
-
-        ##########################################################
         ## Adjust Thermostat for Overnight Guests before Midnight
         ##########################################################
 
@@ -322,7 +296,7 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
-        temperature: '70'
+        temperature: '75'
 
         ##########################################################
         ## Adjust Thermostat for Overnight Guests after Midnight
@@ -387,7 +361,7 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
-        temperature: '70'
+        temperature: '75'
 
         ##########################################################
         ## If USER1 is not Home Override Upstairs Mode
@@ -540,7 +514,7 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
-        temperature: '70'
+        temperature: '75'
 
         ##########################################################
         ## Turn off Window Unit at 9p
@@ -572,7 +546,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.office_temperature
-      above: REDACTED
+      above: 90
 
   condition:
     condition: or
@@ -596,7 +570,7 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
-        temperature: '70'
+        temperature: '75'
     - service: notify.ios_USER1s_iphone
       data:
         message: Office is Hot Turning on Window Unit
@@ -639,7 +613,7 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
-        temperature: '70'
+        temperature: '75'
 
         ##########################################################
         ## Turn on Window Unit when Hot Outside
@@ -675,7 +649,7 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
-        temperature: '70'
+        temperature: '75'
 
         ##########################################################
         ## Turn off Winodw Unit When below 80 Outside and Away
@@ -743,7 +717,15 @@
       data:
         device: 54737244
         command: PowerToggle
-    - delay: '00:00:10'
+    - delay: '00:00:04'
+    - service: remote.send_command
+      entity_id: remote.office_tv
+      data:
+        device: 54737244
+        command: Mode
+        num_repeats: 3
+        delay_secs: 1
+    - delay: '00:00:04'
     - service: remote.send_command
       entity_id: remote.office_tv
       data:
@@ -878,6 +860,37 @@
 
   action:
     - service: homeassistant.turn_on
+      entity_id: input_boolean.portable_ac
+
+        ##########################################################
+        ## Turn off Portable AC when Office is Unoccupied
+        ##########################################################
+
+- alias: Occupancy - Turn off Office Fans when Unoccupied
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.office_occupancy
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 60
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_occupancy
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_portable_ac
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.portable_ac
+      state: 'on'
+
+  action:
+    - service: homeassistant.turn_off
       entity_id: input_boolean.portable_ac
 
         ##########################################################

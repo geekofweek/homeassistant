@@ -15,12 +15,19 @@
       - light.media_center_lighting
 
   - platform: group
+    name: Bedroom Closet Ceiling
+    entities:
+      - light.bedroom_closet_ceiling_1
+      - light.bedroom_closet_ceiling_2
+
+  - platform: group
     name: Bedroom Lights
     entities:
       - light.USER1s_nightstand
       - light.USER2s_nightstand
       - light.bedroom_lamp
       - light.closet_lamp
+      - light.bedroom_closet_ceiling
 
   - platform: group
     name: Kitchen Lights
@@ -127,6 +134,9 @@
       - light.guest_bedroom_lamp
       - light.guest_bedroom_nightstand
       - light.media_center_lighting
+      - light.bedroom_closet_ceiling_1
+      - light.bedroom_closet_ceiling_2
+      - light.backyard_patio
 
   - platform: group
     name: Hue Lights Exterior
