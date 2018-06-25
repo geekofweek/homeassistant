@@ -289,6 +289,22 @@
         message: Weather Lookup Problem!
 
         #################################################################
+        ## NAS Warning
+        #################################################################
+
+- alias: Notification Text - NAS Warning
+
+  trigger:
+    - platform: state
+      entity_id: sensor.nas_status
+      to: 'warning'
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: NAS RAID Failing
+
+        #################################################################
         ## Home Assistant Started Notification
         #################################################################
 

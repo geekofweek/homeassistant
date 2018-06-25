@@ -41,7 +41,7 @@
       to: 'not_home'
       for:
         hours: 0
-        minutes: 30
+        minutes: 60
         seconds: 0
 
   condition:
@@ -296,7 +296,7 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
-        temperature: '75'
+        temperature: '77'
 
         ##########################################################
         ## Adjust Thermostat for Overnight Guests after Midnight
@@ -361,7 +361,7 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
-        temperature: '75'
+        temperature: '77'
 
         ##########################################################
         ## If USER1 is not Home Override Upstairs Mode
@@ -510,11 +510,11 @@
     - service: climate.set_fan_mode
       data:
         entity_id: climate.window_unit
-        fan_mode: 'medium'
+        fan_mode: 'high'
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
-        temperature: '75'
+        temperature: '77'
 
         ##########################################################
         ## Turn off Window Unit at 9p
@@ -570,7 +570,7 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
-        temperature: '75'
+        temperature: '77'
     - service: notify.ios_USER1s_iphone
       data:
         message: Office is Hot Turning on Window Unit
@@ -609,11 +609,11 @@
     - service: climate.set_fan_mode
       data:
         entity_id: climate.window_unit
-        fan_mode: 'medium'
+        fan_mode: 'high'
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
-        temperature: '75'
+        temperature: '77'
 
         ##########################################################
         ## Turn on Window Unit when Hot Outside
@@ -645,11 +645,11 @@
     - service: climate.set_fan_mode
       data:
         entity_id: climate.window_unit
-        fan_mode: 'medium'
+        fan_mode: 'high'
     - service: climate.set_temperature
       data:
         entity_id: climate.window_unit
-        temperature: '75'
+        temperature: '77'
 
         ##########################################################
         ## Turn off Winodw Unit When below 80 Outside and Away
@@ -717,21 +717,21 @@
       data:
         device: 54737244
         command: PowerToggle
-    - delay: '00:00:04'
-    - service: remote.send_command
-      entity_id: remote.office_tv
-      data:
-        device: 54737244
-        command: Mode
-        num_repeats: 3
-        delay_secs: 1
+#    - delay: '00:00:04'
+#    - service: remote.send_command
+#      entity_id: remote.office_tv
+#      data:
+#        device: 54737244
+#        command: Mode
+#        num_repeats: 3
+#        delay_secs: 1
     - delay: '00:00:04'
     - service: remote.send_command
       entity_id: remote.office_tv
       data:
         device: 54737244
         command: TempUp
-        num_repeats: 5
+        num_repeats: 4
         delay_secs: 1
 
         ##########################################################
