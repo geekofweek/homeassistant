@@ -103,6 +103,7 @@
       - group.indoor_temperature
       - group.humidity
       - group.weather
+      - weather.dark_sky
       - group.weather_summary
       - camera.mo_weather_radar
 
@@ -284,6 +285,8 @@
     - device_tracker.REDACTED
     - device_tracker.REDACTEDiphone
     - device_tracker.REDACTED
+    - device_tracker.REDACTED
+    - device_tracker.REDACTED
 
   Overnight Guests:
     - device_tracker.REDACTED
@@ -315,6 +318,7 @@
     entities:
       - light.living_room_lamps
       - light.media_center_lighting
+      - light.globe
       - switch.fireplace
       - switch.living_room_ceiling_fan
       - lock.front_door
@@ -433,7 +437,7 @@
   Exterior Lights:
     - light.front_porch
     - light.back_door
-    - light.back_porch
+    - light.backyard_deck
     - light.backyard_patio
     - light.garage_light
     - switch.front_yard_lighting
@@ -655,9 +659,11 @@
     - sensor.sump_pump_water_sensor_batt
 
   DNS:
+    - sensor.pihole_dns_queries_today
     - sensor.pihole_ads_blocked_today
-    - sensor.pihole_ads_blocked_today_2
     - sensor.pihole_ads_percentage_blocked_today
+    - sensor.pihole_dns_queries_today_2
+    - sensor.pihole_ads_blocked_today_2
     - sensor.pihole_ads_percentage_blocked_today_2
 
   Garage Outlets:

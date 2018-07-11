@@ -62,6 +62,13 @@
       entity_id: light.kitchen_cabinets
       data:
        brightness_pct: 1
+    - service: light.turn_on
+      entity_id:
+        - light.globe
+      data:
+       transition: 15
+       color_temp: 366
+       brightness_pct: 15
 
         ##########################################################
         ## Plex Lights Off
@@ -89,8 +96,9 @@
       entity_id:
         - light.living_room_lights
         - light.hallway_light
+        - light.globe
       data:
-       transition: 10
+       transition: 15
     - service: light.turn_off
       entity_id:
         - light.dining_room_lights
@@ -199,7 +207,13 @@
         - light.bathroom_vanity
       data:
        brightness_pct: 30
-
+    - service: light.turn_on
+      entity_id:
+        - light.globe
+      data:
+       transition: 15
+       color_temp: 366
+       brightness_pct: 15
         ##########################################################
         ## Late Night TV Watching after Midnight Lights On
         ##########################################################
@@ -270,6 +284,13 @@
         - light.bathroom_vanity
       data:
        brightness_pct: 30
+    - service: light.turn_on
+      entity_id:
+        - light.globe
+      data:
+       transition: 15
+       color_temp: 366
+       brightness_pct: 15
 
         ##########################################################
         ## Late Night TV Watching after Midnight Lights Off
@@ -308,8 +329,9 @@
       entity_id:
         - light.living_room_lights
         - light.hallway_light
+        - light.globe
       data:
-       transition: 10
+       transition: 15
     - service: light.turn_off
       entity_id:
         - light.dining_room_lights
@@ -352,8 +374,9 @@
       entity_id:
         - light.living_room_lights
         - light.hallway_light
+        - light.globe
       data:
-       transition: 10
+       transition: 15
     - service: light.turn_off
       entity_id:
         - light.dining_room_lights

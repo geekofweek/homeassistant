@@ -57,6 +57,13 @@
         - light.kitchen_sink
       data:
         brightness_pct: 1
+    - service: light.turn_on
+      entity_id:
+        - light.globe
+      data:
+        color_name: blue
+        brightness_pct: 15
+        transition: 60
 
         ##########################################################
         ## Turn On USER2 Office when Raining

@@ -3,15 +3,15 @@
 ##################################################################
 
         ##########################################################
-        ## Living Room Random Colors
+        ## Living Room Random Colors On
         ##########################################################
 
-- alias: Party - Set Living Room to Random Color
+- alias: Party - Set Living Room to Random Color On
 
   trigger:
-    - platform: time
-      minutes: '/2'
-      seconds: 0
+    - platform: state
+      entity_id: input_boolean.livingroom_rainbow
+      to: 'on'
 
   condition:
     - condition: state
@@ -23,21 +23,73 @@
       entity_id:
         - light.living_room_lights
         - light.hallway_light
+        - light.globe
       data:
-        effect: random
-        transition: 5
+        effect: colorloop
+        transition: 30
         brightness_pct: 100
 
         ##########################################################
-        ## Office Random Colors
+        ## Living Room Random Colors Off
         ##########################################################
 
-- alias: Party - Set Office to Random Color
+- alias: Party - Set Living Room to Random Color Off
 
   trigger:
-    - platform: time
-      minutes: '/2'
-      seconds: 0
+    - platform: state
+      entity_id: input_boolean.livingroom_rainbow
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.bedtime
+      state: 'off'
+    - condition: state
+      entity_id: light.living_room_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.living_room_lamps
+        - light.hallway_light
+      data:
+        transition: 60
+        color_temp: 447
+        brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.hallway_light
+      data:
+        transition: 60
+        color_temp: 447
+        brightness_pct: 25
+    - service: light.turn_on
+      entity_id: light.media_center_lighting
+      data:
+       transition: 900
+       effect: random
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.globe
+      data:
+        transition: 60
+        brightness_pct: 15
+
+        ##########################################################
+        ## Office Random Colors On
+        ##########################################################
+
+- alias: Party - Set Office to Random Color On
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.office_rainbow
+      to: 'on'
 
   condition:
     - condition: state
@@ -48,20 +100,51 @@
     - service: light.turn_on
       entity_id: light.office_lamp
       data:
-        effect: random
-        transition: 5
+        effect: colorloop
+        transition: 30
         brightness_pct: 100
 
         ##########################################################
-        ## Front Porch Random Colors
+        ## Office Random Colors Off
         ##########################################################
 
-- alias: Party - Set Front Porch to Random Color
+- alias: Party - Set Office Random Colors Off
 
   trigger:
-    - platform: time
-      minutes: '/2'
-      seconds: 0
+    - platform: state
+      entity_id: input_boolean.office_rainbow
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.bedtime
+      state: 'off'
+    - condition: state
+      entity_id: light.office_lamp
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.office_lamp
+      data:
+        transition: 60
+        color_temp: 447
+        brightness_pct: 100
+
+        ##########################################################
+        ## Front Porch Random Colors On
+        ##########################################################
+
+- alias: Party - Set Front Porch to Random Color On
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.front_porch_rainbow
+      to: 'on'
 
   condition:
     - condition: state
@@ -72,6 +155,30 @@
     - service: light.turn_on
       entity_id: light.front_porch
       data:
-        effect: random
-        transition: 5
+        effect: colorloop
+        transition: 30
         brightness_pct: 100
+
+        ##########################################################
+        ## Front Porch Random Colors Off
+        ##########################################################
+
+- alias: Party - Set Front Porch Random Colors Off
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.front_porch_rainbow
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: light.front_porch
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.front_porch
+      data:
+        transition: 900
+        brightness_pct: 40
+        color_temp: 447

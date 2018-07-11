@@ -21,6 +21,7 @@ discovery:
     - apple_tv
     - harmony
     - deconz
+    - roku
 config:
 
 http:
@@ -29,7 +30,6 @@ http:
   ssl_key: /etc/letsencrypt/live/REDACTED/REDACTED
   base_url: REDACTED
   trusted_networks:
-    - 127.0.0.1
     - REDACTED.0/24
     - REDACTED.0/24
   ip_ban_enabled: true
@@ -173,6 +173,10 @@ vacuum:
     host: REDACTED.228
     username: REDACTED
     password: REDACTED
+
+weather:
+  - platform: darksky
+    api_key: REDACTED
 
 #################################################################
 ## Includes

@@ -437,6 +437,13 @@
       entity_id: light.bathroom_vanity
       data:
         brightness_pct: 40
+    - service: light.turn_on
+      entity_id:
+        - light.globe
+      data:
+        color_temp: 366
+        transition: 60
+        brightness_pct: 15
 
         ##########################################################
         ## Turn on Kitchen at Sunset when Occupied
@@ -508,7 +515,7 @@
       data:
         transition: 60
         brightness_pct: 100
-        effect: colorloop
+        color_temp: 447
     - service: light.turn_on
       entity_id:
         - light.stairs

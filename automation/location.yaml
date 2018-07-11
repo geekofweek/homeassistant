@@ -274,6 +274,13 @@
         - light.garage_light
       data:
        brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.globe
+      data:
+       color_temp: 366
+       brightness_pct: 15
+
 
         ##########################################################
         ## USER1 Home Turn on Lights during Rain
@@ -321,6 +328,12 @@
         - light.dining_room_table
       data:
        brightness_pct: 1
+    - service: light.turn_on
+      entity_id:
+        - light.globe
+      data:
+       color_temp: 366
+       brightness_pct: 15
 
         ##########################################################
         ## USER1 Home Reset Front Porch Brightness
@@ -458,6 +471,12 @@
         - light.garage_light
       data:
        brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.globe
+      data:
+       color_temp: 366
+       brightness_pct: 15
 
         ##########################################################
         ## USER2 Home Turn on Lights during Rain
@@ -505,6 +524,12 @@
         - light.dining_room_table
       data:
        brightness_pct: 1
+    - service: light.turn_on
+      entity_id:
+        - light.globe
+      data:
+       color_temp: 366
+       brightness_pct: 15
 
         ##########################################################
         ## USER2 Home Reset Front Porch Brightness
@@ -615,6 +640,8 @@
       entity_id: group.all_locks
     - service: light.turn_off
       entity_id: group.interior_lights
+    - service: light.turn_off
+      entity_id: light.globe
     - service: switch.turn_off
       entity_id:
         - switch.air_purifier
@@ -831,6 +858,42 @@
       entity_id: switch.backyard_patio_lighting
     - service: switch.turn_on
       entity_id: switch.lower_backyard_lighting
+    - service: light.turn_on
+      entity_id: light.backyard_patio
+      data:
+        brightness_pct: 1
+
+        ##########################################################
+        ## Turn on Backyard Lighting when Friends Visiting
+        ##########################################################
+
+- alias: Location - Turn on Backyard Lighting when Friends Visiting
+
+  trigger:
+    - platform: state
+      entity_id: group.friends_and_family
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id: switch.backyard_patio_lighting
+    - service: switch.turn_on
+      entity_id: switch.lower_backyard_lighting
+    - service: light.turn_on
+      entity_id:
+        - light.backyard_patio
+        - light.backyard_deck
+      data:
+        brightness_pct: 1
 
         ##########################################################
         ## Set USER1 Away Driving

@@ -211,6 +211,9 @@
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
 
   action:
     - service: light.turn_off

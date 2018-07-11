@@ -125,6 +125,12 @@
   device_tracker.REDACTED:
     icon: mdi:human-male
     friendly_name: REDACTED
+  device_tracker.REDACTED:
+    icon: mdi:human-male
+    friendly_name: REDACTED
+  device_tracker.REDACTED:
+    icon: mdi:human-female
+    friendly_name: REDACTED
 
         ##########################################################
         ##  Doors
@@ -370,8 +376,9 @@
     icon: mdi:wall-sconce
   light.back_door:
     icon: mdi:ceiling-light
-  light.back_porch:
+  light.backyard_deck:
     icon: mdi:wall-sconce
+    friendly_name: Backyard Deck
   light.backyard_patio:
     icon: mdi:wall-sconce
   light.living_room_lamps:
@@ -380,6 +387,8 @@
     icon: mdi:ceiling-light
   light.basement_lights:
     icon: mdi:ceiling-light
+  light.globe:
+    icon: mdi:globe-model
 
         ##########################################################
         ## Weather
@@ -657,6 +666,19 @@
   sensor.pihole_ads_percentage_blocked_today_2:
     friendly_name: DNS 2 Percentage Blocked
     icon: mdi:dns
+  sensor.pihole_dns_queries_today:
+    friendly_name: DNS 1 Queries
+    icon: mdi:dns
+  sensor.pihole_dns_queries_today_2:
+    friendly_name: DNS 2 Queries
+    icon: mdi:dns
+
+        ##########################################################
+        ## Weather
+        ##########################################################
+
+  weather.dark_sky:
+    friendly_name: Weather Forecast
 
         ##########################################################
         ## All Groups / Troubleshooting

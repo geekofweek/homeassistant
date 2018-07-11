@@ -26,7 +26,10 @@
     - service: lock.lock
       entity_id: group.all_locks
     - service: light.turn_off
-      entity_id: group.interior_lights
+      entity_id:
+        - group.interior_lights
+        - light.globe
+        - light.backyard_deck
     - service: switch.turn_off
       entity_id:
         - switch.air_purifier
@@ -98,7 +101,10 @@
     - service: lock.lock
       entity_id: group.all_locks
     - service: light.turn_off
-      entity_id: group.interior_lights
+      entity_id:
+        - group.interior_lights
+        - light.globe
+        - light.backyard_deck
     - service: switch.turn_off
       entity_id:
         - switch.air_purifier
@@ -211,6 +217,7 @@
         - light.front_porch
         - light.back_door
         - light.garage_light
+        - light.backyard_deck
     - service: switch.turn_off
       entity_id:
         - switch.lower_backyard_lighting
