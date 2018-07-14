@@ -3,30 +3,6 @@
 #################################################################
 
         ##########################################################
-        ## Motion Alarm
-        ##########################################################
-
-#- alias: Security - Motion Alarm
-#
-#  trigger:
-#    - platform: state
-#      entity_id: group.occupancy
-#      from: 'off'
-#      to: 'on'
-#
-#  condition:
-#    - condition: state
-#      entity_id: group.household
-#      state: 'not_home'
-#    - condition: state
-#      entity_id: input_boolean.enable_security
-#      state: 'on'
-#
-#  action:
-#    service: scene.turn_on
-#    entity_id: scene.security
-
-        ##########################################################
         ## Door Alarm
         ##########################################################
 
@@ -47,8 +23,26 @@
       state: 'on'
 
   action:
-    - service: scene.turn_on
-      entity_id: scene.security
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.alarm_tripped
+    - service: light.turn_on
+      entity_id:
+        - light.hue_lights
+      data:
+       brightness_pct: 100
+       color_name: "red"
+    - service: light.turn_on
+      entity_id:
+        - light.hue_lights_exterior
+        - light.wink_lights
+        - light.wink_exterior
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.hue_lights
+      data:
+       flash: long
     - service: wink.enable_siren
       data:
         entity_id: wink.siren
@@ -66,8 +60,26 @@
       to: 'on'
 
   action:
-    - service: scene.turn_on
-      entity_id: scene.security
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.alarm_tripped
+    - service: light.turn_on
+      entity_id:
+        - light.hue_lights
+      data:
+       brightness_pct: 100
+       color_name: "red"
+    - service: light.turn_on
+      entity_id:
+        - light.hue_lights_exterior
+        - light.wink_lights
+        - light.wink_exterior
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.hue_lights
+      data:
+       flash: long
     - service: wink.enable_siren
       data:
         entity_id: wink.siren

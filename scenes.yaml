@@ -2,25 +2,6 @@
 ## Scenes
 #################################################################
 
-  - name: Security
-    entities:
-        input_boolean.alarm_tripped:
-            state: on
-        light.hue_lights:
-            state: on
-            flash: long
-            brightness_pct: 100
-            xy_color: [0.6531,0.2834]
-        light.hue_lights_exterior:
-            state: on
-            brightness_pct: 100
-        light.wink_lights:
-            state: on
-            brightness_pct: 100
-        light.wink_exterior:
-            state: on
-            brightness_pct: 100
-
   - name: Vacation
     entities:
         light.office_ceiling:

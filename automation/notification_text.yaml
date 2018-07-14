@@ -33,11 +33,58 @@
   action:
     - service: notify.ios_USER1s_iphone
       data:
-        message: Alarm Tripped
+        message: Alarm Has Been Tripped!
         data:
           push:
             category: camera
           entity_id: camera.garage
+    - service: notify.ios_USER2s_iphone
+      data:
+        message: Alarm Has Been Tripped!
+        data:
+          push:
+            category: camera
+          entity_id: camera.garage
+
+    #################################################################
+    ## Alarm Enabled Notification
+    #################################################################
+
+- alias: Notification Text - Alarm Enabled Notification
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.enable_security
+      from: 'off'
+      to: 'on'
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Alarm is ON
+    - service: notify.ios_USER2s_iphone
+      data:
+        message: Alarm is ON
+
+    #################################################################
+    ## Alarm Disabled Notification
+    #################################################################
+
+- alias: Notification Text - Alarm Disabled Notification
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.enable_security
+      from: 'off'
+      to: 'on'
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Alarm is OFF
+    - service: notify.ios_USER2s_iphone
+      data:
+        message: Alarm is OFF
 
         #################################################################
         ## USER1 Home Notification
@@ -159,7 +206,7 @@
 
   trigger:
     - platform: state
-      entity_id: group.alarm_occupancy
+      entity_id: group.occupancy
       from: 'off'
       to: 'on'
 

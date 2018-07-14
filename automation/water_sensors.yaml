@@ -96,10 +96,15 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.hue_lights
+      entity_id:
+        - light.hue_lights
       data:
        brightness_pct: 100
-       color_name: blue
+       color_name: "blue"
+    - service: light.turn_on
+      entity_id:
+        - light.hue_lights
+      data:
        flash: long
 
         ##########################################################
