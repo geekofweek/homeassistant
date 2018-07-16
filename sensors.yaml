@@ -34,6 +34,19 @@
       - volume_size_used
       - drive_smart_status
       - volume_percentage_used
+  - platform: nut
+    name: UPS
+    host: REDACTED.101
+    port: REDACTED
+    alias: REDACTED
+    username: REDACTED
+    password: REDACTED
+    resources:
+      - ups.status.display
+      - battery.charge
+      - battery.runtime
+      - ups.load
+      - input.voltage
   - platform: darksky
     api_key: REDACTED
     monitored_conditions:
@@ -81,6 +94,10 @@
       - dns_queries_today
   - platform: template
     sensors:
+      ups_battery_runtime_mins:
+        friendly_name: "UPS Battery Runtime"
+        unit_of_measurement: 'minutes'
+        value_template: "{{ states('sensor.ups_battery_runtime')|float / 60 }}"
       back_door_sensor_batt:
         value_template: '{{ states.binary_sensor.back_door_opened.attributes.battery_level }}'
         friendly_name: 'Back Door Sensor'

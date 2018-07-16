@@ -75,8 +75,8 @@
   trigger:
     - platform: state
       entity_id: input_boolean.enable_security
-      from: 'off'
-      to: 'on'
+      from: 'on'
+      to: 'off'
 
   action:
     - service: notify.ios_USER1s_iphone
@@ -350,6 +350,22 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: NAS RAID Failing
+
+        ##########################################################
+        ## UPS Power Loss Aleart
+        ##########################################################
+
+- alias: Notification Text - UPS Power Loss Aleart
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.ups_input_voltage
+      below: 80
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Power Outage Detected
 
         #################################################################
         ## Home Assistant Started Notification

@@ -155,6 +155,7 @@
       - group.battery_levels
       - group.dns
       - group.nas
+      - group.ups
       - group.system
 
   auto:
@@ -644,6 +645,13 @@
     - sensor.nas_volume_used_storage
     - sensor.nas_volume_used_backup
     - sensor.nas_system_temperature
+
+  UPS:
+    - sensor.ups_status
+    - sensor.ups_battery_charge
+    - sensor.ups_load
+    - sensor.ups_battery_runtime_mins
+    - sensor.ups_input_voltage
 
   Battery Levels:
     - sensor.roomba_batt
