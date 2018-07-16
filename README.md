@@ -1,7 +1,7 @@
 # Home Assistant
 [Home Assistant](https://home-assistant.io) configuration with 300+ automations.
 
-Home Assistant Version: 0.73.0
+Home Assistant Version: 0.73.1
 
 # Devices
 
