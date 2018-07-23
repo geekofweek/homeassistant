@@ -352,10 +352,10 @@
         message: NAS RAID Failing
 
         ##########################################################
-        ## UPS Power Loss Aleart
+        ## UPS Power Loss Alert
         ##########################################################
 
-- alias: Notification Text - UPS Power Loss Aleart
+- alias: Notification Text - UPS Power Loss Alert
 
   trigger:
     - platform: numeric_state
@@ -366,6 +366,38 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Power Outage Detected
+
+        ##########################################################
+        ## UPS Low Battery Alert
+        ##########################################################
+
+- alias: Notification Text - UPS Low Battery Alert
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.ups_battery_charge
+      below: 15
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: "UPS Battery below 15%"
+
+        ##########################################################
+        ## UPS Low Runtime Alert
+        ##########################################################
+
+- alias: Notification Text - UPS Low Runtime Alert
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.ups_battery_runtime_mins
+      below: 15
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: "15 mins of UPS Battery Remaining!"
 
         #################################################################
         ## Home Assistant Started Notification

@@ -133,7 +133,18 @@
     friendly_name: REDACTED
 
         ##########################################################
-        ##  Doors
+        ##  Hubs
+        ##########################################################
+
+  sensor.myq_status:
+    friendly_name: MyQ Home Hub
+    icon: mdi:garage-alert
+  sensor.hue_hub_status:
+    friendly_name: Hue Hub
+    icon: mdi:ethernet
+
+        ##########################################################
+        ##  Garage Door
         ##########################################################
 
   cover.garage_door:
@@ -141,9 +152,11 @@
   cover.wink_garage_door:
     device_class: garage
     friendly_name: Wink Garage Door
-  cover.myq:
-    device_class: garage
-    friendly_name: MyQ Garage Door
+
+        ##########################################################
+        ##  Doors
+        ##########################################################
+
   binary_sensor.front_door_opened:
     device_class: door
     friendly_name: Front Door
@@ -594,7 +607,7 @@
 
   sensor.nas_status:
     friendly_name: System Status
-    icon: mdi:server-network
+    icon: mdi:nas
   sensor.nas_smart_status_drive_01:
     friendly_name: Drive 1 SMART Status
     icon: mdi:harddisk

@@ -120,7 +120,7 @@
   cameras:
     name: Cameras
     view: yes
-    icon: mdi:camera
+    icon: mdi:cctv
     entities:
       - camera.front_porch
       - camera.garage
@@ -164,7 +164,7 @@
     icon: mdi:car
     entities:
       - group.garage
-      - group.garage_outlets
+      - group.garage_status
       - camera.garage
       - camera.garage_interior
       - group.travel_times
@@ -632,6 +632,8 @@
     - sensor.uptime
     - binary_sensor.wink_hub
     - binary_sensor.wink_relay
+    - sensor.hue_hub_status
+    - sensor.myq_status
     - updater.updater
 
   NAS:
@@ -674,8 +676,9 @@
     - sensor.pihole_ads_blocked_today_2
     - sensor.pihole_ads_percentage_blocked_today_2
 
-  Garage Outlets:
+  Garage Status:
     - switch.myq_garage_outlet
+    - sensor.myq_status
 
   All Input Boolean:
     - input_boolean.USER1_greeting

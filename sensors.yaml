@@ -2,10 +2,24 @@
 ## Sensors
 #################################################################
 
+        ##########################################################
+        ## Moon
+        ##########################################################
+
   - platform: moon
+
+        ##########################################################
+        ## Date and Time
+        ##########################################################
+
   - platform: time_date
     display_options:
       - 'date_time'
+
+        ##########################################################
+        ## Ring Doorbell
+        ##########################################################
+
   - platform: ring
     monitored_conditions:
       - battery
@@ -13,6 +27,11 @@
       - last_ding
       - last_motion
       - volume
+
+        ##########################################################
+        ## NAS
+        ##########################################################
+
   - platform: qnap
     host: REDACTED.101
     port: 443
@@ -34,6 +53,11 @@
       - volume_size_used
       - drive_smart_status
       - volume_percentage_used
+
+        ##########################################################
+        ## UPS
+        ##########################################################
+
   - platform: nut
     name: UPS
     host: REDACTED.101
@@ -47,6 +71,11 @@
       - battery.runtime
       - ups.load
       - input.voltage
+
+        ##########################################################
+        ## Darksky Weather
+        ##########################################################
+
   - platform: darksky
     api_key: REDACTED
     monitored_conditions:
@@ -70,8 +99,18 @@
       - pressure
       - visibility
       - ozone
+
+        ##########################################################
+        ## Uptime
+        ##########################################################
+
   - platform: uptime
     unit_of_measurement: days
+
+        ##########################################################
+        ## Plex
+        ##########################################################
+
   - platform: plex
     name: REDACTED
     host: REDACTED
@@ -80,6 +119,11 @@
     username: REDACTED
     password: REDACTED
     server: REDACTED
+
+        ##########################################################
+        ## Pi Hole
+        ##########################################################
+
   - platform: pi_hole
     host: REDACTED.4
     monitored_conditions:
@@ -92,77 +136,11 @@
       - ads_blocked_today
       - ads_percentage_today
       - dns_queries_today
-  - platform: template
-    sensors:
-      ups_battery_runtime_mins:
-        friendly_name: "UPS Battery Runtime"
-        unit_of_measurement: 'minutes'
-        value_template: "{{ states('sensor.ups_battery_runtime')|float / 60 }}"
-      back_door_sensor_batt:
-        value_template: '{{ states.binary_sensor.back_door_opened.attributes.battery_level }}'
-        friendly_name: 'Back Door Sensor'
-        unit_of_measurement: '%'
-        device_class: battery
-      basement_door_sensor_batt:
-        value_template: '{{ states.binary_sensor.basement_door_opened.attributes.battery_level }}'
-        friendly_name: 'Basement Door Sensor'
-        unit_of_measurement: '%'
-        device_class: battery
-      front_door_sensor_batt:
-        value_template: '{{ states.binary_sensor.front_door_opened.attributes.battery_level }}'
-        friendly_name: 'Front Door Sensor'
-        unit_of_measurement: '%'
-        device_class: battery
-      siren_batt:
-        value_template: '{{ states.wink.siren.attributes.battery_level }}'
-        friendly_name: 'Alarm Siren'
-        unit_of_measurement: '%'
-        device_class: battery
-      front_door_lock_batt:
-        value_template: '{{ states.lock.front_door.attributes.battery_level }}'
-        friendly_name: 'Front Door Lock'
-        unit_of_measurement: '%'
-        device_class: battery
-      back_door_lock_batt:
-        value_template: '{{ states.lock.back_door.attributes.battery_level }}'
-        friendly_name: 'Back Door Lock'
-        device_class: battery
-        unit_of_measurement: '%'
-      basement_door_lock_batt:
-        value_template: '{{ states.lock.basement_door.attributes.battery_level }}'
-        friendly_name: 'Basement Door Lock'
-        unit_of_measurement: '%'
-        device_class: battery
-      basement_drain_water_sensor_batt:
-        value_template: '{{ states.binary_sensor.basement_drain_water_sensor_liquid_detected.attributes.battery_level }}'
-        friendly_name: 'Basement Drain Water Sensor'
-        unit_of_measurement: '%'
-        device_class: battery
-      sump_pump_water_sensor_batt:
-        value_template: '{{ states.binary_sensor.sump_pump_water_sensor_liquid_detected.attributes.battery_level }}'
-        friendly_name: 'Sump Pump Water Sensor'
-        unit_of_measurement: '%'
-        device_class: battery
-      roomba_batt:
-        value_template: '{{ states.vacuum.roomba.attributes.battery_level }}'
-        friendly_name: 'Roomba'
-        unit_of_measurement: '%'
-        device_class: battery
-  - platform: template
-    sensors:
-      media_center:
-        value_template: '{{ states.remote.media_center.attributes.current_activity }}'
-        friendly_name: 'Media Center'
-  - platform: template
-    sensors:
-      USER2_work_offset:
-        entity_id: sensor.date__time
-        value_template: '{{ (as_timestamp(states.calendar.work.attributes.start_time) - as_timestamp(now()) ) }}'
-  - platform: template
-    sensors:
-      holidays_calendar:
-        friendly_name: 'Holiday'
-        value_template: '{{ states.calendar.holidays_in_united_states.attributes.message }}'
+
+        ##########################################################
+        ## Waze Travel Time
+        ##########################################################
+
   - platform: waze_travel_time
     name: USER2 To Home
     origin: device_tracker.USER2DEVICE
@@ -188,3 +166,119 @@
     origin: device_tracker.USER2DEVICE
     destination: zone.REDACTED
     region: 'US'
+
+        ##########################################################
+        ## Template Sensors
+        ##########################################################
+
+  - platform: template
+    sensors:
+      ups_battery_runtime_mins:
+        friendly_name: "UPS Battery Runtime"
+        unit_of_measurement: 'minutes'
+        value_template: "{{ states('sensor.ups_battery_runtime')|float / 60 }}"
+  - platform: template
+    sensors:
+      back_door_sensor_batt:
+        value_template: '{{ states.binary_sensor.back_door_opened.attributes.battery_level }}'
+        friendly_name: 'Back Door Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      basement_door_sensor_batt:
+        value_template: '{{ states.binary_sensor.basement_door_opened.attributes.battery_level }}'
+        friendly_name: 'Basement Door Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      front_door_sensor_batt:
+        value_template: '{{ states.binary_sensor.front_door_opened.attributes.battery_level }}'
+        friendly_name: 'Front Door Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      siren_batt:
+        value_template: '{{ states.wink.siren.attributes.battery_level }}'
+        friendly_name: 'Alarm Siren'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      front_door_lock_batt:
+        value_template: '{{ states.lock.front_door.attributes.battery_level }}'
+        friendly_name: 'Front Door Lock'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      back_door_lock_batt:
+        value_template: '{{ states.lock.back_door.attributes.battery_level }}'
+        friendly_name: 'Back Door Lock'
+        device_class: battery
+        unit_of_measurement: '%'
+  - platform: template
+    sensors:
+      basement_door_lock_batt:
+        value_template: '{{ states.lock.basement_door.attributes.battery_level }}'
+        friendly_name: 'Basement Door Lock'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      basement_drain_water_sensor_batt:
+        value_template: '{{ states.binary_sensor.basement_drain_water_sensor_liquid_detected.attributes.battery_level }}'
+        friendly_name: 'Basement Drain Water Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      sump_pump_water_sensor_batt:
+        value_template: '{{ states.binary_sensor.sump_pump_water_sensor_liquid_detected.attributes.battery_level }}'
+        friendly_name: 'Sump Pump Water Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      roomba_batt:
+        value_template: '{{ states.vacuum.roomba.attributes.battery_level }}'
+        friendly_name: 'Roomba'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      media_center:
+        value_template: '{{ states.remote.media_center.attributes.current_activity }}'
+        friendly_name: 'Media Center'
+  - platform: template
+    sensors:
+      USER2_work_offset:
+        entity_id: sensor.date__time
+        value_template: '{{ (as_timestamp(states.calendar.work.attributes.start_time) - as_timestamp(now()) ) }}'
+  - platform: template
+    sensors:
+      holidays_calendar:
+        friendly_name: 'Holiday'
+        value_template: '{{ states.calendar.holidays_in_united_states.attributes.message }}'
+  - platform: template
+    sensors:
+      myq_status:
+        friendly_name: "MyQ Home Hub"
+        value_template: >-
+          {% if is_state('device_tracker.myqgaragehomehub', 'home') %}
+            online
+          {% else %}
+            offline
+          {% endif %}
+  - platform: template
+    sensors:
+      hue_hub_status:
+        friendly_name: "Hue Hub"
+        value_template: >-
+          {% if is_state('device_tracker.hue_hub', 'home') %}
+            online
+          {% else %}
+            offline
+          {% endif %}
