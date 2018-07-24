@@ -1,7 +1,7 @@
 # Home Assistant
 [Home Assistant](https://home-assistant.io) configuration with 300+ automations.
 
-Home Assistant Version: 0.74
+Home Assistant Version: 0.74.1
 
 # Devices
 
@@ -181,7 +181,7 @@ The [Home Assistant Management Tool](https://github.com/geekofweek/homeassistant
     - Backs up tar file to local workstation (I use a Dropbox Folder)
     - rsyncs config directory from local workstation (Dropbox Folder)
 2.	Restart Home Assistant
-    - Restarts the Docker container and restarts
+    - Restarts the Home Assistant Docker container, thus restarting Home Assistant
 3. 	Stop Home Assistant
     - Stops the Home Assistant Docker Container
 4.	Start Home Assistant
