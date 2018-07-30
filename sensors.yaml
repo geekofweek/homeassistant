@@ -268,9 +268,9 @@
         friendly_name: "MyQ Home Hub"
         value_template: >-
           {% if is_state('device_tracker.myqgaragehomehub', 'home') %}
-            online
+            Online
           {% else %}
-            offline
+            Offline
           {% endif %}
   - platform: template
     sensors:
@@ -278,7 +278,7 @@
         friendly_name: "Hue Hub"
         value_template: >-
           {% if is_state('device_tracker.hue_hub', 'home') %}
-            online
+            Online
           {% else %}
-            offline
+            Offline
           {% endif %}

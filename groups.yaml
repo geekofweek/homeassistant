@@ -151,6 +151,7 @@
       - group.occupancy
       - group.doors
       - group.door_bell
+      - group.smoke_alarm
       - group.water_sensors
       - group.battery_levels
       - group.dns
@@ -326,6 +327,7 @@
       - binary_sensor.front_door_opened
       - binary_sensor.living_room_occupancy
       - sensor.living_room_temperature
+      - sensor.living_room_nest_protect_color_status
 
   Bedroom:
     control: hidden
@@ -337,6 +339,7 @@
       - light.bedroom_closet_ceiling
       - binary_sensor.bedroom_occupancy
       - sensor.bedroom_temperature
+      - sensor.bedroom_nest_protect_color_status
 
   Kitchen:
     control: hidden
@@ -348,6 +351,7 @@
       - binary_sensor.back_door_opened
       - binary_sensor.kitchen_occupancy
       - sensor.kitchen_temperature
+      - sensor.kitchen_nest_protect_color_status
 
   Bathroom:
     control: hidden
@@ -389,6 +393,7 @@
       - binary_sensor.laundry_room_occupancy
       - sensor.basement_temperature
       - sensor.laundry_room_temperature
+      - sensor.basement_nest_protect_color_status
 
   Dining Room:
     control: hidden
@@ -629,12 +634,18 @@
     - sensor.USER2_to_REDACTED
 
   System:
+    - updater.updater
     - sensor.uptime
     - binary_sensor.wink_hub
     - binary_sensor.wink_relay
     - sensor.hue_hub_status
     - sensor.myq_status
-    - updater.updater
+    - binary_sensor.living_room_nest_protect_online
+    - binary_sensor.bedroom_nest_protect_online
+    - binary_sensor.hallway_nest_protect_online
+    - binary_sensor.kitchen_nest_protect_online
+    - binary_sensor.upstairs_nest_protect_online
+    - binary_sensor.basement_nest_protect_online
 
   NAS:
     - sensor.nas_status
@@ -667,6 +678,12 @@
     - sensor.basement_door_sensor_batt
     - sensor.basement_drain_water_sensor_batt
     - sensor.sump_pump_water_sensor_batt
+    - sensor.living_room_nest_protect_battery_health
+    - sensor.bedroom_nest_protect_battery_health
+    - sensor.hallway_nest_protect_battery_health
+    - sensor.kitchen_nest_protect_battery_health
+    - sensor.upstairs_nest_protect_battery_health
+    - sensor.basement_nest_protect_battery_health
 
   DNS:
     - sensor.pihole_dns_queries_today
@@ -679,6 +696,26 @@
   Garage Status:
     - switch.myq_garage_outlet
     - sensor.myq_status
+
+  Smoke Alarm:
+    - sensor.living_room_nest_protect_color_status
+    - sensor.bedroom_nest_protect_color_status
+    - sensor.kitchen_nest_protect_color_status
+    - sensor.hallway_nest_protect_color_status
+    - sensor.upstairs_nest_protect_color_status
+    - sensor.basement_nest_protect_color_status
+#    - sensor.living_room_nest_protect_smoke_status
+#    - sensor.bedroom_nest_protect_smoke_status
+#    - sensor.kitchen_nest_protect_smoke_status
+#    - sensor.hallway_nest_protect_smoke_status
+#    - sensor.upstairs_nest_protect_smoke_status
+#    - sensor.basement_nest_protect_smoke_status
+#    - sensor.living_room_nest_protect_co_status
+#    - sensor.bedroom_nest_protect_co_status
+#    - sensor.kitchen_nest_protect_co_status
+#    - sensor.hallway_nest_protect_co_status
+#    - sensor.upstairs_nest_protect_co_status
+#    - sensor.basement_nest_protect_co_status
 
   All Input Boolean:
     - input_boolean.USER1_greeting

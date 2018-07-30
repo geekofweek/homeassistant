@@ -87,6 +87,9 @@
       - condition: state
         entity_id: device_tracker.USER2DEVICE
         state: 'work'
+      - condition: state
+        entity_id: device_tracker.USER2DEVICE
+        state: 'lake'
 
   action:
     - service: vacuum.turn_on
@@ -122,6 +125,9 @@
       - condition: state
         entity_id: device_tracker.USER2DEVICE
         state: 'work'
+      - condition: state
+        entity_id: device_tracker.USER2DEVICE
+        state: 'lake'
 
   action:
     - service: vacuum.turn_on
