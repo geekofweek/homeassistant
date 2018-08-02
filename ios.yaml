@@ -1,0 +1,69 @@
+#################################################################
+## iOS App Configs
+#################################################################
+
+  push:
+    categories:
+      - name: Alarm
+        identifier: 'alarm'
+        actions:
+          - identifier: 'SOUND_ALARM'
+            title: 'Sound Alarm'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: yes
+            behavior: 'default'
+          - identifier: 'SILENCE_ALARM'
+            title: 'Silence Alarm'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: no
+            behavior: 'default'
+      - name: Locks
+        identifier: 'locks'
+        actions:
+          - identifier: 'UNLOCK_DOORS'
+            title: 'Unlock Doors'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: yes
+            behavior: 'default'
+          - identifier: 'LOCK_DOORS'
+            title: 'Lock Doors'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: no
+            behavior: 'default'
+      - name: Garage
+        identifier: 'garage'
+        actions:
+          - identifier: 'CLOSE_GARAGE'
+            title: 'Close Garage'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: yes
+            behavior: 'default'
+          - identifier: 'OEPN_GARAGE'
+            title: 'Open Garage'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: no
+            behavior: 'default'
+      - name: Fireplace
+        identifier: 'fireplace'
+        actions:
+          - identifier: 'FIREPLACE_OFF'
+            title: 'Turn Off Fireplace'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: yes
+            behavior: 'default'
+      - name: Smoke Alarm
+        identifier: 'smokealarm'
+        actions:
+          - identifier: 'SMOKEALARM_OFF'
+            title: 'Disable Smoke Alarm (HA Only)'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: yes
+            behavior: 'default'

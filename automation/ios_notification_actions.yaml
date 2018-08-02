@@ -1,0 +1,138 @@
+#################################################################
+## iOS Actionable Notifications
+#################################################################
+
+        #################################################################
+        ## Unlock Doors
+        #################################################################
+
+- alias: iOS Action - Unlock Doors
+
+  trigger:
+    - platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: UNLOCK_DOORS
+
+  action:
+    - service: lock.unlock
+      entity_id:
+        - lock.back_door
+        - lock.front_door
+
+        #################################################################
+        ## Lock Doors
+        #################################################################
+
+- alias: iOS Action - Lock Doors
+
+  trigger:
+    - platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: LOCK_DOORS
+
+  action:
+    - service: lock.lock
+      entity_id:
+        - group.all_locks
+
+        #################################################################
+        ## Close Garage
+        #################################################################
+
+- alias: iOS Action - Close Garage
+
+  trigger:
+    - platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: CLOSE_GARAGE
+
+  action:
+    - service: cover.close_cover
+      entity_id: cover.garage_door
+
+        #################################################################
+        ## Open Garage
+        #################################################################
+
+- alias: iOS Action - Close Garage
+
+  trigger:
+    - platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: OPEN_GARAGE
+
+  action:
+    - service: cover.open_cover
+      entity_id: cover.garage_door
+
+        #################################################################
+        ## Sound Alarm
+        #################################################################
+
+- alias: iOS Action - Sound Alarm
+
+  trigger:
+    - platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: SOUND_ALARM
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.alarm_tripped
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.panic_mode
+
+        #################################################################
+        ## Sound Alarm
+        #################################################################
+
+- alias: iOS Action - Sound Alarm
+
+  trigger:
+    - platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: SOUND_ALARM
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.alarm_tripped
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.panic_mode
+
+        #################################################################
+        ## Fireplace Off
+        #################################################################
+
+- alias: iOS Action - Fireplace Off
+
+  trigger:
+    - platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: FIREPLACE_OFF
+
+  action:
+    - service: switch.turn_off
+      entity_id: switch.fireplace
+
+        #################################################################
+        ## Disable Fire Alarm
+        #################################################################
+
+- alias: iOS Action - Disable Smoke Alarm
+
+  trigger:
+    - platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: SMOKEALARM_OFF
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.disable_smoke_alarm

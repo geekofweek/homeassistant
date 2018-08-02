@@ -218,7 +218,6 @@
       - input_boolean.disable_occupancy
       - input_boolean.disable_rainy_day
       - input_boolean.disable_water_sensors
-      - input_boolean.disable_portable_ac
 
   Location Controls:
     control: hidden
@@ -366,8 +365,7 @@
       - light.office_ceiling
       - light.office_lamp
       - switch.air_purifier
-      - input_boolean.portable_ac
-  #    - switch.office_fan
+      - switch.office_fan
       - binary_sensor.office_occupancy
       - sensor.office_temperature
 
@@ -457,6 +455,7 @@
       - automation.security__door_alarm
       - input_boolean.panic_mode
       - input_boolean.alarm_tripped
+      - input_boolean.disable_smoke_alarm
       - wink.siren
 
   Thermostat:
@@ -464,18 +463,17 @@
     entities:
       - climate.main_floor
       - climate.window_unit
-      - input_boolean.portable_ac
       - sensor.dark_sky_temperature
       - input_boolean.thermostat_away
       - group.summer_mode
       - group.winter_mode
+      - input_boolean.spring_fall_mode
 
   Climate Control:
     control: hidden
     entities:
       - climate.main_floor
       - climate.window_unit
-      - input_boolean.portable_ac
 
   Summer Mode:
     - automation.climate__turn_on_summer
@@ -738,6 +736,7 @@
     - input_boolean.guest_mode
     - input_boolean.vacation_mode
     - input_boolean.bedtime
+    - input_boolean.spring_fall_mode
     - input_boolean.unlock_doors
     - input_boolean.lock_doors
     - input_boolean.interior_holiday
@@ -767,7 +766,7 @@
     - input_boolean.disable_rainy_day
     - input_boolean.disable_voice_greeting
     - input_boolean.disable_water_sensors
-    - input_boolean.disable_portable_ac
+    - input_boolean.disable_smoke_alarm
 
   Calendars:
     - calendar.holidays_in_united_states

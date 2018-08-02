@@ -27,6 +27,8 @@
       entity_id: group.summer_mode
 #    - service: homeassistant.turn_on
 #      entity_id: group.winter_mode
+#    - service: homeassistant.turn_on
+#      entity_id: input_boolean.spring_fall_mode
 
         ##########################################################
         ## Set Thermostat Away
@@ -56,6 +58,8 @@
       entity_id: group.summer_mode
     - service: homeassistant.turn_off
       entity_id: group.winter_mode
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.spring_fall_mode
     - service: climate.set_operation_mode
       data:
         entity_id: climate.window_unit
@@ -94,7 +98,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.dark_sky_temperature
-      above: 70
+      above: 68
 
   action:
     - service: homeassistant.turn_off
@@ -109,7 +113,12 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.dark_sky_temperature
-      below: 70
+      below: 68
+
+  condition:
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
 
   action:
     - service: homeassistant.turn_on
@@ -140,6 +149,11 @@
     - platform: numeric_state
       entity_id: sensor.dark_sky_temperature
       above: 65
+
+  condition:
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
 
   action:
     - service: homeassistant.turn_on
@@ -364,10 +378,10 @@
         temperature: '77'
 
         ##########################################################
-        ## If USER1 is not Home Override Upstairs Mode
+        ## If USER2 is Home Override Upstairs Winter Mode
         ##########################################################
 
-- alias: Climate - Override Upstairs Mode
+- alias: Climate - Override Upstairs Winter Mode
 
   trigger:
     - platform: time
@@ -386,6 +400,43 @@
     - condition: state
       entity_id: device_tracker.USER2DEVICE
       state: 'home'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+
+  action:
+    - service: climate.set_hold_mode
+      data:
+        entity_id: climate.main_floor
+        hold_mode: "home"
+
+        ##########################################################
+        ## If USER1 is not Home Override Upstairs Summer Mode
+        ##########################################################
+
+- alias: Climate - Override Upstairs Summer Mode
+
+  trigger:
+    - platform: time
+      at: '12:01'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.thermostat_away
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.summer_mode
+      state: 'on'
+    - condition: state
+      entity_id: device_tracker.USER1DEVICE
+      state: 'not_home'
     - condition: time
       weekday:
         - mon
@@ -691,269 +742,6 @@
         operation_mode: 'off'
 
 #################################################################
-## Portable AC
-#################################################################
-
-        ##########################################################
-        ## Portable AC Input Boolean On
-        ##########################################################
-
-- alias: Climate - Portable AC Input Boolean On
-
-  trigger:
-    - platform: state
-      entity_id: input_boolean.portable_ac
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_portable_ac
-      state: 'off'
-
-  action:
-    - service: remote.send_command
-      entity_id: remote.office_tv
-      data:
-        device: 54737244
-        command: PowerToggle
-#    - delay: '00:00:04'
-#    - service: remote.send_command
-#      entity_id: remote.office_tv
-#      data:
-#        device: 54737244
-#        command: Mode
-#        num_repeats: 3
-#        delay_secs: 1
-    - delay: '00:00:04'
-    - service: remote.send_command
-      entity_id: remote.office_tv
-      data:
-        device: 54737244
-        command: TempUp
-        num_repeats: 4
-        delay_secs: 1
-
-        ##########################################################
-        ## Portable AC Input Boolean Off
-        ##########################################################
-
-- alias: Climate - Portable AC Input Boolean Off
-
-  trigger:
-    - platform: state
-      entity_id: input_boolean.portable_ac
-      from: 'on'
-      to: 'off'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_portable_ac
-      state: 'off'
-
-  action:
-    - service: remote.send_command
-      entity_id: remote.office_tv
-      data:
-        device: 54737244
-        command: PowerToggle
-        num_repeats: 2
-        delay_secs: 2
-
-        ##########################################################
-        ## Turn on Portable AC at 10a
-        ##########################################################
-
-- alias: Climate - Turn on Portable AC at 10a
-
-  trigger:
-    - platform: time
-      at: '10:00'
-
-  condition:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: device_tracker.USER1DEVICE
-      state: 'home'
-    - condition: state
-      entity_id: input_boolean.disable_portable_ac
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.portable_ac
-      state: 'off'
-    - condition: state
-      entity_id: group.summer_mode
-      state: 'on'
-    - condition: numeric_state
-      entity_id: sensor.dark_sky_temperature
-      above: 68
-    - condition: time
-      weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
-
-  action:
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.portable_ac
-
-        ##########################################################
-        ## Turn off Portable AC at 10p
-        ##########################################################
-
-- alias: Climate - Turn off Portable AC at 10p
-
-  trigger:
-    - platform: time
-      at: '22:00'
-
-  condition:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: group.friends_and_family
-      state: 'not_home'
-    - condition: state
-      entity_id: group.overnight_guests
-      state: 'not_home'
-    - condition: state
-      entity_id: input_boolean.disable_portable_ac
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.portable_ac
-      state: 'on'
-
-  action:
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.portable_ac
-
-        ##########################################################
-        ## Turn on Portable AC when Office is Occupied
-        ##########################################################
-
-- alias: Climate - Turn on Portable AC when Office is Occupied
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.office_occupancy
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_occupancy
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.disable_portable_ac
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.portable_ac
-      state: 'off'
-    - condition: state
-      entity_id: device_tracker.USER1DEVICE
-      state: 'home'
-
-  action:
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.portable_ac
-
-        ##########################################################
-        ## Turn off Portable AC when Office is Unoccupied
-        ##########################################################
-
-- alias: Occupancy - Turn off Office Fans when Unoccupied
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.office_occupancy
-      from: 'on'
-      to: 'off'
-      for:
-        hours: 0
-        minutes: 60
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_occupancy
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.disable_portable_ac
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.portable_ac
-      state: 'on'
-
-  action:
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.portable_ac
-
-        ##########################################################
-        ## Portable AC Away Mode
-        ##########################################################
-
-- alias: Climate - Portable AC Away Mode
-
-  trigger:
-    - platform: state
-      entity_id: group.household
-      from: 'home'
-      to: 'not_home'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_home_away
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.disable_portable_ac
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.portable_ac
-      state: 'on'
-
-  action:
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.portable_ac
-
-        ##########################################################
-        ## Turn Off Portable AC when USER1 Leaves
-        ##########################################################
-
-- alias: Climate - Turn Off Portable AC when USER1 Leaves
-
-  trigger:
-    - platform: state
-      entity_id: input_boolean.USER1_away
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_portable_ac
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.portable_ac
-      state: 'on'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: group.friends_and_family
-      state: 'not_home'
-    - condition: state
-      entity_id: group.overnight_guests
-      state: 'not_home'
-
-  action:
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.portable_ac
-
-#################################################################
 ## Fireplace
 #################################################################
 
@@ -1023,3 +811,54 @@
       data:
         entity_id: climate.main_floor
         hold_mode: None
+
+        ##########################################################
+        ## Summer Mode On Everything Else Off
+        ##########################################################
+
+- alias: Climate - Summer Mode On Everything Else Off
+
+  trigger:
+    - platform: state
+      entity_id: group.summer_mode
+      to: 'on'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - group.winter_mode
+        - input_boolean.spring_fall_mode
+
+        ##########################################################
+        ## Winter Mode On Everything Else Off
+        ##########################################################
+
+- alias: Climate - Winter Mode On Everything Else Off
+
+  trigger:
+    - platform: state
+      entity_id: group.winter_mode
+      to: 'on'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - group.summer_mode
+        - input_boolean.spring_fall_mode
+
+        ##########################################################
+        ## Spring / Fall Mode On Everything Else Off
+        ##########################################################
+
+- alias: Climate - Spring / Fall Mode On Everything Else Off
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.spring_fall_mode
+      to: 'on'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - group.winter_mode
+        - group.summer_mode
