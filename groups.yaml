@@ -464,7 +464,8 @@
       - climate.main_floor
       - climate.window_unit
       - sensor.dark_sky_temperature
-      - input_boolean.thermostat_away
+      - sensor.thermostat_climate_mode
+      - input_select.thermostat_mode
       - group.summer_mode
       - group.winter_mode
       - input_boolean.spring_fall_mode
@@ -474,6 +475,7 @@
     entities:
       - climate.main_floor
       - climate.window_unit
+      - sensor.dark_sky_temperature
 
   Summer Mode:
     - automation.climate__turn_on_summer

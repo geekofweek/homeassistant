@@ -104,7 +104,36 @@
       - sensor.kitchen_nest_protect_battery_health
       - sensor.upstairs_nest_protect_battery_health
       - sensor.basement_nest_protect_battery_health
+      - binary_sensor.wink_hub
+      - binary_sensor.wink_relay
+      - sensor.hue_hub_status
+      - sensor.myq_status
+      - binary_sensor.living_room_nest_protect_online
+      - binary_sensor.bedroom_nest_protect_online
+      - binary_sensor.hallway_nest_protect_online
+      - binary_sensor.kitchen_nest_protect_online
+      - binary_sensor.upstairs_nest_protect_online
+      - binary_sensor.basement_nest_protect_online
+      - sensor.living_room_nest_protect_color_status
+      - sensor.bedroom_nest_protect_color_status
+      - sensor.kitchen_nest_protect_color_status
+      - sensor.hallway_nest_protect_color_status
+      - sensor.upstairs_nest_protect_color_status
+      - sensor.basement_nest_protect_color_status
+      - sensor.living_room_nest_protect_battery_health
+      - sensor.bedroom_nest_protect_battery_health
+      - sensor.hallway_nest_protect_battery_health
+      - sensor.kitchen_nest_protect_battery_health
+      - sensor.upstairs_nest_protect_battery_health
+      - sensor.basement_nest_protect_battery_health
+      - sensor.ups_status
+      - sensor.ups_battery_charge
+      - sensor.ups_load
+      - sensor.ups_battery_runtime_mins
+      - sensor.ups_input_voltage
+      - group.doors
+      - sensor.thermostat_climate_mode
+
 #Temp until DB purge
-      - sensor.home_eta
-      - binary_sensor.home_away
-      - group.smoke_alarm
+      - device_tracker.garage_door
+      - input_select.thermostat_mode
