@@ -69,6 +69,29 @@
       entity_id: input_boolean.vacation_mode
 
         ##########################################################
+        ## Turn on Vacation Mode when Thermostat set to Vacation
+        ##########################################################
+
+- alias: Vacation - Turn on Vacation Mode when Thermostat set to Vacation
+
+  trigger:
+    - platform: state
+      entity_id: sensor.thermostat_climate_mode
+      to: 'Vacation'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.vacation_mode
+
+        ##########################################################
         ## Turn on Vacation Mode when at the Lake
         ##########################################################
 
@@ -139,7 +162,7 @@
 
   trigger:
     - platform: time
-      at: '00:12'
+      at: '23:01'
 
   condition:
     - condition: state
@@ -147,8 +170,14 @@
       state: 'on'
 
   action:
+    - delay: ‘00:{{ range(1,59) | random | int }}:00’
     - service: light.turn_off
-      entity_id: light.kitchen_sink, light.living_room_lamps
+      entity_id:
+        - light.kitchen_sink
+    - delay: ‘00:{{ range(1,59) | random | int }}:00’
+    - service: light.turn_off
+      entity_id:
+        light.living_room_lamps
 
         ##########################################################
         ## Vacation Mode Lights off at 10p
@@ -158,7 +187,7 @@
 
   trigger:
     - platform: time
-      at: '22:07'
+      at: '22:01'
 
   condition:
     - condition: state
@@ -166,8 +195,14 @@
       state: 'on'
 
   action:
+    - delay: ‘00:{{ range(1,59) | random | int }}:00’
     - service: light.turn_off
-      entity_id: light.office_ceiling, light.bedroom_closet_ceiling
+      entity_id:
+        - light.bedroom_closet_ceiling
+    - delay: ‘00:{{ range(1,59) | random | int }}:00’
+    - service: light.turn_off
+      entity_id:
+        - light.office_ceiling
 
         ##########################################################
         ## Vacation Mode Disable Automations

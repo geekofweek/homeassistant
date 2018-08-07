@@ -322,6 +322,7 @@
       - light.globe
       - switch.fireplace
       - switch.living_room_ceiling_fan
+      - vacuum.roomba
       - lock.front_door
       - binary_sensor.front_door_opened
       - binary_sensor.living_room_occupancy
@@ -462,10 +463,9 @@
     control: hidden
     entities:
       - climate.main_floor
-      - climate.window_unit
-      - sensor.dark_sky_temperature
       - sensor.thermostat_climate_mode
       - input_select.thermostat_mode
+      - sensor.dark_sky_temperature
       - group.summer_mode
       - group.winter_mode
       - input_boolean.spring_fall_mode
@@ -474,7 +474,7 @@
     control: hidden
     entities:
       - climate.main_floor
-      - climate.window_unit
+      - sensor.thermostat_climate_mode
       - sensor.dark_sky_temperature
 
   Summer Mode:

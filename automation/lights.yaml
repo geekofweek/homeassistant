@@ -242,6 +242,11 @@
    - platform: time
      at: '02:00'
 
+  condition:
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+
   action:
     - service: switch.turn_off
       entity_id: switch.front_yard_lighting
@@ -439,7 +444,7 @@
         - light.globe
       data:
        color_temp: 366
-       brightness_pct: 15
+       brightness_pct: 20
 
         ##########################################################
         ## Turn off Lights at Sunrise
