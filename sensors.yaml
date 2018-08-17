@@ -35,8 +35,8 @@
   - platform: qnap
     host: REDACTED.101
     port: 443
-    username: REDACTED
-    password: REDACTED
+    username: !secret qnap_username
+    password: !secret qnap_password
     ssl: true
     verify_ssl: false
     monitored_conditions:
@@ -63,8 +63,8 @@
     host: REDACTED.101
     port: REDACTED
     alias: REDACTED
-    username: REDACTED
-    password: REDACTED
+    username: !secret nut_username
+    password: !secret nut_password
     resources:
       - ups.status.display
       - battery.charge
@@ -77,7 +77,7 @@
         ##########################################################
 
   - platform: darksky
-    api_key: REDACTED
+    api_key: !secret darksky_api_key
     monitored_conditions:
       - summary
       - minutely_summary
@@ -112,13 +112,13 @@
         ##########################################################
 
   - platform: plex
-    name: REDACTED
-    host: REDACTED
+    name: !secret plex_name
+    host: !secret plex_host
     port: REDACTED
     ssl: true
-    username: REDACTED
-    password: REDACTED
-    server: REDACTED
+    username: !secret plex_username
+    password: !secret plex_password
+    server: !secret plex_server
 
         ##########################################################
         ## Pi Hole

@@ -105,6 +105,89 @@
         - light.garage_light
       data:
        brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.globe
+      data:
+       color_temp: 366
+       brightness_pct: 20
+
+        ##########################################################
+        ## House Guest Door Code Alarm / Thermostat
+        ##########################################################
+
+- alias: Guest - House Guest Door Code Alarm / Thermostat
+
+  trigger:
+    - platform: state
+      entity_id: group.guest_door_code
+      from: 'off'
+      to: 'on'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.enable_security
+        - input_boolean.thermostat_away
+
+        ##########################################################
+        ## House Guest Door Code Lights
+        ##########################################################
+
+- alias: Guest - House Guest Door Code Lights
+
+  trigger:
+    - platform: state
+      entity_id: group.guest_door_code
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.house_guest_away
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.kitchen_sink
+        - light.living_room_lamps
+        - light.hallway_light
+        - light.dining_room_table
+        - light.stairs
+        - light.guest_bedroom_lights
+      data:
+       color_temp: 447
+       brightness_pct: 50
+    - service: light.turn_on
+      entity_id: light.media_center_lighting
+      data:
+       transition: 5
+       effect: random
+       brightness_pct: 75
+    - service: light.turn_on
+      entity_id: light.kitchen_cabinets
+      data:
+       brightness_pct: 1
+    - service: light.turn_on
+      entity_id:
+        - light.front_porch
+        - light.back_door
+        - light.garage_light
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.globe
+      data:
+       color_temp: 366
+       brightness_pct: 20
 
         ##########################################################
         ## House Guest Home Reset Front Porch Brightness
@@ -131,13 +214,13 @@
       entity_id: light.front_porch
       data:
         brightness_pct: 40
-        transition: 60
+        transition: 120
 
         ##########################################################
-        ## House Guest Home Reset Back Door Brightness
+        ## House Guest Home Reset Back Door / Garage Brightness
         ##########################################################
 
-- alias: Guest - House Guest Reset Back Door Brightness
+- alias: Guest - House Guest Reset Back Door / Garage Brightness
 
   trigger:
     - platform: state
@@ -158,13 +241,17 @@
       entity_id: light.back_door
       data:
         brightness_pct: 1
-        transition: 60
+        transition: 120
+    - service: light.turn_on
+      entity_id: light.garage_light
+      data:
+       brightness_pct: 1
 
         ##########################################################
-        ## Set House Guest Away after 5 Min
+        ## Set House Guest Away after 15 Min
         ##########################################################
 
-- alias: Guest - Set House Guest Away after 5 Mins
+- alias: Guest - Set House Guest Away after 15 Mins
 
   trigger:
     - platform: state
@@ -173,7 +260,7 @@
       to: 'not_home'
       for:
         hours: 0
-        minutes: 5
+        minutes: 15
         seconds: 0
 
   action:
@@ -181,7 +268,7 @@
       entity_id: input_boolean.house_guest_away
 
         ##########################################################
-        ## Set House Guest after 10 Mins
+        ## Set House Guest Home after 10 Mins
         ##########################################################
 
 - alias: Guest - Set House Guest Home after 10 Mins
@@ -199,48 +286,6 @@
   action:
     - service: homeassistant.turn_off
       entity_id: input_boolean.house_guest_away
-
-        #################################################################
-        ## House Guest Has Arrived Notification
-        #################################################################
-
-- alias: Guest - House Guest Has Arrived Notification
-
-  trigger:
-    - platform: state
-      entity_id: group.house_guest
-      from: 'not_home'
-      to: 'home'
-
-  action:
-    - service: notify.ios_USER1s_iphone
-      data:
-        message: House Guest has Arrived
-        data:
-          push:
-            category: camera
-          entity_id: camera.garage_camera
-
-        #################################################################
-        ## House Guest Has Departed Notification
-        #################################################################
-
-- alias: Guest - House Guest Has Departed Notification
-
-  trigger:
-    - platform: state
-      entity_id: group.house_guest
-      from: 'home'
-      to: 'not_home'
-
-  action:
-    - service: notify.ios_USER1s_iphone
-      data:
-        message: House Guest Has Departed
-        data:
-          push:
-            category: camera
-          entity_id: camera.garage_camera
 
         ##########################################################
         ## Enable Guest Mode Before Midnight

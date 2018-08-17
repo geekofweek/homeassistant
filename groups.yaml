@@ -247,17 +247,17 @@
   Household:
     - device_tracker.USER1DEVICE
     - device_tracker.USER2DEVICE
-  #  - group.house_guest
+    - group.house_guest
 
   House Guest:
   #  - device_tracker.REDACTED
   #  - device_tracker.REDACTED
-  #  - device_tracker.REDACTED
-  #  - device_tracker.REDACTED
-  #  - device_tracker.REDACTED
-  #  - device_tracker.REDACTED
-  #  - device_tracker.REDACTED
-  #  - device_tracker.REDACTED
+    - device_tracker.REDACTED
+    - device_tracker.REDACTED
+    - device_tracker.REDACTED
+    - device_tracker.REDACTED
+    - device_tracker.REDACTED
+    - device_tracker.REDACTED
 
   Device Location:
     - device_tracker.USER1siphone
@@ -562,6 +562,11 @@
     - binary_sensor.USER2_front_door_code
     - binary_sensor.USER2_back_door_code
     - binary_sensor.USER2_basement_door_code
+
+  Guest Door Code:
+    - binary_sensor.guest_front_door_code
+    - binary_sensor.guest_back_door_code
+    - binary_sensor.guest_basement_door_code
 
   Occupancy:
     - binary_sensor.living_room_occupancy

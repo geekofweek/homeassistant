@@ -4,11 +4,14 @@
 
 homeassistant:
   name: Home
-  latitude: REDACTED
-  longitude: REDACTED
-  elevation: REDACTED
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: !secret elevation
   unit_system: imperial
   time_zone: America/Chicago
+  #auth_providers:
+   #- type: homeassistant
+   #- type: legacy_api_password
   customize: !include customize.yaml
 
 frontend:
@@ -25,10 +28,10 @@ discovery:
 config:
 
 http:
-  api_password: REDACTED
-  ssl_certificate: /etc/letsencrypt/live/REDACTED/REDACTED
-  ssl_key: /etc/letsencrypt/live/REDACTED/REDACTED
-  base_url: REDACTED
+  api_password: !secret http_password
+  ssl_certificate: !secret ssl_certificate
+  ssl_key: !secret ssl_key
+  base_url: !secret base_url
   trusted_networks:
     - REDACTED.0/24
     - REDACTED.0/24
@@ -40,7 +43,7 @@ http:
 #################################################################
 
 ecobee:
-  api_key: REDACTED
+  api_key: !secret ecobee_api_key
 
 hue:
   bridges:
@@ -63,19 +66,19 @@ media_player:
 apple_tv:
   - name: Living Room Apple TV
     host: REDACTED.150
-    login_id: REDACTED
+    login_id: !secret apple_tv_login_id
     start_off: false
   - name: Guest Bedroom Apple TV
     host: REDACTED.153
-    login_id: REDACTED
+    login_id: !secret apple_tv_login_id
     start_off: false
   - name: Bedroom Apple TV
     host: REDACTED.152
-    login_id: REDACTED
+    login_id: !secret apple_tv_login_id
     start_off: false
   - name: USER1's Office Apple TV
     host: REDACTED.151
-    login_id: REDACTED
+    login_id: !secret apple_tv_login_id
     start_off: false
 
 remote:
@@ -107,12 +110,12 @@ switch:
     name: MyQ Garage Outlet
 
 ifttt:
-  key: REDACTED
+  key: !secret ifttt_key
 
 device_tracker:
   - platform: unifi
-    username: REDACTED
-    password: REDACTED
+    username: !secret unifi_username
+    password: !secret unifi_password
     host: REDACTED.3
     verify_ssl: false
     consider_home: 180
@@ -123,15 +126,15 @@ device_tracker:
 
 cover:
   - platform: myq
-    username: REDACTED
-    password: REDACTED
+    username: !secret myq_username
+    password: !secret myq_password
     type: chamberlain
   - platform: wink
     entity_namespace: wink
 
 ring:
-    username: REDACTED
-    password: REDACTED
+    username: !secret ring_username
+    password: !secret ring_password
 
 binary_sensor:
   - platform: ring
@@ -142,26 +145,26 @@ binary_sensor:
 camera:
   - platform: uvc
     nvr: REDACTED.99
-    key: REDACTED
-    password: REDACTED
+    key: !secret uvc_key
+    password: !secret uvc_password
   - platform: foscam
     ip: REDACTED.107
     name: Garage Interior
     port: REDACTED
-    username: REDACTED
-    password: REDACTED
+    username: !secret foscam_username
+    password: !secret foscam_password
   - platform: generic
     still_image_url: https://icons.wxug.com/data/weather-maps/radar/united-states/jefferson-city-missouri-region-current-radar-animation.gif
     name: MO Weather Radar
 
 tts:
   - platform: amazon_polly
-    aws_access_key_id: 'REDACTED'
-    aws_secret_access_key: 'REDACTED'
+    aws_access_key_id: !secret aws_access_key_id
+    aws_secret_access_key: !secret aws_secret_access_key
 
 google:
-  client_id: REDACTED
-  client_secret: REDACTED
+  client_id: !secret google_client_id
+  client_secret: !secret goole_client_secret
   track_new_calendar: true
 
 wink:
@@ -169,16 +172,16 @@ wink:
 vacuum:
   - platform: roomba
     host: REDACTED.228
-    username: REDACTED
-    password: REDACTED
+    username: !secret roomba_username
+    password: !secret roomba_password
 
 weather:
   - platform: darksky
-    api_key: REDACTED
+    api_key: !secret darksky_api_key
 
 nest:
-  client_id: REDACTED
-  client_secret: REDACTED
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
 
 #################################################################
 ## Includes

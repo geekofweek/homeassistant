@@ -79,6 +79,9 @@
     - condition: state
       entity_id: vacuum.roomba
       state: 'off'
+    - condition: state
+      entity_id: group.house_guest
+      state: 'not_home'
     - condition: or
       conditions:
       - condition: state
@@ -117,6 +120,9 @@
     - condition: numeric_state
       entity_id: sensor.roomba_batt
       above: 99
+    - condition: state
+      entity_id: group.house_guest
+      state: 'not_home'
     - condition: or
       conditions:
       - condition: state
@@ -309,6 +315,38 @@
         - wed
         - thu
         - fri
+
+  action:
+    - service: vacuum.return_to_base
+      entity_id:
+        - vacuum.roomba
+
+        ##########################################################
+        ## Turn off Roomba when House Guests Arrive
+        ##########################################################
+
+- alias: Roomba - Turn off Roomba when House Guests Arrive
+
+  trigger:
+    - platform: state
+      entity_id: group.house_guest
+      from: 'not_home'
+      to: 'home'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 90
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: vacuum.roomba
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.house_guest_away
+      state: 'on'
 
   action:
     - service: vacuum.return_to_base
