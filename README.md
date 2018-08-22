@@ -1,3 +1,4 @@
+Test PR v0.01
 # Home Assistant
 [Home Assistant](https://home-assistant.io) configuration with 300+ automations.
 
