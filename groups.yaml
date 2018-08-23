@@ -53,9 +53,10 @@
   bathrooms:
     name: Bathrooms
     view: yes
-    icon: mdi:water-pump
+    icon: mdi:shower
     entities:
       - group.bathroom
+      - group.upstairs_bathroom
       - media_player.sonos_bathroom
 
   offices:
@@ -357,8 +358,14 @@
     control: hidden
     entities:
       - light.bathroom_vanity
+      - light.shower
       - binary_sensor.bathroom_occupancy
       - sensor.bathroom_temperature
+
+  Upstairs Bathroom:
+    control: hidden
+    entities:
+      - light.upstairs_bathroom
 
   USER1 Office:
     control: hidden
@@ -405,7 +412,7 @@
   Guest Bedroom:
     control: hidden
     entities:
-      - light.guest_bedroom_lamp
+      - light.guest_bedroom_ceiling
       - light.guest_bedroom_nightstand
       - binary_sensor.guest_bedroom_occupancy
       - sensor.guest_bedroom_temperature
@@ -420,24 +427,19 @@
     - switch.backyard_patio_lighting
     - switch.lower_backyard_lighting
 
-  Interior:
-    control: hidden
-    entities:
-      - light.hallway_light
-      - light.stairs
-
   Interior Lights:
     - light.living_room_lights
     - light.dining_room_lights
     - light.bedroom_lights
     - light.kitchen_lights
+    - light.hallway_light
+    - light.bathroom_lights
     - light.stairs
+    - light.basement_lighting
     - light.USER1_office_lights
     - light.USER2_office_lights
     - light.guest_bedroom_lights
-    - light.basement_lighting
-    - light.bathroom_vanity
-    - light.hallway_light
+    - light.upstairs_bathroom_lights
 
   Exterior Lights:
     - light.front_porch
@@ -465,6 +467,7 @@
       - climate.main_floor
       - sensor.thermostat_climate_mode
       - input_select.thermostat_mode
+      - sensor.hvac_status
       - sensor.dark_sky_temperature
       - group.summer_mode
       - group.winter_mode
@@ -475,6 +478,7 @@
     entities:
       - climate.main_floor
       - sensor.thermostat_climate_mode
+      - sensor.hvac_status
       - sensor.dark_sky_temperature
 
   Summer Mode:

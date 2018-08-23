@@ -44,8 +44,8 @@
   action:
     - service: light.turn_on
       entity_id:
-        - light.living_room_lights
-        - light.hallway_light
+        - light.living_room_lamps
+        - light.media_center_lighting
       data:
         color_temp: 447
         brightness_pct: 50
@@ -55,6 +55,7 @@
         - light.kitchen_cabinets
         - light.dining_room_table
         - light.kitchen_sink
+        - light.hallway_light
       data:
         brightness_pct: 1
     - service: light.turn_on

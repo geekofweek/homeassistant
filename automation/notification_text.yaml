@@ -672,6 +672,22 @@
         message: Power Outage Detected
 
         ##########################################################
+        ## UPS Power Restored Alert
+        ##########################################################
+
+- alias: Notification Text - UPS Power Restored Alert
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.ups_input_voltage
+      above: 80
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Power Restored
+
+        ##########################################################
         ## UPS Low Battery Alert
         ##########################################################
 

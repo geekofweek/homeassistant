@@ -413,7 +413,8 @@
   action:
     - service: light.turn_on
       entity_id:
-        - light.living_room_lights
+        - light.living_room_lamps
+        - light.media_center_lighting
       data:
        brightness_pct: 25
        color_temp: 447
@@ -422,6 +423,7 @@
         - light.dining_room_table
         - light.kitchen_cabinets
         - light.kitchen_sink
+        - light.shower
       data:
        brightness_pct: 1
     - service: light.turn_on
@@ -433,7 +435,6 @@
       entity_id: light.hallway_light
       data:
        brightness_pct: 1
-       color_name: red
     - service: light.turn_on
       entity_id: light.back_door
       data:
@@ -462,7 +463,6 @@
       entity_id:
         - group.interior_lights
         - group.exterior_lights
-        - light.globe
     - service: switch.turn_off
       entity_id: switch.lower_backyard_lighting
     - service: switch.turn_off
@@ -600,3 +600,51 @@
         - light.globe
       data:
        color_temp: 366
+
+        ##########################################################
+        ## Turn on Guest Bedroom Lamp when Ceiling is on
+        ##########################################################
+
+- alias: Lights - Turn on Guest Bedroom Lamp when Ceiling is on
+
+  trigger:
+    - platform: state
+      entity_id: light.guest_bedroom_ceiling
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: light.guest_bedroom_nightstand
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.guest_bedroom_nightstand
+      data:
+       brightness: 50
+
+        ##########################################################
+        ## Turn off Guest Bedroom Lamp when Ceiling is off
+        ##########################################################
+
+- alias: Lights - Turn off Guest Bedroom Lamp when Ceiling is off
+
+  trigger:
+    - platform: state
+      entity_id: light.guest_bedroom_ceiling
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: light.guest_bedroom_nightstand
+      state: 'on'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.guest_bedroom_nightstand
+      data:
+       transition: 60

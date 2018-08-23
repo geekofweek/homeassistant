@@ -42,6 +42,8 @@
     friendly_name: Living Room Humidity
   sensor.thermostat_climate_mode:
     icon: mdi:thermostat-box
+  sensor.hvac_status:
+    icon: mdi:fan
 
         ##########################################################
         ## Device Trackers
@@ -312,19 +314,20 @@
     emulated_hue_hidden: false
     emulated_hue_name: "Remote HLLWY"
   light.bathroom_vanity:
-    icon: mdi:ceiling-light
-    emulated_hue_hidden: false
-    emulated_hue_name: "Remote BTH"
+    icon: mdi:water-pump
+  light.shower:
+    friendly_name: Shower Light
+    icon: mdi:shower
   light.USER1s_nightstand:
     icon: mdi:lamp
   light.bedroom_lamp:
     icon: mdi:floor-lamp
   light.closet_lamp:
     icon: mdi:floor-lamp
-  light.guest_bedroom_lamp:
-    icon: mdi:floor-lamp
   light.guest_bedroom_nightstand:
     icon: mdi:lamp
+  light.guest_bedroom_ceiling:
+    icon: mdi:ceiling-light
   light.bedroom_closet_ceiling:
     icon: mdi:ceiling-light
   light.office_lamp:
@@ -373,6 +376,14 @@
     icon: mdi:stairs
     emulated_hue_hidden: false
     emulated_hue_name: "Remote STRS"
+  light.bathroom_lights:
+    icon: mdi:shower
+    friendly_name: Bathroom
+    emulated_hue_hidden: false
+    emulated_hue_name: "Remote BTH"
+  light.upstairs_bathroom_lights:
+    icon: mdi:water-pump
+    friendly_name: UpstairsBathroom
   light.USER1_office_lights:
     icon: mdi:desktop-mac
     friendly_name: USER1 Office
@@ -402,6 +413,9 @@
     icon: mdi:ceiling-light
   light.globe:
     icon: mdi:globe-model
+  light.upstairs_bathroom:
+    friendly_name: Upstairs Bathroom Vanity
+    icon: mdi:water-pump
 
         ##########################################################
         ## Weather

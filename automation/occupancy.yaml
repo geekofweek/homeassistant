@@ -418,7 +418,6 @@
     - service: light.turn_on
       entity_id:
         - light.living_room_lamps
-        - light.hallway_light
       data:
         transition: 900
         color_temp: 447
@@ -437,6 +436,10 @@
       entity_id: light.bathroom_vanity
       data:
         brightness_pct: 40
+    - service: light.turn_on
+      entity_id: light.hallway_light
+      data:
+        brightness_pct: 25
     - service: light.turn_on
       entity_id:
         - light.globe

@@ -48,9 +48,7 @@
     - service: light.turn_on
       entity_id: light.hallway_light
       data:
-       transition: 5
-       color_temp: 447
-       brightness_pct: 10
+       brightness_pct: 15
     - service: light.turn_on
       entity_id:
         - light.dining_room_table
@@ -95,15 +93,14 @@
     - service: light.turn_off
       entity_id:
         - light.living_room_lights
-        - light.hallway_light
-        - light.globe
       data:
        transition: 15
     - service: light.turn_off
       entity_id:
         - light.dining_room_lights
         - light.kitchen_lights
-        - light.bathroom_vanity
+        - light.bathroom_lights
+        - light.hallway_light
 
         ##########################################################
         ## Turn Off Watching Plex Boolean
@@ -192,9 +189,7 @@
     - service: light.turn_on
       entity_id: light.hallway_light
       data:
-       transition: 1
-       color_temp: 447
-       brightness_pct: 1
+       brightness: 1
     - service: light.turn_on
       entity_id:
         - light.dining_room_table
@@ -269,8 +264,6 @@
     - service: light.turn_on
       entity_id: light.hallway_light
       data:
-       transition: 1
-       color_temp: 447
        brightness_pct: 1
     - service: light.turn_on
       entity_id:
@@ -328,15 +321,14 @@
     - service: light.turn_off
       entity_id:
         - light.living_room_lights
-        - light.hallway_light
-        - light.globe
       data:
        transition: 15
     - service: light.turn_off
       entity_id:
         - light.dining_room_lights
         - light.kitchen_lights
-        - light.bathroom_vanity
+        - light.bathroom_lights
+        - light.hallway_light
 
         ##########################################################
         ## Late Night TV Watching before Midnight Lights Off
@@ -373,15 +365,14 @@
     - service: light.turn_off
       entity_id:
         - light.living_room_lights
-        - light.hallway_light
-        - light.globe
       data:
        transition: 15
     - service: light.turn_off
       entity_id:
         - light.dining_room_lights
         - light.kitchen_lights
-        - light.bathroom_vanity
+        - light.bathroom_lights
+        - light.hallway_light
 
       #################################################################
       ## Living Room / Media Center Remote

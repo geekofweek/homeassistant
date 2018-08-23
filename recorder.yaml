@@ -47,6 +47,7 @@
       - group.basements
       - group.bathroom
       - group.bathrooms
+      - group.upstairs_bathroom
       - group.battery_levels
       - group.bedroom
       - group.bedrooms
@@ -114,7 +115,6 @@
       - group.door_codes
       - light.bathroom
       - light.dining_room
-      - light.interior
       - light.kitchen
       - light.upstairs
       - sensor.USER1_to_home
@@ -264,3 +264,15 @@
       - sensor.home_eta
       - binary_sensor.home_away
       - input_select.thermostat_mode
+      - binary_sensor.guest_back_door_code
+      - binary_sensor.guest_front_door_code
+      - group.guest_door_code
+      - binary_sensor.USER1_front_door_code
+      - binary_sensor.USER1_back_door_code
+      - binary_sensor.USER1_basement_door_code
+      - binary_sensor.USER2_front_door_code
+      - binary_sensor.USER2_back_door_code
+      - binary_sensor.USER2_basement_door_code
+      - group.door_codes
+      - group.USER1_door_codes
+      - group.USER2_door_codes

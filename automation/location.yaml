@@ -253,7 +253,6 @@
       entity_id:
         - light.kitchen_sink
         - light.living_room_lamps
-        - light.hallway_light
         - light.dining_room_table
       data:
        color_temp: 447
@@ -267,6 +266,10 @@
       entity_id: light.kitchen_cabinets
       data:
        brightness_pct: 1
+    - service: light.turn_on
+      entity_id: light.hallway_light
+      data:
+       brightness_pct: 25
     - service: light.turn_on
       entity_id:
         - light.front_porch
@@ -312,7 +315,6 @@
     - service: light.turn_on
       entity_id:
         - light.living_room_lamps
-        - light.hallway_light
       data:
        color_temp: 447
        brightness_pct: 25
@@ -326,6 +328,7 @@
         - light.kitchen_cabinets
         - light.kitchen_sink
         - light.dining_room_table
+        - light.hallway_light
       data:
        brightness_pct: 1
     - service: light.turn_on
@@ -450,7 +453,6 @@
       entity_id:
         - light.kitchen_sink
         - light.living_room_lamps
-        - light.hallway_light
         - light.dining_room_table
       data:
        color_temp: 447
@@ -464,6 +466,10 @@
       entity_id: light.kitchen_cabinets
       data:
        brightness_pct: 1
+    - service: light.turn_on
+      entity_id: light.hallway_light
+      data:
+       brightness_pct: 25
     - service: light.turn_on
       entity_id:
         - light.front_porch
@@ -508,7 +514,6 @@
     - service: light.turn_on
       entity_id:
         - light.living_room_lamps
-        - light.hallway_light
       data:
        color_temp: 447
        brightness_pct: 25
@@ -522,6 +527,7 @@
         - light.kitchen_cabinets
         - light.kitchen_sink
         - light.dining_room_table
+        - light.hallway_light
       data:
        brightness_pct: 1
     - service: light.turn_on

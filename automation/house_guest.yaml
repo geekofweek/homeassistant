@@ -81,7 +81,6 @@
       entity_id:
         - light.kitchen_sink
         - light.living_room_lamps
-        - light.hallway_light
         - light.dining_room_table
         - light.stairs
         - light.guest_bedroom_lights
@@ -98,6 +97,10 @@
       entity_id: light.kitchen_cabinets
       data:
        brightness_pct: 1
+    - service: light.turn_on
+      entity_id: light.hallway_light
+      data:
+       brightness_pct: 25
     - service: light.turn_on
       entity_id:
         - light.front_porch
@@ -158,7 +161,6 @@
       entity_id:
         - light.kitchen_sink
         - light.living_room_lamps
-        - light.hallway_light
         - light.dining_room_table
         - light.stairs
         - light.guest_bedroom_lights
@@ -175,6 +177,10 @@
       entity_id: light.kitchen_cabinets
       data:
        brightness_pct: 1
+    - service: light.turn_on
+      entity_id: light.hallway_light
+      data:
+       brightness_pct: 25
     - service: light.turn_on
       entity_id:
         - light.front_porch

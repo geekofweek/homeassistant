@@ -1,139 +1,39 @@
 #################################################################
 ## History
 #################################################################
-
-  exclude:
-    domains:
-      - automation
-      - updater
-      - media_player
-      - input_boolean
-      - weblink
-      - camera
-      - scene
-      - script
+  use_include_order: True
+  include:
     entities:
-      - light.back_door_left
-      - light.back_door_right
-      - light.basement_light_1
-      - light.basement_light_2
-      - light.basement_light_3
-      - light.basement_light_4
-      - light.front_porch_left
-      - light.front_porch_right
-      - light.living_room_lamp_1
-      - light.living_room_lamp_2
-      - light.USER2s_office_ceiling_1
-      - light.USER2s_office_ceiling_2
-      - light.stairs_1
-      - light.stairs_2
-      - light.stairs_3
-      - light.upper_patio_left
-      - light.upper_patio_right
-      - light.bedroom_closet_ceiling_1
-      - light.bedroom_closet_ceiling_2
-      - group.winter_mode
-      - group.summer_mode
-      - input_select.holiday
-      - switch.lower_backyard_lighting
-      - switch.backyard_patio_lighting
-      - binary_sensor.USER1_front_door_code
-      - binary_sensor.USER1_back_door_code
-      - binary_sensor.USER1_basement_door_code
-      - binary_sensor.USER2_front_door_code
-      - binary_sensor.USER2_back_door_code
-      - binary_sensor.USER2_basement_door_code
-      - device_tracker.USER1sapplewatch
+      - group.household
+      - device_tracker.USER1DEVICE
+      - device_tracker.USER2DEVICE
       - light.living_room_lights
       - light.dining_room_lights
       - light.bedroom_lights
       - light.kitchen_lights
+      - light.hallway_light
+      - light.bathroom_lights
+      - light.stairs
+      - light.basement_lighting
       - light.USER1_office_lights
       - light.USER2_office_lights
       - light.guest_bedroom_lights
-      - light.basement_lighting
-      - group.basement_occupancy
-      - group.water_sensors
-      - switch.living_room_ceiling_fan
-      - sensor.media_center
-      - sensor.nas_status
-      - sensor.nas_smart_status_drive_01
-      - sensor.nas_smart_status_drive_02
-      - sensor.nas_smart_status_drive_03
-      - sensor.nas_smart_status_drive_04
-      - sensor.nas_volume_used_storage
-      - sensor.nas_volume_used_backup
-      - sensor.nas_network_link_eth0
-      - sensor.nas_network_link_eth1
-      - group.house_guest
-      - group.USER1_door_codes
-      - group.USER2_door_codes
-      - device_tracker.USER1siphone
-      - device_tracker.USER2siphone
-      - device_tracker.USER1sipad
-      - device_tracker.USER2sipad
-      - device_tracker.USER1smacbookpro
-      - device_tracker.USER1smacbookair
-      - device_tracker.USER2smacbookair
-      - device_tracker.USER1simac
-      - device_tracker.USER2simac
-      - device_tracker.REDACTED
-      - device_tracker.REDACTED
-      - device_tracker.REDACTED
-      - device_tracker.REDACTED
-      - device_tracker.REDACTED
-      - device_tracker.REDACTED
-      - device_tracker.REDACTED
-      - device_tracker.REDACTED
-      - device_tracker.REDACTED
-      - sensor.living_room_nest_protect_smoke_status
-      - sensor.bedroom_nest_protect_smoke_status
-      - sensor.kitchen_nest_protect_smoke_status
-      - sensor.hallway_nest_protect_smoke_status
-      - sensor.upstairs_nest_protect_smoke_status
-      - sensor.basement_nest_protect_smoke_status
-      - sensor.living_room_nest_protect_co_status
-      - sensor.bedroom_nest_protect_co_status
-      - sensor.kitchen_nest_protect_co_status
-      - sensor.hallway_nest_protect_co_status
-      - sensor.upstairs_nest_protect_co_status
-      - sensor.basement_nest_protect_co_status
-      - sensor.living_room_nest_protect_battery_health
-      - sensor.bedroom_nest_protect_battery_health
-      - sensor.hallway_nest_protect_battery_health
-      - sensor.kitchen_nest_protect_battery_health
-      - sensor.upstairs_nest_protect_battery_health
-      - sensor.basement_nest_protect_battery_health
-      - binary_sensor.wink_hub
-      - binary_sensor.wink_relay
-      - sensor.hue_hub_status
-      - sensor.myq_status
-      - binary_sensor.living_room_nest_protect_online
-      - binary_sensor.bedroom_nest_protect_online
-      - binary_sensor.hallway_nest_protect_online
-      - binary_sensor.kitchen_nest_protect_online
-      - binary_sensor.upstairs_nest_protect_online
-      - binary_sensor.basement_nest_protect_online
-      - sensor.living_room_nest_protect_color_status
-      - sensor.bedroom_nest_protect_color_status
-      - sensor.kitchen_nest_protect_color_status
-      - sensor.hallway_nest_protect_color_status
-      - sensor.upstairs_nest_protect_color_status
-      - sensor.basement_nest_protect_color_status
-      - sensor.living_room_nest_protect_battery_health
-      - sensor.bedroom_nest_protect_battery_health
-      - sensor.hallway_nest_protect_battery_health
-      - sensor.kitchen_nest_protect_battery_health
-      - sensor.upstairs_nest_protect_battery_health
-      - sensor.basement_nest_protect_battery_health
-      - sensor.ups_status
-      - sensor.ups_battery_charge
-      - sensor.ups_load
-      - sensor.ups_battery_runtime_mins
-      - sensor.ups_input_voltage
-      - group.doors
-      - sensor.thermostat_climate_mode
-      - sensor.dark_sky_temperature
-#Temp until DB purge
-      - device_tracker.garage_door
-      - input_select.thermostat_mode
+      - light.upstairs_bathroom_lights
+      - light.front_porch
+      - light.back_door
+      - light.backyard_deck
+      - light.backyard_patio
+      - light.garage_light
+      - switch.front_yard_lighting
+      - group.backyard_lighting
+      - switch.fireplace
+      - switch.air_purifier
+      - switch.office_fan
+      - vacuum.roomba
+      - lock.front_door
+      - lock.back_door
+      - lock.basement_door
+      - binary_sensor.front_door_opened
+      - binary_sensor.back_door_opened
+      - binary_sensor.basement_door_opened
+      - cover.garage_door

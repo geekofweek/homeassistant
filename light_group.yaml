@@ -13,6 +13,7 @@
     entities:
       - light.living_room_lamps
       - light.media_center_lighting
+      - light.globe
 
   - platform: group
     name: Bedroom Closet Ceiling
@@ -43,10 +44,15 @@
       - light.dining_room_ceiling
 
   - platform: group
-    name: Interior
+    name: Bathroom Lights
     entities:
-      - light.hallway_light
-      - light.stairs
+      - light.bathroom_vanity
+      - light.shower
+
+  - platform: group
+    name: Upstairs Bathroom Lights
+    entities:
+      - light.upstairs_bathroom
 
   - platform: group
     name: USER1 Office Lights
@@ -68,7 +74,7 @@
   - platform: group
     name: Guest Bedroom Lights
     entities:
-      - light.guest_bedroom_lamp
+      - light.guest_bedroom_ceiling
       - light.guest_bedroom_nightstand
 
   - platform: group
@@ -121,7 +127,6 @@
       - light.basement_stairs
       - light.bedroom_lamp
       - light.closet_lamp
-      - light.hallway_light
       - light.living_room_lamp_1
       - light.living_room_lamp_2
       - light.office_lamp
@@ -131,7 +136,6 @@
       - light.stairs_1
       - light.stairs_2
       - light.stairs_3
-      - light.guest_bedroom_lamp
       - light.guest_bedroom_nightstand
       - light.media_center_lighting
       - light.bedroom_closet_ceiling_1
@@ -159,6 +163,10 @@
       - light.kitchen_sink
       - light.office_ceiling
       - light.bathroom_vanity
+      - light.hallway_light
+      - light.guest_bedroom_ceiling
+      - light.shower
+      - light.upstairs_bathroom
 
   - platform: group
     name: Wink Lights Exterior

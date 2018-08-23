@@ -168,7 +168,7 @@
     region: 'US'
 
         ##########################################################
-        ## Template Sensors
+        ## UPS
         ##########################################################
 
   - platform: template
@@ -177,6 +177,11 @@
         friendly_name: "UPS Battery Runtime"
         unit_of_measurement: 'minutes'
         value_template: "{{ states('sensor.ups_battery_runtime')|float / 60 }}"
+
+        ##########################################################
+        ## Battery Levels
+        ##########################################################
+
   - platform: template
     sensors:
       back_door_sensor_batt:
@@ -247,11 +252,21 @@
         friendly_name: 'Roomba'
         unit_of_measurement: '%'
         device_class: battery
+
+        ##########################################################
+        ## Harmony Remote
+        ##########################################################
+
   - platform: template
     sensors:
       media_center:
         value_template: '{{ states.remote.media_center.attributes.current_activity }}'
         friendly_name: 'Media Center'
+
+        ##########################################################
+        ## Calendars
+        ##########################################################
+
   - platform: template
     sensors:
       USER2_work_offset:
@@ -262,6 +277,11 @@
       holidays_calendar:
         friendly_name: 'Holiday'
         value_template: '{{ states.calendar.holidays_in_united_states.attributes.message }}'
+
+        ##########################################################
+        ## Device Status
+        ##########################################################
+
   - platform: template
     sensors:
       myq_status:
@@ -282,6 +302,11 @@
           {% else %}
             Offline
           {% endif %}
+
+        ##########################################################
+        ## Thermostat
+        ##########################################################
+
   - platform: template
     sensors:
       thermostat_climate_mode:
@@ -310,3 +335,8 @@
           {% else %}
             Home
           {% endif %}
+  - platform: template
+    sensors:
+      hvac_status:
+        friendly_name: 'HVAC Status'
+        value_template: '{{ states.climate.main_floor.attributes.operation }}'
