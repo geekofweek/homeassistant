@@ -61,12 +61,6 @@
       - light.office_lamp
 
   - platform: group
-    name: USER2 Office Ceiling
-    entities:
-      - light.USER2s_office_ceiling_1
-      - light.USER2s_office_ceiling_2
-
-  - platform: group
     name: USER2 Office Lights
     entities:
       - light.USER2_office_ceiling
@@ -76,13 +70,6 @@
     entities:
       - light.guest_bedroom_ceiling
       - light.guest_bedroom_nightstand
-
-  - platform: group
-    name: Stairs
-    entities:
-      - light.stairs_1
-      - light.stairs_2
-      - light.stairs_3
 
   - platform: group
     name: Basement Lights
@@ -131,11 +118,6 @@
       - light.living_room_lamp_2
       - light.office_lamp
       - light.USER2s_nightstand
-      - light.USER2s_office_ceiling_1
-      - light.USER2s_office_ceiling_2
-      - light.stairs_1
-      - light.stairs_2
-      - light.stairs_3
       - light.guest_bedroom_nightstand
       - light.media_center_lighting
       - light.bedroom_closet_ceiling_1
@@ -167,6 +149,8 @@
       - light.guest_bedroom_ceiling
       - light.shower
       - light.upstairs_bathroom
+      - light.stairs
+      - light.USER2_office_lights
 
   - platform: group
     name: Wink Lights Exterior

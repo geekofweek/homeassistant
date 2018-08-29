@@ -648,3 +648,36 @@
         - light.guest_bedroom_nightstand
       data:
        transition: 60
+
+        ##########################################################
+        ## Turn off Stairs and Bathroom when Guest Bedroom is off
+        ##########################################################
+
+- alias: Lights - Turn off Stairs and Bathroom when Guest Bedroom is off
+
+  trigger:
+    - platform: state
+      entity_id: light.guest_bedroom_ceiling
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 90
+
+  condition:
+    - condition: state
+      entity_id: light.stairs
+      state: 'on'
+    - condition: state
+      entity_id: group.overnight_guests
+      state: 'home'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.stairs
+        - light.upstairs_bathroom

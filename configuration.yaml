@@ -9,10 +9,11 @@ homeassistant:
   elevation: !secret elevation
   unit_system: imperial
   time_zone: America/Chicago
-  #auth_providers:
-   #- type: homeassistant
-   #- type: legacy_api_password
   customize: !include customize.yaml
+  auth_providers:
+   - type: homeassistant
+   - type: trusted_networks
+   - type: legacy_api_password
 
 frontend:
 updater:
@@ -49,6 +50,7 @@ hue:
   bridges:
     - host: REDACTED.106
       allow_hue_groups: false
+      allow_unreachable: true
 
 emulated_hue:
   host_ip: REDACTED.105
@@ -97,11 +99,6 @@ remote:
 map:
 
 wemo:
-  static:
-    - REDACTED.111
-    - REDACTED.112
-    - REDACTED.113
-    - REDACTED.115
 
 switch:
   - platform: tplink

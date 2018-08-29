@@ -114,8 +114,7 @@
     - service: light.turn_on
       entity_id: light.stairs
       data:
-        transition: 3
-        brightness_pct: 25
+        brightness_pct: 15
 
         ##########################################################
         ## Turn on USER2 Office when Occupied
@@ -141,13 +140,11 @@
     - service: light.turn_on
       entity_id: light.USER2_office_lights
       data:
-        transition: 300
-        brightness_pct: 50
+        brightness_pct: 5
     - service: light.turn_on
       entity_id: light.stairs
       data:
-        transition: 3
-        brightness_pct: 1
+        brightness_pct: 5
 
         ##########################################################
         ## Turn off USER2 Office when Unoccupied
@@ -523,8 +520,7 @@
       entity_id:
         - light.stairs
       data:
-        transition: 60
-        brightness_pct: 50
+        brightness_pct: 15
 
         ##########################################################
         ## Turn on USER2's Office at Sunset when Occupied
@@ -556,11 +552,9 @@
       entity_id:
         - light.USER2_office_lights
       data:
-        transition: 300
-        brightness_pct: 100
+        brightness_pct: 15
     - service: light.turn_on
       entity_id:
         - light.stairs
       data:
-        transition: 300
-        brightness_pct: 50
+        brightness_pct: 15

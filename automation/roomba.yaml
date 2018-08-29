@@ -164,7 +164,6 @@
     - service: light.turn_on
       entity_id:
         - light.bedroom_lights
-        - light.stairs
         - light.basement_stairs
       data:
        brightness_pct: 50
@@ -182,6 +181,7 @@
         - light.kitchen_sink
         - light.kitchen_cabinets
         - light.hallway_light
+        - light.stairs
       data:
        brightness_pct: 25
     - service: homeassistant.turn_on
