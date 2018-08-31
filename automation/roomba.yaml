@@ -34,10 +34,45 @@
         - vacuum.roomba
 
         ##########################################################
-        ## Shut Off Roomba when Home
+        ## Run Upstairs Roomba when Away
         ##########################################################
 
-- alias: Roomba - Shut Off Roomba when Home
+- alias: Roomba - Run Upstairs Roomba when Away
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: time
+      after: '10:01'
+      before: '23:59'
+    - condition: state
+      entity_id: vacuum.upstairs_roomba
+      state: 'off'
+    - condition: numeric_state
+      entity_id: sensor.upstairs_roomba_batt
+      above: 99
+
+  action:
+    - service: vacuum.turn_on
+      entity_id:
+        - vacuum.upstairs_roomba
+
+        ##########################################################
+        ## Shut Off Roombas when Home
+        ##########################################################
+
+- alias: Roomba - Shut Off Roombas when Home
 
   trigger:
     - platform: state
@@ -49,14 +84,20 @@
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
-    - condition: state
-      entity_id: vacuum.roomba
-      state: 'on'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: vacuum.roomba
+        state: 'on'
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'on'
 
   action:
     - service: vacuum.return_to_base
       entity_id:
         - vacuum.roomba
+        - vacuum.upstairs_roomba
 
         ##########################################################
         ## Run Roomba Weekdays
@@ -82,6 +123,9 @@
     - condition: state
       entity_id: group.house_guest
       state: 'not_home'
+    - condition: numeric_state
+      entity_id: sensor.roomba_batt
+      above: 99
     - condition: or
       conditions:
       - condition: state
@@ -141,6 +185,69 @@
         - vacuum.roomba
 
         ##########################################################
+        ## Run Upstairs Roomba Weekdays
+        ##########################################################
+
+- alias: Roomba - Run Upstairs Roomba Weekdays
+
+  trigger:
+   - platform: time
+     at: '18:30'
+
+  condition:
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+    - condition: state
+      entity_id: vacuum.upstairs_roomba
+      state: 'off'
+    - condition: numeric_state
+      entity_id: sensor.upstairs_roomba_batt
+      above: 99
+    - condition: state
+      entity_id: group.house_guest
+      state: 'not_home'
+
+  action:
+    - service: vacuum.turn_on
+      entity_id:
+        - vacuum.upstairs_roomba
+
+        ##########################################################
+        ## Run Upstairs Roomba Weekends
+        ##########################################################
+
+- alias: Roomba - Run Upstairs Roomba Weekends
+
+  trigger:
+   - platform: time
+     at: '13:00'
+
+  condition:
+    - condition: time
+      weekday:
+        - sat
+        - sun
+    - condition: state
+      entity_id: vacuum.roomba
+      state: 'off'
+    - condition: numeric_state
+      entity_id: sensor.upstairs_roomba_batt
+      above: 99
+    - condition: state
+      entity_id: group.house_guest
+      state: 'not_home'
+
+  action:
+    - service: vacuum.turn_on
+      entity_id:
+        - vacuum.upstairs_roomba
+
+        ##########################################################
         ## Turn on low lights at night for Roomba
         ##########################################################
 
@@ -189,6 +296,33 @@
         - input_boolean.disable_occupancy
 
         ##########################################################
+        ## Turn on low lights at night for Upstairs Roomba
+        ##########################################################
+
+- alias: Roomba - Turn on low lights at night for Upstairs Roomba
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.upstairs_roomba
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.office_ceiling
+        - light.USER2_office_ceiling
+        - light.guest_bedroom_ceiling
+        - light.stairs
+      data:
+       brightness_pct: 1
+
+        ##########################################################
         ## Turn off lights at night when Roomba finished
         ##########################################################
 
@@ -211,7 +345,49 @@
   action:
     - service: light.turn_off
       entity_id:
-        - group.interior_lights
+        - light.bedroom_lights
+        - light.basement_stairs
+        - light.living_room_lights
+        - light.dining_room_table
+        - light.bathroom_vanity
+        - light.kitchen_sink
+        - light.kitchen_cabinets
+        - light.hallway_light
+        - light.stairs
+
+        ##########################################################
+        ## Turn off lights at night when Upstairs Roomba finished
+        ##########################################################
+
+- alias: Roomba - Turn off lights at night when Upstairs Roomba finished
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.upstairs_roomba
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: binary_sensor.office_occupancy
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.USER2_office_occupancy
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.guest_bedroom_occupancy
+      state: 'off'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.office_ceiling
+        - light.USER2_office_ceiling
+        - light.guest_bedroom_ceiling
+        - light.stairs
 
         ##########################################################
         ## Enable Occupancy Automations when Roomba finished
@@ -342,16 +518,22 @@
       entity_id: input_boolean.disable_home_away
       state: 'off'
     - condition: state
-      entity_id: vacuum.roomba
-      state: 'on'
-    - condition: state
       entity_id: input_boolean.house_guest_away
       state: 'on'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: vacuum.roomba
+        state: 'on'
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'on'
 
   action:
     - service: vacuum.return_to_base
       entity_id:
         - vacuum.roomba
+        - vacuum.upstairs_roomba
 
         ##########################################################
         ## Roomba is Stuck Notification
@@ -367,6 +549,27 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Roomba is Stuck, Please Help
+    - service: notify.ios_USER2s_iphone
+      data:
+        message: Roomba is Stuck, Please Help
+
+        ##########################################################
+        ## Upstairs Roomba is Stuck Notification
+        ##########################################################
+
+- alias: Roomba - Upstairs Stuck Notification
+
+  trigger:
+    - platform: template
+      value_template: "{%if is_state_attr('vacuum.upstairs_roomba', 'status', 'Stuck') %}true{%endif%}"
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Upstairs Roomba is Stuck, Please Help
+    - service: notify.ios_USER2s_iphone
+      data:
+        message: Upstairs Roomba is Stuck, Please Help
 
         ##########################################################
         ## Roomba is Full Notification
@@ -382,3 +585,24 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Roomba is Full, Empty It
+    - service: notify.ios_USER2s_iphone
+      data:
+        message: Roomba is Full, Empty It
+
+        ##########################################################
+        ## Upstairs Roomba is Full Notification
+        ##########################################################
+
+- alias: Roomba - Upstairs Full Notification
+
+  trigger:
+    - platform: template
+      value_template: "{%if is_state_attr('vacuum.upstairs_roomba', 'bin_full', true) %}true{%endif%}"
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Upstairs Roomba is Full, Empty It
+    - service: notify.ios_USER2s_iphone
+      data:
+        message: Upstairs Roomba is Full, Empty It

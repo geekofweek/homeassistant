@@ -252,6 +252,13 @@
         friendly_name: 'Roomba'
         unit_of_measurement: '%'
         device_class: battery
+  - platform: template
+    sensors:
+      upstairs_roomba_batt:
+        value_template: '{{ states.vacuum.upstairs_roomba.attributes.battery_level }}'
+        friendly_name: 'Upstairs Roomba'
+        unit_of_measurement: '%'
+        device_class: battery
 
         ##########################################################
         ## Harmony Remote

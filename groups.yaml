@@ -240,6 +240,7 @@
     entities:
       - input_boolean.bedtime
       - vacuum.roomba
+      - vacuum.upstairs_roomba
       - input_select.remote
       - input_select.bedroom_remote
       - input_select.office_remote
@@ -261,8 +262,8 @@
     - device_tracker.REDACTED
 
   Device Location:
-    - device_tracker.USER1siphone
-    - device_tracker.USER2siphone
+    - device_tracker.USER1s_iphone
+    - device_tracker.USER2s_iphone
     - device_tracker.USER1sipad
     - device_tracker.USER2sipad
     - device_tracker.USER1smacbookpro
@@ -374,6 +375,7 @@
       - light.office_lamp
       - switch.air_purifier
       - switch.office_fan
+      - vacuum.upstairs_roomba
       - binary_sensor.office_occupancy
       - sensor.office_temperature
 
@@ -677,6 +679,7 @@
 
   Battery Levels:
     - sensor.roomba_batt
+    - sensor.upstairs_roomba_batt
     - sensor.ring_front_door_battery
     - sensor.front_door_lock_batt
     - sensor.back_door_lock_batt

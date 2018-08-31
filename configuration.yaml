@@ -170,6 +170,12 @@ vacuum:
     host: REDACTED.228
     username: !secret roomba_username
     password: !secret roomba_password
+    name: Roomba
+  - platform: roomba
+    host: REDACTED.229
+    username: !secret upstairs_roomba_username
+    password: !secret upstairs_roomba_password
+    name: Upstairs Roomba
 
 weather:
   - platform: darksky
