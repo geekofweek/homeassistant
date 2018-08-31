@@ -10,10 +10,12 @@
       - group.automation_on_demand
       - group.household
       - group.interior_lights
-      - group.exterior_lights
-      - group.locks
+      - group.remote
+      - group.vacuums
       - group.climate_control
-      - group.garage
+      - group.garage_door
+      - group.locks
+      - group.exterior_lights
       - camera.front_porch
       - camera.garage
       - camera.garage_interior
@@ -239,12 +241,6 @@
     control: hidden
     entities:
       - input_boolean.bedtime
-      - vacuum.roomba
-      - vacuum.upstairs_roomba
-      - input_select.remote
-      - input_select.bedroom_remote
-      - input_select.office_remote
-      - input_select.sonos
 
   Household:
     - device_tracker.USER1DEVICE
@@ -324,7 +320,7 @@
       - light.globe
       - switch.fireplace
       - switch.living_room_ceiling_fan
-      - vacuum.roomba
+      - vacuum.downstairs_roomba
       - lock.front_door
       - binary_sensor.front_door_opened
       - binary_sensor.living_room_occupancy
@@ -425,6 +421,11 @@
       - light.garage_light
       - cover.garage_door
 
+  Garage Door:
+    control: hidden
+    entities:
+      - cover.garage_door
+
   Backyard Lighting:
     - switch.backyard_patio_lighting
     - switch.lower_backyard_lighting
@@ -479,9 +480,13 @@
     control: hidden
     entities:
       - climate.main_floor
-      - sensor.thermostat_climate_mode
-      - sensor.hvac_status
       - sensor.dark_sky_temperature
+
+  Vacuums:
+    control: hidden
+    entities:
+      - vacuum.downstairs_roomba
+      - vacuum.upstairs_roomba
 
   Summer Mode:
     - automation.climate__turn_on_summer
@@ -678,7 +683,7 @@
     - sensor.ups_input_voltage
 
   Battery Levels:
-    - sensor.roomba_batt
+    - sensor.downstairs_roomba_batt
     - sensor.upstairs_roomba_batt
     - sensor.ring_front_door_battery
     - sensor.front_door_lock_batt

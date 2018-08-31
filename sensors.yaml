@@ -247,9 +247,9 @@
         device_class: battery
   - platform: template
     sensors:
-      roomba_batt:
-        value_template: '{{ states.vacuum.roomba.attributes.battery_level }}'
-        friendly_name: 'Roomba'
+      downstairs_roomba_batt:
+        value_template: '{{ states.vacuum.downstairs_roomba.attributes.battery_level }}'
+        friendly_name: 'Downstairs Roomba'
         unit_of_measurement: '%'
         device_class: battery
   - platform: template
