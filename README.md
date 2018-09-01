@@ -3,9 +3,16 @@
 
 Home Assistant Version: 0.77.2
 
+# Menu
+[Hubs](#hubs)
+[Lighting](#lighting)
+[Climate](#climate)
+[Outlets & Switches](#outlets)
+
 # Devices
 
 ## Hubs
+#hubs
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -15,6 +22,7 @@ Home Assistant Version: 0.77.2
 Relevant hub configurations can be found within [configuration.yaml](https://github.com/geekofweek/homeassistant/blob/master/configuration.yaml)
 
 ## Lighting
+#lighting
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -29,6 +37,7 @@ Many of my automations rely on some form of lighting but many examples can be fo
 Lights are grouped via [light_group.yaml](https://github.com/geekofweek/homeassistant/blob/master/light_group.yaml)
 
 ## Climate
+#climate
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -38,6 +47,7 @@ Lights are grouped via [light_group.yaml](https://github.com/geekofweek/homeassi
 I utilize a number of automations that adjust climate controls.  Mostly they can be found in [climate.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/climate.yaml). Ecobee room sensors are heavily used in [occupancy.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/occupancy.yaml) and as conditions in many automations
 
 ## Outlets / Switches
+#outlets
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
