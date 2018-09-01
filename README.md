@@ -1,11 +1,13 @@
-# Home Assistant
-[Home Assistant](https://home-assistant.io) configuration with 300+ automations.
 
-Home Assistant Version: 0.77.2
+# Overview
+My personal [Home Assistant](https://home-assistant.io) configurations with 300+ automations.  These are my active automations and configurations that I use every day.  Updated frequently as I add more devices and come up with more and more complicated ways to do simple tasks.
 
-# Devices
+Published configruations working with Home Assistant Version: 0.77.2
 
-## Hubs
+# Menu
+ | [Hubs](#hubs) | [Lighting](#lighting) | [Climate](#climate)| [Outlets & Switches](#outlets)|  [Locks](#locks) | [Security](#security) | [Voice Assistant](#voice) | [Media](#media) | [Sensors](#sensors) | [Cameras](#cameras) | [Garage](#garage) | [Vacuum](#vacuum) | [Network](#network) | [Other Hardware](#other) | [Retired Devices](#retired) | [Software](#software) | [Screenshots](#screenshots) |
+
+## <a name="hubs">Hubs</a>
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -14,7 +16,7 @@ Home Assistant Version: 0.77.2
 
 Relevant hub configurations can be found within [configuration.yaml](https://github.com/geekofweek/homeassistant/blob/master/configuration.yaml)
 
-## Lighting
+## <a name="lighting">Lighting</a>
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -28,7 +30,7 @@ Many of my automations rely on some form of lighting but many examples can be fo
 
 Lights are grouped via [light_group.yaml](https://github.com/geekofweek/homeassistant/blob/master/light_group.yaml)
 
-## Climate
+## <a name="climate">Climate</a>
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -37,7 +39,7 @@ Lights are grouped via [light_group.yaml](https://github.com/geekofweek/homeassi
 
 I utilize a number of automations that adjust climate controls.  Mostly they can be found in [climate.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/climate.yaml). Ecobee room sensors are heavily used in [occupancy.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/occupancy.yaml) and as conditions in many automations
 
-## Outlets / Switches
+## <a name="outlets">Outlets & Switches</a>
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -48,7 +50,7 @@ I utilize a number of automations that adjust climate controls.  Mostly they can
 
 Switches and outlets are used in various capacities, some are for lighting and some are for fans type devices.  [lights.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/lights.yaml) and [occupancy.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/occupancy.yaml) should have some good examples.
 
-## Locks
+## <a name="locks">Locks</a>
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -56,7 +58,7 @@ Switches and outlets are used in various capacities, some are for lighting and s
 
 Locks are used mostly as a way to lock / unlock doors based on locations, see [location.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml) and [locks.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/locks.yaml) for some examples
 
-## Security
+## <a name="security">Security</a>
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -66,7 +68,7 @@ Locks are used mostly as a way to lock / unlock doors based on locations, see [l
 Door sensors are used in many different ways. I trigger on them via [doors.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/doors.yaml), use them for security in [security.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/security.yaml), and as various conditions in [notification_audio.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/notification_audio.yaml) and [climate.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/climate.yaml).
 The alarm siren is used in [security.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/security.yaml) and in the security [scene](https://github.com/geekofweek/homeassistant/blob/master/scenes.yaml). I've also implemented the alarm as part of [water_sensors.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/water_sensors.yaml).
 
-## Voice Assistant
+## <a name="voice">Voice Assistant</a>
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -77,7 +79,7 @@ The alarm siren is used in [security.yaml](https://github.com/geekofweek/homeass
 
 I go for native Echo integration wherever possible, but a few devices are not currently supported where I've had to implement some work arounds via emulated hue.  Most of these are just exposed via an [input_boolean]( https://github.com/geekofweek/homeassistant/blob/master/input_boolean.yaml) and [customize.yaml]( https://github.com/geekofweek/homeassistant/blob/master/customize.yaml).  This allows the ability to have echo turn on or off an [input_boolean]( https://github.com/geekofweek/homeassistant/blob/master/input_boolean.yaml)  in turn triggering an automation.
 
-## Media
+## <a name="media">Media</a>
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -94,7 +96,7 @@ Most media player based automations can be found in [media.yaml]( https://github
 
 Harmony Hubs work via a combination of [input_selects]( https://github.com/geekofweek/homeassistant/blob/master/input_select.yaml), [scripts]( https://github.com/geekofweek/homeassistant/blob/master/scripts.yaml), and automations in [media.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/media.yaml).
 
-## Sensors
+## <a name="sensors">Sensors</a>
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -103,7 +105,7 @@ Harmony Hubs work via a combination of [input_selects]( https://github.com/geeko
 
 Water sensors serve one major function, to alert me to the presence of water.  Almost all of those automations can be fond via [water_sensors.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/water_sensors.yaml)
 
-## Cameras
+## <a name="cameras">Cameras</a>
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -113,7 +115,7 @@ Water sensors serve one major function, to alert me to the presence of water.  A
 
 Nothing is currently automated around cameras, just a [UI](https://github.com/geekofweek/homeassistant/blob/master/images/camera-screenshot.jpg) element.  The Ring doorbell is used in a number of ways to trigger an action based on motion detection or someone ringing the doorbell.  Examples can be found in [doorbell.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/doorbell.yaml)
 
-## Garage
+## <a name="garage">Garage</a>
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -122,7 +124,7 @@ Nothing is currently automated around cameras, just a [UI](https://github.com/ge
 
 Similar to locks, the Garage door is mostly automated to open / close based on location and after a set amount of time.  Examples can be found in [location.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml) and [garage.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/garage.yaml)
 
-## Vacuum
+## <a name="vacuum">Vacuum</a>
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -131,7 +133,7 @@ Similar to locks, the Garage door is mostly automated to open / close based on l
 
 All Roomba related automations can be found in [roomba.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/roomba.yaml)
 
-## Network
+## <a name="network">Network</a>
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -144,7 +146,7 @@ All Roomba related automations can be found in [roomba.yaml]( https://github.com
 
 Since I don’t use the network equipment as my primary presence detection method most of the automation is around house guests via [house_guest.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/house_guest.yaml).  The main function of the network equipment is to be network equipment for my fiber internet service.
 
-## Other Hardware
+## <a name="other">Other Hardware</a>
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -152,7 +154,7 @@ Since I don’t use the network equipment as my primary presence detection metho
 | [APC 1500VA Back-Up UPS](https://amzn.to/2LopbsD) | 1 | USB / Ethernet | [NUT Sensor](https://www.home-assistant.io/components/sensor.nut/)| Primary Uninterruptible Power Supply (UPS). Connected via the NUT component utlizing the QNAP NAS native UPS server component |
 | [Wink Relay](https://amzn.to/2GtKAx3) | 2 | Wi-Fi | [Wink](https://www.home-assistant.io/components/wink/)| Wall mounted touch screen. Wink interface was rubbish and was replaced with the Home Assistant dashboard. It provides binary sensors for the two push buttons, temperature, and humidity sensors. Doesn't get used much but looks cool. |
 
-## Retired
+## <a name="retired">Retired</a>
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -160,7 +162,7 @@ Since I don’t use the network equipment as my primary presence detection metho
 | [Frigidaire Cool Connect Smart Portable Air Conditioner](https://amzn.to/2k7kszE) | 1 | Wi-Fi | [Harmony Hub Remote](https://www.home-assistant.io/components/remote.harmony/) | No longer in daily use after new HVAC system installed. May be brought back into service as needed. |
 | [iHome WiFI Smart Plug](https://amzn.to/2rReF4z) | 2 | Wink Hub (Wi-Fi) | [Wink Switch](https://www.home-assistant.io/components/switch.wink/) | Not using these anymore due to overall poor reliability |
 
-## Software
+## <a name="software">Software</a>
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -239,21 +241,21 @@ Within the local folder, variable localpath="PATH_TO_LOCAL_HA_CONFIGS", I have t
 
 
 
-# Interface
-![UI](images/home-screenshot.jpg)
-![UI](images/living-room-screenshot.jpg)
-![UI](images/dining-screenshot.jpg)
-![UI](images/bedrooms-screenshot.jpg)
-![UI](images/bath-screenshot.jpg)
-![UI](images/offices-screenshot.jpg)
-![UI](images/basement-screenshot.jpg)
-![UI](images/outdoor-screenshot.jpg)
-![UI](images/weather-screenshot.jpg)
-![UI](images/media-screenshot.jpg)
-![UI](images/camera-screenshot.jpg)
-![UI](images/automation-screenshot.jpg)
-![UI](images/sensors-screenshot.jpg)
-![UI](images/auto-screenshot.jpg)
+# <a name="screenshots">Screenshots</a>
+![UI](images/home-screenshot.jpg?raw=true "Home Page")
+![UI](images/living-room-screenshot.jpg?raw=true "Living Room")
+![UI](images/dining-screenshot.jpg?raw=true "Dining and Kitchen")
+![UI](images/bedrooms-screenshot.jpg?raw=true "Bedrooms")
+![UI](images/bath-screenshot.jpg?raw=true "Bathrooms")
+![UI](images/offices-screenshot.jpg?raw=true "Offices")
+![UI](images/basement-screenshot.jpg?raw=true "Basement")
+![UI](images/outdoor-screenshot.jpg?raw=true "Outdoors")
+![UI](images/weather-screenshot.jpg?raw=true "Weather")
+![UI](images/media-screenshot.jpg?raw=true "Media")
+![UI](images/camera-screenshot.jpg?raw=true "Cameras")
+![UI](images/automation-screenshot.jpg?raw=true "Automations")
+![UI](images/sensors-screenshot.jpg?raw=true "Sensors")
+![UI](images/auto-screenshot.jpg?raw=true "Auto")
 
 
 
