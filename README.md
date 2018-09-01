@@ -4,11 +4,7 @@
 Home Assistant Version: 0.77.2
 
 # Menu
-* [Hubs](#hubs)
-* [Lighting](#lighting)
-* [Climate](#climate)
-* [Outlets & Switches](#outlets)
-* [Locks](#locks)
+[Hubs](#hubs) | [Lighting](#lighting) | [Climate](#climate)| [Outlets & Switches](#outlets)|  [Locks](#locks)
 * [Security](#security)
 * [Voice Assistant](#voice)
 * [Media](#media)
