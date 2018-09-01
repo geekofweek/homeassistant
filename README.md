@@ -1,6 +1,6 @@
 
 # Overview
-My personal [Home Assistant](https://home-assistant.io) configurations with 300+ automations.  These are my active automations and configurations that I use every day.  Updated frequently as I add more device and come up with more and more complicated ways to do simple tasks.
+My personal [Home Assistant](https://home-assistant.io) configurations with 300+ automations.  These are my active automations and configurations that I use every day.  Updated frequently as I add more devices and come up with more and more complicated ways to do simple tasks.
 
 Home Assistant Version: 0.77.2
 
