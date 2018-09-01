@@ -4,14 +4,14 @@
 Home Assistant Version: 0.77.2
 
 # Menu
-[Hubs](##hubs)
-[Lighting](##lighting)
-[Climate](##climate)
-[Outlets & Switches](##outlets)
+[Hubs](#hubs)
+[Lighting](#lighting)
+[Climate](#climate)
+[Outlets & Switches](#outlets)
 
 # Devices
 
-## Hubs
+## <a name="hubs">Hubs</a>
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -20,7 +20,7 @@ Home Assistant Version: 0.77.2
 
 Relevant hub configurations can be found within [configuration.yaml](https://github.com/geekofweek/homeassistant/blob/master/configuration.yaml)
 
-## Lighting
+## <a name="lighting">Lighting</a>
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
