@@ -34,6 +34,8 @@ Many of my automations rely on some form of lighting but many examples can be fo
 
 Lights are grouped via [light_group.yaml](https://github.com/geekofweek/homeassistant/blob/master/light_group.yaml)
 
+[Home Screenshot](images/home-screenshot.jpg?raw=true "Home Page")
+
 ## <a name="climate">Climate</a>
 
 [Go to Menu](#menu)
@@ -45,7 +47,7 @@ Lights are grouped via [light_group.yaml](https://github.com/geekofweek/homeassi
 
 I utilize a number of automations that adjust climate controls.  Mostly they can be found in [climate.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/climate.yaml). Ecobee room sensors are heavily used in [occupancy.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/occupancy.yaml) and as conditions in many automations
 
-[Relevant Screenshot](images/home-screenshot.jpg?raw=true "Home Page")
+[Weather Screenshot](images/weather-screenshot.jpg?raw=true "Weather")
 
 ## <a name="outlets">Outlets & Switches</a>
 
@@ -60,6 +62,8 @@ I utilize a number of automations that adjust climate controls.  Mostly they can
 
 Switches and outlets are used in various capacities, some are for lighting and some are for fans type devices.  [lights.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/lights.yaml) and [occupancy.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/occupancy.yaml) should have some good examples.
 
+[Home Screenshot](images/home-screenshot.jpg?raw=true "Home Page")
+
 ## <a name="locks">Locks</a>
 
 [Go to Menu](#menu)
@@ -69,6 +73,8 @@ Switches and outlets are used in various capacities, some are for lighting and s
 | [Schlage Connect Touchscreen Deadbolt](https://amzn.to/2KwXltd) | 3 | Wink Hub (Z-Wave) | [Wink Lock](https://www.home-assistant.io/components/lock.wink/) | Smart locks used in automations to auto lock / unlock doors |
 
 Locks are used mostly as a way to lock / unlock doors based on locations, see [location.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml) and [locks.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/locks.yaml) for some examples
+
+[Automation Screenshot](images/automation-screenshot.jpg?raw=true "Automations")
 
 ## <a name="security">Security</a>
 
@@ -81,6 +87,8 @@ Locks are used mostly as a way to lock / unlock doors based on locations, see [l
 
 Door sensors are used in many different ways. I trigger on them via [doors.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/doors.yaml), use them for security in [security.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/security.yaml), and as various conditions in [notification_audio.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/notification_audio.yaml) and [climate.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/climate.yaml).
 The alarm siren is used in [security.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/security.yaml) and in the security [scene](https://github.com/geekofweek/homeassistant/blob/master/scenes.yaml). I've also implemented the alarm as part of [water_sensors.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/water_sensors.yaml).
+
+[Automation Screenshot](images/automation-screenshot.jpg?raw=true "Automations")
 
 ## <a name="voice">Voice Assistant</a>
 
@@ -114,6 +122,8 @@ Most media player based automations can be found in [media.yaml]( https://github
 
 Harmony Hubs work via a combination of [input_selects]( https://github.com/geekofweek/homeassistant/blob/master/input_select.yaml), [scripts]( https://github.com/geekofweek/homeassistant/blob/master/scripts.yaml), and automations in [media.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/media.yaml).
 
+[Media Screenshot](images/media-screenshot.jpg?raw=true "Media")
+
 ## <a name="sensors">Sensors</a>
 
 [Go to Menu](#menu)
@@ -124,6 +134,8 @@ Harmony Hubs work via a combination of [input_selects]( https://github.com/geeko
 | [Nest Protect v2 Battery](https://amzn.to/2LJ0ACn) | 6 | Wi-Fi | [Nest](https://www.home-assistant.io/components/nest/) | Smoke Alarm and CO Alarm.  I realized most of my Smoke Alarms had long suprased the 10 year mark and it was time for some replacements. I usually avoid Google owned products for various reasons, but the Nest Protect line has high praise. |
 
 Water sensors serve one major function, to alert me to the presence of water.  Almost all of those automations can be fond via [water_sensors.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/water_sensors.yaml)
+
+[Sensors Screenshot](images/sensors-screenshot.jpg?raw=true "Sensors")
 
 ## <a name="cameras">Cameras</a>
 
@@ -137,6 +149,8 @@ Water sensors serve one major function, to alert me to the presence of water.  A
 
 Nothing is currently automated around cameras, just a [UI](https://github.com/geekofweek/homeassistant/blob/master/images/camera-screenshot.jpg) element.  The Ring doorbell is used in a number of ways to trigger an action based on motion detection or someone ringing the doorbell.  Examples can be found in [doorbell.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/doorbell.yaml)
 
+[Cameras Screenshot](images/camera-screenshot.jpg?raw=true "Cameras")
+
 ## <a name="garage">Garage</a>
 
 [Go to Menu](#menu)
@@ -148,6 +162,8 @@ Nothing is currently automated around cameras, just a [UI](https://github.com/ge
 
 Similar to locks, the Garage door is mostly automated to open / close based on location and after a set amount of time.  Examples can be found in [location.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml) and [garage.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/garage.yaml)
 
+[Auto Screenshot](images/auto-screenshot.jpg?raw=true "Auto")
+
 ## <a name="vacuum">Vacuum</a>
 
 [Go to Menu](#menu)
@@ -158,6 +174,8 @@ Similar to locks, the Garage door is mostly automated to open / close based on l
 | [iRobot Roomba 650](https://amzn.to/2wO2w60) | 1 | NA | NA | Currently not integrated into Home Assistant. Investigating options for future integration |
 
 All Roomba related automations can be found in [roomba.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/roomba.yaml)
+
+[Home Screenshot](images/home-screenshot.jpg?raw=true "Home Page")
 
 ## <a name="network">Network</a>
 
@@ -173,6 +191,8 @@ All Roomba related automations can be found in [roomba.yaml]( https://github.com
 | [Ubiquiti Networks airGateway LR Wireless AP ](https://amzn.to/2Kzbg2d) | 1 | Wi-Fi | NA | Used to connect Ubiquiti UVC-G3 UniFi Video Camera to the wireless network where running an ethernet cable wasn't feasible. Connects to POE injector |
 
 Since I don’t use the network equipment as my primary presence detection method most of the automation is around house guests via [house_guest.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/house_guest.yaml).  The main function of the network equipment is to be network equipment for my fiber internet service.
+
+[Sensors Screenshot](images/sensors-screenshot.jpg?raw=true "Sensors")
 
 ## <a name="other">Other Hardware</a>
 
