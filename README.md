@@ -45,6 +45,8 @@ Lights are grouped via [light_group.yaml](https://github.com/geekofweek/homeassi
 
 I utilize a number of automations that adjust climate controls.  Mostly they can be found in [climate.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/climate.yaml). Ecobee room sensors are heavily used in [occupancy.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/occupancy.yaml) and as conditions in many automations
 
+[Relevant Screenshot](images/home-screenshot.jpg?raw=true "Home Page")
+
 ## <a name="outlets">Outlets & Switches</a>
 
 [Go to Menu](#menu)
@@ -212,7 +214,7 @@ The [Home Assistant Management Tool](https://github.com/geekofweek/homeassistant
 
 - Bash Shell script, should work anywhere you can use Bash
 - All HA configs are stored on my local workstation within Dropbox (doesn’t have to be but I like the versioning and access to it from any machine).
-- Edit locally with Text Editor.  Currently using [Atom]( https://atom.io).
+- Edit locally with Text Editor.  Currently using [Atom]( https://atom.io) and VIM
 
 #### Options:
 
