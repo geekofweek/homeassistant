@@ -20,9 +20,7 @@ Relevant hub configurations can be found within [configuration.yaml](https://git
 
 ## <a name="lighting">Lighting</a>
 
-[Go to Menu](#menu)
-
-[Home Screenshot](images/home-screenshot.jpg?raw=true "Home Page")
+| [Go to Menu](#menu) | [Home Screenshot](images/home-screenshot.jpg?raw=true "Home Page") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -38,8 +36,7 @@ Lights are grouped via [light_group.yaml](https://github.com/geekofweek/homeassi
 
 ## <a name="climate">Climate</a>
 
-[Go to Menu](#menu)
-[Weather Screenshot](images/weather-screenshot.jpg?raw=true "Weather")
+| [Go to Menu](#menu) | [Weather Screenshot](images/weather-screenshot.jpg?raw=true "Weather") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -50,8 +47,7 @@ I utilize a number of automations that adjust climate controls.  Mostly they can
 
 ## <a name="outlets">Outlets & Switches</a>
 
-[Go to Menu](#menu)
-[Home Screenshot](images/home-screenshot.jpg?raw=true "Home Page")
+| [Go to Menu](#menu) | [Home Screenshot](images/home-screenshot.jpg?raw=true "Home Page") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -64,8 +60,7 @@ Switches and outlets are used in various capacities, some are for lighting and s
 
 ## <a name="locks">Locks</a>
 
-[Go to Menu](#menu)
-[Automation Screenshot](images/automation-screenshot.jpg?raw=true "Automations")
+| [Go to Menu](#menu) | [Automation Screenshot](images/automation-screenshot.jpg?raw=true "Automations") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -75,8 +70,7 @@ Locks are used mostly as a way to lock / unlock doors based on locations, see [l
 
 ## <a name="security">Security</a>
 
-[Go to Menu](#menu)
-[Automation Screenshot](images/automation-screenshot.jpg?raw=true "Automations")
+| [Go to Menu](#menu) | [Automation Screenshot](images/automation-screenshot.jpg?raw=true "Automations") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -101,8 +95,7 @@ I go for native Echo integration wherever possible, but a few devices are not cu
 
 ## <a name="media">Media</a>
 
-[Go to Menu](#menu)
-[Media Screenshot](images/media-screenshot.jpg?raw=true "Media")
+| [Go to Menu](#menu) | [Media Screenshot](images/media-screenshot.jpg?raw=true "Media") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -121,8 +114,7 @@ Harmony Hubs work via a combination of [input_selects]( https://github.com/geeko
 
 ## <a name="sensors">Sensors</a>
 
-[Go to Menu](#menu)
-[Sensors Screenshot](images/sensors-screenshot.jpg?raw=true "Sensors")
+| [Go to Menu](#menu) | [Sensors Screenshot](images/sensors-screenshot.jpg?raw=true "Sensors") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -133,8 +125,7 @@ Water sensors serve one major function, to alert me to the presence of water.  A
 
 ## <a name="cameras">Cameras</a>
 
-[Go to Menu](#menu)
-[Cameras Screenshot](images/camera-screenshot.jpg?raw=true "Cameras")
+| [Go to Menu](#menu) | [Cameras Screenshot](images/camera-screenshot.jpg?raw=true "Cameras") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -145,9 +136,8 @@ Water sensors serve one major function, to alert me to the presence of water.  A
 Nothing is currently automated around cameras, just a [UI](https://github.com/geekofweek/homeassistant/blob/master/images/camera-screenshot.jpg) element.  The Ring doorbell is used in a number of ways to trigger an action based on motion detection or someone ringing the doorbell.  Examples can be found in [doorbell.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/doorbell.yaml)
 
 ## <a name="garage">Garage</a>
-[Auto Screenshot](images/auto-screenshot.jpg?raw=true "Auto")
 
-[Go to Menu](#menu)
+| [Go to Menu](#menu) | [Auto Screenshot](images/auto-screenshot.jpg?raw=true "Auto") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -157,9 +147,8 @@ Nothing is currently automated around cameras, just a [UI](https://github.com/ge
 Similar to locks, the Garage door is mostly automated to open / close based on location and after a set amount of time.  Examples can be found in [location.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml) and [garage.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/garage.yaml)
 
 ## <a name="vacuum">Vacuum</a>
-[Home Screenshot](images/home-screenshot.jpg?raw=true "Home Page")
 
-[Go to Menu](#menu)
+| [Go to Menu](#menu) | [Home Screenshot](images/home-screenshot.jpg?raw=true "Home Page") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -170,8 +159,7 @@ All Roomba related automations can be found in [roomba.yaml]( https://github.com
 
 ## <a name="network">Network</a>
 
-[Go to Menu](#menu)
-[Sensors Screenshot](images/sensors-screenshot.jpg?raw=true "Sensors")
+| [Go to Menu](#menu) | [Sensors Screenshot](images/sensors-screenshot.jpg?raw=true "Sensors") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
