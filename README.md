@@ -9,7 +9,7 @@ Published configruations working with Home Assistant Version: 0.77.2
 
 ## <a name="hubs">Hubs</a>
 
-[Go to Menu](#menu)
+| [Go to Menu](#menu) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -82,7 +82,7 @@ The alarm siren is used in [security.yaml](https://github.com/geekofweek/homeass
 
 ## <a name="voice">Voice Assistant</a>
 
-[Go to Menu](#menu)
+| [Go to Menu](#menu) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -174,7 +174,7 @@ Since I don’t use the network equipment as my primary presence detection metho
 
 ## <a name="other">Other Hardware</a>
 
-[Go to Menu](#menu)
+| [Go to Menu](#menu) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -184,7 +184,7 @@ Since I don’t use the network equipment as my primary presence detection metho
 
 ## <a name="retired">Retired</a>
 
-[Go to Menu](#menu)
+| [Go to Menu](#menu) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -194,7 +194,7 @@ Since I don’t use the network equipment as my primary presence detection metho
 
 ## <a name="software">Software</a>
 
-[Go to Menu](#menu)
+| [Go to Menu](#menu) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
