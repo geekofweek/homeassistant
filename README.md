@@ -277,7 +277,7 @@ Within the local folder, variable localpath="PATH_TO_LOCAL_HA_CONFIGS", I have t
 
 # <a name="screenshots">Screenshots</a>
 
-[Go to Menu](#menu)
+| [Go to Menu](#menu) |
 
 ![UI](images/home-screenshot.jpg?raw=true "Home Page")
 ![UI](images/living-room-screenshot.jpg?raw=true "Living Room")
