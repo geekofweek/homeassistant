@@ -240,7 +240,7 @@ Within the local folder, variable localpath="PATH_TO_LOCAL_HA_CONFIGS", I have t
 
 
 # Screenshots
-![UI](images/home-screenshot.jpg?raw=true)
+![UI](images/home-screenshot.jpg?raw=true "Home Page")
 ![UI](images/living-room-screenshot.jpg?raw=true)
 ![UI](images/dining-screenshot.jpg?raw=true)
 ![UI](images/bedrooms-screenshot.jpg?raw=true)
