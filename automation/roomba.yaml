@@ -121,7 +121,7 @@
       entity_id: vacuum.downstairs_roomba
       state: 'off'
     - condition: state
-      entity_id: group.house_guest
+      entity_id: group.friends_and_family
       state: 'not_home'
     - condition: numeric_state
       entity_id: sensor.downstairs_roomba_batt
@@ -165,7 +165,7 @@
       entity_id: sensor.downstairs_roomba_batt
       above: 99
     - condition: state
-      entity_id: group.house_guest
+      entity_id: group.friends_and_family
       state: 'not_home'
     - condition: or
       conditions:
@@ -209,7 +209,7 @@
       entity_id: sensor.upstairs_roomba_batt
       above: 99
     - condition: state
-      entity_id: group.house_guest
+      entity_id: group.friends_and_family
       state: 'not_home'
 
   action:
@@ -239,7 +239,7 @@
       entity_id: sensor.upstairs_roomba_batt
       above: 99
     - condition: state
-      entity_id: group.house_guest
+      entity_id: group.friends_and_family
       state: 'not_home'
 
   action:
@@ -266,6 +266,58 @@
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
+    - condition: state
+      entity_id: group.house_guest
+      state: 'not_home'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.bedroom_lights
+        - light.basement_stairs
+      data:
+       brightness_pct: 50
+       color_temp: 447
+    - service: light.turn_on
+      entity_id:
+        - light.living_room_lights
+      data:
+       brightness_pct: 50
+       color_temp: 447
+    - service: light.turn_on
+      entity_id:
+        - light.dining_room_table
+        - light.bathroom_vanity
+        - light.kitchen_sink
+        - light.kitchen_cabinets
+        - light.hallway_light
+        - light.stairs
+      data:
+       brightness_pct: 25
+    - service: homeassistant.turn_on
+      entity_id:
+        - input_boolean.disable_occupancy
+
+        ##########################################################
+        ## Turn on Lights at Sunset if Downstairs Roomba Running
+        ##########################################################
+
+- alias: Roomba - Turn on Lights at Sunset if Downstairs Roomba Running
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+    - condition: state
+      entity_id: vacuum.downstairs_roomba
+      state: 'on'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
 
   action:
     - service: light.turn_on
@@ -323,6 +375,31 @@
        brightness_pct: 1
 
         ##########################################################
+        ## Turn on Lights at Sunset if Upstairs Roomba Running
+        ##########################################################
+
+- alias: Roomba - Turn on Lights at Sunset if Upstairs Roomba Running
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+
+  condition:
+    - condition: state
+      entity_id: vacuum.upstairs_roomba
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.office_ceiling
+        - light.USER2_office_ceiling
+        - light.guest_bedroom_ceiling
+        - light.stairs
+      data:
+       brightness_pct: 1
+
+        ##########################################################
         ## Turn off lights at night when Roomba finished
         ##########################################################
 
@@ -356,10 +433,10 @@
         - light.stairs
 
         ##########################################################
-        ## Turn off lights at night when Upstairs Roomba finished
+        ## Turn off lights at night when Upstairs Roomba finished when Home
         ##########################################################
 
-- alias: Roomba - Turn off lights at night when Upstairs Roomba finished
+- alias: Roomba - Turn off lights at night when Upstairs Roomba finished when Home
 
   trigger:
     - platform: state
@@ -380,6 +457,37 @@
     - condition: state
       entity_id: binary_sensor.guest_bedroom_occupancy
       state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.office_ceiling
+        - light.USER2_office_ceiling
+        - light.guest_bedroom_ceiling
+        - light.stairs
+
+        ##########################################################
+        ## Turn off lights at night when Upstairs Roomba finished when not Home
+        ##########################################################
+
+- alias: Roomba - Turn off lights at night when Upstairs Roomba finished when not Home
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.upstairs_roomba
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
 
   action:
     - service: light.turn_off
@@ -433,6 +541,9 @@
     - condition: state
       entity_id: vacuum.downstairs_roomba
       state: 'off'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
     - condition: numeric_state
       entity_id: sensor.downstairs_roomba_batt
       above: 99
