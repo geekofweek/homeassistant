@@ -1,6 +1,6 @@
 
 # Overview
-My personal, and in use, current [Home Assistant](https://home-assistant.io) configurations with 300+ automations.
+My personal [Home Assistant](https://home-assistant.io) configurations with 300+ automations.
 
 Home Assistant Version: 0.77.2
 
