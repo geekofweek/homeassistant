@@ -241,19 +241,19 @@ Within the local folder, variable localpath="PATH_TO_LOCAL_HA_CONFIGS", I have t
 
 # Screenshots
 ![UI](images/home-screenshot.jpg?raw=true "Home Page")
-![UI](images/living-room-screenshot.jpg?raw=true)
-![UI](images/dining-screenshot.jpg?raw=true)
-![UI](images/bedrooms-screenshot.jpg?raw=true)
-![UI](images/bath-screenshot.jpg?raw=true)
-![UI](images/offices-screenshot.jpg?raw=true)
-![UI](images/basement-screenshot.jpg?raw=true)
-![UI](images/outdoor-screenshot.jpg?raw=true)
-![UI](images/weather-screenshot.jpg?raw=true)
-![UI](images/media-screenshot.jpg?raw=true)
-![UI](images/camera-screenshot.jpg?raw=true)
-![UI](images/automation-screenshot.jpg?raw=true)
-![UI](images/sensors-screenshot.jpg?raw=true)
-![UI](images/auto-screenshot.jpg?raw=true)
+![UI](images/living-room-screenshot.jpg?raw=true "Living Room")
+![UI](images/dining-screenshot.jpg?raw=true "Dining and Kitchen")
+![UI](images/bedrooms-screenshot.jpg?raw=true "Bedrooms")
+![UI](images/bath-screenshot.jpg?raw=true "Bathrooms")
+![UI](images/offices-screenshot.jpg?raw=true "Offices")
+![UI](images/basement-screenshot.jpg?raw=true "Basement")
+![UI](images/outdoor-screenshot.jpg?raw=true "Outdoors")
+![UI](images/weather-screenshot.jpg?raw=true "Weather")
+![UI](images/media-screenshot.jpg?raw=true "Media")
+![UI](images/camera-screenshot.jpg?raw=true "Cameras")
+![UI](images/automation-screenshot.jpg?raw=true "Automations")
+![UI](images/sensors-screenshot.jpg?raw=true "Sensors")
+![UI](images/auto-screenshot.jpg?raw=true "Auto")
 
 
 
