@@ -239,21 +239,21 @@ Within the local folder, variable localpath="PATH_TO_LOCAL_HA_CONFIGS", I have t
 
 
 
-# Interface
-![UI](images/home-screenshot.jpg)
-![UI](images/living-room-screenshot.jpg)
-![UI](images/dining-screenshot.jpg)
-![UI](images/bedrooms-screenshot.jpg)
-![UI](images/bath-screenshot.jpg)
-![UI](images/offices-screenshot.jpg)
-![UI](images/basement-screenshot.jpg)
-![UI](images/outdoor-screenshot.jpg)
-![UI](images/weather-screenshot.jpg)
-![UI](images/media-screenshot.jpg)
-![UI](images/camera-screenshot.jpg)
-![UI](images/automation-screenshot.jpg)
-![UI](images/sensors-screenshot.jpg)
-![UI](images/auto-screenshot.jpg)
+# Screenshots
+![UI](images/home-screenshot.jpg?raw=true)
+![UI](images/living-room-screenshot.jpg?raw=true)
+![UI](images/dining-screenshot.jpg?raw=true)
+![UI](images/bedrooms-screenshot.jpg?raw=true)
+![UI](images/bath-screenshot.jpg?raw=true)
+![UI](images/offices-screenshot.jpg?raw=true)
+![UI](images/basement-screenshot.jpg?raw=true)
+![UI](images/outdoor-screenshot.jpg?raw=true)
+![UI](images/weather-screenshot.jpg?raw=true)
+![UI](images/media-screenshot.jpg?raw=true)
+![UI](images/camera-screenshot.jpg?raw=true)
+![UI](images/automation-screenshot.jpg?raw=true)
+![UI](images/sensors-screenshot.jpg?raw=true)
+![UI](images/auto-screenshot.jpg?raw=true)
 
 
 
