@@ -207,7 +207,9 @@
   Automation Override:
     control: hidden
     entities:
-      - input_boolean.disable_voice_greeting
+      - input_boolean.disable_climate
+      - input_boolean.disable_notifications
+      - input_boolean.disable_roomba
       - input_boolean.disable_doorbell
       - input_boolean.disable_door_open_lights_on
       - input_boolean.disable_exterior_on_sunset
@@ -784,9 +786,11 @@
     - input_boolean.disable_media_lights
     - input_boolean.disable_occupancy
     - input_boolean.disable_rainy_day
-    - input_boolean.disable_voice_greeting
+    - input_boolean.disable_notifications
     - input_boolean.disable_water_sensors
     - input_boolean.disable_smoke_alarm
+    - input_boolean.disable_roomba
+    - input_boolean.disable_climate
 
   Calendars:
     - calendar.holidays_in_united_states

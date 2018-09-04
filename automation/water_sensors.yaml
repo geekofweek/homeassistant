@@ -16,7 +16,7 @@
 
   condition:
     - condition: state
-      entity_id: input_boolean.disable_water_sensors
+      entity_id: input_boolean.disable_notifications
       state: 'off'
 
   action:
@@ -38,7 +38,7 @@
 
   condition:
     - condition: state
-      entity_id: input_boolean.disable_water_sensors
+      entity_id: input_boolean.disable_notifications
       state: 'off'
 
   action:
@@ -125,6 +125,9 @@
       state: 'home'
     - condition: state
       entity_id: input_boolean.disable_water_sensors
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
       state: 'off'
 
   action:

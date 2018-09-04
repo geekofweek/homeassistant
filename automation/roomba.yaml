@@ -18,6 +18,9 @@
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
     - condition: time
       after: '10:01'
       before: '23:59'
@@ -53,8 +56,11 @@
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
     - condition: time
-      after: '10:01'
+      after: '08:00'
       before: '23:59'
     - condition: state
       entity_id: vacuum.upstairs_roomba
@@ -84,6 +90,9 @@
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
     - condition: or
       conditions:
       - condition: state
@@ -110,6 +119,9 @@
      at: '10:00'
 
   condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
     - condition: time
       weekday:
         - mon
@@ -154,6 +166,9 @@
      at: '13:00'
 
   condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
     - condition: time
       weekday:
         - sat
@@ -195,6 +210,9 @@
      at: '18:30'
 
   condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
     - condition: time
       weekday:
         - mon
@@ -228,6 +246,9 @@
      at: '13:00'
 
   condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
     - condition: time
       weekday:
         - sat
@@ -260,6 +281,9 @@
       to: 'on'
 
   condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
     - condition: state
       entity_id: group.household
       state: 'not_home'
@@ -311,6 +335,9 @@
 
   condition:
     - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
+    - condition: state
       entity_id: group.household
       state: 'not_home'
     - condition: state
@@ -359,9 +386,11 @@
       entity_id: vacuum.upstairs_roomba
       from: 'off'
       to: 'on'
-      offset: '-00:30:00'
-      
+
   condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -388,6 +417,9 @@
       event: 'sunset'
 
   condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
     - condition: state
       entity_id: vacuum.upstairs_roomba
       state: 'on'
@@ -416,6 +448,9 @@
       to: 'off'
 
   condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
     - condition: state
       entity_id: group.household
       state: 'not_home'
@@ -449,6 +484,9 @@
       to: 'off'
 
   condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -488,6 +526,9 @@
 
   condition:
     - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
+    - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: state
@@ -515,6 +556,11 @@
       from: 'on'
       to: 'off'
 
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
+
   action:
     - service: homeassistant.turn_off
       entity_id:
@@ -540,6 +586,9 @@
   condition:
     - condition: state
       entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_roomba
       state: 'off'
     - condition: time
       after: '10:01'
@@ -589,6 +638,9 @@
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
     - condition: time
       after: '10:01'
       before: '18:30'
@@ -635,6 +687,9 @@
       entity_id: input_boolean.disable_home_away
       state: 'off'
     - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
+    - condition: state
       entity_id: input_boolean.house_guest_away
       state: 'on'
     - condition: or
@@ -662,6 +717,11 @@
     - platform: template
       value_template: "{%if is_state_attr('vacuum.downstairs_roomba', 'status', 'Stuck') %}true{%endif%}"
 
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
+
   action:
     - service: notify.ios_USER1s_iphone
       data:
@@ -679,6 +739,11 @@
   trigger:
     - platform: template
       value_template: "{%if is_state_attr('vacuum.upstairs_roomba', 'status', 'Stuck') %}true{%endif%}"
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
 
   action:
     - service: notify.ios_USER1s_iphone
@@ -698,6 +763,11 @@
     - platform: template
       value_template: "{%if is_state_attr('vacuum.downstairs_roomba', 'bin_full', true) %}true{%endif%}"
 
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
+
   action:
     - service: notify.ios_USER1s_iphone
       data:
@@ -715,6 +785,11 @@
   trigger:
     - platform: template
       value_template: "{%if is_state_attr('vacuum.upstairs_roomba', 'bin_full', true) %}true{%endif%}"
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
 
   action:
     - service: notify.ios_USER1s_iphone

@@ -54,6 +54,9 @@
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
 
   action:
     - service: homeassistant.turn_off
@@ -86,6 +89,9 @@
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
 
   action:
     - service: homeassistant.turn_on
@@ -108,6 +114,11 @@
       entity_id: sensor.dark_sky_temperature
       above: 68
 
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+
   action:
     - service: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
@@ -127,6 +138,9 @@
     - condition: state
       entity_id: group.friends_and_family
       state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
 
   action:
     - service: homeassistant.turn_on
@@ -142,6 +156,11 @@
     - platform: numeric_state
       entity_id: sensor.dark_sky_temperature
       below: 65
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
 
   action:
     - service: homeassistant.turn_off
@@ -162,6 +181,9 @@
     - condition: state
       entity_id: group.friends_and_family
       state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
 
   action:
     - service: homeassistant.turn_on
@@ -176,6 +198,11 @@
   trigger:
     - platform: homeassistant
       event: start
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
 
   action:
 #     Disable Summer or Winter Mode
@@ -205,6 +232,9 @@
     - condition: state
       entity_id: device_tracker.USER1DEVICE
       state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
 
   action:
     - service: homeassistant.turn_off
@@ -233,6 +263,9 @@
     - condition: state
       entity_id: group.summer_mode
       state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
 
   action:
     - service: homeassistant.turn_on
@@ -261,6 +294,9 @@
     - condition: state
       entity_id: input_boolean.thermostat_away
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
 
   action:
     - service: climate.set_hold_mode
@@ -287,6 +323,9 @@
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
 
   action:
     - service: climate.set_hold_mode
@@ -324,6 +363,9 @@
     - condition: state
       entity_id: device_tracker.USER2DEVICE
       state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
 
   action:
     - service: climate.set_hold_mode
@@ -356,6 +398,9 @@
     - condition: state
       entity_id: input_boolean.USER2_working
       state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
 
   action:
     - service: climate.set_hold_mode
@@ -456,6 +501,9 @@
     - condition: state
       entity_id: input_boolean.thermostat_away
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
 
   action:
     - service: climate.set_hold_mode
@@ -489,6 +537,9 @@
       state: 'home'
     - condition: state
       entity_id: input_boolean.thermostat_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_climate
       state: 'off'
 
   action:

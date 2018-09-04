@@ -14,6 +14,11 @@
       from: 'off'
       to: 'on'
 
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
   action:
     - service: persistent_notification.create
       data:
@@ -28,6 +33,11 @@
       entity_id: input_boolean.alarm_tripped
       from: 'off'
       to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
 
   action:
     - service: notify.ios_USER1s_iphone
@@ -85,6 +95,11 @@
       from: 'off'
       to: 'on'
 
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
   action:
     - service: notify.ios_USER1s_iphone
       data:
@@ -104,6 +119,11 @@
       entity_id: input_boolean.enable_security
       from: 'on'
       to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
 
   action:
     - service: notify.ios_USER1s_iphone
@@ -132,6 +152,9 @@
     - condition: state
       entity_id: input_boolean.USER1_away_driving
       state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
 
   action:
     - service: notify.ios_USER1s_iphone
@@ -168,6 +191,9 @@
     - condition: state
       entity_id: input_boolean.USER1_away_driving
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
 
   action:
     - service: notify.ios_USER1s_iphone
@@ -197,6 +223,11 @@
       from: 'home'
       to: 'not_home'
 
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
   action:
     - service: notify.ios_USER1s_iphone
       data:
@@ -221,6 +252,9 @@
     - condition: state
       entity_id: input_boolean.USER2_away_driving
       state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
 
   action:
     - service: notify.ios_USER1s_iphone
@@ -250,6 +284,9 @@
     - condition: state
       entity_id: input_boolean.USER2_away_driving
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
 
   action:
     - service: notify.ios_USER1s_iphone
@@ -272,6 +309,11 @@
       from: 'home'
       to: 'not_home'
 
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
   action:
     - service: notify.ios_USER1s_iphone
       data:
@@ -289,6 +331,11 @@
       from: 'work'
       to: 'not_home'
 
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
   action:
     - service: notify.ios_USER1s_iphone
       data:
@@ -305,6 +352,11 @@
       entity_id: group.friends_and_family
       from: 'not_home'
       to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
 
   action:
     - service: notify.ios_USER1s_iphone
@@ -366,6 +418,9 @@
     - condition: state
       entity_id: group.household
       state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
 
   action:
     - service: notify.ios_USER1s_iphone
@@ -427,6 +482,9 @@
     - condition: state
       entity_id: group.household
       state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
 
   action:
     - service: notify.ios_USER1s_iphone
@@ -488,6 +546,9 @@
     - condition: state
       entity_id: group.household
       state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
 
   action:
     - service: notify.ios_USER1s_iphone
@@ -518,6 +579,9 @@
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
 
   action:
     - service: notify.ios_USER1s_iphone
@@ -550,6 +614,11 @@
         hours: 0
         minutes: 35
         seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
 
   action:
     - service: notify.ios_USER1s_iphone
@@ -593,6 +662,11 @@
       from: 'off'
       to: 'on'
 
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
   action:
     - service: notify.ios_USER1s_iphone
       data:
@@ -634,6 +708,11 @@
       entity_id: sensor.dark_sky_humidity
       to: 'unknown'
 
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
   action:
     - service: notify.ios_USER1s_iphone
       data:
@@ -649,6 +728,11 @@
     - platform: state
       entity_id: sensor.nas_status
       to: 'warning'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
 
   action:
     - service: notify.ios_USER1s_iphone
@@ -666,6 +750,11 @@
       entity_id: sensor.ups_input_voltage
       below: 80
 
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
   action:
     - service: notify.ios_USER1s_iphone
       data:
@@ -681,6 +770,11 @@
     - platform: numeric_state
       entity_id: sensor.ups_input_voltage
       above: 80
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
 
   action:
     - service: notify.ios_USER1s_iphone
@@ -698,6 +792,11 @@
       entity_id: sensor.ups_battery_charge
       below: 15
 
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
   action:
     - service: notify.ios_USER1s_iphone
       data:
@@ -714,6 +813,11 @@
       entity_id: sensor.ups_battery_runtime_mins
       below: 15
 
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
   action:
     - service: notify.ios_USER1s_iphone
       data:
@@ -728,6 +832,11 @@
   trigger:
     - platform: homeassistant
       event: start
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
 
   action:
     - service: notify.ios_USER1s_iphone

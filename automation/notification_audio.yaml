@@ -52,7 +52,7 @@
       entity_id: input_boolean.USER1_greeting
       state: 'on'
     - condition: state
-      entity_id: input_boolean.disable_voice_greeting
+      entity_id: input_boolean.disable_notifications
       state: 'off'
     - condition: time
       after: '09:00'
@@ -101,7 +101,7 @@
       entity_id: binary_sensor.USER2_office_occupancy
       state: 'on'
     - condition: state
-      entity_id: input_boolean.disable_voice_greeting
+      entity_id: input_boolean.disable_notifications
       state: 'off'
     - condition: time
       after: '09:00'
@@ -138,7 +138,7 @@
       entity_id: input_boolean.USER2_greeting
       state: 'on'
     - condition: state
-      entity_id: input_boolean.disable_voice_greeting
+      entity_id: input_boolean.disable_notifications
       state: 'off'
     - condition: time
       after: '09:00'
@@ -187,7 +187,7 @@
       entity_id: binary_sensor.office_occupancy
       state: 'on'
     - condition: state
-      entity_id: input_boolean.disable_voice_greeting
+      entity_id: input_boolean.disable_notifications
       state: 'off'
     - condition: time
       after: '09:00'
@@ -230,7 +230,7 @@
       entity_id: input_boolean.USER2_greeting
       state: 'on'
     - condition: state
-      entity_id: input_boolean.disable_voice_greeting
+      entity_id: input_boolean.disable_notifications
       state: 'off'
     - condition: time
       after: '09:00'
@@ -273,7 +273,7 @@
       entity_id: input_boolean.USER2_away
       state: 'on'
     - condition: state
-      entity_id: input_boolean.disable_voice_greeting
+      entity_id: input_boolean.disable_notifications
       state: 'off'
     - condition: time
       after: '09:00'
