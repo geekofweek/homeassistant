@@ -307,6 +307,7 @@
   trigger:
     - platform: sun
       event: 'sunset'
+      offset: '-00:30:00'
 
   condition:
     - condition: state
@@ -358,7 +359,8 @@
       entity_id: vacuum.upstairs_roomba
       from: 'off'
       to: 'on'
-
+      offset: '-00:30:00'
+      
   condition:
     - condition: state
       entity_id: sun.sun
@@ -371,6 +373,7 @@
         - light.USER2_office_ceiling
         - light.guest_bedroom_ceiling
         - light.stairs
+        - light.upstairs_bathroom
       data:
        brightness_pct: 1
 
@@ -396,6 +399,7 @@
         - light.USER2_office_ceiling
         - light.guest_bedroom_ceiling
         - light.stairs
+        - light.upstairs_bathroom
       data:
        brightness_pct: 1
 
@@ -468,6 +472,7 @@
         - light.USER2_office_ceiling
         - light.guest_bedroom_ceiling
         - light.stairs
+        - light.upstairs_bathroom
 
         ##########################################################
         ## Turn off lights at night when Upstairs Roomba finished when not Home
@@ -496,6 +501,7 @@
         - light.USER2_office_ceiling
         - light.guest_bedroom_ceiling
         - light.stairs
+        - light.upstairs_bathroom
 
         ##########################################################
         ## Enable Occupancy Automations when Roomba finished
