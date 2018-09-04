@@ -2,12 +2,14 @@
 # Overview
 My personal [Home Assistant](https://home-assistant.io) configurations with 300+ automations.  These are my active automations and configurations that I use every day.  Updated frequently as I add more devices and come up with more and more complicated ways to do simple tasks.
 
-Published configruations working with Home Assistant Version: 0.77.2
+Published configruations working with Home Assistant Version: 0.77.3
 
-# Menu
+# <a name="menu">Menu</a>
  | [Hubs](#hubs) | [Lighting](#lighting) | [Climate](#climate)| [Outlets & Switches](#outlets)|  [Locks](#locks) | [Security](#security) | [Voice Assistant](#voice) | [Media](#media) | [Sensors](#sensors) | [Cameras](#cameras) | [Garage](#garage) | [Vacuum](#vacuum) | [Network](#network) | [Other Hardware](#other) | [Retired Devices](#retired) | [Software](#software) | [Screenshots](#screenshots) |
 
 ## <a name="hubs">Hubs</a>
+
+| [Go to Menu](#menu) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -17,6 +19,8 @@ Published configruations working with Home Assistant Version: 0.77.2
 Relevant hub configurations can be found within [configuration.yaml](https://github.com/geekofweek/homeassistant/blob/master/configuration.yaml)
 
 ## <a name="lighting">Lighting</a>
+
+| [Go to Menu](#menu) | [Home Screenshot](images/home-screenshot.jpg?raw=true "Home Page") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -32,6 +36,8 @@ Lights are grouped via [light_group.yaml](https://github.com/geekofweek/homeassi
 
 ## <a name="climate">Climate</a>
 
+| [Go to Menu](#menu) | [Weather Screenshot](images/weather-screenshot.jpg?raw=true "Weather") |
+
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [Ecobee 3](https://amzn.to/2L72d9A) | 1 | Wi-Fi | [ecobee](https://www.home-assistant.io/components/ecobee/) / [Ecobee Thermostat](https://www.home-assistant.io/components/climate.ecobee/) | Used as primary thermostat |
@@ -40,6 +46,8 @@ Lights are grouped via [light_group.yaml](https://github.com/geekofweek/homeassi
 I utilize a number of automations that adjust climate controls.  Mostly they can be found in [climate.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/climate.yaml). Ecobee room sensors are heavily used in [occupancy.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/occupancy.yaml) and as conditions in many automations
 
 ## <a name="outlets">Outlets & Switches</a>
+
+| [Go to Menu](#menu) | [Home Screenshot](images/home-screenshot.jpg?raw=true "Home Page") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -52,6 +60,8 @@ Switches and outlets are used in various capacities, some are for lighting and s
 
 ## <a name="locks">Locks</a>
 
+| [Go to Menu](#menu) | [Automation Screenshot](images/automation-screenshot.jpg?raw=true "Automations") |
+
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [Schlage Connect Touchscreen Deadbolt](https://amzn.to/2KwXltd) | 3 | Wink Hub (Z-Wave) | [Wink Lock](https://www.home-assistant.io/components/lock.wink/) | Smart locks used in automations to auto lock / unlock doors |
@@ -59,6 +69,8 @@ Switches and outlets are used in various capacities, some are for lighting and s
 Locks are used mostly as a way to lock / unlock doors based on locations, see [location.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml) and [locks.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/locks.yaml) for some examples
 
 ## <a name="security">Security</a>
+
+| [Go to Menu](#menu) | [Automation Screenshot](images/automation-screenshot.jpg?raw=true "Automations") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -70,6 +82,8 @@ The alarm siren is used in [security.yaml](https://github.com/geekofweek/homeass
 
 ## <a name="voice">Voice Assistant</a>
 
+| [Go to Menu](#menu) |
+
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [Amazon Echo](https://amzn.to/2KuPHjd) | 1 | Wi-Fi | [Emulated Hue Bridge](https://www.home-assistant.io/components/emulated_hue/) | Audio only Voice Assistant |
@@ -80,6 +94,8 @@ The alarm siren is used in [security.yaml](https://github.com/geekofweek/homeass
 I go for native Echo integration wherever possible, but a few devices are not currently supported where I've had to implement some work arounds via emulated hue.  Most of these are just exposed via an [input_boolean]( https://github.com/geekofweek/homeassistant/blob/master/input_boolean.yaml) and [customize.yaml]( https://github.com/geekofweek/homeassistant/blob/master/customize.yaml).  This allows the ability to have echo turn on or off an [input_boolean]( https://github.com/geekofweek/homeassistant/blob/master/input_boolean.yaml)  in turn triggering an automation.
 
 ## <a name="media">Media</a>
+
+| [Go to Menu](#menu) | [Media Screenshot](images/media-screenshot.jpg?raw=true "Media") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -98,6 +114,8 @@ Harmony Hubs work via a combination of [input_selects]( https://github.com/geeko
 
 ## <a name="sensors">Sensors</a>
 
+| [Go to Menu](#menu) | [Sensors Screenshot](images/sensors-screenshot.jpg?raw=true "Sensors") |
+
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [Aeon Labs Water Sensor](https://amzn.to/2rM6KFE) | 2 | Wink Hub (Z-Wave) | [Wink Binary Sensor](https://www.home-assistant.io/components/binary_sensor.wink/) | Water sensors used to detect water in basement as a preventive measure |
@@ -105,7 +123,11 @@ Harmony Hubs work via a combination of [input_selects]( https://github.com/geeko
 
 Water sensors serve one major function, to alert me to the presence of water.  Almost all of those automations can be fond via [water_sensors.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/water_sensors.yaml)
 
+Smoke detectors, like the water sensors, have one real function to alert me of smoke or CO2.  Almost all of those automations can be fond via [smoke_alarm.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/smoke_alarm.yaml)
+
 ## <a name="cameras">Cameras</a>
+
+| [Go to Menu](#menu) | [Cameras Screenshot](images/camera-screenshot.jpg?raw=true "Cameras") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -117,6 +139,8 @@ Nothing is currently automated around cameras, just a [UI](https://github.com/ge
 
 ## <a name="garage">Garage</a>
 
+| [Go to Menu](#menu) | [Auto Screenshot](images/auto-screenshot.jpg?raw=true "Auto") |
+
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [MyQ Smart Garage Door Opener](https://amzn.to/2Iu4Joy) | 1 | Wi-Fi | [MyQ Cover](https://www.home-assistant.io/components/cover.myq/)| Automated to open / close garage door on location and auto close after specific time intervals |
@@ -126,6 +150,8 @@ Similar to locks, the Garage door is mostly automated to open / close based on l
 
 ## <a name="vacuum">Vacuum</a>
 
+| [Go to Menu](#menu) | [Home Screenshot](images/home-screenshot.jpg?raw=true "Home Page") |
+
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [iRobot Roomba 980](https://amzn.to/2L9q1tm) | 2 | Wi-Fi | [iRobot Roomba](https://www.home-assistant.io/components/vacuum.roomba/)| Automated to run at specific times based on presence detection |
@@ -134,6 +160,8 @@ Similar to locks, the Garage door is mostly automated to open / close based on l
 All Roomba related automations can be found in [roomba.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/roomba.yaml)
 
 ## <a name="network">Network</a>
+
+| [Go to Menu](#menu) | [Sensors Screenshot](images/sensors-screenshot.jpg?raw=true "Sensors") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -148,6 +176,8 @@ Since I don’t use the network equipment as my primary presence detection metho
 
 ## <a name="other">Other Hardware</a>
 
+| [Go to Menu](#menu) | [Sensors Screenshot](images/sensors-screenshot.jpg?raw=true "Sensors") |
+
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [QNAP TS-453 Pro](https://amzn.to/2wRmtJh) | 1 | Ethernet | [QNAP Sensor](https://www.home-assistant.io/components/sensor.qnap/)| Main storage array. Docker Containers and Plex media server run off this device. Configured with 4x [WD Red Pro 4TB NAS Hard Disk Drives](https://amzn.to/2IvE7DO) |
@@ -156,6 +186,8 @@ Since I don’t use the network equipment as my primary presence detection metho
 
 ## <a name="retired">Retired</a>
 
+| [Go to Menu](#menu) |
+
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [Quirky + GE Aros Smart Window Air Conditioner](https://amzn.to/2ImtdEi) | 1 | Wi-Fi | [Wink Climate](https://www.home-assistant.io/components/climate.wink/) | No longer used after new HVAC system installed.  Cooling effieceny had dropped and was more of an energy hog than actually making a difference in temprature comfort. |
@@ -163,6 +195,8 @@ Since I don’t use the network equipment as my primary presence detection metho
 | [iHome WiFI Smart Plug](https://amzn.to/2rReF4z) | 2 | Wink Hub (Wi-Fi) | [Wink Switch](https://www.home-assistant.io/components/switch.wink/) | Not using these anymore due to overall poor reliability |
 
 ## <a name="software">Software</a>
+
+| [Go to Menu](#menu) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -180,7 +214,7 @@ The [Home Assistant Management Tool](https://github.com/geekofweek/homeassistant
 
 - Bash Shell script, should work anywhere you can use Bash
 - All HA configs are stored on my local workstation within Dropbox (doesn’t have to be but I like the versioning and access to it from any machine).
-- Edit locally with Text Editor.  Currently using [Atom]( https://atom.io).
+- Edit locally with Text Editor.  Currently using [Atom]( https://atom.io) and VIM
 
 #### Options:
 
@@ -242,6 +276,9 @@ Within the local folder, variable localpath="PATH_TO_LOCAL_HA_CONFIGS", I have t
 
 
 # <a name="screenshots">Screenshots</a>
+
+| [Go to Menu](#menu) |
+
 ![UI](images/home-screenshot.jpg?raw=true "Home Page")
 ![UI](images/living-room-screenshot.jpg?raw=true "Living Room")
 ![UI](images/dining-screenshot.jpg?raw=true "Dining and Kitchen")
@@ -257,6 +294,7 @@ Within the local folder, variable localpath="PATH_TO_LOCAL_HA_CONFIGS", I have t
 ![UI](images/sensors-screenshot.jpg?raw=true "Sensors")
 ![UI](images/auto-screenshot.jpg?raw=true "Auto")
 
+| [Go to Menu](#menu) |
 
 
 
