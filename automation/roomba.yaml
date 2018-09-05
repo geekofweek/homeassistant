@@ -405,6 +405,9 @@
         - light.upstairs_bathroom
       data:
        brightness_pct: 1
+    - service: homeassistant.turn_on
+      entity_id:
+        - input_boolean.disable_occupancy
 
         ##########################################################
         ## Turn on Lights at Sunset if Upstairs Roomba Running
@@ -415,7 +418,8 @@
   trigger:
     - platform: sun
       event: 'sunset'
-
+      offset: '-00:30:00'
+      
   condition:
     - condition: state
       entity_id: input_boolean.disable_roomba
@@ -434,6 +438,9 @@
         - light.upstairs_bathroom
       data:
        brightness_pct: 1
+    - service: homeassistant.turn_on
+      entity_id:
+        - input_boolean.disable_occupancy
 
         ##########################################################
         ## Turn off lights at night when Roomba finished
@@ -553,6 +560,10 @@
   trigger:
     - platform: state
       entity_id: vacuum.downstairs_roomba
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: vacuum.upstairs_roomba
       from: 'on'
       to: 'off'
 
