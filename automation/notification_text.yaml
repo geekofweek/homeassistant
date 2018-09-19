@@ -775,6 +775,9 @@
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
+    - condition: numeric_state
+      entity_id: 'sensor.uptime'
+      above: '0.01'
 
   action:
     - service: notify.ios_USER1s_iphone
