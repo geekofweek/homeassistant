@@ -826,6 +826,27 @@
       data:
         message: "15 mins of UPS Battery Remaining!"
 
+        ##########################################################
+        ## Wink Relay Offline
+        ##########################################################
+
+- alias: Notification Text - Wink Relay Offline
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.wink_relay
+      to: 'unavailable'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: "Wink Relay Has Crahsed, Please Restart"
+
         #################################################################
         ## Home Assistant Started Notification
         #################################################################
