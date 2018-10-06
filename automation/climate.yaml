@@ -138,6 +138,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Outside temp above 68 turning on AC
+    - service: notify.ios_USER2s_iphone
+      data:
+        message: Outside temp above 68 turning on AC
 
         ##########################################################
         ## Turn Thermostat off Summer
@@ -174,6 +177,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Outside temp below 68 shutting off AC
+    - service: notify.ios_USER2s_iphone
+      data:
+        message: Outside temp below 68 shutting off AC
 
         ##########################################################
         ## Turn Thermostat on Winter
@@ -205,6 +211,9 @@
     - service: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
     - service: notify.ios_USER1s_iphone
+      data:
+        message: Outside temp below 65 turning on Heat
+    - service: notify.ios_USER2s_iphone
       data:
         message: Outside temp below 65 turning on Heat
 
@@ -241,6 +250,9 @@
     - service: homeassistant.turn_on
       entity_id: input_boolean.thermostat_away
     - service: notify.ios_USER1s_iphone
+      data:
+        message: Outside temp above 65 turning off Heat
+    - service: notify.ios_USER2s_iphone
       data:
         message: Outside temp above 65 turning off Heat
 

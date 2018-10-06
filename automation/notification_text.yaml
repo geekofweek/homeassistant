@@ -836,6 +836,10 @@
     - platform: state
       entity_id: binary_sensor.wink_relay
       to: 'unavailable'
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
 
   condition:
     - condition: state
