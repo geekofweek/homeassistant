@@ -125,7 +125,6 @@ cover:
     username: !secret myq_username
     password: !secret myq_password
     type: chamberlain
-    scan_interval: 30
   - platform: wink
     entity_namespace: wink
 
@@ -181,6 +180,7 @@ vacuum:
 weather:
   - platform: darksky
     api_key: !secret darksky_api_key
+    mode: daily
 
 nest:
   client_id: !secret nest_client_id

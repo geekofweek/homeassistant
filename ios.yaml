@@ -67,3 +67,21 @@
             authenticationRequired: yes
             destructive: yes
             behavior: 'default'
+      - name: Washing Machine
+        identifier: 'washingmachineswitch'
+        actions:
+          - identifier: 'WASHINGMACHINE_TURN_ON_SWITCH'
+            title: 'Turn Washing Machine Switch On'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: yes
+            behavior: 'default'
+      - name: Washing Machine Lights
+        identifier: 'washingmachinedonelights'
+        actions:
+          - identifier: 'WASHINGMACHINE_DONE_LIGHTS'
+            title: 'Turn on Basement Lights'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: yes
+            behavior: 'default'

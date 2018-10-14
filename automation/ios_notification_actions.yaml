@@ -136,3 +136,35 @@
   action:
     - service: homeassistant.turn_on
       entity_id: input_boolean.disable_smoke_alarm
+
+        #################################################################
+        ## Washing Machine Switch On
+        #################################################################
+
+- alias: iOS Action - Washing Machine Switch On
+
+  trigger:
+    - platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: WASHINGMACHINE_TURN_ON_SWITCH
+
+  action:
+    - service: switch.turn_on
+      entity_id: switch.washing_machine
+
+        #################################################################
+        ## Washing Machine Done Turn on Lights
+        #################################################################
+
+- alias: iOS Action - Washing Machine Done Turn on Lights
+
+  trigger:
+    - platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: WASHINGMACHINE_DONE_LIGHTS
+
+  action:
+    - service: light.turn_on
+      entity_id:  light.basement_lighting

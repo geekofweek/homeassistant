@@ -179,6 +179,25 @@
         value_template: "{{ states('sensor.ups_battery_runtime')|float / 60 }}"
 
         ##########################################################
+        ## Washing Machine
+        ##########################################################
+
+  - platform: template
+    sensors:
+      washing_machine_current_power:
+        value_template: '{{ states.switch.washing_machine.attributes.current_power_w }}'
+  - platform: template
+    sensors:
+      washing_machine_status:
+        value_template: >-
+          {%- if states('sensor.washing_machine_current_power') | int >= 3 %}
+            running
+          {% else %}
+            not running
+          {% endif %}
+        friendly_name: 'Washing Machine Status'
+
+        ##########################################################
         ## Battery Levels
         ##########################################################
 

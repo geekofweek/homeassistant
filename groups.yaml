@@ -79,6 +79,7 @@
     icon: mdi:stairs
     entities:
       - group.basement
+      - group.washing_machine
       - group.water_sensors
       - media_player.sonos_basement
       - media_player.roku_basement_tv
@@ -544,6 +545,12 @@
     entities:
       - binary_sensor.basement_drain_water_sensor_liquid_detected
       - binary_sensor.sump_pump_water_sensor_liquid_detected
+
+  Washing Machine:
+    control: hidden
+    entities:
+      - sensor.washing_machine_status
+      - switch.washing_machine
 
   Door Locks:
     control: hidden

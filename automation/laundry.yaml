@@ -1,0 +1,61 @@
+#################################################################
+## Laundry Automations
+#################################################################
+
+        ##########################################################
+        ## Washing Machine Done - Notification
+        ##########################################################
+
+- alias: Laundry - Washing Machine Done
+
+  trigger:
+    - platform: state
+      entity_id: sensor.washing_machine_status
+      from: 'running'
+      to: 'not running'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Washing Machine Done
+        data:
+          push:
+            badge: 0
+            category: "washingmachinedonelights"
+    - service: notify.ios_USER2s_iphone
+      data:
+        message: Washing Machine Done
+        data:
+          push:
+            badge: 0
+            category: "washingmachinedonelights"
+
+        ##########################################################
+        ## Washing Machine Switch Off
+        ##########################################################
+
+- alias: Laundry - Washing Machine Switch Off
+
+  trigger:
+    - platform: state
+      entity_id: switch.washing_machine
+      from: 'on'
+      to: 'off'
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Washing Machine Switch Turned Off!
+        data:
+          push:
+            badge: 0
+            category: "washingmachineswitch"
