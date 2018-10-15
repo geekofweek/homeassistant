@@ -59,7 +59,7 @@ I utilize a number of automations that adjust climate controls.  Mostly they can
 
 Switches and outlets are used in various capacities, some are for lighting and some are for fans type devices.  [lights.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/lights.yaml) and [occupancy.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/occupancy.yaml) should have some good examples.
 
-Washing machine is automated around the Wemo Insight Plug.  This monitors power consumption, I created a [sensor](https://github.com/geekofweek/homeassistant/blob/master/sensors.yaml) based on the power reading that shows a simple status of running or not running in turn [automating](https://github.com/geekofweek/homeassistant/blob/master/automation/laundry.yaml) around that sensor.
+Washing machine is automated around the Wemo Insight Plug.  This outlet can monitor power consumption, I created a [sensor](https://github.com/geekofweek/homeassistant/blob/master/sensors.yaml) based on the power reading that shows a simple status of running or not running thus [automating](https://github.com/geekofweek/homeassistant/blob/master/automation/laundry.yaml) around that sensor.
 
 ## <a name="locks">Locks</a>
 
