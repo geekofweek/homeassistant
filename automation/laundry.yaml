@@ -3,10 +3,10 @@
 #################################################################
 
         ##########################################################
-        ## Washing Machine Done - Notification
+        ## Washing Machine Done - USER1 Notification
         ##########################################################
 
-- alias: Laundry - Washing Machine Done
+- alias: Laundry - Washing Machine Done USER1 Notification
 
   trigger:
     - platform: state
@@ -22,6 +22,12 @@
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: device_tracker.USER1DEVICE
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
 
   action:
     - service: notify.ios_USER1s_iphone
@@ -31,6 +37,35 @@
           push:
             badge: 0
             category: "washingmachinedonelights"
+
+        ##########################################################
+        ## Washing Machine Done - USER2 Notification
+        ##########################################################
+
+- alias: Laundry - Washing Machine Done USER2 Notification
+
+  trigger:
+    - platform: state
+      entity_id: sensor.washing_machine_status
+      from: 'running'
+      to: 'not running'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: device_tracker.USER2DEVICE
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
     - service: notify.ios_USER2s_iphone
       data:
         message: Washing Machine Done
@@ -40,16 +75,21 @@
             category: "washingmachinedonelights"
 
         ##########################################################
-        ## Washing Machine Switch Off
+        ## Washing Machine Switch Off Notification
         ##########################################################
 
-- alias: Laundry - Washing Machine Switch Off
+- alias: Laundry - Washing Machine Switch Off Notification
 
   trigger:
     - platform: state
       entity_id: switch.washing_machine
       from: 'on'
       to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
 
   action:
     - service: notify.ios_USER1s_iphone
@@ -59,3 +99,62 @@
           push:
             badge: 0
             category: "washingmachineswitch"
+
+        ##########################################################
+        ## Washing Machine Done - Audio Notification
+        ##########################################################
+
+- alias: Laundry - Washing Machine Done Audio Notification
+
+  trigger:
+    - platform: state
+      entity_id: sensor.washing_machine_status
+      from: 'running'
+      to: 'not running'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+    - condition: time
+      after: '09:00'
+      before: '19:00'
+
+  action:
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.sonos_living_room'
+          where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen, media_player.sonos_USER2s_office'
+          volume: '0.5'
+          what: 'Washing Machine Has Finished'
+
+        ##########################################################
+        ## Shut off Washing Machine if Water Detected
+        ##########################################################
+
+- alias: Laundry - Shut off Washing Machine if Water Detected
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_water_sensors
+      state: 'off'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.washing_machine
