@@ -2,7 +2,7 @@
 # Overview
 My personal [Home Assistant](https://home-assistant.io) configurations with 300+ automations.  These are my active automations and configurations that I use every day.  Updated frequently as I add more devices and come up with more and more complicated ways to do simple tasks.
 
-Published configruations working with Home Assistant Version: 0.79.3
+Published configruations working with Home Assistant Version: 0.80
 
 # <a name="menu">Menu</a>
  | [Hubs](#hubs) | [Lighting](#lighting) | [Climate](#climate)| [Outlets & Switches](#outlets)|  [Locks](#locks) | [Security](#security) | [Voice Assistant](#voice) | [Media](#media) | [Sensors](#sensors) | [Cameras](#cameras) | [Garage](#garage) | [Vacuum](#vacuum) | [Network](#network) | [Other Hardware](#other) | [Retired Devices](#retired) | [Software](#software) | [Screenshots](#screenshots) |
@@ -52,11 +52,14 @@ I utilize a number of automations that adjust climate controls.  Mostly they can
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [Wemo Mini Smart Plug](https://amzn.to/2wQ05jE) | 4 | Wi-Fi | [Belkin WeMo](https://www.home-assistant.io/components/wemo/) | Smart outlets utilized to control various devices via powering the outlet on/off (fans, Christmas Tree, etc) |
+| [Wemo Insight Smart Plug](https://amzn.to/2CfzHRa) | 1 | Wi-Fi | [Belkin WeMo](https://www.home-assistant.io/components/wemo/) | Smart outlet utilized to monitor power to washing machine |
 | [GE Z-Wave Wireless Smart Lighting Control Outdoor Module](https://amzn.to/2KuFRxN) | 2 | Wink Hub (Z-Wave)| [Wink Switch](https://www.home-assistant.io/components/switch.wink/) | Used to control low voltage outdoor lighting transformers |
 | [Remotec Zwave Dry Contact Fixture Module](https://amzn.to/2rOmcBW) | 1 | Wink Hub (Z-Wave)| [Wink Switch](https://www.home-assistant.io/components/switch.wink/) | Used to control gas fireplace |
 | [TP-Link Smart Plug HS100](https://amzn.to/2L5Bt9r) | 1 | Wi-Fi | [TP-Link Switch](https://www.home-assistant.io/components/switch.tplink/) | Smart outlet used to control power to MyQ Device|
 
 Switches and outlets are used in various capacities, some are for lighting and some are for fans type devices.  [lights.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/lights.yaml) and [occupancy.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/occupancy.yaml) should have some good examples.
+
+Washing machine is automated around the Wemo Insight Plug.  This monitors power consumption, I created a [sensor](https://github.com/geekofweek/homeassistant/blob/master/sensors.yaml) based on the power reading that shows a simple status of running or not running in turn [automating](https://github.com/geekofweek/homeassistant/blob/master/automation/laundry.yaml) around that sensor.
 
 ## <a name="locks">Locks</a>
 
