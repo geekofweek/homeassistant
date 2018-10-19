@@ -16,9 +16,10 @@
       - group.garage_door
       - group.locks
       - group.exterior_lights
-      - camera.front_porch
-      - camera.garage
-      - camera.garage_interior
+#      - group.interior_cameras
+      - group.front_yard_cameras
+      - group.garage_cameras
+      - group.backyard_cameras
 
   living:
     name: Living
@@ -30,6 +31,7 @@
       - media_player.sonos_media_center
       - media_player.living_room_apple_tv
       - media_player.sonos_living_room
+  #    - camera.living_room
 
   dining:
     name: Dining
@@ -92,10 +94,9 @@
       - group.exterior_lights
       - group.door_bell
       - group.garage
-      - camera.front_porch
-      - camera.garage
-      - camera.garage_interior
-      - camera.ring_front_door
+      - group.front_yard_cameras
+      - group.backyard_cameras
+      - group.garage_cameras
       - media_player.sonos_backyard_patio
 
   weatherdashboard:
@@ -126,10 +127,10 @@
     view: yes
     icon: mdi:cctv
     entities:
-      - camera.front_porch
-      - camera.garage
-      - camera.garage_interior
-      - camera.ring_front_door
+#      - group.interior_cameras
+      - group.front_yard_cameras
+      - group.backyard_cameras
+      - group.garage_cameras
 
   automation:
     name: Automation
@@ -170,8 +171,7 @@
     entities:
       - group.garage
       - group.garage_status
-      - camera.garage
-      - camera.garage_interior
+      - group.garage_cameras
       - group.travel_times
       - group.traffic_camera_feeds
       - camera.REDACTED
@@ -521,6 +521,20 @@
     - media_player.sonos_USER2s_office
     - media_player.sonos_basement
     - media_player.sonos_backyard_patio
+
+  Front Yard Cameras:
+    - camera.front_porch
+
+  Backyard_Cameras:
+    - camera.backyard
+    - camera.side_yard
+
+  Garage Cameras:
+    - camera.garage
+    - camera.garage_interior
+
+  Interior Cameras:
+    - camera.living_room
 
   Plex:
     - media_player.plex_living_room
