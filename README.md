@@ -141,6 +141,8 @@ Smoke detectors, like the water sensors, have one real function to alert me of s
 
 Nothing is currently automated around cameras, just a [UI](https://github.com/geekofweek/homeassistant/blob/master/images/camera-screenshot.jpg) element.  The Ring doorbell is used in a number of ways to trigger an action based on motion detection or someone ringing the doorbell.  Examples can be found in [doorbell.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/doorbell.yaml)
 
+I also send camera feeds as a payload on a few iOS notifications, those can mostly be found in [notification_text.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/notification_text.yaml)
+
 ## <a name="garage">Garage</a>
 
 | [Go to Menu](#menu) | [Auto Screenshot](images/auto-screenshot.jpg?raw=true "Auto") |
