@@ -267,7 +267,151 @@
       data:
         transition: 900
         brightness_pct: 100
+        rgb_color: 152,39,255
+
+        ##########################################################
+        ## Halloween Lighting Rotate on the Hour
+        ##########################################################
+
+- alias: Holiday - Halloween Lighting Rotate on the Hour
+
+  trigger:
+    platform: time
+    minutes: 0
+    seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '15:00'
+      before: '23:59'
+    - condition: state
+      entity_id: input_select.holiday
+      state: 'Halloween'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.front_porch_left
+      data:
+        transition: 5
+        brightness_pct: 100
+        rgb_color: 152,39,255
+    - service: light.turn_on
+      entity_id: light.front_porch_right
+      data:
+        transition: 5
+        brightness_pct: 100
         color_name: orangered
+
+        ##########################################################
+        ## Halloween Lighting Rotate 15 mins after the Hour
+        ##########################################################
+
+- alias: Holiday - Halloween Lighting Rotate 15 mins after the Hour
+
+  trigger:
+    platform: time
+    minutes: 15
+    seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '15:00'
+      before: '23:59'
+    - condition: state
+      entity_id: input_select.holiday
+      state: 'Halloween'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.front_porch_left
+      data:
+        transition: 5
+        brightness_pct: 100
+        color_name: orangered
+    - service: light.turn_on
+      entity_id: light.front_porch_right
+      data:
+        transition: 5
+        brightness_pct: 100
+        rgb_color: 152,39,255
+
+        ##########################################################
+        ## Halloween Lighting Rotate 30 Mins after the Hour
+        ##########################################################
+
+- alias: Holiday - Halloween Lighting Rotate 30 Mins after the Hour
+
+  trigger:
+    platform: time
+    minutes: 30
+    seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '15:00'
+      before: '23:59'
+    - condition: state
+      entity_id: input_select.holiday
+      state: 'Halloween'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.front_porch_left
+      data:
+        transition: 5
+        brightness_pct: 100
+        rgb_color: 152,39,255
+    - service: light.turn_on
+      entity_id: light.front_porch_right
+      data:
+        transition: 5
+        brightness_pct: 100
+        color_name: orangered
+
+        ##########################################################
+        ## Halloween Lighting Rotate 45 Mins After the Hour
+        ##########################################################
+
+- alias: Holiday - Halloween Lighting Rotate 45 Mins After the Hour
+
+  trigger:
+    platform: time
+    minutes: 45
+    seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '15:00'
+      before: '23:59'
+    - condition: state
+      entity_id: input_select.holiday
+      state: 'Halloween'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.front_porch_left
+      data:
+        transition: 5
+        brightness_pct: 100
+        color_name: orangered
+    - service: light.turn_on
+      entity_id: light.front_porch_right
+      data:
+        transition: 5
+        brightness_pct: 100
+        rgb_color: 152,39,25
 
         ##########################################################
         ## Enable St. Patricks Day Lighting
@@ -909,13 +1053,13 @@
       data:
         transition: 5
         brightness_pct: 100
-        color_name: orangered
+        rgb_color: 152,39,25
     - service: light.turn_on
       entity_id: light.globe
       data:
         transition: 5
         brightness_pct: 100
-        color_name: orangered
+        rgb_color: 152,39,25
 
         ##########################################################
         ## St. Patricks Day Lighting Interior
@@ -1349,9 +1493,6 @@
   condition:
     condition: or
     conditions:
-      - condition: state
-        entity_id: input_select.holiday
-        state: 'Halloween'
       - condition: state
         entity_id: input_select.holiday
         state: "St. Patrick's Day"

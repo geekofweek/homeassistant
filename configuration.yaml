@@ -149,12 +149,6 @@ camera:
     nvr: REDACTED.99
     key: !secret uvc_key
     password: !secret uvc_password
-  - platform: foscam
-    ip: REDACTED.107
-    name: Garage Interior
-    port: REDACTED
-    username: !secret foscam_username
-    password: !secret foscam_password
   - platform: generic
     still_image_url: https://icons.wxug.com/data/weather-maps/radar/united-states/jefferson-city-missouri-region-current-radar-animation.gif
     name: MO Weather Radar
