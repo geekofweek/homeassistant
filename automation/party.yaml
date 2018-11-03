@@ -6,12 +6,12 @@
         ## Living Room Random Colors On
         ##########################################################
 
-- alias: Party - Set Living Room to Random Color On
+- alias: Party - Set Living Room to Random Color
 
   trigger:
-    - platform: state
-      entity_id: input_boolean.livingroom_rainbow
-      to: 'on'
+    - platform: time
+      minutes: '/2'
+      seconds: 0
 
   condition:
     - condition: state
@@ -21,10 +21,12 @@
   action:
     - service: light.turn_on
       entity_id:
-        - light.living_room_lights
+        - light.living_room_lamps
+        - light.media_center_lighting
+        - light.globe
       data:
-        effect: colorloop
-        transition: 30
+        effect: random
+        transition: 5
         brightness_pct: 100
 
         ##########################################################
@@ -129,12 +131,12 @@
         ## Front Porch Random Colors On
         ##########################################################
 
-- alias: Party - Set Front Porch to Random Color On
+- alias: Party - Set Front Porch to Random Color
 
   trigger:
-    - platform: state
-      entity_id: input_boolean.front_porch_rainbow
-      to: 'on'
+    - platform: time
+      minutes: '/2'
+      seconds: 0
 
   condition:
     - condition: state
@@ -145,8 +147,8 @@
     - service: light.turn_on
       entity_id: light.front_porch
       data:
-        effect: colorloop
-        transition: 30
+        effect: random
+        transition: 5
         brightness_pct: 100
 
         ##########################################################

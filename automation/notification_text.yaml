@@ -339,7 +339,7 @@
   action:
     - service: notify.ios_USER1s_iphone
       data:
-        message: USER2 has left Work
+        message: "USER2 has left work, ETA: {{states('sensor.USER2_to_home')}} mins"
 
         #################################################################
         ## Guest Arrived Notification

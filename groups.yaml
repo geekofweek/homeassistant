@@ -28,6 +28,7 @@
     entities:
       - group.living_room
       - group.remote
+      - group.media_center_receiver
       - media_player.sonos_media_center
       - media_player.living_room_apple_tv
       - media_player.sonos_living_room
@@ -118,7 +119,7 @@
     icon: mdi:play-circle-outline
     entities:
       - group.remote
-      - group.music
+      - group.media_center_receiver
       - group.media_player
       - group.sonos
 
@@ -522,6 +523,11 @@
     - media_player.sonos_basement
     - media_player.sonos_backyard_patio
 
+  Media Center Receiver:
+    - media_player.media_center_receiver
+    - sensor.receiver_input
+    - sensor.receiver_sound_mode
+
   Front Yard Cameras:
     - camera.front_porch
 
@@ -760,6 +766,12 @@
 #    - sensor.hallway_nest_protect_co_status
 #    - sensor.upstairs_nest_protect_co_status
 #    - sensor.basement_nest_protect_co_status
+
+  Network POE:
+    - switch.unificloudkey
+    - switch.front_porch_camera
+    - switch.side_yard_camera
+    - switch.backyard_camera
 
   All Input Boolean:
     - input_boolean.USER1_greeting

@@ -27,8 +27,6 @@ input_select_harmony:
               22107302
           {% elif is_state("input_select.remote", "Play Sonos") %}
               22815026
-          {% elif is_state("input_select.remote", "Turn on Receiver") %}
-              22107111
           {% endif %}
 
 input_select_bedroom_harmony:
@@ -55,6 +53,8 @@ input_select_office_harmony:
               -1
           {% elif is_state("input_select.office_remote", "Watch TV") %}
               33663475
+          {% elif is_state("input_select.office_remote", "Play Xbox One") %}
+              36216391
           {% endif %}
 
         ##########################################################

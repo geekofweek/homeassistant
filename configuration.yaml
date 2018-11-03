@@ -63,6 +63,32 @@ emulated_hue:
 media_player:
   - platform: plex
     entity_namespace: 'plex'
+  - platform: yamaha
+    name: "Media Center Receiver"
+    host: REDACTED.94
+    source_ignore:
+      - "AUDIO3"
+      - "AUX"
+      - "AV1"
+      - "AV2"
+      - "AV3"
+      - "Bluetooth"
+      - "Deezer"
+      - "MusicCast Link"
+      - "NET RADIO"
+      - "Pandora"
+      - "SERVER"
+      - "Spotify"
+      - "TIDAL"
+      - "TUNER"
+      - "USB"
+    source_names:
+      HDMI1: "Apple TV"
+      HDMI2: "Xbox One X"
+      HDMI3: "Nintendo Switch"
+      HDMI4: "Wii U"
+      AUDIO1: "TV Audio"
+      AUDIO2: "Sonos"
 
 apple_tv:
   - name: Living Room Apple TV
@@ -131,8 +157,6 @@ cover:
     username: !secret myq_username
     password: !secret myq_password
     type: chamberlain
-  - platform: wink
-    entity_namespace: wink
 
 ring:
     username: !secret ring_username

@@ -168,6 +168,21 @@
     region: 'US'
 
         ##########################################################
+        ## Receiver
+        ##########################################################
+
+  - platform: template
+    sensors:
+      receiver_sound_mode:
+        friendly_name: "Sound Mode"
+        value_template: '{{ states.media_player.media_center_receiver.attributes.sound_mode }}'
+  - platform: template
+    sensors:
+      receiver_input:
+        friendly_name: "Input"
+        value_template: '{{ states.media_player.media_center_receiver.attributes.source }}'
+
+        ##########################################################
         ## UPS
         ##########################################################
 
