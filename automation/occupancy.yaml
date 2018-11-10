@@ -108,11 +108,13 @@
     - service: light.turn_on
       entity_id: light.office_lamp
       data:
-        transition: 300
+        transition: 60
         brightness_pct: 100
-        effect: colorloop
+        color_temp: 447
     - service: light.turn_on
-      entity_id: light.stairs
+      entity_id:
+        - light.stairs
+        - light.office_ceiling
       data:
         brightness_pct: 15
 
@@ -482,7 +484,6 @@
       data:
         brightness_pct: 1
 
-
         ##########################################################
         ## Turn on Office at Sunset when Occupied
         ##########################################################
@@ -519,6 +520,7 @@
     - service: light.turn_on
       entity_id:
         - light.stairs
+        - light.office_ceiling
       data:
         brightness_pct: 15
 
