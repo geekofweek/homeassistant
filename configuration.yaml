@@ -210,6 +210,14 @@ nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
 
+dyson:
+  username: !secret dyson_username
+  password: !secret dyson_password
+  language: GB
+  devices:
+    - device_id: !secret dyson_id
+      device_ip: REDACTED.95
+
 #################################################################
 ## Includes
 #################################################################

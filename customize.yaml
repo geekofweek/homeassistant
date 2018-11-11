@@ -3,7 +3,7 @@
 #################################################################
 
         ##########################################################
-        ## Thermostat
+        ## Climate
         ##########################################################
 
   climate.main_floor:
@@ -44,6 +44,11 @@
     icon: mdi:thermostat-box
   sensor.hvac_status:
     icon: mdi:fan
+  fan.office:
+    friendly_name: Office Fan
+  climate.office:
+    friendly_name: Office Heater
+    icon: mdi:radiator
 
         ##########################################################
         ## Device Trackers
@@ -294,9 +299,6 @@
   switch.air_purifier:
     icon: mdi:fan
     friendly_name: Air Purifier
-  switch.office_fan:
-    icon: mdi:fan
-    friendly_name: Office Fan
   switch.basement_heater:
     icon: mdi:radiator
   switch.christmas_tree:
@@ -626,7 +628,7 @@
     friendly_name: Bedroom Sonos
 
         ##########################################################
-        ## Feceiver
+        ## Receiver
         ##########################################################
 
   sensor.receiver_input:
@@ -880,4 +882,6 @@
   group.all_remotes:
     hidden: false
   group.all_vacuum_cleaners:
+    hidden: false
+  group.all_fans:
     hidden: false

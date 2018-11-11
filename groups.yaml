@@ -105,6 +105,7 @@
     icon: mdi:weather-partlycloudy
     entities:
       - group.thermostat
+      - group.heaters
       - group.indoor_temperature
       - group.humidity
       - group.weather
@@ -187,6 +188,7 @@
       - group.all_input_boolean
       - group.all_lights
       - group.all_switches
+      - group.all_fans
       - group.all_locks
       - group.all_covers
       - group.all_remotes
@@ -374,11 +376,12 @@
     entities:
       - light.office_ceiling
       - light.office_lamp
+      - fan.office
       - switch.air_purifier
-      - switch.office_fan
       - vacuum.upstairs_roomba
       - binary_sensor.office_occupancy
       - sensor.office_temperature
+      - climate.office
 
   USER2 Office:
     control: hidden
@@ -396,6 +399,7 @@
     entities:
       - light.basement_stairs
       - light.basement_lights
+      - switch.basement_heater
       - lock.basement_door
       - binary_sensor.basement_door_opened
       - binary_sensor.basement_occupancy
@@ -487,6 +491,13 @@
       - climate.main_floor
       - sensor.thermostat_climate_mode
       - sensor.dark_sky_temperature
+
+  Heaters:
+    control: hidden
+    entities:
+      - climate.office
+      - fan.office
+      - switch.basement_heater
 
   Vacuums:
     control: hidden

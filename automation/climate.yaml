@@ -621,6 +621,346 @@
         entity_id: climate.main_floor
         hold_mode: None
 
+
+#################################################################
+## Office Fan / Heater / Air Purifier
+#################################################################
+
+        ##########################################################
+        ## Turn on Office Fan when Occupied
+        ##########################################################
+
+- alias: Climate - Turn on Office Fan when Occupied
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.office_occupancy
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+    - condition: state
+      entity_id: device_tracker.USER1DEVICE
+      state: 'home'
+
+  action:
+    - service: fan.turn_on
+      entity_id:
+        - fan.office
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.office
+        operation_mode: cool
+    - service: fan.set_speed
+      data:
+        entity_id: climate.office
+        speed: 'AUTO'
+    - service: fan.oscillate
+      data:
+        entity_id: climate.office
+        oscillating: true
+
+        ##########################################################
+        ## Turn off Office Fan when Unoccupied
+        ##########################################################
+
+- alias: Climate - Turn off Office Fan when Unoccupied
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.office_occupancy
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+
+  action:
+    - service: fan.turn_off
+      entity_id:
+        - fan.office
+
+        ##########################################################
+        ## Turn on Office Air Purifier when Occupied
+        ##########################################################
+
+- alias: Climate - Turn on Office Air Purifier when Occupied
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.office_occupancy
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+    - condition: state
+      entity_id: device_tracker.USER1DEVICE
+      state: 'home'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.air_purifier
+
+        ##########################################################
+        ## Turn off Office Air Purifier when Unoccupied
+        ##########################################################
+
+- alias: Climate - Turn off Office Air Purifier when Unoccupied
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.office_occupancy
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.air_purifier
+
+        ##########################################################
+        ## Turn on Office Fan Heat when Cold Outside
+        ##########################################################
+
+- alias: Climate - Turn on Office Fan Heat when Cold Outside
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.dark_sky_temperature
+      below: 20
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+    - condition: state
+      entity_id: group.winter_mode
+      state: 'on'
+    - condition: state
+      entity_id: device_tracker.USER1DEVICE
+      state: 'home'
+    - condition: state
+      entity_id: binary_sensor.office_occupancy
+      state: 'on'
+
+  action:
+    - service: fan.turn_on
+      entity_id:
+        - fan.office
+    - service: fan.set_speed
+      data:
+        entity_id: climate.office
+        speed: 'AUTO'
+    - service: climate.temperature
+      data:
+        entity_id: climate.office
+        temperature: "73"
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.office
+        operation_mode: heat
+    - service: fan.oscillate
+      data:
+        entity_id: climate.office
+        oscillating: true
+
+        ##########################################################
+        ## Turn off Office Fan Heat when warmer Outside
+        ##########################################################
+
+- alias: Climate - Turn off Office Fan Heat when warmer Outside
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.dark_sky_temperature
+      above: 20
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+    - condition: state
+      entity_id: group.winter_mode
+      state: 'on'
+    - condition: state
+      entity_id: device_tracker.USER1DEVICE
+      state: 'home'
+    - condition: state
+      entity_id: binary_sensor.office_occupancy
+      state: 'on'
+
+  action:
+    - service: fan.turn_on
+      entity_id:
+        - fan.office
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.office
+        operation_mode: cool
+    - service: fan.set_speed
+      data:
+        entity_id: climate.office
+        speed: '7'
+    - service: fan.oscillate
+      data:
+        entity_id: climate.office
+        oscillating: true
+
+#################################################################
+## Basement Heater
+#################################################################
+
+        ##########################################################
+        ## Turn on Basement Heater when Cold
+        ##########################################################
+
+- alias: Climate - Turn on Basement Heater when Cold
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.basement_temperature
+      below: 65
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.winter_mode
+      state: 'on'
+    - condition: state
+      entity_id: group.basement_occupancy
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id: switch.basement_heater
+
+        ##########################################################
+        ## Turn on Basement Heater when Occupied
+        ##########################################################
+
+- alias: Climate - Turn on Basement Heater when Occupied
+
+  trigger:
+    - platform: state
+      entity_id: group.basement_occupancy
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.winter_mode
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+    - condition: numeric_state
+      entity_id: sensor.basement_temperature
+      below: 66
+
+  action:
+    - service: switch.turn_on
+      entity_id: switch.basement_heater
+
+        ##########################################################
+        ## Turn off Basement Heater when Warm
+        ##########################################################
+
+- alias: Climate - Turn off Basement Heater when Warm
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.basement_temperature
+      above: 68
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+
+  action:
+    - service: switch.turn_off
+      entity_id: switch.basement_heater
+
+        ##########################################################
+        ## Turn on Basement Heater when Washing Machine Starts
+        ##########################################################
+
+- alias: Climate - Turn on Basement Heater when Washing Machine Starts
+
+  trigger:
+    - platform: state
+      entity_id: sensor.washing_machine_status
+      from: 'not running'
+      to: 'running'
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+    - condition: state
+      entity_id: group.winter_mode
+      state: 'on'
+    - condition: numeric_state
+      entity_id: sensor.basement_temperature
+      below: 66
+
+  action:
+    - service: switch.turn_on
+      entity_id: switch.basement_heater
+
 #################################################################
 ## Input Booleans, Input Selects, and UI
 #################################################################

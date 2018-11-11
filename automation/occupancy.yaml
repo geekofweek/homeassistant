@@ -3,59 +3,6 @@
 #################################################################
 
         ##########################################################
-        ## Turn on Office Fans when Occupied
-        ##########################################################
-
-- alias: Occupancy - Turn on Office Fans when Occupied
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.office_occupancy
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_occupancy
-      state: 'off'
-    - condition: state
-      entity_id: device_tracker.USER1DEVICE
-      state: 'home'
-
-  action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.air_purifier
-        - switch.office_fan
-
-        ##########################################################
-        ## Turn off Office Fans when Unoccupied
-        ##########################################################
-
-- alias: Occupancy - Turn off Office Fans when Unoccupied
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.office_occupancy
-      from: 'on'
-      to: 'off'
-      for:
-        hours: 0
-        minutes: 30
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_occupancy
-      state: 'off'
-
-  action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.air_purifier
-        - switch.office_fan
-
-        ##########################################################
         ## Turn off Office when Unoccupied
         ##########################################################
 
@@ -75,7 +22,6 @@
     - condition: state
       entity_id: input_boolean.disable_occupancy
       state: 'off'
-
 
   action:
     - service: light.turn_off
