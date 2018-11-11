@@ -650,18 +650,18 @@
     - service: fan.turn_on
       entity_id:
         - fan.office
+      data:
+        speed: 'AUTO'
+    - delay: '00:00:01'
     - service: climate.set_operation_mode
       data:
         entity_id: climate.office
         operation_mode: cool
-    - service: fan.set_speed
-      data:
-        entity_id: climate.office
-        speed: 'AUTO'
+    - delay: '00:00:01'
     - service: fan.oscillate
       data:
-        entity_id: climate.office
-        oscillating: true
+        entity_id: fan.office
+        oscillating: 'true'
 
         ##########################################################
         ## Turn off Office Fan when Unoccupied
@@ -688,6 +688,99 @@
     - service: fan.turn_off
       entity_id:
         - fan.office
+
+        ##########################################################
+        ## Turn on Office Fan Heat when Cold Outside
+        ##########################################################
+
+- alias: Climate - Turn on Office Fan Heat when Cold Outside
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.dark_sky_temperature
+      below: 20
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+    - condition: state
+      entity_id: group.winter_mode
+      state: 'on'
+    - condition: state
+      entity_id: device_tracker.USER1DEVICE
+      state: 'home'
+    - condition: state
+      entity_id: binary_sensor.office_occupancy
+      state: 'on'
+
+  action:
+    - service: fan.turn_on
+      entity_id:
+        - fan.office
+      data:
+        speed: 'AUTO'
+    - delay: '00:00:01'
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.office
+        temperature: 74
+        operation_mode: heat
+    - delay: '00:00:01'
+    - service: fan.oscillate
+      data:
+        entity_id: fan.office
+        oscillating: 'true'
+
+        ##########################################################
+        ## Turn off Office Fan Heat when warmer Outside
+        ##########################################################
+
+- alias: Climate - Turn off Office Fan Heat when warmer Outside
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.dark_sky_temperature
+      above: 20
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+    - condition: state
+      entity_id: group.winter_mode
+      state: 'on'
+    - condition: state
+      entity_id: device_tracker.USER1DEVICE
+      state: 'home'
+    - condition: state
+      entity_id: binary_sensor.office_occupancy
+      state: 'on'
+
+  action:
+    - service: fan.turn_on
+      entity_id:
+        - fan.office
+      data:
+        speed: 'AUTO'
+    - delay: '00:00:01'
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.office
+        operation_mode: cool
+    - delay: '00:00:01'
+    - service: fan.oscillate
+      data:
+        entity_id: fan.office
+        oscillating: 'true'
 
         ##########################################################
         ## Turn on Office Air Purifier when Occupied
@@ -739,102 +832,6 @@
     - service: switch.turn_off
       entity_id:
         - switch.air_purifier
-
-        ##########################################################
-        ## Turn on Office Fan Heat when Cold Outside
-        ##########################################################
-
-- alias: Climate - Turn on Office Fan Heat when Cold Outside
-
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.dark_sky_temperature
-      below: 20
-      for:
-        hours: 0
-        minutes: 30
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_climate
-      state: 'off'
-    - condition: state
-      entity_id: group.winter_mode
-      state: 'on'
-    - condition: state
-      entity_id: device_tracker.USER1DEVICE
-      state: 'home'
-    - condition: state
-      entity_id: binary_sensor.office_occupancy
-      state: 'on'
-
-  action:
-    - service: fan.turn_on
-      entity_id:
-        - fan.office
-    - service: fan.set_speed
-      data:
-        entity_id: climate.office
-        speed: 'AUTO'
-    - service: climate.temperature
-      data:
-        entity_id: climate.office
-        temperature: "73"
-    - service: climate.set_operation_mode
-      data:
-        entity_id: climate.office
-        operation_mode: heat
-    - service: fan.oscillate
-      data:
-        entity_id: climate.office
-        oscillating: true
-
-        ##########################################################
-        ## Turn off Office Fan Heat when warmer Outside
-        ##########################################################
-
-- alias: Climate - Turn off Office Fan Heat when warmer Outside
-
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.dark_sky_temperature
-      above: 20
-      for:
-        hours: 0
-        minutes: 30
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_climate
-      state: 'off'
-    - condition: state
-      entity_id: group.winter_mode
-      state: 'on'
-    - condition: state
-      entity_id: device_tracker.USER1DEVICE
-      state: 'home'
-    - condition: state
-      entity_id: binary_sensor.office_occupancy
-      state: 'on'
-
-  action:
-    - service: fan.turn_on
-      entity_id:
-        - fan.office
-    - service: climate.set_operation_mode
-      data:
-        entity_id: climate.office
-        operation_mode: cool
-    - service: fan.set_speed
-      data:
-        entity_id: climate.office
-        speed: '7'
-    - service: fan.oscillate
-      data:
-        entity_id: climate.office
-        oscillating: true
 
 #################################################################
 ## Basement Heater
