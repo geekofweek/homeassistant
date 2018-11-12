@@ -42,7 +42,7 @@ Lights are grouped via [light_group.yaml](https://github.com/geekofweek/homeassi
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [Ecobee 3](https://amzn.to/2L72d9A) | 1 | Wi-Fi | [ecobee](https://www.home-assistant.io/components/ecobee/) / [Ecobee Thermostat](https://www.home-assistant.io/components/climate.ecobee/) | Used as primary thermostat |
 | [Ecobee Room Sensor](https://amzn.to/2L9cORm) | 9 | Ecobee3 | [Ecobee Binary Sensor](https://www.home-assistant.io/components/binary_sensor.ecobee/) | Provides room temperature and room occupancy.|
-| [Dyson Pure Hot + Cool Link](https://amzn.to/2RLTv2W) | 1 | Wi-Fi | [Dyson](https://www.home-assistant.io/components/dyson/) | Dyson Fan with Heater and Air Purifier|
+| [Dyson Pure Hot + Cool Link](https://amzn.to/2RQjDtR) | 1 | Wi-Fi | [Dyson](https://www.home-assistant.io/components/dyson/) | Dyson Fan with Heater and Air Purifier|
 
 I utilize a number of automations that adjust climate controls.  Mostly they can be found in [climate.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/climate.yaml). Ecobee room sensors are heavily used in [occupancy.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/occupancy.yaml) and as conditions in many automations
 
