@@ -39,7 +39,7 @@
         - switch.basement_heater
     - service: fan.turn_off
       entity_id:
-        - fan.office
+        - fan.office_fan
     - service: cover.close_cover
       entity_id: cover.garage_door
     - service: homeassistant.turn_off
@@ -75,7 +75,14 @@
         - media_player.sonos_USER2s_office
         - media_player.sonos_basement
         - media_player.sonos_backyard_patio
-
+    #try again fix
+    - delay: '00:00:60'
+    - service: switch.turn_off
+      entity_id:
+        - switch.lower_backyard_lighting
+        - switch.backyard_patio_lighting
+        - switch.fireplace
+        
         ##########################################################
         ## Bedtime Guest Mode
         ##########################################################
@@ -112,7 +119,7 @@
         - switch.basement_heater
     - service: fan.turn_off
       entity_id:
-        - fan.office
+        - fan.office_fan
     - service: cover.close_cover
       entity_id: cover.garage_door
     - service: homeassistant.turn_off
@@ -156,6 +163,13 @@
       data:
         entity_id: climate.main_floor
         hold_mode: "smart3"
+    #try again fix
+    - delay: '00:00:60'
+    - service: switch.turn_off
+      entity_id:
+        - switch.lower_backyard_lighting
+        - switch.backyard_patio_lighting
+        - switch.fireplace
 
         ##########################################################
         ## Bedtime Before 11:30p
@@ -224,6 +238,12 @@
       entity_id:
         - switch.lower_backyard_lighting
         - switch.backyard_patio_lighting
+    #try again fix
+    - delay: '00:00:60'
+    - service: switch.turn_off
+      entity_id:
+        - switch.lower_backyard_lighting
+        - switch.backyard_patio_lighting
 
         ##########################################################
         ## Bedtime after Midnight Holiday
@@ -282,6 +302,12 @@
       entity_id:
         - light.back_door
         - light.garage_light
+    - service: switch.turn_off
+      entity_id:
+        - switch.lower_backyard_lighting
+        - switch.backyard_patio_lighting
+    #try again fix
+    - delay: '00:00:60'
     - service: switch.turn_off
       entity_id:
         - switch.lower_backyard_lighting

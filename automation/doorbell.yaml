@@ -24,7 +24,8 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.front_porch
+      entity_id:
+        - light.front_porch
       data:
         brightness_pct: 100
 
@@ -54,7 +55,8 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.front_porch
+      entity_id:
+        - light.front_porch
       data:
         brightness_pct: 40
         transition: 300
@@ -81,7 +83,8 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.front_porch
+      entity_id:
+        - light.front_porch
       data:
         brightness_pct: 100
 
@@ -118,7 +121,8 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.front_porch
+      entity_id:
+        - light.front_porch
       data:
         brightness_pct: 40
         transition: 300
@@ -195,7 +199,8 @@
       data:
         transition: 900
     - service: light.turn_off
-      entity_id: light.kitchen_sink
+      entity_id:
+        - light.kitchen_sink
     - service: light.turn_on
       entity_id:
         - light.back_door
@@ -275,7 +280,8 @@
       data:
         transition: 900
     - service: light.turn_off
-      entity_id: light.kitchen_sink
+      entity_id:
+        - light.kitchen_sink
     - service: light.turn_on
       entity_id:
         - light.back_door

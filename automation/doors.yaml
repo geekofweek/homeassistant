@@ -24,7 +24,8 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.front_porch
+      entity_id:
+        - light.front_porch
       data:
         brightness_pct: 100
 
@@ -60,7 +61,8 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.front_porch
+      entity_id:
+        - light.front_porch
       data:
         brightness_pct: 40
         transition: 120
@@ -97,7 +99,8 @@
 
   action:
     - service: light.turn_off
-      entity_id: light.front_porch
+      entity_id:
+        - light.front_porch
       data:
         transition: 900
 
@@ -123,7 +126,8 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.living_room_lights
+      entity_id:
+        - light.living_room_lights
       data:
        color_temp: 447
        brightness_pct: 100
@@ -150,7 +154,8 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.back_door
+      entity_id:
+        - light.back_door
       data:
        brightness_pct: 100
 
@@ -180,7 +185,8 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.back_door
+      entity_id:
+        - light.back_door
       data:
         brightness_pct: 1
         transition: 300
@@ -217,6 +223,7 @@
 
   action:
     - service: light.turn_off
-      entity_id: light.back_door
+      entity_id:
+        - light.back_door
       data:
         transition: 900

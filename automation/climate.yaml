@@ -649,18 +649,18 @@
   action:
     - service: fan.turn_on
       entity_id:
-        - fan.office
+        - fan.office_fan
       data:
         speed: 'AUTO'
     - delay: '00:00:01'
     - service: climate.set_operation_mode
       data:
-        entity_id: climate.office
+        entity_id: climate.office_fan
         operation_mode: cool
     - delay: '00:00:01'
     - service: fan.oscillate
       data:
-        entity_id: fan.office
+        entity_id: fan.office_fan
         oscillating: 'true'
 
         ##########################################################
@@ -687,7 +687,7 @@
   action:
     - service: fan.turn_off
       entity_id:
-        - fan.office
+        - fan.office_fan
 
         ##########################################################
         ## Turn on Office Fan Heat when Cold Outside
@@ -721,19 +721,19 @@
   action:
     - service: fan.turn_on
       entity_id:
-        - fan.office
+        - fan.office_fan
       data:
         speed: 'AUTO'
     - delay: '00:00:01'
     - service: climate.set_temperature
       data:
-        entity_id: climate.office
+        entity_id: climate.office_fan
         temperature: 74
         operation_mode: heat
     - delay: '00:00:01'
     - service: fan.oscillate
       data:
-        entity_id: fan.office
+        entity_id: fan.office_fan
         oscillating: 'true'
 
         ##########################################################
@@ -768,18 +768,18 @@
   action:
     - service: fan.turn_on
       entity_id:
-        - fan.office
+        - fan.office_fan
       data:
         speed: 'AUTO'
     - delay: '00:00:01'
     - service: climate.set_operation_mode
       data:
-        entity_id: climate.office
+        entity_id: climate.office_fan
         operation_mode: cool
     - delay: '00:00:01'
     - service: fan.oscillate
       data:
-        entity_id: fan.office
+        entity_id: fan.office_fan
         oscillating: 'true'
 
         ##########################################################
@@ -847,10 +847,6 @@
     - platform: numeric_state
       entity_id: sensor.basement_temperature
       below: 65
-      for:
-        hours: 0
-        minutes: 15
-        seconds: 0
 
   condition:
     - condition: state
@@ -901,6 +897,37 @@
       entity_id: switch.basement_heater
 
         ##########################################################
+        ## Turn off Basement Heater when Unoccupied
+        ##########################################################
+
+- alias: Climate - Turn off Basement Heater when Unoccupied
+
+  trigger:
+    - platform: state
+      entity_id: group.basement_occupancy
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 60
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.winter_mode
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+
+  action:
+    - service: switch.turn_off
+      entity_id: switch.basement_heater
+
+        ##########################################################
         ## Turn off Basement Heater when Warm
         ##########################################################
 
@@ -910,10 +937,6 @@
     - platform: numeric_state
       entity_id: sensor.basement_temperature
       above: 68
-      for:
-        hours: 0
-        minutes: 15
-        seconds: 0
 
   condition:
     - condition: state
@@ -952,7 +975,7 @@
       state: 'on'
     - condition: numeric_state
       entity_id: sensor.basement_temperature
-      below: 66
+      below: 65
 
   action:
     - service: switch.turn_on

@@ -376,12 +376,13 @@
     entities:
       - light.office_ceiling
       - light.office_lamp
-      - fan.office
+      - fan.office_fan
       - switch.air_purifier
       - vacuum.upstairs_roomba
       - binary_sensor.office_occupancy
       - sensor.office_temperature
-      - climate.office
+      - sensor.office_fan_humidity
+      - climate.office_fan
 
   USER2 Office:
     control: hidden
@@ -495,7 +496,7 @@
   Heaters:
     control: hidden
     entities:
-      - climate.office
+      - climate.office_fan
       - switch.basement_heater
 
   Vacuums:
@@ -652,6 +653,7 @@
   Humidity:
     - sensor.main_floor_humidity
     - sensor.wink_relay_sensor_humidity
+    - sensor.office_fan_humidity
     - sensor.dark_sky_humidity
 
   Weather:

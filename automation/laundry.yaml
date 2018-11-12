@@ -97,7 +97,8 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.basement_lighting
+      entity_id:
+        - light.basement_lighting
 
         ##########################################################
         ## Washing Machine Done - Lights Off
@@ -122,7 +123,8 @@
 
   action:
     - service: light.turn_off
-      entity_id: light.basement_lighting
+      entity_id:
+        - light.basement_lighting
 
 
         ##########################################################
