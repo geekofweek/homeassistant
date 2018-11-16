@@ -297,11 +297,16 @@
       entity_id: input_boolean.disable_home_away
       state: 'off'
     - condition: state
-      entity_id: device_tracker.USER1DEVICE
-      state: 'not_home'
-    - condition: state
       entity_id: input_boolean.disable_climate
       state: 'off'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: device_tracker.USER1DEVICE
+        state: 'not_home'
+      - condition: state
+        entity_id: device_tracker.USER1DEVICE
+        state: 'work'
 
   action:
     - service: homeassistant.turn_off
