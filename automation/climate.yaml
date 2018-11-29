@@ -82,7 +82,7 @@
       to: 'not_home'
       for:
         hours: 0
-        minutes: 60
+        minutes: 30
         seconds: 0
 
   condition:
@@ -104,7 +104,7 @@
       entity_id: input_boolean.spring_fall_mode
     - service: notify.ios_USER1s_iphone
       data:
-        message: House has been empty for an hour, shutting off HVAC
+        message: House has been empty for 30 mins, shutting off HVAC
 
         ##########################################################
         ## Turn Thermostat on Summer
