@@ -2,7 +2,7 @@
 # Overview
 My personal [Home Assistant](https://home-assistant.io) configurations with 300+ automations.  These are my active automations and configurations that I use every day.  Updated frequently as I add more devices and come up with more and more complicated ways to do simple tasks.
 
-Published configruations working with Home Assistant Version: 0.82.1
+Published configruations working with Home Assistant Version: 0.83.1
 
 # <a name="menu">Menu</a>
  | [Hubs](#hubs) | [Lighting](#lighting) | [Climate](#climate)| [Outlets & Switches](#outlets)|  [Locks](#locks) | [Security](#security) | [Voice Assistant](#voice) | [Media](#media) | [Sensors](#sensors) | [Cameras](#cameras) | [Garage](#garage) | [Vacuum](#vacuum) | [Network](#network) | [Other Hardware](#other) | [Retired Devices](#retired) | [Software](#software) | [Screenshots](#screenshots) |
@@ -138,7 +138,7 @@ Smoke detectors, like the water sensors, have one real function to alert me of s
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [Ring Video Doorbell](https://amzn.to/2KvrzwP) | 1 | Wi-Fi | [Ring](https://www.home-assistant.io/components/ring/) / [Ring Binary Sensor](https://www.home-assistant.io/components/binary_sensor.ring/) | Automated around binary sensors via motion or doorbell button press |
 | [Ubiquiti UVC-G3 UniFi Video Camera](https://amzn.to/2L987ah) | 2 | Ethernet | [UniFi Video Camera](https://www.home-assistant.io/components/camera.uvc/) | 1080p POE Camera. NVR runs in docker, storage on QNAP NAS |
-| [Ubiquiti UniFi Video G3 Flex](https://amzn.to/2PKrSqA) | 4 | Ethernet | [UniFi Video Camera](https://www.home-assistant.io/components/camera.uvc/) | 1080p POE Camera. NVR runs in docker, storage on QNAP NAS |
+| [Ubiquiti UniFi Video G3 Flex](https://amzn.to/2PKrSqA) | 5 | Ethernet | [UniFi Video Camera](https://www.home-assistant.io/components/camera.uvc/) | 1080p POE Camera. NVR runs in docker, storage on QNAP NAS |
 
 Nothing is currently automated around cameras, just a [UI](https://github.com/geekofweek/homeassistant/blob/master/images/camera-screenshot.jpg) element.  The Ring doorbell is used in a number of ways to trigger an action based on motion detection or someone ringing the doorbell.  Examples can be found in [doorbell.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/doorbell.yaml)
 
