@@ -981,6 +981,9 @@
     - condition: numeric_state
       entity_id: sensor.basement_temperature
       below: 65
+    - condition: time
+      after: '08:00'
+      before: '21:00'
 
   action:
     - service: switch.turn_on

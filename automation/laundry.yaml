@@ -94,6 +94,9 @@
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: time
+      after: '09:00'
+      before: '21:00'
 
   action:
     - service: light.turn_on
@@ -178,7 +181,7 @@
       state: 'off'
     - condition: time
       after: '09:00'
-      before: '19:00'
+      before: '20:30'
 
   action:
     - service: script.turn_on

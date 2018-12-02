@@ -537,6 +537,10 @@
       entity_id: vacuum.downstairs_roomba
       from: 'on'
       to: 'off'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
 
   condition:
     - condition: state
@@ -572,6 +576,10 @@
       entity_id: vacuum.upstairs_roomba
       from: 'on'
       to: 'off'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
 
   condition:
     - condition: state
@@ -613,6 +621,10 @@
       entity_id: vacuum.upstairs_roomba
       from: 'on'
       to: 'off'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
 
   condition:
     - condition: state
