@@ -42,7 +42,7 @@
   trigger:
     - platform: sun
       event: 'sunset'
-      offset: '-00:05:00'
+      offset: '-00:15:00'
 
   condition:
     - condition: state
@@ -245,7 +245,7 @@
   trigger:
     - platform: sun
       event: 'sunset'
-      offset: '-00:05:00'
+      offset: '-00:15:00'
 
   condition:
     - condition: state
@@ -448,7 +448,7 @@
   trigger:
     - platform: sun
       event: 'sunset'
-      offset: '-00:05:00'
+      offset: '-00:15:00'
 
   condition:
     - condition: state
@@ -507,7 +507,7 @@
   trigger:
     - platform: sun
       event: 'sunset'
-      offset: '-00:05:00'
+      offset: '-00:15:00'
 
   condition:
     - condition: state
@@ -540,7 +540,7 @@
   trigger:
     - platform: sun
       event: 'sunset'
-      offset: '-00:05:00'
+      offset: '-00:15:00'
 
   condition:
     - condition: state
@@ -573,7 +573,7 @@
   trigger:
     - platform: sun
       event: 'sunset'
-      offset: '-00:05:00'
+      offset: '-00:15:00'
 
   condition:
     - condition: state
@@ -632,7 +632,7 @@
   trigger:
     - platform: sun
       event: 'sunset'
-      offset: '-00:05:00'
+      offset: '-00:15:00'
 
   condition:
     - condition: state
@@ -692,7 +692,7 @@
   trigger:
     - platform: sun
       event: 'sunset'
-      offset: '-00:05:00'
+      offset: '-00:15:00'
 
   condition:
     - condition: state
@@ -829,7 +829,7 @@
   trigger:
     - platform: sun
       event: 'sunset'
-      offset: '-00:05:00'
+      offset: '-00:15:00'
 
   condition:
     condition: or
@@ -1425,14 +1425,14 @@
         color_name: blue
 
         ##########################################################
-        ## Turn Off Holiday Lighting at 1:00 am
+        ## Turn Off Holiday Lighting at 2:00 am
         ##########################################################
 
 - alias: Holiday - Turn Off Lighting at at 2a
 
   trigger:
     - platform: time
-      at: '02:00'
+      at: '01:55'
 
   condition:
     condition: or

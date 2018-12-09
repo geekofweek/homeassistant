@@ -68,6 +68,10 @@
       entity_id: group.winter_mode
 #    - service: homeassistant.turn_on
 #      entity_id: input_boolean.spring_fall_mode
+    - service: climate.ecobee_set_fan_min_on_time
+      data:
+        entity_id: climate.main_floor
+        fan_min_on_time: "15"
 
         ##########################################################
         ## Set Thermostat Away
@@ -105,6 +109,10 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: House has been empty for 30 mins, shutting off HVAC
+    - service: climate.ecobee_set_fan_min_on_time
+      data:
+        entity_id: climate.main_floor
+        fan_min_on_time: "0"
 
         ##########################################################
         ## Turn Thermostat on Summer

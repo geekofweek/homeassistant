@@ -1,0 +1,122 @@
+#################################################################
+## Network
+#################################################################
+
+    #################################################################
+    ## WAN Down Notification
+    #################################################################
+
+- alias: Network - WAN Down Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.wan
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: persistent_notification.create
+      data:
+        message: "Internet Down"
+        title: "WAN"
+        notification_id: "1"
+
+    #################################################################
+    ## WAN Up Notification
+    #################################################################
+
+- alias: Network - WAN Up Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.wan
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: persistent_notification.create
+      data:
+        message: "Internet Up"
+        title: "WAN"
+        notification_id: "1"
+
+        ##########################################################
+        ## WAN Down Power on at&t Router
+        ##########################################################
+
+- alias: Network - WAN Down Power on att Router
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.wan
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.att_router
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Internet is Down, Turning on at&t Router
+
+        ##########################################################
+        ## WAN Up Power off at&t Router
+        ##########################################################
+
+- alias: Network - WAN Up Power off att Router
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.wan
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.att_router
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Internet is Up, Shutting off at&t Router
+
+        #################################################################
+        ## WAN Down on Startup Turn on at&t Router
+        #################################################################
+
+- alias: network - WAN Down on Startup Turn on at&t Router
+
+  trigger:
+    - platform: homeassistant
+      event: start
+
+  condition:
+    - condition: state
+      entity_id: binary_sensor.wan
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.att_router

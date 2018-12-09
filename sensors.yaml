@@ -329,9 +329,9 @@
         friendly_name: "MyQ Home Hub"
         value_template: >-
           {% if is_state('device_tracker.myqgaragehomehub', 'home') %}
-            Online
+            Connected
           {% else %}
-            Offline
+            Disconnected
           {% endif %}
   - platform: template
     sensors:
@@ -339,9 +339,19 @@
         friendly_name: "Hue Hub"
         value_template: >-
           {% if is_state('device_tracker.hue_hub', 'home') %}
-            Online
+            Connected
           {% else %}
-            Offline
+            Disconnected
+          {% endif %}
+  - platform: template
+    sensors:
+      att_router_status:
+        friendly_name: "at&t Router Gateway"
+        value_template: >-
+          {% if is_state('device_tracker.attrouter', 'home') %}
+            Connected
+          {% else %}
+            Disconnected
           {% endif %}
 
         ##########################################################

@@ -288,6 +288,21 @@
   sensor.holidays_calendar:
     icon: mdi:calendar
     friendly_name: Upcoming Holiday
+  binary_sensor.wan:
+    friendly_name: Network WAN
+    icon: mdi:wan
+  binary_sensor.gateway:
+    friendly_name: Network Gateway
+    icon: mdi:lan
+  sensor.att_router_status:
+    friendly_name: at&t Router Gateway
+    icon: mdi:router-wireless
+  binary_sensor.rochester_vpn:
+    friendly_name: Rochester VPN
+    icon: mdi:lan-connect
+  binary_sensor.charleston_vpn:
+    friendly_name: Charleston VPN
+    icon: mdi:lan-connect
 
         ##########################################################
         ## Switches
@@ -313,6 +328,8 @@
     icon: mdi:nature
   switch.myq_garage_outlet:
     icon: mdi:power-socket-us
+  switch.att_router:
+    icon: mdi:router-wireless
   switch.unificloudkey:
     icon: mdi:server-network
   switch.front_porch_camera:

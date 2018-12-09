@@ -134,6 +134,18 @@
       - group.garage_cameras
       #- group.interior_cameras
 
+  auto:
+    name: Auto
+    view: yes
+    icon: mdi:car
+    entities:
+      - group.garage
+      - group.garage_status
+      - group.garage_cameras
+      - group.travel_times
+      - group.traffic_camera_feeds
+      - camera.REDACTED
+
   automation:
     name: Automation
     view: yes
@@ -161,22 +173,20 @@
       - group.smoke_alarm
       - group.water_sensors
       - group.battery_levels
-      - group.dns
+      - group.smoke_alarm_battery
+
+  equipment:
+    name: System Equipment
+    view: yes
+    icon: mdi:ethernet
+    entities:
+      - group.network
+      - group.devices
       - group.nas
       - group.ups
-      - group.system
-
-  auto:
-    name: Auto
-    view: yes
-    icon: mdi:car
-    entities:
-      - group.garage
-      - group.garage_status
-      - group.garage_cameras
-      - group.travel_times
-      - group.traffic_camera_feeds
-      - camera.REDACTED
+      - group.dns
+      - group.network_poe
+      - group.home_assistant
 
   troubleshooting:
     name: Troubleshooting
@@ -197,6 +207,7 @@
       - group.calendars
       - group.all_scripts
       - group.scenes
+      - group.all_binary_sensors
 
   Traffic Camera Feeds:
     - weblink.REDACTED
@@ -695,9 +706,11 @@
     - sensor.USER2_to_REDACTED
     - sensor.USER2_to_REDACTED
 
-  System:
+  Home Assistant Status:
     - updater.updater
     - sensor.uptime
+
+  Devices:
     - binary_sensor.wink_hub
     - binary_sensor.wink_relay
     - sensor.hue_hub_status
@@ -741,12 +754,6 @@
     - sensor.basement_door_sensor_batt
     - sensor.basement_drain_water_sensor_batt
     - sensor.sump_pump_water_sensor_batt
-    - sensor.living_room_nest_protect_battery_health
-    - sensor.bedroom_nest_protect_battery_health
-    - sensor.hallway_nest_protect_battery_health
-    - sensor.kitchen_nest_protect_battery_health
-    - sensor.upstairs_nest_protect_battery_health
-    - sensor.basement_nest_protect_battery_health
 
   DNS:
     - sensor.pihole_dns_queries_today
@@ -780,11 +787,28 @@
 #    - sensor.upstairs_nest_protect_co_status
 #    - sensor.basement_nest_protect_co_status
 
+  Smoke Alarm Battery:
+    - sensor.living_room_nest_protect_battery_health
+    - sensor.bedroom_nest_protect_battery_health
+    - sensor.hallway_nest_protect_battery_health
+    - sensor.kitchen_nest_protect_battery_health
+    - sensor.upstairs_nest_protect_battery_health
+    - sensor.basement_nest_protect_battery_health
+
+
   Network POE:
     - switch.unificloudkey
     - switch.front_porch_camera
     - switch.side_yard_camera
     - switch.backyard_camera
+
+  Network:
+    - binary_sensor.wan
+    - binary_sensor.gateway
+    - binary_sensor.charleston_vpn
+    - binary_sensor.rochester_vpn
+    - sensor.att_router_status
+    - switch.att_router
 
   All Input Boolean:
     - input_boolean.USER1_greeting
@@ -842,6 +866,46 @@
     - input_boolean.disable_smoke_alarm
     - input_boolean.disable_roomba
     - input_boolean.disable_climate
+
+  All Binary Sensors:
+    -  binary_sensor.USER1_back_door_code
+    -  binary_sensor.USER1_basement_door_code
+    -  binary_sensor.USER1_front_door_code
+    -  binary_sensor.back_door_opened
+    -  binary_sensor.basement_door_opened
+    -  binary_sensor.basement_drain_water_sensor_liquid_detected
+    -  binary_sensor.basement_nest_protect_online
+    -  binary_sensor.basement_occupancy
+    -  binary_sensor.bathroom_occupancy
+    -  binary_sensor.bedroom_nest_protect_online
+    -  binary_sensor.bedroom_occupancy
+    -  binary_sensor.front_door_opened
+    -  binary_sensor.gang
+    -  binary_sensor.guest_back_door_code
+    -  binary_sensor.guest_bedroom_occupancy
+    -  binary_sensor.guest_front_door_code
+    -  binary_sensor.hallway_nest_protect_online
+    -  binary_sensor.home_away
+    -  binary_sensor.kitchen_nest_protect_online
+    -  binary_sensor.kitchen_occupancy
+    -  binary_sensor.laundry_room_occupancy
+    -  binary_sensor.living_room_nest_protect_online
+    -  binary_sensor.living_room_occupancy
+    -  binary_sensor.main_floor_occupancy
+    -  binary_sensor.office_occupancy
+    -  binary_sensor.ring_front_door_ding
+    -  binary_sensor.ring_front_door_motion
+    -  binary_sensor.USER2_back_door_code
+    -  binary_sensor.USER2_basement_door_code
+    -  binary_sensor.USER2_front_door_code
+    -  binary_sensor.USER2_office_occupancy
+    -  binary_sensor.sump_pump_water_sensor_liquid_detected
+    -  binary_sensor.upstairs_nest_protect_online
+    -  binary_sensor.wink_hub
+    -  binary_sensor.wink_relay
+    -  binary_sensor.wink_relay_sensor_presence
+    -  binary_sensor.wink_relays_bottom_button
+    -  binary_sensor.wink_relays_top_button
 
   Calendars:
     - calendar.holidays_in_united_states

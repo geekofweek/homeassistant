@@ -40,6 +40,7 @@
       - group.all_switches
       - group.all_locks
       - group.all_vacuum_cleaners
+      - group.all_binary_sensors
       - group.automation
       - group.automation_on_demand
       - group.automation_override
@@ -86,7 +87,7 @@
       - group.sensors
       - group.sonos
       - group.music
-      - group.system
+      - group.devices
       - group.thermostat
       - group.traffic
       - group.auto
@@ -100,6 +101,10 @@
       - group.ups
       - group.speedtest
       - group.garage_door
+      - group.equipment
+      - group.network
+      - group.smoke_alarm_battery
+      - group.home_assistant
       - light.wink_lights
       - light.wink_lights_exterior
       - group.calendar
@@ -294,3 +299,4 @@
       - sensor.unifigateway3_packets_sent
       - sensor.unifigateway3_packetssec_received
       - sensor.unifigateway3_packetssec_sent
+      - device_tracker.attrouter

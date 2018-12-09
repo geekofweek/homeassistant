@@ -167,6 +167,22 @@ binary_sensor:
     monitored_conditions:
       - ding
       - motion
+  - platform: ping
+    host: 8.8.8.8
+    name: WAN
+    scan_interval: 60
+  - platform: ping
+    host: REDACTED.1
+    name: Gateway
+    scan_interval: 60
+  - platform: ping
+    host: REDACTED.1
+    name: Charleston VPN
+    scan_interval: 60
+  - platform: ping
+    host: REDACTED.1
+    name: Rochester VPN
+    scan_interval: 60
 
 camera:
   - platform: uvc
