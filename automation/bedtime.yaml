@@ -76,13 +76,13 @@
         - media_player.sonos_basement
         - media_player.sonos_backyard_patio
     #try again fix
-    - delay: '00:00:60'
+    - delay: '00:00:90'
     - service: switch.turn_off
       entity_id:
         - switch.lower_backyard_lighting
         - switch.backyard_patio_lighting
         - switch.fireplace
-        
+
         ##########################################################
         ## Bedtime Guest Mode
         ##########################################################
@@ -164,7 +164,7 @@
         entity_id: climate.main_floor
         hold_mode: "smart3"
     #try again fix
-    - delay: '00:00:60'
+    - delay: '00:00:90'
     - service: switch.turn_off
       entity_id:
         - switch.lower_backyard_lighting
@@ -239,7 +239,7 @@
         - switch.lower_backyard_lighting
         - switch.backyard_patio_lighting
     #try again fix
-    - delay: '00:00:60'
+    - delay: '00:00:90'
     - service: switch.turn_off
       entity_id:
         - switch.lower_backyard_lighting
@@ -307,7 +307,7 @@
         - switch.lower_backyard_lighting
         - switch.backyard_patio_lighting
     #try again fix
-    - delay: '00:00:60'
+    - delay: '00:00:90'
     - service: switch.turn_off
       entity_id:
         - switch.lower_backyard_lighting

@@ -120,3 +120,46 @@
     - service: switch.turn_on
       entity_id:
         - switch.att_router
+
+        ##########################################################
+        ## Turn on at&t Router in Vacation Mode
+        ##########################################################
+
+- alias: network - Turn on at&t Router in Vacation Mode
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.vacation_mode
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+
+  action:
+    - service: switch.turn_on
+      entity_id: switch.att_router
+
+        ##########################################################
+        ## Turn off at&t Router after Vacation Mode
+        ##########################################################
+
+- alias: network - Turn off at&t Router after Vacation Mode
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.vacation_mode
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+
+  action:
+    - service: switch.turn_off
+      entity_id: switch.att_router

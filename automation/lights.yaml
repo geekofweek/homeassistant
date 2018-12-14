@@ -241,7 +241,7 @@
       entity_id:
         - switch.front_yard_lighting
     #try again fix
-    - delay: '00:00:60'
+    - delay: '00:00:90'
     - service: switch.turn_on
       entity_id:
         - switch.front_yard_lighting
@@ -266,7 +266,7 @@
       entity_id:
         - switch.front_yard_lighting
     #try again fix
-    - delay: '00:00:60'
+    - delay: '00:00:90'
     - service: switch.turn_off
       entity_id:
         - switch.front_yard_lighting
@@ -496,7 +496,7 @@
         - switch.backyard_patio_lighting
         - switch.front_yard_lighting
     #try again fix
-    - delay: '00:00:60'
+    - delay: '00:00:90'
     - service: switch.turn_off
       entity_id:
         - switch.lower_backyard_lighting
@@ -535,7 +535,7 @@
       data:
         brightness_pct: 1
     #try again fix
-    - delay: '00:00:60'
+    - delay: '00:00:90'
     - service: switch.turn_on
       entity_id:
         - switch.backyard_patio_lighting

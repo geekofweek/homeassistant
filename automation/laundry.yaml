@@ -104,33 +104,6 @@
         - light.basement_lighting
 
         ##########################################################
-        ## Washing Machine Done - Lights Off
-        ##########################################################
-
-- alias: Washing Machine Done - Lights Off
-
-  trigger:
-    - platform: state
-      entity_id: sensor.washing_machine_status
-      from: 'running'
-      to: 'not running'
-      for:
-        hours: 1
-        minutes: 30
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: group.basement_occupancy
-      state: 'off'
-
-  action:
-    - service: light.turn_off
-      entity_id:
-        - light.basement_lighting
-
-
-        ##########################################################
         ## Washing Machine Switch Off Notification
         ##########################################################
 
