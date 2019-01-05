@@ -67,7 +67,6 @@ media_player:
     name: "Media Center Receiver"
     host: REDACTED.94
     source_ignore:
-      - "AUDIO3"
       - "AUX"
       - "AV1"
       - "AV2"
@@ -88,7 +87,8 @@ media_player:
       HDMI3: "Nintendo Switch"
       HDMI4: "Wii U"
       AUDIO1: "TV Audio"
-      AUDIO2: "Sonos"
+      AUDIO2: "Sonos Digital"
+      AUDIO3: "Sonos"
 
 apple_tv:
   - name: Living Room Apple TV
@@ -125,12 +125,6 @@ remote:
 map:
 
 wemo:
-  static:
-    - REDACTED.111
-    - REDACTED.112
-    - REDACTED.114
-    - REDACTED.115
-    - REDACTED.116
 
 switch:
   - platform: tplink

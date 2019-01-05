@@ -17,6 +17,7 @@
       - group.locks
       - group.exterior_lights
       - group.front_yard_cameras
+      # comment out when home
       #- group.interior_cameras
       - group.garage_cameras
       - group.backyard_cameras
@@ -28,6 +29,7 @@
     entities:
       - group.living_room
       - group.remote
+      # comment out when home
       #- camera.living_room
       - media_player.sonos_media_center
       - media_player.living_room_apple_tv
@@ -40,7 +42,8 @@
     entities:
       - group.kitchen
       - group.dining_room
-#      - camera.kitchen
+      # comment out when home
+      #- camera.kitchen
       - media_player.sonos_dining_room
       - media_player.sonos_kitchen
 
@@ -121,7 +124,7 @@
       - group.remote
       - group.media_player
       - group.sonos
-      - group.media_center_receiver
+      - media_player.media_center_receiver
 
   cameras:
     name: Cameras
@@ -131,6 +134,7 @@
       - group.front_yard_cameras
       - group.backyard_cameras
       - group.garage_cameras
+      # comment out when home
       #- group.interior_cameras
 
   auto:
@@ -543,11 +547,6 @@
     - media_player.sonos_basement
     - media_player.sonos_backyard_patio
 
-  Media Center Receiver:
-    - media_player.media_center_receiver
-    - sensor.receiver_input
-    - sensor.receiver_sound_mode
-
   Front Yard Cameras:
     - camera.front_porch
 
@@ -704,7 +703,7 @@
     - sensor.USER2_to_REDACTED
     - sensor.USER2_to_REDACTED
 
-  Home Assistant Status:
+  Home Assistant:
     - updater.updater
     - sensor.uptime
 

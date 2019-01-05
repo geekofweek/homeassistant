@@ -9,14 +9,14 @@
 - alias: Party - Set Living Room to Random Color
 
   trigger:
-    - platform: time
-      minutes: '/2'
-      seconds: 0
+    - platform: state
+      entity_id: input_boolean.livingroom_rainbow
+      to: 'on'
 
   condition:
     - condition: state
-      entity_id: input_boolean.livingroom_rainbow
-      state: 'on'
+      entity_id: group.household
+      state: 'home'
 
   action:
     - service: light.turn_on
@@ -27,6 +27,30 @@
       data:
         effect: random
         transition: 5
+        brightness_pct: 100
+    - delay: '00:00:05'
+    - service: light.turn_on
+      entity_id: light.living_room_lamp_1
+      data:
+        effect: colorloop
+        brightness_pct: 100
+    - delay: '00:00:10'
+    - service: light.turn_on
+      entity_id: light.globe
+      data:
+        effect: colorloop
+        brightness_pct: 100
+    - delay: '00:00:15'
+    - service: light.turn_on
+      entity_id: light.media_center_lighting
+      data:
+        effect: colorloop
+        brightness_pct: 100
+    - delay: '00:00:20'
+    - service: light.turn_on
+      entity_id: light.living_room_lamp_2
+      data:
+        effect: colorloop
         brightness_pct: 100
 
         ##########################################################
@@ -134,21 +158,37 @@
 - alias: Party - Set Front Porch to Random Color
 
   trigger:
-    - platform: time
-      minutes: '/2'
-      seconds: 0
+    - platform: state
+      entity_id: input_boolean.front_porch_rainbow
+      to: 'on'
 
   condition:
     - condition: state
-      entity_id: input_boolean.front_porch_rainbow
-      state: 'on'
+      entity_id: input_boolean.bedtime
+      state: 'off'
 
   action:
     - service: light.turn_on
-      entity_id: light.front_porch
+      entity_id:  light.front_porch_left
       data:
         effect: random
-        transition: 5
+        brightness_pct: 100
+    - service: light.turn_on
+      entity_id: light.front_porch_right
+      data:
+        effect: random
+        brightness_pct: 100
+    - delay: '00:00:05'
+    - service: light.turn_on
+      entity_id: light.front_porch_left
+      data:
+        effect: colorloop
+        brightness_pct: 100
+    - delay: '00:00:10'
+    - service: light.turn_on
+      entity_id: light.front_porch_right
+      data:
+        effect: colorloop
         brightness_pct: 100
 
         ##########################################################

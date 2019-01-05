@@ -211,6 +211,77 @@
         color_name: red
 
         ##########################################################
+        ## Enable New Years Eve Lighting
+        ##########################################################
+
+- alias: Holiday - Enable New Years Eve Lighting
+
+  trigger:
+    - platform: state
+      entity_id: calendar.holidays_in_united_states
+      to: 'on'
+      for:
+        hours: 9
+        minutes: 0
+        seconds: 0
+
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: sensor.holidays_calendar
+        state: "New Year's Eve"
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.holiday
+        option: "New Year's Eve"
+
+        ##########################################################
+        ## New Years Eve Lighting
+        ##########################################################
+
+- alias: Holiday - New Years Eve Lighting
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:15:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_exterior_on_sunset
+      state: 'off'
+    - condition: state
+      entity_id: input_select.holiday
+      state: "New Year's Eve"
+
+  action:
+    - service: light.turn_on
+      entity_id:  light.front_porch_left
+      data:
+        effect: random
+        brightness_pct: 100
+    - service: light.turn_on
+      entity_id: light.front_porch_right
+      data:
+        effect: random
+        brightness_pct: 100
+    - delay: '00:00:15'
+    - service: light.turn_on
+      entity_id: light.front_porch_left
+      data:
+        effect: colorloop
+        brightness_pct: 100
+    - delay: '00:00:30'
+    - service: light.turn_on
+      entity_id: light.front_porch_right
+      data:
+        effect: colorloop
+        brightness_pct: 100
+
+        ##########################################################
         ## Enable Halloween Lighting
         ##########################################################
 
@@ -1466,6 +1537,9 @@
         state: 'Independence Day'
       - condition: state
         entity_id: input_select.holiday
+        state: "New Year's Eve"
+      - condition: state
+        entity_id: input_select.holiday
         state: 'Cardinals Game'
       - condition: state
         entity_id: input_select.holiday
@@ -1517,6 +1591,9 @@
       - condition: state
         entity_id: input_select.holiday
         state: 'Veterans Day'
+      - condition: state
+        entity_id: input_select.holiday
+        state: "New Year's Eve"
       - condition: state
         entity_id: input_select.holiday
         state: 'Cardinals Game'

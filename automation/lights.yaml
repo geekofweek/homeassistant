@@ -707,8 +707,8 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 0
-        seconds: 90
+        minutes: 5
+        seconds: 0
 
   condition:
     - condition: state
@@ -720,6 +720,9 @@
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
+    - condition: time
+      after: '23:00'
+      before: '05:00'
 
   action:
     - service: light.turn_off
