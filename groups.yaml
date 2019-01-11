@@ -482,8 +482,8 @@
     control: hidden
     entities:
       - input_boolean.enable_security
-      - automation.security__motion_alarm
-      - automation.security__door_alarm
+      - automation.security_motion_alarm
+      - automation.security_door_alarm
       - input_boolean.panic_mode
       - input_boolean.alarm_tripped
       - input_boolean.disable_smoke_alarm
@@ -521,12 +521,12 @@
       - vacuum.upstairs_roomba
 
   Summer Mode:
-    - automation.climate__turn_on_summer
-    - automation.climate__turn_off_summer
+    - automation.climate_turn_on_summer
+    - automation.climate_turn_off_summer
 
   Winter Mode:
-    - automation.climate__turn_on_winter
-    - automation.climate__turn_off_winter
+    - automation.climate_turn_on_winter
+    - automation.climate_turn_off_winter
 
   Media Player:
     - sensor.REDACTED
@@ -723,10 +723,10 @@
     - sensor.nas_status
     - sensor.nas_cpu_usage
     - sensor.nas_memory_usage
-    - sensor.nas_smart_status_drive_01
-    - sensor.nas_smart_status_drive_02
-    - sensor.nas_smart_status_drive_03
-    - sensor.nas_smart_status_drive_04
+    - sensor.nas_smart_status_drive_0_1
+    - sensor.nas_smart_status_drive_0_2
+    - sensor.nas_smart_status_drive_0_3
+    - sensor.nas_smart_status_drive_0_4
     - sensor.nas_volume_used_storage
     - sensor.nas_volume_used_backup
     - sensor.nas_system_temperature
@@ -753,12 +753,12 @@
     - sensor.sump_pump_water_sensor_batt
 
   DNS:
-    - sensor.pihole_dns_queries_today
-    - sensor.pihole_ads_blocked_today
-    - sensor.pihole_ads_percentage_blocked_today
-    - sensor.pihole_dns_queries_today_2
-    - sensor.pihole_ads_blocked_today_2
-    - sensor.pihole_ads_percentage_blocked_today_2
+    - sensor.pi_hole_dns_queries_today
+    - sensor.pi_hole_ads_blocked_today
+    - sensor.pi_hole_ads_percentage_blocked_today
+    - sensor.pi_hole_dns_queries_today_2
+    - sensor.pi_hole_ads_blocked_today_2
+    - sensor.pi_hole_ads_percentage_blocked_today_2
 
   Garage Status:
     - switch.myq_garage_outlet
