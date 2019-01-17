@@ -213,14 +213,18 @@
       - group.all_binary_sensors
 
   Traffic Camera Feeds:
-    - weblink.REDACTED
-    - weblink.REDACTED
-    - weblink.REDACTED
-    - weblink.REDACTED
-    - weblink.REDACTED
-    - weblink.REDACTED
-    - weblink.REDACTED
-    - weblink.REDACTED
+     - weblink.REDACTED
+     - weblink.REDACTED
+     - weblink.REDACTED
+     - weblink.REDACTED
+     - weblink.REDACTED
+     - weblink.REDACTED
+     - weblink.REDACTED
+     - weblink.REDACTED
+     - weblink.REDACTED
+     - weblink.REDACTED
+     - weblink.REDACTED
+     - weblink.REDACTED
 
   Automation Override:
     control: hidden
@@ -324,6 +328,7 @@
     control: hidden
     entities:
       - input_boolean.livingroom_rainbow
+      - input_boolean.bedroom_rainbow
       - input_boolean.office_rainbow
       - input_boolean.front_porch_rainbow
 
@@ -555,8 +560,8 @@
     - camera.side_yard
 
   Garage Cameras:
+    - camera.driveway
     - camera.garage
-    - camera.garage_interior
 
   Interior Cameras:
     - camera.living_room

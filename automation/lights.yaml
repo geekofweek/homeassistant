@@ -635,9 +635,6 @@
     - condition: state
       entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
       state: 'off'
-    - condition: state
-      entity_id: sensor.dark_sky_precip
-      state: 'unknown'
 
   action:
     - service: light.turn_on

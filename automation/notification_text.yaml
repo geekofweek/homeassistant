@@ -163,14 +163,14 @@
         data:
           push:
             category: camera
-          entity_id: camera.garage
+          entity_id: camera.driveway
     - service: notify.ios_USER2s_iphone
       data:
         message: USER1 Home
         data:
           push:
             category: camera
-          entity_id: camera.garage
+          entity_id: camera.driveway
 
     #################################################################
     ## USER1 Home Walking Notification
@@ -263,7 +263,7 @@
         data:
           push:
             category: camera
-          entity_id: camera.garage
+          entity_id: camera.driveway
 
         #################################################################
         ## USER2 Home Walking Notification
@@ -379,14 +379,14 @@
         data:
           push:
             category: camera
-          entity_id: camera.garage
+          entity_id: camera.driveway
     - service: notify.ios_USER2s_iphone
       data:
         message: Guest Arrived (Garage Camera)
         data:
           push:
             category: camera
-          entity_id: camera.garage
+          entity_id: camera.driveway
     - service: notify.ios_USER1s_iphone
       data:
         message: Guest Arrived Unlock Doors?
@@ -627,14 +627,14 @@
         data:
           push:
             category: camera
-          entity_id: camera.garage_interior
+          entity_id: camera.garage
     - service: notify.ios_USER2s_iphone
       data:
         message: Garage Door is Still Open!
         data:
           push:
             category: camera
-          entity_id: camera.garage_interior
+          entity_id: camera.garage
     - service: notify.ios_USER1s_iphone
       data:
         message: Garage Door Still Open Close It?

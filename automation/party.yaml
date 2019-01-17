@@ -78,23 +78,121 @@
   action:
     - service: light.turn_on
       entity_id:
+        - light.living_room_lights
+    - delay: '00:00:01'
+    - service: light.turn_on
+      entity_id:
         - light.living_room_lamps
       data:
-        transition: 60
-        color_temp: 447
+        transition: 30
         brightness_pct: 100
+        color_temp: 447
     - service: light.turn_on
       entity_id: light.media_center_lighting
       data:
-       transition: 900
-       effect: random
-       brightness_pct: 100
+        transition: 30
+        effect: random
+        brightness_pct: 100
     - service: light.turn_on
       entity_id:
         - light.globe
       data:
-        transition: 60
-        brightness_pct: 15
+        transition: 30
+        brightness_pct: 20
+        color_temp: 366
+
+        ##########################################################
+        ## Bedroom Random Colors On
+        ##########################################################
+
+- alias: Party - Set Bedroom to Random Color
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedroom_rainbow
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.USER1s_nightstand
+        - light.USER2s_nightstand
+        - light.bedroom_lamp
+      data:
+        effect: random
+        transition: 5
+        brightness_pct: 100
+    - service: light.turn_off
+      entity_id:
+        - light.closet_lamp
+        - light.bedroom_closet_ceiling
+    - delay: '00:00:05'
+    - service: light.turn_on
+      entity_id: light.USER1s_nightstand
+      data:
+        effect: colorloop
+        brightness_pct: 100
+    - delay: '00:00:10'
+    - service: light.turn_on
+      entity_id: light.USER2s_nightstand
+      data:
+        effect: colorloop
+        brightness_pct: 100
+    - delay: '00:00:15'
+    - service: light.turn_on
+      entity_id: light.bedroom_lamp
+      data:
+        effect: colorloop
+        brightness_pct: 100
+
+        ##########################################################
+        ## Bedroom Random Colors Off
+        ##########################################################
+
+- alias: Party - Set Bedroom to Random Color Off
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedroom_rainbow
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.bedtime
+      state: 'off'
+    - condition: state
+      entity_id: light.bedroom_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.bedroom_lights
+    - delay: '00:00:01'
+    - service: light.turn_on
+      entity_id:
+        - light.USER1s_nightstand
+        - light.USER2s_nightstand
+        - light.bedroom_lamp
+      data:
+        transition: 30
+        color_temp: 447
+        brightness_pct: 50
+    - service: light.turn_on
+      entity_id:
+        - light.closet_lamp
+        - light.bedroom_closet_ceiling
+      data:
+        transition: 30
+        brightness_pct: 50
 
         ##########################################################
         ## Office Random Colors On
@@ -147,7 +245,7 @@
       entity_id:
         - light.office_lamp
       data:
-        transition: 60
+        transition: 30
         color_temp: 447
         brightness_pct: 100
 
@@ -210,7 +308,10 @@
   action:
     - service: light.turn_on
       entity_id: light.front_porch
+    - delay: '00:00:01'
+    - service: light.turn_on
+      entity_id: light.front_porch
       data:
-        transition: 900
+        transition: 60
         brightness_pct: 40
         color_temp: 447

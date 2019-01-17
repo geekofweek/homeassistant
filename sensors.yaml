@@ -296,7 +296,7 @@
   - platform: template
     sensors:
       USER2_work_offset:
-        entity_id: sensor.date__time
+        entity_id: sensor.date_time
         value_template: '{{ (as_timestamp(states.calendar.work.attributes.start_time) - as_timestamp(now()) ) }}'
   - platform: template
     sensors:
