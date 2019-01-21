@@ -203,6 +203,8 @@ Since I don’t use the network equipment as my primary presence detection metho
 | [Frigidaire Cool Connect Smart Portable Air Conditioner](https://amzn.to/2k7kszE) | 1 | Wi-Fi | [Harmony Hub Remote](https://www.home-assistant.io/components/remote.harmony/) | No longer in daily use after new HVAC system installed. May be brought back into service as needed. |
 | [iHome WiFI Smart Plug](https://amzn.to/2rReF4z) | 2 | Wink Hub (Wi-Fi) | [Wink Switch](https://www.home-assistant.io/components/switch.wink/) | Not using these anymore due to overall poor reliability |
 | [Foscam FI9800P](https://amzn.to/2Gu6r7I) | 1 | Wi-Fi | [Foscam IP Camera](https://www.home-assistant.io/components/camera.foscam/) | Replaced by Unifi G3 Flex |
+| [Ubiquiti UniFi Cloud Key](https://amzn.to/2Waveqn) | 1 | Ethernet | [Ubiquiti Unifi WAP](https://www.home-assistant.io/components/device_tracker.unifi/) | Unifi Controller. Replaced by CloudKey gen2 Plus |
+
 
 ## <a name="software">Software</a>
 
