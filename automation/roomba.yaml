@@ -154,14 +154,26 @@
     - condition: or
       conditions:
       - condition: state
-        entity_id: device_tracker.USER2DEVICE
+        entity_id: device_tracker.USER2s_iphone
         state: 'not_home'
       - condition: state
-        entity_id: device_tracker.USER2DEVICE
-        state: 'work'
-      - condition: state
-        entity_id: device_tracker.USER2DEVICE
+        entity_id: device_tracker.USER2s_iphone
         state: 'lake'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
 
   action:
     - service: vacuum.turn_on
@@ -243,14 +255,26 @@
     - condition: or
       conditions:
       - condition: state
-        entity_id: device_tracker.USER2DEVICE
+        entity_id: device_tracker.USER2s_iphone
         state: 'not_home'
       - condition: state
-        entity_id: device_tracker.USER2DEVICE
-        state: 'work'
-      - condition: state
-        entity_id: device_tracker.USER2DEVICE
+        entity_id: device_tracker.USER2s_iphone
         state: 'lake'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
 
   action:
     - service: vacuum.turn_on
@@ -293,14 +317,26 @@
     - condition: or
       conditions:
       - condition: state
-        entity_id: device_tracker.USER2DEVICE
+        entity_id: device_tracker.USER2s_iphone
         state: 'not_home'
       - condition: state
-        entity_id: device_tracker.USER2DEVICE
-        state: 'work'
-      - condition: state
-        entity_id: device_tracker.USER2DEVICE
+        entity_id: device_tracker.USER2s_iphone
         state: 'lake'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
 
   action:
     - service: vacuum.turn_on
@@ -340,14 +376,26 @@
     - condition: or
       conditions:
       - condition: state
-        entity_id: device_tracker.USER2DEVICE
+        entity_id: device_tracker.USER2s_iphone
         state: 'not_home'
       - condition: state
-        entity_id: device_tracker.USER2DEVICE
-        state: 'work'
-      - condition: state
-        entity_id: device_tracker.USER2DEVICE
+        entity_id: device_tracker.USER2s_iphone
         state: 'lake'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
 
   action:
     - service: vacuum.turn_on
@@ -681,7 +729,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2DEVICE
+      entity_id: device_tracker.USER2s_iphone
       from: 'home'
       to: 'not_home'
       for:
@@ -735,7 +783,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2DEVICE
+      entity_id: device_tracker.USER2s_iphone
       from: 'not_home'
       to: 'home'
       for:

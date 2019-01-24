@@ -46,7 +46,7 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker.USER1DEVICE
+      entity_id: device_tracker.USER1s_iphone
       state: 'home'
     - condition: state
       entity_id: input_boolean.USER1_greeting
@@ -86,10 +86,10 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker.USER1DEVICE
+      entity_id: device_tracker.USER1s_iphone
       state: 'home'
     - condition: state
-      entity_id: device_tracker.USER2DEVICE
+      entity_id: device_tracker.USER2s_iphone
       state: 'home'
     - condition: state
       entity_id: input_boolean.USER1_greeting
@@ -132,7 +132,7 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker.USER2DEVICE
+      entity_id: device_tracker.USER2s_iphone
       state: 'home'
     - condition: state
       entity_id: input_boolean.USER2_greeting
@@ -172,10 +172,10 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker.USER1DEVICE
+      entity_id: device_tracker.USER1s_iphone
       state: 'home'
     - condition: state
-      entity_id: device_tracker.USER2DEVICE
+      entity_id: device_tracker.USER2s_iphone
       state: 'home'
     - condition: state
       entity_id: input_boolean.USER1_greeting
@@ -218,10 +218,10 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker.USER1DEVICE
+      entity_id: device_tracker.USER1s_iphone
       state: 'home'
     - condition: state
-      entity_id: device_tracker.USER2DEVICE
+      entity_id: device_tracker.USER2s_iphone
       state: 'home'
     - condition: state
       entity_id: input_boolean.USER1_greeting
@@ -258,16 +258,32 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2DEVICE
-      from: 'work'
+      entity_id: device_tracker.USER2s_iphone
+      from: 'REDACTED'
+      to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.USER2s_iphone
+      from: 'REDACTED'
+      to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.USER2s_iphone
+      from: 'REDACTED'
+      to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.USER2s_iphone
+      from: 'REDACTED'
+      to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.USER2s_iphone
+      from: 'REDACTED'
       to: 'not_home'
 
   condition:
     - condition: state
-      entity_id: device_tracker.USER1DEVICE
+      entity_id: device_tracker.USER1s_iphone
       state: 'home'
     - condition: state
-      entity_id: device_tracker.USER2DEVICE
+      entity_id: device_tracker.USER2s_iphone
       state: 'not_home'
     - condition: state
       entity_id: input_boolean.USER2_away

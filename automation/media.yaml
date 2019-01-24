@@ -629,7 +629,6 @@
         - input_boolean.chill_music
         - input_boolean.electronic_music
         - input_boolean.classical_music
-        - input_boolean.adele_music
         - input_boolean.group_all_sonos
     - service: input_select.select_option
       data:
@@ -716,7 +715,6 @@
         - input_boolean.jazz_music
         - input_boolean.chill_music
         - input_boolean.electronic_music
-        - input_boolean.adele_music
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
@@ -770,7 +768,6 @@
         - input_boolean.pop_music
         - input_boolean.chill_music
         - input_boolean.electronic_music
-        - input_boolean.adele_music
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
@@ -824,7 +821,6 @@
         - input_boolean.pop_music
         - input_boolean.chill_music
         - input_boolean.electronic_music
-        - input_boolean.adele_music
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
@@ -878,7 +874,6 @@
         - input_boolean.pop_music
         - input_boolean.chill_music
         - input_boolean.classical_music
-        - input_boolean.adele_music
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
@@ -932,65 +927,10 @@
         - input_boolean.electronic_music
         - input_boolean.pop_music
         - input_boolean.classical_music
-        - input_boolean.adele_music
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
         option: "Play Chill Music"
-
-        ##########################################################
-        ## Play Adele Music
-        ##########################################################
-
-- alias: Media - Play Adele Music
-
-  trigger:
-    - platform: state
-      entity_id: input_boolean.adele_music
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-
-  action:
-    - service: media_player.sonos_join
-      data:
-        master: media_player.sonos_living_room
-      entity_id:
-        - media_player.sonos_living_room
-        - media_player.sonos_media_center
-        - media_player.sonos_dining_room
-        - media_player.sonos_kitchen
-        - media_player.sonos_bathroom
-    - delay: '00:00:02'
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.sonos_living_room
-        - media_player.sonos_media_center
-        - media_player.sonos_dining_room
-        - media_player.sonos_kitchen
-        - media_player.sonos_bathroom
-      data:
-        volume_level: '0.4'
-    - delay: '00:00:01'
-    - service: media_player.select_source
-      data:
-        entity_id: media_player.sonos_living_room
-        source: 'Adele'
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.jazz_music
-        - input_boolean.electronic_music
-        - input_boolean.chill_music
-        - input_boolean.classical_music
-        - input_boolean.chill_music
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.sonos
-        option: "Play Adele Music Station"
 
         ##########################################################
         ## Sonos start activity from input select Pop Music
@@ -1068,21 +1008,6 @@
       entity_id: input_boolean.classical_music
 
         ##########################################################
-        ## Sonos start activity from input select Adele Music Station
-        ##########################################################
-
-- alias: Media - Sonos start activity from input select Adele Music Station
-
-  trigger:
-    - platform: state
-      entity_id: input_select.sonos
-      to: 'Play Adele Music Station'
-
-  action:
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.adele_music
-
-        ##########################################################
         ## Sonos stop activity from input select Off
         ##########################################################
 
@@ -1111,7 +1036,6 @@
         - input_boolean.chill_music
         - input_boolean.electronic_music
         - input_boolean.classical_music
-        - input_boolean.adele_music
         - input_boolean.group_all_sonos
 
         ##########################################################

@@ -292,12 +292,28 @@
         ## Set Thermostat Home When USER2 Leaves Work
         ##########################################################
 
-- alias: Climate - Set Home When USER2 Leaves Work
+- alias: Climate - Set Climate Home When USER2 Leaves Work
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2DEVICE
-      from: 'work'
+      entity_id: device_tracker.USER2s_iphone
+      from: 'REDACTED'
+      to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.USER2s_iphone
+      from: 'REDACTED'
+      to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.USER2s_iphone
+      from: 'REDACTED'
+      to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.USER2s_iphone
+      from: 'REDACTED'
+      to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.USER2s_iphone
+      from: 'REDACTED'
       to: 'not_home'
 
   condition:
@@ -307,14 +323,9 @@
     - condition: state
       entity_id: input_boolean.disable_climate
       state: 'off'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: device_tracker.USER1DEVICE
-        state: 'not_home'
-      - condition: state
-        entity_id: device_tracker.USER1DEVICE
-        state: 'work'
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
 
   action:
     - service: homeassistant.turn_off
@@ -447,7 +458,7 @@
       entity_id: input_boolean.disable_home_away
       state: 'off'
     - condition: state
-      entity_id: device_tracker.USER2DEVICE
+      entity_id: device_tracker.USER2s_iphone
       state: 'home'
     - condition: state
       entity_id: input_boolean.disable_climate
@@ -467,7 +478,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2DEVICE
+      entity_id: device_tracker.USER2s_iphone
       from: 'home'
       to: 'not_home'
 
@@ -656,7 +667,7 @@
       entity_id: input_boolean.disable_climate
       state: 'off'
     - condition: state
-      entity_id: device_tracker.USER1DEVICE
+      entity_id: device_tracker.USER1s_iphone
       state: 'home'
 
   action:
@@ -725,7 +736,7 @@
       entity_id: group.winter_mode
       state: 'on'
     - condition: state
-      entity_id: device_tracker.USER1DEVICE
+      entity_id: device_tracker.USER1s_iphone
       state: 'home'
     - condition: state
       entity_id: binary_sensor.office_occupancy
@@ -772,7 +783,7 @@
       entity_id: group.winter_mode
       state: 'on'
     - condition: state
-      entity_id: device_tracker.USER1DEVICE
+      entity_id: device_tracker.USER1s_iphone
       state: 'home'
     - condition: state
       entity_id: binary_sensor.office_occupancy
@@ -812,7 +823,7 @@
       entity_id: input_boolean.disable_climate
       state: 'off'
     - condition: state
-      entity_id: device_tracker.USER1DEVICE
+      entity_id: device_tracker.USER1s_iphone
       state: 'home'
 
   action:

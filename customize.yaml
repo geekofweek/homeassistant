@@ -11,24 +11,6 @@
     icon: mdi:thermostat-box
   climate.basement_heater:
     icon: mdi:radiator
-  automation.climate_turn_on_summer:
-    icon: mdi:sunglasses
-    friendly_name: Auto on During Summer Enabled
-  automation.climate_turn_off_summer:
-    icon: mdi:sunglasses
-    friendly_name: Auto off During Summer Enabled
-  automation.climate_turn_on_winter:
-    icon: mdi:snowman
-    friendly_name: Auto on During Winter Enabled
-  automation.climate_turn_off_winter:
-    icon: mdi:snowman
-    friendly_name: Auto off During Winter Enabled
-  group.summer_mode:
-    icon: mdi:sunglasses
-    friendly_name: Summer Mode Enabled
-  group.winter_mode:
-    icon: mdi:snowman
-    friendly_name: Winter Mode Enabled
   sensor.main_floor_humidity:
     icon: mdi:water-percent
     friendly_name: Dining Room Humidity
@@ -56,25 +38,17 @@
         ## Device Trackers
         ##########################################################
 
-  device_tracker.USER1DEVICE:
+  device_tracker.USER1s_iphone:
     icon: mdi:human-male
     friendly_name: USER1
-  device_tracker.USER2DEVICE:
+  device_tracker.USER2s_iphone:
     icon: mdi:human-female
     friendly_name: USER2
-  device_tracker.USER1s_iphone:
-    icon: mdi:cellphone-iphone
-    friendly_name: USER1's iPhone
-  device_tracker.USER2s_iphone:
-    icon: mdi:cellphone-iphone
-    friendly_name: USER2's iPhone
   device_tracker.USER1sipad:
     icon: mdi:tablet-ipad
   device_tracker.USER2sipad:
     icon: mdi:tablet-ipad
   device_tracker.USER1smacbookpro:
-    icon: mdi:laptop-mac
-  device_tracker.USER2smacbookairold:
     icon: mdi:laptop-mac
   device_tracker.USER2smacbookair:
     icon: mdi:laptop-mac
@@ -342,6 +316,12 @@
     icon: mdi:cctv
   switch.kitchen_camera:
     icon: mdi:cctv
+  switch.summer_mode:
+    icon: mdi:sunglasses
+    friendly_name: Summer Mode Enabled
+  switch.winter_mode:
+    icon: mdi:snowman
+    friendly_name: Winter Mode Enabled
 
         ##########################################################
         ## Lights
@@ -591,9 +571,6 @@
   input_boolean.chill_music:
     emulated_hue_hidden: false
     emulated_hue_name: "Chill Music"
-  input_boolean.adele_music:
-    emulated_hue_hidden: false
-    emulated_hue_name: "Adele Music"
   input_boolean.group_all_sonos:
     emulated_hue_hidden: false
     emulated_hue_name: "All Speakers"

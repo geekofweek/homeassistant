@@ -97,7 +97,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER1DEVICE
+      entity_id: device_tracker.USER1s_iphone
       from: 'not_home'
       to: 'home'
 
@@ -126,7 +126,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER1DEVICE
+      entity_id: device_tracker.USER1s_iphone
       from: 'not_home'
       to: 'home'
 
@@ -208,7 +208,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2DEVICE
+      entity_id: device_tracker.USER2s_iphone
       from: 'not_home'
       to: 'home'
 
@@ -238,7 +238,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2DEVICE
+      entity_id: device_tracker.USER2s_iphone
 #      from: 'not_home'
       to: 'home'
 
@@ -320,7 +320,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER1DEVICE
+      entity_id: device_tracker.USER1s_iphone
       from: 'not_home'
       to: 'home'
 
@@ -383,7 +383,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER1DEVICE
+      entity_id: device_tracker.USER1s_iphone
       from: 'not_home'
       to: 'home'
 
@@ -527,7 +527,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2DEVICE
+      entity_id: device_tracker.USER2s_iphone
       #from: 'not_home'
       to: 'home'
 
@@ -589,7 +589,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2DEVICE
+      entity_id: device_tracker.USER2s_iphone
       from: 'not_home'
       to: 'home'
 
@@ -825,7 +825,7 @@
 
   trigger:
      - platform: state
-       entity_id: device_tracker.USER2DEVICE
+       entity_id: device_tracker.USER2s_iphone
        from: 'home'
        to: 'not_home'
 
@@ -885,7 +885,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2DEVICE
+      entity_id: device_tracker.USER2s_iphone
       from: 'home'
       to: 'not_home'
 
@@ -997,7 +997,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER1DEVICE
+      entity_id: device_tracker.USER1s_iphone
       from: 'home'
       to: 'not_home'
 
@@ -1018,7 +1018,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER1DEVICE
+      entity_id: device_tracker.USER1s_iphone
       from: 'home'
       to: 'not_home'
       for:
@@ -1040,7 +1040,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER1DEVICE
+      entity_id: device_tracker.USER1s_iphone
       from: 'not_home'
       to: 'home'
       for:
@@ -1063,7 +1063,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2DEVICE
+      entity_id: device_tracker.USER2s_iphone
       from: 'home'
       to: 'not_home'
 
@@ -1084,7 +1084,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2DEVICE
+      entity_id: device_tracker.USER2s_iphone
       from: 'home'
       to: 'not_home'
       for:
@@ -1106,7 +1106,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2DEVICE
+      entity_id: device_tracker.USER2s_iphone
       from: 'not_home'
       to: 'home'
       for:
@@ -1136,7 +1136,7 @@
   action:
     - service: device_tracker.see
       data:
-        dev_id: USER1DEVICE
+        dev_id: USER1s_iphone
         location_name: 'home'
 
         ##########################################################
@@ -1174,7 +1174,7 @@
   action:
     - service: device_tracker.see
       data:
-        dev_id: USER1DEVICE
+        dev_id: USER1s_iphone
         location_name: 'not_home'
 
         ##########################################################
@@ -1212,7 +1212,7 @@
   action:
     - service: device_tracker.see
       data:
-        dev_id: USER2DEVICE
+        dev_id: USER2s_iphone
         location_name: 'home'
 
         ##########################################################
@@ -1250,7 +1250,7 @@
   action:
     - service: device_tracker.see
       data:
-        dev_id: USER2DEVICE
+        dev_id: USER2s_iphone
         location_name: 'not_home'
 
         ##########################################################

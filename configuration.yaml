@@ -13,7 +13,6 @@ homeassistant:
   auth_providers:
    - type: homeassistant
    - type: trusted_networks
-   - type: legacy_api_password
 
 frontend:
 updater:
@@ -126,11 +125,6 @@ map:
 
 wemo:
 
-switch:
-  - platform: tplink
-    host: REDACTED.114
-    name: MyQ Garage Outlet
-
 ifttt:
   key: !secret ifttt_key
 
@@ -144,7 +138,6 @@ device_tracker:
     new_device_defaults:
       track_new_devices: False
       hide_if_away: False
-  - platform: locative
 
 cover:
   - platform: myq
@@ -264,3 +257,4 @@ weblink: !include weblinks.yaml
 light: !include light_group.yaml
 homekit: !include homekit.yaml
 ios: !include ios.yaml
+switch: !include switch.yaml

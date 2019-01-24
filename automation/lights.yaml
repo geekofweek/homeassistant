@@ -423,7 +423,7 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker.USER2DEVICE
+      entity_id: device_tracker.USER2s_iphone
       state: 'home'
     - condition: state
       entity_id: sun.sun
@@ -580,9 +580,8 @@
 - alias: Lights - Media Center Lighting Random Color Every Hour
 
   trigger:
-    - platform: time
-      minutes: 0
-      seconds: 0
+    - platform: time_pattern
+      minutes: '/30'
 
   condition:
     - condition: state
