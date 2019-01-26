@@ -185,7 +185,7 @@ Since I don’t use the network equipment as my primary presence detection metho
 
 ## <a name="other">Other Hardware</a>
 
-| [Go to Menu](#menu) | [Sensors Screenshot](images/sensors-screenshot.jpg?raw=true "Sensors") |
+| [Go to Menu](#menu) | [System Screenshot](images/system-screenshot.jpg?raw=true "System") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
