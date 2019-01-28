@@ -172,21 +172,30 @@ binary_sensor:
     scan_interval: 60
 
 camera:
-  - platform: ffmpeg
-    input: -rtsp_transport tcp -i rtsp://REDACTED.3:7447/REDACTED
-    name: Front Porch
-  - platform: ffmpeg
-    input: -rtsp_transport tcp -i rtsp://REDACTED.3:7447/REDACTED
-    name: Driveway
-  - platform: ffmpeg
-    input: -rtsp_transport tcp -i rtsp://REDACTED.3:7447/REDACTED
-    name: Garage
-  - platform: ffmpeg
-    input: -rtsp_transport tcp -i rtsp://REDACTED.3:7447/REDACTED
-    name: Backyard
-  - platform: ffmpeg
-    input: -rtsp_transport tcp -i rtsp://REDACTED.3:7447/REDACTED
-    name: Side Yard
+  - platform: uvc
+    nvr: REDACTED.99
+    key: !secret uvc_key
+    password: !secret uvc_password
+#  - platform: ffmpeg
+#    input: -rtsp_transport tcp -i rtsp://REDACTED.3:7447/REDACTED
+#    name: Front Porch
+#    extra_arguments: '-an'
+#  - platform: ffmpeg
+#    input: -rtsp_transport tcp -i rtsp://REDACTED.3:7447/REDACTED
+#    name: Driveway
+#    extra_arguments: '-an'
+#  - platform: ffmpeg
+#    input: -rtsp_transport tcp -i rtsp://REDACTED.3:7447/REDACTED
+#    name: Garage
+#    extra_arguments: '-an'
+#  - platform: ffmpeg
+#    input: -rtsp_transport tcp -i rtsp://REDACTED.3:7447/REDACTED
+#    name: Backyard
+#    extra_arguments: '-an'
+#  - platform: ffmpeg
+#    input: -rtsp_transport tcp -i rtsp://REDACTED.3:7447/REDACTED
+#    name: Side Yard
+#    extra_arguments: '-an'
 #  - platform: ffmpeg
 #    input: -rtsp_transport tcp -i rtsp://REDACTED.3:7447/REDACTED
 #    name: Living Room
@@ -253,7 +262,6 @@ sensor: !include sensors.yaml
 input_boolean: !include input_boolean.yaml
 input_select: !include input_select.yaml
 script: !include scripts.yaml
-weblink: !include weblinks.yaml
 light: !include light_group.yaml
 homekit: !include homekit.yaml
 ios: !include ios.yaml

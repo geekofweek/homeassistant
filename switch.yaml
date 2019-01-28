@@ -43,3 +43,20 @@
           service: homeassistant.turn_off
           data:
             entity_id: group.winter_mode
+
+        ##########################################################
+        ## Backyard Lighting
+        ##########################################################
+
+  - platform: template
+    switches:
+      backyard_lighting:
+        value_template: "{{ is_state('group.backyard_lighting', 'on') }}"
+        turn_on:
+          service: homeassistant.turn_on
+          data:
+            entity_id: group.backyard_lighting
+        turn_off:
+          service: homeassistant.turn_off
+          data:
+            entity_id: group.backyard_lighting
