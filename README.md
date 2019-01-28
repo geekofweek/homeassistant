@@ -164,6 +164,7 @@ Similar to locks, the Garage door is mostly automated to open / close based on l
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [iRobot Roomba 980](https://amzn.to/2L9q1tm) | 2 | Wi-Fi | [iRobot Roomba](https://www.home-assistant.io/components/vacuum.roomba/)| Automated to run at specific times based on presence detection |
 | [iRobot Roomba 650](https://amzn.to/2wO2w60) | 1 | NA | NA | Currently not integrated into Home Assistant. Investigating options for future integration |
+| [iRobot Braava jet 240](https://amzn.to/2FRJnEa) | 1 | Bluetooth | NA | Currently not integrated into Home Assistant. Unknown if this can ever be automated |
 
 All Roomba related automations can be found in [roomba.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/roomba.yaml)
 
@@ -185,7 +186,7 @@ Since I don’t use the network equipment as my primary presence detection metho
 
 ## <a name="other">Other Hardware</a>
 
-| [Go to Menu](#menu) | [Sensors Screenshot](images/sensors-screenshot.jpg?raw=true "Sensors") |
+| [Go to Menu](#menu) | [System Screenshot](images/system-screenshot.jpg?raw=true "System") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -302,9 +303,10 @@ Within the local folder, variable localpath="PATH_TO_LOCAL_HA_CONFIGS", I have t
 ![UI](images/weather-screenshot.jpg?raw=true "Weather")
 ![UI](images/media-screenshot.jpg?raw=true "Media")
 ![UI](images/camera-screenshot.jpg?raw=true "Cameras")
+![UI](images/auto-screenshot.jpg?raw=true "Auto")
 ![UI](images/automation-screenshot.jpg?raw=true "Automations")
 ![UI](images/sensors-screenshot.jpg?raw=true "Sensors")
-![UI](images/auto-screenshot.jpg?raw=true "Auto")
+![UI](images/system-screenshot.jpg?raw=true "System")
 
 | [Go to Menu](#menu) |
 
