@@ -54,14 +54,14 @@ views:
           - entity: climate.main_floor
           - entity: switch.fireplace
             hold_action:
-              action: REDACTED-info
+              action: more-info
             tap_action:
               action: toggle
           - entity: climate.office_fan
             name: Office
           - entity: switch.basement_heater
             hold_action:
-              action: REDACTED-info
+              action: more-info
             name: Basement
             tap_action:
               action: toggle
@@ -72,19 +72,19 @@ views:
       - entities:
           - entity: lock.front_door
             hold_action:
-              action: REDACTED-info
+              action: more-info
             name: Front Door
             tap_action:
               action: toggle
           - entity: lock.back_door
             hold_action:
-              action: REDACTED-info
+              action: more-info
             name: Back Door
             tap_action:
               action: toggle
           - entity: lock.basement_door
             hold_action:
-              action: REDACTED-info
+              action: more-info
             name: Basement
             tap_action:
               action: toggle
@@ -93,7 +93,7 @@ views:
         type: glance
       - entity: cover.garage_door
         hold_action:
-          action: REDACTED-info
+          action: more-info
         tap_action:
           action: toggle
         type: entity-button
@@ -357,9 +357,9 @@ views:
         type: entities
       - entity: cover.garage_door
         hold_action:
-          action: REDACTED-info
+          action: more-info
         tap_action:
-          action: REDACTED-info
+          action: more-info
         type: entity-button
       - entities:
           - entity: binary_sensor.ring_front_door_ding
@@ -587,13 +587,13 @@ views:
           - cards:
               - entity: light.garage_light
                 hold_action:
-                  action: REDACTED-info
+                  action: more-info
                 tap_action:
                   action: toggle
                 type: entity-button
               - entity: cover.garage_door
                 hold_action:
-                  action: REDACTED-info
+                  action: more-info
                 tap_action:
                   action: toggle
                 type: entity-button
@@ -674,7 +674,7 @@ views:
     cards:
       - entity: input_boolean.bedtime
         hold_action:
-          action: REDACTED-info
+          action: more-info
         tap_action:
           action: toggle
         type: entity-button
