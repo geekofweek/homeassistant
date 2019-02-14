@@ -116,6 +116,21 @@ views:
             show_state: false
             type: picture-entity
         type: vertical-stack
+      - card:
+          cards:
+            - entity: camera.living_room
+              show_state: false
+              type: picture-entity
+            - entity: camera.basement
+              show_state: false
+              type: picture-entity
+          type: vertical-stack
+        conditions:
+          - entity: device_tracker.living_room_camera
+            state: home
+          - entity: device_tracker.basement_camera
+            state: home
+        type: conditional
     icon: 'mdi:home'
     path: default_view
     title: default_view
@@ -156,6 +171,14 @@ views:
         type: media-control
       - entity: media_player.sonos_living_room
         type: media-control
+      - card:
+          entity: camera.living_room
+          show_state: false
+          type: picture-entity
+        conditions:
+          - entity: device_tracker.living_room_camera
+            state: home
+        type: conditional
     icon: 'mdi:sofa'
     path: living
     title: Living
@@ -338,6 +361,14 @@ views:
             name: Sump Pump
         title: Water Sensors
         type: glance
+      - card:
+          entity: camera.basement
+          show_state: false
+          type: picture-entity
+        conditions:
+          - entity: device_tracker.basement_camera
+            state: home
+        type: conditional
       - entity: media_player.sonos_basement
         type: media-control
     icon: 'mdi:stairs'
@@ -554,19 +585,34 @@ views:
       - entity: camera.front_porch
         show_state: false
         type: picture-entity
-      - cards:
-          - entity: camera.backyard
-            show_state: false
-            type: picture-entity
-          - entity: camera.side_yard
-            show_state: false
-            type: picture-entity
-        type: vertical-stack
+      - card:
+          cards:
+            - entity: camera.living_room
+              show_state: false
+              type: picture-entity
+            - entity: camera.basement
+              show_state: false
+              type: picture-entity
+          type: vertical-stack
+        conditions:
+          - entity: device_tracker.living_room_camera
+            state: home
+          - entity: device_tracker.basement_camera
+            state: home
+        type: conditional
       - cards:
           - entity: camera.driveway
             show_state: false
             type: picture-entity
           - entity: camera.garage
+            show_state: false
+            type: picture-entity
+        type: vertical-stack
+      - cards:
+          - entity: camera.backyard
+            show_state: false
+            type: picture-entity
+          - entity: camera.side_yard
             show_state: false
             type: picture-entity
         type: vertical-stack
@@ -980,6 +1026,8 @@ views:
           - entity: switch.front_porch_camera
           - entity: switch.backyard_camera
           - entity: switch.side_yard_camera
+          - entity: switch.living_room_camera
+          - entity: switch.basement_camera
         show_header_toggle: false
         title: POE
         type: entities
@@ -1052,4 +1100,3 @@ views:
     icon: 'mdi:none'
     path: troubleshooting
     title: Troubleshooting
-
