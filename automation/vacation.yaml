@@ -162,7 +162,7 @@
 
   trigger:
     - platform: time
-      at: '23:01'
+      at: '23:16'
 
   condition:
     - condition: state
@@ -170,11 +170,9 @@
       state: 'on'
 
   action:
-    - delay: ‘00:{{ range(01,59) | random | int }}:00’
     - service: light.turn_off
       entity_id:
         - light.kitchen_sink
-    - delay: ‘00:{{ range(01,59) | random | int }}:00’
     - service: light.turn_off
       entity_id:
         light.living_room_lamps
@@ -187,7 +185,7 @@
 
   trigger:
     - platform: time
-      at: '22:01'
+      at: '22:13'
 
   condition:
     - condition: state
@@ -195,11 +193,9 @@
       state: 'on'
 
   action:
-    - delay: ‘00:{{ range(01,59) | random | int }}:00’
     - service: light.turn_off
       entity_id:
         - light.bedroom_closet_ceiling
-    - delay: ‘00:{{ range(01,59) | random | int }}:00’
     - service: light.turn_off
       entity_id:
         - light.office_ceiling

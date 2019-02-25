@@ -28,7 +28,6 @@ discovery:
 config:
 
 http:
-  api_password: !secret http_password
   ssl_certificate: !secret ssl_certificate
   ssl_key: !secret ssl_key
   base_url: !secret base_url
@@ -37,6 +36,10 @@ http:
     - REDACTED.0/24
   ip_ban_enabled: true
   login_attempts_threshold: 3
+
+person:
+
+system_health:
 
 #################################################################
 ## Components
@@ -202,9 +205,6 @@ camera:
 #  - platform: ffmpeg
 #    input: -rtsp_transport tcp -i rtsp://REDACTED.3:7447/REDACTED
 #    name: Kitchen
-  - platform: generic
-    still_image_url: https://icons.wxug.com/data/weather-maps/radar/united-states/jefferson-city-missouri-region-current-radar-animation.gif
-    name: MO Weather Radar
 
 tts:
   - platform: amazon_polly
