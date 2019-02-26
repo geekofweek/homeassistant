@@ -723,29 +723,6 @@
     icon: mdi:timer
 
         ##########################################################
-        ## DNS
-        ##########################################################
-
-  sensor.pi_hole_ads_blocked_today:
-    friendly_name: DNS 1 Queries Blocked
-    icon: mdi:dns
-  sensor.pi_hole_ads_blocked_today_2:
-    friendly_name: DNS 2 Queries Blocked
-    icon: mdi:dns
-  sensor.pi_hole_ads_percentage_blocked_today:
-    friendly_name: DNS 1 Percentage Blocked
-    icon: mdi:dns
-  sensor.pi_hole_ads_percentage_blocked_today_2:
-    friendly_name: DNS 2 Percentage Blocked
-    icon: mdi:dns
-  sensor.pi_hole_dns_queries_today:
-    friendly_name: DNS 1 Queries
-    icon: mdi:dns
-  sensor.pi_hole_dns_queries_today_2:
-    friendly_name: DNS 2 Queries
-    icon: mdi:dns
-
-        ##########################################################
         ## Weather
         ##########################################################
 
@@ -866,26 +843,3 @@
 
   group.automation_on_demand:
     friendly_name: Automation
-
-        ##########################################################
-        ## All Groups / Troubleshooting
-        ##########################################################
-
-  group.all_automations:
-    hidden: false
-  group.all_lights:
-    hidden: false
-  group.all_switches:
-    hidden: false
-  group.all_scripts:
-    hidden: false
-  group.all_devices:
-    hidden: false
-  group.all_covers:
-    hidden: false
-  group.all_remotes:
-    hidden: false
-  group.all_vacuum_cleaners:
-    hidden: false
-  group.all_fans:
-    hidden: false

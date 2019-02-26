@@ -122,12 +122,14 @@
 
   - platform: pi_hole
     host: REDACTED.4
+    name: pihole 1
     monitored_conditions:
       - ads_blocked_today
       - ads_percentage_today
       - dns_queries_today
   - platform: pi_hole
     host: REDACTED.5
+    name: pihole 2
     monitored_conditions:
       - ads_blocked_today
       - ads_percentage_today
@@ -372,3 +374,16 @@
       hvac_status:
         friendly_name: 'HVAC Status'
         value_template: '{{ states.climate.main_floor.attributes.operation }}'
+
+        ##########################################################
+        ## Pihole Status
+        ##########################################################
+
+  - platform: command_line
+    name: PiHole 1 Status
+    command: curl -X GET 'http://REDACTED.4/REDACTED/api.php?status'
+    value_template: "{{ value_json.status == 'enabled' }}"
+  - platform: command_line
+    name: PiHole 2 Status
+    command: curl -X GET 'http://REDACTED.5/REDACTED/api.php?status'
+    value_template: "{{ value_json.status == 'enabled' }}"
