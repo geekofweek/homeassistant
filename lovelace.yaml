@@ -442,74 +442,63 @@ views:
         show_header_toggle: false
         title: Climate Control
         type: entities
-      - entities:
-          - entity: sensor.living_room_temperature
-            name: Living Room
-          - entity: sensor.main_floor_temperature
-            name: Dining Room
-          - entity: sensor.kitchen_temperature
-            name: Kitchen
-          - entity: sensor.bedroom_temperature
-            name: Bedroom
-          - entity: sensor.bathroom_temperature
-            name: Bathroom
-          - entity: sensor.office_temperature
-            name: USER1's Office
-          - entity: sensor.USER2_office_temperature
-            name: USER2's Office
-          - entity: sensor.guest_bedroom_temperature
-            name: Guest Bedroom
-          - entity: sensor.basement_temperature
-            name: Basement
-          - entity: sensor.laundry_room_temperature
-            name: Laundry Room
-        show_header_toggle: false
-        title: Indoor Temperature
-        type: entities
-      - entities:
-          - entity: sensor.main_floor_humidity
-            name: Dining Room
-          - entity: sensor.wink_relay_sensor_humidity
-            name: Living Room
-          - entity: sensor.office_fan_humidity
-            name: Office
-          - entity: sensor.dark_sky_humidity
-            name: Outdoor
-        title: Humidity
-        type: glance
-      - entity: weather.dark_sky
-        type: weather-forecast
-      - entities:
-          - sensor.dark_sky_summary
-          - sensor.dark_sky_minutely_summary
-          - sensor.dark_sky_hourly_summary
-          - sensor.dark_sky_daily_summary
-        show_header_toggle: false
-        title: Weather Summary
-        type: entities
-      - entities:
-          - sun.sun
-          - sensor.moon
-          - sensor.dark_sky_temperature
-          - sensor.dark_sky_apparent_temperature
-          - sensor.dark_sky_humidity
-          - sensor.dark_sky_cloud_coverage
-          - sensor.dark_sky_precip
-          - sensor.dark_sky_precip_probability
-          - sensor.dark_sky_precip_intensity
-          - sensor.dark_sky_nearest_storm_distance
-          - sensor.dark_sky_wind_speed
-          - sensor.dark_sky_wind_bearing
-          - sensor.dark_sky_visibility
-          - sensor.dark_sky_ozone
-          - sensor.dark_sky_pressure
-          - sensor.dark_sky_dew_point
-        show_header_toggle: false
-        title: Weather
-        type: entities
-      - image: >-
-          https://icons.wxug.com/data/weather-maps/radar/united-states/jefferson-city-missouri-region-current-radar-animation.gif
-        type: picture
+      - cards:
+          - entities:
+              - entity: sensor.living_room_temperature
+                name: Living Room
+              - entity: sensor.main_floor_temperature
+                name: Dining Room
+              - entity: sensor.kitchen_temperature
+                name: Kitchen
+              - entity: sensor.bedroom_temperature
+                name: Bedroom
+              - entity: sensor.bathroom_temperature
+                name: Bathroom
+              - entity: sensor.office_temperature
+                name: USER1's Office
+              - entity: sensor.USER2_office_temperature
+                name: USER2's Office
+              - entity: sensor.guest_bedroom_temperature
+                name: Guest Bedroom
+              - entity: sensor.basement_temperature
+                name: Basement
+              - entity: sensor.laundry_room_temperature
+                name: Laundry Room
+            show_header_toggle: false
+            title: Indoor Temperature
+            type: entities
+          - entities:
+              - entity: sensor.main_floor_humidity
+                name: Dining Room
+              - entity: sensor.wink_relay_sensor_humidity
+                name: Living Room
+              - entity: sensor.office_fan_humidity
+                name: Office
+              - entity: sensor.dark_sky_humidity
+                name: Outdoor
+            title: Humidity
+            type: glance
+        type: vertical-stack
+      - cards:
+          - entity: weather.dark_sky
+            name: 'Maplewood, MO'
+            type: weather-forecast
+          - entities:
+              - entity: sensor.dark_sky_summary
+                name: Current
+              - entity: sensor.dark_sky_minutely_summary
+                name: Minute
+              - entity: sensor.dark_sky_hourly_summary
+                name: Hourly
+              - entity: sensor.dark_sky_daily_summary
+                name: Daily
+            type: entities
+            title: Weather Summary
+            show_header_toggle: false
+          - image: >-
+              https://icons.wxug.com/data/weather-maps/radar/united-states/jefferson-city-missouri-region-current-radar-animation.gif
+            type: picture
+        type: vertical-stack
     icon: 'mdi:weather-partlycloudy'
     path: weatherdashboard
     title: Weather
@@ -562,6 +551,8 @@ views:
               - entity: media_player.sonos_bedroom
                 type: media-control
             type: horizontal-stack
+        type: vertical-stack
+      - cards:
           - cards:
               - entity: media_player.sonos_USER1s_office
                 type: media-control
@@ -859,7 +850,7 @@ views:
           - home
         type: entity-filter
       - entities:
-          - entity: device_tracker.USER1sipad
+          - entity: device_tracker.USER1s_ipad
           - entity: device_tracker.USER2sipad
           - entity: device_tracker.USER1smacbookpro
           - entity: device_tracker.USER2smacbookair
@@ -1013,24 +1004,49 @@ views:
         title: UPS
         type: entities
       - entities:
-          - entity: sensor.pi_hole_dns_queries_today
-          - entity: sensor.pi_hole_ads_blocked_today
-          - entity: sensor.pi_hole_ads_percentage_blocked_today
-          - entity: sensor.pi_hole_dns_queries_today_2
-          - entity: sensor.pi_hole_ads_blocked_today_2
-          - entity: sensor.pi_hole_ads_percentage_blocked_today_2
+          - entity: switch.pihole_1_switch
+            icon: 'mdi:power'
+            name: 'DNS #1 Ad Blocker'
+          - entity: sensor.pihole_1_status
+            icon: 'mdi:dns'
+            name: 'DNS #1 Ad Blocker Enabled'
+          - entity: sensor.pihole_1_dns_queries_today
+            name: 'DNS #1 Queries'
+          - entity: sensor.pihole_1_ads_blocked_today
+            name: 'DNS #1 Ads Blocked'
+          - entity: sensor.pihole_1_ads_percentage_blocked_today
+            name: 'DNS #1 Percentage Blocked'
+          - type: divider
+          - entity: switch.pihole_2_switch
+            icon: 'mdi:power'
+            name: 'DNS #2 Ad Blocker'
+          - entity: sensor.pihole_2_status
+            icon: 'mdi:dns'
+            name: 'DNS #2 Ad Blocker Enabled'
+          - entity: sensor.pihole_2_dns_queries_today
+            name: 'DNS #2 Queries'
+          - entity: sensor.pihole_2_ads_blocked_today
+            name: 'DNS #2 Ads Blocked'
+          - entity: sensor.pihole_2_ads_percentage_blocked_today
+            name: 'DNS #2 Percentage Blocked'
         show_header_toggle: false
         title: DNS
         type: entities
-      - entities:
+      - card:
+          show_state: false
+          title: POE
+          type: entities
+        entities:
           - entity: switch.front_porch_camera
           - entity: switch.backyard_camera
           - entity: switch.side_yard_camera
           - entity: switch.living_room_camera
           - entity: switch.basement_camera
-        show_header_toggle: false
-        title: POE
-        type: entities
+        show_empty: false
+        state_filter:
+          - 'on'
+          - 'off'
+        type: entity-filter
       - entities:
           - entity: sensor.uptime
         show_header_toggle: false
@@ -1039,64 +1055,4 @@ views:
     icon: 'mdi:ethernet'
     path: equipment
     title: System Equipment
-  - badges: []
-    cards:
-      - entities:
-          - entity: group.all_automations
-        show_header_toggle: false
-        title: All Automations
-        type: entities
-      - entities:
-          - entity: group.all_input_boolean
-        show_header_toggle: false
-        title: All Input Boolean
-        type: entities
-      - entities:
-          - entity: group.all_devices
-        show_header_toggle: false
-        title: All Devices
-        type: entities
-      - entities:
-          - entity: group.all_switches
-        show_header_toggle: false
-        title: All Switches
-        type: entities
-      - entities:
-          - entity: group.all_lights
-        show_header_toggle: false
-        title: All Lights
-        type: entities
-      - entities:
-          - entity: group.all_remotes
-        show_header_toggle: false
-        title: All Remotes
-        type: entities
-      - entities:
-          - entity: group.overnight_guests
-        show_header_toggle: false
-        title: Overnight Guests
-        type: entities
-      - entities:
-          - entity: group.all_scripts
-        show_header_toggle: false
-        title: All Scripts
-        type: entities
-      - entities:
-          - entity: group.all_covers
-        show_header_toggle: false
-        title: All Covers
-        type: entities
-      - entities:
-          - entity: group.all_fans
-        show_header_toggle: false
-        title: All Fans
-        type: entities
-      - entities:
-          - entity: calendar.holidays_in_united_states
-          - entity: calendar.work
-          - entity: sensor.USER2_work_offset
-        title: Calendars
-        type: glance
-    icon: 'mdi:none'
-    path: troubleshooting
-    title: Troubleshooting
+

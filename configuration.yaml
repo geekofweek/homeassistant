@@ -12,7 +12,6 @@ homeassistant:
   customize: !include customize.yaml
   auth_providers:
    - type: homeassistant
-   - type: trusted_networks
 
 frontend:
 updater:
@@ -31,9 +30,6 @@ http:
   ssl_certificate: !secret ssl_certificate
   ssl_key: !secret ssl_key
   base_url: !secret base_url
-  trusted_networks:
-    - REDACTED.0/24
-    - REDACTED.0/24
   ip_ban_enabled: true
   login_attempts_threshold: 3
 
