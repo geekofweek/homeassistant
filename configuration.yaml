@@ -10,8 +10,6 @@ homeassistant:
   unit_system: imperial
   time_zone: America/Chicago
   customize: !include customize.yaml
-  auth_providers:
-   - type: homeassistant
 
 frontend:
 updater:
@@ -25,6 +23,8 @@ discovery:
     - deconz
     - roku
 config:
+person:
+system_health:
 
 http:
   ssl_certificate: !secret ssl_certificate
@@ -32,10 +32,6 @@ http:
   base_url: !secret base_url
   ip_ban_enabled: true
   login_attempts_threshold: 3
-
-person:
-
-system_health:
 
 #################################################################
 ## Components
@@ -170,37 +166,39 @@ binary_sensor:
     name: Rochester VPN
     scan_interval: 60
 
+stream:
+
 camera:
-  - platform: uvc
-    nvr: REDACTED.99
-    key: !secret uvc_key
-    password: !secret uvc_password
-#  - platform: ffmpeg
-#    input: -rtsp_transport tcp -i rtsp://REDACTED.3:7447/REDACTED
-#    name: Front Porch
-#    extra_arguments: '-an'
-#  - platform: ffmpeg
-#    input: -rtsp_transport tcp -i rtsp://REDACTED.3:7447/REDACTED
-#    name: Driveway
-#    extra_arguments: '-an'
-#  - platform: ffmpeg
-#    input: -rtsp_transport tcp -i rtsp://REDACTED.3:7447/REDACTED
-#    name: Garage
-#    extra_arguments: '-an'
-#  - platform: ffmpeg
-#    input: -rtsp_transport tcp -i rtsp://REDACTED.3:7447/REDACTED
-#    name: Backyard
-#    extra_arguments: '-an'
-#  - platform: ffmpeg
-#    input: -rtsp_transport tcp -i rtsp://REDACTED.3:7447/REDACTED
-#    name: Side Yard
-#    extra_arguments: '-an'
-#  - platform: ffmpeg
-#    input: -rtsp_transport tcp -i rtsp://REDACTED.3:7447/REDACTED
-#    name: Living Room
-#  - platform: ffmpeg
-#    input: -rtsp_transport tcp -i rtsp://REDACTED.3:7447/REDACTED
-#    name: Kitchen
+  - platform: generic
+    name: Front Porch
+    still_image_url: https://REDACTED.181/snap.jpeg
+    stream_source: rtsp://REDACTED.3:7447/REDACTED
+    preload_stream: true
+    verify_ssl: false
+  - platform: generic
+    name: Driveway
+    still_image_url: https://REDACTED.183/snap.jpeg
+    stream_source: rtsp://REDACTED.3:7447/REDACTED
+    preload_stream: true
+    verify_ssl: false
+  - platform: generic
+    name: Garage
+    still_image_url: https://REDACTED.91/snap.jpeg
+    stream_source: rtsp://REDACTED.3:7447/REDACTED
+    preload_stream: true
+    verify_ssl: false
+  - platform: generic
+    name: Backyard
+    still_image_url: https://REDACTED.89/snap.jpeg
+    stream_source: rtsp://REDACTED.3:7447/REDACTED
+    preload_stream: true
+    verify_ssl: false
+  - platform: generic
+    name: Side Yard
+    still_image_url: https://REDACTED.90/snap.jpeg
+    stream_source: rtsp://REDACTED.3:7447/REDACTED
+    preload_stream: true
+    verify_ssl: false
 
 tts:
   - platform: amazon_polly
