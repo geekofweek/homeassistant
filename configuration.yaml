@@ -1,5 +1,5 @@
 #################################################################
-## Home Assistant
+## Home Assistant Core
 #################################################################
 
 homeassistant:
@@ -10,7 +10,6 @@ homeassistant:
   unit_system: imperial
   time_zone: America/Chicago
   customize: !include customize.yaml
-
 frontend:
 updater:
   reporting: no
@@ -25,7 +24,6 @@ discovery:
 config:
 person:
 system_health:
-
 http:
   ssl_certificate: !secret ssl_certificate
   ssl_key: !secret ssl_key
@@ -88,18 +86,22 @@ apple_tv:
   - name: Living Room Apple TV
     host: REDACTED.150
     login_id: !secret apple_tv_login_id
+    credentials: !secret apple_tv_living_room_cred
     start_off: false
   - name: Guest Bedroom Apple TV
     host: REDACTED.153
     login_id: !secret apple_tv_login_id
+    credentials: !secret apple_tv_guest_bedroom_cred
     start_off: false
   - name: Bedroom Apple TV
     host: REDACTED.152
     login_id: !secret apple_tv_login_id
+    credentials: !secret apple_tv_bedroom_cred
     start_off: false
   - name: USER1's Office Apple TV
     host: REDACTED.151
     login_id: !secret apple_tv_login_id
+    credentials: !secret apple_tv_office_cred
     start_off: false
 
 remote:

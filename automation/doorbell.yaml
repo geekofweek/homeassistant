@@ -441,10 +441,10 @@
           what: 'Someone is at the Front Door'
 
         ##########################################################
-        ## Pause TV when Door Bell Rings
+        ## Front Door Camera TV when Doorbell Rings
         ##########################################################
 
-- alias: Doorbell - Pause TV when Door Bell Rings
+- alias: Doorbell - Front Door Camera TV when Doorbell Rings
 
   trigger:
     - platform: state
@@ -459,16 +459,96 @@
     - condition: state
       entity_id: input_boolean.disable_doorbell
       state: 'off'
-    - condition: state
-      entity_id: input_select.remote
-      state: 'Watch TV'
-    - condition: state
-      entity_id: media_player.living_room_apple_tv
-      state: 'playing'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: input_select.remote
+        state: 'Watch TV'
+      - condition: state
+        entity_id: input_select.remote
+        state: 'Play Sonos'
 
   action:
-    - service: remote.send_command
-      entity_id: remote.media_center
+    - service: camera.play_stream
       data:
-        command: 'Pause'
-        device: 38917629
+        entity_id: camera.front_porch
+        media_player: media_player.living_room_apple_tv
+
+        ##########################################################
+        ## Camera Office TV when Doorbell Rings TV Off
+        ##########################################################
+
+- alias: Doorbell - Camera Office TV when Doorbell Rings TV Off
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: time
+      after: '08:00'
+      before: '23:00'
+    - condition: state
+      entity_id: device_tracker.USER1s_iphone
+      state: 'home'
+    - condition: state
+      entity_id: binary_sensor.office_occupancy
+      state: 'on'
+    - condition: state
+      entity_id: input_select.office_remote
+      state: 'PowerOff'
+
+  action:
+    - service: camera.play_stream
+      data:
+        entity_id: camera.front_porch
+        media_player: media_player.USER1s_office_apple_tv
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.office_remote
+        option: "Watch TV"
+    - delay: '00:05:00'
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.office_remote
+        option: "PowerOff"
+
+        ##########################################################
+        ## Camera Office TV when Doorbell Rings TV On
+        ##########################################################
+
+- alias: Doorbell - Camera Office TV when Doorbell Rings TV On
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: time
+      after: '08:00'
+      before: '23:00'
+    - condition: state
+      entity_id: device_tracker.USER1s_iphone
+      state: 'home'
+    - condition: state
+      entity_id: binary_sensor.office_occupancy
+      state: 'on'
+    - condition: state
+      entity_id: input_select.office_remote
+      state: 'WatchTV'
+
+  action:
+    - service: camera.play_stream
+      data:
+        entity_id: camera.front_porch
+        media_player: media_player.USER1s_office_apple_tv
