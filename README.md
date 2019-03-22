@@ -139,7 +139,7 @@ Smoke detectors, like the water sensors, have one real function to alert me of s
 | [Ring Video Doorbell](https://amzn.to/2KvrzwP) | 1 | Wi-Fi | [Ring](https://www.home-assistant.io/components/ring/) / [Ring Binary Sensor](https://www.home-assistant.io/components/binary_sensor.ring/) | Automated around binary sensors via motion or doorbell button press |
 | [Ubiquiti UVC-G3 UniFi Video Camera](https://amzn.to/2L987ah) | 2 | Ethernet | [Generic IP Camera](https://www.home-assistant.io/components/camera.generic/) | 1080p POE Camera. |
 | [Ubiquiti UniFi Video G3 Flex](https://amzn.to/2PKrSqA) | 5 | Ethernet | [Generic IP Camera](https://www.home-assistant.io/components/camera.generic/) | 1080p POE Camera. |
-| [Ubiquiti UniFi Cloud Key Gen2 Plus](https://amzn.to/2RUxtz1) | 1 | Ethernet | [Generic IP Camera](https://www.home-assistant.io/components/camera.generic/) | Unifi Protect NVR.  Currently using ffmpeg RTSP stream until a native component is available. |
+| [Ubiquiti UniFi Cloud Key Gen2 Plus](https://amzn.to/2RUxtz1) | 1 | Ethernet | [Generic IP Camera](https://www.home-assistant.io/components/camera.generic/) | Unifi Protect NVR. |
 
 Nothing is currently automated around cameras, just a [UI](https://github.com/geekofweek/homeassistant/blob/master/images/camera-screenshot.jpg) element.  The Ring doorbell is used in a number of ways to trigger an action based on motion detection or someone ringing the doorbell.  Examples can be found in [doorbell.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/doorbell.yaml)
 
