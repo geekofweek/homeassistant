@@ -2,6 +2,8 @@
 ## HomeKit
 #################################################################
 
+  auto_start: false
+
   filter:
     exclude_domains:
       - light
@@ -10,13 +12,13 @@
       - remote
       - script
       - alarm_control_panel
-      - cover
       - sensor
       - automation
       - media_player
       - binary_sensor
       - scene
     include_entities:
+      - cover.garage_door
       - light.hallway_light
       - light.bathroom_lights
       - light.garage_light
@@ -36,8 +38,8 @@
       - light.upstairs_bathroom_lights
       - fan.office_fan
     exclude_entities:
+      - climate.main_floor
       - switch.living_room_ceiling_fan
-      - switch.myq_garage_outlet
       - switch.front_porch_camera
       - switch.side_yard_camera
       - switch.backyard_camera
@@ -46,3 +48,9 @@
       - switch.winter_mode
       - switch.backyard_patio_lighting
       - switch.lower_backyard_lighting
+      - switch.att_router
+      - switch.air_purifier
+      - switch.basement_heater
+      - switch.pihole_1_switch
+      - switch.pihole_2_switch
+      - switch.unifi_poe_c2_a5_f9_ed_e4_ce

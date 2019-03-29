@@ -475,20 +475,63 @@
        brightness_pct: 20
 
         ##########################################################
-        ## Turn off Lights at Sunrise
+        ## Turn off Interior Lights at Sunrise
         ##########################################################
 
-- alias: Lights - Turn off Lights at Sunrise
+- alias: Lights - Turn off Interior Lights at Sunrise
 
   trigger:
     - platform: sun
       event: 'sunrise'
       offset: '+00:45:00'
 
+  condition:
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'not_home'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'lake'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+
   action:
     - service: light.turn_off
       entity_id:
         - group.interior_lights
+
+        ##########################################################
+        ## Turn off Exterior Lights at Sunrise
+        ##########################################################
+
+- alias: Lights - Turn off Exterior Lights at Sunrise
+
+  trigger:
+    - platform: sun
+      event: 'sunrise'
+      offset: '+00:15:00'
+
+  action:
+    - service: light.turn_off
+      entity_id:
         - group.exterior_lights
     - service: switch.turn_off
       entity_id:

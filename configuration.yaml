@@ -20,7 +20,8 @@ discovery:
     - apple_tv
     - harmony
     - deconz
-    - roku
+  enable:
+    - homekit
 config:
 person:
 system_health:
@@ -136,12 +137,6 @@ device_tracker:
       track_new_devices: False
       hide_if_away: False
 
-cover:
-  - platform: myq
-    username: !secret myq_username
-    password: !secret myq_password
-    type: chamberlain
-
 ring:
     username: !secret ring_username
     password: !secret ring_password
@@ -176,30 +171,40 @@ camera:
     still_image_url: https://REDACTED.181/snap.jpeg
     stream_source: rtsp://REDACTED.3:7447/REDACTED
     preload_stream: true
+    stream_options:
+      rtsp_transport: tcp
     verify_ssl: false
   - platform: generic
     name: Driveway
     still_image_url: https://REDACTED.183/snap.jpeg
     stream_source: rtsp://REDACTED.3:7447/REDACTED
     preload_stream: true
+    stream_options:
+      rtsp_transport: tcp
     verify_ssl: false
   - platform: generic
     name: Garage
     still_image_url: https://REDACTED.91/snap.jpeg
     stream_source: rtsp://REDACTED.3:7447/REDACTED
     preload_stream: true
+    stream_options:
+      rtsp_transport: tcp
     verify_ssl: false
   - platform: generic
     name: Backyard
     still_image_url: https://REDACTED.89/snap.jpeg
     stream_source: rtsp://REDACTED.3:7447/REDACTED
     preload_stream: true
+    stream_options:
+      rtsp_transport: tcp
     verify_ssl: false
   - platform: generic
     name: Side Yard
     still_image_url: https://REDACTED.90/snap.jpeg
     stream_source: rtsp://REDACTED.3:7447/REDACTED
     preload_stream: true
+    stream_options:
+      rtsp_transport: tcp
     verify_ssl: false
 
 tts:

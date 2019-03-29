@@ -308,10 +308,10 @@
 
   - platform: template
     sensors:
-      myq_status:
-        friendly_name: "MyQ Home Hub"
+      garage_door_opener_status:
+        friendly_name: "Garage Door Opener"
         value_template: >-
-          {% if is_state('device_tracker.myqgaragehomehub', 'home') %}
+          {% if is_state('device_tracker.garagedooropener', 'home') %}
             Connected
           {% else %}
             Disconnected

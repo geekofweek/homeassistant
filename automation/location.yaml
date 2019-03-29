@@ -938,6 +938,9 @@
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
 
   action:
     - service: light.turn_off

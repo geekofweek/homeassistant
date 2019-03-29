@@ -125,8 +125,8 @@
         ##  Hubs
         ##########################################################
 
-  sensor.myq_status:
-    friendly_name: MyQ Home Hub
+  sensor.garage_door_opener_status:
+    friendly_name: Garage Door Opener
     icon: mdi:garage-alert
   sensor.hue_hub_status:
     friendly_name: Hue Hub
@@ -138,9 +138,6 @@
 
   cover.garage_door:
     device_class: garage
-  cover.wink_garage_door:
-    device_class: garage
-    friendly_name: Wink Garage Door
 
         ##########################################################
         ##  Doors
@@ -298,8 +295,6 @@
     friendly_name: Living Room Ceiling Fan
   switch.front_yard_lighting:
     icon: mdi:nature
-  switch.myq_garage_outlet:
-    icon: mdi:power-socket-us
   switch.att_router:
     icon: mdi:router-wireless
   switch.unificloudkey:

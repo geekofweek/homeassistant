@@ -27,45 +27,6 @@
     - service: cover.close_cover
       entity_id: cover.garage_door
 
-        ##########################################################
-        ## Power Cycle MyQ if not Closed in 40 Mins
-        ##########################################################
-
-- alias: Garage - Power Cycle MyQ if not Closed in 40 Mins
-
-  trigger:
-    - platform: state
-      entity_id: cover.garage_door
-      to: 'open'
-      for:
-        hours: 0
-        minutes: 40
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_auto_garage
-      state: 'off'
-
-  action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.myq_garage_outlet
-    - delay: '00:00:30'
-    - service: switch.turn_on
-      entity_id:
-        - switch.myq_garage_outlet
-    - delay: '00:02:00'
-    - service: cover.close_cover
-      entity_id: cover.garage_door
-    - delay: '00:00:30'
-    - service: notify.ios_USER1s_iphone
-      data:
-        message: Garage Door Did not Close, Power Cycling MyQ
-        data:
-          push:
-            category: camera
-          entity_id: camera.garage
 
         ##########################################################
         ## Garage Door Open on Demand (Echo Integration)
