@@ -11,7 +11,6 @@
   trigger:
     - platform: state
       entity_id: cover.garage_door
-      from: 'open'
       to: 'closed'
       for:
         hours: 0
@@ -42,7 +41,6 @@
   trigger:
     - platform: state
       entity_id: cover.garage_door
-      from: 'closed'
       to: 'open'
 
   condition:
