@@ -25,6 +25,7 @@ discovery:
 config:
 person:
 system_health:
+mobile_app:
 http:
   ssl_certificate: !secret ssl_certificate
   ssl_key: !secret ssl_key
@@ -170,41 +171,26 @@ camera:
     name: Front Porch
     still_image_url: https://REDACTED.181/snap.jpeg
     stream_source: rtsp://REDACTED.3:7447/REDACTED
-    preload_stream: true
-    stream_options:
-      rtsp_transport: tcp
     verify_ssl: false
   - platform: generic
     name: Driveway
     still_image_url: https://REDACTED.183/snap.jpeg
     stream_source: rtsp://REDACTED.3:7447/REDACTED
-    preload_stream: true
-    stream_options:
-      rtsp_transport: tcp
     verify_ssl: false
   - platform: generic
     name: Garage
     still_image_url: https://REDACTED.91/snap.jpeg
     stream_source: rtsp://REDACTED.3:7447/REDACTED
-    preload_stream: true
-    stream_options:
-      rtsp_transport: tcp
     verify_ssl: false
   - platform: generic
     name: Backyard
     still_image_url: https://REDACTED.89/snap.jpeg
     stream_source: rtsp://REDACTED.3:7447/REDACTED
-    preload_stream: true
-    stream_options:
-      rtsp_transport: tcp
     verify_ssl: false
   - platform: generic
     name: Side Yard
     still_image_url: https://REDACTED.90/snap.jpeg
     stream_source: rtsp://REDACTED.3:7447/REDACTED
-    preload_stream: true
-    stream_options:
-      rtsp_transport: tcp
     verify_ssl: false
 
 tts:

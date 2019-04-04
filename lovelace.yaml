@@ -492,9 +492,9 @@ views:
                 name: Hourly
               - entity: sensor.dark_sky_daily_summary
                 name: Daily
-            type: entities
-            title: Weather Summary
             show_header_toggle: false
+            title: Weather Summary
+            type: entities
           - image: >-
               https://icons.wxug.com/data/weather-maps/radar/united-states/jefferson-city-missouri-region-current-radar-animation.gif
             type: picture
@@ -967,16 +967,16 @@ views:
         title: Network
         type: entities
       - entities:
-          - binary_sensor.wink_hub
-          - binary_sensor.wink_relay
-          - sensor.hue_hub_status
-          - sensor.myq_status
-          - binary_sensor.living_room_nest_protect_online
-          - binary_sensor.bedroom_nest_protect_online
-          - binary_sensor.hallway_nest_protect_online
-          - binary_sensor.kitchen_nest_protect_online
-          - binary_sensor.upstairs_nest_protect_online
-          - binary_sensor.basement_nest_protect_online
+          - entity: binary_sensor.wink_hub
+          - entity: binary_sensor.wink_relay
+          - entity: sensor.hue_hub_status
+          - entity: sensor.garage_door_opener_status
+          - entity: binary_sensor.living_room_nest_protect_online
+          - entity: binary_sensor.bedroom_nest_protect_online
+          - entity: binary_sensor.hallway_nest_protect_online
+          - entity: binary_sensor.kitchen_nest_protect_online
+          - entity: binary_sensor.upstairs_nest_protect_online
+          - entity: binary_sensor.basement_nest_protect_online
         show_header_toggle: false
         title: Devices
         type: entities

@@ -604,14 +604,7 @@
   action:
     - service: light.turn_off
       entity_id:
-        - light.bedroom_lights
-        - light.basement_lights
-        - light.living_room_lights
-        - light.dining_room_lights
-        - light.bathroom_lights
-        - light.kitchen_lights
-        - light.hallway_light
-        - light.stairs
+        - group.interior_lights
 
         ##########################################################
         ## Turn off lights at night when Upstairs Roomba finished when Home
