@@ -1,3 +1,7 @@
+#################################################################
+## Roomba Automations
+#################################################################
+
         ##########################################################
         ## Run Downstairs Roomba when Away
         ##########################################################
@@ -449,7 +453,7 @@
         - light.kitchen_sink
         - light.kitchen_cabinets
         - light.hallway_light
-        - light.stairs
+        - light.stairs_light
       data:
        brightness_pct: 25
     - service: homeassistant.turn_on
@@ -501,7 +505,7 @@
         - light.kitchen_sink
         - light.kitchen_cabinets
         - light.hallway_light
-        - light.stairs
+        - light.stairs_light
       data:
        brightness_pct: 25
     - service: homeassistant.turn_on
@@ -531,11 +535,11 @@
   action:
     - service: light.turn_on
       entity_id:
-        - light.office_ceiling
-        - light.USER2_office_ceiling
+        - light.USER1_s_office_ceiling
+        - light.USER2_s_office_ceiling
         - light.guest_bedroom_ceiling
-        - light.stairs
-        - light.upstairs_bathroom
+        - light.stairs_light
+        - light.upstairs_bathroom_vanity
       data:
        brightness_pct: 35
     - service: homeassistant.turn_on
@@ -563,11 +567,11 @@
   action:
     - service: light.turn_on
       entity_id:
-        - light.office_ceiling
-        - light.USER2_office_ceiling
+        - light.USER1_s_office_ceiling
+        - light.USER2_s_office_ceiling
         - light.guest_bedroom_ceiling
-        - light.stairs
-        - light.upstairs_bathroom
+        - light.stairs_light
+        - light.upstairs_bathroom_vanity
       data:
        brightness_pct: 35
     - service: homeassistant.turn_on
@@ -645,11 +649,11 @@
   action:
     - service: light.turn_off
       entity_id:
-        - light.office_ceiling
-        - light.USER2_office_ceiling
+        - light.USER1_s_office_ceiling
+        - light.USER2_s_office_ceiling
         - light.guest_bedroom_ceiling
-        - light.stairs
-        - light.upstairs_bathroom
+        - light.stairs_light
+        - light.upstairs_bathroom_vanity
 
         ##########################################################
         ## Turn off lights at night when Upstairs Roomba finished when not Home
@@ -681,11 +685,11 @@
   action:
     - service: light.turn_off
       entity_id:
-        - light.office_ceiling
-        - light.USER2_office_ceiling
+        - light.USER1_s_office_ceiling
+        - light.USER2_s_office_ceiling
         - light.guest_bedroom_ceiling
-        - light.stairs
-        - light.upstairs_bathroom
+        - light.stairs_light
+        - light.upstairs_bathroom_vanity
 
         ##########################################################
         ## Enable Occupancy Automations when Roomba finished

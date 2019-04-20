@@ -81,7 +81,7 @@
       to: 'unlocked'
       for:
         hours: 0
-        minutes: 45
+        minutes: 90
         seconds: 0
 
   condition:
@@ -91,6 +91,10 @@
     - condition: state
       entity_id: binary_sensor.basement_door_opened
       state: 'off'
+      for:
+        hours: 0
+        minutes: 60
+        seconds: 0
     - condition: state
       entity_id: lock.basement_door
       state: 'unlocked'

@@ -11,6 +11,8 @@ homeassistant:
   time_zone: America/Chicago
   customize: !include customize.yaml
 frontend:
+  extra_html_url:
+    - /local/hass-bha-icons.html
 updater:
   reporting: no
 sun:
@@ -54,9 +56,13 @@ emulated_hue:
     - scene
   expose_by_default: false
 
+lutron_caseta:
+    host: REDACTED.130
+    keyfile: !secret lutron_keyfile
+    certfile: !secret lutron_certfile
+    ca_certs: !secret lutron_cacerts
+
 media_player:
-  - platform: plex
-    entity_namespace: 'plex'
   - platform: yamaha
     name: "Media Center Receiver"
     host: REDACTED.94

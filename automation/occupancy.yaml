@@ -59,8 +59,8 @@
         color_temp: 447
     - service: light.turn_on
       entity_id:
-        - light.stairs
-        - light.office_ceiling
+        - light.stairs_light
+        - light.USER1_s_office_ceiling
       data:
         brightness_pct: 15
 
@@ -81,16 +81,16 @@
       entity_id: device_tracker.USER2s_iphone
       state: 'home'
     - condition: state
-      entity_id: light.USER2_office_lights
+      entity_id: light.USER2_s_office_ceiling
       state: 'off'
 
   action:
     - service: light.turn_on
-      entity_id: light.USER2_office_lights
+      entity_id: light.USER2_s_office_ceiling
       data:
         brightness_pct: 5
     - service: light.turn_on
-      entity_id: light.stairs
+      entity_id: light.stairs_light
       data:
         brightness_pct: 5
 
@@ -117,7 +117,7 @@
 
   action:
     - service: light.turn_off
-      entity_id: light.USER2_office_lights
+      entity_id: light.USER2_s_office_ceiling
 
         ##########################################################
         ## Turn off Bedroom when Unoccupied
@@ -273,7 +273,7 @@
 
   action:
     - service: light.turn_off
-      entity_id: light.stairs
+      entity_id: light.stairs_light
 
 - alias: Occupancy - Turn off Stairs when USER2 Office Unoccupied
 
@@ -297,7 +297,7 @@
 
   action:
     - service: light.turn_off
-      entity_id: light.stairs
+      entity_id: light.stairs_light
 
         ##########################################################
         ## Turn off Basement when Unoccupied
@@ -439,7 +439,7 @@
   trigger:
     - platform: sun
       event: 'sunset'
-      offset: '-00:10:00'
+      offset: '-00:30:00'
 
   condition:
     - condition: state
@@ -460,13 +460,13 @@
       entity_id:
         - light.office_lamp
       data:
-        transition: 60
+        transition: 900
         brightness_pct: 100
         color_temp: 447
     - service: light.turn_on
       entity_id:
-        - light.stairs
-        - light.office_ceiling
+        - light.stairs_light
+        - light.USER1_s_office_ceiling
       data:
         brightness_pct: 15
 
@@ -492,17 +492,17 @@
       entity_id: device_tracker.USER2s_iphone
       state: 'home'
     - condition: state
-      entity_id: light.USER2_office_lights
+      entity_id: light.USER2_s_office_ceiling
       state: 'off'
 
   action:
     - service: light.turn_on
       entity_id:
-        - light.USER2_office_lights
+        - light.USER2_s_office_ceiling
       data:
         brightness_pct: 15
     - service: light.turn_on
       entity_id:
-        - light.stairs
+        - light.stairs_light
       data:
         brightness_pct: 15

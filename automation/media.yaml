@@ -31,6 +31,9 @@
     - condition: state
       entity_id: input_boolean.disable_media_lights
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.watching_plex
+      state: 'on'
 
   action:
     - service: light.turn_on
@@ -209,6 +212,7 @@
        transition: 15
        color_temp: 366
        brightness_pct: 20
+
         ##########################################################
         ## Late Night TV Watching after Midnight Lights On
         ##########################################################

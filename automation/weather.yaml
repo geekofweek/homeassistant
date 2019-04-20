@@ -94,18 +94,18 @@
       entity_id: group.household
       state: 'home'
     - condition: state
-      entity_id: light.USER2_office_lights
+      entity_id: light.USER2_s_office_ceiling
       state: 'off'
 
   action:
     - service: light.turn_on
       entity_id:
-        - light.USER2_office_lights
+        - light.USER2_s_office_ceiling
       data:
         transition: 300
         brightness_pct: 5
     - service: light.turn_on
       entity_id:
-        - light.stairs
+        - light.stairs_light
       data:
         brightness_pct: 5

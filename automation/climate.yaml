@@ -64,10 +64,10 @@
 #     re-enable Summer or Winter Mode
 #    - service: homeassistant.turn_on
 #      entity_id: group.summer_mode
-    - service: homeassistant.turn_on
-      entity_id: group.winter_mode
 #    - service: homeassistant.turn_on
-#      entity_id: input_boolean.spring_fall_mode
+#      entity_id: group.winter_mode
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.spring_fall_mode
     - service: climate.ecobee_set_fan_min_on_time
       data:
         entity_id: climate.main_floor
@@ -885,6 +885,9 @@
     - condition: state
       entity_id: input_boolean.disable_climate
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.thermostat_away
+      state: 'off'
 
   action:
     - service: switch.turn_on
@@ -914,7 +917,10 @@
       state: 'off'
     - condition: numeric_state
       entity_id: sensor.basement_temperature
-      below: 66
+      below: 65
+    - condition: state
+      entity_id: input_boolean.thermostat_away
+      state: 'off'
 
   action:
     - service: switch.turn_on
@@ -1003,6 +1009,9 @@
     - condition: time
       after: '08:00'
       before: '21:00'
+    - condition: state
+      entity_id: input_boolean.thermostat_away
+      state: 'off'
 
   action:
     - service: switch.turn_on

@@ -34,8 +34,8 @@
     - service: light.turn_on
       entity_id:
         - light.hue_lights_exterior
-        - light.wink_lights
-        - light.wink_exterior
+        - light.lutron_lights
+        - light.lutron_lights_exterior
       data:
        brightness_pct: 100
     - service: light.turn_on
@@ -71,8 +71,8 @@
     - service: light.turn_on
       entity_id:
         - light.hue_lights_exterior
-        - light.wink_lights
-        - light.wink_exterior
+        - light.lutron_lights
+        - light.lutron_lights_exterior
       data:
        brightness_pct: 100
     - service: light.turn_on

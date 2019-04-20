@@ -47,23 +47,23 @@
     name: Bathroom Lights
     entities:
       - light.bathroom_vanity
-      - light.shower
+      - light.bathroom_shower
 
   - platform: group
     name: Upstairs Bathroom Lights
     entities:
-      - light.upstairs_bathroom
+      - light.upstairs_bathroom_vanity
 
   - platform: group
     name: USER1 Office Lights
     entities:
-      - light.office_ceiling
+      - light.USER1_s_office_ceiling
       - light.office_lamp
 
   - platform: group
     name: USER2 Office Lights
     entities:
-      - light.USER2_office_ceiling
+      - light.USER2_s_office_ceiling
 
   - platform: group
     name: Guest Bedroom Lights
@@ -136,23 +136,23 @@
       - light.backyard_patio
 
   - platform: group
-    name: Wink Lights
+    name: Lutron Lights
     entities:
       - light.dining_room_ceiling
       - light.dining_room_table
       - light.kitchen_cabinets
       - light.kitchen_ceiling
       - light.kitchen_sink
-      - light.office_ceiling
+      - light.USER1_s_office_ceiling
       - light.bathroom_vanity
       - light.hallway_light
       - light.guest_bedroom_ceiling
-      - light.shower
-      - light.upstairs_bathroom
-      - light.stairs
-      - light.USER2_office_lights
+      - light.bathroom_shower
+      - light.upstairs_bathroom_vanity
+      - light.stairs_light
+      - light.USER2_s_office_ceiling
 
   - platform: group
-    name: Wink Lights Exterior
+    name: Lutron Lights Exterior
     entities:
       - light.garage_light
