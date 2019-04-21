@@ -338,7 +338,7 @@
           {% endif %}
   - platform: template
     sensors:
-      att_router_status:
+      lutron_smart_bridge_status:
         friendly_name: "Lutron Smart Bridge"
         value_template: >-
           {% if is_state('device_tracker.lutron_smart_bridge', 'home') %}
@@ -348,7 +348,7 @@
           {% endif %}
   - platform: template
     sensors:
-      att_router_status:
+      vera_plus_status:
         friendly_name: "Vera Plus"
         value_template: >-
           {% if is_state('device_tracker.ver_plus_hub', 'home') %}
