@@ -15,7 +15,8 @@ Published configruations working with Home Assistant Version: 0.91.4
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [Hue Hub v2](https://amzn.to/2IpNA3G) | 1 | Ethernet | [Philips Hue](https://www.home-assistant.io/components/hue/) | Used to control all Zigbee smart bulbs |
 | [Lutron Smart Bridge 2](https://amzn.to/2GpRGEX) | 1 | Ethernet | [Lutron Caseta](https://www.home-assistant.io/components/lutron_caseta/) | Used to control Lutron Caseta light switches and dimmers |
-| [Wink Hub v1](https://amzn.to/2wMUjis) | 1 | Wi-Fi | [Wink](https://www.home-assistant.io/components/wink/) | Used as a dumb hub to connect Z-Wave and Lutron devices. No Wink Robots or schedules being utilized|
+| [Vera Plus](https://amzn.to/2IJGx4M) | 1 | Ethernet | [Vera](https://www.home-assistant.io/components/vera/) | Used as a dumb hub to connect Z-Wave devices.|
+| [Wink Hub v1](https://amzn.to/2wMUjis) | 1 | Wi-Fi | [Wink](https://www.home-assistant.io/components/wink/) | Semi retired, using it just as a z-wave repeater for Vera. Once upon a time I really loved Wink, but when you don't stock hardware for almost a year and your buisness model is selling hardware, you have to see the writing on the wall. Not to mention the massive outages that. It was a fun ride Wink, hopefully your death will not be to slow and painful. |
 
 Relevant hub configurations can be found within [configuration.yaml](https://github.com/geekofweek/homeassistant/blob/master/configuration.yaml)
 
