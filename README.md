@@ -13,9 +13,10 @@ Published configruations working with Home Assistant Version: 0.91.4
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
-| [Hue Hub v2](https://amzn.to/2IpNA3G) | 1 | Ethernet | [Philips Hue](https://www.home-assistant.io/components/hue/) | Used to control all Zigbee smart bulbs |
-| [Lutron Smart Bridge 2](https://amzn.to/2GpRGEX) | 1 | Ethernet | [Lutron Caseta](https://www.home-assistant.io/components/lutron_caseta/) | Used to control Lutron Caseta light switches and dimmers |
-| [Wink Hub v1](https://amzn.to/2wMUjis) | 1 | Wi-Fi | [Wink](https://www.home-assistant.io/components/wink/) | Used as a dumb hub to connect Z-Wave and Lutron devices. No Wink Robots or schedules being utilized|
+| [Hue Hub v2](https://amzn.to/2IpNA3G)| 1 | Ethernet | [Philips Hue](https://www.home-assistant.io/components/hue/) | Used to control all Zigbee smart bulbs |
+| [Lutron Smart Bridge 2](https://amzn.to/2GpRGEX)| 1 | Ethernet | [Lutron Caseta](https://www.home-assistant.io/components/lutron_caseta/)| Used to control Lutron Caseta light switches and dimmers |
+| [Vera Plus](https://amzn.to/2IJGx4M)| 1 | Ethernet | [Vera](https://www.home-assistant.io/components/vera/) | Used as a dumb hub to connect Z-Wave devices.|
+| [Wink Hub v1](https://amzn.to/2wMUjis)| 1 | Wi-Fi | [Wink](https://www.home-assistant.io/components/wink/) | Semi retired, using it as a z-wave repeater for Vera. Once upon a time I really loved Wink, but when you don't stock hardware for almost a year and your buisness model is selling hardware... time for that slow ride to the Cloud API in the sky. Not to mention the massive outages when staff clock out and don't fix until morning (forget to renew an expired certificate anyone). It was a fun ride Wink, hopefully your death will not be to slow and painful, but i.am+ wants to watch the world burn... probably.|
 
 Relevant hub configurations can be found within [configuration.yaml](https://github.com/geekofweek/homeassistant/blob/master/configuration.yaml)
 
@@ -55,9 +56,8 @@ I utilize a number of automations that adjust climate controls.  Mostly they can
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [Wemo Mini Smart Plug](https://amzn.to/2wQ05jE) | 4 | Wi-Fi | [Belkin WeMo](https://www.home-assistant.io/components/wemo/) | Smart outlets utilized to control various devices via powering the outlet on/off (fans, Christmas Tree, etc) |
 | [Wemo Insight Smart Plug](https://amzn.to/2CfzHRa) | 1 | Wi-Fi | [Belkin WeMo](https://www.home-assistant.io/components/wemo/) | Smart outlet utilized to monitor power to washing machine |
-| [GE Z-Wave Wireless Smart Lighting Control Outdoor Module](https://amzn.to/2KuFRxN) | 2 | Wink Hub (Z-Wave)| [Wink Switch](https://www.home-assistant.io/components/switch.wink/) | Used to control low voltage outdoor lighting transformers |
-| [Remotec Zwave Dry Contact Fixture Module](https://amzn.to/2rOmcBW) | 1 | Wink Hub (Z-Wave)| [Wink Switch](https://www.home-assistant.io/components/switch.wink/) | Used to control gas fireplace |
-| [TP-Link Smart Plug HS100](https://amzn.to/2L5Bt9r) | 1 | Wi-Fi | [TP-Link Switch](https://www.home-assistant.io/components/switch.tplink/) | Smart outlet used to control power to MyQ Device|
+| [GE Z-Wave Wireless Smart Lighting Control Outdoor Module](https://amzn.to/2KuFRxN) | 2 | Vera Plus (Z-Wave)| [Vera Switch](https://www.home-assistant.io/components/vera/) | Used to control low voltage outdoor lighting transformers |
+| [Remotec Zwave Dry Contact Fixture Module](https://amzn.to/2rOmcBW) | 1 | Vera Plus (Z-Wave)| [Vera Switch](https://www.home-assistant.io/components/vera/) | Used to control gas fireplace |
 
 Switches and outlets are used in various capacities, some are for lighting and some are for fans type devices.  [lights.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/lights.yaml) and [occupancy.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/occupancy.yaml) should have some good examples.
 
@@ -69,7 +69,7 @@ Washing machine is automated around the Wemo Insight Plug.  This outlet can moni
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
-| [Schlage Connect Touchscreen Deadbolt](https://amzn.to/2KwXltd) | 3 | Wink Hub (Z-Wave) | [Wink Lock](https://www.home-assistant.io/components/lock.wink/) | Smart locks used in automations to auto lock / unlock doors |
+| [Schlage Connect Touchscreen Deadbolt](https://amzn.to/2KwXltd) | 3 | Vera Plus (Z-Wave) | [Vera Lock](https://www.home-assistant.io/components/vera/) | Smart locks used in automations to auto lock / unlock doors |
 
 Locks are used mostly as a way to lock / unlock doors based on locations, see [location.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml) and [locks.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/locks.yaml) for some examples
 
@@ -79,8 +79,8 @@ Locks are used mostly as a way to lock / unlock doors based on locations, see [l
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
-| [GoControl Door/Window Sensor](https://amzn.to/2wOhLfn) | 3 | Wink Hub (Z-Wave) | [Wink Binary Sensor](https://www.home-assistant.io/components/binary_sensor.wink/) | Door sensors to detect if exterior doors have been opened / closed |
-| [GoControl Siren and Strobe](https://amzn.to/2k4bK4U) | 1 | Wink Hub (Z-Wave) | [Wink Alarm](https://www.home-assistant.io/components/alarm_control_panel.wink/) | Alarm used for when alarm is triggered or when you want to get someone's attention|
+| [GoControl Door/Window Sensor](https://amzn.to/2wOhLfn) | 3 | Vera Plus (Z-Wave) | [Vera Binary Sensor](https://www.home-assistant.io/components/vera/) | Door sensors to detect if exterior doors have been opened / closed |
+| [GoControl Siren and Strobe](https://amzn.to/2k4bK4U) | 1 | Wink Hub (Z-Wave) | [Vera Switch](https://www.home-assistant.io/components/vera/) | Alarm used for when alarm is triggered or when you want to get someone's attention|
 
 Door sensors are used in many different ways. I trigger on them via [doors.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/doors.yaml), use them for security in [security.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/security.yaml), and as various conditions in [notification_audio.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/notification_audio.yaml) and [climate.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/climate.yaml).
 The alarm siren is used in [security.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/security.yaml) and in the security [scene](https://github.com/geekofweek/homeassistant/blob/master/scenes.yaml). I've also implemented the alarm as part of [water_sensors.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/water_sensors.yaml).
@@ -124,7 +124,7 @@ Harmony Hubs work via a combination of [input_selects]( https://github.com/geeko
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
-| [Aeon Labs Water Sensor](https://amzn.to/2rM6KFE) | 2 | Wink Hub (Z-Wave) | [Wink Binary Sensor](https://www.home-assistant.io/components/binary_sensor.wink/) | Water sensors used to detect water in basement as a preventive measure |
+| [Aeon Labs Water Sensor](https://amzn.to/2rM6KFE) | 2 | Vera Plus (Z-Wave) | [Vera Binary Sensor](https://www.home-assistant.io/components/vera/) | Water sensors used to detect water in basement as a preventive measure |
 | [Nest Protect v2 Battery](https://amzn.to/2LJ0ACn) | 6 | Wi-Fi | [Nest](https://www.home-assistant.io/components/nest/) | Smoke Alarm and CO Alarm.  I realized most of my Smoke Alarms had long suprased the 10 year mark and it was time for some replacements. I usually avoid Google owned products for various reasons, but the Nest Protect line has high praise. |
 
 Water sensors serve one major function, to alert me to the presence of water.  Almost all of those automations can be fond via [water_sensors.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/water_sensors.yaml)
@@ -209,6 +209,7 @@ Since I don’t use the network equipment as my primary presence detection metho
 | [Locative iOS App](https://itunes.apple.com/us/app/locative/id725198453?mt=8) | 2 | NA | [Locative](https://www.home-assistant.io/components/device_tracker.locative/) | Retired in favor of native iOS app |
 | [MyQ Smart Garage Door Opener](https://amzn.to/2Iu4Joy) | 1 | Wi-Fi | [MyQ Cover](https://www.home-assistant.io/components/cover.myq/)| Got fed up with the sheer disrepect this device had for reliability. Would work great for months, then decide it had enough and work when it felt like. |
 | [MyQ Home Bridge](https://amzn.to/2LyCQk7) | 1 | Wi-Fi | [MyQ Cover](https://www.home-assistant.io/components/cover.myq/)| See Above |
+| [TP-Link Smart Plug HS100](https://amzn.to/2L5Bt9r) | 1 | Wi-Fi | [TP-Link Switch](https://www.home-assistant.io/components/switch.tplink/) | No longer needed, might re-use at some point |
 
 ## <a name="software">Software</a>
 
