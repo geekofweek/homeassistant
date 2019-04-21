@@ -69,10 +69,9 @@
   action:
     - service: homeassistant.turn_on
       entity_id: input_boolean.alarm_tripped
-    - service: wink.enable_siren
-      data:
-        entity_id: wink.siren
-        enabled: 'true'
+    - service: switch.turn_on
+      entity_id:
+        - switch.siren
 
         ##########################################################
         ## Flash Lights when Water Detected

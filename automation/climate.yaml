@@ -585,7 +585,7 @@
       to: 'on'
       for:
         hours: 0
-        minutes: 5
+        minutes: 15
         seconds: 0
 
   condition:
@@ -622,7 +622,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 5
+        minutes: 15
         seconds: 0
 
   condition:
@@ -1149,6 +1149,7 @@
         hold_mode: "smart4"
     - service: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
+
         ##########################################################
         ## Summer Mode On Everything Else Off
         ##########################################################

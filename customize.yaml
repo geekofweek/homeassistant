@@ -248,6 +248,14 @@
     decice_class: connectivity
     friendly_name: Hue Hub
     icon: mdi:ethernet
+  binary_sensor.vera_plus:
+    decice_class: connectivity
+    friendly_name: Vera Plus
+    icon: mdi:ethernet
+  binary_sensor.lutron_smart_bridge:
+    decice_class: connectivity
+    friendly_name: Lutron Smart Bridge
+    icon: mdi:ethernet
   binary_sensor.basement_drain_water_sensor_liquid_detected:
     device_class: moisture
     friendly_name: Basement Drain Water Sensor
@@ -590,7 +598,7 @@
   automation.security_door_alarm:
     icon: mdi:shield-outline
     friendly_name: Door Security Enabled
-  wink.siren:
+  switch.siren:
     friendly_name: Alarm Siren
     icon: mdi:alarm-bell
 

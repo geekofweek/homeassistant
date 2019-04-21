@@ -62,6 +62,10 @@ lutron_caseta:
     certfile: !secret lutron_certfile
     ca_certs: !secret lutron_cacerts
 
+vera:
+  vera_controller_url: http://REDACTED.132:3480/
+  exclude: [ 19]
+
 media_player:
   - platform: yamaha
     name: "Media Center Receiver"

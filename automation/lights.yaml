@@ -238,11 +238,6 @@
     - service: switch.turn_on
       entity_id:
         - switch.front_yard_lighting
-    #try again fix
-    - delay: '00:00:90'
-    - service: switch.turn_on
-      entity_id:
-        - switch.front_yard_lighting
 
         ##########################################################
         ## Turn Off Front Yard Outdoor Lighting at 2a
@@ -260,11 +255,6 @@
       state: 'off'
 
   action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.front_yard_lighting
-    #try again fix
-    - delay: '00:00:90'
     - service: switch.turn_off
       entity_id:
         - switch.front_yard_lighting
@@ -536,13 +526,6 @@
         - switch.lower_backyard_lighting
         - switch.backyard_patio_lighting
         - switch.front_yard_lighting
-    #try again fix
-    - delay: '00:00:90'
-    - service: switch.turn_off
-      entity_id:
-        - switch.lower_backyard_lighting
-        - switch.backyard_patio_lighting
-        - switch.front_yard_lighting
 
         ##########################################################
         ## Turn On Outdoor Lighting at Sunset
@@ -575,12 +558,6 @@
       entity_id: light.backyard_patio
       data:
         brightness_pct: 1
-    #try again fix
-    - delay: '00:00:90'
-    - service: switch.turn_on
-      entity_id:
-        - switch.backyard_patio_lighting
-        - switch.lower_backyard_lighting
 
         ##########################################################
         ## Turn Off Outdoor Lighting At 10:00p
@@ -607,12 +584,6 @@
         - switch.backyard_patio_lighting
     - service: light.turn_off
       entity_id: light.backyard_patio
-    #try again fix
-    - delay: '00:00:30'
-    - service: switch.turn_off
-      entity_id:
-        - switch.lower_backyard_lighting
-        - switch.backyard_patio_lighting
 
         ##########################################################
         ## Media Center Lighting Random Color Every 30 mins

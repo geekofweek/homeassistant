@@ -223,7 +223,7 @@
   - platform: template
     sensors:
       siren_batt:
-        value_template: '{{ states.wink.siren.attributes.battery_level }}'
+        value_template: '{{ states.switch.siren.attributes.battery_level }}'
         friendly_name: 'Alarm Siren'
         unit_of_measurement: '%'
         device_class: battery
@@ -332,6 +332,26 @@
         friendly_name: "at&t Router Gateway"
         value_template: >-
           {% if is_state('device_tracker.attrouter', 'home') %}
+            Connected
+          {% else %}
+            Disconnected
+          {% endif %}
+  - platform: template
+    sensors:
+      att_router_status:
+        friendly_name: "Lutron Smart Bridge"
+        value_template: >-
+          {% if is_state('device_tracker.lutron_smart_bridge', 'home') %}
+            Connected
+          {% else %}
+            Disconnected
+          {% endif %}
+  - platform: template
+    sensors:
+      att_router_status:
+        friendly_name: "Vera Plus"
+        value_template: >-
+          {% if is_state('device_tracker.ver_plus_hub', 'home') %}
             Connected
           {% else %}
             Disconnected

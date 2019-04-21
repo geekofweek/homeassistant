@@ -43,10 +43,9 @@
         - light.hue_lights
       data:
        flash: long
-    - service: wink.enable_siren
-      data:
-        entity_id: wink.siren
-        enabled: 'true'
+    - service: switch.turn_on
+      entity_id:
+        - switch.siren
 
         ##########################################################
         ## Panic Mode
@@ -80,10 +79,9 @@
         - light.hue_lights
       data:
        flash: long
-    - service: wink.enable_siren
-      data:
-        entity_id: wink.siren
-        enabled: 'true'
+    - service: switch.turn_on
+      entity_id:
+        - switch.siren
 
         ##########################################################
         ## Shut Off Alarm Manually
@@ -97,10 +95,9 @@
       to: 'off'
 
   action:
-    - service: wink.enable_siren
-      data:
-        entity_id: wink.siren
-        enabled: 'false'
+    - service: switch.turn_on
+      entity_id:
+        - switch.siren
 
         ##########################################################
         ## Disable Alarm when Home
