@@ -701,3 +701,49 @@
         - light.guest_bedroom_nightstand
       data:
        transition: 3
+
+        ##########################################################
+        ## Wink Relay Turn on Living Room Lights
+        ##########################################################
+
+- alias: Lights - Wink Relay Turn on Living Room Lights
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.wink_relays_bottom_button
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: light.living_room_lights
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.living_room_lights
+      data:
+       brightness: 100
+
+        ##########################################################
+        ## Wink Relay Turn off Living Room Lights
+        ##########################################################
+
+- alias: Lights - Wink Relay Turn on Living Room Lights
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.wink_relays_bottom_button
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: light.living_room_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.living_room_lights

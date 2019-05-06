@@ -610,8 +610,14 @@
   trigger:
     - platform: state
       entity_id: cover.garage_door
-      from: 'closed'
       to: 'open'
+      for:
+        hours: 0
+        minutes: 35
+        seconds: 0
+    - platform: state
+      entity_id: cover.garage_door
+      to: 'closing'
       for:
         hours: 0
         minutes: 35
