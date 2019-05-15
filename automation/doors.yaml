@@ -227,3 +227,41 @@
         - light.back_door
       data:
         transition: 900
+
+        ##########################################################
+        ## Turn on Basement Lights when Door Opens and Lights Off
+        ##########################################################
+
+- alias: Doors - Turn on Basement Lights when Door Opens and Lights Off
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.basement_door_opened
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: light.basement_lighting
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_door_open_lights_on
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.basement_lights
+        - light.basement_stairs
+        - light.laundry_room_light
+    - service: light.turn_on
+      entity_id:
+        - light.work_bench_light
+      data:
+       brightness_pct: 1

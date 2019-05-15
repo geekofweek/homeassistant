@@ -69,7 +69,7 @@
       entity_id: lock.back_door
 
         ##########################################################
-        ## Lock Basement Door After 45 Mins
+        ## Lock Basement Door After 2 hours
         ##########################################################
 
 - alias: Locks - Lock Basement Door After 45 Mins
@@ -80,8 +80,8 @@
       from: 'locked'
       to: 'unlocked'
       for:
-        hours: 0
-        minutes: 90
+        hours: 2
+        minutes: 0
         seconds: 0
 
   condition:
@@ -92,8 +92,8 @@
       entity_id: binary_sensor.basement_door_opened
       state: 'off'
       for:
-        hours: 0
-        minutes: 60
+        hours: 1
+        minutes: 0
         seconds: 0
     - condition: state
       entity_id: lock.basement_door

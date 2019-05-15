@@ -676,7 +676,7 @@
       entity_id:
         - light.guest_bedroom_nightstand
       data:
-       brightness: 50
+       brightness_pct: 50
 
         ##########################################################
         ## Turn off Guest Bedroom Lamp when Ceiling is off
@@ -703,6 +703,86 @@
        transition: 3
 
         ##########################################################
+        ## Turn on Basement Lights when Workbench Switch Used
+        ##########################################################
+
+- alias: Lights - Turn on Guest Bedroom Lamp when Ceiling is on
+
+  trigger:
+    - platform: state
+      entity_id: light.work_bench_light
+      from: 'off'
+      to: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.basement_lights
+        - light.laundry_room_light
+        - light.basement_stairs
+      data:
+       brightness_pct: 100
+
+        ##########################################################
+        ## Turn on Basement Lights when Laundry Room Switch Used
+        ##########################################################
+
+- alias: Lights - Turn on Guest Bedroom Lamp when Ceiling is on
+
+  trigger:
+    - platform: state
+      entity_id: light.laundry_room_light
+      from: 'off'
+      to: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.basement_lights
+        - light.basement_stairs
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.work_bench_light
+      data:
+       brightness_pct: 25
+
+        ##########################################################
+        ## Turn off Basement Lights when Switch Used
+        ##########################################################
+
+- alias: Lights - Turn on Guest Bedroom Lamp when Ceiling is on
+
+  trigger:
+    - platform: state
+      entity_id: light.laundry_room_light
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
+    - platform: state
+      entity_id: light.workbench_light
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.basement_lighting
+
+        ##########################################################
         ## Wink Relay Turn on Living Room Lights
         ##########################################################
 
@@ -724,7 +804,7 @@
       entity_id:
         - light.living_room_lights
       data:
-       brightness: 100
+       brightness_pct: 100
 
         ##########################################################
         ## Wink Relay Turn off Living Room Lights

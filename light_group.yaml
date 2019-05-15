@@ -84,6 +84,9 @@
     entities:
       - light.basement_stairs
       - light.basement_lights
+      - light.work_bench_light
+      - light.craft_room_ceiling
+      - light.laundry_room_light
 
   - platform: group
     name: Front Porch
@@ -151,8 +154,15 @@
       - light.upstairs_bathroom_vanity
       - light.stairs_light
       - light.USER2_s_office_ceiling
+      - light.work_bench_light
+      - light.craft_room_ceiling
+      - light.laundry_room_light
 
   - platform: group
     name: Lutron Lights Exterior
     entities:
       - light.garage_light
+
+  - platform: switch
+    name: Laundry Room Light
+    entity_id: switch.laundry_room_light

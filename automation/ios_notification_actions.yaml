@@ -167,4 +167,5 @@
 
   action:
     - service: light.turn_on
-      entity_id:  light.basement_lighting
+      entity_id:
+        - light.laundry_room_light
