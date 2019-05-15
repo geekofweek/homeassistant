@@ -706,7 +706,7 @@
         ## Turn on Basement Lights when Workbench Switch Used
         ##########################################################
 
-- alias: Lights - Turn on Guest Bedroom Lamp when Ceiling is on
+- alias: Lights - Turn on Basement Lights when Workbench Switch Used
 
   trigger:
     - platform: state
@@ -727,7 +727,7 @@
         ## Turn on Basement Lights when Laundry Room Switch Used
         ##########################################################
 
-- alias: Lights - Turn on Guest Bedroom Lamp when Ceiling is on
+- alias: Lights - Turn on Basement Lights when Laundry Room Switch Used
 
   trigger:
     - platform: state
@@ -749,10 +749,45 @@
        brightness_pct: 25
 
         ##########################################################
-        ## Turn off Basement Lights when Switch Used
+        ## Turn off Basement Lights when Laundry Switch Used
         ##########################################################
 
-- alias: Lights - Turn on Guest Bedroom Lamp when Ceiling is on
+- alias: Lights - Turn off Basement Lights when Laundry Switch Used
+
+  trigger:
+    - platform: state
+      entity_id: light.laundry_room_light
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.basement_lighting
+      state: 'on'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.basement_light_2
+        - light.basement_light_3
+        - light.basement_light_4
+        - light.work_bench_light
+        - light.craft_room_ceiling
+    - service: light.turn_on
+      entity_id:
+        - light.basement_light_1
+        - light.basement_stairs
+      data:
+       brightness_pct: 25
+
+        ##########################################################
+        ## Turn off Basement Stair Light when Laundry Switch Used
+        ##########################################################
+
+- alias: Lights - Turn off Basement Stair Light when Laundry Switch Used
 
   trigger:
     - platform: state
@@ -761,26 +796,87 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 10
-        seconds: 0
-    - platform: state
-      entity_id: light.workbench_light
-      from: 'on'
-      to: 'off'
-      for:
-        hours: 0
-        minutes: 10
+        minutes: 5
         seconds: 0
 
   condition:
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: light.basement_lighting
+      state: 'on'
 
   action:
     - service: light.turn_off
       entity_id:
-        - light.basement_lighting
+        - light.basement_light_1
+        - light.basement_stairs
+
+        ##########################################################
+        ## Turn off Basement Lights when Work Bench Switch Used
+        ##########################################################
+
+- alias: Lights - Turn off Basement Lights when Work Bench Switch Used
+
+  trigger:
+    - platform: state
+      entity_id: light.work_bench_light
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.basement_lighting
+      state: 'on'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.basement_light_2
+        - light.basement_light_3
+        - light.basement_light_4
+        - light.laundry_room_light
+        - light.craft_room_ceiling
+    - service: light.turn_on
+      entity_id:
+        - light.basement_light_1
+        - light.basement_stairs
+      data:
+       brightness_pct: 25
+
+        ##########################################################
+        ## Turn off Basement Stair Light when Work Bench Switch Used
+        ##########################################################
+
+- alias: Lights - Turn off Basement Stair Light when Work Bench Switch Used
+
+  trigger:
+    - platform: state
+      entity_id: light.work_bench_light
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.basement_lighting
+      state: 'on'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.basement_light_1
+        - light.basement_stairs
 
         ##########################################################
         ## Wink Relay Turn on Living Room Lights
