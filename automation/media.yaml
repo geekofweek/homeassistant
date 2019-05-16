@@ -602,7 +602,7 @@
       at: '05:00'
 
   action:
-    - service: media_player.sonos_unjoin
+    - service: sonos.unjoin
       entity_id:
         - media_player.sonos_media_center
         - media_player.sonos_living_room
@@ -657,7 +657,7 @@
       state: 'home'
 
   action:
-    - service: media_player.sonos_join
+    - service: sonos.join
       data:
         master: media_player.sonos_living_room
       entity_id:
@@ -689,7 +689,7 @@
       state: 'home'
 
   action:
-    - service: media_player.sonos_join
+    - service: sonos.join
       data:
         master: media_player.sonos_living_room
       entity_id:
@@ -742,7 +742,7 @@
       state: 'home'
 
   action:
-    - service: media_player.sonos_join
+    - service: sonos.join
       data:
         master: media_player.sonos_living_room
       entity_id:
@@ -795,7 +795,7 @@
       state: 'home'
 
   action:
-    - service: media_player.sonos_join
+    - service: sonos.join
       data:
         master: media_player.sonos_living_room
       entity_id:
@@ -848,7 +848,7 @@
       state: 'home'
 
   action:
-    - service: media_player.sonos_join
+    - service: sonos.join
       data:
         master: media_player.sonos_living_room
       entity_id:
@@ -901,7 +901,7 @@
       state: 'home'
 
   action:
-    - service: media_player.sonos_join
+    - service: sonos.join
       data:
         master: media_player.sonos_living_room
       entity_id:

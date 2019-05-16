@@ -296,7 +296,7 @@
       before: '22:00'
 
   action:
-    - service: media_player.sonos_snapshot
+    - service: sonos.snapshot
       data:
         with_group: yes
     - delay: '00:00:03'
