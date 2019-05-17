@@ -62,12 +62,12 @@
     - service: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
 #     re-enable Summer or Winter Mode
-#    - service: homeassistant.turn_on
-#      entity_id: group.summer_mode
+    - service: homeassistant.turn_on
+      entity_id: group.summer_mode
 #    - service: homeassistant.turn_on
 #      entity_id: group.winter_mode
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.spring_fall_mode
+#    - service: homeassistant.turn_on
+#      entity_id: input_boolean.spring_fall_mode
     - service: climate.ecobee_set_fan_min_on_time
       data:
         entity_id: climate.main_floor

@@ -389,11 +389,59 @@
           {% else %}
             Home
           {% endif %}
+          
   - platform: template
     sensors:
       hvac_status:
         friendly_name: 'HVAC Status'
-        value_template: '{{ states.climate.main_floor.attributes.operation }}'
+        value_template: >-
+          {% if is_state_attr('climate.main_floor', 'equipment_running', 'compCool1,fan') %}
+            Cool (Stage 1)
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'compCool2,fan') %}
+            Cool (Stage 2)
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'compCool1,dehumidifier,fan') %}
+            Cool (Stage 1) + Dehumidifier
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'compCool2,dehumidifier,fan') %}
+            Cool (Stage 2) + Dehumidifier
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'auxHeat1,fan') %}
+            Heat (Stage 1)
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'auxHeat2,fan') %}
+            Heat (Stage 2)
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'auxHeat1,humidifier,fan') %}
+            Heat (Stage 1) + Humidifier
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'auxHeat2,humidifier,fan') %}
+            Heat (Stage 2) + Humidifier
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'fan') %}
+            Fan
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'dehumidifier,fan') %}
+            Fan
+          {% else %}
+            Idle
+          {% endif %}
+        icon_template: >-
+          {% if is_state_attr('climate.main_floor', 'equipment_running', 'compCool1,fan') %}
+            mdi:air-conditioner
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'compCool2,fan') %}
+            mdi:air-conditioner
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'compCool1,dehumidifier,fan') %}
+            mdi:water-off
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'compCool2,dehumidifier,fan') %}
+            mdi:water-off
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'auxHeat1,fan') %}
+            mdi:radiator
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'auxHeat2,fan') %}
+            mdi:radiator
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'auxHeat1,humidifier,fan') %}
+            mdi:water
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'auxHeat2,humidifier,fan') %}
+            mdi:water
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'fan') %}
+            mdi:fan
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'dehumidifier,fan') %}
+            mdi:fan
+          {% else %}
+            mdi:fan-off
+          {% endif %}
 
         ##########################################################
         ## Pihole Status
