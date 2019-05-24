@@ -2,7 +2,7 @@
 # Overview
 My personal [Home Assistant](https://home-assistant.io) configurations with 300+ automations.  These are my active automations and configurations that I use every day.  Updated frequently as I add more devices and come up with more and more complicated ways to do simple tasks.
 
-Published configruations working with Home Assistant Version: 0.93
+Published configruations working with Home Assistant Version: 0.93.1
 
 # <a name="menu">Menu</a>
  | [Hubs](#hubs) | [Lighting](#lighting) | [Climate](#climate)| [Outlets & Switches](#outlets)|  [Locks](#locks) | [Security](#security) | [Voice Assistant](#voice) | [Media](#media) | [Sensors](#sensors) | [Cameras](#cameras) | [Garage](#garage) | [Vacuum](#vacuum) | [Network](#network) | [Other Hardware](#other) | [Retired Devices](#retired) | [Software](#software) | [Screenshots](#screenshots) |
@@ -30,8 +30,9 @@ Relevant hub configurations can be found within [configuration.yaml](https://git
 | [Philips Hue White and Color Ambiance LightStrip Plus Dimmable](https://amzn.to/2Kx27qF) | 1 | Hue Hub (Zigbee)| [Philips Hue Light](https://www.home-assistant.io/components/light.hue/) | Color changing smart led strip. Used as accent lighting|
 | [Philips Hue White](https://amzn.to/2LaUFTd) | 5 | Hue Hub (Zigbee)| [Philips Hue Light](https://www.home-assistant.io/components/light.hue/) | Non color changing smart bulbs|
 | [Cree Connected](https://amzn.to/2IpKAnZ) | 8 | Hue Hub (Zigbee)| [Philips Hue Light](https://www.home-assistant.io/components/light.hue/) | Non color changing smart bulbs|
-| [Lutron Caseta Wireless Dimmer](https://amzn.to/2KwDJWc) | 16 | Lutron Clear Connect | [Lutron Caseta Light](https://www.home-assistant.io/components/lutron_caseta/) | Smart dimmer switches that do not require a neutral wire|
+| [Lutron Caseta Wireless Dimmer](https://amzn.to/2KwDJWc) | 17 | Lutron Clear Connect | [Lutron Caseta Light](https://www.home-assistant.io/components/lutron_caseta/) | Smart dimmer switches that do not require a neutral wire|
 | [Lutron Caseta Wireless Lighting Switch](https://amzn.to/2YvDWjg) | 2 | Lutron Clear Connect | [Lutron Caseta Switch](https://www.home-assistant.io/components/lutron_caseta/) | Smart on / off light switches |
+| [Lutron Caseta Pico Wireless Dimmer Switch](https://amzn.to/2Etw0HP) | 4 | Lutron Clear Connect | [Lutron Caseta Light](https://www.home-assistant.io/components/lutron_caseta/) | Decora wall mountable remote (that looks like a dimmer switch). Controls various lights |
 
 Many of my automations rely on some form of lighting but many examples can be found in [lights.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/lights.yaml) and [location.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml).
 
@@ -110,6 +111,7 @@ I go for native Echo integration wherever possible, but a few devices are not cu
 | [Sonos Play:1](https://amzn.to/2IrsIor) | 10 | Wi-Fi | [Sonos](https://www.home-assistant.io/components/media_player.sonos/) | Audio playback and Home Assistant TTS |
 | [Sonos Connect](https://amzn.to/2wSsup8) | 1 | Ethernet |  [Sonos](https://www.home-assistant.io/components/media_player.sonos/) | Audio playback and Home Assistant TTS. Connects Sonos to existing surround sound system |
 | [Sonos Connect:AMP](https://amzn.to/2rQ0XzM) | 1 | Wi-Fi |  [Sonos](https://www.home-assistant.io/components/media_player.sonos/) | Audio playback and Home Assistant TTS. Connects Sonos to outdoor speakers |
+| [Lutron Caseta Pico Remote Control for Audio](https://amzn.to/2QsBtnj) | 2 | Lutron Clear Connect | [Lutron Caseta](https://www.home-assistant.io/components/lutron_caseta/) | Decora wall mountable remote. Used to control Sonos |
 | [Logitech Harmony Hub](https://amzn.to/2IuEvlS) | 3 | Wi-Fi | [Harmony Hub Remote](https://www.home-assistant.io/components/remote.harmony/) | Controls various AV equipment and other devices that utilize infrared remotes |
 | [Yamaha RX-V483BL](https://amzn.to/2DhNh89) | 1 | Wi-Fi | [Yamaha Network Receivers](https://www.home-assistant.io/components/media_player.yamaha/) | Surround Sound Receiver. Works in conjunction with the Sonos Connect, Harmony Hub, Apple TV 4k and various other media devices |
 | [Plex Media Server](https://plex.tv) | 1 | Ethernet | [Plex](https://www.home-assistant.io/components/media_player.plex) / [Plex Activity Monitor](https://www.home-assistant.io/components/sensor.plex/) |  Media Server|  
