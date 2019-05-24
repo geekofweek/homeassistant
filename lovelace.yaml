@@ -14,7 +14,7 @@ views:
           - entity: light.kitchen_lights
           - entity: light.hallway_light
           - entity: light.bathroom_lights
-          - entity: light.stairs
+          - entity: light.stairs_light
           - entity: light.basement_lighting
           - entity: light.USER1_office_lights
             name: USER1's Office
@@ -266,7 +266,7 @@ views:
       - entities:
           - entity: light.bathroom_vanity
             name: Vanity Light
-          - entity: light.shower
+          - entity: light.bathroom_shower
             name: Shower Light
           - entity: binary_sensor.bathroom_occupancy
             name: Occupancy
@@ -276,7 +276,7 @@ views:
         title: Bathroom
         type: entities
       - entities:
-          - entity: light.upstairs_bathroom
+          - entity: light.upstairs_bathroom_vanity
             name: Vanity Light
         show_header_toggle: false
         title: Upstairs Bathroom
@@ -289,7 +289,7 @@ views:
   - badges: []
     cards:
       - entities:
-          - entity: light.office_ceiling
+          - entity: light.USER1_s_office_ceiling
             name: Ceiling
           - entity: light.office_lamp
             name: Lamp
@@ -309,7 +309,7 @@ views:
         title: USER1's Office
         type: entities
       - entities:
-          - entity: light.USER2_office_ceiling
+          - entity: light.USER2_s_office_ceiling
             name: Ceiling
           - entity: binary_sensor.USER2_office_occupancy
             name: Occupancy
@@ -332,6 +332,9 @@ views:
       - entities:
           - entity: light.basement_stairs
           - entity: light.basement_lights
+          - entity: light.laundry_room_light
+          - entity: light.work_bench_light
+          - entity: light.craft_room_ceiling
           - entity: switch.basement_heater
             name: Heater
           - entity: lock.basement_door
@@ -401,22 +404,27 @@ views:
         type: glance
       - entity: media_player.sonos_backyard_patio
         type: media-control
-      - entity: camera.front_porch
+      - camera_view: live
+        entity: camera.front_porch
         show_state: false
         type: picture-entity
       - cards:
-          - entity: camera.backyard
+          - camera_view: live
+            entity: camera.backyard
             show_state: false
             type: picture-entity
-          - entity: camera.side_yard
+          - camera_view: live
+            entity: camera.side_yard
             show_state: false
             type: picture-entity
         type: vertical-stack
       - cards:
-          - entity: camera.driveway
+          - camera_view: live
+            entity: camera.driveway
             show_state: false
             type: picture-entity
-          - entity: camera.garage
+          - camera_view: live
+            entity: camera.garage
             show_state: false
             type: picture-entity
         type: vertical-stack
@@ -573,15 +581,18 @@ views:
     title: Media
   - badges: []
     cards:
-      - entity: camera.front_porch
+      - camera_view: live
+        entity: camera.front_porch
         show_state: false
         type: picture-entity
       - card:
           cards:
-            - entity: camera.living_room
+            - camera_view: live
+              entity: camera.living_room
               show_state: false
               type: picture-entity
-            - entity: camera.basement
+            - camera_view: live
+              entity: camera.basement
               show_state: false
               type: picture-entity
           type: vertical-stack
@@ -592,18 +603,22 @@ views:
             state: home
         type: conditional
       - cards:
-          - entity: camera.driveway
+          - camera_view: live
+            entity: camera.driveway
             show_state: false
             type: picture-entity
-          - entity: camera.garage
+          - camera_view: live
+            entity: camera.garage
             show_state: false
             type: picture-entity
         type: vertical-stack
       - cards:
-          - entity: camera.backyard
+          - camera_view: live
+            entity: camera.backyard
             show_state: false
             type: picture-entity
-          - entity: camera.side_yard
+          - camera_view: live
+            entity: camera.side_yard
             show_state: false
             type: picture-entity
         type: vertical-stack
@@ -614,10 +629,12 @@ views:
     cards:
       - cards:
           - cards:
-              - entity: camera.driveway
+              - camera_view: live
+                entity: camera.driveway
                 show_state: false
                 type: picture-entity
-              - entity: camera.garage
+              - camera_view: live
+                entity: camera.garage
                 show_state: false
                 type: picture-entity
             type: vertical-stack
@@ -772,7 +789,7 @@ views:
           - entity: input_boolean.panic_mode
           - entity: input_boolean.alarm_tripped
           - entity: input_boolean.disable_smoke_alarm
-          - entity: wink.siren
+          - entity: switch.siren
         show_header_toggle: false
         title: Alarm
         type: entities
@@ -845,6 +862,7 @@ views:
           - device_tracker.REDACTED
           - device_tracker.REDACTED
           - device_tracker.REDACTED
+          - device_tracker.davidiphone
         show_empty: false
         state_filter:
           - home
@@ -967,10 +985,12 @@ views:
         title: Network
         type: entities
       - entities:
+          - entity: sensor.hue_hub_status
+          - entity: sensor.lutron_smart_bridge_status
+          - entity: sensor.vera_plus_status
+          - entity: sensor.garage_door_opener_status
           - entity: binary_sensor.wink_hub
           - entity: binary_sensor.wink_relay
-          - entity: sensor.hue_hub_status
-          - entity: sensor.garage_door_opener_status
           - entity: binary_sensor.living_room_nest_protect_online
           - entity: binary_sensor.bedroom_nest_protect_online
           - entity: binary_sensor.hallway_nest_protect_online
@@ -1055,4 +1075,3 @@ views:
     icon: 'mdi:ethernet'
     path: equipment
     title: System Equipment
-

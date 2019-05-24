@@ -172,6 +172,94 @@
         message: "Wink Relay Has Crahsed, Please Restart"
 
         #################################################################
+        ## Rochester VPN Offline
+        #################################################################
+
+- alias: Notification Text - Rochester VPN Offline
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.rochester_vpn
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Rochester VPN Offline
+
+        #################################################################
+        ## Rochester VPN Online
+        #################################################################
+
+- alias: Notification Text - Rochester VPN Online
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.rochester_vpn
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Rochester VPN Online
+
+        #################################################################
+        ## Charleston VPN Offline
+        #################################################################
+
+- alias: Notification Text - Charleston VPN Offline
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.charleston_vpn
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Charleston VPN Offline
+
+        #################################################################
+        ## Charleston VPN Online
+        #################################################################
+
+- alias: Notification Text - Charleston VPN Online
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.charleston_vpn
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Charleston VPN Online
+
+        #################################################################
         ## Home Assistant Started Notification
         #################################################################
 

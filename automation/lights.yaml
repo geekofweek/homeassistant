@@ -771,7 +771,6 @@
   action:
     - service: light.turn_off
       entity_id:
-        - light.basement_light_2
         - light.basement_light_3
         - light.basement_light_4
         - light.work_bench_light
@@ -779,6 +778,7 @@
     - service: light.turn_on
       entity_id:
         - light.basement_light_1
+        - light.basement_light_2
         - light.basement_stairs
       data:
        brightness_pct: 25
@@ -796,7 +796,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 3
+        minutes: 2
         seconds: 0
 
   condition:
@@ -811,6 +811,7 @@
     - service: light.turn_off
       entity_id:
         - light.basement_light_1
+        - light.basement_light_2
         - light.basement_stairs
 
         ##########################################################
@@ -836,7 +837,6 @@
   action:
     - service: light.turn_off
       entity_id:
-        - light.basement_light_2
         - light.basement_light_3
         - light.basement_light_4
         - light.laundry_room_light
@@ -844,6 +844,7 @@
     - service: light.turn_on
       entity_id:
         - light.basement_light_1
+        - light.basement_light_2
         - light.basement_stairs
       data:
        brightness_pct: 25
@@ -876,6 +877,7 @@
     - service: light.turn_off
       entity_id:
         - light.basement_light_1
+        - light.basement_light_2
         - light.basement_stairs
 
         ##########################################################

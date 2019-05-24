@@ -389,7 +389,7 @@
           {% else %}
             Home
           {% endif %}
-          
+
   - platform: template
     sensors:
       hvac_status:
@@ -420,17 +420,17 @@
           {% endif %}
         icon_template: >-
           {% if is_state_attr('climate.main_floor', 'equipment_running', 'compCool1,fan') %}
-            mdi:air-conditioner
+            mdi:snowflake
           {% elif is_state_attr('climate.main_floor', 'equipment_running', 'compCool2,fan') %}
-            mdi:air-conditioner
+            mdi:snowflake
           {% elif is_state_attr('climate.main_floor', 'equipment_running', 'compCool1,dehumidifier,fan') %}
             mdi:water-off
           {% elif is_state_attr('climate.main_floor', 'equipment_running', 'compCool2,dehumidifier,fan') %}
             mdi:water-off
           {% elif is_state_attr('climate.main_floor', 'equipment_running', 'auxHeat1,fan') %}
-            mdi:radiator
+            mdi:fire
           {% elif is_state_attr('climate.main_floor', 'equipment_running', 'auxHeat2,fan') %}
-            mdi:radiator
+            mdi:fire
           {% elif is_state_attr('climate.main_floor', 'equipment_running', 'auxHeat1,humidifier,fan') %}
             mdi:water
           {% elif is_state_attr('climate.main_floor', 'equipment_running', 'auxHeat2,humidifier,fan') %}
