@@ -276,6 +276,20 @@
         friendly_name: 'Upstairs Roomba'
         unit_of_measurement: '%'
         device_class: battery
+  - platform: template
+    sensors:
+      living_room_motion_batt:
+        value_template: '{{ states.binary_sensor.living_room_motion.attributes.battery_level }}'
+        friendly_name: 'Living Room Motion Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      basement_motion_batt:
+        value_template: '{{ states.binary_sensor.basement_motion_sensor.attributes.battery_level }}'
+        friendly_name: 'Basement Motion Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
 
         ##########################################################
         ## Harmony Remote

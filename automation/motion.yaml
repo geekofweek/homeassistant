@@ -1,0 +1,110 @@
+#################################################################
+## Motion Automations
+#################################################################
+
+        ##########################################################
+        ## Turn on Living Room Lights when Motion Detected
+        ##########################################################
+
+- alias: Motion - Turn on Living Room Lights when Motion Detected
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.living_room_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.living_room_lights
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: media_player.living_room_apple_tv
+        state: 'paused'
+      - condition: state
+        entity_id: media_player.living_room_apple_tv
+        state: 'idle'
+      - condition: state
+        entity_id: media_player.living_room_apple_tv
+        state: 'unknown'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.living_room_lamps
+        - light.media_center_lighting
+      data:
+        transition: 60
+        brightness_pct: 100
+        color_temp: 447
+    - service: light.turn_on
+      entity_id:
+        - light.globe
+      data:
+        brightness_pct: 15
+
+        ##########################################################
+        ## Turn on Basement Lights when Motion Detected
+        ##########################################################
+
+- alias: Motion - Turn on Basement Lights when Motion Detected
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.basement_motion_sensor
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.basement_lighting
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.basement_lights
+        - light.work_bench_light
+        - light.laundry_room_light
+      data:
+        brightness_pct: 100
+
+        ##########################################################
+        ## Turn off Basement Lights when No Motion Detected
+        ##########################################################
+
+- alias: Motion - Turn off Basement Lights when No Motion Detected
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.basement_motion_sensor
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.basement_lighting
+      state: 'on'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.basement_lighting

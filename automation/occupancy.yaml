@@ -240,6 +240,9 @@
       entity_id: binary_sensor.main_floor_occupancy
       state: 'off'
     - condition: state
+      entity_id: binary_sensor.living_room_motion
+      state: 'off'
+    - condition: state
       entity_id: input_boolean.disable_occupancy
       state: 'off'
 
@@ -318,6 +321,9 @@
   condition:
     - condition: state
       entity_id: input_boolean.disable_occupancy
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.basement_motion_sensor
       state: 'off'
 
   action:
