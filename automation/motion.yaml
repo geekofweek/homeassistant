@@ -35,21 +35,111 @@
       - condition: state
         entity_id: media_player.living_room_apple_tv
         state: 'unknown'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: input_select.remote
+        state: 'PowerOff'
+      - condition: state
+        entity_id: input_select.remote
+        state: 'Watch TV'
+      - condition: state
+        entity_id: input_select.remote
+        state: 'Play Sonos'
+      - condition: state
+        entity_id: input_select.remote
+        state: 'Watch Over the Air TV'
 
   action:
     - service: light.turn_on
       entity_id:
         - light.living_room_lamps
-        - light.media_center_lighting
       data:
-        transition: 60
+        transition: 5
         brightness_pct: 100
         color_temp: 447
+    - service: light.turn_on
+      entity_id: light.media_center_lighting
+      data:
+       transition: 5
+       effect: random
+       brightness_pct: 100
     - service: light.turn_on
       entity_id:
         - light.globe
       data:
-        brightness_pct: 15
+        brightness_pct: 20
+
+        ##########################################################
+        ## Turn on Living Room Lights when Motion Detected before Sunset
+        ##########################################################
+
+- alias: Motion - Turn on Living Room Lights when Motion Detected before Sunset
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.living_room_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.living_room_lights
+      state: 'off'
+    - condition: numeric_state
+      entity_id: sensor.living_room_light_level
+      below: '10'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: media_player.living_room_apple_tv
+        state: 'paused'
+      - condition: state
+        entity_id: media_player.living_room_apple_tv
+        state: 'idle'
+      - condition: state
+        entity_id: media_player.living_room_apple_tv
+        state: 'unknown'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: input_select.remote
+        state: 'PowerOff'
+      - condition: state
+        entity_id: input_select.remote
+        state: 'Watch TV'
+      - condition: state
+        entity_id: input_select.remote
+        state: 'Play Sonos'
+      - condition: state
+        entity_id: input_select.remote
+        state: 'Watch Over the Air TV'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.living_room_lamps
+      data:
+        transition: 30
+        brightness_pct: 100
+        color_temp: 447
+    - service: light.turn_on
+      entity_id: light.media_center_lighting
+      data:
+       transition: 30
+       effect: random
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.globe
+      data:
+        brightness_pct: 25
 
         ##########################################################
         ## Turn on Basement Lights when Motion Detected

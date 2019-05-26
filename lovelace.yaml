@@ -149,10 +149,15 @@ views:
           - entity: binary_sensor.front_door_opened
           - entity: binary_sensor.living_room_occupancy
             name: Occupancy
+          - entity: binary_sensor.living_room_motion
+            icon: 'mdi:motion-sensor'
+            name: Motion
           - entity: sensor.living_room_temperature
             name: Temperature
           - entity: sensor.living_room_nest_protect_color_status
             name: Smoke Alarm
+          - entity: sensor.living_room_light_level
+            name: Light Level
         show_header_toggle: false
         title: Living Room
         type: entities
@@ -179,6 +184,13 @@ views:
           - entity: device_tracker.living_room_camera
             state: home
         type: conditional
+      - entity: sensor.living_room_light_level
+        min: 0
+        name: Light Level
+        theme: default
+        type: gauge
+        unit: Lux
+        max: 100
     icon: 'mdi:sofa'
     path: living
     title: Living
@@ -335,6 +347,7 @@ views:
           - entity: light.laundry_room_light
           - entity: light.work_bench_light
           - entity: light.craft_room_ceiling
+          - entity: light.basement_storage_area_ceiling
           - entity: switch.basement_heater
             name: Heater
           - entity: lock.basement_door
@@ -345,6 +358,9 @@ views:
           - entity: sensor.laundry_room_temperature
           - entity: sensor.basement_nest_protect_color_status
             name: Smoke Alarm
+          - entity: binary_sensor.basement_motion_sensor
+            icon: 'mdi:motion-sensor'
+            name: Motion
         show_header_toggle: false
         title: Basement
         type: entities
@@ -878,6 +894,13 @@ views:
         title: Device Location
         type: entities
       - entities:
+          - entity: binary_sensor.living_room_motion
+            name: Living Room
+          - entity: binary_sensor.basement_motion_sensor
+            name: Basement
+        title: Motion
+        type: glance
+      - entities:
           - entity: binary_sensor.living_room_occupancy
             name: Living Room
           - entity: binary_sensor.main_floor_occupancy
@@ -931,6 +954,11 @@ views:
         title: Smoke Alarm
         type: entities
       - entities:
+          - entity: sensor.living_room_light_level
+            name: Living Room
+        title: Light Level
+        type: glance
+      - entities:
           - entity: binary_sensor.basement_drain_water_sensor_liquid_detected
             name: Basement Drain
           - entity: binary_sensor.sump_pump_water_sensor_liquid_detected
@@ -948,6 +976,8 @@ views:
           - sensor.front_door_sensor_batt
           - sensor.back_door_sensor_batt
           - sensor.basement_door_sensor_batt
+          - sensor.living_room_motion_batt
+          - sensor.basement_motion_batt
           - sensor.basement_drain_water_sensor_batt
           - sensor.sump_pump_water_sensor_batt
         show_header_toggle: false
@@ -1075,3 +1105,4 @@ views:
     icon: 'mdi:ethernet'
     path: equipment
     title: System Equipment
+
