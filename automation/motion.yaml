@@ -3,10 +3,10 @@
 #################################################################
 
         ##########################################################
-        ## Turn on Living Room Lights when Motion Detected
+        ## Turn on Living Room Lights when Motion Detected at Night
         ##########################################################
 
-- alias: Motion - Turn on Living Room Lights when Motion Detected
+- alias: Motion - Turn on Living Room Lights when Motion Detected at Night
 
   trigger:
     - platform: state
@@ -16,6 +16,9 @@
 
   condition:
     - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
       entity_id: group.household
       state: 'home'
     - condition: state
@@ -24,6 +27,9 @@
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
+    - condition: time
+      after: '07:00'
+      before: '02:00'
     - condition: or
       conditions:
       - condition: state
@@ -71,10 +77,10 @@
         brightness_pct: 20
 
         ##########################################################
-        ## Turn on Living Room Lights when Motion Detected before Sunset
+        ## Turn on Living Room Lights when Motion Detected at Night Weekends
         ##########################################################
 
-- alias: Motion - Turn on Living Room Lights when Motion Detected before Sunset
+- alias: Motion - Turn on Living Room Lights when Motion Detected at Night Weekends
 
   trigger:
     - platform: state
@@ -83,6 +89,87 @@
       to: 'on'
 
   condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.living_room_lights
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '02:00'
+      before: '03:00'
+    - condition: time
+      weekday:
+        - fri
+        - sat
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: media_player.living_room_apple_tv
+        state: 'paused'
+      - condition: state
+        entity_id: media_player.living_room_apple_tv
+        state: 'idle'
+      - condition: state
+        entity_id: media_player.living_room_apple_tv
+        state: 'unknown'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: input_select.remote
+        state: 'PowerOff'
+      - condition: state
+        entity_id: input_select.remote
+        state: 'Watch TV'
+      - condition: state
+        entity_id: input_select.remote
+        state: 'Play Sonos'
+      - condition: state
+        entity_id: input_select.remote
+        state: 'Watch Over the Air TV'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.living_room_lamps
+      data:
+        transition: 5
+        brightness_pct: 100
+        color_temp: 447
+    - service: light.turn_on
+      entity_id: light.media_center_lighting
+      data:
+       transition: 5
+       effect: random
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.globe
+      data:
+        brightness_pct: 20
+
+        ##########################################################
+        ## Turn on Living Room Lights when Motion Detected Daytime
+        ##########################################################
+
+- alias: Motion - Turn on Living Room Lights when Motion Detected Daytime
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.living_room_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -95,6 +182,9 @@
     - condition: state
       entity_id: sun.sun
       state: 'above_horizon'
+    - condition: time
+      after: '07:00'
+      before: '02:00'
     - condition: or
       conditions:
       - condition: state
@@ -142,6 +232,682 @@
         brightness_pct: 25
 
         ##########################################################
+        ## Turn on Kitchen Lights when Motion Detected Evening
+        ##########################################################
+
+- alias: Motion - Turn on Kitchen Lights when Motion Detected Evening
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.kitchen_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.kitchen_lights
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '07:00'
+      before: '22:00'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.kitchen_cabinets
+      data:
+        brightness_pct: 1
+    - service: light.turn_on
+      entity_id: light.kitchen_sink
+      data:
+       brightness_pct: 40
+    - service: light.turn_on
+      entity_id:
+        - light.kitchen_ceiling
+      data:
+        brightness_pct: 100
+
+        ##########################################################
+        ## Turn on Kitchen Lights when Motion Detected Night
+        ##########################################################
+
+- alias: Motion - Turn on Kitchen Lights when Motion Detected Night
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.kitchen_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.kitchen_lights
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '22:00'
+      before: '07:00'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.kitchen_cabinets
+      data:
+        brightness_pct: 1
+    - service: light.turn_on
+      entity_id: light.kitchen_sink
+      data:
+       brightness_pct: 1
+
+        ##########################################################
+        ## Turn on Kitchen Lights when Motion Detected Daytime
+        ##########################################################
+
+- alias: Motion - Turn on Kitchen Lights when Motion Detected Daytime
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.kitchen_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.kitchen_lights
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: numeric_state
+      entity_id: sensor.kitchen_light_level
+      below: '10'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.kitchen_cabinets
+      data:
+        brightness_pct: 1
+    - service: light.turn_on
+      entity_id: light.kitchen_sink
+      data:
+       brightness_pct: 100
+
+        ##########################################################
+        ## Turn off Kitchen Lights when No Motion Detected Weeknights
+        ##########################################################
+
+- alias: Motion - Turn off Kitchen Lights when No Motion Detected Weeknights
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.kitchen_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
+    - condition: state
+      entity_id: light.kitchen_lights
+      state: 'on'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '22:00'
+      before: '06:00'
+    - condition: time
+      weekday:
+        - sun
+        - mon
+        - tue
+        - wed
+        - thu
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.kitchen_lights
+
+        ##########################################################
+        ## Turn off Kitchen Lights when No Motion Detected Weekends
+        ##########################################################
+
+- alias: Motion - Turn off Kitchen Lights when No Motion Detected Weekends
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.kitchen_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
+    - condition: state
+      entity_id: light.kitchen_lights
+      state: 'on'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '22:00'
+      before: '06:00'
+    - condition: time
+      weekday:
+        - fri
+        - sat
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.kitchen_lights
+
+        ##########################################################
+        ## Turn off Kitchen Lights when No Motion Detected Daytime
+        ##########################################################
+
+- alias: Motion - Turn off Kitchen Lights when No Motion Detected Daytime
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.kitchen_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 2
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
+    - condition: state
+      entity_id: light.kitchen_lights
+      state: 'on'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.kitchen_lights
+
+        ##########################################################
+        ## Turn on Dining Room Lights when Motion Detected Evening
+        ##########################################################
+
+- alias: Motion - Turn on Dining Room Lights when Motion Detected Evening
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.dining_room_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.dining_room_lights
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '07:00'
+      before: '22:00'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.dining_room_table
+      data:
+        brightness_pct: 100
+
+        ##########################################################
+        ## Turn on Dining Room Lights when Motion Detected Night
+        ##########################################################
+
+- alias: Motion - Turn on Dining Room Lights when Motion Detected Night
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.dining_room_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.dining_room_lights
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '22:00'
+      before: '07:00'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.dining_room_table
+      data:
+        brightness_pct: 1
+
+        ##########################################################
+        ## Turn off Dining Room Lights when No Motion Detected Weeknights
+        ##########################################################
+
+- alias: Motion - Turn off Dining Room Lights when No Motion Detected Weeknights
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.dining_room_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
+    - condition: state
+      entity_id: light.dining_room_lights
+      state: 'on'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '22:00'
+      before: '06:00'
+    - condition: time
+      weekday:
+        - sun
+        - mon
+        - tue
+        - wed
+        - thu
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.dining_room_lights
+
+        ##########################################################
+        ## Turn on Dining Room Lights when Motion Detected Daytime
+        ##########################################################
+
+- alias: Motion - Turn on Dining Room Lights when Motion Detected Daytime
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.dining_room_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.dining_room_lights
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: numeric_state
+      entity_id: sensor.dining_room_light_level
+      below: '10'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.dining_room_table
+      data:
+        brightness_pct: 25
+
+        ##########################################################
+        ## Turn off Dining Room Lights when No Motion Detected Weekends
+        ##########################################################
+
+- alias: Motion - Turn off Dining Room Lights when No Motion Detected Weekends
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.dining_room_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
+    - condition: state
+      entity_id: light.dining_room_lights
+      state: 'on'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '22:00'
+      before: '06:00'
+    - condition: time
+      weekday:
+        - fri
+        - sat
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.dining_room_lights
+
+        ##########################################################
+        ## Turn off Dining Room Lights when No Motion Detected Daytime
+        ##########################################################
+
+- alias: Motion - Turn off Dining Room Lights when No Motion Detected Daytime
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.dining_room_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 2
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
+    - condition: state
+      entity_id: light.dining_room_lights
+      state: 'on'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.dining_room_lights
+
+        ##########################################################
+        ## Turn on Stair Lights when Motion Detected Evening
+        ##########################################################
+
+- alias: Motion - Turn on Stair Lights when Motion Detected Evening
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.stairs_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.stairs_light
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '07:00'
+      before: '22:00'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.stairs_light
+      data:
+        brightness_pct: 75
+
+        ##########################################################
+        ## Turn on Stair Lights when Motion Detected Night
+        ##########################################################
+
+- alias: Motion - Turn on Stair Lights when Motion Detected Night
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.stairs_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.stairs_light
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '22:00'
+      before: '07:00'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.stairs_light
+      data:
+        brightness_pct: 1
+
+        ##########################################################
+        ## Turn on Stair Lights when Motion Detected Daytime
+        ##########################################################
+
+- alias: Motion - Turn on Stair Lights when Motion Detected Daytime
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.stairs_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.stairs_light
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: numeric_state
+      entity_id: sensor.stairs_light_level
+      below: '10'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.stairs_light
+      data:
+        brightness_pct: 15
+
+        ##########################################################
+        ## Turn off Stair Lights when No Motion Detected Night
+        ##########################################################
+
+- alias: Motion - Turn off Stair Lights when No Motion Detected Night
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.stairs_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.stairs_light
+      state: 'on'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '22:00'
+      before: '07:00'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.stairs_light
+
+        ##########################################################
+        ## Turn off Stair Lights when No Motion Detected Daytime
+        ##########################################################
+
+- alias: Motion - Turn off Stair Lights when No Motion Detected Daytime
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.stairs_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.stairs_light
+      state: 'on'
+    - condition: time
+      after: '07:00'
+      before: '22:00'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.stairs_light
+
+        ##########################################################
         ## Turn on Basement Lights when Motion Detected
         ##########################################################
 
@@ -149,11 +915,14 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.basement_motion_sensor
+      entity_id: binary_sensor.basement_motion
       from: 'off'
       to: 'on'
 
   condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -178,7 +947,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.basement_motion_sensor
+      entity_id: binary_sensor.basement_motion
       from: 'on'
       to: 'off'
       for:
@@ -187,6 +956,9 @@
         seconds: 0
 
   condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -198,3 +970,100 @@
     - service: light.turn_off
       entity_id:
         - light.basement_lighting
+
+        ##########################################################
+        ## Turn off Basement Lights when No Motion Detected Night
+        ##########################################################
+
+- alias: Motion - Turn off Basement Lights when No Motion Detected Night
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.basement_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.basement_lighting
+      state: 'on'
+    - condition: time
+      after: '22:00'
+      before: '07:00'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.basement_lighting
+
+        ##########################################################
+        ## Turn on USER2's Closet Light when Motion Detected
+        ##########################################################
+
+- alias: Motion - Turn on USER2's Closet Light when Motion Detected
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER2_bedroom_closet_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.USER2s_bedroom_closet
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.USER2s_bedroom_closet
+      data:
+        brightness_pct: 100
+
+        ##########################################################
+        ## Turn off USER2's Closet Light when No Motion Detected
+        ##########################################################
+
+- alias: Motion - Turn off USER2's Closet Light when No Motion Detected
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER2_bedroom_closet_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.USER2s_bedroom_closet
+      state: 'on'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.USER2s_bedroom_closet

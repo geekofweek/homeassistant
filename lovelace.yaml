@@ -156,8 +156,6 @@ views:
             name: Temperature
           - entity: sensor.living_room_nest_protect_color_status
             name: Smoke Alarm
-          - entity: sensor.living_room_light_level
-            name: Light Level
         show_header_toggle: false
         title: Living Room
         type: entities
@@ -184,13 +182,6 @@ views:
           - entity: device_tracker.living_room_camera
             state: home
         type: conditional
-      - entity: sensor.living_room_light_level
-        min: 0
-        name: Light Level
-        theme: default
-        type: gauge
-        unit: Lux
-        max: 100
     icon: 'mdi:sofa'
     path: living
     title: Living
@@ -207,8 +198,11 @@ views:
           - entity: binary_sensor.back_door_opened
           - entity: binary_sensor.kitchen_occupancy
             name: Occupancy
-          - entity: sensor.kitchen_temperature
-            name: Temperature
+          - entity: binary_sensor.kitchen_occupancy
+            name: Occupancy
+          - entity: binary_sensor.kitchen_motion
+            icon: 'mdi:motion-sensor'
+            name: Motion
           - entity: sensor.kitchen_nest_protect_color_status
             name: Smoke Alarm
         show_header_toggle: false
@@ -221,6 +215,9 @@ views:
             name: Ceiling
           - entity: binary_sensor.main_floor_occupancy
             name: Occupancy
+          - entity: binary_sensor.dining_room_motion
+            icon: 'mdi:motion-sensor'
+            name: Motion
           - entity: sensor.main_floor_temperature
             name: Temperature
         show_header_toggle: false
@@ -243,6 +240,8 @@ views:
           - entity: light.closet_lamp
           - entity: light.bedroom_closet_ceiling
             name: Closet Ceiling
+          - entity: light.USER2s_bedroom_closet
+            name: USER2's Closet
           - entity: binary_sensor.bedroom_occupancy
             name: Occupancy
           - entity: sensor.bedroom_temperature
@@ -358,7 +357,7 @@ views:
           - entity: sensor.laundry_room_temperature
           - entity: sensor.basement_nest_protect_color_status
             name: Smoke Alarm
-          - entity: binary_sensor.basement_motion_sensor
+          - entity: binary_sensor.basement_motion
             icon: 'mdi:motion-sensor'
             name: Motion
         show_header_toggle: false
@@ -838,6 +837,7 @@ views:
           - input_boolean.disable_lights_morning
           - input_boolean.disable_lock_unlock_doors
           - input_boolean.disable_media_lights
+          - input_boolean.disable_motion
           - input_boolean.disable_occupancy
           - input_boolean.disable_rainy_day
           - input_boolean.disable_water_sensors
@@ -893,41 +893,64 @@ views:
         show_header_toggle: false
         title: Device Location
         type: entities
-      - entities:
+      - columns: 3
+        entities:
           - entity: binary_sensor.living_room_motion
             name: Living Room
-          - entity: binary_sensor.basement_motion_sensor
+          - entity: binary_sensor.dining_room_motion
+            name: Dining Room
+          - entity: binary_sensor.kitchen_motion
+            name: Kitchen
+          - entity: binary_sensor.stairs_motion
+            name: Stairs
+          - entity: binary_sensor.basement_motion
             name: Basement
+          - entity: binary_sensor.USER2_bedroom_closet_motion
+            name: USER2's Closet
+        show_state: false
         title: Motion
         type: glance
-      - entities:
+      - columns: 2
+        entities:
           - entity: binary_sensor.living_room_occupancy
+            icon: 'mdi:sofa'
             name: Living Room
           - entity: binary_sensor.main_floor_occupancy
+            icon: 'mdi:silverware'
             name: Dining Room
           - entity: binary_sensor.kitchen_occupancy
+            icon: 'mdi:fridge-outline'
             name: Kitchen
           - entity: binary_sensor.bedroom_occupancy
+            icon: 'mdi:hotel'
             name: Bedroom
           - entity: binary_sensor.bathroom_occupancy
+            icon: 'mdi:shower'
             name: Bathroom
           - entity: binary_sensor.office_occupancy
+            icon: 'mdi:desktop-mac'
             name: USER1's Office
           - entity: binary_sensor.USER2_office_occupancy
+            icon: 'mdi:desktop-mac'
             name: USER2's Office
           - entity: binary_sensor.guest_bedroom_occupancy
+            icon: 'mdi:hotel'
             name: Guest Bedroom
           - entity: binary_sensor.basement_occupancy
+            icon: 'mdi:stairs'
             name: Basement
           - entity: binary_sensor.laundry_room_occupancy
+            icon: 'mdi:washing-machine'
             name: Laundry Room
-        show_header_toggle: false
+        show_name: true
+        show_state: false
         title: Occupancy
-        type: entities
+        type: glance
       - entities:
           - entity: binary_sensor.front_door_opened
           - entity: binary_sensor.back_door_opened
           - entity: binary_sensor.basement_door_opened
+        show_state: false
         title: Doors
         type: glance
       - entities:
@@ -935,69 +958,86 @@ views:
             name: Ring
           - entity: binary_sensor.ring_front_door_motion
             name: Motion
+        show_state: false
         title: Door Bell
         type: glance
-      - entities:
-          - entity: sensor.living_room_nest_protect_color_status
-            name: Living Room
-          - entity: sensor.bedroom_nest_protect_color_status
-            name: Bedroom
-          - entity: sensor.kitchen_nest_protect_color_status
-            name: Kitchen
-          - entity: sensor.hallway_nest_protect_color_status
-            name: Hallway
-          - entity: sensor.upstairs_nest_protect_color_status
-            name: Upstairs
-          - entity: sensor.basement_nest_protect_color_status
-            name: Basement
-        show_header_toggle: false
-        title: Smoke Alarm
-        type: entities
-      - entities:
-          - entity: sensor.living_room_light_level
-            name: Living Room
-        title: Light Level
-        type: glance
+      - cards:
+          - entities:
+              - entity: sensor.living_room_nest_protect_color_status
+                name: Living Room
+              - entity: sensor.bedroom_nest_protect_color_status
+                name: Bedroom
+              - entity: sensor.kitchen_nest_protect_color_status
+                name: Kitchen
+              - entity: sensor.hallway_nest_protect_color_status
+                name: Hallway
+              - entity: sensor.upstairs_nest_protect_color_status
+                name: Upstairs
+              - entity: sensor.basement_nest_protect_color_status
+                name: Basement
+            show_header_toggle: false
+            title: Smoke Alarm Status
+            type: entities
+          - entities:
+              - entity: sensor.living_room_nest_protect_battery_health
+                name: Living Room
+              - entity: sensor.bedroom_nest_protect_battery_health
+                name: Bedroom
+              - entity: sensor.hallway_nest_protect_battery_health
+                name: Hallway
+              - entity: sensor.kitchen_nest_protect_battery_health
+                name: Kitchen
+              - entity: sensor.upstairs_nest_protect_battery_health
+                name: Upstairs
+              - entity: sensor.basement_nest_protect_battery_health
+                name: Basement
+            show_header_toggle: false
+            title: Smoke Alarm Battery
+            type: entities
+        type: vertical-stack
       - entities:
           - entity: binary_sensor.basement_drain_water_sensor_liquid_detected
             name: Basement Drain
           - entity: binary_sensor.sump_pump_water_sensor_liquid_detected
             name: Sump Pump
+        show_state: false
         title: Water Sensors
         type: glance
+      - columns: 3
+        entities:
+          - entity: sensor.living_room_light_level
+            name: Living Room
+          - entity: sensor.dining_room_light_level
+            name: Dining Room
+          - entity: sensor.kitchen_light_level
+            name: Kitchen
+          - entity: sensor.stairs_light_level
+            name: Stairs
+          - entity: sensor.USER2s_bedroom_closet_light_level
+            name: USER2's Closet
+        title: Light Level
+        type: glance
       - entities:
-          - sensor.downstairs_roomba_batt
-          - sensor.upstairs_roomba_batt
-          - sensor.ring_front_door_battery
-          - sensor.front_door_lock_batt
-          - sensor.back_door_lock_batt
-          - sensor.basement_door_lock_batt
-          - sensor.siren_batt
-          - sensor.front_door_sensor_batt
-          - sensor.back_door_sensor_batt
-          - sensor.basement_door_sensor_batt
-          - sensor.living_room_motion_batt
-          - sensor.basement_motion_batt
-          - sensor.basement_drain_water_sensor_batt
-          - sensor.sump_pump_water_sensor_batt
+          - entity: sensor.downstairs_roomba_batt
+          - entity: sensor.upstairs_roomba_batt
+          - entity: sensor.ring_front_door_battery
+          - entity: sensor.front_door_lock_batt
+          - entity: sensor.back_door_lock_batt
+          - entity: sensor.basement_door_lock_batt
+          - entity: sensor.siren_batt
+          - entity: sensor.front_door_sensor_batt
+          - entity: sensor.back_door_sensor_batt
+          - entity: sensor.basement_door_sensor_batt
+          - entity: sensor.living_room_motion_batt
+          - entity: sensor.dining_room_motion_batt
+          - entity: sensor.kitchen_motion_batt
+          - entity: sensor.stairs_motion_batt
+          - entity: sensor.basement_motion_batt
+          - entity: sensor.USER2s_closet_motion_batt
+          - entity: sensor.basement_drain_water_sensor_batt
+          - entity: sensor.sump_pump_water_sensor_batt
         show_header_toggle: false
         title: Battery Levels
-        type: entities
-      - entities:
-          - entity: sensor.living_room_nest_protect_battery_health
-            name: Living Room
-          - entity: sensor.bedroom_nest_protect_battery_health
-            name: Bedroom
-          - entity: sensor.hallway_nest_protect_battery_health
-            name: Hallway
-          - entity: sensor.kitchen_nest_protect_battery_health
-            name: Kitchen
-          - entity: sensor.upstairs_nest_protect_battery_health
-            name: Upstairs
-          - entity: sensor.basement_nest_protect_battery_health
-            name: Basement
-        show_header_toggle: false
-        title: Smoke Alarm Battery
         type: entities
     icon: 'mdi:gauge'
     path: sensors

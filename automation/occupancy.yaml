@@ -189,6 +189,9 @@
     - condition: state
       entity_id: input_boolean.disable_occupancy
       state: 'off'
+    - condition: state
+      entity_id: binary_sensor.kitchen_motion
+      state: 'off'
 
   action:
     - service: light.turn_off
@@ -213,6 +216,9 @@
   condition:
     - condition: state
       entity_id: input_boolean.disable_occupancy
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.dining_room_motion
       state: 'off'
 
   action:
@@ -273,6 +279,9 @@
     - condition: state
       entity_id: input_boolean.disable_occupancy
       state: 'off'
+    - condition: state
+      entity_id: binary_sensor.stairs_motion
+      state: 'off'
 
   action:
     - service: light.turn_off
@@ -296,6 +305,9 @@
       state: 'off'
     - condition: state
       entity_id: input_boolean.disable_occupancy
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.stairs_motion
       state: 'off'
 
   action:
@@ -323,7 +335,7 @@
       entity_id: input_boolean.disable_occupancy
       state: 'off'
     - condition: state
-      entity_id: binary_sensor.basement_motion_sensor
+      entity_id: binary_sensor.basement_motion
       state: 'off'
 
   action:

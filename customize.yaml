@@ -288,8 +288,32 @@
   sensor.living_room_light_level:
     friendly_name: Living Room Light Level
     icon: mdi:brightness-6
-  binary_sensor.basement_motion_sensor:
+  binary_sensor.basement_motion:
     friendly_name: Basement Motion
+    icon: mdi:stairs
+  sensor.stairs_light_level:
+    friendly_name: Stairs Light Level
+    icon: mdi:brightness-6
+  sensor.USER2s_bedroom_closet_light_level:
+    friendly_name: USER2's Closet Light Level
+    icon: mdi:brightness-6
+  sensor.dining_room_light_level:
+    friendly_name: Dining Room Light Level
+    icon: mdi:brightness-6
+  sensor.kitchen_light_level:
+    friendly_name: Kitchen Light Level
+    icon: mdi:brightness-6
+  binary_sensor.kitchen_motion:
+    friendly_name: Kitchen Motion
+    icon: mdi:fridge-outline
+  binary_sensor.USER2_bedroom_closet_motion:
+    friendly_name: USER2's Closet Motion
+    icon: mdi:hanger
+  binary_sensor.dining_room_motion:
+    friendly_name: Dining Room Motion
+    icon: mdi:silverware
+  binary_sensor.stairs_motion:
+    friendly_name: Stairs Motion
     icon: mdi:stairs
 
         ##########################################################
@@ -467,6 +491,9 @@
     icon: mdi:washing-machine
   light.basement_storage_area_ceiling:
     friendly_name: Basement Storage Area
+    icon: mdi:ceiling-light
+  light.USER2s_bedroom_closet:
+    friendly_name: USER2's Closet
     icon: mdi:ceiling-light
 
         ##########################################################
