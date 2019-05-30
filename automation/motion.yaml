@@ -232,6 +232,105 @@
         brightness_pct: 25
 
         ##########################################################
+        ## Turn off Living Lights when No Motion Detected
+        ##########################################################
+
+- alias: Motion - Turn off Living Lights when No Motion Detected
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.living_room_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 2
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
+    - condition: state
+      entity_id: light.living_room_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.living_room_lights
+
+        ##########################################################
+        ## Turn off Living Lights when No Motion Detected when Daytime USER2 Away
+        ##########################################################
+
+- alias: Motion - Turn off Living Lights when No Motion Detected Daytime
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.living_room_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: device_tracker.USER1s_iphone
+      state: 'home'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
+    - condition: state
+      entity_id: light.living_room_lights
+      state: 'on'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'not_home'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'lake'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.living_room_lights
+
+        ##########################################################
         ## Turn on Kitchen Lights when Motion Detected Evening
         ##########################################################
 
@@ -357,6 +456,47 @@
        brightness_pct: 100
 
         ##########################################################
+        ## Turn off Kitchen Lights when No Motion Detected Evenings
+        ##########################################################
+
+- alias: Motion - Turn off Kitchen Lights when No Motion Detected Evenings
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.kitchen_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
+    - condition: state
+      entity_id: light.kitchen_lights
+      state: 'on'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '06:00'
+      before: '22:00'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.kitchen_lights
+
+        ##########################################################
         ## Turn off Kitchen Lights when No Motion Detected Weeknights
         ##########################################################
 
@@ -416,8 +556,8 @@
       from: 'on'
       to: 'off'
       for:
-        hours: 1
-        minutes: 0
+        hours: 0
+        minutes: 45
         seconds: 0
 
   condition:
@@ -461,8 +601,8 @@
       from: 'on'
       to: 'off'
       for:
-        hours: 2
-        minutes: 0
+        hours: 0
+        minutes: 45
         seconds: 0
 
   condition:
@@ -481,6 +621,70 @@
     - condition: state
       entity_id: sun.sun
       state: 'above_horizon'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.kitchen_lights
+
+        ##########################################################
+        ## Turn off Kitchen Lights when No Motion Detected Daytime USER2 Away
+        ##########################################################
+
+- alias: Motion - Turn off Kitchen Lights when No Motion Detected Daytime USER2 Away
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.kitchen_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: device_tracker.USER1s_iphone
+      state: 'home'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
+    - condition: state
+      entity_id: light.kitchen_lights
+      state: 'on'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'not_home'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'lake'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
 
   action:
     - service: light.turn_off
@@ -522,6 +726,11 @@
         - light.dining_room_table
       data:
         brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.hallway_light
+      data:
+       brightness_pct: 25
 
         ##########################################################
         ## Turn on Dining Room Lights when Motion Detected Night
@@ -550,7 +759,7 @@
       state: 'below_horizon'
     - condition: time
       after: '22:00'
-      before: '07:00'
+      before: '02:00'
 
   action:
     - service: light.turn_on
@@ -558,6 +767,52 @@
         - light.dining_room_table
       data:
         brightness_pct: 1
+    - service: light.turn_on
+      entity_id:
+        - light.hallway_light
+      data:
+       brightness_pct: 1
+
+        ##########################################################
+        ## Turn on Dining Room Lights when Motion Detected Daytime
+        ##########################################################
+
+- alias: Motion - Turn on Dining Room Lights when Motion Detected Daytime
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.dining_room_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.dining_room_lights
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: numeric_state
+      entity_id: sensor.dining_room_light_level
+      below: '25'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.dining_room_table
+      data:
+        brightness_pct: 25
+    - service: light.turn_on
+      entity_id:
+        - light.hallway_light
+      data:
+       brightness_pct: 25
 
         ##########################################################
         ## Turn off Dining Room Lights when No Motion Detected Weeknights
@@ -606,42 +861,7 @@
     - service: light.turn_off
       entity_id:
         - light.dining_room_lights
-
-        ##########################################################
-        ## Turn on Dining Room Lights when Motion Detected Daytime
-        ##########################################################
-
-- alias: Motion - Turn on Dining Room Lights when Motion Detected Daytime
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.dining_room_motion
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_motion
-      state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: light.dining_room_lights
-      state: 'off'
-    - condition: state
-      entity_id: sun.sun
-      state: 'above_horizon'
-    - condition: numeric_state
-      entity_id: sensor.dining_room_light_level
-      below: '10'
-
-  action:
-    - service: light.turn_on
-      entity_id:
-        - light.dining_room_table
-      data:
-        brightness_pct: 25
+        - light.hallway_light
 
         ##########################################################
         ## Turn off Dining Room Lights when No Motion Detected Weekends
@@ -687,6 +907,7 @@
     - service: light.turn_off
       entity_id:
         - light.dining_room_lights
+        - light.hallway_light
 
         ##########################################################
         ## Turn off Dining Room Lights when No Motion Detected Daytime
@@ -725,6 +946,72 @@
     - service: light.turn_off
       entity_id:
         - light.dining_room_lights
+        - light.hallway_light
+
+        ##########################################################
+        ## Turn off Dining Room Lights when No Motion Detected Daytime USER2 Away
+        ##########################################################
+
+- alias: Motion - Turn off Dining Room Lights when No Motion Detected Daytime USER2 Away
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.dining_room_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: device_tracker.USER1s_iphone
+      state: 'home'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
+    - condition: state
+      entity_id: light.dining_room_lights
+      state: 'on'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'not_home'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'lake'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+      - condition: state
+        entity_id: device_tracker.USER2s_iphone
+        state: 'REDACTED'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.dining_room_lights
+        - light.hallway_light
 
         ##########################################################
         ## Turn on Stair Lights when Motion Detected Evening
@@ -825,7 +1112,7 @@
       state: 'above_horizon'
     - condition: numeric_state
       entity_id: sensor.stairs_light_level
-      below: '10'
+      below: '15'
 
   action:
     - service: light.turn_on
@@ -833,6 +1120,44 @@
         - light.stairs_light
       data:
         brightness_pct: 15
+
+        ##########################################################
+        ## Turn off Stair Lights when No Motion Detected Evening
+        ##########################################################
+
+- alias: Motion - Turn off Stair Lights when No Motion Detected Evening
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.stairs_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.stairs_light
+      state: 'on'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '07:00'
+      before: '22:00'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.stairs_light
 
         ##########################################################
         ## Turn off Stair Lights when No Motion Detected Night
@@ -847,7 +1172,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 30
+        minutes: 15
         seconds: 0
 
   condition:
@@ -884,8 +1209,8 @@
       from: 'on'
       to: 'off'
       for:
-        hours: 1
-        minutes: 0
+        hours: 0
+        minutes: 15
         seconds: 0
 
   condition:
@@ -898,9 +1223,9 @@
     - condition: state
       entity_id: light.stairs_light
       state: 'on'
-    - condition: time
-      after: '07:00'
-      before: '22:00'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
 
   action:
     - service: light.turn_off
