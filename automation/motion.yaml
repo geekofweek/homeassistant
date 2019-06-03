@@ -1392,3 +1392,142 @@
     - service: light.turn_off
       entity_id:
         - light.USER2s_bedroom_closet
+
+        ##########################################################
+        ## Turn on Office Fan when Motion Detected
+        ##########################################################
+
+- alias: Motion - Turn on Office Fan when Motion Detected
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER1s_office_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: device_tracker.USER1s_iphone
+      state: 'home'
+
+  action:
+    - service: fan.turn_on
+      entity_id:
+        - fan.office_fan
+      data:
+        speed: 'AUTO'
+    - delay: '00:00:01'
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.office_fan
+        operation_mode: cool
+    - delay: '00:00:01'
+    - service: fan.oscillate
+      data:
+        entity_id: fan.office_fan
+        oscillating: 'true'
+    - service: switch.turn_on
+      entity_id:
+        - switch.air_purifier
+
+        ##########################################################
+        ## Turn off Office Fan when No Motion Detected
+        ##########################################################
+
+- alias: Motion - Turn off Office Fan when No Motion Detected
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER1s_office_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 20
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+
+  action:
+    - service: fan.turn_off
+      entity_id:
+        - fan.office_fan
+    - service: switch.turn_off
+      entity_id:
+        - switch.air_purifier
+
+        ##########################################################
+        ## Turn on USER1's Office Lights when Motion Detected Night
+        ##########################################################
+
+- alias: Motion - Turn on USER1's Office Lights when Motion Detected Night
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER1s_office_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.USER1_office_lights
+      state: 'off'
+    - condition: state
+      entity_id: device_tracker.USER1s_iphone
+      state: 'home'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.office_lamp
+      data:
+        transition: 60
+        brightness_pct: 100
+        color_temp: 447
+    - service: light.turn_on
+      entity_id:
+        - light.USER1_s_office_ceiling
+      data:
+        brightness_pct: 15
+
+        ##########################################################
+        ## Turn off USER1's Office Lights when No Motion Detected
+        ##########################################################
+
+- alias: Motion - Turn off USER1's Office Lights when No Motion Detected
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER1s_office_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 20
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: light.USER1_office_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_off
+      entity_id: light.USER1_office_lights

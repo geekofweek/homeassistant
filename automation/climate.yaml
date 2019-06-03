@@ -651,69 +651,6 @@
 #################################################################
 
         ##########################################################
-        ## Turn on Office Fan when Occupied
-        ##########################################################
-
-- alias: Climate - Turn on Office Fan when Occupied
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.office_occupancy
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_climate
-      state: 'off'
-    - condition: state
-      entity_id: device_tracker.USER1s_iphone
-      state: 'home'
-
-  action:
-    - service: fan.turn_on
-      entity_id:
-        - fan.office_fan
-      data:
-        speed: 'AUTO'
-    - delay: '00:00:01'
-    - service: climate.set_operation_mode
-      data:
-        entity_id: climate.office_fan
-        operation_mode: cool
-    - delay: '00:00:01'
-    - service: fan.oscillate
-      data:
-        entity_id: fan.office_fan
-        oscillating: 'true'
-
-        ##########################################################
-        ## Turn off Office Fan when Unoccupied
-        ##########################################################
-
-- alias: Climate - Turn off Office Fan when Unoccupied
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.office_occupancy
-      from: 'on'
-      to: 'off'
-      for:
-        hours: 0
-        minutes: 30
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_climate
-      state: 'off'
-
-  action:
-    - service: fan.turn_off
-      entity_id:
-        - fan.office_fan
-
-        ##########################################################
         ## Turn on Office Fan Heat when Cold Outside
         ##########################################################
 
@@ -806,56 +743,6 @@
         entity_id: fan.office_fan
         oscillating: 'true'
 
-        ##########################################################
-        ## Turn on Office Air Purifier when Occupied
-        ##########################################################
-
-- alias: Climate - Turn on Office Air Purifier when Occupied
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.office_occupancy
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_climate
-      state: 'off'
-    - condition: state
-      entity_id: device_tracker.USER1s_iphone
-      state: 'home'
-
-  action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.air_purifier
-
-        ##########################################################
-        ## Turn off Office Air Purifier when Unoccupied
-        ##########################################################
-
-- alias: Climate - Turn off Office Air Purifier when Unoccupied
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.office_occupancy
-      from: 'on'
-      to: 'off'
-      for:
-        hours: 0
-        minutes: 30
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_climate
-      state: 'off'
-
-  action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.air_purifier
 
 #################################################################
 ## Basement Heater

@@ -22,6 +22,9 @@
     - condition: state
       entity_id: input_boolean.disable_occupancy
       state: 'off'
+    - condition: state
+      entity_id: binary_sensor.USER1s_office_motion
+      state: 'off'
 
   action:
     - service: light.turn_off
@@ -59,7 +62,6 @@
         color_temp: 447
     - service: light.turn_on
       entity_id:
-        - light.stairs_light
         - light.USER1_s_office_ceiling
       data:
         brightness_pct: 15
