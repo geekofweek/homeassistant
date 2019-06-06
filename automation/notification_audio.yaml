@@ -261,22 +261,6 @@
       entity_id: device_tracker.USER2s_iphone
       from: 'REDACTED'
       to: 'not_home'
-    - platform: state
-      entity_id: device_tracker.USER2s_iphone
-      from: 'REDACTED'
-      to: 'not_home'
-    - platform: state
-      entity_id: device_tracker.USER2s_iphone
-      from: 'REDACTED'
-      to: 'not_home'
-    - platform: state
-      entity_id: device_tracker.USER2s_iphone
-      from: 'REDACTED'
-      to: 'not_home'
-    - platform: state
-      entity_id: device_tracker.USER2s_iphone
-      from: 'REDACTED'
-      to: 'not_home'
 
   condition:
     - condition: state
@@ -293,7 +277,7 @@
       state: 'off'
     - condition: time
       after: '09:00'
-      before: '22:00'
+      before: '19:00'
 
   action:
     - service: sonos.snapshot

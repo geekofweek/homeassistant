@@ -41,7 +41,7 @@
   trigger:
     - platform: state
       entity_id: cover.garage_door
-      to: 'open'
+      to: 'opening'
 
   condition:
     - condition: state
@@ -77,7 +77,7 @@
   condition:
     - condition: time
       after: '00:00'
-      before: '04:00'
+      before: '05:00'
 
   action:
     - service: light.turn_off
@@ -400,69 +400,6 @@
         - light.back_door
 
         ##########################################################
-        ## Turn on Lights at 5a if USER2 Home and Working
-        ##########################################################
-
-- alias: Lights - Turn on Interior Lights at 5a if USER2 Home and Working
-
-  trigger:
-    - platform: time
-      at: '05:00'
-
-  condition:
-    - condition: state
-      entity_id: device_tracker.USER2s_iphone
-      state: 'home'
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: state
-      entity_id: input_boolean.disable_lights_morning
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.USER2_working
-      state: 'on'
-
-  action:
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_lamps
-        - light.media_center_lighting
-      data:
-       brightness_pct: 25
-       color_temp: 447
-    - service: light.turn_on
-      entity_id:
-        - light.dining_room_table
-        - light.kitchen_cabinets
-        - light.kitchen_sink
-        - light.bathroom_shower
-      data:
-       brightness_pct: 1
-    - service: light.turn_on
-      entity_id:
-        - light.bathroom_vanity
-      data:
-       brightness_pct: 20
-    - service: light.turn_on
-      entity_id:
-        - light.hallway_light
-      data:
-       brightness_pct: 1
-    - service: light.turn_on
-      entity_id:
-        - light.back_door
-      data:
-       brightness_pct: 1
-       transition: 60
-    - service: light.turn_on
-      entity_id:
-        - light.globe
-      data:
-       color_temp: 366
-       brightness_pct: 20
-
-        ##########################################################
         ## Turn off Interior Lights at Sunrise
         ##########################################################
 
@@ -485,18 +422,6 @@
       - condition: state
         entity_id: device_tracker.USER2s_iphone
         state: 'lake'
-      - condition: state
-        entity_id: device_tracker.USER2s_iphone
-        state: 'REDACTED'
-      - condition: state
-        entity_id: device_tracker.USER2s_iphone
-        state: 'REDACTED'
-      - condition: state
-        entity_id: device_tracker.USER2s_iphone
-        state: 'REDACTED'
-      - condition: state
-        entity_id: device_tracker.USER2s_iphone
-        state: 'REDACTED'
       - condition: state
         entity_id: device_tracker.USER2s_iphone
         state: 'REDACTED'

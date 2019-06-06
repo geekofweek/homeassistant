@@ -154,16 +154,6 @@
     origin: device_tracker.USER2s_iphone
     destination: zone.REDACTED
     region: 'US'
-  - platform: waze_travel_time
-    name: USER2 To REDACTED
-    origin: device_tracker.USER2s_iphone
-    destination: zone.REDACTED
-    region: 'US'
-  - platform: waze_travel_time
-    name: USER2 To REDACTED
-    origin: device_tracker.USER2s_iphone
-    destination: zone.REDACTED
-    region: 'US'
 
         ##########################################################
         ## UPS
@@ -333,11 +323,6 @@
         ## Calendars
         ##########################################################
 
-  - platform: template
-    sensors:
-      USER2_work_offset:
-        entity_id: sensor.date_time
-        value_template: '{{ (as_timestamp(states.calendar.work.attributes.start_time) - as_timestamp(now()) ) }}'
   - platform: template
     sensors:
       holidays_calendar:
