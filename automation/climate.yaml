@@ -122,7 +122,7 @@
 
   trigger:
     - platform: numeric_state
-      entity_id: sensor.dark_sky_temperature
+      entity_id: sensor.REDACTED_temperature
       above: 68
       for:
         hours: 0
@@ -146,9 +146,6 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Outside temp above 68 turning on AC
-    - service: notify.ios_USER2s_iphone
-      data:
-        message: Outside temp above 68 turning on AC
 
         ##########################################################
         ## Turn Thermostat off Summer
@@ -158,7 +155,7 @@
 
   trigger:
     - platform: numeric_state
-      entity_id: sensor.dark_sky_temperature
+      entity_id: sensor.REDACTED_temperature
       below: 68
       for:
         hours: 0
@@ -185,9 +182,6 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Outside temp below 68 shutting off AC
-    - service: notify.ios_USER2s_iphone
-      data:
-        message: Outside temp below 68 shutting off AC
 
         ##########################################################
         ## Turn Thermostat on Winter
@@ -197,7 +191,7 @@
 
   trigger:
     - platform: numeric_state
-      entity_id: sensor.dark_sky_temperature
+      entity_id: sensor.REDACTED_temperature
       below: 65
       for:
         hours: 0
@@ -221,9 +215,6 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Outside temp below 65 turning on Heat
-    - service: notify.ios_USER2s_iphone
-      data:
-        message: Outside temp below 65 turning on Heat
 
         ##########################################################
         ## Turn Thermostat off Winter
@@ -233,7 +224,7 @@
 
   trigger:
     - platform: numeric_state
-      entity_id: sensor.dark_sky_temperature
+      entity_id: sensor.REDACTED_temperature
       above: 65
       for:
         hours: 0
@@ -258,9 +249,6 @@
     - service: homeassistant.turn_on
       entity_id: input_boolean.thermostat_away
     - service: notify.ios_USER1s_iphone
-      data:
-        message: Outside temp above 65 turning off Heat
-    - service: notify.ios_USER2s_iphone
       data:
         message: Outside temp above 65 turning off Heat
 
@@ -557,6 +545,218 @@
         entity_id: input_select.thermostat_mode
         option: 'None'
 
+        ##########################################################
+        ## Adjust Thermostat at 2p when Hot
+        ##########################################################
+
+- alias: Climate - Adjust Thermostat at 2p when Hot
+
+  trigger:
+    - platform: time
+      at: '14:00'
+
+  condition:
+    - condition: state
+      entity_id: device_tracker.USER1s_iphone
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.thermostat_away
+      state: 'off'
+    - condition: state
+      entity_id: group.summer_mode
+      state: 'on'
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      above: 79
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+
+  action:
+    - service: climate.set_hold_mode
+      data:
+        entity_id: climate.main_floor
+        #Upstairs = smart2
+        hold_mode: "smart2"
+
+        ##########################################################
+        ## Adjust Thermostat when over 80
+        ##########################################################
+
+- alias: Climate - Adjust Thermostat at 2p when Hot
+
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      above: 80
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: device_tracker.USER1s_iphone
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.thermostat_away
+      state: 'off'
+    - condition: state
+      entity_id: group.summer_mode
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+    - condition: time
+      after: '14:00'
+      before: '19:00'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+
+  action:
+    - service: climate.set_hold_mode
+      data:
+        entity_id: climate.main_floor
+        #Upstairs = smart2
+        hold_mode: "smart2"
+
+        ##########################################################
+        ## Reset Thermostat at 10p if on Upstairs Mode
+        ##########################################################
+
+- alias: Climate - Reset Thermostat at 10p if on Upstairs Mode
+
+  trigger:
+    - platform: time
+      at: '22:00'
+
+  condition:
+    - condition: state
+      entity_id: device_tracker.USER1s_iphone
+      state: 'home'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.thermostat_away
+      state: 'off'
+    - condition: state
+      entity_id: group.summer_mode
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+    - condition: state
+      entity_id: sensor.thermostat_climate_mode
+      state: 'Upstairs'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+
+  action:
+    - service: climate.set_hold_mode
+      data:
+        entity_id: climate.main_floor
+        hold_mode: None
+
+        ##########################################################
+        ## Lower Temperature when Guests Visiting
+        ##########################################################
+
+- alias: Climate - Lower Temperature when Guests Visiting
+
+  trigger:
+    - platform: state
+      entity_id: group.friends_and_family
+      from: 'not_home'
+      to: 'home'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: time
+      after: '09:00'
+      before: '23:30'
+    - condition: state
+      entity_id: input_boolean.thermostat_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.summer_mode
+      state: 'on'
+
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.main_floor
+        temperature: 73
+
+        ##########################################################
+        ## Reset Temperature when Guests Leaves
+        ##########################################################
+
+- alias: Climate - Reset Temperature when Guests Leaves
+
+  trigger:
+    - platform: state
+      entity_id: group.friends_and_family
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: time
+      after: '09:00'
+      before: '23:30'
+    - condition: state
+      entity_id: input_boolean.thermostat_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: sensor.thermostat_climate_mode
+      state: 'Temperature Hold'
+    - condition: state
+      entity_id: group.summer_mode
+      state: 'on'
+
+  action:
+    - service: climate.set_hold_mode
+      data:
+        entity_id: climate.main_floor
+        hold_mode: None
+
 #################################################################
 ## Fireplace
 #################################################################
@@ -647,7 +847,7 @@
 
   trigger:
     - platform: numeric_state
-      entity_id: sensor.dark_sky_temperature
+      entity_id: sensor.REDACTED_temperature
       below: 20
       for:
         hours: 0
@@ -694,7 +894,7 @@
 
   trigger:
     - platform: numeric_state
-      entity_id: sensor.dark_sky_temperature
+      entity_id: sensor.REDACTED_temperature
       above: 20
       for:
         hours: 0

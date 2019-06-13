@@ -35,7 +35,7 @@ http:
   ssl_key: !secret ssl_key
   base_url: !secret base_url
   ip_ban_enabled: true
-  login_attempts_threshold: 3
+  login_attempts_threshold: 5
 
 #################################################################
 ## Components
@@ -135,6 +135,13 @@ remote:
 map:
 
 wemo:
+  discovery: false
+  static:
+    - REDACTED.111
+    - REDACTED.112
+    - REDACTED.113
+    - REDACTED.115
+    - REDACTED.116
 
 ifttt:
   key: !secret ifttt_key
@@ -233,6 +240,7 @@ weather:
   - platform: darksky
     api_key: !secret darksky_api_key
     mode: daily
+    name: "REDACTED, REDACTED"
 
 nest:
   client_id: !secret nest_client_id

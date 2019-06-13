@@ -69,34 +69,6 @@
       - input.voltage
 
         ##########################################################
-        ## Darksky Weather
-        ##########################################################
-
-  - platform: darksky
-    api_key: !secret darksky_api_key
-    monitored_conditions:
-      - summary
-      - minutely_summary
-      - hourly_summary
-      - daily_summary
-#      - icon
-      - nearest_storm_distance
-      - nearest_storm_bearing
-      - precip_type
-      - precip_intensity
-      - precip_probability
-      - temperature
-      - apparent_temperature
-      - dew_point
-      - wind_speed
-      - wind_bearing
-      - cloud_cover
-      - humidity
-      - pressure
-      - visibility
-      - ozone
-
-        ##########################################################
         ## Uptime
         ##########################################################
 
@@ -482,3 +454,22 @@
     name: PiHole 2 Status
     command: curl -X GET 'http://REDACTED.5/REDACTED/api.php?status'
     value_template: "{{ value_json.status == 'enabled' }}"
+
+        ##########################################################
+        ## Weather
+        ##########################################################
+
+  - platform: template
+    sensors:
+      REDACTED_humidity:
+        value_template: '{{ states.weather.REDACTED_mo.attributes.humidity }}'
+        friendly_name: 'Outdoor Humidity'
+        device_class: humidity
+        unit_of_measurement: '%'
+  - platform: template
+    sensors:
+      REDACTED_temperature:
+        value_template: '{{ states.weather.REDACTED_mo.attributes.temperature }}'
+        friendly_name: 'Outdoor Temperature'
+        device_class: temperature
+        unit_of_measurement: '°F'

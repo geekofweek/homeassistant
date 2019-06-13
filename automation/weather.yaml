@@ -10,8 +10,8 @@
 
   trigger:
     - platform: state
-      entity_id: sensor.dark_sky_precip
-      to: 'rain'
+      entity_id: weather.REDACTED_mo
+      to: 'rainy'
 
   condition:
     - condition: state
@@ -74,8 +74,8 @@
 
   trigger:
     - platform: state
-      entity_id: sensor.dark_sky_precip
-      to: 'rain'
+      entity_id: weather.REDACTED_mo
+      to: 'rainy'
 
   condition:
     - condition: state

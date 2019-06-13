@@ -65,7 +65,7 @@ views:
             name: Basement
             tap_action:
               action: toggle
-          - entity: sensor.dark_sky_temperature
+          - entity: sensor.REDACTED_temperature
             name: Outdoor
         title: Climate Control
         type: glance
@@ -450,17 +450,16 @@ views:
     cards:
       - entities:
           - entity: climate.main_floor
+          - entity: sensor.hvac_status
           - entity: sensor.thermostat_climate_mode
           - entity: input_select.thermostat_mode
-          - entity: sensor.hvac_status
-          - entity: sensor.dark_sky_temperature
           - entity: switch.summer_mode
             name: Summer Mode
           - entity: switch.winter_mode
             name: Winter Mode
           - entity: input_boolean.spring_fall_mode
-          - switch.fireplace
-          - climate.office_fan
+          - entity: switch.fireplace
+          - entity: climate.office_fan
           - entity: switch.basement_heater
         show_header_toggle: false
         title: Climate Control
@@ -497,27 +496,14 @@ views:
                 name: Living Room
               - entity: sensor.office_fan_humidity
                 name: Office
-              - entity: sensor.dark_sky_humidity
+              - entity: sensor.REDACTED_humidity
                 name: Outdoor
             title: Humidity
             type: glance
         type: vertical-stack
       - cards:
-          - entity: weather.dark_sky
-            name: 'Maplewood, MO'
+          - entity: weather.REDACTED
             type: weather-forecast
-          - entities:
-              - entity: sensor.dark_sky_summary
-                name: Current
-              - entity: sensor.dark_sky_minutely_summary
-                name: Minute
-              - entity: sensor.dark_sky_hourly_summary
-                name: Hourly
-              - entity: sensor.dark_sky_daily_summary
-                name: Daily
-            show_header_toggle: false
-            title: Weather Summary
-            type: entities
           - image: >-
               https://icons.wxug.com/data/weather-maps/radar/united-states/jefferson-city-missouri-region-current-radar-animation.gif
             type: picture
@@ -669,43 +655,13 @@ views:
             type: horizontal-stack
         type: vertical-stack
       - entities:
-          - sensor.USER1_to_home
-          - sensor.USER2_to_home
-          - sensor.USER2_to_REDACTED
-          - sensor.USER2_to_REDACTED
-          - sensor.USER2_to_REDACTED
+          - entity: sensor.USER1_to_home
+          - entity: sensor.USER2_to_home
+          - entity: sensor.USER2_to_REDACTED
         show_header_toggle: false
         title: Travel Times
         type: entities
       - entities:
-          - icon: 'mdi:cctv'
-            name: REDACTED
-            type: weblink
-            url: 'http://REDACTED/rtplive/REDACTED/playlist.m3u8'
-          - icon: 'mdi:cctv'
-            name: REDACTED
-            type: weblink
-            url: 'http://REDACTED/rtplive/REDACTED/playlist.m3u8'
-          - icon: 'mdi:cctv'
-            name: REDACTED
-            type: weblink
-            url: 'http://REDACTED/rtplive/REDACTED/playlist.m3u8'
-          - icon: 'mdi:cctv'
-            name: REDACTED
-            type: weblink
-            url: 'http://REDACTED/rtplive/REDACTED/playlist.m3u8'
-          - icon: 'mdi:cctv'
-            name: REDACTED
-            type: weblink
-            url: 'http://REDACTED/rtplive/REDACTED/playlist.m3u8'
-          - icon: 'mdi:cctv'
-            name: REDACTED
-            type: weblink
-            url: 'http://REDACTED/rtplive/REDACTED/playlist.m3u8'
-          - icon: 'mdi:cctv'
-            name: REDACTED
-            type: weblink
-            url: 'http://REDACTED/rtplive/REDACTED/playlist.m3u8'
           - icon: 'mdi:cctv'
             name: REDACTED
             type: weblink
@@ -879,13 +835,15 @@ views:
           - device_tracker.REDACTED
           - device_tracker.REDACTED
           - device_tracker.REDACTED
+          - device_tracker.REDACTED
+          - device_tracker.REDACTED
         show_empty: false
         state_filter:
           - home
         type: entity-filter
       - entities:
           - entity: device_tracker.USER1s_ipad
-          - entity: device_tracker.USER2sipad
+          - entity: device_tracker.USER2s_ipad
           - entity: device_tracker.USER1smacbookpro
           - entity: device_tracker.USER2smacbookair
           - entity: device_tracker.USER1simac
@@ -893,7 +851,7 @@ views:
         show_header_toggle: false
         title: Device Location
         type: entities
-      - columns: 3
+      - columns: 4
         entities:
           - entity: binary_sensor.living_room_motion
             name: Living Room
@@ -901,6 +859,8 @@ views:
             name: Dining Room
           - entity: binary_sensor.kitchen_motion
             name: Kitchen
+          - entity: binary_sensor.USER1s_office_motion
+            name: USER1's Office
           - entity: binary_sensor.stairs_motion
             name: Stairs
           - entity: binary_sensor.basement_motion
@@ -1011,6 +971,8 @@ views:
             name: Dining Room
           - entity: sensor.kitchen_light_level
             name: Kitchen
+          - entity: sensor.USER1s_office_light_sensor
+            name: USER1's Office
           - entity: sensor.stairs_light_level
             name: Stairs
           - entity: sensor.USER2s_bedroom_closet_light_level
