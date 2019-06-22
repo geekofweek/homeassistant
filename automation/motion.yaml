@@ -279,7 +279,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 30
+        minutes: 15
         seconds: 0
 
   condition:
@@ -694,7 +694,7 @@
       state: 'below_horizon'
     - condition: time
       after: '07:00'
-      before: '22:00'
+      before: '21:00'
 
   action:
     - service: light.turn_on
@@ -709,10 +709,10 @@
        brightness_pct: 25
 
         ##########################################################
-        ## Turn on Dining Room Lights when Motion Detected Night
+        ## Turn on Dining Room Lights when Motion Detected Night Weekdays
         ##########################################################
 
-- alias: Motion - Turn on Dining Room Lights when Motion Detected Night
+- alias: Motion - Turn on Dining Room Lights when Motion Detected Night Weekdays
 
   trigger:
     - platform: state
@@ -734,8 +734,60 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '22:00'
+      after: '21:00'
+      before: '00:00'
+    - condition: time
+      weekday:
+        - sun
+        - mon
+        - tue
+        - wed
+        - thu
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.dining_room_table
+      data:
+        brightness_pct: 1
+    - service: light.turn_on
+      entity_id:
+        - light.hallway_light
+      data:
+       brightness_pct: 1
+
+        ##########################################################
+        ## Turn on Dining Room Lights when Motion Detected Night Weekends
+        ##########################################################
+
+- alias: Motion - Turn on Dining Room Lights when Motion Detected Night Weekends
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.dining_room_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.dining_room_lights
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '21:00'
       before: '02:00'
+    - condition: time
+      weekday:
+        - fri
+        - sat
 
   action:
     - service: light.turn_on
@@ -1240,8 +1292,8 @@
       from: 'on'
       to: 'off'
       for:
-        hours: 1
-        minutes: 0
+        hours: 0
+        minutes: 30
         seconds: 0
 
   condition:
@@ -1273,7 +1325,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 30
+        minutes: 15
         seconds: 0
 
   condition:
@@ -1296,10 +1348,10 @@
         - light.basement_lighting
 
         ##########################################################
-        ## Turn on USER2's Closet Light when Motion Detected
+        ## Turn on USER2's Closet Light when Motion Detected Weekdays
         ##########################################################
 
-- alias: Motion - Turn on USER2's Closet Light when Motion Detected
+- alias: Motion - Turn on USER2's Closet Light when Motion Detected Weekdays
 
   trigger:
     - platform: state
@@ -1317,6 +1369,50 @@
     - condition: state
       entity_id: light.USER2s_bedroom_closet
       state: 'off'
+    - condition: time
+      after: '04:30'
+      before: '22:30'
+    - condition: time
+      weekday:
+        - sun
+        - mon
+        - tue
+        - wed
+        - thu
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.USER2s_bedroom_closet
+      data:
+        brightness_pct: 100
+
+        ##########################################################
+        ## Turn on USER2's Closet Light when Motion Detected Weekends
+        ##########################################################
+
+- alias: Motion - Turn on USER2's Closet Light when Motion Detected Weekends
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER2_bedroom_closet_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.USER2s_bedroom_closet
+      state: 'off'
+    - condition: time
+      weekday:
+        - fri
+        - sat
 
   action:
     - service: light.turn_on

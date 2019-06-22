@@ -3,61 +3,101 @@
 #################################################################
 
         ##########################################################
-        ## Turn On First Floor Lights when Raining
+        ## Turn Globe Blue when Raining
         ##########################################################
 
-- alias: Weather - Rain First Floor Lights On
+- alias: Weather - Turn Globe Blue when Raining
 
   trigger:
     - platform: state
-      entity_id: weather.REDACTED_mo
+      entity_id: weather.REDACTED
       to: 'rainy'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
 
   condition:
     - condition: state
       entity_id: group.household
       state: 'home'
-    - condition: time
-      after: '09:00'
     - condition: state
-      entity_id: sun.sun
-      state: 'above_horizon'
-    - condition: state
-      entity_id: binary_sensor.main_floor_occupancy
+      entity_id: light.globe
       state: 'on'
-    - condition: state
-      entity_id: input_boolean.disable_rainy_day
-      state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: light.living_room_lights
-      state: 'off'
-    - condition: state
-      entity_id: light.dining_room_lights
-      state: 'off'
-    - condition: state
-      entity_id: light.kitchen_lights
-      state: 'off'
 
   action:
     - service: light.turn_on
       entity_id:
-        - light.living_room_lamps
-        - light.media_center_lighting
+        - light.globe
       data:
-        color_temp: 447
-        brightness_pct: 50
-        transition: 300
+        color_name: blue
+        brightness_pct: 100
+        transition: 30
+
+        ##########################################################
+        ## Reset Globe when Not Raining
+        ##########################################################
+
+- alias: Weather - Turn Globe Blue when Raining
+
+  trigger:
+    - platform: state
+      entity_id: weather.REDACTED
+      from: 'rainy'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.globe
+      state: 'on'
+
+  action:
     - service: light.turn_on
       entity_id:
-        - light.kitchen_cabinets
-        - light.dining_room_table
-        - light.kitchen_sink
-        - light.hallway_light
+        - light.globe
       data:
-        brightness_pct: 1
+        brightness_pct: 20
+        color_temp: 366
+
+        ##########################################################
+        ## Set Globe Blue when On and Raining
+        ##########################################################
+
+- alias: Weather - Set Globe Blue when On and Raining
+
+  trigger:
+    - platform: state
+      entity_id: light.globe
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: weather.REDACTED
+      state: 'rainy'
+    - condition: state
+      entity_id: input_boolean.livingroom_rainbow
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.interior_holiday
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.alarm_tripped
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
+      state: 'off'
+
+  action:
     - service: light.turn_on
       entity_id:
         - light.globe
@@ -65,47 +105,3 @@
         color_name: blue
         brightness_pct: 100
         transition: 90
-
-        ##########################################################
-        ## Turn On USER2 Office when Raining
-        ##########################################################
-
-- alias: Weather - Rain USER2 Office Lights On
-
-  trigger:
-    - platform: state
-      entity_id: weather.REDACTED_mo
-      to: 'rainy'
-
-  condition:
-    - condition: state
-      entity_id: binary_sensor.USER2_office_occupancy
-      state: 'on'
-    - condition: state
-      entity_id: sun.sun
-      state: 'above_horizon'
-    - condition: state
-      entity_id: input_boolean.disable_rainy_day
-      state: 'off'
-    - condition: state
-      entity_id: device_tracker.USER2s_iphone
-      state: 'home'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: light.USER2_s_office_ceiling
-      state: 'off'
-
-  action:
-    - service: light.turn_on
-      entity_id:
-        - light.USER2_s_office_ceiling
-      data:
-        transition: 300
-        brightness_pct: 5
-    - service: light.turn_on
-      entity_id:
-        - light.stairs_light
-      data:
-        brightness_pct: 5

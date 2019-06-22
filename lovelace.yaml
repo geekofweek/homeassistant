@@ -1032,29 +1032,112 @@ views:
         show_header_toggle: false
         title: Devices
         type: entities
-      - entities:
-          - entity: sensor.nas_status
-          - entity: sensor.nas_cpu_usage
-          - entity: sensor.nas_memory_usage
-          - entity: sensor.nas_smart_status_drive_0_1
-          - entity: sensor.nas_smart_status_drive_0_2
-          - entity: sensor.nas_smart_status_drive_0_3
-          - entity: sensor.nas_smart_status_drive_0_4
-          - entity: sensor.nas_volume_used_storage
-          - entity: sensor.nas_volume_used_backup
-          - entity: sensor.nas_system_temperature
-        show_header_toggle: false
-        title: NAS
-        type: entities
-      - entities:
-          - sensor.ups_status
-          - sensor.ups_battery_charge
-          - sensor.ups_load
-          - sensor.ups_battery_runtime_mins
-          - sensor.ups_input_voltage
-        show_header_toggle: false
-        title: UPS
-        type: entities
+      - cards:
+          - entities:
+              - entity: sensor.nas_status
+                name: Status
+              - entity: sensor.nas_smart_status_drive_0_1
+                name: Disk 1
+              - entity: sensor.nas_smart_status_drive_0_2
+                name: Disk 2
+              - entity: sensor.nas_smart_status_drive_0_3
+                name: Disk 3
+              - entity: sensor.nas_smart_status_drive_0_4
+                name: Disk 4
+            theme: default
+            title: NAS
+            type: glance
+          - cards:
+              - entity: sensor.nas_cpu_usage
+                max: 100
+                min: 0
+                name: CPU
+                severity:
+                  green: 0
+                  yellow: 50
+                  red: 90
+                theme: default
+                type: gauge
+              - entity: sensor.nas_memory_usage
+                max: 100
+                min: 0
+                name: Memory
+                severity:
+                  green: 0
+                  yellow: 50
+                  red: 90
+                theme: default
+                type: gauge
+            type: horizontal-stack
+          - cards:
+              - entity: sensor.nas_volume_used_storage
+                max: 100
+                min: 0
+                name: Storage
+                severity:
+                  green: 0
+                  yellow: 50
+                  red: 90
+                theme: default
+                type: gauge
+              - entity: sensor.nas_volume_used_backup
+                max: 100
+                min: 0
+                name: Backup
+                severity:
+                  green: 0
+                  yellow: 50
+                  red: 90
+                theme: default
+                type: gauge
+            type: horizontal-stack
+          - cards:
+              - entity: sensor.nas_system_temperature
+                max: 200
+                min: 0
+                name: Temperature
+                severity:
+                  green: 0
+                  yellow: 100
+                  red: 130
+                theme: default
+                type: gauge
+            type: horizontal-stack
+        type: vertical-stack
+      - cards:
+          - entities:
+              - entity: sensor.ups_status
+                name: Status
+              - entity: sensor.ups_battery_runtime_mins
+                name: Runtime
+              - entity: sensor.ups_input_voltage
+                name: Voltage
+            theme: default
+            title: UPS
+            type: glance
+          - cards:
+              - entity: sensor.ups_battery_charge
+                max: 100
+                min: 0
+                name: Battery
+                severity:
+                  green: 60
+                  yellow: 20
+                  red: 0
+                theme: default
+                type: gauge
+              - entity: sensor.ups_load
+                max: 100
+                min: 0
+                name: Load
+                severity:
+                  green: 0
+                  yellow: 50
+                  red: 90
+                theme: default
+                type: gauge
+            type: horizontal-stack
+        type: vertical-stack
       - entities:
           - entity: switch.pihole_1_switch
             icon: 'mdi:power'

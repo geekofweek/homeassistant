@@ -75,35 +75,6 @@
             category: "washingmachinedonelights"
 
         ##########################################################
-        ## Washing Machine Done - Lights On
-        ##########################################################
-
-- alias: Laundry - Washing Machine Done - Lights On
-
-  trigger:
-    - platform: state
-      entity_id: sensor.washing_machine_status
-      from: 'running'
-      to: 'not running'
-      for:
-        hours: 0
-        minutes: 2
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: time
-      after: '09:00'
-      before: '21:00'
-
-  action:
-    - service: light.turn_on
-      entity_id:
-        - light.laundry_room_light
-
-        ##########################################################
         ## Washing Machine Switch Off Notification
         ##########################################################
 
