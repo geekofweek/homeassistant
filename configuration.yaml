@@ -22,8 +22,6 @@ discovery:
     - apple_tv
     - harmony
     - deconz
-  enable:
-    - homekit
 config:
 person:
 system_health:
@@ -240,7 +238,7 @@ weather:
   - platform: darksky
     api_key: !secret darksky_api_key
     mode: daily
-    name: "REDACTED, REDACTED"
+    name: "REDACTED, MO"
 
 nest:
   client_id: !secret nest_client_id

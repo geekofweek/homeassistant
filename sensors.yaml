@@ -280,6 +280,27 @@
         friendly_name: 'Stairs Motion Sensor'
         unit_of_measurement: '%'
         device_class: battery
+  - platform: template
+    sensors:
+      kitchen_sink_water_sensor_batt:
+        value_template: '{{ states.binary_sensor.kitchen_sink_water_sensor.attributes.battery_level }}'
+        friendly_name: 'Kitchen Sink Water Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      bathroom_sink_water_sensor_batt:
+        value_template: '{{ states.binary_sensor.bathroom_sink_water_sensor.attributes.battery_level }}'
+        friendly_name: 'Bathroom Sink Water Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      basement_door_water_sensor_batt:
+        value_template: '{{ states.binary_sensor.basement_door_water_sensor.attributes.battery_level }}'
+        friendly_name: 'Bathroom Sink Water Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
 
         ##########################################################
         ## Harmony Remote
@@ -462,14 +483,14 @@
   - platform: template
     sensors:
       REDACTED_humidity:
-        value_template: '{{ states.weather.REDACTED_mo.attributes.humidity }}'
+        value_template: '{{ states.weather.REDACTED.attributes.humidity }}'
         friendly_name: 'Outdoor Humidity'
         device_class: humidity
         unit_of_measurement: '%'
   - platform: template
     sensors:
       REDACTED_temperature:
-        value_template: '{{ states.weather.REDACTED_mo.attributes.temperature }}'
+        value_template: '{{ states.weather.REDACTED.attributes.temperature }}'
         friendly_name: 'Outdoor Temperature'
         device_class: temperature
         unit_of_measurement: '°F'

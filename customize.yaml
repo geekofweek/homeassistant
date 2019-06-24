@@ -327,6 +327,15 @@
   sensor.USER1s_office_light_sensor:
     friendly_name: USER1's Office Light Level
     icon: mdi:brightness-6
+  binary_sensor.basement_door_water_sensor:
+    device_class: moisture
+    friendly_name: Basement Door Water Sensor
+  binary_sensor.kitchen_sink_water_sensor:
+    device_class: moisture
+    friendly_name: Kitchen Sink Water Sensor
+  binary_sensor.bathroom_sink_water_sensor:
+    device_class: moisture
+    friendly_name: Bathroom Sink Water Sensor
 
         ##########################################################
         ## Switches
