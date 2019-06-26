@@ -148,6 +148,10 @@
       entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
       from: 'off'
       to: 'on'
+    - platform: state
+      entity_id: binary_sensor.washing_machine_water_sensor
+      from: 'off'
+      to: 'on'
 
   condition:
     - condition: state

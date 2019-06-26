@@ -146,50 +146,47 @@ views:
                 name: Globe
               - entity: switch.living_room_ceiling_fan
                 name: Ceiling Fan
-            title: Living Room
             show_header_toggle: false
+            title: Living Room
             type: entities
           - cards:
               - entity: lock.front_door
                 hold_action:
                   action: more-info
-                tap_action:
-                  action: toggle
+                icon_height: 100px
                 show_icon: true
                 show_name: true
-                type: entity-button
-              - entity: vacuum.downstairs_roomba
-                hold_action:
-                  action: more-info
                 tap_action:
                   action: toggle
-                show_icon: true
-                show_name: true
                 type: entity-button
             type: horizontal-stack
           - cards:
+              - entity: vacuum.downstairs_roomba
+                hold_action:
+                  action: more-info
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: toggle
+                type: entity-button
               - entity: switch.fireplace
                 hold_action:
                   action: more-info
-                tap_action:
-                  action: toggle
                 show_icon: true
                 show_name: true
+                tap_action:
+                  action: toggle
                 type: entity-button
             type: horizontal-stack
           - cards:
               - entity: sensor.living_room_temperature
-                max: 100
-                min: 0
+                graph: line
                 name: Temperature
-                theme: default
-                type: gauge
+                type: sensor
               - entity: sensor.wink_relay_sensor_humidity
-                max: 100
-                min: 0
+                graph: line
                 name: Humidity
-                theme: default
-                type: gauge
+                type: sensor
             type: horizontal-stack
           - entities:
               - entity: binary_sensor.front_door_opened
@@ -199,6 +196,7 @@ views:
                 name: Motion
               - entity: sensor.living_room_nest_protect_color_status
                 name: Smoke Alarm
+            show_state: false
             theme: default
             type: glance
         type: vertical-stack
@@ -213,9 +211,9 @@ views:
         type: entities
       - entity: media_player.living_room_apple_tv
         type: media-control
-      - entity: media_player.sonos_media_center
-        type: media-control
       - entity: media_player.sonos_living_room
+        type: media-control
+      - entity: media_player.sonos_media_center
         type: media-control
       - card:
           entity: camera.living_room
@@ -238,25 +236,25 @@ views:
                 name: Cabinets
               - entity: light.kitchen_sink
                 name: Sink
-            title: Kitchen
             show_header_toggle: false
+            title: Kitchen
             type: entities
           - cards:
-              - entity: lock.front_door
+              - entity: lock.back_door
                 hold_action:
                   action: more-info
-                tap_action:
-                  action: toggle
+                icon_height: 100px
                 show_icon: true
                 show_name: true
-                icon_height: 112px
+                tap_action:
+                  action: toggle
                 type: entity-button
+            type: horizontal-stack
+          - cards:
               - entity: sensor.kitchen_temperature
-                max: 100
-                min: 0
+                graph: line
                 name: Temperature
-                theme: default
-                type: gauge
+                type: sensor
             type: horizontal-stack
           - entities:
               - entity: binary_sensor.back_door_opened
@@ -264,12 +262,19 @@ views:
                 name: Occupancy
               - entity: binary_sensor.kitchen_motion
                 name: Motion
+            show_state: false
+            theme: default
+            type: glance
+          - entities:
               - entity: binary_sensor.kitchen_sink_water_sensor
                 name: Water Sensor
               - entity: sensor.kitchen_nest_protect_color_status
                 name: Smoke Alarm
+            show_state: false
             theme: default
             type: glance
+          - entity: media_player.sonos_kitchen
+            type: media-control
         type: vertical-stack
       - cards:
           - entities:
@@ -277,22 +282,18 @@ views:
                 name: Table
               - entity: light.dining_room_ceiling
                 name: Ceiling
-            title: Dining Room
             show_header_toggle: false
+            title: Dining Room
             type: entities
           - cards:
               - entity: sensor.main_floor_temperature
-                max: 100
-                min: 0
+                graph: line
                 name: Temperature
-                theme: default
-                type: gauge
+                type: sensor
               - entity: sensor.main_floor_humidity
-                max: 100
-                min: 0
+                graph: line
                 name: Humidity
-                theme: default
-                type: gauge
+                type: sensor
             type: horizontal-stack
           - entities:
               - entity: binary_sensor.main_floor_occupancy
@@ -301,13 +302,12 @@ views:
                 name: Motion
               - entity: sensor.hallway_nest_protect_color_status
                 name: Smoke Alarm
+            show_state: false
             theme: default
             type: glance
+          - entity: media_player.sonos_dining_room
+            type: media-control
         type: vertical-stack
-      - entity: media_player.sonos_dining_room
-        type: media-control
-      - entity: media_player.sonos_kitchen
-        type: media-control
     icon: 'mdi:silverware-variant'
     path: dining
     title: Dining
@@ -324,17 +324,13 @@ views:
                 name: Closet Ceiling
               - entity: light.USER2s_bedroom_closet
                 name: USER2's Closet
-            title: Bedroom
             show_header_toggle: false
+            title: Bedroom
             type: entities
-          - cards:
-              - entity: sensor.bedroom_temperature
-                max: 100
-                min: 0
-                name: Temperature
-                theme: default
-                type: gauge
-            type: horizontal-stack
+          - entity: sensor.bedroom_temperature
+            graph: line
+            name: Temperature
+            type: sensor
           - entities:
               - entity: binary_sensor.bedroom_occupancy
                 name: Occupancy
@@ -342,8 +338,13 @@ views:
                 name: Motion
               - entity: sensor.bedroom_nest_protect_color_status
                 name: Smoke Alarm
+            show_state: false
             theme: default
             type: glance
+          - entity: media_player.bedroom_apple_tv
+            type: media-control
+          - entity: media_player.sonos_bedroom
+            type: media-control
         type: vertical-stack
       - cards:
           - entities:
@@ -351,29 +352,22 @@ views:
                 name: Ceiling
               - entity: light.guest_bedroom_nightstand
                 name: Nightstand
-            title: Guest Bedroom
             show_header_toggle: false
+            title: Guest Bedroom
             type: entities
-          - cards:
-              - entity: sensor.guest_bedroom_temperature
-                max: 100
-                min: 0
-                name: Temperature
-                theme: default
-                type: gauge
-            type: horizontal-stack
+          - entity: sensor.guest_bedroom_temperature
+            graph: line
+            name: Temperature
+            type: sensor
           - entities:
               - entity: binary_sensor.guest_bedroom_occupancy
                 name: Occupancy
+            show_state: false
             theme: default
             type: glance
+          - entity: media_player.guest_bedroom_apple_tv
+            type: media-control
         type: vertical-stack
-      - entity: media_player.bedroom_apple_tv
-        type: media-control
-      - entity: media_player.guest_bedroom_apple_tv
-        type: media-control
-      - entity: media_player.sonos_bedroom
-        type: media-control
     icon: 'mdi:hotel'
     path: bedrooms
     title: Bedrooms
@@ -385,33 +379,38 @@ views:
                 name: Vanity Light
               - entity: light.bathroom_shower
                 name: Shower Light
-            title: Bathroom
             show_header_toggle: false
+            title: Bathroom
             type: entities
-          - cards:
-              - entity: sensor.bathroom_temperature
-                max: 100
-                min: 0
-                name: Temperature
-                theme: default
-                type: gauge
-            type: horizontal-stack
+          - entity: sensor.bathroom_temperature
+            graph: line
+            name: Temperature
+            type: sensor
           - entities:
               - entity: binary_sensor.bathroom_occupancy
                 name: Occupancy
               - entity: binary_sensor.bathroom_sink_water_sensor
                 name: Water Sensor
+            show_state: false
+            theme: default
+            type: glance
+          - entity: media_player.sonos_bathroom
+            type: media-control
+        type: vertical-stack
+      - cards:
+          - entities:
+              - entity: light.upstairs_bathroom_vanity
+                name: Vanity Light
+            show_header_toggle: false
+            title: Upstairs Bathroom
+            type: entities
+          - entities:
+              - entity: binary_sensor.upstairs_bathrooom_water_sensor
+                name: Water Sensor
+            show_state: false
             theme: default
             type: glance
         type: vertical-stack
-      - entities:
-          - entity: light.upstairs_bathroom_vanity
-            name: Vanity Light
-        show_header_toggle: false
-        title: Upstairs Bathroom
-        type: entities
-      - entity: media_player.sonos_bathroom
-        type: media-control
     icon: 'mdi:shower'
     path: bathrooms
     title: Bathrooms
@@ -423,94 +422,87 @@ views:
                 name: Ceiling
               - entity: light.office_lamp
                 name: Lamp
-            title: USER1's Office
             show_header_toggle: false
+            title: USER1's Office
             type: entities
           - cards:
               - entity: fan.office_fan
                 hold_action:
                   action: more-info
-                tap_action:
-                  action: more-info
                 show_icon: true
                 show_name: true
+                tap_action:
+                  action: more-info
                 type: entity-button
               - entity: switch.air_purifier
                 hold_action:
                   action: more-info
-                tap_action:
-                  action: toggle
                 show_icon: true
                 show_name: true
+                tap_action:
+                  action: toggle
                 type: entity-button
             type: horizontal-stack
           - cards:
               - entity: vacuum.upstairs_roomba
                 hold_action:
                   action: more-info
-                tap_action:
-                  action: toggle
                 show_icon: true
                 show_name: true
+                tap_action:
+                  action: toggle
                 type: entity-button
               - entity: climate.office_fan
                 hold_action:
                   action: more-info
-                tap_action:
-                  action: more-info
                 show_icon: true
                 show_name: true
+                tap_action:
+                  action: more-info
                 type: entity-button
             type: horizontal-stack
           - cards:
               - entity: sensor.office_temperature
-                max: 100
-                min: 0
+                graph: line
                 name: Temperature
-                theme: default
-                type: gauge
+                type: sensor
               - entity: sensor.office_fan_humidity
-                max: 100
-                min: 0
+                graph: line
                 name: Humidity
-                theme: default
-                type: gauge
+                type: sensor
             type: horizontal-stack
           - entities:
               - entity: binary_sensor.office_occupancy
                 name: Occupancy
               - entity: binary_sensor.USER1s_office_motion
                 name: Motion
+            show_state: false
             theme: default
             type: glance
+          - entity: media_player.USER1s_office_apple_tv
+            type: media-control
+          - entity: media_player.sonos_USER1s_office
+            type: media-control
         type: vertical-stack
       - cards:
           - entities:
               - entity: light.USER2_s_office_ceiling
                 name: Ceiling
-            title: USER2's Office
             show_header_toggle: false
+            title: USER2's Office
             type: entities
-          - cards:
-              - entity: sensor.USER2_office_temperature
-                max: 100
-                min: 0
-                name: Temperature
-                theme: default
-                type: gauge
-            type: horizontal-stack
+          - entity: sensor.USER2_office_temperature
+            graph: line
+            name: Temperature
+            type: sensor
           - entities:
               - entity: binary_sensor.USER2_office_occupancy
                 name: Occupancy
             theme: default
             type: glance
+          - entity: media_player.sonos_USER2s_office
+            type: media-control
         type: vertical-stack
-      - entity: media_player.USER1s_office_apple_tv
-        type: media-control
-      - entity: media_player.sonos_USER1s_office
-        type: media-control
-      - entity: media_player.sonos_USER2s_office
-        type: media-control
     icon: 'mdi:desktop-mac'
     path: offices
     title: Offices
@@ -524,40 +516,36 @@ views:
               - entity: light.work_bench_light
               - entity: light.craft_room_ceiling
               - entity: light.basement_storage_area_ceiling
-            title: Basement
             show_header_toggle: false
+            title: Basement
             type: entities
           - cards:
               - entity: lock.basement_door
                 hold_action:
                   action: more-info
-                tap_action:
-                  action: toggle
                 show_icon: true
                 show_name: true
+                tap_action:
+                  action: toggle
                 type: entity-button
               - entity: switch.basement_heater
                 hold_action:
                   action: more-info
-                tap_action:
-                  action: toggle
                 show_icon: true
                 show_name: true
+                tap_action:
+                  action: toggle
                 type: entity-button
             type: horizontal-stack
           - cards:
               - entity: sensor.basement_temperature
-                max: 100
-                min: 0
+                graph: line
                 name: Basement
-                theme: default
-                type: gauge
+                type: sensor
               - entity: sensor.laundry_room_temperature
-                max: 100
-                min: 0
+                graph: line
                 name: Laundry Room
-                theme: default
-                type: gauge
+                type: sensor
             type: horizontal-stack
           - entities:
               - entity: binary_sensor.basement_door_opened
@@ -565,8 +553,15 @@ views:
                 name: Occupancy
               - entity: binary_sensor.laundry_room_occupancy
                 name: Laundry Room
+            show_state: false
+            theme: default
+            type: glance
+          - entities:
               - entity: binary_sensor.basement_motion
                 name: Motion
+              - entity: sensor.basement_nest_protect_color_status
+                name: Smoke Alarm
+            show_state: false
             theme: default
             type: glance
         type: vertical-stack
@@ -586,13 +581,21 @@ views:
         show_state: true
         title: Water Works
         type: glance
-      - entities:
+      - columns: 3
+        entities:
           - entity: binary_sensor.basement_drain_water_sensor_liquid_detected
             name: Basement Drain
+          - entity: binary_sensor.utility_sink_water_sensor
+            name: Utility Sink
+          - entity: binary_sensor.washing_machine_water_sensor
+            name: Washing Machine
+          - entity: binary_sensor.water_heater_water_sensor
+            name: Water Heater
           - entity: binary_sensor.basement_door_water_sensor
             name: Basement Door
           - entity: binary_sensor.sump_pump_water_sensor_liquid_detected
             name: Sump Pump
+        show_state: false
         title: Water Sensors
         type: glance
       - card:
@@ -631,6 +634,7 @@ views:
             name: Ring
           - entity: binary_sensor.ring_front_door_motion
             name: Motion
+        show_state: false
         title: Door Bell
         type: glance
       - entity: media_player.sonos_backyard_patio
@@ -1179,28 +1183,20 @@ views:
             name: Kitchen Sink
           - entity: binary_sensor.bathroom_sink_water_sensor
             name: Bathroom Sink
+          - entity: binary_sensor.upstairs_bathrooom_water_sensor
+            name: Upstairs Bathroom
+          - entity: binary_sensor.utility_sink_water_sensor
+            name: Utility Sink
+          - entity: binary_sensor.washing_machine_water_sensor
+            name: Washing Machine
           - entity: binary_sensor.sump_pump_water_sensor_liquid_detected
             name: Sump Pump
           - entity: binary_sensor.basement_door_water_sensor
             name: Basement Door
+          - entity: binary_sensor.water_heater_water_sensor
+            name: Water Heater
         show_state: false
         title: Water Sensors
-        type: glance
-      - columns: 3
-        entities:
-          - entity: sensor.living_room_light_level
-            name: Living Room
-          - entity: sensor.dining_room_light_level
-            name: Dining Room
-          - entity: sensor.kitchen_light_level
-            name: Kitchen
-          - entity: sensor.USER1s_office_light_sensor
-            name: USER1's Office
-          - entity: sensor.stairs_light_level
-            name: Stairs
-          - entity: sensor.USER2s_bedroom_closet_light_level
-            name: USER2's Closet
-        title: Light Level
         type: glance
       - entities:
           - entity: sensor.downstairs_roomba_batt
@@ -1220,10 +1216,33 @@ views:
           - entity: sensor.basement_motion_batt
           - entity: sensor.USER2s_closet_motion_batt
           - entity: sensor.basement_drain_water_sensor_batt
+          - entity: sensor.kitchen_sink_water_sensor_batt
+          - entity: sensor.bathroom_sink_water_sensor_batt
+          - entity: sensor.upstairs_bathroom_water_sensor_batt
+          - entity: sensor.utility_sink_water_sensor_batt
+          - entity: sensor.washing_machine_water_sensor_batt
+          - entity: sensor.water_heater_water_sensor_batt
+          - entity: sensor.basement_door_water_sensor_batt
           - entity: sensor.sump_pump_water_sensor_batt
         show_header_toggle: false
         title: Battery Levels
         type: entities
+      - columns: 3
+        entities:
+          - entity: sensor.living_room_light_level
+            name: Living Room
+          - entity: sensor.dining_room_light_level
+            name: Dining Room
+          - entity: sensor.kitchen_light_level
+            name: Kitchen
+          - entity: sensor.USER1s_office_light_sensor
+            name: USER1's Office
+          - entity: sensor.stairs_light_level
+            name: Stairs
+          - entity: sensor.USER2s_bedroom_closet_light_level
+            name: USER2's Closet
+        title: Light Level
+        type: glance
     icon: 'mdi:gauge'
     path: sensors
     title: Sensors

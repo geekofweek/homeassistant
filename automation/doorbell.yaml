@@ -306,7 +306,7 @@
       entity_id: group.household
       state: 'home'
     - condition: state
-      entity_id: input_boolean.disable_voice_greeting
+      entity_id: input_boolean.disable_notifications
       state: 'off'
     - condition: state
       entity_id: input_boolean.disable_doorbell
@@ -342,7 +342,7 @@
       entity_id: group.household
       state: 'home'
     - condition: state
-      entity_id: input_boolean.disable_voice_greeting
+      entity_id: input_boolean.disable_notifications
       state: 'off'
     - condition: state
       entity_id: input_boolean.disable_doorbell
@@ -378,7 +378,7 @@
       entity_id: group.household
       state: 'home'
     - condition: state
-      entity_id: input_boolean.disable_voice_greeting
+      entity_id: input_boolean.disable_notifications
       state: 'off'
     - condition: state
       entity_id: input_boolean.disable_doorbell
@@ -416,7 +416,7 @@
         entity_id: group.household
         state: 'home'
       - condition: state
-        entity_id: input_boolean.disable_voice_greeting
+        entity_id: input_boolean.disable_notifications
         state: 'off'
       - condition: state
         entity_id: input_boolean.disable_doorbell
@@ -473,6 +473,55 @@
       data:
         entity_id: camera.front_porch
         media_player: media_player.living_room_apple_tv
+
+        ##########################################################
+        ## Front Door Camera TV when Doorbell Rings and Motion Detected
+        ##########################################################
+
+- alias: Doorbell - Front Door Camera TV when Doorbell Rings and Motion Detected
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: state
+      entity_id: input_select.remote
+      state: 'PowerOff'
+    - condition: time
+      after: '08:00'
+      before: '22:00'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: binary_sensor.living_room_occupancy
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.living_room_motion
+        state: 'on'
+
+  action:
+    - service: camera.play_stream
+      data:
+        entity_id: camera.front_porch
+        media_player: media_player.living_room_apple_tv
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.remote
+        option: "Watch TV"
+    - delay: '00:02:00'
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.remote
+        option: "PowerOff"
 
         ##########################################################
         ## Camera Office TV when Doorbell Rings TV Off
@@ -536,7 +585,7 @@
       state: 'off'
     - condition: time
       after: '08:00'
-      before: '23:00'
+      before: '03:30'
     - condition: state
       entity_id: device_tracker.USER1s_iphone
       state: 'home'
@@ -552,3 +601,35 @@
       data:
         entity_id: camera.front_porch
         media_player: media_player.USER1s_office_apple_tv
+
+        ##########################################################
+        ## Front Door Camera Bedroom TV when Doorbell Rings
+        ##########################################################
+
+- alias: Doorbell - Front Door Camera Bedroom TV when Doorbell Rings
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: state
+      entity_id: input_select.bedroom_remote
+      state: 'Watch TV'
+    - condition: time
+      after: '08:00'
+      before: '21:00'
+
+  action:
+    - service: camera.play_stream
+      data:
+        entity_id: camera.front_porch
+        media_player: media_player.bedroom_apple_tv

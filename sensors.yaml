@@ -298,7 +298,35 @@
     sensors:
       basement_door_water_sensor_batt:
         value_template: '{{ states.binary_sensor.basement_door_water_sensor.attributes.battery_level }}'
-        friendly_name: 'Bathroom Sink Water Sensor'
+        friendly_name: 'Basement Door Water Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      upstairs_bathroom_water_sensor_batt:
+        value_template: '{{ states.binary_sensor.upstairs_bathrooom_water_sensor.attributes.battery_level }}'
+        friendly_name: 'Upstairs Bathroom Water Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      utility_sink_water_sensor_batt:
+        value_template: '{{ states.binary_sensor.utility_sink_water_sensor.attributes.battery_level }}'
+        friendly_name: 'Utility Sink Water Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      water_heater_water_sensor_batt:
+        value_template: '{{ states.binary_sensor.water_heater_water_sensor.attributes.battery_level }}'
+        friendly_name: 'Water Heater Water Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      washing_machine_water_sensor_batt:
+        value_template: '{{ states.binary_sensor.washing_machine_water_sensor.attributes.battery_level }}'
+        friendly_name: 'Washing Machine Water Sensor'
         unit_of_measurement: '%'
         device_class: battery
 
