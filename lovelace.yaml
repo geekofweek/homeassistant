@@ -7,6 +7,37 @@ views:
           - entity: device_tracker.USER2s_iphone
         title: Household
         type: glance
+      - card:
+          show_state: false
+          title: Friends and Family
+          type: glance
+        entities:
+          - device_tracker.REDACTED
+          - device_tracker.REDACTED
+          - device_tracker.REDACTED
+          - device_tracker.REDACTED
+          - device_tracker.REDACTED
+          - device_tracker.REDACTED
+          - device_tracker.REDACTED
+          - device_tracker.REDACTED
+          - device_tracker.REDACTED
+          - device_tracker.REDACTED
+          - device_tracker.REDACTED
+          - device_tracker.REDACTED
+          - device_tracker.REDACTED
+          - device_tracker.REDACTEDiphone
+          - device_tracker.REDACTED
+          - device_tracker.REDACTED
+          - device_tracker.REDACTED
+          - device_tracker.REDACTED
+          - device_tracker.REDACTED
+          - device_tracker.REDACTED
+          - device_tracker.REDACTED
+          - device_tracker.REDACTED
+        show_empty: false
+        state_filter:
+          - home
+        type: entity-filter
       - entities:
           - entity: light.living_room_lights
           - entity: light.dining_room_lights
@@ -153,7 +184,14 @@ views:
               - entity: lock.front_door
                 hold_action:
                   action: more-info
-                icon_height: 100px
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: toggle
+                type: entity-button
+              - entity: switch.fireplace
+                hold_action:
+                  action: more-info
                 show_icon: true
                 show_name: true
                 tap_action:
@@ -169,9 +207,10 @@ views:
                 tap_action:
                   action: toggle
                 type: entity-button
-              - entity: switch.fireplace
+              - entity: switch.livingroom_rainbow
                 hold_action:
                   action: more-info
+                name: Random Light Color
                 show_icon: true
                 show_name: true
                 tap_action:
@@ -200,21 +239,19 @@ views:
             theme: default
             type: glance
         type: vertical-stack
-      - entities:
-          - input_select.remote
-          - input_select.bedroom_remote
-          - input_select.office_remote
-          - input_select.sonos
-          - input_boolean.group_all_sonos
-        show_header_toggle: false
-        title: Remote
-        type: entities
-      - entity: media_player.living_room_apple_tv
-        type: media-control
-      - entity: media_player.sonos_living_room
-        type: media-control
-      - entity: media_player.sonos_media_center
-        type: media-control
+      - cards:
+          - entities:
+              - entity: input_select.remote
+              - entity: input_select.bedroom_remote
+              - entity: input_select.office_remote
+              - entity: input_select.sonos
+              - input_boolean.group_all_sonos
+            show_header_toggle: false
+            title: Living Room
+            type: entities
+          - entity: media_player.living_room_apple_tv
+            type: media-control
+        type: vertical-stack
       - card:
           entity: camera.living_room
           show_state: false
@@ -223,6 +260,12 @@ views:
           - entity: device_tracker.living_room_camera
             state: home
         type: conditional
+      - cards:
+          - entity: media_player.sonos_living_room
+            type: media-control
+          - entity: media_player.sonos_media_center
+            type: media-control
+        type: vertical-stack
     icon: 'mdi:sofa'
     path: living
     title: Living
@@ -243,7 +286,7 @@ views:
               - entity: lock.back_door
                 hold_action:
                   action: more-info
-                icon_height: 100px
+                icon_height: 90px
                 show_icon: true
                 show_name: true
                 tap_action:
@@ -327,6 +370,25 @@ views:
             show_header_toggle: false
             title: Bedroom
             type: entities
+          - cards:
+              - entity: input_boolean.bedtime
+                hold_action:
+                  action: more-info
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: toggle
+                type: entity-button
+              - entity: switch.bedroom_rainbow
+                hold_action:
+                  action: more-info
+                name: Random Light Color
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: toggle
+                type: entity-button
+            type: horizontal-stack
           - entity: sensor.bedroom_temperature
             graph: line
             name: Temperature
@@ -426,6 +488,17 @@ views:
             title: USER1's Office
             type: entities
           - cards:
+              - entity: vacuum.upstairs_roomba
+                hold_action:
+                  action: more-info
+                icon_height: 91px
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: toggle
+                type: entity-button
+            type: horizontal-stack
+          - cards:
               - entity: fan.office_fan
                 hold_action:
                   action: more-info
@@ -444,14 +517,6 @@ views:
                 type: entity-button
             type: horizontal-stack
           - cards:
-              - entity: vacuum.upstairs_roomba
-                hold_action:
-                  action: more-info
-                show_icon: true
-                show_name: true
-                tap_action:
-                  action: toggle
-                type: entity-button
               - entity: climate.office_fan
                 hold_action:
                   action: more-info
@@ -459,6 +524,15 @@ views:
                 show_name: true
                 tap_action:
                   action: more-info
+                type: entity-button
+              - entity: switch.office_rainbow
+                hold_action:
+                  action: more-info
+                name: Random Light Color
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: toggle
                 type: entity-button
             type: horizontal-stack
           - cards:
@@ -613,16 +687,30 @@ views:
     title: Basement
   - badges: []
     cards:
-      - entities:
-          - entity: light.front_porch
-          - entity: light.back_door
-          - entity: light.backyard_deck
-          - entity: light.backyard_patio
-          - entity: light.garage_light
-          - entity: switch.front_yard_lighting
-          - entity: switch.backyard_lighting
-        title: Exterior Lights
-        type: entities
+      - cards:
+          - entities:
+              - entity: light.front_porch
+              - entity: light.back_door
+              - entity: light.backyard_deck
+              - entity: light.backyard_patio
+              - entity: light.garage_light
+              - entity: switch.front_yard_lighting
+              - entity: switch.backyard_lighting
+            title: Exterior Lights
+            type: entities
+          - cards:
+              - entity: switch.front_porch_rainbow
+                hold_action:
+                  action: more-info
+                icon_height: 90px
+                name: Front Porch Random Light Color
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: toggle
+                type: entity-button
+            type: horizontal-stack
+        type: vertical-stack
       - entity: cover.garage_door
         hold_action:
           action: more-info
@@ -668,22 +756,50 @@ views:
     title: Outdoors
   - badges: []
     cards:
-      - entities:
+      - cards:
           - entity: climate.main_floor
-          - entity: sensor.hvac_status
-          - entity: sensor.thermostat_climate_mode
-          - entity: input_select.thermostat_mode
-          - entity: switch.summer_mode
-            name: Summer Mode
-          - entity: switch.winter_mode
-            name: Winter Mode
-          - entity: input_boolean.spring_fall_mode
-          - entity: switch.fireplace
-          - entity: climate.office_fan
-          - entity: switch.basement_heater
-        show_header_toggle: false
-        title: Climate Control
-        type: entities
+            type: thermostat
+          - cards: null
+            entities:
+              - entity: sensor.hvac_status
+              - entity: sensor.thermostat_climate_mode
+            type: glance
+          - cards: null
+            entities:
+              - entity: input_select.thermostat_mode
+            type: entities
+          - cards: null
+            entities:
+              - entity: switch.summer_mode
+                tap_action:
+                  action: toggle
+              - entity: switch.winter_mode
+                tap_action:
+                  action: toggle
+              - entity: switch.spring_fall_mode
+                tap_action:
+                  action: toggle
+            show_state: false
+            type: glance
+          - cards:
+              - entity: climate.office_fan
+                hold_action:
+                  action: more-info
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: more-info
+                type: entity-button
+              - entity: switch.basement_heater
+                hold_action:
+                  action: more-info
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: toggle
+                type: entity-button
+            type: horizontal-stack
+        type: vertical-stack
       - cards:
           - entities:
               - entity: sensor.living_room_temperature
@@ -924,49 +1040,35 @@ views:
           action: toggle
         type: entity-button
       - entities:
-          - entity: input_boolean.livingroom_rainbow
-            name: Living Room
-            tap_action:
-              action: toggle
-          - entity: input_boolean.bedroom_rainbow
-            name: Bedroom
-            tap_action:
-              action: toggle
-          - entity: input_boolean.office_rainbow
-            name: Office
-            tap_action:
-              action: toggle
-          - entity: input_boolean.front_porch_rainbow
-            name: Front Porch
-            tap_action:
-              action: toggle
-        show_header_toggle: false
-        title: Party Modes
-        type: glance
-      - entities:
           - entity: input_boolean.lock_doors
-            name: Lock
             tap_action:
               action: toggle
           - entity: input_boolean.unlock_doors
-            name: Unlock
             tap_action:
               action: toggle
-          - entity: lock.front_door
-            name: Front Door
-            tap_action:
-              action: toggle
-          - entity: lock.back_door
-            name: Back Door
-            tap_action:
-              action: toggle
-          - entity: lock.basement_door
-            name: Basement
-            tap_action:
-              action: toggle
-        show_header_toggle: false
+        show_state: false
         title: Locks
         type: glance
+      - type: glance
+        entities:
+          - entity: switch.livingroom_rainbow
+            name: Living Room
+            tap_action:
+              action: toggle
+          - entity: switch.bedroom_rainbow
+            name: Bedroom
+            tap_action:
+              action: toggle
+          - entity: switch.office_rainbow
+            name: Office
+            tap_action:
+              action: toggle
+          - entity: switch.front_porch_rainbow
+            name: Front Porch
+            tap_action:
+              action: toggle
+        title: Random Light Color
+        show_state: false
       - entities:
           - sensor.holidays_calendar
           - input_select.holiday
@@ -1141,40 +1243,6 @@ views:
         show_state: false
         title: Door Bell
         type: glance
-      - cards:
-          - entities:
-              - entity: sensor.living_room_nest_protect_color_status
-                name: Living Room
-              - entity: sensor.bedroom_nest_protect_color_status
-                name: Bedroom
-              - entity: sensor.kitchen_nest_protect_color_status
-                name: Kitchen
-              - entity: sensor.hallway_nest_protect_color_status
-                name: Hallway
-              - entity: sensor.upstairs_nest_protect_color_status
-                name: Upstairs
-              - entity: sensor.basement_nest_protect_color_status
-                name: Basement
-            show_header_toggle: false
-            title: Smoke Alarm Status
-            type: entities
-          - entities:
-              - entity: sensor.living_room_nest_protect_battery_health
-                name: Living Room
-              - entity: sensor.bedroom_nest_protect_battery_health
-                name: Bedroom
-              - entity: sensor.hallway_nest_protect_battery_health
-                name: Hallway
-              - entity: sensor.kitchen_nest_protect_battery_health
-                name: Kitchen
-              - entity: sensor.upstairs_nest_protect_battery_health
-                name: Upstairs
-              - entity: sensor.basement_nest_protect_battery_health
-                name: Basement
-            show_header_toggle: false
-            title: Smoke Alarm Battery
-            type: entities
-        type: vertical-stack
       - columns: 3
         entities:
           - entity: binary_sensor.basement_drain_water_sensor_liquid_detected
@@ -1198,35 +1266,6 @@ views:
         show_state: false
         title: Water Sensors
         type: glance
-      - entities:
-          - entity: sensor.downstairs_roomba_batt
-          - entity: sensor.upstairs_roomba_batt
-          - entity: sensor.ring_front_door_battery
-          - entity: sensor.front_door_lock_batt
-          - entity: sensor.back_door_lock_batt
-          - entity: sensor.basement_door_lock_batt
-          - entity: sensor.siren_batt
-          - entity: sensor.front_door_sensor_batt
-          - entity: sensor.back_door_sensor_batt
-          - entity: sensor.basement_door_sensor_batt
-          - entity: sensor.living_room_motion_batt
-          - entity: sensor.dining_room_motion_batt
-          - entity: sensor.kitchen_motion_batt
-          - entity: sensor.stairs_motion_batt
-          - entity: sensor.basement_motion_batt
-          - entity: sensor.USER2s_closet_motion_batt
-          - entity: sensor.basement_drain_water_sensor_batt
-          - entity: sensor.kitchen_sink_water_sensor_batt
-          - entity: sensor.bathroom_sink_water_sensor_batt
-          - entity: sensor.upstairs_bathroom_water_sensor_batt
-          - entity: sensor.utility_sink_water_sensor_batt
-          - entity: sensor.washing_machine_water_sensor_batt
-          - entity: sensor.water_heater_water_sensor_batt
-          - entity: sensor.basement_door_water_sensor_batt
-          - entity: sensor.sump_pump_water_sensor_batt
-        show_header_toggle: false
-        title: Battery Levels
-        type: entities
       - columns: 3
         entities:
           - entity: sensor.living_room_light_level
@@ -1243,7 +1282,24 @@ views:
             name: USER2's Closet
         title: Light Level
         type: glance
+      - columns: 2
+        entities:
+          - entity: sensor.living_room_nest_protect_color_status
+            name: Living Room
+          - entity: sensor.bedroom_nest_protect_color_status
+            name: Bedroom
+          - entity: sensor.kitchen_nest_protect_color_status
+            name: Kitchen
+          - entity: sensor.hallway_nest_protect_color_status
+            name: Hallway
+          - entity: sensor.upstairs_nest_protect_color_status
+            name: Upstairs
+          - entity: sensor.basement_nest_protect_color_status
+            name: Basement
+        title: Smoke Alarm
+        type: glance
     icon: 'mdi:gauge'
+    panel: false
     path: sensors
     title: Sensors
   - badges: []
@@ -1432,4 +1488,173 @@ views:
     icon: 'mdi:ethernet'
     path: equipment
     title: System Equipment
+  - badges: []
+    cards:
+      - detail: 2
+        entity: sensor.ring_front_door_battery
+        graph: line
+        hours_to_show: 24
+        type: sensor
+      - cards:
+          - detail: 2
+            entity: sensor.downstairs_roomba_batt
+            graph: line
+            type: sensor
+          - detail: 2
+            entity: sensor.upstairs_roomba_batt
+            graph: line
+            type: sensor
+        type: horizontal-stack
+      - cards:
+          - detail: 2
+            entity: sensor.front_door_lock_batt
+            graph: line
+            type: sensor
+          - detail: 2
+            entity: sensor.front_door_sensor_batt
+            graph: line
+            type: sensor
+        type: horizontal-stack
+      - cards:
+          - detail: 2
+            entity: sensor.back_door_lock_batt
+            graph: line
+            type: sensor
+          - detail: 2
+            entity: sensor.back_door_sensor_batt
+            graph: line
+            type: sensor
+        type: horizontal-stack
+      - cards:
+          - detail: 2
+            entity: sensor.basement_door_lock_batt
+            graph: line
+            type: sensor
+          - detail: 2
+            entity: sensor.basement_door_sensor_batt
+            graph: line
+            type: sensor
+        type: horizontal-stack
+      - cards:
+          - detail: 2
+            entity: sensor.siren_batt
+            graph: line
+            type: sensor
+          - detail: 2
+            entity: sensor.sump_pump_water_sensor_batt
+            graph: line
+            name: Sump Pump Water
+            type: sensor
+        type: horizontal-stack
+      - cards:
+          - detail: 2
+            entity: sensor.living_room_motion_batt
+            graph: line
+            name: Living Room Motion
+            type: sensor
+          - detail: 2
+            entity: sensor.dining_room_motion_batt
+            graph: line
+            name: Dining Room Motion
+            type: sensor
+        type: horizontal-stack
+      - cards:
+          - detail: 2
+            entity: sensor.kitchen_motion_batt
+            graph: line
+            name: Kitchen Motion
+            type: sensor
+          - detail: 2
+            entity: sensor.stairs_motion_batt
+            graph: line
+            name: Stairs Motion
+            type: sensor
+        type: horizontal-stack
+      - cards:
+          - detail: 2
+            entity: sensor.basement_motion_batt
+            graph: line
+            name: Basement Motion
+            type: sensor
+          - detail: 2
+            entity: sensor.USER2s_closet_motion_batt
+            graph: line
+            name: USER2 Closet Motion
+            type: sensor
+        type: horizontal-stack
+      - cards:
+          - detail: 2
+            entity: sensor.basement_drain_water_sensor_batt
+            graph: line
+            name: Basement Drain Water
+            type: sensor
+          - detail: 2
+            entity: sensor.kitchen_sink_water_sensor_batt
+            graph: line
+            name: Kitchen Sink Water
+            type: sensor
+        type: horizontal-stack
+      - cards:
+          - detail: 2
+            entity: sensor.bathroom_sink_water_sensor_batt
+            graph: line
+            name: Baement Sink Water
+            type: sensor
+          - detail: 2
+            entity: sensor.upstairs_bathroom_water_sensor_batt
+            graph: line
+            name: Upstairs Bathroom Water
+            type: sensor
+        type: horizontal-stack
+      - cards:
+          - detail: 2
+            entity: sensor.utility_sink_water_sensor_batt
+            graph: line
+            name: Utility Sink Water
+            type: sensor
+          - detail: 2
+            entity: sensor.washing_machine_water_sensor_batt
+            graph: line
+            name: Washing Machine Water
+            type: sensor
+        type: horizontal-stack
+      - cards:
+          - detail: 2
+            entity: sensor.water_heater_water_sensor_batt
+            graph: line
+            name: Water Heater Water
+            type: sensor
+          - detail: 2
+            entity: sensor.basement_door_water_sensor_batt
+            graph: line
+            name: Basement Door Water
+            type: sensor
+        type: horizontal-stack
+      - cards:
+          - entity: sensor.living_room_nest_protect_battery_health
+            name: Living Room Smoke Alarm
+            type: sensor
+          - entity: sensor.bedroom_nest_protect_battery_health
+            name: Bedroom Smoke Alarm
+            type: sensor
+        type: horizontal-stack
+      - cards:
+          - entity: sensor.hallway_nest_protect_battery_health
+            name: Hallway Smoke Alarm
+            type: sensor
+          - entity: sensor.kitchen_nest_protect_battery_health
+            name: Kitchen Smoke Alarm
+            type: sensor
+        type: horizontal-stack
+      - cards:
+          - entity: sensor.upstairs_nest_protect_battery_health
+            name: Upstairs Smoke Alarm
+            type: sensor
+          - entity: sensor.basement_nest_protect_battery_health
+            name: Basement Smoke Alarm
+            type: sensor
+        type: horizontal-stack
+    icon: 'mdi:battery-charging-100'
+    panel: false
+    title: Battery Levels
 

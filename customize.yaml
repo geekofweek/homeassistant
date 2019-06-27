@@ -391,6 +391,9 @@
   switch.winter_mode:
     icon: mdi:snowman
     friendly_name: Winter Mode
+  switch.spring_fall_mode:
+    icon: mdi:leaf
+    friendly_name: Spring / Fall Mode
   switch.backyard_lighting:
     friendly_name: Backyard Lighting
     icon: mdi:gate
@@ -400,6 +403,18 @@
   switch.water_main:
     friendly_name: Water Main
     icon: mdi:water
+  switch.livingroom_rainbow:
+    friendly_name: Living Room Random Color
+    icon: mdi:palette
+  switch.bedroom_rainbow:
+    friendly_name: Bedroom Random Color
+    icon: mdi:palette
+  switch.office_rainbow:
+    friendly_name: Office Random Color
+    icon: mdi:palette
+  switch.front_porch_rainbow:
+    friendly_name: Front Porch Random Color
+    icon: mdi:palette
 
         ##########################################################
         ## Lights
@@ -435,7 +450,7 @@
   light.USER2s_nightstand:
     icon: mdi:lamp
   light.garage_light:
-    icon: mdi:track-light
+    icon: 'bha:outdoor-lamp-variant'
     friendly_name: Garage Light
   light.media_center_lighting:
     icon: mdi:television
@@ -498,9 +513,9 @@
   light.front_porch:
     icon: bha:outdoor-lamp
   light.back_door:
-    icon: 'bha:outdoor-lamp-variant'
+    icon: mdi:ceiling-light
   light.backyard_deck:
-    icon: 'bha:outdoor-lamp-variant'
+    icon: mdi:track-light
     friendly_name: Backyard Deck
   light.backyard_patio:
     icon: 'bha:outdoor-lamp-variant'

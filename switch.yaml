@@ -41,6 +41,91 @@
             entity_id: group.winter_mode
 
         ##########################################################
+        ## Spring / Fall Mode
+        ##########################################################
+
+  - platform: template
+    switches:
+      spring_fall_mode:
+        value_template: "{{ is_state('input_boolean.spring_fall_mode', 'on') }}"
+        turn_on:
+          service: homeassistant.turn_on
+          data:
+            entity_id: input_boolean.spring_fall_mode
+        turn_off:
+          service: homeassistant.turn_off
+          data:
+            entity_id: input_boolean.spring_fall_mode
+
+        ##########################################################
+        ## Living Room Random Light Color
+        ##########################################################
+
+  - platform: template
+    switches:
+      livingroom_rainbow:
+        value_template: "{{ is_state('input_boolean.livingroom_rainbow', 'on') }}"
+        turn_on:
+          service: homeassistant.turn_on
+          data:
+            entity_id: input_boolean.livingroom_rainbow
+        turn_off:
+          service: homeassistant.turn_off
+          data:
+            entity_id: input_boolean.livingroom_rainbow
+
+        ##########################################################
+        ## Bedroom Random Light Color
+        ##########################################################
+
+  - platform: template
+    switches:
+      bedroom_rainbow:
+        value_template: "{{ is_state('input_boolean.bedroom_rainbow', 'on') }}"
+        turn_on:
+          service: homeassistant.turn_on
+          data:
+            entity_id: input_boolean.bedroom_rainbow
+        turn_off:
+          service: homeassistant.turn_off
+          data:
+            entity_id: input_boolean.bedroom_rainbow
+
+        ##########################################################
+        ## Office Random Light Color
+        ##########################################################
+
+  - platform: template
+    switches:
+      office_rainbow:
+        value_template: "{{ is_state('input_boolean.office_rainbow', 'on') }}"
+        turn_on:
+          service: homeassistant.turn_on
+          data:
+            entity_id: input_boolean.office_rainbow
+        turn_off:
+          service: homeassistant.turn_off
+          data:
+            entity_id: input_boolean.office_rainbow
+
+        ##########################################################
+        ## Front Porch Random Light Color
+        ##########################################################
+
+  - platform: template
+    switches:
+      front_porch_rainbow:
+        value_template: "{{ is_state('input_boolean.front_porch_rainbow', 'on') }}"
+        turn_on:
+          service: homeassistant.turn_on
+          data:
+            entity_id: input_boolean.front_porch_rainbow
+        turn_off:
+          service: homeassistant.turn_off
+          data:
+            entity_id: input_boolean.front_porch_rainbow
+
+        ##########################################################
         ## Backyard Lighting
         ##########################################################
 
