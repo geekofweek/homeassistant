@@ -318,6 +318,7 @@ Within the local folder, variable localpath="PATH_TO_LOCAL_HA_CONFIGS", I have t
 ![UI](images/automation-screenshot.jpg?raw=true "Automations")
 ![UI](images/sensors-screenshot.jpg?raw=true "Sensors")
 ![UI](images/system-screenshot.jpg?raw=true "System")
+![UI](images/battery-screenshot.jpg?raw=true "Battery")
 
 | [Go to Menu](#menu) |
 
