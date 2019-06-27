@@ -36,13 +36,13 @@
         brightness_pct: 100
     - delay: '00:00:10'
     - service: light.turn_on
-      entity_id: light.globe
+      entity_id: light.media_center_lighting
       data:
         effect: colorloop
         brightness_pct: 100
     - delay: '00:00:15'
     - service: light.turn_on
-      entity_id: light.media_center_lighting
+      entity_id: light.globe
       data:
         effect: colorloop
         brightness_pct: 100
@@ -79,11 +79,14 @@
     - service: light.turn_on
       entity_id:
         - light.living_room_lights
-    - delay: '00:00:01'
+      data:
+        effect: stop
+    - delay: '00:00:05'
     - service: light.turn_on
       entity_id:
         - light.living_room_lamps
       data:
+        effect: stop
         transition: 30
         brightness_pct: 100
         color_temp: 447
@@ -97,6 +100,7 @@
       entity_id:
         - light.globe
       data:
+        effect: stop
         transition: 30
         brightness_pct: 20
         color_temp: 366
@@ -176,13 +180,16 @@
     - service: light.turn_on
       entity_id:
         - light.bedroom_lights
-    - delay: '00:00:01'
+      data:
+        effect: stop
+    - delay: '00:00:05'
     - service: light.turn_on
       entity_id:
         - light.USER1s_nightstand
         - light.USER2s_nightstand
         - light.bedroom_lamp
       data:
+        effect: stop
         transition: 30
         color_temp: 447
         brightness_pct: 50
@@ -191,6 +198,7 @@
         - light.closet_lamp
         - light.bedroom_closet_ceiling
       data:
+        effect: stop
         transition: 30
         brightness_pct: 50
 
@@ -242,9 +250,9 @@
 
   action:
     - service: light.turn_on
-      entity_id:
-        - light.office_lamp
+      entity_id: light.office_lamp
       data:
+        effect: stop
         transition: 30
         color_temp: 447
         brightness_pct: 100
@@ -312,6 +320,7 @@
     - service: light.turn_on
       entity_id: light.front_porch
       data:
+        effect: stop
         transition: 60
         brightness_pct: 40
         color_temp: 447

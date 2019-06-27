@@ -126,6 +126,23 @@
             entity_id: input_boolean.front_porch_rainbow
 
         ##########################################################
+        ## Bedtime Switch
+        ##########################################################
+
+  - platform: template
+    switches:
+      bedtime:
+        value_template: "{{ is_state('input_boolean.bedtime', 'on') }}"
+        turn_on:
+          service: homeassistant.turn_on
+          data:
+            entity_id: input_boolean.bedtime
+        turn_off:
+          service: homeassistant.turn_off
+          data:
+            entity_id: input_boolean.bedtime
+
+        ##########################################################
         ## Backyard Lighting
         ##########################################################
 
