@@ -3,6 +3,33 @@
 #################################################################
 
         ##########################################################
+        ## Set Weather Mode on Start
+        ##########################################################
+
+- alias: System - Set Weather Mode on Start
+
+  trigger:
+    - platform: homeassistant
+      event: start
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - delay: 00:02:00
+    - service: switch.turn_on
+      entity_id:
+        - switch.summer_mode
+#    - service: switch.turn_on
+#      entity_id:
+#        - switch.winter_mode
+#    - service: switch.turn_on
+#      entity_id:
+#        - switch.spring_fall_mode
+
+        ##########################################################
         ## Delay HomeKit Start
         ##########################################################
 
@@ -172,16 +199,20 @@
         message: "Wink Relay Has Crahsed, Please Restart"
 
         #################################################################
-        ## Rochester VPN Offline
+        ## REDACTED VPN Offline
         #################################################################
 
-- alias: Notification Text - Rochester VPN Offline
+- alias: Notification Text - REDACTED VPN Offline
 
   trigger:
     - platform: state
       entity_id: binary_sensor.rochester_vpn
       from: 'on'
       to: 'off'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
 
   condition:
     - condition: state
@@ -191,19 +222,26 @@
   action:
     - service: notify.ios_USER1s_iphone
       data:
-        message: Rochester VPN Offline
+        message: REDACTED VPN Offline
+    - service: notify.REDACTED
+      data:
+        message: REDACTED Internets Appears to be Offline.
 
         #################################################################
-        ## Rochester VPN Online
+        ## REDACTED VPN Online
         #################################################################
 
-- alias: Notification Text - Rochester VPN Online
+- alias: Notification Text - REDACTED VPN Online
 
   trigger:
     - platform: state
       entity_id: binary_sensor.rochester_vpn
       from: 'off'
       to: 'on'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
 
   condition:
     - condition: state
@@ -213,19 +251,26 @@
   action:
     - service: notify.ios_USER1s_iphone
       data:
-        message: Rochester VPN Online
+        message: REDACTED VPN Online
+    - service: notify.REDACTED
+      data:
+        message: REDACTED Internets Back Online
 
         #################################################################
-        ## Charleston VPN Offline
+        ## REDACTED VPN Offline
         #################################################################
 
-- alias: Notification Text - Charleston VPN Offline
+- alias: Notification Text - REDACTED VPN Offline
 
   trigger:
     - platform: state
       entity_id: binary_sensor.charleston_vpn
       from: 'on'
       to: 'off'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
 
   condition:
     - condition: state
@@ -235,19 +280,26 @@
   action:
     - service: notify.ios_USER1s_iphone
       data:
-        message: Charleston VPN Offline
+        message: REDACTED VPN Offline
+    - service: notify.REDACTED
+      data:
+        message: REDACTED Internets Appears to be Offline.
 
         #################################################################
-        ## Charleston VPN Online
+        ## REDACTED VPN Online
         #################################################################
 
-- alias: Notification Text - Charleston VPN Online
+- alias: Notification Text - REDACTED VPN Online
 
   trigger:
     - platform: state
       entity_id: binary_sensor.charleston_vpn
       from: 'off'
       to: 'on'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
 
   condition:
     - condition: state
@@ -257,7 +309,10 @@
   action:
     - service: notify.ios_USER1s_iphone
       data:
-        message: Charleston VPN Online
+        message: REDACTED VPN Online
+    - service: notify.REDACTED
+      data:
+        message: REDACTED Internets Back Online
 
         #################################################################
         ## Home Assistant Started Notification

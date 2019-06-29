@@ -708,6 +708,9 @@
     - condition: state
       entity_id: group.summer_mode
       state: 'on'
+    - condition: state
+      entity_id: sensor.thermostat_climate_mode
+      state: 'Home'
 
   action:
     - service: climate.set_temperature

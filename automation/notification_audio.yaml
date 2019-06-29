@@ -284,7 +284,7 @@
       data:
         with_group: yes
     - delay: '00:00:03'
-    - service: media_player.sonos_unjoin
+    - service: sonos.unjoin
       entity_id:
         - media_player.sonos_living_room
         - media_player.sonos_dining_room
@@ -292,7 +292,7 @@
         - media_player.sonos_bathroom
         - media_player.sonos_USER1s_office
     - delay: '00:00:01'
-    - service: media_player.sonos_join
+    - service: sonos.join
       data:
         master: media_player.sonos_USER1s_office
       entity_id:
@@ -319,6 +319,6 @@
         entity_id: media_player.sonos_USER1s_office
         message: "USER2 has left work, and will arrive Home in about, {{states('sensor.USER2_to_home')}} minutes"
     - delay: '00:00:25'
-    - service: media_player.sonos_restore
+    - service: sonos.restore
       data:
         with_group: yes

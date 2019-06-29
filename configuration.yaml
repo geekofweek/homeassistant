@@ -174,11 +174,11 @@ binary_sensor:
     scan_interval: 60
   - platform: ping
     host: REDACTED.1
-    name: Charleston VPN
+    name: REDACTED VPN
     scan_interval: 60
   - platform: ping
     host: REDACTED.1
-    name: Rochester VPN
+    name: REDACTED VPN
     scan_interval: 60
 
 stream:
@@ -251,6 +251,20 @@ dyson:
   devices:
     - device_id: !secret dyson_id
       device_ip: REDACTED.95
+
+notify:
+  - name: REDACTED
+    platform: smtp
+    server: smtp.gmail.com
+    port: 587
+    timeout: 15
+    sender: REDACTED
+    encryption: starttls
+    username: REDACTED
+    password: !secret gmail_app_password
+    recipient:
+      - REDACTED@txt.att.net
+    sender_name: REDACTED
 
 #################################################################
 ## Includes

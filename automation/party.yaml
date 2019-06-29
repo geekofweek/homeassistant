@@ -26,7 +26,6 @@
         - light.globe
       data:
         effect: random
-        transition: 5
         brightness_pct: 100
     - delay: '00:00:05'
     - service: light.turn_on
@@ -34,19 +33,19 @@
       data:
         effect: colorloop
         brightness_pct: 100
-    - delay: '00:00:10'
+    - delay: '00:00:17'
     - service: light.turn_on
       entity_id: light.media_center_lighting
       data:
         effect: colorloop
         brightness_pct: 100
-    - delay: '00:00:15'
+    - delay: '00:00:31'
     - service: light.turn_on
       entity_id: light.globe
       data:
         effect: colorloop
         brightness_pct: 100
-    - delay: '00:00:20'
+    - delay: '00:00:43'
     - service: light.turn_on
       entity_id: light.living_room_lamp_2
       data:
@@ -129,7 +128,6 @@
         - light.bedroom_lamp
       data:
         effect: random
-        transition: 5
         brightness_pct: 100
     - service: light.turn_off
       entity_id:
@@ -141,15 +139,15 @@
       data:
         effect: colorloop
         brightness_pct: 100
-    - delay: '00:00:10'
+    - delay: '00:00:17'
     - service: light.turn_on
-      entity_id: light.USER2s_nightstand
+      entity_id: light.bedroom_lamp
       data:
         effect: colorloop
         brightness_pct: 100
-    - delay: '00:00:15'
+    - delay: '00:00:31'
     - service: light.turn_on
-      entity_id: light.bedroom_lamp
+      entity_id: light.USER2s_nightstand
       data:
         effect: colorloop
         brightness_pct: 100
@@ -290,7 +288,7 @@
       data:
         effect: colorloop
         brightness_pct: 100
-    - delay: '00:00:10'
+    - delay: '00:00:23'
     - service: light.turn_on
       entity_id: light.front_porch_right
       data:
@@ -316,6 +314,8 @@
   action:
     - service: light.turn_on
       entity_id: light.front_porch
+      data:
+        effect: stop
     - delay: '00:00:01'
     - service: light.turn_on
       entity_id: light.front_porch
