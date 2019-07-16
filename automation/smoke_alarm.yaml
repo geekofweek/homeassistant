@@ -57,6 +57,8 @@
       data:
         message: Warning Smoke Alarm Might Sound!
         data:
+          apns_headers:
+           'apns-collapse-id': 'smoke-alarm-warning'
           push:
             badge: 0
             category: "smokealarm"
@@ -121,6 +123,8 @@
       data:
         message: Smoke Alarm!
         data:
+          apns_headers:
+           'apns-collapse-id': 'smoke-alarm'
           push:
             category: camera
           entity_id: camera.driveway
@@ -329,6 +333,8 @@
       data:
         message: Carbon Monoxide Alarm!
         data:
+          apns_headers:
+           'apns-collapse-id': 'co-alarm'
           push:
             category: camera
           entity_id: camera.driveway
@@ -336,6 +342,8 @@
       data:
         message: Carbon Monoxide Alarm!
         data:
+          apns_headers:
+           'apns-collapse-id': 'co-alarm-'
           push:
             category: camera
           entity_id: camera.driveway

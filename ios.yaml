@@ -34,6 +34,15 @@
             authenticationRequired: yes
             destructive: no
             behavior: 'default'
+      - name: Front Door Lock
+        identifier: 'frontdoorlock'
+        actions:
+          - identifier: 'FRONT_DOOR_UNLOCK'
+            title: 'Unlock Front Door'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: yes
+            behavior: 'default'
       - name: Garage
         identifier: 'garage'
         actions:
@@ -61,7 +70,7 @@
       - name: Smoke Alarm
         identifier: 'smokealarm'
         actions:
-          - identifier: 'SREDACTEDKEALARM_OFF'
+          - identifier: 'SMOKEALARM_OFF'
             title: 'Disable Smoke Alarm (HA Only)'
             activationMode: 'background'
             authenticationRequired: yes
@@ -81,6 +90,15 @@
         actions:
           - identifier: 'WASHINGMACHINE_DONE_LIGHTS'
             title: 'Turn on Basement Lights'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: yes
+            behavior: 'default'
+      - name: Siren
+        identifier: 'siren'
+        actions:
+          - identifier: 'SIREN'
+            title: 'Turn off Siren'
             activationMode: 'background'
             authenticationRequired: yes
             destructive: yes

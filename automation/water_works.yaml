@@ -23,6 +23,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Water Detected in Basement Drain!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-basement-drain'
 
         ##########################################################
         ## Send Notification for Water Detected Kitchen Sink
@@ -45,6 +48,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Water Detected Under Kitchen Sink!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-kitchen-sink'
 
         ##########################################################
         ## Send Notification for Water Detected Bathroom Sink
@@ -67,6 +73,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Water Detected Under Bathroom Sink!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-basement-sink'
 
         ##########################################################
         ## Send Notification for Water Detected Basement Door
@@ -89,6 +98,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Water Detected by Basement Door!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-basement-door'
 
         ##########################################################
         ## Send Notification for Water Detected Upstairs Bathroom
@@ -111,6 +123,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Water Detected in Upstairs Bathroom!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-upstairs-bathroom'
 
         ##########################################################
         ## Send Notification for Water Detected by Water Heater
@@ -133,6 +148,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Water Detected by Water Heater!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-water-heater'
 
         ##########################################################
         ## Send Notification for Water Detected under Utility Sink
@@ -155,6 +173,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Water Detected Under Utility Sink!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-utility-sink'
 
         ##########################################################
         ## Send Notification for Water Detected behind Washing Machine
@@ -177,6 +198,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Water Detected by Washing Machine!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-washing-machine'
 
         ##########################################################
         ## Send Notification for Water Detected Sump Pump
@@ -199,6 +223,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Water Detected in Sump Pump!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-sump-pump'
 
         ##########################################################
         ## Flash Lights when Water Detected
@@ -564,9 +591,15 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Water Main Has Been Shut Off!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-main-off'
     - service: notify.ios_USER2s_iphone
       data:
         message: Water Main Has Been Shut Off!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-main-off'
 
         ##########################################################
         ## Send Notification for Water Main Turned On
@@ -589,6 +622,12 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Water Main Has Been Turned Back On
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-main-on'
     - service: notify.ios_USER2s_iphone
       data:
         message: Water Main Has Been Turned Back On.
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-main-on'

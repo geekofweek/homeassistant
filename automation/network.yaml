@@ -77,6 +77,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Internet is Down, Turning on at&t Router
+        data:
+          apns_headers:
+           'apns-collapse-id': 'internets-down'
 
         ##########################################################
         ## WAN Up Power off at&t Router
@@ -100,6 +103,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Internet is Up, Shutting off at&t Router
+        data:
+          apns_headers:
+           'apns-collapse-id': 'internets-up'
 
         #################################################################
         ## WAN Down on Startup Turn on at&t Router

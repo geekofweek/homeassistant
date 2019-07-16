@@ -44,13 +44,18 @@
       data:
         message: Alarm Tripped (Front Porch Camera)
         data:
+          apns_headers:
+           'apns-collapse-id': 'security-front-porch-camera'
           push:
             category: camera
           entity_id: camera.front_porch
+
     - service: notify.ios_USER2s_iphone
       data:
         message: Alarm Tripped (Front Porch Camera)
         data:
+          apns_headers:
+           'apns-collapse-id': 'security-front-porch-camera'
           push:
             category: camera
           entity_id: front_porch
@@ -58,6 +63,8 @@
       data:
         message: Alarm Tripped (Garage Camera)
         data:
+          apns_headers:
+           'apns-collapse-id': 'security-backyard-camera'
           push:
             category: camera
           entity_id: camera.backyard
@@ -65,6 +72,8 @@
       data:
         message: Alarm Tripped (Garage Camera)
         data:
+          apns_headers:
+           'apns-collapse-id': 'security-backyard-camera'
           push:
             category: camera
           entity_id: camera.backyard
@@ -72,6 +81,8 @@
       data:
         message: Alarm Has Been Tripped!
         data:
+          apns_headers:
+           'apns-collapse-id': 'security-alarm'
           push:
             badge: 0
             category: "alarm"
@@ -79,9 +90,39 @@
       data:
         message: Alarm Has Been Tripped!
         data:
+          apns_headers:
+           'apns-collapse-id': 'security-alarm'
           push:
             badge: 0
             category: "alarm"
+
+    #################################################################
+    ## Siren Turned On
+    #################################################################
+
+- alias: Notification Text - Siren Turned On
+
+  trigger:
+    - platform: state
+      entity_id: switch.siren
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Siren is On!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'siren-on'
+          push:
+            badge: 0
+            category: "siren"
 
     #################################################################
     ## Alarm Enabled Notification
@@ -104,9 +145,15 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Alarm is ON
+        data:
+          apns_headers:
+           'apns-collapse-id': 'alarm-on'
     - service: notify.ios_USER2s_iphone
       data:
         message: Alarm is ON
+        data:
+          apns_headers:
+           'apns-collapse-id': 'alarm-on'
 
     #################################################################
     ## Alarm Disabled Notification
@@ -129,9 +176,15 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Alarm is OFF
+        data:
+          apns_headers:
+           'apns-collapse-id': 'alarm-off'
     - service: notify.ios_USER2s_iphone
       data:
         message: Alarm is OFF
+        data:
+          apns_headers:
+           'apns-collapse-id': 'alarm-off'
 
     #################################################################
     ## USER1 Home Driving Notification
@@ -161,6 +214,8 @@
       data:
         message: USER1 Home
         data:
+          apns_headers:
+           'apns-collapse-id': 'USER1-home'
           push:
             category: camera
           entity_id: camera.driveway
@@ -168,6 +223,8 @@
       data:
         message: USER1 Home
         data:
+          apns_headers:
+           'apns-collapse-id': 'USER1-home'
           push:
             category: camera
           entity_id: camera.driveway
@@ -200,6 +257,8 @@
       data:
         message: USER1 Home
         data:
+          apns_headers:
+           'apns-collapse-id': 'USER1-home'
           push:
             category: camera
           entity_id: camera.front_porch
@@ -207,6 +266,8 @@
       data:
         message: USER1 Home
         data:
+          apns_headers:
+           'apns-collapse-id': 'USER1-home'
           push:
             category: camera
           entity_id: camera.front_porch
@@ -232,6 +293,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: USER1 Away
+        data:
+          apns_headers:
+           'apns-collapse-id': 'USER1-away'
 
         #################################################################
         ## USER2 Home Driving Notification
@@ -261,6 +325,8 @@
       data:
         message: USER2 Home
         data:
+          apns_headers:
+           'apns-collapse-id': 'USER2-home'
           push:
             category: camera
           entity_id: camera.driveway
@@ -293,6 +359,8 @@
       data:
         message: USER2 Home
         data:
+          apns_headers:
+           'apns-collapse-id': 'USER2-home'
           push:
             category: camera
           entity_id: camera.front_porch
@@ -318,6 +386,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: USER2 Away
+        data:
+          apns_headers:
+           'apns-collapse-id': 'USER2-away'
 
         #################################################################
         ## USER2 Left Work Notification
@@ -340,6 +411,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: "USER2 has left work, ETA: {{states('sensor.USER2_to_home')}} mins"
+        data:
+          apns_headers:
+           'apns-collapse-id': 'USER2-work'
 
         #################################################################
         ## Guest Arrived Notification
@@ -363,6 +437,8 @@
       data:
         message: Guest Arrived (Front Porch Camera)
         data:
+          apns_headers:
+           'apns-collapse-id': 'house-guest-front-porch-camera'
           push:
             category: camera
           entity_id: camera.front_porch
@@ -370,6 +446,8 @@
       data:
         message: Guest Arrived (Front Porch Camera)
         data:
+          apns_headers:
+           'apns-collapse-id': 'house-guest-front-porch-camera'
           push:
             category: camera
           entity_id: front_porch
@@ -377,6 +455,8 @@
       data:
         message: Guest Arrived (Garage Camera)
         data:
+          apns_headers:
+           'apns-collapse-id': 'house-guest-garage-camera'
           push:
             category: camera
           entity_id: camera.driveway
@@ -384,6 +464,8 @@
       data:
         message: Guest Arrived (Garage Camera)
         data:
+          apns_headers:
+           'apns-collapse-id': 'house-guest-garage-camera'
           push:
             category: camera
           entity_id: camera.driveway
@@ -413,13 +495,17 @@
       data:
         message: Motion Detected (Front Porch Camera)
         data:
+          apns_headers:
+           'apns-collapse-id': 'security-front-porch-camera'
           push:
             category: camera
           entity_id: camera.front_porch
     - service: notify.ios_USER1s_iphone
       data:
-        message: Motion Detected (Garage Camera)
+        message: Motion Detected (Backyard Camera)
         data:
+          apns_headers:
+           'apns-collapse-id': 'security-backyard-camera'
           push:
             category: camera
           entity_id: camera.backyard
@@ -427,6 +513,8 @@
       data:
         message: Motion Detected Alarm!
         data:
+          apns_headers:
+           'apns-collapse-id': 'security-alarm'
           push:
             badge: 0
             category: "alarm"
@@ -456,13 +544,17 @@
       data:
         message: Door Opened (Front Porch Camera)
         data:
+          apns_headers:
+           'apns-collapse-id': 'security-front-porch-camera'
           push:
             category: camera
           entity_id: camera.front_porch
     - service: notify.ios_USER1s_iphone
       data:
-        message: Door Opened (Garage Camera)
+        message: Door Opened (Backyard Camera)
         data:
+          apns_headers:
+           'apns-collapse-id': 'security-backyard-camera'
           push:
             category: camera
           entity_id: camera.backyard
@@ -470,6 +562,8 @@
       data:
         message: Door Opened Alarm!
         data:
+          apns_headers:
+           'apns-collapse-id': 'security-alarm'
           push:
             badge: 0
             category: "alarm"
@@ -499,6 +593,8 @@
       data:
         message: Fireplace Turned On!
         data:
+          apns_headers:
+           'apns-collapse-id': 'fireplace'
           push:
             badge: 0
             category: "fireplace"
@@ -532,6 +628,8 @@
       data:
         message: Fireplace has been on for 4 Hours
         data:
+          apns_headers:
+           'apns-collapse-id': 'fireplace'
           push:
             badge: 0
             category: "fireplace"
@@ -539,6 +637,8 @@
       data:
         message: Fireplace has been on for 4 Hours
         data:
+          apns_headers:
+           'apns-collapse-id': 'fireplace'
           push:
             badge: 0
             category: "fireplace"
@@ -575,6 +675,8 @@
       data:
         message: Garage Door is Still Open!
         data:
+          apns_headers:
+           'apns-collapse-id': 'garage-garage-camera'
           push:
             category: camera
           entity_id: camera.garage
@@ -582,6 +684,8 @@
       data:
         message: Garage Door is Still Open!
         data:
+          apns_headers:
+           'apns-collapse-id': 'garage-garage-camera'
           push:
             category: camera
           entity_id: camera.garage
@@ -589,6 +693,8 @@
       data:
         message: Garage Door Still Open Close It?
         data:
+          apns_headers:
+           'apns-collapse-id': 'garage-open'
           push:
             badge: 0
             category: "garage"
@@ -596,6 +702,8 @@
       data:
         message: Garage Door Still Open Close It?
         data:
+          apns_headers:
+           'apns-collapse-id': 'garage-open'
           push:
             badge: 0
             category: "garage"
@@ -622,6 +730,8 @@
       data:
         message: Someone is at the Front Door
         data:
+          apns_headers:
+           'apns-collapse-id': 'doorbell-front-porch-camera'
           push:
             category: camera
           entity_id: camera.front_porch
@@ -629,20 +739,26 @@
       data:
         message: Someone is at the Front Door
         data:
+          apns_headers:
+           'apns-collapse-id': 'doorbell-front-porch-camera'
           push:
             category: camera
           entity_id: camera.front_porch
     - service: notify.ios_USER1s_iphone
       data:
-        message: Doorbell Rang Unlock Doors?
+        message: Unlock Front Door?
         data:
+          apns_headers:
+           'apns-collapse-id': 'doorbell-door-unlock'
           push:
             badge: 0
-            category: "locks"
+            category: "frontdoorlock"
     - service: notify.ios_USER2s_iphone
       data:
-        message: Doorbell Rang Unlock Doors?
+        message: Unlock Front Door?
         data:
+          apns_headers:
+           'apns-collapse-id': 'doorbell-door-unlock'
           push:
             badge: 0
-            category: "locks"
+            category: "frontdoorlock"

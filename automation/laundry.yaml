@@ -34,6 +34,8 @@
       data:
         message: Washing Machine Done
         data:
+          apns_headers:
+           'apns-collapse-id': 'laundry-done'
           push:
             badge: 0
             category: "washingmachinedonelights"
@@ -70,6 +72,8 @@
       data:
         message: Washing Machine Done
         data:
+          apns_headers:
+           'apns-collapse-id': 'laundry-done'
           push:
             badge: 0
             category: "washingmachinedonelights"
@@ -96,6 +100,8 @@
       data:
         message: Washing Machine Switch Turned Off!
         data:
+          apns_headers:
+           'apns-collapse-id': 'laundry-switch'
           push:
             badge: 0
             category: "washingmachineswitch"

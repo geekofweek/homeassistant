@@ -109,6 +109,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: House has been empty for 30 mins, shutting off HVAC
+        data:
+          apns_headers:
+           'apns-collapse-id': 'climate-away'
     - service: climate.ecobee_set_fan_min_on_time
       data:
         entity_id: climate.main_floor
@@ -146,6 +149,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Outside temp above 68 turning on AC
+        data:
+          apns_headers:
+           'apns-collapse-id': 'climate-summer'
 
         ##########################################################
         ## Turn Thermostat off Summer
@@ -182,6 +188,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Outside temp below 68 shutting off AC
+        data:
+          apns_headers:
+           'apns-collapse-id': 'climate-summer'
 
         ##########################################################
         ## Turn Thermostat on Winter
@@ -215,6 +224,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Outside temp below 65 turning on Heat
+        data:
+          apns_headers:
+           'apns-collapse-id': 'climate-winter'
 
         ##########################################################
         ## Turn Thermostat off Winter
@@ -251,6 +263,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Outside temp above 65 turning off Heat
+        data:
+          apns_headers:
+           'apns-collapse-id': 'climate-winter'
 
         ##########################################################
         ## Disable Summer / Winter Mode on Start
@@ -336,9 +351,15 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Door has been left open, shutting off AC
+        data:
+          apns_headers:
+           'apns-collapse-id': 'climate-door-open'
     - service: notify.ios_USER2s_iphone
       data:
         message: Door has been left open, shutting off AC
+        data:
+          apns_headers:
+           'apns-collapse-id': 'climate-door-open'
 
         ##########################################################
         ## Adjust Thermostat for Overnight Guests before Midnight

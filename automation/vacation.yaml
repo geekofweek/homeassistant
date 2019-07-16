@@ -101,7 +101,7 @@
     - platform: state
       entity_id: device_tracker.USER1s_iphone
       from: 'not_home'
-      to: 'lake'
+      to: 'Lake'
 
   condition:
     - condition: state
@@ -121,7 +121,7 @@
   trigger:
     - platform: state
       entity_id: device_tracker.USER1s_iphone
-      from: 'lake'
+      from: 'Lake'
       to: 'not_home'
 
   condition:

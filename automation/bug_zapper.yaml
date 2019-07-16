@@ -1,0 +1,131 @@
+#################################################################
+## Bug Zapper Automations
+#################################################################
+
+        ##########################################################
+        ## Turn On Bug Zapper at Sunset
+        ##########################################################
+
+- alias: Bug Zapper - Turn On Bug Zapper at Sunset
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:15:00'
+
+  condition:
+    - condition: state
+      entity_id: switch.winter_mode
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.bug_zapper
+
+        ##########################################################
+        ## Turn off Bug Zapper at Sunrise
+        ##########################################################
+
+- alias: Bug Zapper - Turn off Bug Zapper at Sunrise
+
+  trigger:
+    - platform: sun
+      event: 'sunrise'
+      offset: '+00:15:00'
+
+  condition:
+    - condition: state
+      entity_id: switch.bug_zapper
+      state: 'on'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.bug_zapper
+
+        ##########################################################
+        ## Turn Off Bug Zapper in the Rain
+        ##########################################################
+
+- alias: Bug Zapper - Turn Off Bug Zapper in the Rain
+
+  trigger:
+    - platform: state
+      entity_id: weather.REDACTED
+      to: 'rainy'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: switch.bug_zapper
+      state: 'on'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.bug_zapper
+
+        ##########################################################
+        ## Turn On Bug Zapper After Rain Stops
+        ##########################################################
+
+- alias: Bug Zapper - Turn On Bug Zapper After Rain Stops
+
+  trigger:
+    - platform: state
+      entity_id: weather.REDACTED
+      from: 'rainy'
+
+  condition:
+    - condition: state
+      entity_id: switch.bug_zapper
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: switch.winter_mode
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.bug_zapper
+
+        ##########################################################
+        ## Turn on Bug Zapper when Returning Home
+        ##########################################################
+
+- alias: Bug Zapper - Turn on Bug Zapper when Returning Home
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER1s_iphone
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: switch.bug_zapper
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: switch.winter_mode
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.bug_zapper

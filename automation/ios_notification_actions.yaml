@@ -38,6 +38,23 @@
         - group.all_locks
 
         #################################################################
+        ## Unlock Front Door
+        #################################################################
+
+- alias: iOS Action - Unlock Front Door
+
+  trigger:
+    - platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: FRONT_DOOR_UNLOCK
+
+  action:
+    - service: lock.unlock
+      entity_id:
+        - lock.front_door
+
+        #################################################################
         ## Close Garage
         #################################################################
 
@@ -106,6 +123,22 @@
       entity_id: input_boolean.panic_mode
 
         #################################################################
+        ## Siren
+        #################################################################
+
+- alias: iOS Action - Siren
+
+  trigger:
+    - platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: SIREN
+
+  action:
+    - service: switch.turn_off
+      entity_id: switch.siren
+
+        #################################################################
         ## Fireplace Off
         #################################################################
 
@@ -131,7 +164,7 @@
     - platform: event
       event_type: ios.notification_action_fired
       event_data:
-        actionName: SREDACTEDKEALARM_OFF
+        actionName: SMOKEALARM_OFF
 
   action:
     - service: homeassistant.turn_on

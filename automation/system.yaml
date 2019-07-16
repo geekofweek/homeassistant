@@ -39,7 +39,6 @@
     - platform: homeassistant
       event: start
 
-
   action:
     - delay: 00:02:00
     - service: homekit.start
@@ -64,6 +63,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Weather Lookup Problem!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'system-weather'
 
         #################################################################
         ## NAS Warning
@@ -85,6 +87,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: NAS RAID Failing
+        data:
+          apns_headers:
+           'apns-collapse-id': 'system-nas'
 
         ##########################################################
         ## UPS Power Loss Alert
@@ -106,6 +111,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Power Outage Detected
+        data:
+          apns_headers:
+           'apns-collapse-id': 'system-ups-power-failure'
 
         ##########################################################
         ## UPS Power Restored Alert
@@ -130,6 +138,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Power Restored
+        data:
+          apns_headers:
+           'apns-collapse-id': 'system-ups-power-restored'
 
         ##########################################################
         ## UPS Low Battery Alert
@@ -151,6 +162,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: "UPS Battery below 15%"
+        data:
+          apns_headers:
+           'apns-collapse-id': 'system-ups-low-batt'
 
         ##########################################################
         ## UPS Low Runtime Alert
@@ -172,31 +186,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: "15 mins of UPS Battery Remaining!"
-
-        ##########################################################
-        ## Wink Relay Offline
-        ##########################################################
-
-- alias: Notification Text - Wink Relay Offline
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.wink_relay
-      to: 'unavailable'
-      for:
-        hours: 0
-        minutes: 10
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  action:
-    - service: notify.ios_USER1s_iphone
-      data:
-        message: "Wink Relay Has Crahsed, Please Restart"
+        data:
+          apns_headers:
+           'apns-collapse-id': 'system-ups-low-runtime'
 
         #################################################################
         ## REDACTED VPN Offline
@@ -223,6 +215,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: REDACTED VPN Offline
+        data:
+          apns_headers:
+           'apns-collapse-id': 'system-roc-vpn-offline'
     - service: notify.REDACTED
       data:
         message: REDACTED Internets Appears to be Offline.
@@ -252,6 +247,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: REDACTED VPN Online
+        data:
+          apns_headers:
+           'apns-collapse-id': 'system-roc-vpn-online'
     - service: notify.REDACTED
       data:
         message: REDACTED Internets Back Online
@@ -281,6 +279,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: REDACTED VPN Offline
+        data:
+          apns_headers:
+           'apns-collapse-id': 'system-chs-vpn-offline'
     - service: notify.REDACTED
       data:
         message: REDACTED Internets Appears to be Offline.
@@ -310,6 +311,9 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: REDACTED VPN Online
+        data:
+          apns_headers:
+           'apns-collapse-id': 'system-chs-vpn-online'
     - service: notify.REDACTED
       data:
         message: REDACTED Internets Back Online
@@ -333,3 +337,6 @@
     - service: notify.ios_USER1s_iphone
       data:
         message: Home Assistant Started
+        data:
+          apns_headers:
+           'apns-collapse-id': 'system-start'

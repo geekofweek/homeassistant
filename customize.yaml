@@ -19,9 +19,6 @@
   binary_sensor.main_floor_occupancy:
     device_class: occupancy
     friendly_name: Dining Room Occupancy
-  sensor.wink_relay_sensor_humidity:
-    icon: mdi:water-percent
-    friendly_name: Living Room Humidity
   sensor.thermostat_climate_mode:
     icon: mdi:thermostat-box
   fan.office_fan:
@@ -242,16 +239,6 @@
     icon: mdi:speedometer
   sensor.speedtest_upload:
     icon: mdi:speedometer
-  binary_sensor.wink_hub:
-    decice_class: connectivity
-    friendly_name: Wink Hub
-    icon: mdi:ethernet
-  binary_sensor.wink_relay:
-    decice_class: connectivity
-    friendly_name: Wink Relay
-    icon: mdi:ethernet
-  binary_sensor.wink_relay_sensor_presence:
-    device_class: occupancy
   binary_sensor.philips_hue:
     decice_class: connectivity
     friendly_name: Hue Hub
@@ -418,6 +405,9 @@
   switch.bedtime:
     friendly_name: Bedtime
     icon: mdi:hotel
+  switch.bug_zapper:
+    friendly_name: Bug Zapper
+    icon: mdi:bug
 
         ##########################################################
         ## Lights
