@@ -1480,10 +1480,10 @@
       data:
         speed: 'AUTO'
     - delay: '00:00:01'
-    - service: climate.set_operation_mode
+    - service: climate.set_hvac_mode
       data:
         entity_id: climate.office_fan
-        operation_mode: cool
+        hvac_mode: cool
     - delay: '00:00:01'
     - service: fan.oscillate
       data:

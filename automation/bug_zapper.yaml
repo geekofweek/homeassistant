@@ -11,7 +11,7 @@
   trigger:
     - platform: sun
       event: 'sunset'
-      offset: '-00:15:00'
+      offset: '-00:60:00'
 
   condition:
     - condition: state
@@ -59,7 +59,7 @@
       to: 'rainy'
       for:
         hours: 0
-        minutes: 1
+        minutes: 30
         seconds: 0
 
   condition:

@@ -414,30 +414,31 @@
       thermostat_climate_mode:
         friendly_name: 'Thermostat Mode'
         value_template: >-
-          {% if is_state_attr('climate.main_floor', 'away_mode', 'on') %}
-            Away
-          {% elif is_state_attr('climate.main_floor', 'hold_mode', 'smart2') %}
+          {% if is_state_attr('climate.main_floor', 'preset_mode', 'home') %}
+            Home
+          {% elif is_state_attr('climate.main_floor', 'preset_mode', 'smart2') %}
             Upstairs
-          {% elif is_state_attr('climate.main_floor', 'hold_mode', 'smart3') %}
+          {% elif is_state_attr('climate.main_floor', 'preset_mode', 'smart3') %}
             Guest
-          {% elif is_state_attr('climate.main_floor', 'hold_mode', 'smart4') %}
+          {% elif is_state_attr('climate.main_floor', 'preset_mode', 'smart4') %}
             Fireplace
-          {% elif is_state_attr('climate.main_floor', 'hold_mode', 'temp') %}
+          {% elif is_state_attr('climate.main_floor', 'preset_mode', 'temp') %}
             Temperature Hold
-          {% elif is_state_attr('climate.main_floor', 'climate_mode', 'Sleep') %}
+          {% elif is_state_attr('climate.main_floor', 'preset_mode', 'sleep') %}
             Sleep
-          {% elif is_state_attr('climate.main_floor', 'hold_mode', 'sleep') %}
-            Sleep
-          {% elif is_state_attr('climate.main_floor', 'hold_mode', 'away') %}
+          {% elif is_state_attr('climate.main_floor', 'preset_mode', 'away') %}
             Away
-          {% elif is_state_attr('climate.main_floor', 'hold_mode', 'vacation') %}
+          {% elif is_state_attr('climate.main_floor', 'preset_mode', 'vacation') %}
             Vacation
+          {% elif is_state_attr('climate.main_floor', 'climate_mode', 'Home') %}
+            Home
           {% elif is_state_attr('climate.main_floor', 'climate_mode', 'Away') %}
             Away
+          {% elif is_state_attr('climate.main_floor', 'climate_mode', 'Sleep') %}
+            Sleep
           {% else %}
             Home
           {% endif %}
-
   - platform: template
     sensors:
       hvac_status:
