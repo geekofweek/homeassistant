@@ -9,8 +9,6 @@
   climate.main_floor:
     friendly_name: Thermostat
     icon: mdi:thermostat-box
-  climate.basement_heater:
-    icon: mdi:radiator
   sensor.main_floor_humidity:
     icon: mdi:water-percent
     friendly_name: Dining Room Humidity
@@ -182,32 +180,6 @@
     icon: mdi:car
   sensor.USER2_to_REDACTED:
     icon: mdi:car
-  sensor.USER2_to_REDACTED:
-    icon: mdi:car
-  sensor.USER2_to_REDACTED:
-    icon: mdi:car
-
-        ##########################################################
-        ## Rooms
-        ##########################################################
-
-  group.living_room:
-    icon: mdi:sofa
-  group.dining_room:
-    icon: mdi:silverware-variant
-  group.bedroom:
-    icon: mdi:hotel
-  group.kitchen:
-    icon: mdi:fridge
-  group.USER1_office:
-    icon: mdi:desktop-mac
-  group.guest_bedroom:
-    icon: mdi:hotel
-    friendly_name: Guest Bedroom
-  group.basement:
-    icon: mdi:stairs
-  group.interior:
-    friendly_name: Interior Lights
 
         ##########################################################
         ## Locks
@@ -233,12 +205,6 @@
     friendly_name: RAM Usage
   sensor.since_last_boot:
     friendly_name: Uptime
-  sensor.speedtest_ping:
-    icon: mdi:speedometer
-  sensor.speedtest_download:
-    icon: mdi:speedometer
-  sensor.speedtest_upload:
-    icon: mdi:speedometer
   binary_sensor.philips_hue:
     decice_class: connectivity
     friendly_name: Hue Hub
@@ -699,14 +665,6 @@
     icon: mdi:surround-sound
 
         ##########################################################
-        ## Remote
-        ##########################################################
-
-  sensor.media_center:
-    icon: mdi:television
-    friendly_name: Media Center Remote
-
-        ##########################################################
         ## NAS
         ##########################################################
 
@@ -729,44 +687,10 @@
     friendly_name: Storage Volume Used
   sensor.nas_volume_used_backup:
     friendly_name: Backup Volume Used
-  sensor.nas_used_space_storage:
-    friendly_name: Storage Volume Used Space
-  sensor.nas_used_space_backup:
-    friendly_name: Backup Volume Used Space
-  sensor.nas_free_space_storage:
-    friendly_name: Storage Volume Free Space
-  sensor.nas_free_space_backup:
-    friendly_name: Backup Volume Free Space
   sensor.nas_cpu_usage:
     friendly_name: CPU Usage
   sensor.nas_memory_usage:
     friendly_name: Memory Usage
-  sensor.nas_network_link_eth0:
-    friendly_name: eth0 Link Status
-    icon: mdi:ethernet
-  sensor.nas_network_link_eth1:
-    friendly_name: eth1 Link Status
-    icon: mdi:ethernet
-  sensor.nas_network_up_eth0:
-    friendly_name: eth0 Upload
-  sensor.nas_network_up_eth1:
-    friendly_name: eth1 Upload
-  sensor.nas_network_down_eth0:
-    friendly_name: eth0 Download
-  sensor.nas_network_down_eth1:
-    friendly_name: eth1 Download
-  sensor.nas_system_temperature:
-    friendly_name: System Temperature
-  sensor.nas_cpu_temperature:
-    friendly_name: CPU Temperature
-  sensor.nas_temperature_drive_01:
-    friendly_name: Drive 1 Temperature
-  sensor.nas_temperature_drive_02:
-    friendly_name: Drive 2 Temperature
-  sensor.nas_temperature_drive_03:
-    friendly_name: Drive 3 Temperature
-  sensor.nas_temperature_drive_04:
-    friendly_name: Drive 4 Temperature
 
         ##########################################################
         ## UPS
@@ -894,10 +818,3 @@
   sensor.washing_machine_current_power:
     icon: mdi:power-plug
     friendly_name: Washing Machine Wattage
-
-        ##########################################################
-        ## Groups
-        ##########################################################
-
-  group.automation_on_demand:
-    friendly_name: Automation

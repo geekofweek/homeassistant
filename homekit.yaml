@@ -18,6 +18,7 @@
       - binary_sensor
       - scene
       - person
+      - switch
     include_entities:
       - cover.garage_door
       - light.hallway_light
@@ -38,54 +39,8 @@
       - light.backyard_patio
       - light.upstairs_bathroom_lights
       - fan.office_fan
+      - switch.front_yard_lighting
+      - switch.backyard_lighting
+      - switch.bug_zapper
     exclude_entities:
       - climate.main_floor
-      - switch.living_room_ceiling_fan
-      - switch.front_porch_camera
-      - switch.side_yard_camera
-      - switch.backyard_camera
-      - switch.washing_machine
-      - switch.summer_mode
-      - switch.winter_mode
-      - switch.backyard_patio_lighting
-      - switch.lower_backyard_lighting
-      - switch.att_router
-      - switch.air_purifier
-      - switch.basement_heater
-      - switch.pihole_1_switch
-      - switch.pihole_2_switch
-      - switch.unifi_poe_c2_a5_f9_ed_e4_ce
-      - switch.vera_sump_pump_sensor
-      - switch.vera_front_door_sensor
-      - switch.vera_basement_drain_sensor
-      - switch.vera_basement_door_sensor
-      - switch.vera_back_door_sensor
-      - switch.siren
-      - switch.front_door_sensor_13
-      - switch.laundry_room_light
-      - switch.vera_living_room_motion
-      - switch.vera_basement_motion_sensor
-      - switch.backyard_patio_8
-      - switch.vera_dining_room_motion
-      - switch.vera_kitchen_motion
-      - switch.vera_stairs_motion
-      - switch.vera_USER2s_bedroom_closet_motion
-      - switch.vera_USER1s_office_motion
-      - switch.vera_basement_door_lock
-      - switch.unifi_poe_c2_a5_f9_ed_00_REDACTED
-      - switch.hallway_access_point
-      - switch.water_main
-      - switch.vera_kitchen_sink_water_sensor
-      - switch.vera_bathroom_sink_water_sensor
-      - switch.vera_basement_door_water_sensor
-      - switch.vera_upstairs_bathroom_water_sensor
-      - switch.vera_utility_sink_water_sensor
-      - switch.vera_water_heater_water_sensor
-      - switch.vera_washing_machine_water_sensor
-      - switch.spring_fall_mode
-      - switch.livingroom_rainbow
-      - switch.bedroom_rainbow
-      - switch.office_rainbow
-      - switch.front_porch_rainbow
-      - switch.bedtime
-      - switch.bug_zapper

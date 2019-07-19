@@ -3,20 +3,6 @@
 #################################################################
 
         ##########################################################
-        ## Moon
-        ##########################################################
-
-  - platform: moon
-
-        ##########################################################
-        ## Date and Time
-        ##########################################################
-
-  - platform: time_date
-    display_options:
-      - 'date_time'
-
-        ##########################################################
         ## Ring Doorbell
         ##########################################################
 
@@ -44,9 +30,6 @@
       - memory_percent_used
       - system_temp
       - cpu_usage
-      - network_link_status
-      - volume_size_free
-      - volume_size_used
       - drive_smart_status
       - volume_percentage_used
 
@@ -329,16 +312,6 @@
         friendly_name: 'Washing Machine Water Sensor'
         unit_of_measurement: '%'
         device_class: battery
-
-        ##########################################################
-        ## Harmony Remote
-        ##########################################################
-
-  - platform: template
-    sensors:
-      media_center:
-        value_template: '{{ states.remote.media_center.attributes.current_activity }}'
-        friendly_name: 'Media Center'
 
         ##########################################################
         ## Calendars
