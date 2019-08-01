@@ -32,6 +32,7 @@ Relevant hub configurations can be found within [configuration.yaml](https://git
 | [Lutron Caseta Wireless Dimmer](https://amzn.to/2KwDJWc) | 17 | Lutron Clear Connect | [Lutron Caseta Light](https://www.home-assistant.io/components/lutron_caseta/) | Smart dimmer switches that do not require a neutral wire|
 | [Lutron Caseta Wireless Lighting Switch](https://amzn.to/2YvDWjg) | 2 | Lutron Clear Connect | [Lutron Caseta Switch](https://www.home-assistant.io/components/lutron_caseta/) | Smart on / off light switches |
 | [Lutron Caseta Pico Wireless Dimmer Switch](https://amzn.to/2Etw0HP) | 4 | Lutron Clear Connect | [Lutron Caseta Light](https://www.home-assistant.io/components/lutron_caseta/) | Decora wall mountable remote (that looks like a dimmer switch). Controls various lights |
+| [Lutron Aurora Smart Bulb Dimmer](https://amzn.to/2OyI0PI) | 4 | Hue Hub (Zigbee)| [Philips Hue Light](https://www.home-assistant.io/components/light.hue/) | Smart Dimmer that attaches to existing Toggle light Switch. |
 
 Many of my automations rely on some form of lighting but many examples can be found in [lights.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/lights.yaml) and [location.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml).
 
