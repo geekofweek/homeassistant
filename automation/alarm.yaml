@@ -1,0 +1,668 @@
+#################################################################
+## Alarm Automations
+#################################################################
+
+        ##########################################################
+        ## Alarm Triggered Armed Away
+        ##########################################################
+
+- alias: Alarm - Triggered Armed Away
+
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.alarm
+      to: 'triggered'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
+    - condition: state
+      entity_id: alarm_control_panel.alarm
+      state: 'armed_away'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.hue_lights
+      data:
+       brightness_pct: 100
+       color_name: "red"
+    - service: light.turn_on
+      entity_id:
+        - light.hue_lights_exterior
+        - light.lutron_lights
+        - light.lutron_lights_exterior
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.hue_lights
+      data:
+       flash: long
+    - service: switch.turn_on
+      entity_id:
+        - switch.siren
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.sonos_living_room'
+          where: 'media_player.sonos_media_center, media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen, media_player.sonos_bathroom, media_player.sonos_bedroom, media_player.sonos_USER1s_office, media_player.sonos_USER2s_office, media_player.sonos_basement'
+          volume: '1'
+          what: 'You are not Authorized to be Here. Law Enforcement Has Been Notified!'
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Alarm Away Triggered!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'security-alarm'
+          push:
+            badge: 0
+            category: "alarm"
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Alarm! (Front Porch Camera)
+        data:
+          apns_headers:
+           'apns-collapse-id': 'security-front-porch-camera'
+          push:
+            category: camera
+          entity_id: camera.front_porch
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Alarm! (Backyard Camera)
+        data:
+          apns_headers:
+           'apns-collapse-id': 'security-backyard-camera'
+          push:
+            category: camera
+          entity_id: camera.backyard
+    - service: notify.ios_USER2s_iphone
+      data:
+        message: Alarm Away Triggered!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'security-alarm'
+          push:
+            badge: 0
+            category: "alarm"
+    - service: notify.ios_USER2s_iphone
+      data:
+        message: Alarm! (Front Porch Camera)
+        data:
+          apns_headers:
+           'apns-collapse-id': 'security-front-porch-camera'
+          push:
+            category: camera
+          entity_id: camera.front_porch
+    - service: notify.ios_USER2s_iphone
+      data:
+        message: Alarm! (Backyard Camera)
+        data:
+          apns_headers:
+           'apns-collapse-id': 'security-backyard-camera'
+          push:
+            category: camera
+          entity_id: camera.backyard
+
+        ##########################################################
+        ## Alarm Triggered Armed Home
+        ##########################################################
+
+- alias: Alarm - Triggered Armed Home
+
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.alarm
+      to: 'triggered'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: alarm_control_panel.alarm
+      state: 'armed_home'
+
+  action:
+#    - service: light.turn_on
+#      entity_id:
+#        - light.hue_lights
+#      data:
+#       brightness_pct: 100
+#       color_name: "red"
+#    - service: light.turn_on
+#      entity_id:
+#        - light.hue_lights_exterior
+#        - light.lutron_lights
+#        - light.lutron_lights_exterior
+#      data:
+#       brightness_pct: 100
+#    - service: light.turn_on
+#      entity_id:
+#        - light.hue_lights
+#      data:
+#       flash: long
+#    - service: switch.turn_on
+#      entity_id:
+#        - switch.siren
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Alarm Home Triggered!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'security-alarm'
+          push:
+            badge: 0
+            category: "alarm"
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Alarm! (Front Porch Camera)
+        data:
+          apns_headers:
+           'apns-collapse-id': 'security-front-porch-camera'
+          push:
+            category: camera
+          entity_id: camera.front_porch
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Alarm! (Backyard Camera)
+        data:
+          apns_headers:
+           'apns-collapse-id': 'security-backyard-camera'
+          push:
+            category: camera
+          entity_id: camera.backyard
+#    - service: notify.ios_USER2s_iphone
+#      data:
+#        message: Alarm Home Triggered!
+#        data:
+#          apns_headers:
+#           'apns-collapse-id': 'security-alarm'
+#          push:
+#            badge: 0
+#            category: "alarm"
+#    - service: notify.ios_USER2s_iphone
+#      data:
+#        message: Alarm! (Front Porch Camera)
+#        data:
+#          apns_headers:
+#           'apns-collapse-id': 'security-front-porch-camera'
+#          push:
+#            category: camera
+#          entity_id: camera.front_porch
+#    - service: notify.ios_USER2s_iphone
+#      data:
+#        message: Alarm! (Backyard Camera)
+#        data:
+#          apns_headers:
+#           'apns-collapse-id': 'security-backyard-camera'
+#          push:
+#            category: camera
+#          entity_id: camera.backyard
+
+        ##########################################################
+        ## Panic Button On
+        ##########################################################
+
+- alias: Alarm - Panic Button On
+
+  trigger:
+    - platform: state
+      entity_id: switch.panic_mode
+      to: 'on'
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Panic Button Has Been Pressed!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'security-alarm'
+          push:
+            badge: 0
+            category: "alarm"
+    - service: light.turn_on
+      entity_id:
+        - light.hue_lights
+      data:
+       brightness_pct: 100
+       color_name: "red"
+    - service: light.turn_on
+      entity_id:
+        - light.hue_lights_exterior
+        - light.lutron_lights
+        - light.lutron_lights_exterior
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.hue_lights
+      data:
+       flash: long
+    - service: switch.turn_on
+      entity_id:
+        - switch.siren
+
+        ##########################################################
+        ## Panic Button Off
+        ##########################################################
+
+- alias: Alarm - Panic Button Off
+
+  trigger:
+    - platform: state
+      entity_id: switch.panic_mode
+      to: 'off'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.siren
+
+        ##########################################################
+        ## Panic Button Auto Off
+        ##########################################################
+
+- alias: Alarm - Panic Button Auto Off
+
+  trigger:
+    - platform: state
+      entity_id: switch.panic_mode
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.siren
+
+        ##########################################################
+        ## Door Alarm Away
+        ##########################################################
+
+- alias: Alarm - Away Door Alarm
+
+  trigger:
+    - platform: state
+      entity_id: group.doors
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
+    - condition: state
+      entity_id: alarm_control_panel.alarm
+      state: 'armed_away'
+
+  action:
+    - service: alarm_control_panel.alarm_trigger
+      entity_id:
+        - alarm_control_panel.alarm
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Door Alarm Triggered!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'security-alarm-door'
+          push:
+            badge: 0
+            category: "alarm"
+
+        ##########################################################
+        ## Door Alarm Home
+        ##########################################################
+
+- alias: Alarm - Home Door Alarm
+
+  trigger:
+    - platform: state
+      entity_id: group.doors
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: alarm_control_panel.alarm
+      state: 'armed_home'
+
+  action:
+    - service: alarm_control_panel.alarm_trigger
+      entity_id:
+        - alarm_control_panel.alarm
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Door Alarm Triggered!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'security-alarm-door'
+          push:
+            badge: 0
+            category: "alarm"
+
+        #################################################################
+        ## Motion Alarm Away
+        #################################################################
+
+- alias: Alarm - Motion Alarm Away
+
+  trigger:
+    - platform: state
+      entity_id: group.motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+    - condition: state
+      entity_id: vacuum.downstairs_roomba
+      state: 'off'
+    - condition: state
+      entity_id: vacuum.upstairs_roomba
+      state: 'off'
+    - condition: state
+      entity_id: alarm_control_panel.alarm
+      state: 'armed_away'
+
+  action:
+#    - service: alarm_control_panel.alarm_trigger
+#      entity_id:
+#        - alarm_control_panel.alarm
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Motion Alarm Triggered!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'security-alarm-motion'
+          push:
+            badge: 0
+            category: "alarm"
+
+        ##########################################################
+        ## Garage Alarm Home
+        ##########################################################
+
+- alias: Alarm - Garage Alarm Home
+
+  trigger:
+    - platform: state
+      entity_id: cover.garage_door
+      to: 'open'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: alarm_control_panel.alarm
+      state: 'armed_home'
+
+  action:
+    - service: alarm_control_panel.alarm_trigger
+      entity_id:
+        - alarm_control_panel.alarm
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Garage Door Alarm Triggered!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'security-alarm-door'
+          push:
+            badge: 0
+            category: "alarm"
+
+        ##########################################################
+        ## Garage Alarm Away
+        ##########################################################
+
+- alias: Alarm - Garage Alarm Home
+
+  trigger:
+    - platform: state
+      entity_id: cover.garage_door
+      to: 'open'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
+    - condition: state
+      entity_id: alarm_control_panel.alarm
+      state: 'armed_away'
+
+  action:
+    - service: alarm_control_panel.alarm_trigger
+      entity_id:
+        - alarm_control_panel.alarm
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Garage Door Alarm Triggered!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'security-alarm-door'
+          push:
+            badge: 0
+            category: "alarm"
+
+        ##########################################################
+        ## Disable Alarm when Home
+        ##########################################################
+
+- alias: Alarm - Disable Alarm when Home
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: alarm_control_panel.alarm
+        state: 'armed_home'
+      - condition: state
+        entity_id: alarm_control_panel.alarm
+        state: 'armed_away'
+
+  action:
+    - service: alarm_control_panel.alarm_disarm
+      entity_id: alarm_control_panel.alarm
+
+        ##########################################################
+        ## Enable Alarm when Away
+        ##########################################################
+
+- alias: Alarm - Enable Alarm when Away
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 9
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
+    - condition: state
+      entity_id: alarm_control_panel.alarm
+      state: 'disarmed'
+
+  action:
+    - service: alarm_control_panel.alarm_arm_away
+      entity_id: alarm_control_panel.alarm
+
+        ##########################################################
+        ## Arm Home at Bedtime
+        ##########################################################
+
+- alias: Alarm - Arm Home at Bedtime
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: alarm_control_panel.alarm
+      state: 'disarmed'
+
+  action:
+    - service: alarm_control_panel.alarm_arm_home
+      entity_id: alarm_control_panel.alarm
+
+        ##########################################################
+        ## Disarm Armed Home in the Morning
+        ##########################################################
+
+- alias: Alarm - Disarm Armed Home in the Morning
+
+  trigger:
+   - platform: time
+     at: '05:00'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: alarm_control_panel.alarm
+      state: 'armed_home'
+
+  action:
+    - service: alarm_control_panel.alarm_disarm
+      entity_id: alarm_control_panel.alarm
+
+    #################################################################
+    ## Alarm Armed Home Notification
+    #################################################################
+
+- alias: Alarm - Alarm Armed Home Notification
+
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.alarm
+      to: 'armed_home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Alarm is Armed Home
+        data:
+          apns_headers:
+           'apns-collapse-id': 'alarm-on'
+    - service: notify.ios_USER2s_iphone
+      data:
+        message: Alarm is Armed Home
+        data:
+          apns_headers:
+           'apns-collapse-id': 'alarm-on'
+
+    #################################################################
+    ## Alarm Armed Away Notification
+    #################################################################
+
+- alias: Alarm - Alarm Armed Away Notification
+
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.alarm
+      to: 'armed_away'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Alarm is Armed Away
+        data:
+          apns_headers:
+           'apns-collapse-id': 'alarm-on'
+    - service: notify.ios_USER2s_iphone
+      data:
+        message: Alarm is Armed Away
+        data:
+          apns_headers:
+           'apns-collapse-id': 'alarm-on'
+
+    #################################################################
+    ## Alarm Disabled Notification
+    #################################################################
+
+- alias: Alarm - Alarm Disabled Notification
+
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.alarm
+      to: 'disarmed'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Alarm is Disarmed
+        data:
+          apns_headers:
+           'apns-collapse-id': 'alarm-off'
+    - service: notify.ios_USER2s_iphone
+      data:
+        message: Alarm is Disarmed
+        data:
+          apns_headers:
+           'apns-collapse-id': 'alarm-off'

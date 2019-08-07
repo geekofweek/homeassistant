@@ -376,7 +376,8 @@
   action:
     - service: light.turn_on
       entity_id:
-        - light.bedroom_lights
+        - light.bedroom_ceiling
+        - light.bedroom_closet_ceiling
         - light.basement_stairs
       data:
        brightness_pct: 50
@@ -428,7 +429,8 @@
   action:
     - service: light.turn_on
       entity_id:
-        - light.bedroom_lights
+        - light.bedroom_closet_ceiling
+        - light.bedroom_ceiling
         - light.basement_stairs
       data:
        brightness_pct: 50

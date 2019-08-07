@@ -301,6 +301,18 @@
   binary_sensor.washing_machine_water_sensor:
     device_class: moisture
     friendly_name: Washing Machine Water Sensor
+  binary_sensor.USER2s_office_motion:
+    friendly_name: USER2's Office Motion
+    icon: mdi:desktop-mac
+  sensor.USER2s_office_light_level:
+    friendly_name: USER2's Office Light Level
+    icon: mdi:brightness-6
+  binary_sensor.upstairs_bathroom_motion:
+    friendly_name: Upstairs Bathroom Motion
+    icon: mdi:shower
+  sensor.upstairs_bathroom_light_level:
+    friendly_name: Upstairs Bathroom Light Level
+    icon: mdi:brightness-6
 
         ##########################################################
         ## Switches
@@ -374,6 +386,12 @@
   switch.bug_zapper:
     friendly_name: Bug Zapper
     icon: mdi:bug
+  switch.panic_mode:
+    friendly_name: Panic Mode
+    icon: mdi:alarm-light
+  switch.disable_smoke_alarm:
+    friendly_name: Disable Fire Alarm
+    icon: mdi:fire-truck
 
         ##########################################################
         ## Lights
@@ -425,6 +443,9 @@
     icon: mdi:wall-sconce-flat
   light.kitchen_ceiling:
     icon: mdi:ceiling-light
+  light.bedroom_ceiling:
+    icon: mdi:ceiling-light
+    Friendly Name: Bedroom Ceiling Light
   light.living_room_lights:
     icon: mdi:sofa
     friendly_name: Living Room

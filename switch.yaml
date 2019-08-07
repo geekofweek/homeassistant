@@ -160,6 +160,40 @@
             entity_id: group.backyard_lighting
 
         ##########################################################
+        ## Panic Mode
+        ##########################################################
+
+  - platform: template
+    switches:
+      panic_mode:
+        value_template: "{{ is_state('input_boolean.panic_mode', 'on') }}"
+        turn_on:
+          service: homeassistant.turn_on
+          data:
+            entity_id: input_boolean.panic_mode
+        turn_off:
+          service: homeassistant.turn_off
+          data:
+            entity_id: input_boolean.panic_mode
+
+        ##########################################################
+        ## Disable Smoke Alarm
+        ##########################################################
+
+  - platform: template
+    switches:
+      disable_smoke_alarm:
+        value_template: "{{ is_state('input_boolean.disable_smoke_alarm', 'on') }}"
+        turn_on:
+          service: homeassistant.turn_on
+          data:
+            entity_id: input_boolean.disable_smoke_alarm
+        turn_off:
+          service: homeassistant.turn_off
+          data:
+            entity_id: input_boolean.disable_smoke_alarm
+
+        ##########################################################
         ## Pihole #1 Disable Switch
         ##########################################################
 

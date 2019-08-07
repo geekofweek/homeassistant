@@ -265,6 +265,19 @@ notify:
       - REDACTED@txt.att.net
     sender_name: REDACTED
 
+alarm_control_panel:
+  - platform: manual
+    name: Alarm
+    code_arm_required: false
+    pending_time: 30
+    delay_time: 20
+    trigger_time: 120
+    disarmed:
+      trigger_time: 0
+    armed_home:
+      delay_time: 0
+      trigger_time: 45
+
 #################################################################
 ## Includes
 #################################################################

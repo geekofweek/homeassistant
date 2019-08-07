@@ -177,7 +177,9 @@
   action:
     - service: light.turn_on
       entity_id:
-        - light.bedroom_lights
+        - light.USER1s_nightstand
+        - light.USER2s_nightstand
+        - light.bedroom_lamp
       data:
         effect: stop
     - delay: '00:00:05'

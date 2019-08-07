@@ -312,6 +312,27 @@
         friendly_name: 'Washing Machine Water Sensor'
         unit_of_measurement: '%'
         device_class: battery
+  - platform: template
+    sensors:
+      USER2s_office_motion_batt:
+        value_template: '{{ states.binary_sensor.USER2s_office_motion.attributes.battery_level }}'
+        friendly_name: "USER2's Office Motion Sensor"
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      upstairs_bath_motion_batt:
+        value_template: '{{ states.binary_sensor.upstairs_bathroom_motion.attributes.battery_level }}'
+        friendly_name: 'Upstairs Bathroom Motion Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      REDACTEDs_office_motion_batt:
+        value_template: '{{ states.binary_sensor.REDACTEDs_office_motion.attributes.battery_level }}'
+        friendly_name: "USER1's Office Motion Sensor"
+        unit_of_measurement: '%'
+        device_class: battery
 
         ##########################################################
         ## Calendars
@@ -385,33 +406,8 @@
   - platform: template
     sensors:
       thermostat_climate_mode:
+        value_template: '{{ states.climate.main_floor.attributes.preset_mode }}'
         friendly_name: 'Thermostat Mode'
-        value_template: >-
-          {% if is_state_attr('climate.main_floor', 'preset_mode', 'home') %}
-            Home
-          {% elif is_state_attr('climate.main_floor', 'preset_mode', 'smart2') %}
-            Upstairs
-          {% elif is_state_attr('climate.main_floor', 'preset_mode', 'smart3') %}
-            Guest
-          {% elif is_state_attr('climate.main_floor', 'preset_mode', 'smart4') %}
-            Fireplace
-          {% elif is_state_attr('climate.main_floor', 'preset_mode', 'temp') %}
-            Temperature Hold
-          {% elif is_state_attr('climate.main_floor', 'preset_mode', 'sleep') %}
-            Sleep
-          {% elif is_state_attr('climate.main_floor', 'preset_mode', 'away') %}
-            Away
-          {% elif is_state_attr('climate.main_floor', 'preset_mode', 'vacation') %}
-            Vacation
-          {% elif is_state_attr('climate.main_floor', 'climate_mode', 'Home') %}
-            Home
-          {% elif is_state_attr('climate.main_floor', 'climate_mode', 'Away') %}
-            Away
-          {% elif is_state_attr('climate.main_floor', 'climate_mode', 'Sleep') %}
-            Sleep
-          {% else %}
-            Home
-          {% endif %}
   - platform: template
     sensors:
       hvac_status:

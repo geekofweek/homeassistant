@@ -616,7 +616,10 @@
        brightness_pct: 25
     - service: light.turn_on
       entity_id:
-        - light.bedroom_lights
+        - light.USER1s_nightstand
+        - light.USER2s_nightstand
+        - light.bedroom_lamp
+        - light.closet_lamp
       data:
        transition: 90
        brightness_pct: 50
@@ -1115,7 +1118,7 @@
   trigger:
     - platform: state
       entity_id: device_tracker.USER2s_iphone
-      from: 'not_home'
+      #from: 'not_home'
       to: 'home'
       for:
         hours: 0

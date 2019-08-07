@@ -124,7 +124,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.ups_input_voltage
-      above: 80
+      above: 100
 
   condition:
     - condition: state

@@ -87,17 +87,15 @@
     - automation.climate_turn_on_winter
     - automation.climate_turn_off_winter
 
-  Occupancy:
-    - binary_sensor.living_room_occupancy
-    - binary_sensor.main_floor_occupancy
-    - binary_sensor.kitchen_occupancy
-    - binary_sensor.bedroom_occupancy
-    - binary_sensor.bathroom_occupancy
-    - binary_sensor.office_occupancy
-    - binary_sensor.USER2_office_occupancy
-    - binary_sensor.guest_bedroom_occupancy
-    - binary_sensor.basement_occupancy
-    - binary_sensor.laundry_room_occupancy
+  Motion:
+    - binary_sensor.living_room_motion
+    - binary_sensor.dining_room_motion
+    - binary_sensor.kitchen_motion
+    - binary_sensor.USER1s_office_motion
+    - binary_sensor.stairs_motion
+    - binary_sensor.basement_motion
+    - binary_sensor.USER2_bedroom_closet_motion
+    - binary_sensor.USER2s_office_motion
 
   Basement Occupancy:
     - binary_sensor.basement_occupancy

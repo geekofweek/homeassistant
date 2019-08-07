@@ -19,9 +19,6 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
     - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
       entity_id: light.living_room_lights
       state: 'off'
     - condition: state
@@ -30,6 +27,14 @@
     - condition: time
       after: '07:00'
       before: '02:00'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'home'
     - condition: or
       conditions:
       - condition: state
@@ -93,9 +98,6 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
     - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
       entity_id: light.living_room_lights
       state: 'off'
     - condition: state
@@ -108,6 +110,14 @@
       weekday:
         - fri
         - sat
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'home'
     - condition: or
       conditions:
       - condition: state
@@ -171,9 +181,6 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
     - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
       entity_id: light.living_room_lights
       state: 'off'
     - condition: numeric_state
@@ -185,6 +192,14 @@
     - condition: time
       after: '07:00'
       before: '02:00'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'home'
     - condition: or
       conditions:
       - condition: state
@@ -335,9 +350,6 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
     - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
       entity_id: light.kitchen_lights
       state: 'off'
     - condition: state
@@ -346,6 +358,14 @@
     - condition: time
       after: '07:00'
       before: '22:00'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'home'
 
   action:
     - service: light.turn_on
@@ -380,9 +400,6 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
     - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
       entity_id: light.kitchen_lights
       state: 'off'
     - condition: state
@@ -391,6 +408,14 @@
     - condition: time
       after: '22:00'
       before: '07:00'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'home'
 
   action:
     - service: light.turn_on
@@ -420,9 +445,6 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
     - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
       entity_id: light.kitchen_lights
       state: 'off'
     - condition: state
@@ -431,6 +453,14 @@
     - condition: numeric_state
       entity_id: sensor.kitchen_light_level
       below: '10'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'home'
 
   action:
     - service: light.turn_on
@@ -684,9 +714,6 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
     - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
       entity_id: light.dining_room_lights
       state: 'off'
     - condition: state
@@ -695,6 +722,14 @@
     - condition: time
       after: '07:00'
       before: '21:00'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'home'
 
   action:
     - service: light.turn_on
@@ -725,9 +760,6 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
     - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
       entity_id: light.dining_room_lights
       state: 'off'
     - condition: state
@@ -743,6 +775,14 @@
         - tue
         - wed
         - thu
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'home'
 
   action:
     - service: light.turn_on
@@ -773,9 +813,6 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
     - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
       entity_id: light.dining_room_lights
       state: 'off'
     - condition: state
@@ -788,6 +825,14 @@
       weekday:
         - fri
         - sat
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'home'
 
   action:
     - service: light.turn_on
@@ -818,9 +863,6 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
     - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
       entity_id: light.dining_room_lights
       state: 'off'
     - condition: state
@@ -829,6 +871,14 @@
     - condition: numeric_state
       entity_id: sensor.dining_room_light_level
       below: '25'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'home'
 
   action:
     - service: light.turn_on
@@ -1046,9 +1096,6 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
     - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
       entity_id: light.stairs_light
       state: 'off'
     - condition: state
@@ -1057,6 +1104,14 @@
     - condition: time
       after: '07:00'
       before: '22:00'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'home'
 
   action:
     - service: light.turn_on
@@ -1082,9 +1137,6 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
     - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
       entity_id: light.stairs_light
       state: 'off'
     - condition: state
@@ -1093,6 +1145,14 @@
     - condition: time
       after: '22:00'
       before: '07:00'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'home'
 
   action:
     - service: light.turn_on
@@ -1118,9 +1178,6 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
     - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
       entity_id: light.stairs_light
       state: 'off'
     - condition: state
@@ -1129,6 +1186,14 @@
     - condition: numeric_state
       entity_id: sensor.stairs_light_level
       below: '15'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'home'
 
   action:
     - service: light.turn_on
@@ -1265,11 +1330,16 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
     - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
       entity_id: light.basement_lighting
       state: 'off'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'home'
 
   action:
     - service: light.turn_on
@@ -1364,9 +1434,6 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
     - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
       entity_id: light.USER2s_bedroom_closet
       state: 'off'
     - condition: time
@@ -1379,6 +1446,14 @@
         - tue
         - wed
         - thu
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'home'
 
   action:
     - service: light.turn_on
@@ -1404,15 +1479,20 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
     - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
       entity_id: light.USER2s_bedroom_closet
       state: 'off'
     - condition: time
       weekday:
         - fri
         - sat
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'home'
 
   action:
     - service: light.turn_on
@@ -1649,3 +1729,307 @@
         - light.bathroom_vanity
       data:
        brightness_pct: 20
+
+        ##########################################################
+        ## Turn on USER2 Office Lights when Motion Detected Daytime
+        ##########################################################
+
+- alias: Motion - Turn on USER2 Office when Motion Detected Daytime
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER2s_office_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: device_tracker.USER2s_iphone
+      state: 'home'
+    - condition: state
+      entity_id: light.USER2_s_office_ceiling
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.USER2_s_office_ceiling
+      data:
+        brightness_pct: 1
+
+        ##########################################################
+        ## Turn on USER2 Office Lights when Motion Detected Evening
+        ##########################################################
+
+- alias: Motion - Turn on USER2 Office Lights when Motion Detected Evening
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER2s_office_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: device_tracker.USER2s_iphone
+      state: 'home'
+    - condition: state
+      entity_id: light.USER2_s_office_ceiling
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '07:00'
+      before: '23:00'
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.USER2_s_office_ceiling
+      data:
+        brightness_pct: 100
+
+        ##########################################################
+        ## Turn on USER2 Office Lights when Motion Detected Night
+        ##########################################################
+
+- alias: Motion - Turn on USER2 Office Lights when Motion Detected Night
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER2s_office_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: device_tracker.USER2s_iphone
+      state: 'home'
+    - condition: state
+      entity_id: light.USER2_s_office_ceiling
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '23:00'
+      before: '07:00'
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.USER2_s_office_ceiling
+      data:
+        brightness_pct: 15
+
+        ##########################################################
+        ## Turn off USER2 Office Lights when No Motion Detected
+        ##########################################################
+
+- alias: Motion - Turn off USER2 Office Lights when No Motion Detected
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER2s_office_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: light.USER2_s_office_ceiling
+      state: 'on'
+
+  action:
+    - service: light.turn_off
+      entity_id: light.USER2_s_office_ceiling
+
+        ##########################################################
+        ## Turn off USER2 Office Lights when No Motion Detected Night
+        ##########################################################
+
+- alias: Motion - Turn off USER2 Office Lights when No Motion Detected Night
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER2s_office_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: light.USER2_s_office_ceiling
+      state: 'on'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '23:00'
+      before: '07:00'
+
+  action:
+    - service: light.turn_off
+      entity_id: light.USER2_s_office_ceiling
+
+        ##########################################################
+        ## Turn on Upstairs Bathroom Lights when Motion Detected Evening
+        ##########################################################
+
+- alias: Motion - Turn on Upstairs Bathroom Lights when Motion Detected Evening
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.upstairs_bathroom_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.upstairs_bathroom_vanity
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '07:00'
+      before: '22:00'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.upstairs_bathroom_vanity
+      data:
+        brightness_pct: 40
+
+        ##########################################################
+        ## Turn on Upstairs Bathroom Lights when Motion Detected Night
+        ##########################################################
+
+- alias: Motion - Turn on Upstairs Bathroom Lights when Motion Detected Night
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.upstairs_bathroom_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.upstairs_bathroom_vanity
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '22:00'
+      before: '07:00'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.upstairs_bathroom_vanity
+      data:
+        brightness_pct: 1
+
+        ##########################################################
+        ## Turn on Upstairs Bathroom Lights when Motion Detected Daytime
+        ##########################################################
+
+- alias: Motion - Turn on Upstairs Bathroom Lights when Motion Detected Daytime
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.upstairs_bathroom_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.upstairs_bathroom_vanity
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: numeric_state
+      entity_id: sensor.upstairs_bathroom_light_level
+      below: '4'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.upstairs_bathroom_vanity
+      data:
+        brightness_pct: 1
+
+        ##########################################################
+        ## Turn off Upstairs Bathroom Lights when No Motion Detected
+        ##########################################################
+
+- alias: Motion - Turn off Upstairs Bathroom Lights when No Motion Detected
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.upstairs_bathroom_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.upstairs_bathroom_vanity
+      state: 'on'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.upstairs_bathroom_vanity

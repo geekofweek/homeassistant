@@ -20,6 +20,9 @@
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: switch.bug_zapper
+      state: 'off'
 
   action:
     - service: switch.turn_on
@@ -110,7 +113,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER1s_iphone
+      entity_id: group.household
       from: 'not_home'
       to: 'home'
 
