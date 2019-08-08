@@ -2,7 +2,7 @@
 # Overview
 My personal [Home Assistant](https://home-assistant.io) configurations with 300+ automations.  These are my active automations and configurations that I use every day.  Updated frequently as I add more devices and come up with more and more complicated ways to do simple tasks.
 
-Published configruations working with Home Assistant Version: 0.96.5
+Published configruations working with Home Assistant Version: 0.97.0
 
 # <a name="menu">Menu</a>
  | [Hubs](#hubs) | [Lighting](#lighting) | [Climate](#climate)| [Outlets & Switches](#outlets)|  [Locks](#locks) | [Security](#security) | [Voice Assistant](#voice) | [Media](#media) | [Sensors](#sensors) | [Cameras](#cameras) | [Garage](#garage) | [Vacuum](#vacuum) | [Network](#network) | [Other Hardware](#other) | [Retired Devices](#retired) | [Software](#software) | [Screenshots](#screenshots) |
@@ -315,9 +315,8 @@ Within the local folder, variable localpath="PATH_TO_LOCAL_HA_CONFIGS", I have t
 ![UI](images/weather-screenshot.jpg?raw=true "Weather")
 ![UI](images/media-screenshot.jpg?raw=true "Media")
 ![UI](images/camera-screenshot.jpg?raw=true "Cameras")
-![UI](images/auto-screenshot.jpg?raw=true "Auto")
-![UI](images/automation-screenshot.jpg?raw=true "Automations")
-![UI](images/sensors-screenshot.jpg?raw=true "Sensors")
+![UI](images/location-screenshot.jpg?raw=true "Location")
+![UI](images/alarm-screenshot.jpg?raw=true "Alarm")
 ![UI](images/system-screenshot.jpg?raw=true "System")
 ![UI](images/battery-screenshot.jpg?raw=true "Battery")
 
