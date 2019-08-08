@@ -226,6 +226,15 @@
           push:
             badge: 0
             category: "alarm"
+    - service: notify.ios_USER2s_iphone
+      data:
+        message: Panic Button Has Been Pressed!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'security-alarm'
+          push:
+            badge: 0
+            category: "alarm"
     - service: light.turn_on
       entity_id:
         - light.hue_lights
@@ -375,9 +384,6 @@
       entity_id: group.friends_and_family
       state: 'not_home'
     - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-    - condition: state
       entity_id: vacuum.downstairs_roomba
       state: 'off'
     - condition: state
@@ -421,9 +427,9 @@
       state: 'armed_home'
 
   action:
-    - service: alarm_control_panel.alarm_trigger
-      entity_id:
-        - alarm_control_panel.alarm
+    #- service: alarm_control_panel.alarm_trigger
+    #  entity_id:
+    #    - alarm_control_panel.alarm
     - service: notify.ios_USER1s_iphone
       data:
         message: Garage Door Alarm Triggered!
@@ -457,9 +463,9 @@
       state: 'armed_away'
 
   action:
-    - service: alarm_control_panel.alarm_trigger
-      entity_id:
-        - alarm_control_panel.alarm
+    #- service: alarm_control_panel.alarm_trigger
+    #  entity_id:
+    #    - alarm_control_panel.alarm
     - service: notify.ios_USER1s_iphone
       data:
         message: Garage Door Alarm Triggered!
@@ -638,10 +644,10 @@
            'apns-collapse-id': 'alarm-on'
 
     #################################################################
-    ## Alarm Disabled Notification
+    ## Alarm Disabled Notification USER1
     #################################################################
 
-- alias: Alarm - Alarm Disabled Notification
+- alias: Alarm - Alarm Disabled Notification USER1
 
   trigger:
     - platform: state
@@ -660,6 +666,27 @@
         data:
           apns_headers:
            'apns-collapse-id': 'alarm-off'
+
+    #################################################################
+    ## Alarm Disabled Notification USER2
+    #################################################################
+
+- alias: Alarm - Alarm Disabled Notification USER2
+
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.alarm
+      to: 'disarmed'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+    - condition: time
+      after: '05:01'
+      before: '04:59'
+
+  action:
     - service: notify.ios_USER2s_iphone
       data:
         message: Alarm is Disarmed

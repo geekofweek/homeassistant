@@ -145,16 +145,13 @@ wemo:
 ifttt:
   key: !secret ifttt_key
 
-device_tracker:
-  - platform: unifi
-    username: !secret unifi_username
-    password: !secret unifi_password
-    host: REDACTED.3
-    verify_ssl: false
-    consider_home: 180
-    new_device_defaults:
-      track_new_devices: False
-      hide_if_away: False
+unifi:
+  controllers:
+    - host: REDACTED.3
+      site: 'REDACTED'
+      detection_time: 120
+      ssid_filter:
+        - 'REDACTED'
 
 ring:
     username: !secret ring_username
