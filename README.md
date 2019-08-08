@@ -69,7 +69,7 @@ Washing machine is automated around the Wemo Insight Plug.  This outlet can moni
 
 ## <a name="locks">Locks</a>
 
-| [Go to Menu](#menu) | [Automation Screenshot](images/automation-screenshot.jpg?raw=true "Automations") |
+| [Go to Menu](#menu) | [Alarm Screenshot](images/alarm-screenshot.jpg?raw=true "Alarm") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -79,7 +79,7 @@ Locks are used mostly as a way to lock / unlock doors based on locations, see [l
 
 ## <a name="security">Security</a>
 
-| [Go to Menu](#menu) | [Automation Screenshot](images/automation-screenshot.jpg?raw=true "Automations") |
+| [Go to Menu](#menu) | [Alarm Screenshot](images/alarm-screenshot.jpg?raw=true "Alarm") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -125,7 +125,7 @@ Harmony Hubs work via a combination of [input_selects]( https://github.com/geeko
 
 ## <a name="sensors">Sensors</a>
 
-| [Go to Menu](#menu) | [Sensors Screenshot](images/sensors-screenshot.jpg?raw=true "Sensors") |
+| [Go to Menu](#menu) | [System Screenshot](images/system-screenshot.jpg?raw=true "System") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -156,7 +156,7 @@ I also send camera feeds as a payload on a few iOS notifications, those can most
 
 ## <a name="garage">Garage</a>
 
-| [Go to Menu](#menu) | [Auto Screenshot](images/auto-screenshot.jpg?raw=true "Auto") |
+| [Go to Menu](#menu) | [Location Screenshot](images/location-screenshot.jpg?raw=true "Location") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -178,7 +178,7 @@ All Roomba related automations can be found in [roomba.yaml]( https://github.com
 
 ## <a name="network">Network</a>
 
-| [Go to Menu](#menu) | [Sensors Screenshot](images/sensors-screenshot.jpg?raw=true "Sensors") |
+| [Go to Menu](#menu) | [System Screenshot](images/system-screenshot.jpg?raw=true "System") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
