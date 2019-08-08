@@ -315,9 +315,8 @@ Within the local folder, variable localpath="PATH_TO_LOCAL_HA_CONFIGS", I have t
 ![UI](images/weather-screenshot.jpg?raw=true "Weather")
 ![UI](images/media-screenshot.jpg?raw=true "Media")
 ![UI](images/camera-screenshot.jpg?raw=true "Cameras")
-![UI](images/auto-screenshot.jpg?raw=true "Auto")
-![UI](images/automation-screenshot.jpg?raw=true "Automations")
-![UI](images/sensors-screenshot.jpg?raw=true "Sensors")
+![UI](images/location-screenshot.jpg?raw=true "Location")
+![UI](images/alarm-screenshot.jpg?raw=true "Alarm")
 ![UI](images/system-screenshot.jpg?raw=true "System")
 ![UI](images/battery-screenshot.jpg?raw=true "Battery")
 
