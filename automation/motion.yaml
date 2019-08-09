@@ -1928,7 +1928,7 @@
       entity_id:
         - light.upstairs_bathroom_vanity
       data:
-        brightness_pct: 40
+        brightness_pct: 60
 
         ##########################################################
         ## Turn on Upstairs Bathroom Lights when Motion Detected Night
@@ -1993,7 +1993,7 @@
       state: 'above_horizon'
     - condition: numeric_state
       entity_id: sensor.upstairs_bathroom_light_level
-      below: '4'
+      below: '8'
 
   action:
     - service: light.turn_on
