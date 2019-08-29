@@ -129,27 +129,27 @@
       state: 'armed_home'
 
   action:
-#    - service: light.turn_on
-#      entity_id:
-#        - light.hue_lights
-#      data:
-#       brightness_pct: 100
-#       color_name: "red"
-#    - service: light.turn_on
-#      entity_id:
-#        - light.hue_lights_exterior
-#        - light.lutron_lights
-#        - light.lutron_lights_exterior
-#      data:
-#       brightness_pct: 100
-#    - service: light.turn_on
-#      entity_id:
-#        - light.hue_lights
-#      data:
-#       flash: long
-#    - service: switch.turn_on
-#      entity_id:
-#        - switch.siren
+    - service: light.turn_on
+      entity_id:
+        - light.hue_lights
+      data:
+       brightness_pct: 100
+       color_name: "red"
+    - service: light.turn_on
+      entity_id:
+        - light.hue_lights_exterior
+        - light.lutron_lights
+        - light.lutron_lights_exterior
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.hue_lights
+      data:
+       flash: long
+    - service: switch.turn_on
+      entity_id:
+        - switch.siren
     - service: notify.ios_USER1s_iphone
       data:
         message: Alarm Home Triggered!
@@ -177,33 +177,33 @@
           push:
             category: camera
           entity_id: camera.backyard
-#    - service: notify.ios_USER2s_iphone
-#      data:
-#        message: Alarm Home Triggered!
-#        data:
-#          apns_headers:
-#           'apns-collapse-id': 'security-alarm'
-#          push:
-#            badge: 0
-#            category: "alarm"
-#    - service: notify.ios_USER2s_iphone
-#      data:
-#        message: Alarm! (Front Porch Camera)
-#        data:
-#          apns_headers:
-#           'apns-collapse-id': 'security-front-porch-camera'
-#          push:
-#            category: camera
-#          entity_id: camera.front_porch
-#    - service: notify.ios_USER2s_iphone
-#      data:
-#        message: Alarm! (Backyard Camera)
-#        data:
-#          apns_headers:
-#           'apns-collapse-id': 'security-backyard-camera'
-#          push:
-#            category: camera
-#          entity_id: camera.backyard
+    - service: notify.ios_USER2s_iphone
+      data:
+        message: Alarm Home Triggered!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'security-alarm'
+          push:
+            badge: 0
+            category: "alarm"
+    - service: notify.ios_USER2s_iphone
+      data:
+        message: Alarm! (Front Porch Camera)
+        data:
+          apns_headers:
+           'apns-collapse-id': 'security-front-porch-camera'
+          push:
+            category: camera
+          entity_id: camera.front_porch
+    - service: notify.ios_USER2s_iphone
+      data:
+        message: Alarm! (Backyard Camera)
+        data:
+          apns_headers:
+           'apns-collapse-id': 'security-backyard-camera'
+          push:
+            category: camera
+          entity_id: camera.backyard
 
         ##########################################################
         ## Panic Button On
@@ -394,9 +394,9 @@
       state: 'armed_away'
 
   action:
-#    - service: alarm_control_panel.alarm_trigger
-#      entity_id:
-#        - alarm_control_panel.alarm
+    - service: alarm_control_panel.alarm_trigger
+      entity_id:
+        - alarm_control_panel.alarm
     - service: notify.ios_USER1s_iphone
       data:
         message: Motion Alarm Triggered!
@@ -515,7 +515,7 @@
       to: 'not_home'
       for:
         hours: 0
-        minutes: 9
+        minutes: 5
         seconds: 0
 
   condition:

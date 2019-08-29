@@ -33,8 +33,8 @@ http:
   ssl_certificate: !secret ssl_certificate
   ssl_key: !secret ssl_key
   base_url: !secret base_url
-  ip_ban_enabled: true
-  login_attempts_threshold: 10
+  #ip_ban_enabled: true
+  #login_attempts_threshold: 10
 
 #################################################################
 ## Components
@@ -208,6 +208,17 @@ camera:
     still_image_url: https://REDACTED.90/snap.jpeg
     stream_source: rtsp://REDACTED.3:7447/REDACTED
     verify_ssl: false
+  - platform: generic
+    name: Living Room
+    still_image_url: https://REDACTED.REDACTED/snap.jpeg
+    stream_source: rtsp://REDACTED.3:7447/REDACTED
+    verify_ssl: false
+  - platform: generic
+    name: Basement
+    still_image_url: https://REDACTED.97/snap.jpeg
+    stream_source: rtsp://REDACTED.3:7447/REDACTED
+    verify_ssl: false
+
 
 tts:
   - platform: amazon_polly
