@@ -132,3 +132,31 @@
     - service: switch.turn_on
       entity_id:
         - switch.bug_zapper
+
+        ##########################################################
+        ## Turn on Bug Zapper when Returning Home before Sunset
+        ##########################################################
+
+- alias: Bug Zapper - Turn on Bug Zapper when Returning Home before Sunset
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: switch.bug_zapper
+      state: 'off'
+    - condition: sun
+      after: sunset
+      after_offset: "-00:30:00"
+    - condition: state
+      entity_id: switch.winter_mode
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.bug_zapper

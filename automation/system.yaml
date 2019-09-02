@@ -340,3 +340,32 @@
         data:
           apns_headers:
            'apns-collapse-id': 'system-start'
+
+        #################################################################
+        ## Home Assistant Update
+        #################################################################
+
+- alias: Notification Text - Home Assistant Update
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.updater
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1s_iphone
+      data:
+        message: Update Available for Home Assistant
+        data:
+          apns_headers:
+           'apns-collapse-id': 'system-update'
