@@ -134,6 +134,39 @@
         - light.garage_light
 
         ##########################################################
+        ## Turn Off Garage Light at Midnight Friends Visiting Weekdays
+        ##########################################################
+
+- alias: Lights - Turn Off Garage Light at Midnight Friends Visiting Weekdays
+
+  trigger:
+   - platform: time
+     at: '23:59'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_exterior_off_night
+      state: 'off'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'home'
+    - condition: time
+      weekday:
+        - sun
+        - mon
+        - tue
+        - wed
+        - thu
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.garage_light
+
+        ##########################################################
         ## Turn On Front Porch at Sunset
         ##########################################################
 
@@ -158,7 +191,7 @@
         - light.front_porch
       data:
         transition: 900
-        brightness_pct: 40
+        brightness_pct: 50
         color_temp: 447
 
         ##########################################################
@@ -224,10 +257,10 @@
        transition: 300
 
         ##########################################################
-        ## Turn On Front Yard Outdoor Lighting at Sunset
+        ## Turn On Front Yard Lighting at Sunset
         ##########################################################
 
-- alias: Lights - Turn On Front Yard Outdoor Lighting at Sunset
+- alias: Lights - Turn On Front Yard Lighting at Sunset
 
   trigger:
     - platform: sun
@@ -240,10 +273,10 @@
         - switch.front_yard_lighting
 
         ##########################################################
-        ## Turn Off Front Yard Outdoor Lighting at 2a
+        ## Turn Off Front Yard Lighting at 2a
         ##########################################################
 
-- alias: Lights - Turn Off Front Yard Outdoor Lighting at 2a
+- alias: Lights - Turn Off Front Yard Lighting at 2a
 
   trigger:
    - platform: time
@@ -284,59 +317,6 @@
         transition: 60
 
         ##########################################################
-        ## Turn On Backyard Deck Lights at Sunset
-        ##########################################################
-
-- alias: Lights - Turn On Backyard Deck Lights at Sunset
-
-  trigger:
-    - platform: sun
-      event: 'sunset'
-      offset: '-00:15:00'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_exterior_on_sunset
-      state: 'off'
-    - condition: state
-      entity_id: group.friends_and_family
-      state: 'home'
-
-  action:
-    - service: light.turn_on
-      entity_id:
-        - light.backyard_deck
-      data:
-        brightness_pct: 1
-        transition: 60
-
-        ##########################################################
-        ## Turn Off Backyard Deck Lights at Midnight
-        ##########################################################
-
-- alias: Lights - Turn Off Backyard Deck Lights at Midnight
-
-  trigger:
-   - platform: time
-     at: '23:59'
-
-  condition:
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: state
-      entity_id: input_boolean.disable_exterior_off_night
-      state: 'off'
-    - condition: state
-      entity_id: group.friends_and_family
-      state: 'not_home'
-
-  action:
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_deck
-
-        ##########################################################
         ## Turn Off Back Door at Midnight
         ##########################################################
 
@@ -356,6 +336,41 @@
     - condition: state
       entity_id: group.friends_and_family
       state: 'not_home'
+
+  action:
+   - service: light.turn_off
+     entity_id:
+       - light.back_door
+     data:
+       transition: 300
+
+        ##########################################################
+        ## Turn Off Back Door at Midnight Weekdays Friends Visiting
+        ##########################################################
+
+- alias: Lights - Turn Off Back Door at Midnight Weekdays Friends Visiting
+
+  trigger:
+    - platform: time
+      at: '23:59'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_exterior_off_night
+      state: 'off'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'home'
+    - condition: time
+      weekday:
+        - sun
+        - mon
+        - tue
+        - wed
+        - thu
 
   action:
    - service: light.turn_off
@@ -453,10 +468,10 @@
         - switch.front_yard_lighting
 
         ##########################################################
-        ## Turn On Outdoor Lighting at Sunset
+        ## Turn On Backyard Lighting at Sunset
         ##########################################################
 
-- alias: Lights - Turn on Outdoor Lighting at Sunset
+- alias: Lights - Turn on Backyard Lighting at Sunset
 
   trigger:
     - platform: sun
@@ -480,15 +495,17 @@
         - switch.backyard_patio_lighting
         - switch.lower_backyard_lighting
     - service: light.turn_on
-      entity_id: light.backyard_patio
+      entity_id:
+        - light.backyard_patio
+        - light.backyard_deck
       data:
         brightness_pct: 1
 
         ##########################################################
-        ## Turn Off Outdoor Lighting At 10:00p
+        ## Turn Off Backyard Lighting At 10:00p
         ##########################################################
 
-- alias: Lights - Turn off Outdoor Lighting at 10p
+- alias: Lights - Turn off Backyard Lighting at 10p
 
   trigger:
     - platform: time
@@ -508,9 +525,44 @@
         - switch.lower_backyard_lighting
         - switch.backyard_patio_lighting
     - service: light.turn_off
-      entity_id: light.backyard_patio
+      entity_id:
+        - light.backyard_patio
+        - light.backyard_deck
+
+        ##########################################################
+        ## Turn Off Backyard Lighting At Midnight Weekedays Friends Visiting
+        ##########################################################
+
+- alias: Lights - Turn Off Backyard Lighting At Midnight Weekedays Friends Visiting
+
+  trigger:
+    - platform: time
+      at: '23:59'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_exterior_off_night
+      state: 'off'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'home'
+    - condition: time
+      weekday:
+        - sun
+        - mon
+        - tue
+        - wed
+        - thu
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.lower_backyard_lighting
+        - switch.backyard_patio_lighting
     - service: light.turn_off
-      entity_id: light.backyard_deck
+      entity_id:
+        - light.backyard_patio
+        - light.backyard_deck
 
         ##########################################################
         ## Media Center Lighting Random Color Every 30 mins

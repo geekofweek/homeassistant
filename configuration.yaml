@@ -150,7 +150,7 @@ unifi:
   controllers:
     - host: REDACTED.3
       site: 'REDACTED'
-      detection_time: 120
+      detection_time: 300
       ssid_filter:
         - 'REDACTED'
 
@@ -199,7 +199,7 @@ camera:
     stream_source: rtsp://REDACTED.3:7447/REDACTED
     verify_ssl: false
   - platform: generic
-    name: Backyard
+    name: Backyard Gate
     still_image_url: https://REDACTED.25/snap.jpeg
     stream_source: rtsp://REDACTED.3:7447/REDACTED
     verify_ssl: false
@@ -209,7 +209,7 @@ camera:
     stream_source: rtsp://REDACTED.3:7447/REDACTED
     verify_ssl: false
   - platform: generic
-    name: Living Room
+    name: Backyard
     still_image_url: https://REDACTED.REDACTED/snap.jpeg
     stream_source: rtsp://REDACTED.3:7447/REDACTED
     verify_ssl: false
@@ -285,7 +285,7 @@ alarm_control_panel:
       trigger_time: 0
     armed_home:
       delay_time: 0
-      trigger_time: 45
+      trigger_time: 60
 
 #################################################################
 ## Includes
