@@ -24,6 +24,9 @@
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
+    - condition: state
+      entity_id: light.garage_light
+      state: 'on'
 
   action:
     - service: light.turn_on
@@ -42,6 +45,9 @@
     - platform: state
       entity_id: cover.garage_door
       to: 'opening'
+    - platform: state
+      entity_id: cover.garage_door
+      to: 'open'
 
   condition:
     - condition: state

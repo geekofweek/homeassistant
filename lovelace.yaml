@@ -41,6 +41,7 @@ views:
           - device_tracker.REDACTED
           - device_tracker.REDACTED
           - device_tracker.REDACTED
+          - person.REDACTED
           - device_tracker.REDACTED
           - device_tracker.REDACTED
           - device_tracker.REDACTED
@@ -140,9 +141,14 @@ views:
         tap_action:
           action: toggle
         type: entity-button
-      - entity: camera.front_porch
-        show_state: false
-        type: picture-entity
+      - cards:
+          - entity: camera.front_porch
+            show_state: false
+            type: picture-entity
+          - entity: camera.backyard_gate
+            show_state: false
+            type: picture-entity
+        type: vertical-stack
       - cards:
           - entity: camera.driveway
             show_state: false
@@ -818,30 +824,6 @@ views:
         type: glance
       - entity: media_player.sonos_backyard_patio
         type: media-control
-      - camera_view: live
-        entity: camera.front_porch
-        show_state: false
-        type: picture-entity
-      - cards:
-          - camera_view: live
-            entity: camera.backyard
-            show_state: false
-            type: picture-entity
-          - camera_view: live
-            entity: camera.side_yard
-            show_state: false
-            type: picture-entity
-        type: vertical-stack
-      - cards:
-          - camera_view: live
-            entity: camera.driveway
-            show_state: false
-            type: picture-entity
-          - camera_view: live
-            entity: camera.garage
-            show_state: false
-            type: picture-entity
-        type: vertical-stack
     icon: 'mdi:tree'
     path: outdoors
     title: Outdoors
@@ -928,7 +910,7 @@ views:
               https://icons.wxug.com/data/weather-maps/radar/united-states/jefferson-city-missouri-region-current-radar-animation.gif
             type: picture
         type: vertical-stack
-    icon: 'mdi:weather-partlycloudy'
+    icon: 'mdi:weather-partly-lightning'
     path: weatherdashboard
     title: Weather
   - badges: []
@@ -1005,27 +987,16 @@ views:
     title: Media
   - badges: []
     cards:
-      - camera_view: live
-        entity: camera.front_porch
-        show_state: false
-        type: picture-entity
-      - card:
-          cards:
-            - camera_view: live
-              entity: camera.living_room
-              show_state: false
-              type: picture-entity
-            - camera_view: live
-              entity: camera.basement
-              show_state: false
-              type: picture-entity
-          type: vertical-stack
-        conditions:
-          - entity: device_tracker.living_room_camera
-            state: home
-          - entity: device_tracker.basement_camera
-            state: home
-        type: conditional
+      - cards:
+          - camera_view: live
+            entity: camera.front_porch
+            show_state: false
+            type: picture-entity
+          - camera_view: live
+            entity: camera.backyard_gate
+            show_state: false
+            type: picture-entity
+        type: vertical-stack
       - cards:
           - camera_view: live
             entity: camera.driveway
@@ -1046,6 +1017,23 @@ views:
             show_state: false
             type: picture-entity
         type: vertical-stack
+      - card:
+          cards:
+            - camera_view: live
+              entity: camera.living_room
+              show_state: false
+              type: picture-entity
+            - camera_view: live
+              entity: camera.basement
+              show_state: false
+              type: picture-entity
+          type: vertical-stack
+        conditions:
+          - entity: device_tracker.living_room_camera
+            state: home
+          - entity: device_tracker.basement_camera
+            state: home
+        type: conditional
     icon: 'mdi:cctv'
     path: cameras
     title: Cameras
@@ -1407,12 +1395,6 @@ views:
           - entity: sensor.pihole_1_status
             icon: 'mdi:dns'
             name: 'DNS #1 Ad Blocker Enabled'
-          - entity: sensor.pihole_1_dns_queries_today
-            name: 'DNS #1 Queries'
-          - entity: sensor.pihole_1_ads_blocked_today
-            name: 'DNS #1 Ads Blocked'
-          - entity: sensor.pihole_1_ads_percentage_blocked_today
-            name: 'DNS #1 Percentage Blocked'
           - type: divider
           - entity: switch.pihole_2_switch
             icon: 'mdi:power'
@@ -1420,12 +1402,6 @@ views:
           - entity: sensor.pihole_2_status
             icon: 'mdi:dns'
             name: 'DNS #2 Ad Blocker Enabled'
-          - entity: sensor.pihole_2_dns_queries_today
-            name: 'DNS #2 Queries'
-          - entity: sensor.pihole_2_ads_blocked_today
-            name: 'DNS #2 Ads Blocked'
-          - entity: sensor.pihole_2_ads_percentage_blocked_today
-            name: 'DNS #2 Percentage Blocked'
         show_header_toggle: false
         title: DNS
         type: entities
@@ -1455,10 +1431,21 @@ views:
           type: entities
         entities:
           - entity: switch.front_porch_camera
+            icon: 'mdi:cctv'
           - entity: switch.backyard_camera
+            icon: 'mdi:cctv'
+          - entity: switch.backyard_gate_camera
+            icon: 'mdi:cctv'
+          - entity: switch.driveway_camera
+            icon: 'mdi:cctv'
+          - entity: switch.garage_camera
+            icon: 'mdi:cctv'
           - entity: switch.side_yard_camera
+            icon: 'mdi:cctv'
           - entity: switch.living_room_camera
+            icon: 'mdi:cctv'
           - entity: switch.basement_camera
+            icon: 'mdi:cctv'
         show_empty: false
         state_filter:
           - 'on'
@@ -1531,6 +1518,8 @@ views:
             name: Upstairs Bathroom
           - entity: sensor.basement_motion_batt
             name: Basement
+          - entity: sensor.USER2s_closet_motion_batt
+            name: USER2's Closet
         show_header_toggle: false
         title: Motion Sensors
         type: entities

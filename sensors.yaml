@@ -59,38 +59,6 @@
     unit_of_measurement: days
 
         ##########################################################
-        ## Plex
-        ##########################################################
-
-  - platform: plex
-    name: !secret plex_name
-    host: !secret plex_host
-    port: REDACTED
-    ssl: true
-    username: !secret plex_username
-    password: !secret plex_password
-    server: !secret plex_server
-
-        ##########################################################
-        ## Pi Hole
-        ##########################################################
-
-  - platform: pi_hole
-    host: REDACTED.4
-    name: pihole 1
-    monitored_conditions:
-      - ads_blocked_today
-      - ads_percentage_today
-      - dns_queries_today
-  - platform: pi_hole
-    host: REDACTED.5
-    name: pihole 2
-    monitored_conditions:
-      - ads_blocked_today
-      - ads_percentage_today
-      - dns_queries_today
-
-        ##########################################################
         ## Waze Travel Time
         ##########################################################
 
@@ -133,7 +101,7 @@
     sensors:
       washing_machine_status:
         value_template: >-
-          {%- if states('sensor.washing_machine_current_power') | int >= 3 %}
+          {%- if states('sensor.washing_machine_current_power') | int >= 6 %}
             running
           {% else %}
             not running

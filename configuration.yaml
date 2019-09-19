@@ -117,6 +117,13 @@ apple_tv:
     credentials: !secret apple_tv_office_cred
     start_off: false
 
+plex:
+   host: REDACTED.101
+   port: REDACTED
+   token: !secret plextoken
+   ssl: true
+   verify_ssl: false
+
 remote:
   - platform: harmony
     name: Media Center
@@ -150,7 +157,7 @@ unifi:
   controllers:
     - host: REDACTED.3
       site: 'REDACTED'
-      detection_time: 300
+      detection_time: 120
       ssid_filter:
         - 'REDACTED'
 
@@ -219,7 +226,6 @@ camera:
     stream_source: rtsp://REDACTED.3:7447/REDACTED
     verify_ssl: false
 
-
 tts:
   - platform: amazon_polly
     aws_access_key_id: !secret aws_access_key_id
@@ -255,7 +261,7 @@ nest:
 dyson:
   username: !secret dyson_username
   password: !secret dyson_password
-  language: GB
+  language: US
   devices:
     - device_id: !secret dyson_id
       device_ip: REDACTED.95
@@ -286,6 +292,16 @@ alarm_control_panel:
     armed_home:
       delay_time: 0
       trigger_time: 60
+
+#pi_hole:
+#  host: REDACTED.4
+#pi_hole:
+#  host: REDACTED.5
+
+#smartthinq:
+#  token: !secret smartthinqtoken
+#    region: US
+#    language: en-US
 
 #################################################################
 ## Includes

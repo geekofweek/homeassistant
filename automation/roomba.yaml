@@ -577,13 +577,16 @@
       after: sunset
       after_offset: "-00:90:00"
     - condition: state
-      entity_id: binary_sensor.office_occupancy
+      entity_id: binary_sensor.USER1s_office_motion
       state: 'off'
     - condition: state
-      entity_id: binary_sensor.USER2_office_occupancy
+      entity_id: binary_sensor.USER2s_office_motion
       state: 'off'
     - condition: state
-      entity_id: binary_sensor.guest_bedroom_occupancy
+      entity_id: binary_sensor.upstairs_bathroom_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.stairs_motion
       state: 'off'
     - condition: state
       entity_id: group.household
