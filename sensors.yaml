@@ -64,17 +64,17 @@
 
   - platform: waze_travel_time
     name: USER2 To Home
-    origin: device_tracker.USER2s_iphone
+    origin: person.USER2
     destination: zone.home
     region: 'US'
   - platform: waze_travel_time
     name: USER1 To Home
-    origin: device_tracker.REDACTEDs_iphone
+    origin: person.REDACTED
     destination: zone.home
     region: 'US'
   - platform: waze_travel_time
     name: USER2 To REDACTED
-    origin: device_tracker.USER2s_iphone
+    origin: person.USER2
     destination: zone.REDACTED
     region: 'US'
 
@@ -107,6 +107,25 @@
             not running
           {% endif %}
         friendly_name: 'Washing Machine Status'
+
+        ##########################################################
+        ## Dryer
+        ##########################################################
+
+  - platform: template
+    sensors:
+      dryer_current_power:
+        value_template: '{{ states.switch.dryer.attributes.current_power_w }}'
+  - platform: template
+    sensors:
+      dryer_status:
+        value_template: >-
+          {%- if states('sensor.dryer_current_power') | int >= 6 %}
+            running
+          {% else %}
+            not running
+          {% endif %}
+        friendly_name: 'Dryer Status'
 
         ##########################################################
         ## Battery Levels

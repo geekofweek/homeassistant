@@ -31,10 +31,16 @@
         ## Device Trackers
         ##########################################################
 
-  device_tracker.USER1s_iphone:
+  person.USER1:
     icon: mdi:human-male
     friendly_name: USER1
-  device_tracker.USER2s_iphone:
+  device_tracker.USER1:
+    icon: mdi:human-male
+    friendly_name: USER1
+  person.USER2:
+    icon: mdi:human-female
+    friendly_name: USER2
+  device_tracker.USER2:
     icon: mdi:human-female
     friendly_name: USER2
   device_tracker.USER1s_ipad:
@@ -111,7 +117,7 @@
   device_tracker.REDACTED:
     icon: mdi:human-female
     friendly_name: REDACTED
-  person.david:
+  person.REDACTED:
     icon: mdi:human-male
     friendly_name: REDACTED
   device_tracker.REDACTED:
@@ -799,7 +805,7 @@
     icon: mdi:smoke-detector
 
         ##########################################################
-        ## Washing Machine
+        ## Laundry
         ##########################################################
 
   sensor.washing_machine_status:
@@ -810,3 +816,11 @@
   sensor.washing_machine_current_power:
     icon: mdi:power-plug
     friendly_name: Washing Machine Wattage
+  sensor.dryer_status:
+    icon: mdi:tumble-dryer
+  switch.dryer:
+    icon: mdi:tumble-dryer
+    friendly_name: Dryer Power
+  sensor.dryer_current_power:
+    icon: mdi:power-plug
+    friendly_name: Dryer Wattage

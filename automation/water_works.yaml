@@ -20,7 +20,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Water Detected in Basement Drain!
         data:
@@ -45,7 +45,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Water Detected Under Kitchen Sink!
         data:
@@ -70,7 +70,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Water Detected Under Bathroom Sink!
         data:
@@ -95,7 +95,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Water Detected by Basement Door!
         data:
@@ -120,7 +120,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Water Detected in Upstairs Bathroom!
         data:
@@ -145,7 +145,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Water Detected by Water Heater!
         data:
@@ -170,7 +170,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Water Detected Under Utility Sink!
         data:
@@ -195,7 +195,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Water Detected by Washing Machine!
         data:
@@ -220,7 +220,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Water Detected in Sump Pump!
         data:
@@ -597,13 +597,13 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Water Main Has Been Shut Off!
         data:
           apns_headers:
            'apns-collapse-id': 'water-main-off'
-    - service: notify.ios_USER2s_iphone
+    - service: notify.ios_USER2
       data:
         message: Water Main Has Been Shut Off!
         data:
@@ -628,13 +628,13 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Water Main Has Been Turned Back On
         data:
           apns_headers:
            'apns-collapse-id': 'water-main-on'
-    - service: notify.ios_USER2s_iphone
+    - service: notify.ios_USER2
       data:
         message: Water Main Has Been Turned Back On.
         data:

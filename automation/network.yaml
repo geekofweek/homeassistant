@@ -74,7 +74,7 @@
     - service: switch.turn_on
       entity_id:
         - switch.att_router
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Internet is Down, Turning on at&t Router
         data:
@@ -100,7 +100,7 @@
     - service: switch.turn_off
       entity_id:
         - switch.att_router
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Internet is Up, Shutting off at&t Router
         data:

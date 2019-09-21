@@ -23,16 +23,54 @@
       entity_id: group.household
       state: 'home'
     - condition: state
-      entity_id: device_tracker.USER1s_iphone
+      entity_id: person.USER1
       state: 'home'
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
-        message: Washing Machine Done
+        message: Washing Machine Finished
+        data:
+          apns_headers:
+           'apns-collapse-id': 'laundry-done'
+          push:
+            badge: 0
+            category: "washingmachinedonelights"
+
+        ##########################################################
+        ## Dryer Done - USER1 Notification
+        ##########################################################
+
+- alias: Laundry - Dryer Done USER1 Notification
+
+  trigger:
+    - platform: state
+      entity_id: sensor.dryer_status
+      from: 'running'
+      to: 'not running'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: Dryer Finished
         data:
           apns_headers:
            'apns-collapse-id': 'laundry-done'
@@ -61,16 +99,54 @@
       entity_id: group.household
       state: 'home'
     - condition: state
-      entity_id: device_tracker.USER2s_iphone
+      entity_id: person.USER2
       state: 'home'
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
   action:
-    - service: notify.ios_USER2s_iphone
+    - service: notify.ios_USER2
       data:
-        message: Washing Machine Done
+        message: Washing Machine Finished
+        data:
+          apns_headers:
+           'apns-collapse-id': 'laundry-done'
+          push:
+            badge: 0
+            category: "washingmachinedonelights"
+
+        ##########################################################
+        ## Dryer Done - USER2 Notification
+        ##########################################################
+
+- alias: Laundry - Dryer Done USER2 Notification
+
+  trigger:
+    - platform: state
+      entity_id: sensor.dryer_status
+      from: 'running'
+      to: 'not running'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: person.USER2
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER2
+      data:
+        message: Dryer Finished
         data:
           apns_headers:
            'apns-collapse-id': 'laundry-done'
@@ -96,7 +172,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Washing Machine Switch Turned Off!
         data:
@@ -105,6 +181,34 @@
           push:
             badge: 0
             category: "washingmachineswitch"
+
+        ##########################################################
+        ## Dryer Switch Off Notification
+        ##########################################################
+
+- alias: Laundry - Dryer Switch Off Notification
+
+  trigger:
+    - platform: state
+      entity_id: switch.dryer
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: Dryer Switch Turned Off!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'laundry-switch'
+          push:
+            badge: 0
+            category: "dryerswitch"
 
         ##########################################################
         ## Washing Machine Done - Audio Notification
@@ -144,10 +248,47 @@
           what: 'Washing Machine Has Finished'
 
         ##########################################################
-        ## Shut off Washing Machine if Water Detected
+        ## Dryer Done - Audio Notification
         ##########################################################
 
-- alias: Laundry - Shut off Washing Machine if Water Detected
+- alias: Laundry - Dryer Done Audio Notification
+
+  trigger:
+    - platform: state
+      entity_id: sensor.dryer_status
+      from: 'running'
+      to: 'not running'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+    - condition: time
+      after: '09:00'
+      before: '20:30'
+
+  action:
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.sonos_living_room'
+          where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen, media_player.sonos_USER2s_office'
+          volume: '0.5'
+          what: 'Dryer Has Finished'
+
+        ##########################################################
+        ## Shut off Washer and Dryer if Water Detected
+        ##########################################################
+
+- alias: Laundry - Shut off Washer and Dryer if Water Detected
 
   trigger:
     - platform: state
@@ -168,3 +309,44 @@
     - service: switch.turn_off
       entity_id:
         - switch.washing_machine
+        - switch.dryer
+
+        #################################################################
+        ## Turn On Washing Machine if Off on Startup
+        #################################################################
+
+- alias: Laundry - Turn on Washing Machine if Off on Startup
+
+  trigger:
+    - platform: homeassistant
+      event: start
+
+  condition:
+    - condition: state
+      entity_id: switch.washing_machine
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.washing_machine
+
+        #################################################################
+        ## Turn On Dryer if Off on Startup
+        #################################################################
+
+- alias: Laundry - Turn on Dryer if Off on Startup
+
+  trigger:
+    - platform: homeassistant
+      event: start
+
+  condition:
+    - condition: state
+      entity_id: switch.dryer
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.dryer

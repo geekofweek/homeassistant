@@ -51,7 +51,7 @@
           where: 'media_player.sonos_media_center, media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen, media_player.sonos_bathroom, media_player.sonos_bedroom, media_player.sonos_USER1s_office, media_player.sonos_USER2s_office, media_player.sonos_basement'
           volume: '1'
           what: 'You are not Authorized to be Here. Law Enforcement Has Been Notified!'
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Alarm Away Triggered!
         data:
@@ -60,7 +60,7 @@
           push:
             badge: 0
             category: "alarm"
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Alarm! (Front Porch Camera)
         data:
@@ -69,7 +69,7 @@
           push:
             category: camera
           entity_id: camera.front_porch
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Alarm! (Backyard Camera)
         data:
@@ -78,7 +78,7 @@
           push:
             category: camera
           entity_id: camera.backyard
-    - service: notify.ios_USER2s_iphone
+    - service: notify.ios_USER2
       data:
         message: Alarm Away Triggered!
         data:
@@ -87,7 +87,7 @@
           push:
             badge: 0
             category: "alarm"
-    - service: notify.ios_USER2s_iphone
+    - service: notify.ios_USER2
       data:
         message: Alarm! (Front Porch Camera)
         data:
@@ -96,7 +96,7 @@
           push:
             category: camera
           entity_id: camera.front_porch
-    - service: notify.ios_USER2s_iphone
+    - service: notify.ios_USER2
       data:
         message: Alarm! (Backyard Camera)
         data:
@@ -144,7 +144,7 @@
     - service: switch.turn_on
       entity_id:
         - switch.siren
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Alarm Home Triggered!
         data:
@@ -153,7 +153,7 @@
           push:
             badge: 0
             category: "alarm"
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Alarm! (Front Porch Camera)
         data:
@@ -162,7 +162,7 @@
           push:
             category: camera
           entity_id: camera.front_porch
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Alarm! (Backyard Camera)
         data:
@@ -171,7 +171,7 @@
           push:
             category: camera
           entity_id: camera.backyard
-    - service: notify.ios_USER2s_iphone
+    - service: notify.ios_USER2
       data:
         message: Alarm Home Triggered!
         data:
@@ -180,7 +180,7 @@
           push:
             badge: 0
             category: "alarm"
-    - service: notify.ios_USER2s_iphone
+    - service: notify.ios_USER2
       data:
         message: Alarm! (Front Porch Camera)
         data:
@@ -189,7 +189,7 @@
           push:
             category: camera
           entity_id: camera.front_porch
-    - service: notify.ios_USER2s_iphone
+    - service: notify.ios_USER2
       data:
         message: Alarm! (Backyard Camera)
         data:
@@ -211,7 +211,7 @@
       to: 'on'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Panic Button Has Been Pressed!
         data:
@@ -220,7 +220,7 @@
           push:
             badge: 0
             category: "alarm"
-    - service: notify.ios_USER2s_iphone
+    - service: notify.ios_USER2
       data:
         message: Panic Button Has Been Pressed!
         data:
@@ -314,7 +314,7 @@
     - service: alarm_control_panel.alarm_trigger
       entity_id:
         - alarm_control_panel.alarm
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Door Alarm Triggered!
         data:
@@ -356,7 +356,7 @@
     - service: alarm_control_panel.alarm_trigger
       entity_id:
         - alarm_control_panel.alarm
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Door Alarm Triggered!
         data:
@@ -399,7 +399,7 @@
     - service: alarm_control_panel.alarm_trigger
       entity_id:
         - alarm_control_panel.alarm
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Motion Alarm Triggered!
         data:
@@ -432,7 +432,7 @@
     #- service: alarm_control_panel.alarm_trigger
     #  entity_id:
     #    - alarm_control_panel.alarm
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Garage Door Alarm Triggered!
         data:
@@ -468,7 +468,7 @@
     #- service: alarm_control_panel.alarm_trigger
     #  entity_id:
     #    - alarm_control_panel.alarm
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Garage Door Alarm Triggered!
         data:
@@ -602,7 +602,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Alarm is Armed Home
         data:
@@ -626,13 +626,13 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Alarm is Armed Away
         data:
           apns_headers:
            'apns-collapse-id': 'alarm-on'
-    - service: notify.ios_USER2s_iphone
+    - service: notify.ios_USER2
       data:
         message: Alarm is Armed Away
         data:
@@ -656,7 +656,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Alarm is Disarmed
         data:
@@ -683,7 +683,7 @@
       before: '04:59'
 
   action:
-    - service: notify.ios_USER2s_iphone
+    - service: notify.ios_USER2
       data:
         message: Alarm is Disarmed
         data:

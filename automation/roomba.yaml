@@ -158,13 +158,13 @@
     - condition: or
       conditions:
       - condition: state
-        entity_id: device_tracker.USER2s_iphone
+        entity_id: person.USER2
         state: 'not_home'
       - condition: state
-        entity_id: device_tracker.USER2s_iphone
+        entity_id: person.USER2
         state: 'Lake'
       - condition: state
-        entity_id: device_tracker.USER2s_iphone
+        entity_id: person.USER2
         state: 'REDACTED'
 
   action:
@@ -247,13 +247,13 @@
     - condition: or
       conditions:
       - condition: state
-        entity_id: device_tracker.USER2s_iphone
+        entity_id: person.USER2
         state: 'not_home'
       - condition: state
-        entity_id: device_tracker.USER2s_iphone
+        entity_id: person.USER2
         state: 'Lake'
       - condition: state
-        entity_id: device_tracker.USER2s_iphone
+        entity_id: person.USER2
         state: 'REDACTED'
 
   action:
@@ -333,13 +333,13 @@
     - condition: or
       conditions:
       - condition: state
-        entity_id: device_tracker.USER2s_iphone
+        entity_id: person.USER2
         state: 'not_home'
       - condition: state
-        entity_id: device_tracker.USER2s_iphone
+        entity_id: person.USER2
         state: 'Lake'
       - condition: state
-        entity_id: device_tracker.USER2s_iphone
+        entity_id: person.USER2
         state: 'REDACTED'
 
   action:
@@ -672,7 +672,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2s_iphone
+      entity_id: person.USER2
       from: 'home'
       to: 'not_home'
       for:
@@ -726,7 +726,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2s_iphone
+      entity_id: person.USER2
       from: 'not_home'
       to: 'home'
       for:
@@ -891,13 +891,13 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Downstairs Roomba is Stuck, Please Help
         data:
           apns_headers:
            'apns-collapse-id': 'downstairs-roomba-stuck'
-    - service: notify.ios_USER2s_iphone
+    - service: notify.ios_USER2
       data:
         message: Downstairs Roomba is Stuck, Please Help
         data:
@@ -920,13 +920,13 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Upstairs Roomba is Stuck, Please Help
         data:
           apns_headers:
            'apns-collapse-id': 'upstairs-roomba-stuck'
-    - service: notify.ios_USER2s_iphone
+    - service: notify.ios_USER2
       data:
         message: Upstairs Roomba is Stuck, Please Help
         data:
@@ -949,13 +949,13 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Downstairs Roomba is Full, Empty It
         data:
           apns_headers:
            'apns-collapse-id': 'downstairs-roomba-full'
-    - service: notify.ios_USER2s_iphone
+    - service: notify.ios_USER2
       data:
         message: Downstairs Roomba is Full, Empty It
         data:
@@ -978,13 +978,13 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Upstairs Roomba is Full, Empty It
         data:
           apns_headers:
            'apns-collapse-id': 'upstairs-roomba-full'
-    - service: notify.ios_USER2s_iphone
+    - service: notify.ios_USER2
       data:
         message: Upstairs Roomba is Full, Empty It
         data:

@@ -106,7 +106,7 @@
       entity_id: group.winter_mode
     - service: homeassistant.turn_off
       entity_id: input_boolean.spring_fall_mode
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: House has been empty for 30 mins, shutting off HVAC
         data:
@@ -146,7 +146,7 @@
   action:
     - service: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Outside temp above 68 turning on AC
         data:
@@ -185,7 +185,7 @@
   action:
     - service: homeassistant.turn_on
       entity_id: input_boolean.thermostat_away
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Outside temp below 68 shutting off AC
         data:
@@ -221,7 +221,7 @@
   action:
     - service: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Outside temp below 65 turning on Heat
         data:
@@ -260,7 +260,7 @@
   action:
     - service: homeassistant.turn_on
       entity_id: input_boolean.thermostat_away
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Outside temp above 65 turning off Heat
         data:
@@ -299,7 +299,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2s_iphone
+      entity_id: person.USER2
       from: 'REDACTED'
       to: 'not_home'
 
@@ -348,13 +348,13 @@
   action:
     - service: homeassistant.turn_on
       entity_id: input_boolean.thermostat_away
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Door has been left open, shutting off AC
         data:
           apns_headers:
            'apns-collapse-id': 'climate-door-open'
-    - service: notify.ios_USER2s_iphone
+    - service: notify.ios_USER2
       data:
         message: Door has been left open, shutting off AC
         data:
@@ -445,7 +445,7 @@
       entity_id: group.winter_mode
       state: 'on'
     - condition: state
-      entity_id: device_tracker.USER2s_iphone
+      entity_id: person.USER2
       state: 'home'
     - condition: state
       entity_id: input_boolean.disable_climate
@@ -472,7 +472,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2s_iphone
+      entity_id: person.USER2
       from: 'home'
       to: 'not_home'
 
@@ -578,7 +578,7 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker.USER1s_iphone
+      entity_id: person.USER1
       state: 'home'
     - condition: state
       entity_id: input_boolean.thermostat_away
@@ -625,7 +625,7 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker.USER1s_iphone
+      entity_id: person.USER1
       state: 'home'
     - condition: state
       entity_id: input_boolean.thermostat_away
@@ -666,7 +666,7 @@
 
   condition:
     - condition: state
-      entity_id: device_tracker.USER1s_iphone
+      entity_id: person.USER1
       state: 'home'
     - condition: state
       entity_id: group.friends_and_family
@@ -886,7 +886,7 @@
       entity_id: group.winter_mode
       state: 'on'
     - condition: state
-      entity_id: device_tracker.USER1s_iphone
+      entity_id: person.USER1
       state: 'home'
     - condition: state
       entity_id: binary_sensor.office_occupancy
@@ -933,7 +933,7 @@
       entity_id: group.winter_mode
       state: 'on'
     - condition: state
-      entity_id: device_tracker.USER1s_iphone
+      entity_id: person.USER1
       state: 'home'
     - condition: state
       entity_id: binary_sensor.office_occupancy

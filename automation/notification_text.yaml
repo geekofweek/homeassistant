@@ -10,7 +10,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER1s_iphone
+      entity_id: person.USER1
       from: 'not_home'
       to: 'home'
 
@@ -26,7 +26,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: USER1 Home
         data:
@@ -35,7 +35,7 @@
           push:
             category: camera
           entity_id: camera.driveway
-    - service: notify.ios_USER2s_iphone
+    - service: notify.ios_USER2
       data:
         message: USER1 Home
         data:
@@ -53,7 +53,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER1s_iphone
+      entity_id: person.USER1
       from: 'not_home'
       to: 'home'
 
@@ -69,7 +69,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: USER1 Home
         data:
@@ -78,7 +78,7 @@
           push:
             category: camera
           entity_id: camera.front_porch
-    - service: notify.ios_USER2s_iphone
+    - service: notify.ios_USER2
       data:
         message: USER1 Home
         data:
@@ -96,7 +96,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER1s_iphone
+      entity_id: person.USER1
       from: 'home'
       to: 'not_home'
 
@@ -106,7 +106,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: USER1 Away
         data:
@@ -121,7 +121,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2s_iphone
+      entity_id: person.USER2
       from: 'not_home'
       to: 'home'
 
@@ -137,7 +137,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: USER2 Home
         data:
@@ -155,7 +155,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2s_iphone
+      entity_id: person.USER2
       from: 'not_home'
       to: 'home'
 
@@ -171,7 +171,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: USER2 Home
         data:
@@ -189,7 +189,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2s_iphone
+      entity_id: person.USER2
       from: 'home'
       to: 'not_home'
 
@@ -199,7 +199,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: USER2 Away
         data:
@@ -214,7 +214,7 @@
 
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2s_iphone
+      entity_id: person.USER2
       from: 'REDACTED'
       to: 'not_home'
 
@@ -224,7 +224,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: "USER2 has left work, ETA: {{states('sensor.USER2_to_home')}} mins"
         data:
@@ -249,7 +249,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Guest Arrived (Front Porch Camera)
         data:
@@ -258,7 +258,7 @@
           push:
             category: camera
           entity_id: camera.front_porch
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Guest Arrived (Garage Camera)
         data:
@@ -289,7 +289,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Fireplace Turned On!
         data:
@@ -324,7 +324,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Fireplace has been on for 4 Hours
         data:
@@ -333,7 +333,7 @@
           push:
             badge: 0
             category: "fireplace"
-    - service: notify.ios_USER2s_iphone
+    - service: notify.ios_USER2
       data:
         message: Fireplace has been on for 4 Hours
         data:
@@ -371,7 +371,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Garage Door is Still Open!
         data:
@@ -380,7 +380,7 @@
           push:
             category: camera
           entity_id: camera.garage
-    - service: notify.ios_USER2s_iphone
+    - service: notify.ios_USER2
       data:
         message: Garage Door is Still Open!
         data:
@@ -389,7 +389,7 @@
           push:
             category: camera
           entity_id: camera.garage
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Garage Door Still Open Close It?
         data:
@@ -398,7 +398,7 @@
           push:
             badge: 0
             category: "garage"
-    - service: notify.ios_USER2s_iphone
+    - service: notify.ios_USER2
       data:
         message: Garage Door Still Open Close It?
         data:
@@ -426,7 +426,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Someone is at the Front Door
         data:
@@ -435,7 +435,7 @@
           push:
             category: camera
           entity_id: camera.front_porch
-    - service: notify.ios_USER2s_iphone
+    - service: notify.ios_USER2
       data:
         message: Someone is at the Front Door
         data:
@@ -444,7 +444,7 @@
           push:
             category: camera
           entity_id: camera.front_porch
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Unlock Front Door?
         data:
@@ -453,7 +453,7 @@
           push:
             badge: 0
             category: "frontdoorlock"
-    - service: notify.ios_USER2s_iphone
+    - service: notify.ios_USER2
       data:
         message: Unlock Front Door?
         data:

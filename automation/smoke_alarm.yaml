@@ -53,7 +53,7 @@
         seconds: 1
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Warning Smoke Alarm Might Sound!
         data:
@@ -119,7 +119,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Smoke Alarm!
         data:
@@ -329,7 +329,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1s_iphone
+    - service: notify.ios_USER1
       data:
         message: Carbon Monoxide Alarm!
         data:
@@ -338,7 +338,7 @@
           push:
             category: camera
           entity_id: camera.driveway
-    - service: notify.ios_USER2s_iphone
+    - service: notify.ios_USER2
       data:
         message: Carbon Monoxide Alarm!
         data:
