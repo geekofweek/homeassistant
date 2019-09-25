@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+import "pyatv/mrp/protobuf/ProtocolMessage.proto";
+
+extend ProtocolMessage {
+  optional CryptoPairingMessage cryptoPairingMessage = 39;
+}
+
+message CryptoPairingMessage {
+  required bytes pairingData = 1; // Example: <00010006 0101>
+  required int32 status = 2; // Example: 0
+}

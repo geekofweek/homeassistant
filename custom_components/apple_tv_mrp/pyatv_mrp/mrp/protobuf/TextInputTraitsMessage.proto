@@ -1,0 +1,51 @@
+syntax = "proto2";
+
+message TextInputTraits {
+  enum AutocapitalizationType {
+    NONE = 0;
+    WORDS = 1;
+    SENTENCES = 2;
+    CHARACTERS = 3;
+  }
+
+  enum KeyboardType {
+    KEYBOARD_TYPE_DEFAULT = 0;
+    ASCII_CAPABLE = 1;
+    NUMBERS_AND_PUNCTUATION = 2;
+    URL = 3;
+    NUMBER_PAD = 4;
+    PHONE_PAD = 5;
+    NAME_PHONE_PAD = 6;
+    EMAIL_ADDRESS = 7;
+    DECIMAL_PAD = 8;
+    TWITTER = 9;
+    WEB_SEARCH = 10;
+    // ALPHABET = 1;
+  }
+
+  enum ReturnKeyType {
+    RETURN_KEY_DEFAULT = 0;
+    GO = 1;
+    GOOGLE = 2;
+    JOIN = 3;
+    NEXT = 4;
+    ROUTE = 5;
+    SEARCH = 6;
+    SEND = 7;
+    YAHOO = 8;
+    DONE = 9;
+    EMERGENCY_CALL = 10;
+    CONTINUE = 11;
+  }
+
+  optional AutocapitalizationType autocapitalizationType = 1;
+  optional KeyboardType keyboardType = 2;
+  optional ReturnKeyType returnKeyType = 3;
+  optional bool autocorrection = 4;
+  optional bool spellchecking = 5;
+  optional bool enablesReturnKeyAutomatically = 6;
+  optional bool secureTextEntry = 7;
+  optional uint64 validTextRangeLocation = 8;
+  optional uint64 validTextRangeLength = 9;
+  repeated uint64 PINEntrySeparatorIndexes = 10;
+}

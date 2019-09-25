@@ -1,0 +1,7 @@
+syntax = "proto2";
+
+message NowPlayingPlayer {
+  optional string identifier = 1;
+  optional string displayName = 2;
+  optional bool isDefaultPlayer = 3;
+}

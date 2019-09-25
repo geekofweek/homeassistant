@@ -1,0 +1,113 @@
+syntax = "proto2";
+
+import "pyatv/mrp/protobuf/ProtocolMessage.proto";
+
+extend ProtocolMessage {
+  optional TransactionMessage transactionMessage = 38;
+}
+
+message ContentItemMetadata {
+  optional string title = 1;
+  optional string subtitle = 2;
+  optional bool isContainer = 3;
+  optional bool isPlayable = 4;
+  optional float playbackProgress = 5;
+  optional string albumName = 6;
+  optional string trackArtistName = 7;
+  optional string albumArtistName = 8;
+  optional string directorName = 9;
+  optional int32 seasonNumber = 10;
+  optional int32 episodeNumber = 11;
+  optional double releaseDate = 12;
+  optional int32 playCount = 13;
+  optional double duration = 14;
+  optional string localizedContentRating = 15;
+  optional bool isExplicitItem = 16;
+  optional int32 playlistType = 17;
+  optional int32 radioStationType = 18;
+  optional bool artworkAvailable = 19;
+  optional bool infoAvailable = 21;
+  optional bool languageOptionsAvailable = 22;
+  optional int32 numberOfSections = 23;
+  optional bool lyricsAvailable = 24;
+  optional int32 editingStyleFlags = 25;
+  optional bool isStreamingContent = 26;
+  optional bool isCurrentlyPlaying = 27;
+  optional string collectionIdentifier = 28;
+  optional string profileIdentifier = 29;
+  optional double startTime = 30;
+  optional string artworkMIMEType = 31;
+  optional string assetURL = 32;
+  optional string composer = 33;
+  optional int32 discNumber = 34;
+  optional double elapsedTime = 35;
+  optional string genre = 36;
+  optional bool isAlwaysLive = 37;
+  optional float playbackRate = 38;
+  optional int32 chapterCount = 40;
+  optional int32 totalDiscCount = 41;
+  optional int32 totalTrackCount = 42;
+  optional int32 trackNumber = 43;
+  optional string contentIdentifier = 44;
+  optional bool isAdvertisement = 45;
+  optional bool isSharable = 46;
+  optional bool isBanned = 47;
+  optional bool isLiked = 48;
+  optional bool isInWishList = 49;
+  optional int64 radioStationIdentifier = 50;
+  optional string radioStationHash = 51;
+  optional string radioStationName = 52;
+  optional string radioStationString = 53;
+  optional int64 iTunesIdentifier = 54;
+  optional int64 iTunesSubscriptionIdentifier = 55;
+  optional int64 iTunesArtistIdentifier = 56;
+  optional int64 iTunesAlbumIdentifier = 57;
+  optional bytes purchaseInfoData = 58; // unknown
+  optional float defaultPlayRate = 59;
+  optional int32 downloadState = 60;
+  optional float downloadProgress = 61;
+  optional bytes appMetricsData = 62; // unknown
+  optional string seriesName = 63;
+  optional int32 mediaType = 64;
+  optional int32 mediaSubType = 65;
+  optional bytes nowPlayingInfo = 67; // unknown
+}
+
+message ContentItem {
+  optional string identifier = 1;
+  optional ContentItemMetadata metadata = 2;
+  optional bytes artworkData = 3;
+  optional string info = 4;
+  // repeated XXX availableLanguageOptions = 5;
+  // repeated XXX currentLanguageOptions = 6;
+  // optional XXX lyrics = 7;
+  // optional XXX sections = 8;
+  optional string parentIdentifier = 9;
+  optional string ancestorIdentifier = 10;
+  optional string queueIdentifier = 11;
+  optional string requestIdentifier = 12;
+}
+
+message TransactionMessage {
+
+  message TransactionKey {
+    optional string identifier = 1;
+  }
+
+  message TransactionPacket {
+    optional TransactionKey key = 1;
+    //optional bytes packetData = 2;
+    optional ContentItem contentItem = 2;
+    optional string identifier = 3;
+    optional uint64 totalLength = 4;
+    optional uint64 totalWritePosition = 5;
+  }
+
+  message TransactionPackets {
+    optional TransactionPacket packet = 1;
+  }
+
+  optional uint32 name = 1;
+  repeated TransactionPackets packets = 2;
+
+}

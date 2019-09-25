@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+import "pyatv/mrp/protobuf/Origin.proto";
+import "pyatv/mrp/protobuf/NowPlayingClient.proto";
+import "pyatv/mrp/protobuf/NowPlayingPlayer.proto";
+
+message PlayerPath {
+  optional Origin origin = 1;
+  optional NowPlayingClient client = 2;
+  optional NowPlayingPlayer player = 3;
+}

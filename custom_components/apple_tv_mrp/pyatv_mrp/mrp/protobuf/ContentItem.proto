@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+import "pyatv/mrp/protobuf/ContentItemMetadata.proto";
+import "pyatv/mrp/protobuf/LanguageOption.proto";
+
+message ContentItem {
+  optional string identifier = 1;
+  optional ContentItemMetadata metadata = 2;
+  optional string info = 3;
+  repeated LanguageOption availableLanguageOptions = 4;
+  repeated LanguageOption currentLanguageOptions = 5;
+//  optional Lyrics lyrics = 6;
+//  repeated Sections sections = 7;
+  optional string parentIdentifier = 8;
+  optional string ancestorIdentifier = 9;
+  optional string queueIdentifier = 10;
+  optional string requestIdentifier = 11;
+}

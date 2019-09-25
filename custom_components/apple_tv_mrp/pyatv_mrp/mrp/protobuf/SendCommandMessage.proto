@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+import "pyatv/mrp/protobuf/ProtocolMessage.proto";
+import "pyatv/mrp/protobuf/CommandInfo.proto";
+import "pyatv/mrp/protobuf/CommandOptions.proto";
+import "pyatv/mrp/protobuf/PlayerPath.proto";
+
+extend ProtocolMessage {
+  optional SendCommandMessage sendCommandMessage = 6;
+}
+
+message SendCommandMessage {
+  optional Command command = 1;
+  optional CommandOptions options = 2;
+  optional PlayerPath playerPath = 3;
+}

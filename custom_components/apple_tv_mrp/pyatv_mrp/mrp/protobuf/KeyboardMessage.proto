@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+import "pyatv/mrp/protobuf/ProtocolMessage.proto";
+import "pyatv/mrp/protobuf/TextEditingAttributesMessage.proto";
+
+extend ProtocolMessage {
+  optional KeyboardMessage keyboardMessage = 28;
+}
+
+message KeyboardMessage {
+  optional int32 state = 1;
+  optional TextEditingAttributes attributes = 3;
+  optional bytes encryptedTextCyphertext = 4;
+}

@@ -95,27 +95,36 @@ media_player:
       AUDIO2: "Sonos Digital"
       AUDIO3: "Sonos"
 
-apple_tv:
+apple_tv_mrp:
   - name: Living Room Apple TV
     host: REDACTED.150
-    login_id: !secret apple_tv_login_id
-    credentials: !secret apple_tv_living_room_cred
-    start_off: false
-  - name: Guest Bedroom Apple TV
-    host: REDACTED.153
-    login_id: !secret apple_tv_login_id
-    credentials: !secret apple_tv_guest_bedroom_cred
-    start_off: false
+    port: REDACTED
   - name: Bedroom Apple TV
     host: REDACTED.152
-    login_id: !secret apple_tv_login_id
-    credentials: !secret apple_tv_bedroom_cred
-    start_off: false
+    port: REDACTED
   - name: USER1's Office Apple TV
     host: REDACTED.151
-    login_id: !secret apple_tv_login_id
-    credentials: !secret apple_tv_office_cred
-    start_off: false
+    port: REDACTED
+  - name: Guest Bedroom Apple TV
+    host: REDACTED.153
+    port: REDACTED
+
+#apple_tv:
+#  - name: Living Room Apple TV
+#    host: REDACTED.150
+#    login_id: !secret apple_tv_login_id
+#    credentials: !secret apple_tv_living_room_cred
+#    start_off: false
+#  - name: Guest Bedroom Apple TV
+#    host: REDACTED.153
+#    login_id: !secret apple_tv_login_id
+#    credentials: !secret apple_tv_guest_bedroom_cred
+#    start_off: false
+#  - name: Bedroom Apple TV
+#    host: REDACTED.152
+#    login_id: !secret apple_tv_login_id
+#    credentials: !secret apple_tv_bedroom_cred
+#    start_off: false
 
 plex:
    host: REDACTED.101
@@ -158,7 +167,7 @@ unifi:
   controllers:
     - host: REDACTED.3
       site: 'REDACTED'
-      detection_time: 120
+      detection_time: 300
       ssid_filter:
         - 'REDACTED'
 

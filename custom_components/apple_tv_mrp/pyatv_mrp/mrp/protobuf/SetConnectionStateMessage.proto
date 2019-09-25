@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+import "pyatv/mrp/protobuf/ProtocolMessage.proto";
+
+extend ProtocolMessage {
+  optional SetConnectionStateMessage setConnectionStateMessage = 42;
+}
+
+message SetConnectionStateMessage {
+  enum ConnectionState {
+    Connected = 2;
+  }
+
+  optional ConnectionState state = 1;
+}

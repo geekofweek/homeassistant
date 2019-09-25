@@ -1,0 +1,135 @@
+"""Simplified extension handling for protobuf messages.
+
+THIS CODE IS AUTO-GENERATED - DO NOT EDIT!!!
+"""
+
+from .ProtocolMessage_pb2 import ProtocolMessage
+
+
+from . import ClientUpdatesConfigMessage_pb2
+from . import CryptoPairingMessage_pb2
+from . import DeviceInfoMessage_pb2
+from . import GetKeyboardSessionMessage_pb2
+from . import KeyboardMessage_pb2
+from . import NotificationMessage_pb2
+from . import RegisterForGameControllerEventsMessage_pb2
+from . import RegisterHIDDeviceMessage_pb2
+from . import RegisterHIDDeviceResultMessage_pb2
+from . import RegisterVoiceInputDeviceMessage_pb2
+from . import RegisterVoiceInputDeviceResponseMessage_pb2
+from . import SendCommandMessage_pb2
+from . import SendCommandResultMessage_pb2
+from . import SendHIDEventMessage_pb2
+from . import SendPackedVirtualTouchEventMessage_pb2
+from . import SetArtworkMessage_pb2
+from . import SetConnectionStateMessage_pb2
+from . import SetHiliteModeMessage_pb2
+from . import SetStateMessage_pb2
+from . import TransactionMessage_pb2
+from . import VolumeControlAvailabilityMessage_pb2
+from . import WakeDeviceMessage_pb2
+
+
+from .AudioFormatSettingsMessage_pb2 import AudioFormatSettings
+from .ClientUpdatesConfigMessage_pb2 import ClientUpdatesConfigMessage
+from .CommandInfo_pb2 import CommandInfo
+from .CommandOptions_pb2 import CommandOptions
+from .ContentItemMetadata_pb2 import ContentItemMetadata
+from .ContentItem_pb2 import ContentItem
+from .CryptoPairingMessage_pb2 import CryptoPairingMessage
+from .DeviceInfoMessage_pb2 import DeviceInfoMessage
+from .GetKeyboardSessionMessage_pb2 import GetKeyboardSessionMessage
+from .KeyboardMessage_pb2 import KeyboardMessage
+from .LanguageOption_pb2 import LanguageOption
+from .NotificationMessage_pb2 import NotificationMessage
+from .NowPlayingClient_pb2 import NowPlayingClient
+from .NowPlayingInfo_pb2 import NowPlayingInfo
+from .NowPlayingPlayer_pb2 import NowPlayingPlayer
+from .Origin_pb2 import Origin
+from .PlayerPath_pb2 import PlayerPath
+from .RegisterForGameControllerEventsMessage_pb2 import RegisterForGameControllerEventsMessage
+from .RegisterHIDDeviceMessage_pb2 import RegisterHIDDeviceMessage
+from .RegisterHIDDeviceResultMessage_pb2 import RegisterHIDDeviceResultMessage
+from .RegisterVoiceInputDeviceMessage_pb2 import RegisterVoiceInputDeviceMessage
+from .RegisterVoiceInputDeviceResponseMessage_pb2 import RegisterVoiceInputDeviceResponseMessage
+from .SendCommandMessage_pb2 import SendCommandMessage
+from .SendCommandResultMessage_pb2 import SendCommandResultMessage
+from .SendHIDEventMessage_pb2 import SendHIDEventMessage
+from .SendPackedVirtualTouchEventMessage_pb2 import SendPackedVirtualTouchEventMessage
+from .SetArtworkMessage_pb2 import SetArtworkMessage
+from .SetConnectionStateMessage_pb2 import SetConnectionStateMessage
+from .SetHiliteModeMessage_pb2 import SetHiliteModeMessage
+from .SetStateMessage_pb2 import SetStateMessage
+from .SupportedCommands_pb2 import SupportedCommands
+from .TextEditingAttributesMessage_pb2 import TextEditingAttributes
+from .TextInputTraitsMessage_pb2 import TextInputTraits
+from .TransactionKey_pb2 import TransactionKey
+from .TransactionMessage_pb2 import TransactionMessage
+from .TransactionPacket_pb2 import TransactionPacket
+from .TransactionPackets_pb2 import TransactionPackets
+from .VirtualTouchDeviceDescriptorMessage_pb2 import VirtualTouchDeviceDescriptor
+from .VoiceInputDeviceDescriptorMessage_pb2 import VoiceInputDeviceDescriptor
+from .VolumeControlAvailabilityMessage_pb2 import VolumeControlAvailabilityMessage
+from .WakeDeviceMessage_pb2 import WakeDeviceMessage
+
+
+_EXTENSION_LOOKUP = {
+    ProtocolMessage.CLIENT_UPDATES_CONFIG_MESSAGE: ClientUpdatesConfigMessage_pb2.clientUpdatesConfigMessage,
+    ProtocolMessage.CRYPTO_PAIRING_MESSAGE: CryptoPairingMessage_pb2.cryptoPairingMessage,
+    ProtocolMessage.DEVICE_INFO_MESSAGE: DeviceInfoMessage_pb2.deviceInfoMessage,
+    ProtocolMessage.GET_KEYBOARD_SESSION_MESSAGE: GetKeyboardSessionMessage_pb2.getKeyboardSessionMessage,
+    ProtocolMessage.KEYBOARD_MESSAGE: KeyboardMessage_pb2.keyboardMessage,
+    ProtocolMessage.NOTIFICATION_MESSAGE: NotificationMessage_pb2.notificationMessage,
+    ProtocolMessage.REGISTER_FOR_GAME_CONTROLLER_EVENTS_MESSAGE: RegisterForGameControllerEventsMessage_pb2.registerForGameControllerEventsMessage,
+    ProtocolMessage.REGISTER_HID_DEVICE_MESSAGE: RegisterHIDDeviceMessage_pb2.registerHIDDeviceMessage,
+    ProtocolMessage.REGISTER_HID_DEVICE_RESULT_MESSAGE: RegisterHIDDeviceResultMessage_pb2.registerHIDDeviceResultMessage,
+    ProtocolMessage.REGISTER_VOICE_INPUT_DEVICE_MESSAGE: RegisterVoiceInputDeviceMessage_pb2.registerVoiceInputDeviceMessage,
+    ProtocolMessage.REGISTER_VOICE_INPUT_DEVICE_RESPONSE_MESSAGE: RegisterVoiceInputDeviceResponseMessage_pb2.registerVoiceInputDeviceResponseMessage,
+    ProtocolMessage.SEND_COMMAND_MESSAGE: SendCommandMessage_pb2.sendCommandMessage,
+    ProtocolMessage.SEND_COMMAND_RESULT_MESSAGE: SendCommandResultMessage_pb2.sendCommandResultMessage,
+    ProtocolMessage.SEND_HID_EVENT_MESSAGE: SendHIDEventMessage_pb2.sendHIDEventMessage,
+    ProtocolMessage.SEND_PACKED_VIRTUAL_TOUCH_EVENT_MESSAGE: SendPackedVirtualTouchEventMessage_pb2.sendPackedVirtualTouchEventMessage,
+    ProtocolMessage.SET_ARTWORK_MESSAGE: SetArtworkMessage_pb2.setArtworkMessage,
+    ProtocolMessage.SET_CONNECTION_STATE_MESSAGE: SetConnectionStateMessage_pb2.setConnectionStateMessage,
+    ProtocolMessage.SET_HILITE_MODE_MESSAGE: SetHiliteModeMessage_pb2.setHiliteModeMessage,
+    ProtocolMessage.SET_STATE_MESSAGE: SetStateMessage_pb2.setStateMessage,
+    ProtocolMessage.TRANSACTION_MESSAGE: TransactionMessage_pb2.transactionMessage,
+    ProtocolMessage.VOLUME_CONTROL_AVAILABILITY_MESSAGE: VolumeControlAvailabilityMessage_pb2.volumeControlAvailabilityMessage,
+    ProtocolMessage.WAKE_DEVICE_MESSAGE: WakeDeviceMessage_pb2.wakeDeviceMessage,
+}
+
+
+CLIENT_UPDATES_CONFIG_MESSAGE = ProtocolMessage.CLIENT_UPDATES_CONFIG_MESSAGE
+CRYPTO_PAIRING_MESSAGE = ProtocolMessage.CRYPTO_PAIRING_MESSAGE
+DEVICE_INFO_MESSAGE = ProtocolMessage.DEVICE_INFO_MESSAGE
+GET_KEYBOARD_SESSION_MESSAGE = ProtocolMessage.GET_KEYBOARD_SESSION_MESSAGE
+KEYBOARD_MESSAGE = ProtocolMessage.KEYBOARD_MESSAGE
+NOTIFICATION_MESSAGE = ProtocolMessage.NOTIFICATION_MESSAGE
+REGISTER_FOR_GAME_CONTROLLER_EVENTS_MESSAGE = ProtocolMessage.REGISTER_FOR_GAME_CONTROLLER_EVENTS_MESSAGE
+REGISTER_HID_DEVICE_MESSAGE = ProtocolMessage.REGISTER_HID_DEVICE_MESSAGE
+REGISTER_HID_DEVICE_RESULT_MESSAGE = ProtocolMessage.REGISTER_HID_DEVICE_RESULT_MESSAGE
+REGISTER_VOICE_INPUT_DEVICE_MESSAGE = ProtocolMessage.REGISTER_VOICE_INPUT_DEVICE_MESSAGE
+REGISTER_VOICE_INPUT_DEVICE_RESPONSE_MESSAGE = ProtocolMessage.REGISTER_VOICE_INPUT_DEVICE_RESPONSE_MESSAGE
+SEND_COMMAND_MESSAGE = ProtocolMessage.SEND_COMMAND_MESSAGE
+SEND_COMMAND_RESULT_MESSAGE = ProtocolMessage.SEND_COMMAND_RESULT_MESSAGE
+SEND_HID_EVENT_MESSAGE = ProtocolMessage.SEND_HID_EVENT_MESSAGE
+SEND_PACKED_VIRTUAL_TOUCH_EVENT_MESSAGE = ProtocolMessage.SEND_PACKED_VIRTUAL_TOUCH_EVENT_MESSAGE
+SET_ARTWORK_MESSAGE = ProtocolMessage.SET_ARTWORK_MESSAGE
+SET_CONNECTION_STATE_MESSAGE = ProtocolMessage.SET_CONNECTION_STATE_MESSAGE
+SET_HILITE_MODE_MESSAGE = ProtocolMessage.SET_HILITE_MODE_MESSAGE
+SET_STATE_MESSAGE = ProtocolMessage.SET_STATE_MESSAGE
+TRANSACTION_MESSAGE = ProtocolMessage.TRANSACTION_MESSAGE
+VOLUME_CONTROL_AVAILABILITY_MESSAGE = ProtocolMessage.VOLUME_CONTROL_AVAILABILITY_MESSAGE
+WAKE_DEVICE_MESSAGE = ProtocolMessage.WAKE_DEVICE_MESSAGE
+
+
+def _inner_message(self):
+    extension = _EXTENSION_LOOKUP.get(self.type, None)
+    if extension:
+        return self.Extensions[extension]
+
+    raise Exception('unknown type: ' + str(self.type))
+
+
+ProtocolMessage.inner = _inner_message
+

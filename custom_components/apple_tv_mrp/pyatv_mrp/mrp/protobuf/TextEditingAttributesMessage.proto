@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+import "pyatv/mrp/protobuf/TextInputTraitsMessage.proto";
+
+message TextEditingAttributes {
+  optional string title = 1;
+  optional string prompt = 2;
+  optional TextInputTraits inputTraits = 3;
+}

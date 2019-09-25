@@ -347,17 +347,14 @@
     - condition: state
       entity_id: input_boolean.disable_doorbell
       state: 'off'
-    - condition: state
-      entity_id: group.basement_occupancy
-      state: 'on'
 
   action:
     - service: script.turn_on
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.sonos_basement'
-          where: 'media_player.sonos_basement'
+          master: 'media_player.sonos_move'
+          where: 'media_player.sonos_move'
           volume: '.6'
           what: 'Someone is at the Front Door'
 

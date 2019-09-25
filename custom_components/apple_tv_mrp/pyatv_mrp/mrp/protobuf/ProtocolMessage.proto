@@ -1,0 +1,88 @@
+syntax = "proto2";
+
+message ProtocolMessage {
+  extensions 6 to max;
+
+  enum Type { 
+    SEND_COMMAND_MESSAGE = 1;
+    SEND_COMMAND_RESULT_MESSAGE = 2;
+    GET_STATE_MESSAGE = 3;
+    SET_STATE_MESSAGE = 4;
+    SET_ARTWORK_MESSAGE = 5;
+    REGISTER_HID_DEVICE_MESSAGE = 6;
+    REGISTER_HID_DEVICE_RESULT_MESSAGE = 7;
+    SEND_HID_EVENT_MESSAGE = 8;
+    SEND_VIRTUAL_TOUCH_EVENT_MESSAGE = 10;
+    NOTIFICATION_MESSAGE = 11;
+    CONTENT_ITEMS_CHANGED_NOTIFICATION_MESSAGE = 12;
+    DEVICE_INFO_MESSAGE = 15; 
+    CLIENT_UPDATES_CONFIG_MESSAGE = 16;
+    VOLUME_CONTROL_AVAILABILITY_MESSAGE = 17;
+    GAME_CONTROLLER_MESSAGE = 18;
+    REGISTER_GAME_CONTROLLER_MESSAGE = 19;
+    REGISTER_GAME_CONTROLLER_RESPONSE_MESSAGE = 20;
+    UNREGISTER_GAME_CONTROLLER_MESSAGE = 21;
+    REGISTER_FOR_GAME_CONTROLLER_EVENTS_MESSAGE = 22;
+    KEYBOARD_MESSAGE = 23;
+    GET_KEYBOARD_SESSION_MESSAGE = 24;
+    TEXT_INPUT_MESSAGE = 25;
+    GET_VOICE_INPUT_DEVICES_MESSAGE = 26;
+    GET_VOICE_INPUT_DEVICES_RESPONSE_MESSAGE = 27;
+    REGISTER_VOICE_INPUT_DEVICE_MESSAGE = 28;
+    REGISTER_VOICE_INPUT_DEVICE_RESPONSE_MESSAGE = 29;
+    SET_RECORDING_STATE_MESSAGE = 30;
+    SEND_VOICE_INPUT_MESSAGE = 31;
+    GET_PLAYBACK_QUEUE_MESSAGE = 32;
+    TRANSACTION_MESSAGE = 33;
+    CRYPTO_PAIRING_MESSAGE = 34; 
+    GAME_CONTROLLER_PROPERTIES_MESSAGE = 35;
+    SET_READY_STATE_MESSAGE = 36;
+    SET_CONNECTION_STATE_MESSAGE = 38;
+    SET_HILITE_MODE_MESSAGE = 40;
+    WAKE_DEVICE_MESSAGE = 41;
+    SEND_PACKED_VIRTUAL_TOUCH_EVENT_MESSAGE = 43;
+  }
+
+  optional Type type = 1; // Identifies which underlying message is filled in.
+  optional string identifier = 2;
+  optional int32 priority = 4;
+  optional uint64 timestamp = 5;
+
+  // One of the following will be filled in.
+//  optional SendCommandMessage sendCommandMessage = 6;
+//  optional SendCommandResultMessage sendCommandResultMessage = 7;
+//  optional SetStateMessage setStateMessage = 9;
+//  optional SetArtworkMessage setArtworkMessage = 10;
+//  optional RegisterHIDDeviceMessage registerHIDDeviceMessage = 11;
+//  optional RegisterHIDDeviceResultMessage registerHIDDeviceResultMessage = 12;
+//  optional SendHIDEventMessage sendHIDEventMessage = 13;
+//  optional SendVirtualTouchEventMessage sendVirtualTouchEventMessage = 15;
+//  optional NotificationMessage notificationMessage = 16;
+//  optional ContentItemsChangedNotificationMessage contentItemsChangedNotificationMessage = 17;
+//  optional DeviceInfoMessage deviceInfoMessage = 20;
+//  optional ClientUpdatesConfigMessage clientUpdatesConfigMessage = 21;
+//  optional VolumeControlAvailabilityMessage volumeControlAvailabilityMessage = 22;
+//  optional GameControllerMessage gameControllerMessage = 23;
+//  optional RegisterGameControllerMessage registerGameControllerMessage = 24;
+//  optional RegisterGameControllerResponseMessage registerGameControllerResponseMessage = 25;
+//  optional UnregisterGameControllerMessage unregisterGameControllerMessage = 26;
+//  optional RegisterForGameControllerEventsMessage registerForGameControllerEventsMessage = 27;
+//  optional KeyboardMessage keyboardMessage = 28;
+//  optional GetKeyboardSessionMessage getKeyboardSessionMessage = 29;
+//  optional TextInputMessage textInputMessage = 30;
+//  optional GetVoiceInputDevicesMessage getVoiceInputDevicesMessage = 31;
+//  optional GetVoiceInputDevicesResponseMessage getVoiceInputDevicesResponseMessage = 32;
+//  optional RegisterVoiceInputDeviceMessage registerVoiceInputDeviceMessage = 33;
+//  optional RegisterVoiceInputDeviceResponseMessage registerVoiceInputDeviceResponseMessage = 34;
+//  optional SetRecordingStateMessage setRecordingStateMessage = 35;
+//  optional SendVoiceInputMessage sendVoiceInputMessage = 36;
+//  optional GetPlaybackQueueMessage getPlaybackQueueMessage = 37;
+//  optional TransactionMessage transactionMessage = 38;
+//  optional CryptoPairingMessage cryptoPairingMessage = 39;
+//  optional GameControllerPropertiesMessage gameControllerPropertiesMessage = 40;
+//  optional SetReadyStateMessage setReadyStateMessage = 41;
+//  optional SetConnectionStateMessage setConnectionStateMessage = 42;
+//  optional SetHiliteModeMessage setHiliteModeMessage = 44;
+//  optional WakeDeviceMessage wakeDeviceMessage = 45;
+//  optional SendPackedVirtualTouchEventMessage sendPackedVirtualTouchEventMessage = 47;
+}

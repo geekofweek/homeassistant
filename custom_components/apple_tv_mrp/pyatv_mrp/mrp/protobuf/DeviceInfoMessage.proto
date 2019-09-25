@@ -1,0 +1,28 @@
+syntax = "proto2";
+
+import "pyatv/mrp/protobuf/ProtocolMessage.proto";
+
+extend ProtocolMessage {
+  optional DeviceInfoMessage deviceInfoMessage = 20;
+}
+
+message DeviceInfoMessage {
+  required string uniqueIdentifier = 1; // Example: B8D8678C-9DA9-4D29-9338-5D6B827B8063
+  required string name = 2; // Example: Jean's iPhone
+  optional string localizedModelName = 3; // Example: iPhone
+  required string systemBuildVersion = 4; // Example: 13F69
+  required string applicationBundleIdentifier = 5; // Example: com.example.myremote
+  optional string applicationBundleVersion = 6; // Example: 107
+  required int32 protocolVersion = 7; // Example: 1
+  optional uint32 lastSupportedMessageType = 8;
+  optional bool supportsSystemPairing = 9;
+  optional bool allowsPairing = 10;
+  optional bool connected = 11;
+  optional string systemMediaApplication = 12;
+  optional bool supportsACL = 13;
+  optional bool supportsSharedQueue = 14;
+  optional bool supportsExtendedMotion = 15;
+  optional bytes bluetoothAddress = 16;
+  optional uint32 sharedQueueVersion = 17;
+  optional string localReceiverPairingIdentity = 19;
+}

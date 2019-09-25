@@ -165,6 +165,9 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: state
+      entity_id: input_boolean.livingroom_rainbow
+      state: 'off'
+    - condition: state
       entity_id: input_boolean.disable_media_lights
       state: 'off'
     - condition: time
@@ -240,6 +243,9 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: state
+      entity_id: input_boolean.livingroom_rainbow
+      state: 'off'
+    - condition: state
       entity_id: input_boolean.disable_media_lights
       state: 'off'
     - condition: time
@@ -306,8 +312,14 @@
 
   condition:
     - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.livingroom_rainbow
+      state: 'off'
     - condition: state
       entity_id: input_boolean.disable_media_lights
       state: 'off'
@@ -351,8 +363,14 @@
 
   condition:
     - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.livingroom_rainbow
+      state: 'off'
     - condition: state
       entity_id: input_boolean.disable_media_lights
       state: 'off'
@@ -612,7 +630,7 @@
         - media_player.sonos_bedroom
         - media_player.sonos_USER1s_office
         - media_player.sonos_USER2s_office
-        - media_player.sonos_basement
+        - media_player.sonos_move
         - media_player.sonos_backyard_patio
     - service: media_player.clear_playlist
       entity_id:
@@ -624,7 +642,7 @@
         - media_player.sonos_bedroom
         - media_player.sonos_USER1s_office
         - media_player.sonos_USER2s_office
-        - media_player.sonos_basement
+        - media_player.sonos_move
         - media_player.sonos_backyard_patio
     - service: homeassistant.turn_off
       entity_id:
@@ -669,7 +687,7 @@
         - media_player.sonos_bedroom
         - media_player.sonos_USER1s_office
         - media_player.sonos_USER2s_office
-        - media_player.sonos_basement
+        - media_player.sonos_move
 
         ##########################################################
         ## Play Pop Music
@@ -1032,7 +1050,7 @@
         - media_player.sonos_bathroom
         - media_player.sonos_USER1s_office
         - media_player.sonos_USER2s_office
-        - media_player.sonos_basement
+        - media_player.sonos_move
     - service: homeassistant.turn_off
       entity_id:
         - input_boolean.pop_music

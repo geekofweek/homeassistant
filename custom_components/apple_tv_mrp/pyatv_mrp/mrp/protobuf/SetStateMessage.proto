@@ -1,0 +1,22 @@
+syntax = "proto2";
+
+import "pyatv/mrp/protobuf/ProtocolMessage.proto";
+import "pyatv/mrp/protobuf/NowPlayingInfo.proto";
+import "pyatv/mrp/protobuf/SupportedCommands.proto";
+import "pyatv/mrp/protobuf/PlayerPath.proto";
+
+extend ProtocolMessage {
+  optional SetStateMessage setStateMessage = 9;
+}
+
+message SetStateMessage {
+  optional NowPlayingInfo nowPlayingInfo = 1;
+  optional SupportedCommands supportedCommands = 2;
+//  optional PlaybackQueue playbackQueue = 3;
+  optional string displayID = 4;
+  optional string displayName = 5;
+  optional uint32 playbackState = 6;
+//  optional PlaybackQueueCapabilities playbackQueueCapabilities = 8;
+  optional PlayerPath playerPath = 9;
+//  optional Request request = 10;
+}
