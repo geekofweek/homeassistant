@@ -364,6 +364,13 @@
         hours: 0
         minutes: 10
         seconds: 0
+    - platform: state
+      entity_id: cover.garage_door
+      to: 'opening'
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
 
   condition:
     - condition: state

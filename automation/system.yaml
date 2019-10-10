@@ -348,6 +348,35 @@
         message: REDACTED Internets Back Online
 
         #################################################################
+        ## Plex Offline
+        #################################################################
+
+- alias: Notification Text - Plex Offline
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.plex_status
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: Plex Server Appears Offline
+        data:
+          apns_headers:
+           'apns-collapse-id': 'system-chs-plex-offline'
+
+        #################################################################
         ## Home Assistant Started Notification
         #################################################################
 

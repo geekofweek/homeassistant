@@ -3,40 +3,28 @@
 #################################################################
 
         ##########################################################
-        ## Thermostat on Demand Home
+        ## Disable Summer / Winter Mode on Start
         ##########################################################
 
-- alias: Climate - On Demand Home
+- alias: Climate - Disable Summer or Winter Mode on Start
 
   trigger:
-    - platform: state
-      entity_id: input_boolean.thermostat_away
-      from: 'on'
-      to: 'off'
+    - platform: homeassistant
+      event: start
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
 
   action:
-    - service: climate.ecobee_resume_program
-      data:
-        entity_id: climate.main_floor
-        resume_all: true
-
-        ##########################################################
-        ## Thermostat on Demand Away
-        ##########################################################
-
-- alias: Climate - On Demand Away
-
-  trigger:
-    - platform: state
-      entity_id: input_boolean.thermostat_away
-      from: 'off'
-      to: 'on'
-
-  action:
-    - service: climate.set_preset_mode
-      data:
-        entity_id: climate.main_floor
-        preset_mode: 'away'
+#     Disable Summer or Winter Mode
+    - service: homeassistant.turn_off
+      entity_id: group.summer_mode
+    - service: homeassistant.turn_off
+      entity_id: group.winter_mode
+#    - service: homeassistant.turn_off
+#      entity_id: input_boolean.spring_fall_mode
 
         ##########################################################
         ## Set Thermostat Home
@@ -62,16 +50,52 @@
     - service: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
 #     re-enable Summer or Winter Mode
-    - service: homeassistant.turn_on
-      entity_id: group.summer_mode
+#    - service: homeassistant.turn_on
+#      entity_id: group.summer_mode
 #    - service: homeassistant.turn_on
 #      entity_id: group.winter_mode
-#    - service: homeassistant.turn_on
-#      entity_id: input_boolean.spring_fall_mode
-    - service: climate.ecobee_set_fan_min_on_time
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.spring_fall_mode
+    - service: ecobee.set_fan_min_on_time
       data:
         entity_id: climate.main_floor
         fan_min_on_time: '15'
+
+        ##########################################################
+        ## Thermostat on Demand Home
+        ##########################################################
+
+- alias: Climate - On Demand Home
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.thermostat_away
+      from: 'on'
+      to: 'off'
+
+  action:
+    - service: ecobee.resume_program
+      data:
+        entity_id: climate.main_floor
+        resume_all: true
+
+        ##########################################################
+        ## Thermostat on Demand Away
+        ##########################################################
+
+- alias: Climate - On Demand Away
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.thermostat_away
+      from: 'off'
+      to: 'on'
+
+  action:
+    - service: climate.set_preset_mode
+      data:
+        entity_id: climate.main_floor
+        preset_mode: 'away'
 
         ##########################################################
         ## Set Thermostat Away
@@ -112,7 +136,7 @@
         data:
           apns_headers:
            'apns-collapse-id': 'climate-away'
-    - service: climate.ecobee_set_fan_min_on_time
+    - service: ecobee.set_fan_min_on_time
       data:
         entity_id: climate.main_floor
         fan_min_on_time: '0'
@@ -268,28 +292,55 @@
            'apns-collapse-id': 'climate-winter'
 
         ##########################################################
-        ## Disable Summer / Winter Mode on Start
+        ## Spring / Fall Mode Shut Off HVAC
         ##########################################################
 
-- alias: Climate - Disable Summer or Winter Mode on Start
+- alias: Climate - Spring / Fall Mode Shut Off HVAC
 
   trigger:
-    - platform: homeassistant
-      event: start
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_climate
-      state: 'off'
+    - platform: state
+      entity_id: input_boolean.spring_fall_mode
+      to: 'on'
 
   action:
-#     Disable Summer or Winter Mode
-    - service: homeassistant.turn_off
-      entity_id: group.summer_mode
-#    - service: homeassistant.turn_off
-#      entity_id: group.winter_mode
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.spring_fall_mode
+    - service: climate.set_hvac_mode
+      data:
+        entity_id: climate.main_floor
+        hvac_mode: 'off'
+
+        ##########################################################
+        ## Winter Mode Shut Turn on Heat
+        ##########################################################
+
+- alias: Climate - Winter Mode Shut Turn on Heat
+
+  trigger:
+    - platform: state
+      entity_id: switch.winter_mode
+      to: 'on'
+
+  action:
+    - service: climate.set_hvac_mode
+      data:
+        entity_id: climate.main_floor
+        hvac_mode: heat
+
+        ##########################################################
+        ## Summer Mode Shut Turn on AC
+        ##########################################################
+
+- alias: Climate - Summer Mode Shut Turn on AC
+
+  trigger:
+    - platform: state
+      entity_id: switch.summer_mode
+      to: 'on'
+
+  action:
+    - service: climate.set_hvac_mode
+      data:
+        entity_id: climate.main_floor
+        hvac_mode: cool
 
         ##########################################################
         ## Set Thermostat Home When USER2 Leaves Work
@@ -498,7 +549,7 @@
         - fri
 
   action:
-    - service: climate.ecobee_resume_program
+    - service: ecobee.resume_program
       data:
         entity_id: climate.main_floor
         resume_all: true
@@ -692,7 +743,7 @@
         - fri
 
   action:
-    - service: climate.ecobee_resume_program
+    - service: ecobee.resume_program
       data:
         entity_id: climate.main_floor
         resume_all: true
@@ -776,7 +827,7 @@
       state: 'on'
 
   action:
-    - service: climate.ecobee_resume_program
+    - service: ecobee.resume_program
       data:
         entity_id: climate.main_floor
         resume_all: true
@@ -853,7 +904,7 @@
       state: 'off'
 
   action:
-    - service: climate.ecobee_resume_program
+    - service: ecobee.resume_program
       data:
         entity_id: climate.main_floor
         resume_all: true
@@ -994,14 +1045,14 @@
       entity_id: switch.basement_heater
 
         ##########################################################
-        ## Turn on Basement Heater when Occupied
+        ## Turn on Basement Heater when Motion Detected
         ##########################################################
 
 - alias: Climate - Turn on Basement Heater when Occupied
 
   trigger:
     - platform: state
-      entity_id: group.basement_occupancy
+      entity_id: binary_sensor.basement_motion
       from: 'off'
       to: 'on'
 
@@ -1027,14 +1078,14 @@
       entity_id: switch.basement_heater
 
         ##########################################################
-        ## Turn off Basement Heater when Unoccupied
+        ## Turn off Basement Heater when no Motion
         ##########################################################
 
 - alias: Climate - Turn off Basement Heater when Unoccupied
 
   trigger:
     - platform: state
-      entity_id: group.basement_occupancy
+      entity_id: binary_sensor.basement_motion
       from: 'on'
       to: 'off'
       for:
@@ -1133,7 +1184,7 @@
       to: "Clear Holds"
 
   action:
-    - service: climate.ecobee_resume_program
+    - service: ecobee.resume_program
       data:
         entity_id: climate.main_floor
         resume_all: true

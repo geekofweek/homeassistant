@@ -270,6 +270,8 @@
   trigger:
    - platform: time
      at: '18:00'
+   - platform: time
+     at: '19:00'
 
   condition:
     - condition: state
@@ -294,6 +296,9 @@
     - condition: state
       entity_id: group.friends_and_family
       state: 'not_home'
+    - condition: state
+      entity_id: binary_sensor.USER2s_office_motion
+      state: 'off'
 
   action:
     - service: vacuum.turn_on

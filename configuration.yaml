@@ -98,13 +98,13 @@ media_player:
 apple_tv_mrp:
   - name: Living Room Apple TV
     host: REDACTED.150
-    port: REDACTED
+    port: 49153
   - name: Bedroom Apple TV
     host: REDACTED.152
-    port: REDACTED
+    port: 59808
   - name: USER1's Office Apple TV
     host: REDACTED.151
-    port: REDACTED
+    port: 49152
   - name: Guest Bedroom Apple TV
     host: REDACTED.153
     port: REDACTED
@@ -124,6 +124,11 @@ apple_tv_mrp:
 #    host: REDACTED.152
 #    login_id: !secret apple_tv_login_id
 #    credentials: !secret apple_tv_bedroom_cred
+#    start_off: false
+#  - name: Office Apple TV
+#    host: REDACTED.153
+#    login_id: !secret apple_tv_login_id
+#    credentials: !secret apple_tv_office_cred
 #    start_off: false
 
 plex:
@@ -196,6 +201,12 @@ binary_sensor:
     host: REDACTED.1
     name: REDACTED VPN
     scan_interval: 60
+  - platform: command_line
+    name: Plex Status
+    command: "grep 'Could not connect to Plex server' /config/home-assistant.log | tail -1 | wc -l"
+    device_class: connectivity
+    payload_on: "0"
+    payload_off: "1"
 
 stream:
 

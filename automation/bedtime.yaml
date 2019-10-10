@@ -30,6 +30,7 @@
         - group.interior_lights
         - light.backyard_deck
         - light.backyard_patio
+        - light.garage_interior
     - service: switch.turn_off
       entity_id:
         - switch.air_purifier
@@ -76,6 +77,12 @@
         - media_player.sonos_USER2s_office
         - media_player.sonos_move
         - media_player.sonos_backyard_patio
+    - delay: '00:00:60'
+    - service: light.turn_off
+      entity_id:
+        - light.backyard_patio
+        - light.backyard_deck
+        - light.garage_interior
 
         ##########################################################
         ## Bedtime Guest Mode
@@ -105,6 +112,7 @@
         - group.interior_lights
         - light.backyard_deck
         - light.backyard_patio
+        - light.garage_interior
     - service: switch.turn_off
       entity_id:
         - switch.air_purifier
@@ -159,6 +167,12 @@
       data:
         entity_id: climate.main_floor
         preset_mode: 'smart3'
+    - delay: '00:00:60'
+    - service: light.turn_off
+      entity_id:
+        - light.backyard_patio
+        - light.backyard_deck
+        - light.garage_interior
 
         ##########################################################
         ## Bedtime Before 11:30p
@@ -223,10 +237,17 @@
         - light.garage_light
         - light.backyard_patio
         - light.backyard_deck
+        - light.garage_interior
     - service: switch.turn_off
       entity_id:
         - switch.lower_backyard_lighting
         - switch.backyard_patio_lighting
+    - delay: '00:00:60'
+    - service: light.turn_off
+      entity_id:
+        - light.backyard_patio
+        - light.backyard_deck
+        - light.garage_interior
 
         ##########################################################
         ## Bedtime after Midnight Holiday
@@ -285,6 +306,9 @@
       entity_id:
         - light.back_door
         - light.garage_light
+        - light.backyard_patio
+        - light.backyard_deck
+        - light.garage_interior
     - service: switch.turn_off
       entity_id:
         - switch.lower_backyard_lighting
