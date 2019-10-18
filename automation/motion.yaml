@@ -1546,6 +1546,15 @@
     - condition: state
       entity_id: person.USER1
       state: 'home'
+    - condition: state
+      entity_id: sensor.office_fan_auto_mode
+      state: 'False'
+    - condition: state
+      entity_id: sensor.office_fan_oscillating_mode
+      state: 'False'
+    - condition: state
+      entity_id: switch.air_purifier
+      state: 'off'
 
   action:
     - service: fan.turn_on

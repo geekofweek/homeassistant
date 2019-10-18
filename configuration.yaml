@@ -98,10 +98,10 @@ media_player:
 apple_tv_mrp:
   - name: Living Room Apple TV
     host: REDACTED.150
-    port: 49153
+    port: 49218
   - name: Bedroom Apple TV
     host: REDACTED.152
-    port: 59808
+    port: 65111
   - name: USER1's Office Apple TV
     host: REDACTED.151
     port: 49152
@@ -180,34 +180,6 @@ ring:
     username: !secret ring_username
     password: !secret ring_password
 
-binary_sensor:
-  - platform: ring
-    monitored_conditions:
-      - ding
-      - motion
-  - platform: ping
-    host: 8.8.8.8
-    name: WAN
-    scan_interval: 60
-  - platform: ping
-    host: REDACTED.1
-    name: Gateway
-    scan_interval: 60
-  - platform: ping
-    host: REDACTED.1
-    name: REDACTED VPN
-    scan_interval: 60
-  - platform: ping
-    host: REDACTED.1
-    name: REDACTED VPN
-    scan_interval: 60
-  - platform: command_line
-    name: Plex Status
-    command: "grep 'Could not connect to Plex server' /config/home-assistant.log | tail -1 | wc -l"
-    device_class: connectivity
-    payload_on: "0"
-    payload_off: "1"
-
 stream:
 
 camera:
@@ -248,9 +220,10 @@ camera:
     verify_ssl: false
 
 tts:
-  - platform: amazon_polly
-    aws_access_key_id: !secret aws_access_key_id
-    aws_secret_access_key: !secret aws_secret_access_key
+#  - platform: amazon_polly
+#    aws_access_key_id: !secret aws_access_key_id
+#    aws_secret_access_key: !secret aws_secret_access_key
+  - platform: google_translate
 
 google:
   client_id: !secret google_client_id
@@ -336,6 +309,7 @@ zone: !include zones.yaml
 group: !include groups.yaml
 scene: !include scenes.yaml
 sensor: !include sensors.yaml
+binary_sensor: !include binary_sensor.yaml
 input_boolean: !include input_boolean.yaml
 input_select: !include input_select.yaml
 script: !include scripts.yaml

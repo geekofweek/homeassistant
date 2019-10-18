@@ -97,16 +97,6 @@
     sensors:
       washing_machine_current_power:
         value_template: '{{ states.switch.washing_machine.attributes.current_power_w }}'
-  - platform: template
-    sensors:
-      washing_machine_status:
-        value_template: >-
-          {%- if states('sensor.washing_machine_current_power') | int >= 6 %}
-            running
-          {% else %}
-            not running
-          {% endif %}
-        friendly_name: 'Washing Machine Status'
 
         ##########################################################
         ## Dryer
@@ -116,16 +106,6 @@
     sensors:
       dryer_current_power:
         value_template: '{{ states.switch.dryer.attributes.current_power_w }}'
-  - platform: template
-    sensors:
-      dryer_status:
-        value_template: >-
-          {%- if states('sensor.dryer_current_power') | int >= 6 %}
-            running
-          {% else %}
-            not running
-          {% endif %}
-        friendly_name: 'Dryer Status'
 
         ##########################################################
         ## Battery Levels
@@ -372,3 +352,18 @@
         friendly_name: 'Outdoor Temperature'
         device_class: temperature
         unit_of_measurement: '°F'
+
+        ##########################################################
+        ## Dyson Fan
+        ##########################################################
+
+  - platform: template
+    sensors:
+      office_fan_auto_mode:
+        value_template: '{{ states.fan.office_fan.attributes.auto_mode }}'
+        friendly_name: 'Fan Auto Mode'
+  - platform: template
+    sensors:
+      office_fan_oscillating_mode:
+        value_template: '{{ states.fan.office_fan.attributes.oscillating }}'
+        friendly_name: 'Fan Oscillating Mode'

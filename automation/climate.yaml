@@ -3,30 +3,6 @@
 #################################################################
 
         ##########################################################
-        ## Disable Summer / Winter Mode on Start
-        ##########################################################
-
-- alias: Climate - Disable Summer or Winter Mode on Start
-
-  trigger:
-    - platform: homeassistant
-      event: start
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_climate
-      state: 'off'
-
-  action:
-#     Disable Summer or Winter Mode
-    - service: homeassistant.turn_off
-      entity_id: group.summer_mode
-    - service: homeassistant.turn_off
-      entity_id: group.winter_mode
-#    - service: homeassistant.turn_off
-#      entity_id: input_boolean.spring_fall_mode
-
-        ##########################################################
         ## Set Thermostat Home
         ##########################################################
 
@@ -292,10 +268,10 @@
            'apns-collapse-id': 'climate-winter'
 
         ##########################################################
-        ## Spring / Fall Mode Shut Off HVAC
+        ## Spring / Fall Mode HVAC Auto
         ##########################################################
 
-- alias: Climate - Spring / Fall Mode Shut Off HVAC
+- alias: Climate - Spring / Fall Mode HVAC Auto
 
   trigger:
     - platform: state
@@ -306,13 +282,13 @@
     - service: climate.set_hvac_mode
       data:
         entity_id: climate.main_floor
-        hvac_mode: 'off'
+        hvac_mode: 'auto'
 
         ##########################################################
-        ## Winter Mode Shut Turn on Heat
+        ## Winter Mode On Turn on Heat
         ##########################################################
 
-- alias: Climate - Winter Mode Shut Turn on Heat
+- alias: Climate - Winter Mode On Turn on Heat
 
   trigger:
     - platform: state
@@ -326,10 +302,10 @@
         hvac_mode: heat
 
         ##########################################################
-        ## Summer Mode Shut Turn on AC
+        ## Summer Mode On Turn on AC
         ##########################################################
 
-- alias: Climate - Summer Mode Shut Turn on AC
+- alias: Climate - Summer Mode On Turn on AC
 
   trigger:
     - platform: state
@@ -942,6 +918,12 @@
     - condition: state
       entity_id: binary_sensor.office_occupancy
       state: 'on'
+    - condition: state
+      entity_id: sensor.office_fan_auto_mode
+      state: 'True'
+    - condition: state
+      entity_id: sensor.office_fan_oscillating_mode
+      state: 'True'
 
   action:
     - service: fan.turn_on
@@ -989,6 +971,12 @@
     - condition: state
       entity_id: binary_sensor.office_occupancy
       state: 'on'
+    - condition: state
+      entity_id: sensor.office_fan_auto_mode
+      state: 'True'
+    - condition: state
+      entity_id: sensor.office_fan_oscillating_mode
+      state: 'True'
 
   action:
     - service: fan.turn_on
@@ -1006,7 +994,6 @@
       data:
         entity_id: fan.office_fan
         oscillating: 'true'
-
 
 #################################################################
 ## Basement Heater
@@ -1064,6 +1051,9 @@
       entity_id: group.winter_mode
       state: 'on'
     - condition: state
+      entity_id: switch.basement_heater
+      state: 'off'
+    - condition: state
       entity_id: input_boolean.disable_climate
       state: 'off'
     - condition: numeric_state
@@ -1098,7 +1088,7 @@
       entity_id: group.household
       state: 'home'
     - condition: state
-      entity_id: group.winter_mode
+      entity_id: switch.basement_heater
       state: 'on'
     - condition: state
       entity_id: input_boolean.disable_climate
@@ -1309,14 +1299,14 @@
 
   trigger:
     - platform: state
-      entity_id: group.summer_mode
+      entity_id: switch.summer_mode
       to: 'on'
 
   action:
     - service: homeassistant.turn_off
       entity_id:
-        - group.winter_mode
-        - input_boolean.spring_fall_mode
+        - switch.winter_mode
+        - switch.spring_fall_mode
 
         ##########################################################
         ## Winter Mode On Everything Else Off
@@ -1326,14 +1316,14 @@
 
   trigger:
     - platform: state
-      entity_id: group.winter_mode
+      entity_id: switch.winter_mode
       to: 'on'
 
   action:
     - service: homeassistant.turn_off
       entity_id:
-        - group.summer_mode
-        - input_boolean.spring_fall_mode
+        - switch.summer_mode
+        - switch.spring_fall_mode
 
         ##########################################################
         ## Spring / Fall Mode On Everything Else Off
@@ -1343,11 +1333,11 @@
 
   trigger:
     - platform: state
-      entity_id: input_boolean.spring_fall_mode
+      entity_id: switch.spring_fall_mode
       to: 'on'
 
   action:
     - service: homeassistant.turn_off
       entity_id:
-        - group.winter_mode
-        - group.summer_mode
+        - switch.winter_mode
+        - switch.summer_mode
