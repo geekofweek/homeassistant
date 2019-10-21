@@ -27,11 +27,11 @@
       entity_id: input_boolean.thermostat_away
 #     re-enable Summer or Winter Mode
 #    - service: homeassistant.turn_on
-#      entity_id: group.summer_mode
+#      entity_id: switch.summer_mode
 #    - service: homeassistant.turn_on
-#      entity_id: group.winter_mode
+#      entity_id: switch.winter_mode
     - service: homeassistant.turn_on
-      entity_id: input_boolean.spring_fall_mode
+      entity_id: switch.spring_fall_mode
     - service: ecobee.set_fan_min_on_time
       data:
         entity_id: climate.main_floor
@@ -101,11 +101,11 @@
     - service: homeassistant.turn_on
       entity_id: input_boolean.thermostat_away
     - service: homeassistant.turn_off
-      entity_id: group.summer_mode
+      entity_id: switch.summer_mode
     - service: homeassistant.turn_off
-      entity_id: group.winter_mode
+      entity_id: switch.winter_mode
     - service: homeassistant.turn_off
-      entity_id: input_boolean.spring_fall_mode
+      entity_id: switch.spring_fall_mode
     - service: notify.ios_USER1
       data:
         message: House has been empty for 30 mins, shutting off HVAC
@@ -275,7 +275,7 @@
 
   trigger:
     - platform: state
-      entity_id: input_boolean.spring_fall_mode
+      entity_id: switch.spring_fall_mode
       to: 'on'
 
   action:
@@ -366,7 +366,7 @@
       entity_id: group.household
       state: 'home'
     - condition: state
-      entity_id: group.summer_mode
+      entity_id: switch.summer_mode
       state: 'on'
     - condition: state
       entity_id: input_boolean.disable_climate
@@ -469,7 +469,7 @@
       entity_id: group.household
       state: 'home'
     - condition: state
-      entity_id: group.winter_mode
+      entity_id: switch.winter_mode
       state: 'on'
     - condition: state
       entity_id: person.USER2
@@ -611,7 +611,7 @@
       entity_id: input_boolean.thermostat_away
       state: 'off'
     - condition: state
-      entity_id: group.summer_mode
+      entity_id: switch.summer_mode
       state: 'on'
     - condition: numeric_state
       entity_id: sensor.REDACTED_temperature
@@ -658,7 +658,7 @@
       entity_id: input_boolean.thermostat_away
       state: 'off'
     - condition: state
-      entity_id: group.summer_mode
+      entity_id: switch.summer_mode
       state: 'on'
     - condition: state
       entity_id: input_boolean.disable_climate
@@ -702,7 +702,7 @@
       entity_id: input_boolean.thermostat_away
       state: 'off'
     - condition: state
-      entity_id: group.summer_mode
+      entity_id: switch.summer_mode
       state: 'on'
     - condition: state
       entity_id: input_boolean.disable_climate
@@ -754,7 +754,7 @@
       entity_id: group.household
       state: 'home'
     - condition: state
-      entity_id: group.summer_mode
+      entity_id: switch.summer_mode
       state: 'on'
     - condition: state
       entity_id: sensor.thermostat_climate_mode
@@ -799,7 +799,7 @@
       entity_id: sensor.thermostat_climate_mode
       state: 'Temperature Hold'
     - condition: state
-      entity_id: group.summer_mode
+      entity_id: switch.summer_mode
       state: 'on'
 
   action:
@@ -830,7 +830,7 @@
 
   condition:
     - condition: state
-      entity_id: group.winter_mode
+      entity_id: switch.winter_mode
       state: 'on'
     - condition: state
       entity_id: group.household
@@ -867,7 +867,7 @@
 
   condition:
     - condition: state
-      entity_id: group.winter_mode
+      entity_id: switch.winter_mode
       state: 'on'
     - condition: state
       entity_id: group.household
@@ -910,7 +910,7 @@
       entity_id: input_boolean.disable_climate
       state: 'off'
     - condition: state
-      entity_id: group.winter_mode
+      entity_id: switch.winter_mode
       state: 'on'
     - condition: state
       entity_id: person.USER1
@@ -963,7 +963,7 @@
       entity_id: input_boolean.disable_climate
       state: 'off'
     - condition: state
-      entity_id: group.winter_mode
+      entity_id: switch.winter_mode
       state: 'on'
     - condition: state
       entity_id: person.USER1
@@ -1015,7 +1015,7 @@
       entity_id: group.household
       state: 'home'
     - condition: state
-      entity_id: group.winter_mode
+      entity_id: switch.winter_mode
       state: 'on'
     - condition: state
       entity_id: group.basement_occupancy
@@ -1048,7 +1048,7 @@
       entity_id: group.household
       state: 'home'
     - condition: state
-      entity_id: group.winter_mode
+      entity_id: switch.winter_mode
       state: 'on'
     - condition: state
       entity_id: switch.basement_heater
@@ -1142,7 +1142,7 @@
       entity_id: input_boolean.disable_climate
       state: 'off'
     - condition: state
-      entity_id: group.winter_mode
+      entity_id: switch.winter_mode
       state: 'on'
     - condition: numeric_state
       entity_id: sensor.basement_temperature

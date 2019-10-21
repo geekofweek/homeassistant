@@ -19,7 +19,7 @@ sun:
 conversation:
 discovery:
   ignore:
-    - apple_tv
+    #- apple_tv
     - harmony
     - deconz
     - wink
@@ -98,7 +98,7 @@ media_player:
 apple_tv_mrp:
   - name: Living Room Apple TV
     host: REDACTED.150
-    port: 49218
+    port: 52018
   - name: Bedroom Apple TV
     host: REDACTED.152
     port: 65111
@@ -171,8 +171,8 @@ ifttt:
 unifi:
   controllers:
     - host: REDACTED.3
-      site: 'REDACTED'
       detection_time: 300
+      site: 'REDACTED'
       ssid_filter:
         - 'REDACTED'
 
