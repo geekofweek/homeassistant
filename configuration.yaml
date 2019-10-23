@@ -14,7 +14,7 @@ frontend:
   extra_html_url:
     - /local/hass-bha-icons.html
 updater:
-  reporting: no
+  reporting: false
 sun:
 conversation:
 discovery:
@@ -48,14 +48,6 @@ hue:
     - host: REDACTED.106
       allow_hue_groups: false
       allow_unreachable: true
-
-emulated_hue:
-  host_ip: REDACTED.105
-  listen_port: 8300
-  off_maps_to_on_domains:
-    - script
-    - scene
-  expose_by_default: false
 
 lutron_caseta:
     host: REDACTED.130
@@ -167,14 +159,6 @@ wemo:
 
 ifttt:
   key: !secret ifttt_key
-
-unifi:
-  controllers:
-    - host: REDACTED.3
-      detection_time: 300
-      site: 'REDACTED'
-      ssid_filter:
-        - 'REDACTED'
 
 ring:
     username: !secret ring_username
@@ -317,3 +301,4 @@ light: !include light_group.yaml
 homekit: !include homekit.yaml
 ios: !include ios.yaml
 switch: !include switch.yaml
+emulated_hue: !include emulated_hue.yaml

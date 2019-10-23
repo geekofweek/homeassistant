@@ -15,8 +15,8 @@ views:
             state_not: disarmed
         type: conditional
       - entities:
-          - entity: device_tracker.USER1s_iphone
-          - entity: device_tracker.USER2s_iphone
+          - entity: person.USER1
+          - entity: person.USER2
         title: Household
         type: glance
       - card:
@@ -24,27 +24,21 @@ views:
           title: Friends and Family
           type: glance
         entities:
-          - device_tracker.REDACTED
-          - device_tracker.REDACTED
-          - device_tracker.REDACTED
-          - device_tracker.REDACTED
-          - device_tracker.REDACTED
-          - device_tracker.REDACTED
-          - device_tracker.REDACTED
-          - device_tracker.REDACTED
-          - device_tracker.REDACTED
-          - device_tracker.REDACTED
-          - device_tracker.REDACTED
-          - device_tracker.REDACTED
-          - device_tracker.REDACTED
-          - device_tracker.REDACTED
-          - device_tracker.REDACTED
-          - device_tracker.REDACTED
-          - device_tracker.REDACTED
           - person.REDACTED
-          - device_tracker.REDACTED
-          - device_tracker.REDACTED
-          - device_tracker.REDACTED
+          - person.REDACTED
+          - person.REDACTED
+          - person.REDACTED
+          - person.REDACTED
+          - person.REDACTED
+          - person.REDACTED
+          - person.REDACTED
+          - person.REDACTED
+          - person.REDACTED
+          - person.REDACTED
+          - person.REDACTED
+          - person.REDACTED
+          - person.REDACTED
+          - person.REDACTED
         show_empty: false
         state_filter:
           - home
@@ -72,6 +66,7 @@ views:
           - entity: light.backyard_deck
           - entity: light.backyard_patio
           - entity: light.garage_light
+          - entity: light.garage_interior
           - entity: switch.front_yard_lighting
           - entity: switch.backyard_lighting
         title: Exterior Lights
@@ -267,8 +262,6 @@ views:
             show_header_toggle: false
             title: Remote
             type: entities
-          - entity: media_player.living_room_apple_tv
-            type: media-control
         type: vertical-stack
       - card:
           entity: camera.living_room
@@ -463,11 +456,7 @@ views:
             show_header_toggle: false
             title: Remote
             type: entities
-          - entity: media_player.bedroom_apple_tv
-            type: media-control
           - entity: media_player.sonos_bedroom
-            type: media-control
-          - entity: media_player.guest_bedroom_apple_tv
             type: media-control
         type: vertical-stack
     icon: 'mdi:hotel'
@@ -478,6 +467,7 @@ views:
       - cards:
           - entities:
               - entity: light.bathroom_vanity
+                icon: 'mdi:water-pump'
                 name: Vanity Light
               - entity: light.bathroom_shower
                 name: Shower Light
@@ -502,6 +492,7 @@ views:
       - cards:
           - entities:
               - entity: light.upstairs_bathroom_vanity
+                icon: 'mdi:water-pump'
                 name: Vanity Light
             show_header_toggle: false
             title: Upstairs Bathroom
@@ -641,8 +632,6 @@ views:
             show_header_toggle: false
             title: Remote
             type: entities
-          - entity: media_player.USER1s_office_apple_tv
-            type: media-control
           - entity: media_player.sonos_USER1s_office
             type: media-control
           - entity: media_player.sonos_USER2s_office
@@ -710,13 +699,22 @@ views:
             title: Laundry Room
             type: entities
           - entities:
-              - entity: sensor.washing_machine_status
+              - entity: binary_sensor.washing_machine_status
                 name: Status
               - entity: switch.washing_machine
                 name: Power
               - entity: sensor.washing_machine_current_power
                 name: Wattage
             title: Washing Machine
+            type: glance
+          - entities:
+              - entity: binary_sensor.dryer_status
+                name: Status
+              - entity: switch.dryer
+                name: Power
+              - entity: sensor.dryer_current_power
+                name: Wattage
+            title: Dryer
             type: glance
           - cards:
               - entity: sensor.laundry_room_temperature
@@ -763,7 +761,7 @@ views:
           - entity: device_tracker.basement_camera
             state: home
         type: conditional
-      - entity: media_player.sonos_basement
+      - entity: media_player.sonos_move
         type: media-control
     icon: 'mdi:stairs'
     path: basements
@@ -906,8 +904,7 @@ views:
       - cards:
           - entity: weather.REDACTED
             type: weather-forecast
-          - image: >-
-              https://icons.wxug.com/data/weather-maps/radar/united-states/jefferson-city-missouri-region-current-radar-animation.gif
+          - image: 'https://s.w-x.co/staticmaps/wu/wu/wxtype1200_cur/usjef/animate.png'
             type: picture
         type: vertical-stack
     icon: 'mdi:weather-partly-lightning'
@@ -928,7 +925,8 @@ views:
         title: Remote
         type: entities
       - entities:
-          - sensor.REDACTED
+          - entity: sensor.REDACTED
+          - entity: binary_sensor.plex_status
         show_header_toggle: false
         title: Media Player
         type: entities
@@ -939,7 +937,7 @@ views:
           - entity: media_player.bedroom_apple_tv
             show_info: false
             type: media-control
-          - entity: media_player.USER1s_office_apple_tv
+          - entity: media_player.USER1_s_office_apple_tv
             show_info: false
             type: media-control
           - entity: media_player.guest_bedroom_apple_tv
@@ -974,7 +972,7 @@ views:
                 type: media-control
             type: horizontal-stack
           - cards:
-              - entity: media_player.sonos_basement
+              - entity: media_player.sonos_move
                 type: media-control
               - entity: media_player.sonos_backyard_patio
                 type: media-control
@@ -1251,8 +1249,8 @@ views:
         title: Location Controls
         type: entities
       - entities:
-          - entity: device_tracker.USER1s_iphone
-          - entity: device_tracker.USER2s_iphone
+          - entity: person.USER1
+          - entity: person.USER2
         title: Household
         type: glance
       - entities:
@@ -1263,9 +1261,9 @@ views:
         type: entities
       - dark_mode: false
         entities:
-          - device_tracker.USER1s_iphone
-          - device_tracker.USER2s_iphone
-          - zone.home
+          - entity: person.USER1
+          - entity: person.USER2
+          - entity: zone.home
         title: Map
         type: map
     icon: 'mdi:map-marker-radius'
@@ -1330,18 +1328,6 @@ views:
                   yellow: 50
                 theme: default
                 type: gauge
-              - entity: sensor.nas_volume_used_backup
-                max: 100
-                min: 0
-                name: Backup
-                severity:
-                  green: 0
-                  red: 90
-                  yellow: 50
-                theme: default
-                type: gauge
-            type: horizontal-stack
-          - cards:
               - entity: sensor.nas_system_temperature
                 max: 200
                 min: 0
@@ -1557,4 +1543,16 @@ views:
         type: entities
     icon: 'mdi:battery-charging-100'
     title: Battery Levels
-
+  - badges: []
+    cards:
+      - entities:
+          - entity: group.all_automations
+          - entity: group.all_devices
+          - entity: group.all_lights
+          - entity: group.all_switches
+          - entity: group.all_scripts
+          - entity: group.all_remotes
+        type: entities
+    icon: 'mdi:none'
+    path: troubleshoot
+    title: Troubleshoot

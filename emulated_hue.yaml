@@ -1,0 +1,77 @@
+#################################################################
+## Emulated Hue
+#################################################################
+
+  host_ip: REDACTED.105
+  listen_port: 80
+  off_maps_to_on_domains:
+    - script
+    - scene
+  expose_by_default: false
+  entities:
+    input_boolean.bedtime:
+      hidden: false
+      name: "Bedtime"
+    input_boolean.garage_door:
+      hidden: false
+      name: "Garage Door"
+    input_boolean.bedroom_tv:
+      hidden: false
+      name: "Bedroom TV"
+    input_boolean.office_tv:
+      hidden: false
+      name: "Office TV"
+    switch.fireplace:
+      hidden: false
+      name: "Remote FRPLC"
+    light.hallway_light:
+      hidden: false
+      name: "Remote HLLWY"
+    light.living_room_lights:
+      hidden: false
+      name: "Remote LVNGRM"
+    light.dining_room_lights:
+      hidden: false
+      name: "Remote DNGRM"
+    light.bedroom_lights:
+      hidden: false
+      name: "Remote BDRM"
+    light.kitchen_lights:
+      hidden: false
+      name: "Remote KTCHN"
+    light.bathroom_lights:
+      hidden: false
+      name: "Remote BTH"
+    input_boolean.office_rainbow:
+      hidden: false
+      name: "Office Party"
+    input_boolean.livingroom_rainbow:
+      hidden: false
+      name: "Living Room Party"
+    input_boolean.front_porch_rainbow:
+      hidden: false
+      name: "Front Porch Party"
+    input_boolean.bedroom_rainbow:
+      hidden: false
+      name: "Bedroom Party"
+    input_boolean.vacation_mode:
+      hidden: false
+      name: "Vacation Mode"
+    input_boolean.pop_music:
+      hidden: false
+      name: "Pop Music"
+    input_boolean.jazz_music:
+      hidden: false
+      name: "Jazz Music"
+    input_boolean.classical_music:
+      hidden: false
+      name: "Classical Music"
+    input_boolean.electronic_music:
+      hidden: false
+      name: "Electronic Music"
+    input_boolean.chill_music:
+      hidden: false
+      name: "Chill Music"
+    input_boolean.group_all_sonos:
+      hidden: false
+      name: "All Speakers"
