@@ -108,7 +108,7 @@
         value_template: '{{ states.switch.dryer.attributes.current_power_w }}'
 
         ##########################################################
-        ## Battery Levels
+        ## Back Door Sensor Battery
         ##########################################################
 
   - platform: template
@@ -118,6 +118,11 @@
         friendly_name: 'Back Door Sensor'
         unit_of_measurement: '%'
         device_class: battery
+
+        ##########################################################
+        ## Basement Door Sensor Battery
+        ##########################################################
+
   - platform: template
     sensors:
       basement_door_sensor_batt:
@@ -125,6 +130,11 @@
         friendly_name: 'Basement Door Sensor'
         unit_of_measurement: '%'
         device_class: battery
+
+        ##########################################################
+        ## Front Door Sensor Battery
+        ##########################################################
+
   - platform: template
     sensors:
       front_door_sensor_batt:
@@ -132,6 +142,11 @@
         friendly_name: 'Front Door Sensor'
         unit_of_measurement: '%'
         device_class: battery
+
+        ##########################################################
+        ## Siren Battery
+        ##########################################################
+
   - platform: template
     sensors:
       siren_batt:
@@ -139,6 +154,11 @@
         friendly_name: 'Alarm Siren'
         unit_of_measurement: '%'
         device_class: battery
+
+        ##########################################################
+        ## Front Door Lock Battery
+        ##########################################################
+
   - platform: template
     sensors:
       front_door_lock_batt:
@@ -146,6 +166,11 @@
         friendly_name: 'Front Door Lock'
         unit_of_measurement: '%'
         device_class: battery
+
+        ##########################################################
+        ## Back Door Lock Battery
+        ##########################################################
+
   - platform: template
     sensors:
       back_door_lock_batt:
@@ -153,6 +178,11 @@
         friendly_name: 'Back Door Lock'
         device_class: battery
         unit_of_measurement: '%'
+
+        ##########################################################
+        ## Basement Door Lock Battery
+        ##########################################################
+
   - platform: template
     sensors:
       basement_door_lock_batt:
@@ -160,6 +190,11 @@
         friendly_name: 'Basement Door Lock'
         unit_of_measurement: '%'
         device_class: battery
+
+        ##########################################################
+        ## Basement Drain Water Sensor Battery
+        ##########################################################
+
   - platform: template
     sensors:
       basement_drain_water_sensor_batt:
@@ -167,6 +202,11 @@
         friendly_name: 'Basement Drain Water Sensor'
         unit_of_measurement: '%'
         device_class: battery
+
+        ##########################################################
+        ## Sump Pump Water Sensor Battery
+        ##########################################################
+
   - platform: template
     sensors:
       sump_pump_water_sensor_batt:
@@ -174,6 +214,11 @@
         friendly_name: 'Sump Pump Water Sensor'
         unit_of_measurement: '%'
         device_class: battery
+
+        ##########################################################
+        ## Downstairs Roomba Battery
+        ##########################################################
+
   - platform: template
     sensors:
       downstairs_roomba_batt:
@@ -181,6 +226,11 @@
         friendly_name: 'Downstairs Roomba'
         unit_of_measurement: '%'
         device_class: battery
+
+        ##########################################################
+        ## Upstairs Roomba Battery
+        ##########################################################
+
   - platform: template
     sensors:
       upstairs_roomba_batt:
@@ -188,6 +238,11 @@
         friendly_name: 'Upstairs Roomba'
         unit_of_measurement: '%'
         device_class: battery
+
+        ##########################################################
+        ## Living Room Motion Sensor Battery
+        ##########################################################
+
   - platform: template
     sensors:
       living_room_motion_batt:
@@ -195,6 +250,11 @@
         friendly_name: 'Living Room Motion Sensor'
         unit_of_measurement: '%'
         device_class: battery
+
+        ##########################################################
+        ## Basement Motion Sensor Battery
+        ##########################################################
+
   - platform: template
     sensors:
       basement_motion_batt:
@@ -202,6 +262,11 @@
         friendly_name: 'Basement Motion Sensor'
         unit_of_measurement: '%'
         device_class: battery
+
+        ##########################################################
+        ## Kitchen Motion Sensor Battery
+        ##########################################################
+
   - platform: template
     sensors:
       kitchen_motion_batt:
@@ -209,6 +274,11 @@
         friendly_name: 'Kitchen Motion Sensor'
         unit_of_measurement: '%'
         device_class: battery
+
+        ##########################################################
+        ## USER2's Closet Motion Sensor Battery
+        ##########################################################
+
   - platform: template
     sensors:
       USER2s_closet_motion_batt:
@@ -216,6 +286,11 @@
         friendly_name: "USER2's Closet Motion Sensor"
         unit_of_measurement: '%'
         device_class: battery
+
+        ##########################################################
+        ## Dining Room Motion Sensor Battery
+        ##########################################################
+
   - platform: template
     sensors:
       dining_room_motion_batt:
@@ -223,6 +298,11 @@
         friendly_name: 'Dining Room Motion Sensor'
         unit_of_measurement: '%'
         device_class: battery
+
+        ##########################################################
+        ## Stairs Motion Sensor Battery
+        ##########################################################
+
   - platform: template
     sensors:
       stairs_motion_batt:
@@ -230,6 +310,11 @@
         friendly_name: 'Stairs Motion Sensor'
         unit_of_measurement: '%'
         device_class: battery
+
+        ##########################################################
+        ## Kitchen Sink Water Sensor Battery
+        ##########################################################
+
   - platform: template
     sensors:
       kitchen_sink_water_sensor_batt:
@@ -237,6 +322,11 @@
         friendly_name: 'Kitchen Sink Water Sensor'
         unit_of_measurement: '%'
         device_class: battery
+
+        ##########################################################
+        ## Bathroom Sink Water Sensor Battery
+        ##########################################################
+
   - platform: template
     sensors:
       bathroom_sink_water_sensor_batt:
@@ -244,6 +334,11 @@
         friendly_name: 'Bathroom Sink Water Sensor'
         unit_of_measurement: '%'
         device_class: battery
+
+        ##########################################################
+        ## Basement Door Water Sensor Battery
+        ##########################################################
+
   - platform: template
     sensors:
       basement_door_water_sensor_batt:
@@ -251,6 +346,11 @@
         friendly_name: 'Basement Door Water Sensor'
         unit_of_measurement: '%'
         device_class: battery
+
+        ##########################################################
+        ## Upstairs Bathroom Water Sensor Battery
+        ##########################################################
+
   - platform: template
     sensors:
       upstairs_bathroom_water_sensor_batt:
@@ -258,6 +358,11 @@
         friendly_name: 'Upstairs Bathroom Water Sensor'
         unit_of_measurement: '%'
         device_class: battery
+
+        ##########################################################
+        ## Utility Sink Water Sensor Battery
+        ##########################################################
+
   - platform: template
     sensors:
       utility_sink_water_sensor_batt:
@@ -265,6 +370,11 @@
         friendly_name: 'Utility Sink Water Sensor'
         unit_of_measurement: '%'
         device_class: battery
+
+        ##########################################################
+        ## Water Heater Water Sensor Battery
+        ##########################################################
+
   - platform: template
     sensors:
       water_heater_water_sensor_batt:
@@ -272,6 +382,11 @@
         friendly_name: 'Water Heater Water Sensor'
         unit_of_measurement: '%'
         device_class: battery
+
+        ##########################################################
+        ## Washing Machine Water Sensor Battery
+        ##########################################################
+
   - platform: template
     sensors:
       washing_machine_water_sensor_batt:
@@ -279,6 +394,11 @@
         friendly_name: 'Washing Machine Water Sensor'
         unit_of_measurement: '%'
         device_class: battery
+
+        ##########################################################
+        ## USER2's Office Motion Sensor Battery
+        ##########################################################
+
   - platform: template
     sensors:
       USER2s_office_motion_batt:
@@ -286,6 +406,11 @@
         friendly_name: "USER2's Office Motion Sensor"
         unit_of_measurement: '%'
         device_class: battery
+
+        ##########################################################
+        ## Upstairs Bathroom Motion Sensor Battery
+        ##########################################################
+
   - platform: template
     sensors:
       upstairs_bath_motion_batt:
@@ -293,6 +418,11 @@
         friendly_name: 'Upstairs Bathroom Motion Sensor'
         unit_of_measurement: '%'
         device_class: battery
+
+        ##########################################################
+        ## USER1's Office Motion Sensor Battery
+        ##########################################################
+
   - platform: template
     sensors:
       REDACTEDs_office_motion_batt:
