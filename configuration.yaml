@@ -29,6 +29,8 @@ system_health:
 mobile_app:
 ssdp:
 zeroconf:
+map:
+stream:
 http:
   ssl_certificate: !secret ssl_certificate
   ssl_key: !secret ssl_key
@@ -39,9 +41,6 @@ http:
 #################################################################
 ## Components
 #################################################################
-
-ecobee:
-  api_key: !secret ecobee_api_key
 
 hue:
   bridges:
@@ -90,16 +89,16 @@ media_player:
 apple_tv_mrp:
   - name: Living Room Apple TV
     host: REDACTED.150
-    port: 52018
+    port: 59907
   - name: Bedroom Apple TV
     host: REDACTED.152
-    port: 65111
+    port: 55567
   - name: USER1's Office Apple TV
     host: REDACTED.151
-    port: 49152
+    port: 49153
   - name: Guest Bedroom Apple TV
     host: REDACTED.153
-    port: REDACTED
+    port: 49152
 
 #apple_tv:
 #  - name: Living Room Apple TV
@@ -123,13 +122,6 @@ apple_tv_mrp:
 #    credentials: !secret apple_tv_office_cred
 #    start_off: false
 
-plex:
-   host: REDACTED.101
-   port: REDACTED
-   token: !secret plextoken
-   ssl: true
-   verify_ssl: false
-
 remote:
   - platform: harmony
     name: Media Center
@@ -143,8 +135,6 @@ remote:
     name: Office TV
     host: REDACTED.176
     activity: Watch TV
-
-map:
 
 wemo:
   discovery: false
@@ -163,8 +153,6 @@ ifttt:
 ring:
     username: !secret ring_username
     password: !secret ring_password
-
-stream:
 
 camera:
   - platform: generic
@@ -201,6 +189,11 @@ camera:
     name: Basement
     still_image_url: https://REDACTED.97/snap.jpeg
     stream_source: rtsp://REDACTED.3:7447/REDACTED
+    verify_ssl: false
+  - platform: generic
+    name: Living Room
+    still_image_url: https://REDACTED.97/snap.jpeg
+    stream_source: rtsp://REDACTED.3:7447/yb1q1StMMJm4y3D9
     verify_ssl: false
 
 tts:
@@ -289,7 +282,6 @@ automation: !include_dir_merge_list automation
 recorder: !include recorder.yaml
 logbook: !include logbook.yaml
 history: !include history.yaml
-zone: !include zones.yaml
 group: !include groups.yaml
 scene: !include scenes.yaml
 sensor: !include sensors.yaml

@@ -48,15 +48,15 @@
 
   action:
     - delay: 00:02:00
-    - service: switch.turn_on
+#    - service: switch.turn_on
 #      entity_id:
 #        - switch.summer_mode
+    - service: switch.turn_on
+      entity_id:
+        - switch.winter_mode
 #    - service: switch.turn_on
 #      entity_id:
-#        - switch.winter_mode
-#    - service: switch.turn_on
-      entity_id:
-        - switch.spring_fall_mode
+#       - switch.spring_fall_mode
 
         ##########################################################
         ## Delay HomeKit Start

@@ -108,6 +108,15 @@
         value_template: '{{ states.switch.dryer.attributes.current_power_w }}'
 
         ##########################################################
+        ## Sump Pump
+        ##########################################################
+
+  - platform: template
+    sensors:
+      sump_pump_current_power:
+        value_template: '{{ states.switch.sump_pump_switch.attributes.current_power_w }}'
+
+        ##########################################################
         ## Back Door Sensor Battery
         ##########################################################
 

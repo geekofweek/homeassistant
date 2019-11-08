@@ -36,17 +36,19 @@
     friendly_name: USER1
   device_tracker.USER1:
     icon: mdi:human-male
-    friendly_name: USER1
+    friendly_name: USER1's iPhone (iOS)
   person.USER2:
     icon: mdi:human-female
     friendly_name: USER2
   device_tracker.USER2:
     icon: mdi:human-female
-    friendly_name: USER2
+    friendly_name: USER2's iPhone (iOS)
   device_tracker.USER1s_ipad:
     icon: mdi:tablet-ipad
   device_tracker.USER2s_ipad:
     icon: mdi:tablet-ipad
+  device_tracker.53d6d102_754f_4616_879c_3b736f9e7dee:
+    friendly_name: USER1's iPhone (Locative)
 
         ##########################################################
         ## Friends and Family
@@ -66,10 +68,10 @@
   person.REDACTED:
     icon: mdi:human-male
     friendly_name: REDACTED
-  person.REDACTED:
+  person.REDACTEDny:
     icon: mdi:human-male
     friendly_name: REDACTEDny
-  person.REDACTED:
+  person.more:
     icon: mdi:human-female
     friendly_name: REDACTED
   person.REDACTED:
@@ -300,16 +302,6 @@
     icon: mdi:router-wireless
   switch.unificloudkey:
     icon: mdi:server-network
-  switch.front_porch_camera:
-    icon: mdi:cctv
-  switch.side_yard_camera:
-    icon: mdi:cctv
-  switch.backyard_camera:
-    icon: mdi:cctv
-  switch.living_room_camera:
-    icon: mdi:cctv
-  switch.basement_camera:
-    icon: mdi:cctv
   switch.summer_mode:
     icon: mdi:white-balance-sunny
     friendly_name: Summer Mode
@@ -352,6 +344,9 @@
   switch.disable_smoke_alarm:
     friendly_name: Disable Fire Alarm
     icon: mdi:fire-truck
+  switch.sump_pump_switch:
+    friendly_name: Sump Pump
+    icon: mdi:water-pump
 
         ##########################################################
         ## Lights
@@ -423,7 +418,7 @@
     icon: mdi:shower
     friendly_name: Bathroom
   light.upstairs_bathroom_lights:
-    icon: mdi:water-pump
+    icon: mdi:mdi:shower
     friendly_name: Upstairs Bathroom
   light.USER1_office_lights:
     icon: mdi:desktop-mac
@@ -735,3 +730,32 @@
   sensor.dryer_current_power:
     icon: mdi:power-plug
     friendly_name: Dryer Wattage
+
+        ##########################################################
+        ## Sump Pump
+        ##########################################################
+
+  binary_sensor.sump_pump_status:
+    icon: mdi:water-pump
+    friendly_name: Sump Pump
+
+        ##########################################################
+        ## Camera POE
+        ##########################################################
+
+  switch.front_porch_camera:
+    icon: mdi:cctv
+  switch.side_yard_camera:
+    icon: mdi:cctv
+  switch.backyard_gate_camera:
+    icon: mdi:cctv
+  switch.driveway_camera:
+    icon: mdi:cctv
+  switch.garage_camera:
+    icon: mdi:cctv
+  switch.backyard_camera:
+    icon: mdi:cctv
+  switch.living_room_camera:
+    icon: mdi:cctv
+  switch.basement_camera:
+    icon: mdi:cctv

@@ -126,6 +126,9 @@
     - condition: state
       entity_id: light.garage_interior
       state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
 
   action:
     - service: light.turn_on

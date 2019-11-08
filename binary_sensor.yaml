@@ -87,3 +87,18 @@
           minutes: 3
         value_template: >-
           {{ states('sensor.dryer_current_power')| int >= 6  }}
+
+        ##########################################################
+        ## Sump Pump
+        ##########################################################
+
+  - platform: template
+    sensors:
+      sump_pump_status:
+        friendly_name: 'Sump Pump Status'
+        delay_on:
+          seconds: 1
+        delay_off:
+          seconds: 1
+        value_template: >-
+          {{ states('sensor.sump_pump_current_power')| int >= 1  }}

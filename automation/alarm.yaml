@@ -505,6 +505,40 @@
       entity_id: alarm_control_panel.alarm
 
         ##########################################################
+        ## Disable Alarm when USER1 or USER2 Home
+        ##########################################################
+
+- alias: Alarm - Disable Alarm when USER1 or USER2 Home
+
+  trigger:
+    - platform: state
+      entity_id: person.USER1
+      from: 'not_home'
+      to: 'home'
+    - platform: state
+      entity_id: person.USER2
+      from: 'not_home'
+      to: 'home'
+    - platform: state
+      entity_id: group.friends_and_family
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: alarm_control_panel.alarm
+        state: 'armed_home'
+      - condition: state
+        entity_id: alarm_control_panel.alarm
+        state: 'armed_away'
+
+  action:
+    - service: alarm_control_panel.alarm_disarm
+      entity_id: alarm_control_panel.alarm
+
+        ##########################################################
         ## Enable Alarm when Away
         ##########################################################
 

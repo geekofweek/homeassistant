@@ -28,10 +28,10 @@
 #     re-enable Summer or Winter Mode
 #    - service: homeassistant.turn_on
 #      entity_id: switch.summer_mode
-#    - service: homeassistant.turn_on
-#      entity_id: switch.winter_mode
     - service: homeassistant.turn_on
-      entity_id: switch.spring_fall_mode
+      entity_id: switch.winter_mode
+#    - service: homeassistant.turn_on
+#      entity_id: switch.spring_fall_mode
     - service: ecobee.set_fan_min_on_time
       data:
         entity_id: climate.main_floor

@@ -9,16 +9,18 @@
       - person.USER1
       - person.USER2
       - group.friends_and_family
+      - alarm_control_panel.alarm
       - light.living_room_lights
       - light.dining_room_lights
       - light.bedroom_lights
+      - light.USER2s_bedroom_closet
       - light.kitchen_lights
       - light.hallway_light
       - light.bathroom_lights
       - light.stairs_light
       - light.basement_lighting
       - light.USER1_office_lights
-      - light.USER2_s_office_ceiling
+      - light.USER2_office_lights
       - light.guest_bedroom_lights
       - light.upstairs_bathroom_lights
       - light.front_porch
@@ -40,6 +42,14 @@
       - binary_sensor.back_door_opened
       - binary_sensor.basement_door_opened
       - cover.garage_door
+      - binary_sensor.living_room_motion
+      - binary_sensor.dining_room_motion
+      - binary_sensor.kitchen_motion
+      - binary_sensor.USER1s_office_motion
+      - binary_sensor.stairs_motion
+      - binary_sensor.basement_motion
+      - binary_sensor.USER2_bedroom_closet_motion
+      - binary_sensor.USER2s_office_motion
       - sensor.REDACTED_temperature
       - sensor.living_room_temperature
       - sensor.main_floor_temperature
@@ -51,3 +61,6 @@
       - sensor.guest_bedroom_temperature
       - sensor.basement_temperature
       - sensor.laundry_room_temperature
+      - sensor.main_floor_humidity
+      - sensor.office_fan_humidity
+      - sensor.REDACTED_humidity

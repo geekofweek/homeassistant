@@ -228,6 +228,31 @@
            'apns-collapse-id': 'water-sump-pump'
 
         ##########################################################
+        ## Send Notification for Sump Pump On
+        ##########################################################
+
+- alias: Water Works - Sump Pump On Send Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.sump_pump_status
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: Sump Pump has Turned On!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-sump-pump'
+
+        ##########################################################
         ## Flash Lights when Water Detected
         ##########################################################
 
@@ -640,3 +665,25 @@
         data:
           apns_headers:
            'apns-collapse-id': 'water-main-on'
+
+        ##########################################################
+        ## Sump Pump Power Off Notification
+        ##########################################################
+
+- alias: Water Works - Sump Pump Power Off Notification
+
+  trigger:
+    - platform: state
+      entity_id: switch.sump_pump_switch
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: Sump Pump Switch Turned Off!
