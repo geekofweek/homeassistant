@@ -89,13 +89,13 @@ media_player:
 apple_tv_mrp:
   - name: Living Room Apple TV
     host: REDACTED.150
-    port: 59907
+    port: 49152
   - name: Bedroom Apple TV
     host: REDACTED.152
-    port: 55567
+    port: 58915
   - name: USER1's Office Apple TV
     host: REDACTED.151
-    port: 49153
+    port: 56331
   - name: Guest Bedroom Apple TV
     host: REDACTED.153
     port: 49152
@@ -256,13 +256,18 @@ alarm_control_panel:
     name: Alarm
     code_arm_required: false
     pending_time: 30
-    delay_time: 20
+    delay_time: 30
     trigger_time: 120
     disarmed:
       trigger_time: 0
     armed_home:
-      delay_time: 0
+      delay_time: 30
       trigger_time: 60
+      pending_time: 30
+    armed_away:
+      delay_time: 15
+      trigger_time: 120
+      pending_time: 30
 
 #pi_hole:
 #  host: REDACTED.4
@@ -283,7 +288,6 @@ recorder: !include recorder.yaml
 logbook: !include logbook.yaml
 history: !include history.yaml
 group: !include groups.yaml
-scene: !include scenes.yaml
 sensor: !include sensors.yaml
 binary_sensor: !include binary_sensor.yaml
 input_boolean: !include input_boolean.yaml

@@ -116,6 +116,10 @@
       entity_id: group.household
       from: 'not_home'
       to: 'home'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
 
   condition:
     - condition: state
@@ -144,6 +148,10 @@
       entity_id: group.household
       from: 'not_home'
       to: 'home'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
 
   condition:
     - condition: state

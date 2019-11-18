@@ -91,11 +91,28 @@
       entity_id: input_boolean.interior_holiday
       state: 'off'
     - condition: state
-      entity_id: input_boolean.alarm_tripped
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
-      state: 'off'
+      entity_id: alarm_control_panel.alarm
+      state: 'disarmed'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.kitchen_sink_water_sensor
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.bathroom_sink_water_sensor
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.upstairs_bathrooom_water_sensor
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.utility_sink_water_sensor
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.washing_machine_water_sensor
+        state: 'off'
 
   action:
     - service: light.turn_on

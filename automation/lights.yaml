@@ -144,10 +144,10 @@
        brightness_pct: 50
 
         ##########################################################
-        ## Turn Off Garage Light After 1 Hour
+        ## Turn Off Garage Light After Midnight
         ##########################################################
 
-- alias: Lights - Turn Off Garage Light After 1 Hour
+- alias: Lights - Turn Off Garage Light After Midnight
 
   trigger:
     - platform: state
@@ -210,6 +210,9 @@
       entity_id: input_boolean.disable_exterior_off_night
       state: 'off'
     - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+    - condition: state
       entity_id: group.friends_and_family
       state: 'not_home'
 
@@ -234,6 +237,9 @@
       state: 'below_horizon'
     - condition: state
       entity_id: input_boolean.disable_exterior_off_night
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.vacation_mode
       state: 'off'
     - condition: state
       entity_id: group.friends_and_family
@@ -333,6 +339,43 @@
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: input_select.holiday
+      state: 'None'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.front_porch
+      data:
+       transition: 300
+
+        ##########################################################
+        ## Turn off Front Porch After 2a
+        ##########################################################
+
+- alias: Lights - Turn off Front Porch After 2a
+
+  trigger:
+    - platform: state
+      entity_id: light.front_porch
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: time
+      after: '00:00'
+      before: '07:30'
+    - condition: state
+      entity_id: input_boolean.disable_exterior_off_night
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
     - service: light.turn_off
@@ -371,6 +414,41 @@
     - condition: state
       entity_id: input_boolean.vacation_mode
       state: 'off'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.front_yard_lighting
+
+        ##########################################################
+        ## Turn Off Front Yard Lighting after 2a
+        ##########################################################
+
+- alias: Lights - Turn Off Front Yard Lighting after 2a
+
+  trigger:
+    - platform: state
+      entity_id: switch.front_yard_lighting
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: time
+      after: '02:00'
+      before: '07:30'
+    - condition: state
+      entity_id: input_boolean.disable_exterior_off_night
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
     - service: switch.turn_off
@@ -419,6 +497,9 @@
       entity_id: input_boolean.disable_exterior_off_night
       state: 'off'
     - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+    - condition: state
       entity_id: group.friends_and_family
       state: 'not_home'
 
@@ -447,6 +528,9 @@
       entity_id: input_boolean.disable_exterior_off_night
       state: 'off'
     - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+    - condition: state
       entity_id: group.friends_and_family
       state: 'home'
     - condition: time
@@ -465,10 +549,10 @@
        transition: 300
 
         ##########################################################
-        ## Turn off Back Door After Midnight
+        ## Turn off Backyard Lighting After Midnight
         ##########################################################
 
-- alias: Lights - Turn off Back Door After Midnight
+- alias: Lights - Turn off Backyard Lighting After Midnight
 
   trigger:
     - platform: state
@@ -498,6 +582,12 @@
     - service: light.turn_off
       entity_id:
         - light.back_door
+        - light.backyard_deck
+        - light.backyard_patio
+    - service: switch.turn_off
+      entity_id:
+        - switch.lower_backyard_lighting
+        - switch.backyard_patio_lighting
 
         ##########################################################
         ## Turn off Interior Lights at Sunrise
@@ -711,11 +801,28 @@
       entity_id: input_boolean.interior_holiday
       state: 'off'
     - condition: state
-      entity_id: input_boolean.alarm_tripped
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
-      state: 'off'
+      entity_id: alarm_control_panel.alarm
+      state: 'disarmed'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.kitchen_sink_water_sensor
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.bathroom_sink_water_sensor
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.upstairs_bathrooom_water_sensor
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.utility_sink_water_sensor
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.washing_machine_water_sensor
+        state: 'off'
 
   action:
     - service: light.turn_on

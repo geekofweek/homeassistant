@@ -3,256 +3,6 @@
 #################################################################
 
         ##########################################################
-        ## Send Notification for Water Detected Basement Drain
-        ##########################################################
-
-- alias: Water Works - Basement Drain Water Sensor Text Notification
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  action:
-    - service: notify.ios_USER1
-      data:
-        message: Water Detected in Basement Drain!
-        data:
-          apns_headers:
-           'apns-collapse-id': 'water-basement-drain'
-
-        ##########################################################
-        ## Send Notification for Water Detected Kitchen Sink
-        ##########################################################
-
-- alias: Water Works - Kitchen Sink Water Sensor Text Notification
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.kitchen_sink_water_sensor
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  action:
-    - service: notify.ios_USER1
-      data:
-        message: Water Detected Under Kitchen Sink!
-        data:
-          apns_headers:
-           'apns-collapse-id': 'water-kitchen-sink'
-
-        ##########################################################
-        ## Send Notification for Water Detected Bathroom Sink
-        ##########################################################
-
-- alias: Water Works - Bathroom Sink Water Sensor Text Notification
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.bathroom_sink_water_sensor
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  action:
-    - service: notify.ios_USER1
-      data:
-        message: Water Detected Under Bathroom Sink!
-        data:
-          apns_headers:
-           'apns-collapse-id': 'water-basement-sink'
-
-        ##########################################################
-        ## Send Notification for Water Detected Basement Door
-        ##########################################################
-
-- alias: Water Works - Basement Door Water Sensor Text Notification
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.basement_door_water_sensor
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  action:
-    - service: notify.ios_USER1
-      data:
-        message: Water Detected by Basement Door!
-        data:
-          apns_headers:
-           'apns-collapse-id': 'water-basement-door'
-
-        ##########################################################
-        ## Send Notification for Water Detected Upstairs Bathroom
-        ##########################################################
-
-- alias: Water Works - Upstairs Bathroom Water Sensor Text Notification
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.upstairs_bathrooom_water_sensor
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  action:
-    - service: notify.ios_USER1
-      data:
-        message: Water Detected in Upstairs Bathroom!
-        data:
-          apns_headers:
-           'apns-collapse-id': 'water-upstairs-bathroom'
-
-        ##########################################################
-        ## Send Notification for Water Detected by Water Heater
-        ##########################################################
-
-- alias: Water Works - Water Heater Water Sensor Text Notification
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.water_heater_water_sensor
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  action:
-    - service: notify.ios_USER1
-      data:
-        message: Water Detected by Water Heater!
-        data:
-          apns_headers:
-           'apns-collapse-id': 'water-water-heater'
-
-        ##########################################################
-        ## Send Notification for Water Detected under Utility Sink
-        ##########################################################
-
-- alias: Water Works - Utility Sink Water Sensor Text Notification
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.utility_sink_water_sensor
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  action:
-    - service: notify.ios_USER1
-      data:
-        message: Water Detected Under Utility Sink!
-        data:
-          apns_headers:
-           'apns-collapse-id': 'water-utility-sink'
-
-        ##########################################################
-        ## Send Notification for Water Detected behind Washing Machine
-        ##########################################################
-
-- alias: Water Works - Washing Machine Water Sensor Text Notification
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.washing_machine_water_sensor
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  action:
-    - service: notify.ios_USER1
-      data:
-        message: Water Detected by Washing Machine!
-        data:
-          apns_headers:
-           'apns-collapse-id': 'water-washing-machine'
-
-        ##########################################################
-        ## Send Notification for Water Detected Sump Pump
-        ##########################################################
-
-- alias: Water Works - Sump Pump Water Sensor Send Notification
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.sump_pump_water_sensor_liquid_detected
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  action:
-    - service: notify.ios_USER1
-      data:
-        message: Water Detected in Sump Pump!
-        data:
-          apns_headers:
-           'apns-collapse-id': 'water-sump-pump'
-
-        ##########################################################
-        ## Send Notification for Sump Pump On
-        ##########################################################
-
-- alias: Water Works - Sump Pump On Send Notification
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.sump_pump_status
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  action:
-    - service: notify.ios_USER1
-      data:
-        message: Sump Pump has Turned On!
-        data:
-          apns_headers:
-           'apns-collapse-id': 'water-sump-pump'
-
-        ##########################################################
         ## Flash Lights when Water Detected
         ##########################################################
 
@@ -304,6 +54,447 @@
         - light.hue_lights
       data:
        flash: long
+
+        ##########################################################
+        ## Shut Off Water Main When Water Detected
+        ##########################################################
+
+- alias: Water Works - Shut Off Water Main When Water Detected
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.kitchen_sink_water_sensor
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.bathroom_sink_water_sensor
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.upstairs_bathrooom_water_sensor
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.utility_sink_water_sensor
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.washing_machine_water_sensor
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_water_automations
+      state: 'off'
+    - condition: state
+      entity_id: switch.water_main
+      state: 'on'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.water_main
+
+        ##########################################################
+        ## Shut Off Water Main When Vacation Mode On
+        ##########################################################
+
+- alias: Water Works - Shut Off Water Main When Vacation Mode On
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.vacation_mode
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_water_automations
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: switch.water_main
+      state: 'on'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.water_main
+
+        ##########################################################
+        ## Turn On Water Main When Vacation Mode Off
+        ##########################################################
+
+- alias: Water Works - Shut On Water Main When Vacation Mode Off
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.vacation_mode
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_water_automations
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: switch.water_main
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.water_main
+
+#################################################################
+## Notifications
+#################################################################
+
+        ##########################################################
+        ## Water Main Turned Off iOS Notification
+        ##########################################################
+
+- alias: Water Works - Water Main Turned Off iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: switch.water_main
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: Water Main Has Been Shut Off!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-main-off'
+    - service: notify.ios_USER2
+      data:
+        message: Water Main Has Been Shut Off!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-main-off'
+
+        ##########################################################
+        ## Water Main Turned On iOS Notification
+        ##########################################################
+
+- alias: Water Works - Water Main Turned On iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: switch.water_main
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: Water Main Has Been Turned Back On
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-main-on'
+    - service: notify.ios_USER2
+      data:
+        message: Water Main Has Been Turned Back On.
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-main-on'
+
+        ##########################################################
+        ## Sump Pump Power Off iOS Notification
+        ##########################################################
+
+- alias: Water Works - Sump Pump Power Off iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: switch.sump_pump_switch
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: Sump Pump Switch Turned Off!
+
+
+        ##########################################################
+        ## Basement Drain Water Sensor iOS Notification
+        ##########################################################
+
+- alias: Water Works - Basement Drain Water Sensor iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: Water Detected in Basement Drain!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-basement-drain'
+
+        ##########################################################
+        ## Kitchen Sink Water Sensor iOS Notification
+        ##########################################################
+
+- alias: Water Works - Kitchen Sink Water Sensor iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.kitchen_sink_water_sensor
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: Water Detected Under Kitchen Sink!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-kitchen-sink'
+
+        ##########################################################
+        ## Bathroom Sink Water Sensor iOS Notification
+        ##########################################################
+
+- alias: Water Works - Bathroom Sink Water Sensor iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bathroom_sink_water_sensor
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: Water Detected Under Bathroom Sink!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-basement-sink'
+
+        ##########################################################
+        ## Basement Door Water Sensor iOS Notification
+        ##########################################################
+
+- alias: Water Works - Basement Door Water Sensor iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.basement_door_water_sensor
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: Water Detected by Basement Door!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-basement-door'
+
+        ##########################################################
+        ## Upstairs Bathroom Water Sensor iOS Notification
+        ##########################################################
+
+- alias: Water Works - Upstairs Bathroom Water Sensor iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.upstairs_bathrooom_water_sensor
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: Water Detected in Upstairs Bathroom!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-upstairs-bathroom'
+
+        ##########################################################
+        ## Water Heater Water Sensor iOS Notification
+        ##########################################################
+
+- alias: Water Works - Water Heater Water Sensor iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.water_heater_water_sensor
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: Water Detected by Water Heater!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-water-heater'
+
+        ##########################################################
+        ## Utility Sink Water Sensor iOS Notification
+        ##########################################################
+
+- alias: Water Works - Utility Sink Water Sensor iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.utility_sink_water_sensor
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: Water Detected Under Utility Sink!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-utility-sink'
+
+        ##########################################################
+        ## Washing Machine Water Sensor iOS Notification
+        ##########################################################
+
+- alias: Water Works - Washing Machine Water Sensor iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.washing_machine_water_sensor
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: Water Detected by Washing Machine!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-washing-machine'
+
+        ##########################################################
+        ## Sump Pump Water Sensor iOS Notification
+        ##########################################################
+
+- alias: Water Works - Sump Pump Water Sensor iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.sump_pump_water_sensor_liquid_detected
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: Water Detected in Sump Pump!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-sump-pump'
+
+        ##########################################################
+        ## Sump Pump On Send iOS Notification
+        ##########################################################
+
+- alias: Water Works - Sump Pump On Send iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.sump_pump_status
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: Sump Pump has Turned On!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'water-sump-pump'
+
 
         ##########################################################
         ## Basement Drain Water Sensor Audio Notification
@@ -502,188 +693,3 @@
           where: 'media_player.sonos_media_center, media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen, media_player.sonos_bathroom, media_player.sonos_bedroom, media_player.sonos_USER1s_office, media_player.sonos_USER2s_office, media_player.sonos_move'
           volume: '.5'
           what: 'Water Detected by Washing Machine! Shutting Off Water Supply'
-
-        ##########################################################
-        ## Shut Off Water Main When Water Detected
-        ##########################################################
-
-- alias: Water Works - Shut Off Water Main When Water Detected
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
-      from: 'off'
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.kitchen_sink_water_sensor
-      from: 'off'
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.bathroom_sink_water_sensor
-      from: 'off'
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.upstairs_bathrooom_water_sensor
-      from: 'off'
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.utility_sink_water_sensor
-      from: 'off'
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.washing_machine_water_sensor
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_water_automations
-      state: 'off'
-    - condition: state
-      entity_id: switch.water_main
-      state: 'on'
-
-  action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.water_main
-
-        ##########################################################
-        ## Shut Off Water Main When Vacation Mode On
-        ##########################################################
-
-- alias: Water Works - Shut Off Water Main When Vacation Mode On
-
-  trigger:
-    - platform: state
-      entity_id: input_boolean.vacation_mode
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_water_automations
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.disable_home_away
-      state: 'off'
-    - condition: state
-      entity_id: switch.water_main
-      state: 'on'
-
-  action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.water_main
-
-        ##########################################################
-        ## Turn On Water Main When Vacation Mode Off
-        ##########################################################
-
-- alias: Water Works - Shut On Water Main When Vacation Mode Off
-
-  trigger:
-    - platform: state
-      entity_id: input_boolean.vacation_mode
-      from: 'on'
-      to: 'off'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_water_automations
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.disable_home_away
-      state: 'off'
-    - condition: state
-      entity_id: switch.water_main
-      state: 'off'
-
-  action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.water_main
-
-        ##########################################################
-        ## Send Notification for Water Main Turned Off
-        ##########################################################
-
-- alias: Water Works - Send Notification for Water Main Turned Off
-
-  trigger:
-    - platform: state
-      entity_id: switch.water_main
-      from: 'on'
-      to: 'off'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  action:
-    - service: notify.ios_USER1
-      data:
-        message: Water Main Has Been Shut Off!
-        data:
-          apns_headers:
-           'apns-collapse-id': 'water-main-off'
-    - service: notify.ios_USER2
-      data:
-        message: Water Main Has Been Shut Off!
-        data:
-          apns_headers:
-           'apns-collapse-id': 'water-main-off'
-
-        ##########################################################
-        ## Send Notification for Water Main Turned On
-        ##########################################################
-
-- alias: Water Works - Send Notification for Water Main Turned On
-
-  trigger:
-    - platform: state
-      entity_id: switch.water_main
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  action:
-    - service: notify.ios_USER1
-      data:
-        message: Water Main Has Been Turned Back On
-        data:
-          apns_headers:
-           'apns-collapse-id': 'water-main-on'
-    - service: notify.ios_USER2
-      data:
-        message: Water Main Has Been Turned Back On.
-        data:
-          apns_headers:
-           'apns-collapse-id': 'water-main-on'
-
-        ##########################################################
-        ## Sump Pump Power Off Notification
-        ##########################################################
-
-- alias: Water Works - Sump Pump Power Off Notification
-
-  trigger:
-    - platform: state
-      entity_id: switch.sump_pump_switch
-      from: 'on'
-      to: 'off'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  action:
-    - service: notify.ios_USER1
-      data:
-        message: Sump Pump Switch Turned Off!

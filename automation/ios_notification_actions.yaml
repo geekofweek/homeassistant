@@ -99,28 +99,56 @@
         actionName: SOUND_ALARM
 
   action:
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.alarm_tripped
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.panic_mode
+    - service: alarm_control_panel.alarm_trigger
+      entity_id: alarm_control_panel.alarm
 
         #################################################################
-        ## Sound Alarm
+        ## Silence Alarm
         #################################################################
 
-- alias: iOS Action - Sound Alarm
+- alias: iOS Action - Silence Alarm
 
   trigger:
     - platform: event
       event_type: ios.notification_action_fired
       event_data:
-        actionName: SOUND_ALARM
+        actionName: SILENCE_ALARM
 
   action:
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.alarm_tripped
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.panic_mode
+    - service: alarm_control_panel.alarm_disarm
+      entity_id: alarm_control_panel.alarm
+
+        #################################################################
+        ## Disable Alarm
+        #################################################################
+
+- alias: iOS Action - Disable Alarm
+
+  trigger:
+    - platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: DISABLE_ALARM
+
+  action:
+    - service: alarm_control_panel.alarm_disarm
+      entity_id: alarm_control_panel.alarm
+
+        #################################################################
+        ## Enable Alarm
+        #################################################################
+
+- alias: iOS Action - Enable Alarm
+
+  trigger:
+    - platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: ENABLEALARM
+
+  action:
+    - service: alarm_control_panel.alarm_arm_away
+      entity_id: alarm_control_panel.alarm
 
         #################################################################
         ## Siren
@@ -185,6 +213,22 @@
   action:
     - service: switch.turn_on
       entity_id: switch.washing_machine
+
+        #################################################################
+        ## Dryer Switch On
+        #################################################################
+
+- alias: iOS Action - Dryer Switch On
+
+  trigger:
+    - platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: DRYER_TURN_ON_SWITCH
+
+  action:
+    - service: switch.turn_on
+      entity_id: switch.dryer
 
         #################################################################
         ## Washing Machine Done Turn on Lights

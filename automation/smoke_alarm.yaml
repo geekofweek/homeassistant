@@ -3,133 +3,6 @@
 #################################################################
 
         ##########################################################
-        ## Smoke Alarm Warning Text Notification
-        ##########################################################
-
-- alias: Smoke Alarm - Smoke Alarm Warning Text Notification
-
-  trigger:
-    - platform: state
-      entity_id: sensor.living_room_nest_protect_smoke_status
-      to: 'Warning'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 1
-    - platform: state
-      entity_id: sensor.bedroom_nest_protect_smoke_status
-      to: 'Warning'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 1
-    - platform: state
-      entity_id: sensor.kitchen_nest_protect_smoke_status
-      to: 'Warning'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 1
-    - platform: state
-      entity_id: sensor.hallway_nest_protect_smoke_status
-      to: 'Warning'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 1
-    - platform: state
-      entity_id: sensor.upstairs_nest_protect_smoke_status
-      to: 'Warning'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 1
-    - platform: state
-      entity_id: sensor.basement_nest_protect_smoke_status
-      to: 'Warning'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 1
-
-  action:
-    - service: notify.ios_USER1
-      data:
-        message: Warning Smoke Alarm Might Sound!
-        data:
-          apns_headers:
-           'apns-collapse-id': 'smoke-alarm-warning'
-          push:
-            badge: 0
-            category: "smokealarm"
-
-        ##########################################################
-        ## Smoke Alarm Text Notification
-        ##########################################################
-
-- alias: Smoke Alarm - Smoke Alarm Text Notification
-
-  trigger:
-    - platform: state
-      entity_id: sensor.living_room_nest_protect_smoke_status
-      to: 'Emergency'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 10
-    - platform: state
-      entity_id: sensor.bedroom_nest_protect_smoke_status
-      to: 'Emergency'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 10
-    - platform: state
-      entity_id: sensor.kitchen_nest_protect_smoke_status
-      to: 'Emergency'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 10
-#    - platform: state
-#      entity_id: sensor.hallway_nest_protect_smoke_status
-#      to: 'Emergency'
-#      for:
-#        hours: 0
-#        minutes: 0
-#        seconds: 15
-    - platform: state
-      entity_id: sensor.upstairs_nest_protect_smoke_status
-      to: 'Emergency'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 10
-    - platform: state
-      entity_id: sensor.basement_nest_protect_smoke_status
-      to: 'Emergency'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 10
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_fire_alarm
-      state: 'off'
-
-  action:
-    - service: notify.ios_USER1
-      data:
-        message: Smoke Alarm!
-        data:
-          apns_headers:
-           'apns-collapse-id': 'smoke-alarm'
-          push:
-            category: camera
-          entity_id: camera.driveway
-
-        ##########################################################
         ## Smoke Alarm Turn on Lights
         ##########################################################
 
@@ -511,3 +384,134 @@
   action:
     - service: homeassistant.turn_off
       entity_id: input_boolean.disable_smoke_alarm
+
+#################################################################
+## Notifications
+#################################################################
+
+        ##########################################################
+        ## Smoke Alarm Warning iOS Notification
+        ##########################################################
+
+- alias: Smoke Alarm - Smoke Alarm Warning iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_nest_protect_smoke_status
+      to: 'Warning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+    - platform: state
+      entity_id: sensor.bedroom_nest_protect_smoke_status
+      to: 'Warning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+    - platform: state
+      entity_id: sensor.kitchen_nest_protect_smoke_status
+      to: 'Warning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+    - platform: state
+      entity_id: sensor.hallway_nest_protect_smoke_status
+      to: 'Warning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+    - platform: state
+      entity_id: sensor.upstairs_nest_protect_smoke_status
+      to: 'Warning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+    - platform: state
+      entity_id: sensor.basement_nest_protect_smoke_status
+      to: 'Warning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: Warning Smoke Alarm Might Sound!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'smoke-alarm-warning'
+          push:
+            badge: 0
+            category: "smokealarm"
+
+        ##########################################################
+        ## Smoke Alarm iOS Notification
+        ##########################################################
+
+- alias: Smoke Alarm - Smoke Alarm iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_nest_protect_smoke_status
+      to: 'Emergency'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 10
+    - platform: state
+      entity_id: sensor.bedroom_nest_protect_smoke_status
+      to: 'Emergency'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 10
+    - platform: state
+      entity_id: sensor.kitchen_nest_protect_smoke_status
+      to: 'Emergency'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 10
+#    - platform: state
+#      entity_id: sensor.hallway_nest_protect_smoke_status
+#      to: 'Emergency'
+#      for:
+#        hours: 0
+#        minutes: 0
+#        seconds: 15
+    - platform: state
+      entity_id: sensor.upstairs_nest_protect_smoke_status
+      to: 'Emergency'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 10
+    - platform: state
+      entity_id: sensor.basement_nest_protect_smoke_status
+      to: 'Emergency'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 10
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_fire_alarm
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: Smoke Alarm!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'smoke-alarm'
+          push:
+            category: camera
+          entity_id: camera.driveway

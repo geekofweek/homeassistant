@@ -490,19 +490,8 @@
     icon: mdi:apple
   media_player.USER1_office_apple_tv:
     icon: mdi:apple
-  media_player.plex_living_room:
-    friendly_name: Living Room Plex
-    icon: mdi:plex
-  media_player.plex_bedroom:
-    friendly_name: Bedroom Plex
-    icon: mdi:plex
-  media_player.plex_office:
-    friendly_name: Office Plex
-    icon: mdi:plex
   sensor.REDACTED:
     icon: mdi:theater
-  media_player.roku_REDACTED:
-    friendly_name: Basement Roku
   media_player.media_center_receiver:
     icon: mdi:speaker
     friendly_name: Surround Sound Receiver
@@ -738,6 +727,9 @@
   binary_sensor.sump_pump_status:
     icon: mdi:water-pump
     friendly_name: Sump Pump
+  sensor.sump_pump_current_power:
+    icon: mdi:power-plug
+    friendly_name: Sump Pump Wattage
 
         ##########################################################
         ## Camera POE
@@ -759,3 +751,11 @@
     icon: mdi:cctv
   switch.basement_camera:
     icon: mdi:cctv
+
+        ##########################################################
+        ## Christmas
+        ##########################################################
+
+  switch.exterior_christmas_lights:
+    icon: mdi:pine-tree
+    friendly_name: Christmas Lights

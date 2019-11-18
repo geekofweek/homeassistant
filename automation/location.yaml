@@ -928,10 +928,10 @@
         - light.garage_light
 
         ##########################################################
-        ## Turn on Backyard Lighting when Home
+        ## Turn on Outdoor Lighting when Home
         ##########################################################
 
-- alias: Location - Turn on Backyard Lighting when Home
+- alias: Location - Turn on Outdoor Lighting when Home
 
   trigger:
     - platform: state
@@ -962,6 +962,7 @@
       entity_id:
         - switch.backyard_patio_lighting
         - switch.lower_backyard_lighting
+        - switch.front_yard_lighting
     - service: light.turn_on
       entity_id:
         - light.backyard_patio
@@ -1287,3 +1288,528 @@
   action:
     - service: homeassistant.turn_off
       entity_id: input_boolean.manual_USER2_away
+
+#################################################################
+## Notifications
+#################################################################
+
+    #################################################################
+    ## USER1 Home Driving iOS Notification
+    #################################################################
+
+- alias: Location - USER1 Home Driving iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: person.USER1
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.USER1_away
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.USER1_away_driving
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: USER1 Home
+        data:
+          apns_headers:
+           'apns-collapse-id': 'USER1-home'
+          push:
+            category: camera
+          entity_id: camera.driveway
+    - service: notify.ios_USER2
+      data:
+        message: USER1 Home
+        data:
+          apns_headers:
+           'apns-collapse-id': 'USER1-home'
+          push:
+            category: camera
+          entity_id: camera.driveway
+
+    #################################################################
+    ## USER1 Home Walking iOS Notification
+    #################################################################
+
+- alias: Location - USER1 Home Walking iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: person.USER1
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.USER1_away
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.USER1_away_driving
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: USER1 Home
+        data:
+          apns_headers:
+           'apns-collapse-id': 'USER1-home'
+          push:
+            category: camera
+          entity_id: camera.front_porch
+    - service: notify.ios_USER2
+      data:
+        message: USER1 Home
+        data:
+          apns_headers:
+           'apns-collapse-id': 'USER1-home'
+          push:
+            category: camera
+          entity_id: camera.front_porch
+
+        #################################################################
+        ## USER1 Away iOS Notification
+        #################################################################
+
+- alias: Location - USER1 Away iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: person.USER1
+      from: 'home'
+      to: 'not_home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: USER1 Away
+        data:
+          apns_headers:
+           'apns-collapse-id': 'USER1-away'
+
+        #################################################################
+        ## USER2 Home Driving iOS Notification 
+        #################################################################
+
+- alias: Location - USER2 Home Driving iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: person.USER2
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.USER2_away
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.USER2_away_driving
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: USER2 Home
+        data:
+          apns_headers:
+           'apns-collapse-id': 'USER2-home'
+          push:
+            category: camera
+          entity_id: camera.driveway
+
+        #################################################################
+        ## USER2 Home Walking iOS Notification
+        #################################################################
+
+- alias: Location - USER2 Walking Driving iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: person.USER2
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.USER2_away
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.USER2_away_driving
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: USER2 Home
+        data:
+          apns_headers:
+           'apns-collapse-id': 'USER2-home'
+          push:
+            category: camera
+          entity_id: camera.front_porch
+
+        #################################################################
+        ## USER2 Away iOS Notification
+        #################################################################
+
+- alias: Location - USER2 Away iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: person.USER2
+      from: 'home'
+      to: 'not_home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: USER2 Away
+        data:
+          apns_headers:
+           'apns-collapse-id': 'USER2-away'
+
+        #################################################################
+        ## USER2 Left Work iOS Notification
+        #################################################################
+
+- alias: Location - USER2 Left Work iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: person.USER2
+      from: 'REDACTED'
+      to: 'not_home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: "USER2 has left work, ETA: {{states('sensor.USER2_to_home')}} mins"
+        data:
+          apns_headers:
+           'apns-collapse-id': 'USER2-work'
+
+        ##########################################################
+        ## Welcome Home USER1 Audio Greeting
+        ##########################################################
+
+- alias: Notification Audio - Welcome Home USER1
+
+  trigger:
+    - platform: state
+      entity_id: group.doors
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.USER1_greeting
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+    - condition: time
+      after: '09:00'
+      before: '22:00'
+
+  action:
+    - delay: '00:00:04'
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.sonos_living_room'
+          where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen'
+          volume: '0.5'
+          what: 'Welcome home, USER1.'
+    - delay: '00:02:00'
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.USER1_greeting
+
+        ##########################################################
+        ## Notify USER2s Office that USER1 is Home
+        ##########################################################
+
+- alias: Notification Audio - Notify USER2s Office that USER1 is Home
+
+  trigger:
+    - platform: state
+      entity_id: group.doors
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: person.USER2
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.USER1_greeting
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.USER2_greeting
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.USER2_office_occupancy
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+    - condition: time
+      after: '09:00'
+      before: '22:00'
+
+  action:
+    - delay: '00:00:60'
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.sonos_USER2s_office'
+          where: 'media_player.sonos_USER2s_office'
+          volume: '0.5'
+          what: 'USER1, is Home.'
+
+        ##########################################################
+        ## Welcome Home USER2 Audio Greeting
+        ##########################################################
+
+- alias: Notification Audio - Welcome Home USER2
+
+  trigger:
+    - platform: state
+      entity_id: group.doors
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: person.USER2
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.USER2_greeting
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+    - condition: time
+      after: '09:00'
+      before: '22:00'
+
+  action:
+    - delay: '00:00:04'
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.sonos_living_room'
+          where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen'
+          volume: '0.5'
+          what: 'Welcome home, USER2.'
+    - delay: '00:02:00'
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.USER2_greeting
+
+        ##########################################################
+        ## Notify USER1s Office that USER2 is Home
+        ##########################################################
+
+- alias: Notification Audio - Notify USER1s Office that USER2 is Home
+
+  trigger:
+    - platform: state
+      entity_id: group.doors
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: person.USER2
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.USER1_greeting
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER2_greeting
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.office_occupancy
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+    - condition: time
+      after: '09:00'
+      before: '22:00'
+
+  action:
+    - delay: '00:00:60'
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.sonos_USER1s_office'
+          where: 'media_player.sonos_USER1s_office'
+          volume: '0.5'
+          what: 'USER2, is Home'
+
+        ##########################################################
+        ## Welcome Home USER1 and USER2 Audio Greeting
+        ##########################################################
+
+- alias: Notification Audio - Welcome Home USER1 and USER2 Audio Greeting
+
+  trigger:
+    - platform: state
+      entity_id: group.doors
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: person.USER2
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.USER1_greeting
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.USER2_greeting
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+    - condition: time
+      after: '09:00'
+      before: '22:00'
+
+  action:
+    - delay: '00:00:03'
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.sonos_living_room'
+          where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen'
+          volume: '0.5'
+          what: 'Welcome Home, USER1 and USER2'
+    - delay: '00:02:00'
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.USER1_greeting, input_boolean.USER2_greeting
+
+        #################################################################
+        ## USER2 Left Work Audio Notification
+        #################################################################
+
+- alias: Notification Audio - USER2 Left Work
+
+  trigger:
+    - platform: state
+      entity_id: person.USER2
+      from: 'REDACTED'
+      to: 'not_home'
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: person.USER2
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.USER2_away
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+    - condition: time
+      after: '09:00'
+      before: '19:00'
+
+  action:
+    - service: sonos.snapshot
+      data:
+        with_group: yes
+    - delay: '00:00:03'
+    - service: sonos.unjoin
+      entity_id:
+        - media_player.sonos_living_room
+        - media_player.sonos_dining_room
+        - media_player.sonos_kitchen
+        - media_player.sonos_bathroom
+        - media_player.sonos_USER1s_office
+    - delay: '00:00:01'
+    - service: sonos.join
+      data:
+        master: media_player.sonos_USER1s_office
+      entity_id:
+        - media_player.sonos_living_room
+        - media_player.sonos_dining_room
+        - media_player.sonos_kitchen
+        - media_player.sonos_bathroom
+        - media_player.sonos_bedroom
+        - media_player.sonos_USER1s_office
+    - delay: '00:00:01'
+    - service: media_player.volume_set
+      entity_id:
+        - media_player.sonos_living_room
+        - media_player.sonos_dining_room
+        - media_player.sonos_kitchen
+        - media_player.sonos_bathroom
+        - media_player.sonos_bedroom
+        - media_player.sonos_USER1s_office
+      data:
+        volume_level: '0.6'
+    - delay: '00:00:02'
+#    - service: tts.amazon_polly_say
+    - service: tts.google_translate_say
+      data_template:
+        entity_id: media_player.sonos_USER1s_office
+        message: "USER2 has left work, and will arrive Home in about, {{states('sensor.USER2_to_home')}} minutes"
+    - delay: '00:00:25'
+    - service: sonos.restore
+      data:
+        with_group: yes

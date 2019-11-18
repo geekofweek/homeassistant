@@ -8,13 +8,31 @@
         identifier: 'alarm'
         actions:
           - identifier: 'SOUND_ALARM'
-            title: 'Sound Alarm'
+            title: 'Trigger Alarm'
             activationMode: 'background'
             authenticationRequired: yes
             destructive: yes
             behavior: 'default'
           - identifier: 'SILENCE_ALARM'
-            title: 'Silence Alarm'
+            title: 'Disable Alarm'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: no
+            behavior: 'default'
+      - name: Disable Alarm
+        identifier: 'disablealarm'
+        actions:
+          - identifier: 'DISABLE_ALARM'
+            title: 'Disable Alarm'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: no
+            behavior: 'default'
+      - name: Enable Alarm
+        identifier: 'enablealarm'
+        actions:
+          - identifier: 'ENABLE_ALARM'
+            title: 'Enable Alarm'
             activationMode: 'background'
             authenticationRequired: yes
             destructive: no
@@ -81,6 +99,15 @@
         actions:
           - identifier: 'WASHINGMACHINE_TURN_ON_SWITCH'
             title: 'Turn Washing Machine Switch On'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: yes
+            behavior: 'default'
+      - name: Dryer
+        identifier: 'dryerswitch'
+        actions:
+          - identifier: 'DRYER_TURN_ON_SWITCH'
+            title: 'Turn Dryer Switch On'
             activationMode: 'background'
             authenticationRequired: yes
             destructive: yes

@@ -880,11 +880,15 @@
         - input_boolean.downstairs_roomba_ran
         - input_boolean.upstairs_roomba_ran
 
+#################################################################
+## Notifications
+#################################################################
+
         ##########################################################
-        ## Roomba is Stuck Notification
+        ## Roomba is Stuck iOS Notification
         ##########################################################
 
-- alias: Roomba - Stuck Notification
+- alias: Roomba - Stuck iOS Notification
 
   trigger:
     - platform: template
@@ -910,10 +914,10 @@
            'apns-collapse-id': 'downstairs-roomba-stuck'
 
         ##########################################################
-        ## Upstairs Roomba is Stuck Notification
+        ## Upstairs Roomba is Stuck iOS Notification
         ##########################################################
 
-- alias: Roomba - Upstairs Stuck Notification
+- alias: Roomba - Upstairs Stuck iOS Notification
 
   trigger:
     - platform: template
@@ -939,10 +943,10 @@
            'apns-collapse-id': 'upstairs-roomba-stuck'
 
         ##########################################################
-        ## Roomba is Full Notification
+        ## Roomba is Full iOS Notification
         ##########################################################
 
-- alias: Roomba - Full Notification
+- alias: Roomba - Full iOS Notification
 
   trigger:
     - platform: template
@@ -968,10 +972,10 @@
            'apns-collapse-id': 'downstairs-roomba-full'
 
         ##########################################################
-        ## Upstairs Roomba is Full Notification
+        ## Upstairs Roomba is Full iOS Notification
         ##########################################################
 
-- alias: Roomba - Upstairs Full Notification
+- alias: Roomba - Upstairs Full iOS Notification
 
   trigger:
     - platform: template

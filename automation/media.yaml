@@ -10,14 +10,14 @@
 
   trigger:
     - platform: state
-      entity_id: media_player.plex_living_room
+      entity_id: media_player.plex_living_room_apple_tv
       to: 'idle'
       for:
         hours: 0
         minutes: 0
         seconds: 3
     - platform: state
-      entity_id: media_player.plex_living_room
+      entity_id: media_player.plex_living_room_apple_tv
       to: 'paused'
       for:
         hours: 0
@@ -79,7 +79,7 @@
 
   trigger:
     - platform: state
-      entity_id: media_player.plex_living_room
+      entity_id: media_player.plex_living_room_apple_tv
       to: 'playing'
 
   condition:
@@ -113,21 +113,21 @@
 
   trigger:
     - platform: state
-      entity_id: media_player.plex_living_room
+      entity_id: media_player.plex_living_room_apple_tv
       to: 'idle'
       for:
         hours: 0
         minutes: 3
         seconds: 0
     - platform: state
-      entity_id: media_player.plex_living_room
+      entity_id: media_player.plex_living_room_apple_tv
       to: 'paused'
       for:
         hours: 0
         minutes: 3
         seconds: 0
     - platform: state
-      entity_id: media_player.plex_living_room
+      entity_id: media_player.plex_living_room_apple_tv
       to: 'unavailable'
       for:
         hours: 0

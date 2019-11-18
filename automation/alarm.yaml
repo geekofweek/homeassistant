@@ -288,6 +288,28 @@
         - switch.siren
 
         ##########################################################
+        ## Siren is On
+        ##########################################################
+
+- alias: Alarm - Siren is On
+
+  trigger:
+    - platform: state
+      entity_id: switch.siren
+      to: 'on'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: Siren has Turned On
+        data:
+          apns_headers:
+           'apns-collapse-id': 'security-alarm'
+          push:
+            badge: 0
+            category: "siren"
+
+        ##########################################################
         ## Door Alarm Away
         ##########################################################
 
@@ -352,7 +374,7 @@
           master: 'media_player.sonos_living_room'
           where: 'media_player.sonos_media_center, media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen, media_player.sonos_bathroom, media_player.sonos_bedroom, media_player.sonos_USER1s_office, media_player.sonos_USER2s_office, media_player.sonos_move'
           volume: '.5'
-          what: 'Warning Alarm will Trigger in 60 Seconds'
+          what: 'Warning Alarm will Trigger in 15 Seconds'
     - service: alarm_control_panel.alarm_trigger
       entity_id:
         - alarm_control_panel.alarm
@@ -377,6 +399,10 @@
       entity_id: group.motion
       from: 'off'
       to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 10
 
   condition:
     - condition: state
@@ -619,11 +645,15 @@
     - service: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarm
 
+#################################################################
+## Notifications
+#################################################################
+
     #################################################################
-    ## Alarm Armed Home Notification
+    ## Alarm Armed Home iOS Notification
     #################################################################
 
-- alias: Alarm - Alarm Armed Home Notification
+- alias: Alarm - Alarm Armed Home iOS Notification
 
   trigger:
     - platform: state
@@ -642,12 +672,15 @@
         data:
           apns_headers:
            'apns-collapse-id': 'alarm-on'
+          push:
+            badge: 0
+            category: "disablealarm"
 
     #################################################################
-    ## Alarm Armed Away Notification
+    ## Alarm Armed Away iOS Notification
     #################################################################
 
-- alias: Alarm - Alarm Armed Away Notification
+- alias: Alarm - Alarm Armed Away iOS Notification
 
   trigger:
     - platform: state
@@ -666,18 +699,24 @@
         data:
           apns_headers:
            'apns-collapse-id': 'alarm-on'
+          push:
+            badge: 0
+            category: "disablealarm"
     - service: notify.ios_USER2
       data:
         message: Alarm is Armed Away
         data:
           apns_headers:
            'apns-collapse-id': 'alarm-on'
+          push:
+            badge: 0
+            category: "disablealarm"
 
     #################################################################
-    ## Alarm Disabled Notification USER1
+    ## Alarm Disabled USER1 iOS Notification
     #################################################################
 
-- alias: Alarm - Alarm Disabled Notification USER1
+- alias: Alarm - Alarm Disabled USER1 iOS Notification
 
   trigger:
     - platform: state
@@ -696,12 +735,15 @@
         data:
           apns_headers:
            'apns-collapse-id': 'alarm-off'
+          push:
+            badge: 0
+            category: "enablealarm"
 
     #################################################################
-    ## Alarm Disabled Notification USER2
+    ## Alarm Disabled USER2 iOS Notification
     #################################################################
 
-- alias: Alarm - Alarm Disabled Notification USER2
+- alias: Alarm - Alarm Disabled USER2 iOS Notification
 
   trigger:
     - platform: state
@@ -723,3 +765,6 @@
         data:
           apns_headers:
            'apns-collapse-id': 'alarm-off'
+          push:
+            badge: 0
+            category: "enablealarm"

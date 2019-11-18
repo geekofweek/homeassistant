@@ -407,25 +407,23 @@
       to: 'on'
 
   condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: input_boolean.disable_notifications
-        state: 'off'
-      - condition: state
-        entity_id: input_boolean.disable_doorbell
-        state: 'off'
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: binary_sensor.office_occupancy
-            state: 'on'
-          - condition: state
-            entity_id: binary_sensor.USER2_office_occupancy
-            state: 'on'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: binary_sensor.office_occupancy
+          state: 'on'
+        - condition: state
+          entity_id: binary_sensor.USER2_office_occupancy
+          state: 'on'
 
   action:
     - service: script.turn_on
@@ -630,3 +628,62 @@
       data:
         entity_id: camera.front_porch
         media_player: media_player.bedroom_apple_tv
+
+#################################################################
+## Notifications
+#################################################################
+
+        ##########################################################
+        ## Doorbell Ring iOS Notification
+        ##########################################################
+
+- alias: Doorbell - Doorbell Ring iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: Someone is at the Front Door
+        data:
+          apns_headers:
+           'apns-collapse-id': 'doorbell-front-porch-camera'
+          push:
+            category: camera
+          entity_id: camera.front_porch
+    - service: notify.ios_USER2
+      data:
+        message: Someone is at the Front Door
+        data:
+          apns_headers:
+           'apns-collapse-id': 'doorbell-front-porch-camera'
+          push:
+            category: camera
+          entity_id: camera.front_porch
+    - service: notify.ios_USER1
+      data:
+        message: Unlock Front Door?
+        data:
+          apns_headers:
+           'apns-collapse-id': 'doorbell-door-unlock'
+          push:
+            badge: 0
+            category: "frontdoorlock"
+    - service: notify.ios_USER2
+      data:
+        message: Unlock Front Door?
+        data:
+          apns_headers:
+           'apns-collapse-id': 'doorbell-door-unlock'
+          push:
+            badge: 0
+            category: "frontdoorlock"

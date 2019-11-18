@@ -12,6 +12,11 @@
    - platform: time
      at: '07:00'
 
+  condition:
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+
   action:
     - service: homeassistant.turn_off
       entity_id:
@@ -72,35 +77,15 @@
     - delay: 00:02:00
     - service: homekit.start
 
-        #################################################################
-        ## Weather Lookup Failing
-        #################################################################
-
-- alias: Notification Text - Weather Lookup Failing
-
-  trigger:
-    - platform: state
-      entity_id: sensor.dark_sky_humidity
-      to: 'unknown'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  action:
-    - service: notify.ios_USER1
-      data:
-        message: Weather Lookup Problem!
-        data:
-          apns_headers:
-           'apns-collapse-id': 'system-weather'
+#################################################################
+## Notifications
+#################################################################
 
         #################################################################
-        ## NAS Warning
+        ## NAS Warning iOS Notification
         #################################################################
 
-- alias: Notification Text - NAS Warning
+- alias: System - NAS Warning iOS Notification
 
   trigger:
     - platform: state
@@ -121,10 +106,10 @@
            'apns-collapse-id': 'system-nas'
 
         ##########################################################
-        ## UPS Power Loss Alert
+        ## UPS Power Loss Alert iOS Notification
         ##########################################################
 
-- alias: Notification Text - UPS Power Loss Alert
+- alias: System - UPS Power Loss Alert iOS Notification
 
   trigger:
     - platform: numeric_state
@@ -145,10 +130,10 @@
            'apns-collapse-id': 'system-ups-power-failure'
 
         ##########################################################
-        ## UPS Power Restored Alert
+        ## UPS Power Restored Alert iOS Notification
         ##########################################################
 
-- alias: Notification Text - UPS Power Restored Alert
+- alias: System - UPS Power Restored Alert iOS Notification
 
   trigger:
     - platform: numeric_state
@@ -172,10 +157,10 @@
            'apns-collapse-id': 'system-ups-power-restored'
 
         ##########################################################
-        ## UPS Low Battery Alert
+        ## UPS Low Battery Alert iOS Notification
         ##########################################################
 
-- alias: Notification Text - UPS Low Battery Alert
+- alias: System - UPS Low Battery Alert iOS Notification
 
   trigger:
     - platform: numeric_state
@@ -196,10 +181,10 @@
            'apns-collapse-id': 'system-ups-low-batt'
 
         ##########################################################
-        ## UPS Low Runtime Alert
+        ## UPS Low Runtime Alert iOS Notification
         ##########################################################
 
-- alias: Notification Text - UPS Low Runtime Alert
+- alias: System - UPS Low Runtime Alert iOS Notification
 
   trigger:
     - platform: numeric_state
@@ -220,10 +205,10 @@
            'apns-collapse-id': 'system-ups-low-runtime'
 
         #################################################################
-        ## REDACTED VPN Offline
+        ## REDACTED VPN Offline iOS Notification
         #################################################################
 
-- alias: Notification Text - REDACTED VPN Offline
+- alias: System - REDACTED VPN Offline iOS Notification
 
   trigger:
     - platform: state
@@ -252,10 +237,10 @@
         message: REDACTED Internets Appears to be Offline.
 
         #################################################################
-        ## REDACTED VPN Online
+        ## REDACTED VPN Online iOS Notification
         #################################################################
 
-- alias: Notification Text - REDACTED VPN Online
+- alias: System - REDACTED VPN Online iOS Notification
 
   trigger:
     - platform: state
@@ -284,10 +269,10 @@
         message: REDACTED Internets Back Online
 
         #################################################################
-        ## REDACTED VPN Offline
+        ## REDACTED VPN Offline iOS Notification
         #################################################################
 
-- alias: Notification Text - REDACTED VPN Offline
+- alias: System - REDACTED VPN Offline iOS Notification
 
   trigger:
     - platform: state
@@ -316,10 +301,10 @@
         message: REDACTED Internets Appears to be Offline.
 
         #################################################################
-        ## REDACTED VPN Online
+        ## REDACTED VPN Online iOS Notification
         #################################################################
 
-- alias: Notification Text - REDACTED VPN Online
+- alias: System - REDACTED VPN Online iOS Notification
 
   trigger:
     - platform: state
@@ -348,10 +333,10 @@
         message: REDACTED Internets Back Online
 
         #################################################################
-        ## Plex Offline
+        ## Plex Offline iOS Notification
         #################################################################
 
-- alias: Notification Text - Plex Offline
+- alias: System - Plex Offline iOS Notification
 
   trigger:
     - platform: state
@@ -377,10 +362,10 @@
            'apns-collapse-id': 'system-chs-plex-offline'
 
         #################################################################
-        ## Home Assistant Started Notification
+        ## Home Assistant Started iOS Notification
         #################################################################
 
-- alias: Notification Text - Home Assistant Start
+- alias: System - Home Assistant Start iOS Notification
 
   trigger:
     - platform: homeassistant
@@ -400,10 +385,10 @@
            'apns-collapse-id': 'system-start'
 
         #################################################################
-        ## Home Assistant Update
+        ## Home Assistant Update iOS Notification
         #################################################################
 
-- alias: Notification Text - Home Assistant Update
+- alias: System - Home Assistant Update iOS Notification
 
   trigger:
     - platform: state

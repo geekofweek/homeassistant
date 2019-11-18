@@ -275,3 +275,44 @@
   action:
     - service: homeassistant.turn_off
       entity_id: input_boolean.guest_mode
+
+#################################################################
+## Notifications
+#################################################################
+
+        #################################################################
+        ## Guest Arrived iOS Notification
+        #################################################################
+
+- alias: Guest - Guest Arrived iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: group.friends_and_family
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.ios_USER1
+      data:
+        message: Guest Arrived (Front Porch Camera)
+        data:
+          apns_headers:
+           'apns-collapse-id': 'house-guest-front-porch-camera'
+          push:
+            category: camera
+          entity_id: camera.front_porch
+    - service: notify.ios_USER1
+      data:
+        message: Guest Arrived (Garage Camera)
+        data:
+          apns_headers:
+           'apns-collapse-id': 'house-guest-garage-camera'
+          push:
+            category: camera
+          entity_id: camera.driveway
