@@ -2,7 +2,7 @@
 # Overview
 My personal [Home Assistant](https://home-assistant.io) configurations with 300+ automations.  These are my active automations and configurations that I use every day.  Updated frequently as I add more devices and come up with more and more complicated ways to do simple tasks.
 
-Published configruations working with Home Assistant Version: 0.101.3
+Published configruations working with Home Assistant Version: 0.102.2
 
 # <a name="menu">Menu</a>
  | [Hubs](#hubs) | [Lighting](#lighting) | [Climate](#climate)| [Outlets & Switches](#outlets)|  [Locks](#locks) | [Security](#security) | [Voice Assistant](#voice) | [Media](#media) | [Sensors](#sensors) | [Cameras](#cameras) | [Garage](#garage) | [Vacuum](#vacuum) | [Network](#network) | [Other Hardware](#other) | [Retired Devices](#retired) | [Software](#software) | [Screenshots](#screenshots) |
@@ -59,7 +59,7 @@ I utilize a number of automations that adjust climate controls.  Mostly they can
 | [Wemo Mini Smart Plug](https://amzn.to/2wQ05jE) | 4 | Wi-Fi | [Belkin WeMo](https://www.home-assistant.io/components/wemo/) | Smart outlets utilized to control various devices via powering the outlet on/off (fans, Christmas Tree, etc) |
 | [Wemo Insight Smart Plug](https://amzn.to/2CfzHRa) | 2 | Wi-Fi | [Belkin WeMo](https://www.home-assistant.io/components/wemo/) | Smart outlet utilized to monitor power to washing machine and dryer|
 | [Zooz Power Switch ZEN15](https://amzn.to/2WRPeiv) | 2 | Vera Plus (Z-Wave) | [Vera Switch](https://www.home-assistant.io/components/vera/) | Smart outlet utilized to monitor power to sump pump |
-| [GE Z-Wave Wireless Smart Lighting Control Outdoor Module](https://amzn.to/2KuFRxN) | 3 | Vera Plus (Z-Wave)| [Vera Switch](https://www.home-assistant.io/components/vera/) | Used to control low voltage outdoor lighting transformers |
+| [GE Z-Wave Wireless Smart Lighting Control Outdoor Module](https://amzn.to/2KuFRxN) | 4 | Vera Plus (Z-Wave)| [Vera Switch](https://www.home-assistant.io/components/vera/) | Used to control low voltage outdoor lighting transformers, bug zapper, and Christmas lights (Holiday time only) |
 | [Remotec Zwave Dry Contact Fixture Module](https://amzn.to/2rOmcBW) | 1 | Vera Plus (Z-Wave)| [Vera Switch](https://www.home-assistant.io/components/vera/) | Used to control gas fireplace |
 | [Dome Home Automation Water Shut-Off Valve](https://amzn.to/2IzJR1J) | 1 | Vera Plus (Z-Wave)| [Vera Switch](https://www.home-assistant.io/components/vera/) | Used to shut off Water Main Supply to House in the event of water leak detected or while on Vacation |
 
