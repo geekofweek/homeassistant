@@ -162,7 +162,7 @@
      state: 'off'
 
   action:
-   - service: notify.ios_USER1
+   - service: notify.mobile_app_USER1s_iphone
      data:
        message: Garage Door Did not Close, Power Cycling Opener
        data:
@@ -222,7 +222,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1
+    - service: notify.mobile_app_USER1s_iphone
       data:
         message: Garage Door is Still Open!
         data:
@@ -231,7 +231,7 @@
           push:
             category: camera
           entity_id: camera.garage
-    - service: notify.ios_USER2
+    - service: notify.mobile_app_USER2_s_iphone
       data:
         message: Garage Door is Still Open!
         data:
@@ -240,7 +240,7 @@
           push:
             category: camera
           entity_id: camera.garage
-    - service: notify.ios_USER1
+    - service: notify.mobile_app_USER1s_iphone
       data:
         message: Garage Door Still Open Close It?
         data:
@@ -249,7 +249,7 @@
           push:
             badge: 0
             category: "garage"
-    - service: notify.ios_USER2
+    - service: notify.mobile_app_USER2_s_iphone
       data:
         message: Garage Door Still Open Close It?
         data:

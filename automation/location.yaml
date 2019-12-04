@@ -1317,7 +1317,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1
+    - service: notify.mobile_app_USER1s_iphone
       data:
         message: USER1 Home
         data:
@@ -1326,7 +1326,7 @@
           push:
             category: camera
           entity_id: camera.driveway
-    - service: notify.ios_USER2
+    - service: notify.mobile_app_USER2_s_iphone
       data:
         message: USER1 Home
         data:
@@ -1360,7 +1360,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1
+    - service: notify.mobile_app_USER1s_iphone
       data:
         message: USER1 Home
         data:
@@ -1369,7 +1369,7 @@
           push:
             category: camera
           entity_id: camera.front_porch
-    - service: notify.ios_USER2
+    - service: notify.mobile_app_USER2_s_iphone
       data:
         message: USER1 Home
         data:
@@ -1397,7 +1397,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1
+    - service: notify.mobile_app_USER1s_iphone
       data:
         message: USER1 Away
         data:
@@ -1428,7 +1428,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1
+    - service: notify.mobile_app_USER1s_iphone
       data:
         message: USER2 Home
         data:
@@ -1462,7 +1462,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1
+    - service: notify.mobile_app_USER1s_iphone
       data:
         message: USER2 Home
         data:
@@ -1490,7 +1490,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1
+    - service: notify.mobile_app_USER1s_iphone
       data:
         message: USER2 Away
         data:
@@ -1515,7 +1515,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1
+    - service: notify.mobile_app_USER1s_iphone
       data:
         message: "USER2 has left work, ETA: {{states('sensor.USER2_to_home')}} mins"
         data:
@@ -1804,8 +1804,7 @@
       data:
         volume_level: '0.6'
     - delay: '00:00:02'
-#    - service: tts.amazon_polly_say
-    - service: tts.google_translate_say
+    - service: tts.amazon_polly_say
       data_template:
         entity_id: media_player.sonos_USER1s_office
         message: "USER2 has left work, and will arrive Home in about, {{states('sensor.USER2_to_home')}} minutes"

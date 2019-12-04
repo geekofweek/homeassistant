@@ -106,7 +106,7 @@
       entity_id: switch.winter_mode
     - service: homeassistant.turn_off
       entity_id: switch.spring_fall_mode
-    - service: notify.ios_USER1
+    - service: notify.mobile_app_USER1s_iphone
       data:
         message: House has been empty for 30 mins, shutting off HVAC
         data:
@@ -146,7 +146,7 @@
   action:
     - service: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
-    - service: notify.ios_USER1
+    - service: notify.mobile_app_USER1s_iphone
       data:
         message: Outside temp above 68 turning on AC
         data:
@@ -185,7 +185,7 @@
   action:
     - service: homeassistant.turn_on
       entity_id: input_boolean.thermostat_away
-    - service: notify.ios_USER1
+    - service: notify.mobile_app_USER1s_iphone
       data:
         message: Outside temp below 68 shutting off AC
         data:
@@ -221,7 +221,7 @@
   action:
     - service: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
-    - service: notify.ios_USER1
+    - service: notify.mobile_app_USER1s_iphone
       data:
         message: Outside temp below 65 turning on Heat
         data:
@@ -260,7 +260,7 @@
   action:
     - service: homeassistant.turn_on
       entity_id: input_boolean.thermostat_away
-    - service: notify.ios_USER1
+    - service: notify.mobile_app_USER1s_iphone
       data:
         message: Outside temp above 65 turning off Heat
         data:
@@ -375,13 +375,13 @@
   action:
     - service: homeassistant.turn_on
       entity_id: input_boolean.thermostat_away
-    - service: notify.ios_USER1
+    - service: notify.mobile_app_USER1s_iphone
       data:
         message: Door has been left open, shutting off AC
         data:
           apns_headers:
            'apns-collapse-id': 'climate-door-open'
-    - service: notify.ios_USER2
+    - service: notify.mobile_app_USER2_s_iphone
       data:
         message: Door has been left open, shutting off AC
         data:
@@ -906,7 +906,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1
+    - service: notify.mobile_app_USER1s_iphone
       data:
         message: Fireplace Turned On!
         data:
@@ -941,7 +941,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1
+    - service: notify.mobile_app_USER1s_iphone
       data:
         message: Fireplace has been on for 4 Hours
         data:
@@ -950,7 +950,7 @@
           push:
             badge: 0
             category: "fireplace"
-    - service: notify.ios_USER2
+    - service: notify.mobile_app_USER2_s_iphone
       data:
         message: Fireplace has been on for 4 Hours
         data:

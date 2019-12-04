@@ -651,7 +651,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1
+    - service: notify.mobile_app_USER1s_iphone
       data:
         message: Someone is at the Front Door
         data:
@@ -660,7 +660,7 @@
           push:
             category: camera
           entity_id: camera.front_porch
-    - service: notify.ios_USER2
+    - service: notify.mobile_app_USER2_s_iphone
       data:
         message: Someone is at the Front Door
         data:
@@ -669,7 +669,7 @@
           push:
             category: camera
           entity_id: camera.front_porch
-    - service: notify.ios_USER1
+    - service: notify.mobile_app_USER1s_iphone
       data:
         message: Unlock Front Door?
         data:
@@ -678,7 +678,7 @@
           push:
             badge: 0
             category: "frontdoorlock"
-    - service: notify.ios_USER2
+    - service: notify.mobile_app_USER2_s_iphone
       data:
         message: Unlock Front Door?
         data:

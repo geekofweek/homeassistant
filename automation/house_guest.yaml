@@ -298,7 +298,7 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1
+    - service: notify.mobile_app_USER1s_iphone
       data:
         message: Guest Arrived (Front Porch Camera)
         data:
@@ -307,7 +307,7 @@
           push:
             category: camera
           entity_id: camera.front_porch
-    - service: notify.ios_USER1
+    - service: notify.mobile_app_USER1s_iphone
       data:
         message: Guest Arrived (Garage Camera)
         data:

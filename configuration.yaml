@@ -11,8 +11,6 @@ homeassistant:
   time_zone: America/Chicago
   customize: !include customize.yaml
 frontend:
-  extra_html_url:
-    - /local/hass-bha-icons.html
 updater:
   reporting: false
 sun:
@@ -85,20 +83,6 @@ media_player:
       AUDIO1: "TV Audio"
       AUDIO2: "Sonos Digital"
       AUDIO3: "Sonos"
-
-apple_tv_mrp:
-  - name: Living Room Apple TV
-    host: REDACTED.150
-    port: 49152
-  - name: Bedroom Apple TV
-    host: REDACTED.152
-    port: 58915
-  - name: USER1's Office Apple TV
-    host: REDACTED.151
-    port: 56331
-  - name: Guest Bedroom Apple TV
-    host: REDACTED.153
-    port: 49152
 
 #apple_tv:
 #  - name: Living Room Apple TV
@@ -192,15 +176,14 @@ camera:
     verify_ssl: false
   - platform: generic
     name: Living Room
-    still_image_url: https://REDACTED.97/snap.jpeg
+    still_image_url: https://REDACTED.46/snap.jpeg
     stream_source: rtsp://REDACTED.3:7447/yb1q1StMMJm4y3D9
     verify_ssl: false
 
 tts:
-#  - platform: amazon_polly
-#    aws_access_key_id: !secret aws_access_key_id
-#    aws_secret_access_key: !secret aws_secret_access_key
-  - platform: google_translate
+  - platform: amazon_polly
+    aws_access_key_id: !secret aws_access_key_id
+    aws_secret_access_key: !secret aws_secret_access_key
 
 google:
   client_id: !secret google_client_id
@@ -278,6 +261,13 @@ alarm_control_panel:
 #  token: !secret smartthinqtoken
 #    region: US
 #    language: en-US
+
+hacs:
+  token: !secret githubtoken
+  sidepanel_title: Community
+  sidepanel_icon: mdi:alpha-c-box
+  appdaemon: false
+  python_script: false
 
 #################################################################
 ## Includes

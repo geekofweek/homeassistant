@@ -900,13 +900,13 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1
+    - service: notify.mobile_app_USER1s_iphone
       data:
         message: Downstairs Roomba is Stuck, Please Help
         data:
           apns_headers:
            'apns-collapse-id': 'downstairs-roomba-stuck'
-    - service: notify.ios_USER2
+    - service: notify.mobile_app_USER2_s_iphone
       data:
         message: Downstairs Roomba is Stuck, Please Help
         data:
@@ -929,13 +929,13 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1
+    - service: notify.mobile_app_USER1s_iphone
       data:
         message: Upstairs Roomba is Stuck, Please Help
         data:
           apns_headers:
            'apns-collapse-id': 'upstairs-roomba-stuck'
-    - service: notify.ios_USER2
+    - service: notify.mobile_app_USER2_s_iphone
       data:
         message: Upstairs Roomba is Stuck, Please Help
         data:
@@ -958,13 +958,13 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1
+    - service: notify.mobile_app_USER1s_iphone
       data:
         message: Downstairs Roomba is Full, Empty It
         data:
           apns_headers:
            'apns-collapse-id': 'downstairs-roomba-full'
-    - service: notify.ios_USER2
+    - service: notify.mobile_app_USER2_s_iphone
       data:
         message: Downstairs Roomba is Full, Empty It
         data:
@@ -987,13 +987,13 @@
       state: 'off'
 
   action:
-    - service: notify.ios_USER1
+    - service: notify.mobile_app_USER1s_iphone
       data:
         message: Upstairs Roomba is Full, Empty It
         data:
           apns_headers:
            'apns-collapse-id': 'upstairs-roomba-full'
-    - service: notify.ios_USER2
+    - service: notify.mobile_app_USER2_s_iphone
       data:
         message: Upstairs Roomba is Full, Empty It
         data:
