@@ -604,6 +604,9 @@
     - condition: state
       entity_id: group.friends_and_family
       state: 'not_home'
+    - condition: state
+      entity_id: group.motion
+      state: 'off'
     - condition: or
       conditions:
       - condition: state
