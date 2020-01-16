@@ -123,4 +123,7 @@
 
   action:
     - service: lock.lock
-      entity_id: group.all_locks
+      entity_id:
+       - lock.front_door
+       - lock.back_door
+       - lock.basement_door

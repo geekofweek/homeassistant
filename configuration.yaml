@@ -16,11 +16,6 @@ updater:
 sun:
 conversation:
 discovery:
-  ignore:
-    #- apple_tv
-    - harmony
-    - deconz
-    - wink
 config:
 person:
 system_health:
@@ -84,28 +79,6 @@ media_player:
       AUDIO2: "Sonos Digital"
       AUDIO3: "Sonos"
 
-#apple_tv:
-#  - name: Living Room Apple TV
-#    host: REDACTED.150
-#    login_id: !secret apple_tv_login_id
-#    credentials: !secret apple_tv_living_room_cred
-#    start_off: false
-#  - name: Guest Bedroom Apple TV
-#    host: REDACTED.153
-#    login_id: !secret apple_tv_login_id
-#    credentials: !secret apple_tv_guest_bedroom_cred
-#    start_off: false
-#  - name: Bedroom Apple TV
-#    host: REDACTED.152
-#    login_id: !secret apple_tv_login_id
-#    credentials: !secret apple_tv_bedroom_cred
-#    start_off: false
-#  - name: Office Apple TV
-#    host: REDACTED.153
-#    login_id: !secret apple_tv_login_id
-#    credentials: !secret apple_tv_office_cred
-#    start_off: false
-
 remote:
   - platform: harmony
     name: Media Center
@@ -130,13 +103,6 @@ wemo:
     - REDACTED.116
     - REDACTED.172
     - REDACTED.32
-
-ifttt:
-  key: !secret ifttt_key
-
-ring:
-    username: !secret ring_username
-    password: !secret ring_password
 
 camera:
   - platform: generic
@@ -252,15 +218,13 @@ alarm_control_panel:
       trigger_time: 120
       pending_time: 30
 
-#pi_hole:
-#  host: REDACTED.4
-#pi_hole:
-#  host: REDACTED.5
-
-#smartthinq:
-#  token: !secret smartthinqtoken
-#    region: US
-#    language: en-US
+pi_hole:
+  - host: 'REDACTED.4'
+    name: 'Primary Pi-Hole'
+    api_key: !secret primary_pi_hole_api_key
+  - host: 'REDACTED.5'
+    name: 'Secondary Pi-Hole'
+    api_key: !secret secondary_pi_hole_api_key
 
 hacs:
   token: !secret githubtoken

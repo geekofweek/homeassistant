@@ -42,7 +42,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 30
+        minutes: 15
         seconds: 0
 
   condition:
@@ -59,7 +59,7 @@
         - light.front_porch
       data:
         brightness_pct: 50
-        transition: 300
+        transition: 900
 
         ##########################################################
         ## Turn On Front Porch when Motion Detected
@@ -101,7 +101,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 30
+        minutes: 15
         seconds: 0
 
   condition:
@@ -125,7 +125,7 @@
         - light.front_porch
       data:
         brightness_pct: 50
-        transition: 300
+        transition: 900
 
         ##########################################################
         ## Turn On Lights when Door Bell Rings and Away
@@ -175,8 +175,8 @@
       from: 'on'
       to: 'off'
       for:
-        hours: 1
-        minutes: 0
+        hours: 0
+        minutes: 15
         seconds: 0
 
   condition:
@@ -256,8 +256,8 @@
       from: 'on'
       to: 'off'
       for:
-        hours: 1
-        minutes: 0
+        hours: 0
+        minutes: 15
         seconds: 0
 
   condition:

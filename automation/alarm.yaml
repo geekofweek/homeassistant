@@ -414,9 +414,17 @@
     - condition: state
       entity_id: vacuum.downstairs_roomba
       state: 'off'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
     - condition: state
       entity_id: vacuum.upstairs_roomba
       state: 'off'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
     - condition: state
       entity_id: alarm_control_panel.alarm
       state: 'armed_away'
