@@ -191,52 +191,52 @@
         ## Household Away Turn on Camera POE
         ##########################################################
 
-- alias: Network - Household Away Turn on Camera POE
+#- alias: Network - Household Away Turn on Camera POE
 
-  trigger:
-    - platform: state
-      entity_id: group.household
-      from: 'home'
-      to: 'not_home'
-      for:
-        hours: 0
-        minutes: 1
-        seconds: 0
+#  trigger:
+#    - platform: state
+#      entity_id: group.household
+#      from: 'home'
+#      to: 'not_home'
+#      for:
+#        hours: 0
+#        minutes: 1
+#        seconds: 0
 
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_home_away
-      state: 'off'
+#  condition:
+#    - condition: state
+#      entity_id: input_boolean.disable_home_away
+#      state: 'off'
 
-  action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.living_room_camera
-        - switch.basement_camera
+#  action:
+#    - service: switch.turn_on
+#      entity_id:
+#        - switch.living_room_camera
+#        - switch.basement_camera
 
         ##########################################################
         ## Household Home Turn off Camera POE
         ##########################################################
 
-- alias: Network - Household Home Turn off Camera POE
+#- alias: Network - Household Home Turn off Camera POE
 
-  trigger:
-    - platform: state
-      entity_id: group.household
-      from: 'not_home'
-      to: 'home'
-      for:
-        hours: 0
-        minutes: 1
-        seconds: 0
+#  trigger:
+#    - platform: state
+#      entity_id: group.household
+#      from: 'not_home'
+#      to: 'home'
+#      for:
+#        hours: 0
+#        minutes: 1
+#        seconds: 0
 
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_home_away
-      state: 'off'
+#  condition:
+#    - condition: state
+#      entity_id: input_boolean.disable_home_away
+#      state: 'off'
 
-  action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.living_room_camera
-        - switch.basement_camera
+#  action:
+#    - service: switch.turn_off
+#      entity_id:
+#        - switch.living_room_camera
+#        - switch.basement_camera

@@ -501,9 +501,40 @@
         - light.upstairs_bathroom_vanity
       data:
        brightness_pct: 35
-    - service: homeassistant.turn_on
+
+        ##########################################################
+        ## Turn on low lights morning for Upstairs Roomba
+        ##########################################################
+
+- alias: Roomba - Turn on low lights morning for Upstairs Roomba
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.upstairs_roomba
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
+    - condition: time
+      after: '07:00'
+      before: '08:00'
+    - condition: sun
+      after: sunrise
+      before_offset: "00:90:00"
+
+  action:
+    - service: light.turn_on
       entity_id:
-        - input_boolean.disable_occupancy
+        - light.USER1_s_office_ceiling
+        - light.USER2_s_office_ceiling
+        - light.guest_bedroom_ceiling
+        - light.stairs_light
+        - light.upstairs_bathroom_vanity
+      data:
+       brightness_pct: 35
 
         ##########################################################
         ## Turn on Lights at Sunset if Upstairs Roomba Running
@@ -582,7 +613,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 2
+        minutes: 4
         seconds: 0
 
   condition:
@@ -611,11 +642,56 @@
   action:
     - service: light.turn_off
       entity_id:
-        - light.USER1_s_office_ceiling
-        - light.USER2_s_office_ceiling
-        - light.guest_bedroom_ceiling
+        - light.USER1_office_lights
+        - light.USER2_office_lights
+        - light.guest_bedroom_lights
         - light.stairs_light
-        - light.upstairs_bathroom_vanity
+        - light.upstairs_bathroom_lights
+
+        ##########################################################
+        ## Turn off lights Morning when Upstairs Roomba finished when Home
+        ##########################################################
+
+- alias: Roomba - Turn off lights Morning when Upstairs Roomba finished when Home
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.upstairs_roomba
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 4
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.USER1s_office_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.USER2s_office_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.upstairs_bathroom_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.stairs_motion
+      state: 'off'
+    - condition: time
+      after: '07:00'
+      before: '09:00'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.USER1_office_lights
+        - light.USER2_office_lights
+        - light.guest_bedroom_lights
+        - light.stairs_light
+        - light.upstairs_bathroom_lights
 
         ##########################################################
         ## Turn off lights at night when Upstairs Roomba finished when not Home

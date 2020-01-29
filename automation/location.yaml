@@ -929,6 +929,10 @@
         - group.interior_lights
         - light.back_door
         - light.garage_light
+    - delay: '00:02:00'
+    - service: light.turn_off
+      entity_id:
+        - light.back_door
 
         ##########################################################
         ## Turn on Outdoor Lighting when Home
