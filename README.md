@@ -87,8 +87,8 @@ Locks are used mostly as a way to lock / unlock doors based on locations, see [l
 | [GoControl Door/Window Sensor](https://amzn.to/2wOhLfn) | 3 | Vera Plus (Z-Wave) | [Vera Binary Sensor](https://www.home-assistant.io/components/vera/) | Door sensors to detect if exterior doors have been opened / closed |
 | [GoControl Siren and Strobe](https://amzn.to/2k4bK4U) | 1 | Vera Plus (Z-Wave) | [Vera Switch](https://www.home-assistant.io/components/vera/) | Alarm used for when alarm is triggered or when you want to get someone's attention|
 
-Door sensors are used in many different ways. I trigger on them via [doors.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/doors.yaml), use them for security in [security.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/security.yaml), and as various conditions in [notification_audio.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/notification_audio.yaml) and [climate.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/climate.yaml).
-The alarm siren is used in [security.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/security.yaml) and in the security [scene](https://github.com/geekofweek/homeassistant/blob/master/scenes.yaml). I've also implemented the alarm as part of [water_sensors.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/water_sensors.yaml).
+Door sensors are used in many different ways. I trigger on them via [doors.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/doors.yaml), use them for security in [alarm.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/alarm.yaml and [climate.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/climate.yaml).
+The alarm siren is used in [alarm.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/alarm.yaml).  I've also implemented the alarm as part of [water_sensors.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/water_sensors.yaml).
 
 ## <a name="voice">Voice Assistant</a>
 
