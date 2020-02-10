@@ -419,8 +419,7 @@
     - service: climate.set_preset_mode
       data:
         entity_id: climate.main_floor
-        #Guest = smart3
-        preset_mode: 'smart3'
+        preset_mode: 'Guest'
 
         ##########################################################
         ## Adjust Thermostat for Overnight Guests after Midnight
@@ -448,8 +447,7 @@
     - service: climate.set_preset_mode
       data:
         entity_id: climate.main_floor
-        #Guest = smart3
-        preset_mode: 'smart3'
+        preset_mode: 'Guest'
 
         ##########################################################
         ## Set Thermostat Home if USER2 Working at 5a
@@ -631,8 +629,7 @@
     - service: climate.set_preset_mode
       data:
         entity_id: climate.main_floor
-        #Upstairs = smart2
-        preset_mode: 'smart2'
+        preset_mode: 'Upstairs'
 
         ##########################################################
         ## Adjust Thermostat when over 80
@@ -678,8 +675,7 @@
     - service: climate.set_preset_mode
       data:
         entity_id: climate.main_floor
-        #Upstairs = smart2
-        preset_mode: 'smart2'
+        preset_mode: 'Upstairs'
 
         ##########################################################
         ## Reset Thermostat at 10p if on Upstairs Mode
@@ -846,8 +842,7 @@
     - service: climate.set_preset_mode
       data:
         entity_id: climate.main_floor
-        #Fireplace = smart4
-        preset_mode: 'smart4'
+        preset_mode: 'Fireplace'
 
         #################################################################
         ## Reset Thermostat when Fireplace off
@@ -1323,7 +1318,7 @@
     - service: climate.set_preset_mode
       data:
         entity_id: climate.main_floor
-        preset_mode: 'smart2'
+        preset_mode: 'Upstairs'
     - service: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
 
@@ -1342,7 +1337,7 @@
     - service: climate.set_preset_mode
       data:
         entity_id: climate.main_floor
-        preset_mode: 'smart3'
+        preset_mode: 'Guest'
     - service: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
 
@@ -1361,7 +1356,7 @@
     - service: climate.set_preset_mode
       data:
         entity_id: climate.main_floor
-        preset_mode: 'smart4'
+        preset_mode: 'Fireplace'
     - service: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
 

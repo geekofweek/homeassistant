@@ -67,6 +67,7 @@ say:
     - service: sonos.snapshot
       data_template:
         with_group: yes
+        entity_id: "{{ where }}"
     - delay: '00:00:03'
     - service: sonos.unjoin
       data_template:
@@ -90,3 +91,4 @@ say:
     - service: sonos.restore
       data_template:
         with_group: yes
+        entity_id: "{{ where }}"

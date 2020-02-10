@@ -521,9 +521,6 @@
     - condition: time
       after: '07:00'
       before: '08:00'
-    - condition: sun
-      after: sunrise
-      before_offset: "00:90:00"
 
   action:
     - service: light.turn_on
@@ -556,7 +553,7 @@
       state: 'on'
     - condition: time
       after: '07:00'
-      before: '08:00'
+      before: '08:30'
 
   action:
     - service: light.turn_on
