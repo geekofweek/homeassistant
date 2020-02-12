@@ -8,15 +8,14 @@
 ## Variables
 ##########################################################
 
-hauser="DOCKER_USER_ACCOUNT"
-habin="/usr/local/bin/hass"
-haconfigdir="/HA/CONFIG/DIR"
-hahost="HOSTNAME/IP"
+hauser="SERVER_DOCKER_USER_ACCOUNT"
+haconfigdir="/PATH/TO/SERVER/HA/CONFIG"
+hahost="HA_SERVER_HOSTNAME/IP"
 localuser="LOCAL_USER_ACCOUNT"
 localhost="LOCAL_HOSTNAME/IP"
 localpath="PATH_TO_LOCAL_HA_CONFIGS"
-docker="/PATH/TO/DOCKER/bin"
-
+scripts="/SERVER/SCRIPTS/DIRECTORY"
+mgmtscripts='/LOCAL/SCRIPTS/DIRECTORY'
 
 ##########################################################
 ## Execute
@@ -29,6 +28,7 @@ do
  clear
  echo "This Script Will Modify Home Assistant"
  echo "Proceed with Caution!"
+ echo "Home (LOCATION)"
  echo ""
  echo "What would you like to do?"
  echo " "
@@ -39,14 +39,16 @@ do
  echo "5) Upgrade Home Assistant"
  echo "6) Check Database Size"
  echo "7) Validate Home Assistant Config"
- echo "8) Backup Home Assistant"
- echo "9) Copy Configs to GitHub"
- echo "10) Renew SSL Certificate"
+ echo "8) View Logs"
+ echo "9) Backup Home Assistant"
+ echo "10) Copy Configs to GitHub"
+ echo "11) Renew SSL Certificate"
  echo "x) Exit"
  echo " "
  read action
 
- if [ "$action" != "1" -a "$action" != "2" -a "$action" != "3" -a "$action" != "4" -a "$action" != "5" -a "$action" != "6" -a "$action" != "7" -a "$action" != "8" -a "$action" != "9" -a "$action" != "10" -a "$action" != "x" ];then
+ if [ "$action" != "1" -a "$action" != "2" -a "$action" != "3" -a "$action" != "4" -a "$action" != "5" -a "$action" != "6" \
+ -a "$action" != "7" -a "$action" != "8" -a "$action" != "9" -a "$action" != "10" -a "$action" != "11" -a "$action" != "x" ];then
  		echo ":-("
  		echo "Error!"
  		echo "Invalid Option Stupid"
@@ -82,7 +84,7 @@ do
    clear
    echo "Restarting Home Assistant..."
    echo " "
-   ssh -t $hauser@$hahost "$docker/docker restart homeassistant"
+   ssh -t $hauser@$hahost "$scripts/restart/ha-docker-restart.sh"
    echo " "
    echo "Home Assistant Restart Complete"
    echo " "
@@ -92,7 +94,7 @@ do
    clear
    echo "Stopping Home Assistant..."
    echo " "
-   ssh -t $hauser@$hahost "$docker/docker stop homeassistant"
+   ssh -t $hauser@$hahost "$scripts/stop/ha-docker-stop.sh"
    echo " "
    echo "Home Assistant Stop Complete"
    echo " "
@@ -102,7 +104,7 @@ do
    clear
    echo "Starting Home Assistant..."
    echo " "
-   ssh -t $hauser@$hahost "$docker/docker start homeassistant"
+   ssh -t $hauser@$hahost "$scripts/start/ha-docker-start.sh"
    echo " "
    echo "Home Assistant Start Complete"
    echo " "
@@ -115,19 +117,19 @@ do
    echo " "
    echo "Downloading Latest Docker Image"
    echo " "
-   ssh -t $hauser@$hahost "$docker/docker pull homeassistant/home-assistant:latest"
+   ssh -t $hauser@$hahost "$scripts/update/ha-docker-update.sh"
    echo " "
    echo "Stopping Home Assistant Container"
    echo " "
-   ssh -t $hauser@$hahost "$docker/docker stop homeassistant"
+   ssh -t $hauser@$hahost "$scripts/stop/ha-docker-stop.sh"
    echo " "
    echo "Deleting Home Assistant Container"
    echo " "
-   ssh -t $hauser@$hahost "$docker/docker rm homeassistant"
+   ssh -t $hauser@$hahost "$scripts/remove/ha-docker-remove.sh"
    echo " "
    echo "Initializing Home Assistant Container"
    echo " "
-   ssh -t $hauser@$hahost "$docker/docker run -d --name homeassistant --net=home-assistant-eth0 --mac-address=[DOCKERMACADDRESS] -h homeassistant -v /CONTAINER/FOLDER/homeassistant/config:/config -v /CONTAINER/FOLDER/homeassistant/certs:/etc/letsencrypt -v /etc/localtime:/etc/localtime:ro --restart=unless-stopped homeassistant/home-assistant"
+   ssh -t $hauser@$hahost "$scripts/create/ha-docker-create.sh"
    echo " "
    echo "Upgrade Complete"
    echo " "
@@ -137,7 +139,7 @@ do
    clear
    echo "Checkign Size of Home Assistant Databae..."
    echo " "
-   ssh -t $hauser@$hahost "du -sh /share/Container/configs/mysql/data | cut -c -5"
+   ssh -t $hauser@$hahost "du -sh /data/containers/mysql/data | cut -c -5"
    echo " "
    echo "Home Assistant Size Check Complete"
    echo " "
@@ -147,13 +149,21 @@ do
    clear
    echo "Validating Home Assistant Configs..."
    echo " "
-   ssh -t $hauser@$hahost "$docker/docker run -it --rm -v /CONTAINER/FOLDER/homeassistant/config:/config -v /CONTAINER/FOLDER/homeassistant/certs:/etc/letsencrypt -v /etc/localtime:/etc/localtime:ro homeassistant/home-assistant python -m homeassistant --config /config --script check_config"
+   ssh -t $hauser@$hahost "$scripts/other/ha-docker-validate.sh"
    echo " "
    echo "Home Assistant Config Validation Complete"
    echo " "
  fi
 
  if [ "$action" == "8" ];then
+   clear
+   echo "Tailing Home Assistant Logs ctrl+c to Exit..."
+   echo " "
+   ssh -t $hauser@$hahost "tail -f $haconfigdir/config/home-assistant.log"
+   echo " "
+ fi
+
+ if [ "$action" == "9" ];then
    clear
    echo "Backing Up Home Assistant..."
    echo "Creating Tar File..."
@@ -172,21 +182,21 @@ do
    echo " "
  fi
 
- if [ "$action" == "9" ];then
+ if [ "$action" == "10" ];then
    clear
    echo "Copy Files for GitHub Publishing"
    echo " "
-   $localpath/Scripts/ha-github-scrub.sh
+   $mgmtscripts/ha-github-scrub.sh
    echo " "
    echo "Files Copied to GitHub Directory"
    echo " "
  fi
 
- if [ "$action" == "10" ];then
+ if [ "$action" == "11" ];then
    clear
    echo "Renewing SSL Certificate..."
    echo " "
-   ssh -t $hauser@$hahost "$docker/docker run -it --rm -p 80:80 --name certbot --net=certbot-eth0 --mac-address=[DOCKERMACADDRESS] -v "/CONTAINER/FOLDER/homeassistant/certs:/etc/letsencrypt" -v "/CONTAINER/FOLDER/homeassistant/certs/letsencrypt:/var/lib/letsencrypt" certbot/certbot certonly --standalone --preferred-challenges http-01 --email [EMAIL@EMAIL.COM] -d [DOMAIN.COM]"
+   ssh -t $hauser@$hahost "$scripts/create/certbot-docker-create.sh"
    echo " "
    echo "Home Assistant SSL Ceretificate Renewal Complete"
    echo " "
@@ -198,6 +208,7 @@ do
    echo ":-("
    echo "Exiting"
    echo " "
+   sleep .4
    exit
  fi
 
@@ -209,10 +220,6 @@ echo "2) No"
 echo " "
 read answer
 
-if [ "$answer" = 1 ]
-then "run script again"
-fi
-
 done
 
 clear
@@ -220,3 +227,4 @@ echo " "
 echo ":-("
 echo "Exiting"
 echo " "
+sleep .4
