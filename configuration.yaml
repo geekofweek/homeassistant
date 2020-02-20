@@ -37,24 +37,52 @@ http:
 
 hue:
   bridges:
-    - host: REDACTED.106
+    - host: REDACTED.2
       allow_hue_groups: false
       allow_unreachable: true
 
 lutron_caseta:
-    host: REDACTED.130
+    host: REDACTED.4
     keyfile: !secret lutron_keyfile
     certfile: !secret lutron_certfile
     ca_certs: !secret lutron_cacerts
 
 vera:
-  vera_controller_url: http://REDACTED.132:3480/
+  vera_controller_url: http://REDACTED.3:3480/
   exclude: [ 19]
+
+sonos:
+  media_player:
+    hosts:
+      - REDACTED.200
+      - REDACTED.201
+      - REDACTED.202
+      - REDACTED.203
+      - REDACTED.204
+      - REDACTED.205
+      - REDACTED.206
+      - REDACTED.207
+      - REDACTED.208
+      - REDACTED.209
+      - REDACTED.210
+      - REDACTED.211
+      - REDACTED.212
+
+wemo:
+  discovery: false
+  static:
+    - REDACTED.50
+    - REDACTED.51
+    - REDACTED.52
+    - REDACTED.53
+    - REDACTED.54
+    - REDACTED.55
+    - REDACTED.56
 
 media_player:
   - platform: yamaha
     name: "Media Center Receiver"
-    host: REDACTED.94
+    host: REDACTED.10
     source_ignore:
       - "AUX"
       - "AV1"
@@ -82,67 +110,56 @@ media_player:
 remote:
   - platform: harmony
     name: Media Center
-    host: REDACTED.109
+    host: REDACTED.5
     activity: Watch TV
   - platform: harmony
     name: Bedroom TV
-    host: REDACTED.247
+    host: REDACTED.6
     activity: Watch TV
   - platform: harmony
     name: Office TV
-    host: REDACTED.176
+    host: REDACTED.7
     activity: Watch TV
-
-wemo:
-  discovery: false
-  static:
-    - REDACTED.111
-    - REDACTED.112
-    - REDACTED.113
-    - REDACTED.115
-    - REDACTED.116
-    - REDACTED.172
-    - REDACTED.32
 
 camera:
   - platform: generic
     name: Front Porch
-    still_image_url: https://REDACTED.181/snap.jpeg
+    still_image_url: https://REDACTED.11/snap.jpeg
     stream_source: rtsp://REDACTED.3:7447/REDACTED
     verify_ssl: false
   - platform: generic
     name: Driveway
-    still_image_url: https://REDACTED.183/snap.jpeg
+    still_image_url: https://REDACTED.6/snap.jpeg
     stream_source: rtsp://REDACTED.3:7447/REDACTED
     verify_ssl: false
   - platform: generic
     name: Garage
-    still_image_url: https://REDACTED.91/snap.jpeg
+    still_image_url: https://REDACTED.7/snap.jpeg
     stream_source: rtsp://REDACTED.3:7447/REDACTED
     verify_ssl: false
   - platform: generic
     name: Backyard Gate
-    still_image_url: https://REDACTED.25/snap.jpeg
+    still_image_url: https://REDACTED.9/snap.jpeg
     stream_source: rtsp://REDACTED.3:7447/REDACTED
     verify_ssl: false
   - platform: generic
     name: Side Yard
-    still_image_url: https://REDACTED.90/snap.jpeg
+    still_image_url: https://REDACTED.10/snap.jpeg
     stream_source: rtsp://REDACTED.3:7447/REDACTED
     verify_ssl: false
   - platform: generic
     name: Backyard
-    still_image_url: https://REDACTED.REDACTED/snap.jpeg
+    still_image_url: https://REDACTED.8/snap.jpeg
     stream_source: rtsp://REDACTED.3:7447/REDACTED
     verify_ssl: false
   - platform: generic
     name: Basement
-    still_image_url: https://REDACTED.97/snap.jpeg
+    still_image_url: https://REDACTED.12/snap.jpeg
     stream_source: rtsp://REDACTED.3:7447/REDACTED
     verify_ssl: false
   - platform: generic
     name: Living Room
-    still_image_url: https://REDACTED.46/snap.jpeg
+    still_image_url: https://REDACTED.13/snap.jpeg
     stream_source: rtsp://REDACTED.3:7447/yb1q1StMMJm4y3D9
     verify_ssl: false
 
@@ -158,12 +175,12 @@ google:
 
 vacuum:
   - platform: roomba
-    host: REDACTED.228
+    host: REDACTED.8
     username: !secret downstairs_roomba_username
     password: !secret downstairs_roomba_password
     name: Downstairs Roomba
   - platform: roomba
-    host: REDACTED.229
+    host: REDACTED.9
     username: !secret upstairs_roomba_username
     password: !secret upstairs_roomba_password
     name: Upstairs Roomba
@@ -184,7 +201,7 @@ dyson:
   language: US
   devices:
     - device_id: !secret dyson_id
-      device_ip: REDACTED.95
+      device_ip: REDACTED.11
 
 notify:
   - name: REDACTED
