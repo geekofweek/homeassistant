@@ -2,6 +2,17 @@
 ## Sensors
 #################################################################
 
+
+        ##########################################################
+        ## Server
+        ##########################################################
+
+  - platform: systemmonitor
+    resources:
+      - type: processor_use
+      - type: memory_use_percent
+      - type: last_boot
+
         ##########################################################
         ## NAS
         ##########################################################
@@ -494,3 +505,58 @@
       office_fan_oscillating_mode:
         value_template: '{{ states.fan.office_fan.attributes.oscillating }}'
         friendly_name: 'Fan Oscillating Mode'
+
+        ##########################################################		
+        ## Server Uptime		
+        ##########################################################		
+
+  - platform: template
+    sensors:
+      server_uptime:
+        friendly_name: "Uptime"
+        icon_template: mdi:clock
+        value_template: >-
+          {% set lb = states('sensor.last_boot') %}
+          {% if lb != 'unknown' %}
+            {% set seconds = (as_timestamp(now()) - as_timestamp(lb))|int %}
+            {% set days = (seconds / 86400)|int %}
+            {% set seconds = seconds % 86400 %}
+            {% set hours = (seconds / 3600)|int %}
+            {% set seconds = seconds % 3600 %}
+            {% set minutes = (seconds / 60)|int %}
+            {% set seconds = seconds % 60 %}
+            {% if hours == 0 and minutes == 0 %}
+              {{ time }} seconds
+            {% else %}
+              {%- if days > 0 -%}
+                {%- if days == 1 -%}
+                  1 day
+                {%- else -%}
+                  {{ days }} days
+                {%- endif -%}
+              {%- endif -%}
+              {%- if hours > 0 and days < 7 -%}
+                {%- if days > 0 -%}
+                  {{ ', ' }}
+                {%- endif -%}
+                {%- if hours == 1 -%}
+                  1 hour
+                {%- else -%}
+                  {{ hours }} hours
+                {%- endif -%}
+              {%- endif -%}
+              {%- if days == 0 and minutes > 0 -%}
+                {%- if hours > 0 -%}
+                  {{ ', ' }}{{ minutes }} min
+                {%- else -%}
+                  {%- if minutes == 1 -%}
+                    1 minute
+                  {%- else -%}
+                    {{ minutes }} minutes
+                  {%- endif -%}
+                {%- endif -%}
+              {%- endif -%}
+            {% endif %}
+          {% else %}
+            unknown
+          {% endif %}
