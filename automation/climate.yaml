@@ -1069,42 +1069,10 @@
 #################################################################
 
         ##########################################################
-        ## Turn on Basement Heater when Cold
-        ##########################################################
-
-- alias: Climate - Turn on Basement Heater when Cold
-
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.basement_temperature
-      below: 65
-
-  condition:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: switch.winter_mode
-      state: 'on'
-    - condition: state
-      entity_id: group.basement_occupancy
-      state: 'on'
-    - condition: state
-      entity_id: input_boolean.disable_climate
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.thermostat_away
-      state: 'off'
-
-  action:
-    - service: switch.turn_on
-      entity_id: switch.basement_heater
-
-        ##########################################################
         ## Turn on Basement Heater when Motion Detected
         ##########################################################
 
-- alias: Climate - Turn on Basement Heater when Occupied
+- alias: Climate - Turn on Basement Heater when Motion Detected
 
   trigger:
     - platform: state
@@ -1140,7 +1108,7 @@
         ## Turn off Basement Heater when no Motion
         ##########################################################
 
-- alias: Climate - Turn off Basement Heater when Unoccupied
+- alias: Climate - Turn off Basement Heater when no Motion
 
   trigger:
     - platform: state
@@ -1149,7 +1117,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 60
+        minutes: 30
         seconds: 0
 
   condition:
@@ -1182,49 +1150,12 @@
     - condition: state
       entity_id: input_boolean.disable_climate
       state: 'off'
+    - condition: state
+      entity_id: switch.basement_heater
+      state: 'on'
 
   action:
     - service: switch.turn_off
-      entity_id: switch.basement_heater
-
-        ##########################################################
-        ## Turn on Basement Heater when Washing Machine Starts
-        ##########################################################
-
-- alias: Climate - Turn on Basement Heater when Washing Machine Starts
-
-  trigger:
-    - platform: state
-      entity_id: sensor.washing_machine_status
-      from: 'not running'
-      to: 'running'
-      for:
-        hours: 0
-        minutes: 10
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: input_boolean.disable_climate
-      state: 'off'
-    - condition: state
-      entity_id: switch.winter_mode
-      state: 'on'
-    - condition: numeric_state
-      entity_id: sensor.basement_temperature
-      below: 65
-    - condition: time
-      after: '08:00'
-      before: '21:00'
-    - condition: state
-      entity_id: input_boolean.thermostat_away
-      state: 'off'
-
-  action:
-    - service: switch.turn_on
       entity_id: switch.basement_heater
 
 #################################################################
