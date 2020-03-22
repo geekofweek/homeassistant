@@ -39,6 +39,8 @@ binary_sensor:
   device_class: garage_door
   filters:
     - delayed_on: 30ms
+    - delayed_off: 1s
+    - delayed_on_off: 1s
 
 switch:
 - platform: gpio
@@ -70,6 +72,10 @@ cover:
       - delay: 1s
       - switch.turn_off: relay1
     close_action:
+      - switch.turn_on: relay1
+      - delay: 1s
+      - switch.turn_off: relay1
+    stop_action:
       - switch.turn_on: relay1
       - delay: 1s
       - switch.turn_off: relay1

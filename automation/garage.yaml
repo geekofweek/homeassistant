@@ -68,26 +68,40 @@
       entity_id: cover.garage_door
 
         ##########################################################
-        ## Reset Dummy Garage Door Switch
+        ## Turn off Garage Door Boolean when Closed
         ##########################################################
 
-- alias: Garage - Reset Dummy Switch when Closed
+- alias: Garage - Turn off Garage Door Boolean when Closed
 
   trigger:
     - platform: state
       entity_id: cover.garage_door
       to: 'closed'
 
+  condition:
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'closed'
+
   action:
     - service: homeassistant.turn_off
       entity_id: input_boolean.garage_door
 
-- alias: Turn on Garage Door when Open
+        ##########################################################
+        ## Turn on Garage Door Boolean when Open
+        ##########################################################
+
+- alias: Garage - Turn on Garage Door Boolean when Open
 
   trigger:
     - platform: state
       entity_id: cover.garage_door
       to: 'open'
+
+  condition:
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'open'
 
   action:
     - service: homeassistant.turn_on
