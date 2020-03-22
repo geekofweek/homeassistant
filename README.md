@@ -165,6 +165,8 @@ I also send camera feeds as a payload on a few iOS notifications, those can most
 
 Similar to locks, the Garage door is mostly automated to open / close based on location and after a set amount of time.  Examples can be found in [location.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml) and [garage.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/garage.yaml)
 
+ESPhome configuration can be found in [garage_door_relay.yaml](https://github.com/geekofweek/homeassistant/blob/master/esphome/garage_door_relay/garage_door_relay.yaml)
+
 ## <a name="vacuum">Vacuum</a>
 
 | [Go to Menu](#menu) | [Home Screenshot](images/home-screenshot.jpg?raw=true "Home Page") |
