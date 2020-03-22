@@ -1,0 +1,75 @@
+esphome:
+  name: garage_door_relay
+  platform: ESP32
+  board: nodemcu-32s
+
+wifi:
+  ssid: REDACTED
+  password: "REDACTED"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Garage Door Relay"
+    password: "REDACTED"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: "REDACTED"
+
+ota:
+  password: "REDACTED"
+
+# Enable Web server.
+#web_server:
+#  port: 80
+
+binary_sensor:
+- platform: gpio
+  pin:
+    number: GPIO12
+    mode: INPUT_PULLUP
+    inverted: False
+  name: "Garage Door Sensor"
+  id: garage_door_sensor
+  device_class: garage_door
+  filters:
+    - delayed_on: 30ms
+
+switch:
+- platform: gpio
+  id: relay1
+  pin:
+    number: GPIO21
+    inverted: False
+  restore_mode: ALWAYS_OFF
+- platform: template
+  name: "Garage Door Switch"
+  icon: "mdi:garage"
+  turn_on_action:
+  - switch.turn_on: relay1
+  - delay: 1s
+  - switch.turn_off: relay1
+
+cover:
+  - platform: template
+    name: Garage Door
+    device_class: garage
+    lambda: !lambda |-
+      if (id(garage_door_sensor).state) {
+        return COVER_OPEN;
+      } else {
+        return COVER_CLOSED;
+      }
+    open_action:
+      - switch.turn_on: relay1
+      - delay: 1s
+      - switch.turn_off: relay1
+    close_action:
+      - switch.turn_on: relay1
+      - delay: 1s
+      - switch.turn_off: relay1

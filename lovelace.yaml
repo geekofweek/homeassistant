@@ -1,3 +1,6 @@
+resources:
+  - type: module
+    url: /hacsfiles/lovelace-auto-entities/auto-entities.js
 title: Home
 views:
   - badges: []
@@ -24,6 +27,8 @@ views:
           title: Friends and Family
           type: glance
         entities:
+          - person.REDACTED
+          - person.REDACTED
           - person.REDACTED
           - person.REDACTED
           - person.REDACTED
@@ -68,7 +73,9 @@ views:
           - entity: light.garage_light
           - entity: light.garage_interior
           - entity: switch.front_yard_lighting
+            state_color: true
           - entity: switch.backyard_lighting
+            state_color: true
         title: Exterior Lights
         type: entities
       - entities:
@@ -85,8 +92,10 @@ views:
       - entities:
           - entity: vacuum.downstairs_roomba
             name: Downstairs
+            state_color: true
           - entity: vacuum.upstairs_roomba
             name: Upstairs
+            state_color: true
         title: Vacuums
         type: glance
       - entities:
@@ -94,6 +103,7 @@ views:
           - entity: switch.fireplace
             hold_action:
               action: more-info
+            state_color: true
             tap_action:
               action: toggle
           - entity: climate.office_fan
@@ -102,6 +112,7 @@ views:
             hold_action:
               action: more-info
             name: Basement
+            state_color: true
             tap_action:
               action: toggle
           - entity: sensor.REDACTED_temperature
@@ -133,51 +144,61 @@ views:
       - entity: cover.garage_door
         hold_action:
           action: more-info
+        state_color: true
         tap_action:
           action: toggle
         type: entity-button
       - cards:
-          - entity: camera.front_porch
+          - camera_view: live
+            entity: camera.front_porch
             show_state: false
             type: picture-entity
-          - entity: camera.backyard_gate
-            show_state: false
-            type: picture-entity
-        type: vertical-stack
-      - cards:
-          - entity: camera.driveway
-            show_state: false
-            type: picture-entity
-          - entity: camera.garage
+          - camera_view: live
+            entity: camera.backyard_gate
             show_state: false
             type: picture-entity
         type: vertical-stack
       - cards:
-          - entity: camera.backyard
+          - camera_view: live
+            entity: camera.driveway
             show_state: false
             type: picture-entity
-          - entity: camera.side_yard
+          - camera_view: live
+            entity: camera.garage
+            show_state: false
+            type: picture-entity
+        type: vertical-stack
+      - cards:
+          - camera_view: live
+            entity: camera.backyard
+            show_state: false
+            type: picture-entity
+          - camera_view: live
+            entity: camera.side_yard
             show_state: false
             type: picture-entity
         type: vertical-stack
       - card:
-          cards:
-            - entity: camera.living_room
-              show_state: false
-              type: picture-entity
-            - entity: camera.basement
-              show_state: false
-              type: picture-entity
-          type: vertical-stack
+          camera_view: live
+          entity: camera.living_room
+          show_state: false
+          type: picture-entity
         conditions:
-          - entity: device_tracker.living_room_camera
-            state: home
-          - entity: device_tracker.basement_camera
-            state: home
+          - entity: binary_sensor.living_room_camera
+            state: 'on'
+        type: conditional
+      - card:
+          camera_view: live
+          entity: camera.basement
+          show_state: false
+          type: picture-entity
+        conditions:
+          - entity: binary_sensor.basement_camera
+            state: 'on'
         type: conditional
     icon: 'mdi:home'
-    path: default_view
-    title: default_view
+    path: home
+    title: Home
   - badges: []
     cards:
       - cards:
@@ -207,6 +228,7 @@ views:
                   action: more-info
                 show_icon: true
                 show_name: true
+                state_color: true
                 tap_action:
                   action: toggle
                 type: entity-button
@@ -226,6 +248,7 @@ views:
                 name: Random Light Color
                 show_icon: true
                 show_name: true
+                state_color: true
                 tap_action:
                   action: toggle
                 type: entity-button
@@ -264,6 +287,13 @@ views:
             type: entities
         type: vertical-stack
       - card:
+          entity: media_player.plex_living_room_apple_tv
+          type: media-control
+        conditions:
+          - entity: media_player.plex_living_room_apple_tv
+            state: playing
+        type: conditional
+      - card:
           entity: camera.living_room
           show_state: false
           type: picture-entity
@@ -272,9 +302,11 @@ views:
             state: home
         type: conditional
       - cards:
+          - entity: media_player.living_room_appletv
+            type: media-control
           - entity: media_player.sonos_living_room
             type: media-control
-          - entity: media_player.sonos_media_center
+          - entity: media_player.sonos_surround_sound
             type: media-control
         type: vertical-stack
     icon: 'mdi:sofa'
@@ -397,6 +429,7 @@ views:
                   action: more-info
                 show_icon: true
                 show_name: true
+                state_color: true
                 tap_action:
                   action: toggle
                 type: entity-button
@@ -406,6 +439,7 @@ views:
                 name: Random Light Color
                 show_icon: true
                 show_name: true
+                state_color: true
                 tap_action:
                   action: toggle
                 type: entity-button
@@ -449,6 +483,13 @@ views:
             theme: default
             type: glance
         type: vertical-stack
+      - card:
+          entity: media_player.plex_bedroom_appletv
+          type: media-control
+        conditions:
+          - entity: media_player.plex_bedroom_appletv
+            state: playing
+        type: conditional
       - cards:
           - entities:
               - entity: input_select.bedroom_remote
@@ -457,6 +498,10 @@ views:
             title: Remote
             type: entities
           - entity: media_player.sonos_bedroom
+            type: media-control
+          - entity: media_player.bedroom_appletv
+            type: media-control
+          - entity: media_player.guest_bedroom_appletv
             type: media-control
         type: vertical-stack
     icon: 'mdi:hotel'
@@ -467,7 +512,6 @@ views:
       - cards:
           - entities:
               - entity: light.bathroom_vanity
-                icon: 'mdi:water-pump'
                 name: Vanity Light
               - entity: light.bathroom_shower
                 name: Shower Light
@@ -492,7 +536,6 @@ views:
       - cards:
           - entities:
               - entity: light.upstairs_bathroom_vanity
-                icon: 'mdi:water-pump'
                 name: Vanity Light
             show_header_toggle: false
             title: Upstairs Bathroom
@@ -551,6 +594,7 @@ views:
                   action: more-info
                 show_icon: true
                 show_name: true
+                state_color: true
                 tap_action:
                   action: toggle
                 type: entity-button
@@ -561,6 +605,7 @@ views:
                   action: more-info
                 show_icon: true
                 show_name: true
+                state_color: true
                 tap_action:
                   action: more-info
                 type: entity-button
@@ -570,6 +615,7 @@ views:
                 name: Random Light Color
                 show_icon: true
                 show_name: true
+                state_color: true
                 tap_action:
                   action: toggle
                 type: entity-button
@@ -625,6 +671,13 @@ views:
             theme: default
             type: glance
         type: vertical-stack
+      - card:
+          entity: media_player.plex_office_appletv
+          type: media-control
+        conditions:
+          - entity: media_player.plex_office_appletv
+            state: playing
+        type: conditional
       - cards:
           - entities:
               - entity: input_select.office_remote
@@ -632,7 +685,11 @@ views:
             show_header_toggle: false
             title: Remote
             type: entities
+          - entity: media_player.office_appletv
+            type: media-control
           - entity: media_player.sonos_USER1s_office
+            type: media-control
+          - entity: media_player.sonos_USER1s_office_move
             type: media-control
           - entity: media_player.sonos_USER2s_office
             type: media-control
@@ -666,6 +723,7 @@ views:
                   action: more-info
                 show_icon: true
                 show_name: true
+                state_color: true
                 tap_action:
                   action: toggle
                 type: entity-button
@@ -731,6 +789,7 @@ views:
         type: vertical-stack
       - entities:
           - entity: switch.water_main
+          - entity: binary_sensor.sump_pump_status
         show_icon: true
         show_name: true
         show_state: true
@@ -753,6 +812,8 @@ views:
         show_state: false
         title: Water Sensors
         type: glance
+      - entity: media_player.sonos_move
+        type: media-control
       - card:
           entity: camera.basement
           show_state: false
@@ -761,8 +822,6 @@ views:
           - entity: device_tracker.basement_camera
             state: home
         type: conditional
-      - entity: media_player.sonos_move
-        type: media-control
     icon: 'mdi:stairs'
     path: basements
     title: Basement
@@ -776,7 +835,9 @@ views:
               - entity: light.backyard_patio
               - entity: light.garage_light
               - entity: switch.front_yard_lighting
+                state_color: true
               - entity: switch.backyard_lighting
+                state_color: true
             title: Exterior Lights
             type: entities
           - entities:
@@ -792,6 +853,7 @@ views:
                   action: more-info
                 show_icon: true
                 show_name: true
+                state_color: true
                 tap_action:
                   action: toggle
                 type: entity-button
@@ -801,6 +863,7 @@ views:
                 name: Porch Random Color
                 show_icon: true
                 show_name: true
+                state_color: true
                 tap_action:
                   action: toggle
                 type: entity-button
@@ -809,6 +872,7 @@ views:
       - entity: cover.garage_door
         hold_action:
           action: more-info
+        state_color: true
         tap_action:
           action: more-info
         type: entity-button
@@ -861,6 +925,7 @@ views:
                   action: more-info
                 show_icon: true
                 show_name: true
+                state_color: true
                 tap_action:
                   action: toggle
                 type: entity-button
@@ -912,77 +977,68 @@ views:
     title: Weather
   - badges: []
     cards:
-      - entities:
-          - entity: input_select.remote
-            name: Living Room Media Center Remote
-          - entity: input_select.bedroom_remote
-            name: Bedroom TV Remote
-          - entity: input_select.office_remote
-            name: USER1's Office TV
-          - input_select.sonos
-          - input_boolean.group_all_sonos
-        show_header_toggle: false
-        title: Remote
-        type: entities
-      - entities:
-          - entity: sensor.REDACTED
-          - entity: binary_sensor.plex_status
-        show_header_toggle: false
-        title: Media Player
-        type: entities
       - cards:
-          - entity: media_player.living_room_apple_tv
-            show_info: false
-            type: media-control
-          - entity: media_player.bedroom_apple_tv
-            show_info: false
-            type: media-control
-          - entity: media_player.USER1_s_office_apple_tv
-            show_info: false
-            type: media-control
-          - entity: media_player.guest_bedroom_apple_tv
-            show_info: false
+          - entities:
+              - entity: input_select.remote
+                name: Living Room Media Center Remote
+              - entity: input_select.bedroom_remote
+                name: Bedroom TV Remote
+              - entity: input_select.office_remote
+                name: USER1's Office TV
+              - input_select.sonos
+              - input_boolean.group_all_sonos
+            show_header_toggle: false
+            title: Remote
+            type: entities
+          - entities:
+              - entity: sensor.plex_REDACTED
+              - entity: binary_sensor.plex_status
+            show_header_toggle: false
+            type: entities
+          - entity: media_player.media_center_receiver
             type: media-control
         type: vertical-stack
       - cards:
-          - cards:
-              - entity: media_player.sonos_media_center
-                type: media-control
-              - entity: media_player.sonos_living_room
-                type: media-control
-            type: horizontal-stack
-          - cards:
-              - entity: media_player.sonos_dining_room
-                type: media-control
-              - entity: media_player.sonos_kitchen
-                type: media-control
-            type: horizontal-stack
-          - cards:
-              - entity: media_player.sonos_bathroom
-                type: media-control
-              - entity: media_player.sonos_bedroom
-                type: media-control
-            type: horizontal-stack
+          - entity: media_player.living_room_appletv
+            type: media-control
+          - entity: media_player.bedroom_appletv
+            type: media-control
+          - entity: media_player.office_appletv
+            type: media-control
+          - entity: media_player.guest_bedroom_appletv
+            type: media-control
         type: vertical-stack
       - cards:
-          - cards:
-              - entity: media_player.sonos_USER1s_office
-                type: media-control
-              - entity: media_player.sonos_USER2s_office
-                type: media-control
-            type: horizontal-stack
-          - cards:
-              - entity: media_player.sonos_move
-                type: media-control
-              - entity: media_player.sonos_backyard_patio
-                type: media-control
-            type: horizontal-stack
+          - entity: media_player.sonos_surround_sound
+            type: media-control
+          - entity: media_player.sonos_living_room
+            type: media-control
+          - entity: media_player.sonos_dining_room
+            type: media-control
+          - entity: media_player.sonos_kitchen
+            type: media-control
+          - entity: media_player.sonos_bathroom
+            type: media-control
+          - entity: media_player.sonos_bedroom
+            type: media-control
         type: vertical-stack
-      - entity: media_player.media_center_receiver
-        type: media-control
+      - cards:
+          - entity: media_player.sonos_USER1s_office
+            type: media-control
+          - entity: media_player.sonos_USER1s_office_move
+            type: media-control
+          - entity: media_player.sonos_USER2s_office
+            type: media-control
+          - entity: media_player.sonos_move
+            type: media-control
+          - entity: media_player.sonos_backyard_patio
+            type: media-control
+        type: vertical-stack
     icon: 'mdi:play-circle-outline'
     path: media
     title: Media
+    visible:
+      - user: REDACTED
   - badges: []
     cards:
       - cards:
@@ -1016,25 +1072,28 @@ views:
             type: picture-entity
         type: vertical-stack
       - card:
-          cards:
-            - camera_view: live
-              entity: camera.living_room
-              show_state: false
-              type: picture-entity
-            - camera_view: live
-              entity: camera.basement
-              show_state: false
-              type: picture-entity
-          type: vertical-stack
+          camera_view: live
+          entity: camera.living_room
+          show_state: false
+          type: picture-entity
         conditions:
-          - entity: device_tracker.living_room_camera
-            state: home
-          - entity: device_tracker.basement_camera
-            state: home
+          - entity: binary_sensor.living_room_camera
+            state: 'on'
+        type: conditional
+      - card:
+          camera_view: live
+          entity: camera.basement
+          show_state: false
+          type: picture-entity
+        conditions:
+          - entity: binary_sensor.basement_camera
+            state: 'on'
         type: conditional
     icon: 'mdi:cctv'
     path: cameras
     title: Cameras
+    visible:
+      - user: REDACTED
   - badges: []
     cards:
       - cards:
@@ -1114,6 +1173,14 @@ views:
               action: toggle
         show_header_toggle: false
         title: Locks
+        type: glance
+      - entities:
+          - entity: binary_sensor.ring_front_door_ding
+            name: Ring
+          - entity: binary_sensor.ring_front_door_motion
+            name: Motion
+        show_state: false
+        title: Door Bell
         type: glance
       - columns: 2
         entities:
@@ -1234,17 +1301,13 @@ views:
         title: Traffic Cameras
         type: entities
       - entities:
-          - input_boolean.USER1_away
-          - input_boolean.USER1_away_driving
-          - input_boolean.USER2_away
-          - input_boolean.USER2_away_driving
-          - input_boolean.USER1_home
-          - input_boolean.USER2_home
-          - input_boolean.manual_USER1_away
-          - input_boolean.manual_USER2_away
-          - input_boolean.house_guest_away
-          - input_boolean.vacation_mode
-          - input_boolean.guest_mode
+          - entity: input_boolean.USER1_away
+          - entity: input_boolean.USER1_away_driving
+          - entity: input_boolean.USER2_away
+          - entity: input_boolean.USER2_away_driving
+          - entity: input_boolean.house_guest_away
+          - entity: input_boolean.vacation_mode
+          - entity: input_boolean.guest_mode
         show_header_toggle: false
         title: Location Controls
         type: entities
@@ -1254,8 +1317,8 @@ views:
         title: Household
         type: glance
       - entities:
-          - entity: device_tracker.USER1s_ipad
-          - entity: device_tracker.USER2s_ipad
+          - entity: device_tracker.USER1sipad
+          - entity: device_tracker.USER2sipad
         show_header_toggle: false
         title: Device Location
         type: entities
@@ -1280,6 +1343,36 @@ views:
         show_header_toggle: false
         title: Network
         type: entities
+      - cards:
+          - entities:
+              - entity: sensor.server_uptime
+                name: Uptime
+            theme: default
+            title: Server
+            type: glance
+          - cards:
+              - entity: sensor.processor_use
+                max: 100
+                min: 0
+                name: CPU
+                severity:
+                  green: 0
+                  red: 90
+                  yellow: 50
+                theme: default
+                type: gauge
+              - entity: sensor.memory_use_percent
+                max: 100
+                min: 0
+                name: Memory
+                severity:
+                  green: 0
+                  red: 90
+                  yellow: 50
+                theme: default
+                type: gauge
+            type: horizontal-stack
+        type: vertical-stack
       - cards:
           - entities:
               - entity: sensor.nas_status
@@ -1411,38 +1504,12 @@ views:
         show_header_toggle: false
         title: Automation Override
         type: entities
-      - card:
-          show_state: false
-          title: POE
-          type: entities
-        entities:
-          - entity: switch.front_porch_camera
-            icon: 'mdi:cctv'
-          - entity: switch.backyard_camera
-            icon: 'mdi:cctv'
-          - entity: switch.backyard_gate_camera
-            icon: 'mdi:cctv'
-          - entity: switch.driveway_camera
-            icon: 'mdi:cctv'
-          - entity: switch.garage_camera
-            icon: 'mdi:cctv'
-          - entity: switch.side_yard_camera
-            icon: 'mdi:cctv'
-          - entity: switch.living_room_camera
-            icon: 'mdi:cctv'
-          - entity: switch.basement_camera
-            icon: 'mdi:cctv'
-        show_empty: false
-        state_filter:
-          - 'on'
-          - 'off'
-        type: entity-filter
       - entities:
           - entity: sensor.uptime
         show_header_toggle: false
         title: Home Assistant
         type: entities
-    icon: 'mdi:ethernet'
+    icon: 'mdi:server'
     path: equipment
     title: System Equipment
   - badges: []
@@ -1543,16 +1610,89 @@ views:
         type: entities
     icon: 'mdi:battery-charging-100'
     title: Battery Levels
+    visible:
+      - user: REDACTED
   - badges: []
     cards:
+      - card:
+          entity: media_player.plex_living_room_appletv
+          type: media-control
+        conditions:
+          - entity: media_player.plex_living_room_appletv
+            state: playing
+        type: conditional
+      - card:
+          show_header_toggle: false
+          title: Disabled Automations
+          type: entities
+        filter:
+          exclude:
+            - state: 'on'
+            - state: unavailable
+          include:
+            - domain: automation
+        show_empty: false
+        type: 'custom:auto-entities'
+      - card:
+          show_header_toggle: false
+          title: Input Boolean
+          type: entities
+        filter:
+          exclude:
+            - state: 'off'
+            - state: unavailable
+          include:
+            - domain: input_boolean
+        show_empty: false
+        type: 'custom:auto-entities'
+      - card:
+          show_header_toggle: false
+          title: Device Trackers
+          type: entities
+        filter:
+          include:
+            - entity_id: device_tracker.*
+        show_empty: false
+        type: 'custom:auto-entities'
+      - cards:
+          - entity: sensor.USER1s_iphone_geocoded_location
+            name: USER1's Location
+            type: sensor
+          - entity: sensor.USER2_iphone_geocoded_location
+            name: USER2's Location
+            type: sensor
+        type: vertical-stack
       - entities:
-          - entity: group.all_automations
-          - entity: group.all_devices
-          - entity: group.all_lights
-          - entity: group.all_switches
-          - entity: group.all_scripts
-          - entity: group.all_remotes
+          - entity: binary_sensor.garage_door_sensor
+          - entity: switch.garage_door_switch
+        show_header_toggle: false
+        title: Garage
         type: entities
-    icon: 'mdi:none'
+      - entities:
+          - entity: sensor.USER1s_iphone_activity
+            name: USER1
+          - entity: sensor.USER2_iphone_activity
+            name: USER2
+        title: Activity
+        type: glance
+      - card:
+          show_header_toggle: false
+          title: Device Trackers
+          type: entities
+        filter:
+          include:
+            - entity_id: device_tracker.living_room_camera
+              icon: 'mdi:cctv'
+            - entity_id: device_tracker.basement_camera
+              icon: 'mdi:cctv'
+        show_empty: false
+        type: 'custom:auto-entities'
+      - entities:
+          - entity: sun.sun
+        type: glance
+    icon: 'mdi:tune'
     path: troubleshoot
     title: Troubleshoot
+    visible:
+      - user: REDACTED
+
