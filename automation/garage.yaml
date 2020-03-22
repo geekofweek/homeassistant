@@ -23,9 +23,14 @@
       state: 'off'
 
   action:
+    - service: light.turn_on
+      entity_id:
+        - light.garage_interior
+      data:
+       flash: long
+    - delay: '00:00:15'
     - service: cover.close_cover
       entity_id: cover.garage_door
-
 
         ##########################################################
         ## Garage Door Open on Demand (Echo Integration)
@@ -64,6 +69,12 @@
       state: 'open'
 
   action:
+    - service: light.turn_on
+      entity_id:
+        - light.garage_interior
+      data:
+       flash: long
+    - delay: '00:00:15'
     - service: cover.close_cover
       entity_id: cover.garage_door
 
@@ -140,6 +151,30 @@
   action:
     - service: cover.open_cover
       entity_id: cover.garage_door
+
+        ##########################################################
+        ## Flash Light When Garage Door Closes
+        ##########################################################
+
+- alias: Garage - Flash Light When Garage Door Closes
+
+  trigger:
+    - platform: state
+      entity_id: switch.garage_door_switch
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'open'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.garage_interior
+      data:
+       flash: long
 
 #################################################################
 ## Notifications

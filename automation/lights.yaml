@@ -3,10 +3,10 @@
 #################################################################
 
         ##########################################################
-        ## Reset Garage Light Brightness when Garage Closed
+        ## Reset Exterior Garage Light Brightness when Garage Closed
         ##########################################################
 
-- alias: Lights - Reset Garage Light Brightness when Garage Closed
+- alias: Lights - Reset Exterior Garage Light Brightness when Garage Closed
 
   trigger:
     - platform: state
@@ -36,54 +36,12 @@
        brightness_pct: 1
 
         ##########################################################
-        ## Turn Off Garage Interior when Garage Closed
+        ## Turn on Exterior Garage Light when Garage Open
         ##########################################################
 
-- alias: Lights - Turn Off Garage Interior when Garage Closed
+- alias: Lights - Turn on Exterior Garage Light when Garage Open
 
   trigger:
-    - platform: state
-      entity_id: cover.garage_door
-      to: 'closed'
-    - platform: state
-      entity_id: cover.garage_door
-      to: 'closing'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_door_open_lights_on
-      state: 'off'
-    - condition: state
-      entity_id: light.garage_interior
-      state: 'on'
-
-  action:
-    - service: light.turn_off
-      entity_id:
-        - light.garage_interior
-    - service: light.turn_off
-      entity_id:
-        - light.garage_interior
-    - service: light.turn_off
-      entity_id:
-        - light.garage_interior
-    - service: light.turn_off
-      entity_id:
-        - light.garage_interior
-    - service: light.turn_off
-      entity_id:
-        - light.garage_interior
-
-        ##########################################################
-        ## Turn on Garage Light when Garage Open
-        ##########################################################
-
-- alias: Lights - Turn on Garage Light when Garage Open
-
-  trigger:
-    - platform: state
-      entity_id: cover.garage_door
-      to: 'opening'
     - platform: state
       entity_id: cover.garage_door
       to: 'open'
@@ -104,15 +62,40 @@
        brightness_pct: 100
 
         ##########################################################
-        ## Turn on Garage Interior Light when Garage Open
+        ## Turn Off Interior Garage Light when Garage Closed
         ##########################################################
 
-- alias: Lights - Turn on Garage Light when Garage Open
+- alias: Lights - Turn Off Interior Garage Light when Garage Closed
 
   trigger:
     - platform: state
       entity_id: cover.garage_door
-      to: 'opening'
+      to: 'closed'
+      for:
+        hours: 0
+        minutes: 3
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_door_open_lights_on
+      state: 'off'
+    - condition: state
+      entity_id: light.garage_interior
+      state: 'on'
+
+  action:
+    - service: light.toggle
+      entity_id:
+        - light.garage_interior
+
+        ##########################################################
+        ## Turn On Interior Garage Light when Garage Open
+        ##########################################################
+
+- alias: Lights - Turn On Interior Garage Light when Garage Open
+
+  trigger:
     - platform: state
       entity_id: cover.garage_door
       to: 'open'
@@ -124,42 +107,17 @@
     - condition: state
       entity_id: light.garage_interior
       state: 'off'
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
 
   action:
-    - service: light.turn_on
+    - service: light.toggle
       entity_id:
         - light.garage_interior
-      data:
-       brightness_pct: 50
-    - service: light.turn_on
-      entity_id:
-        - light.garage_interior
-      data:
-       brightness_pct: 50
-    - service: light.turn_on
-      entity_id:
-        - light.garage_interior
-      data:
-       brightness_pct: 50
-    - service: light.turn_on
-      entity_id:
-        - light.garage_interior
-      data:
-       brightness_pct: 50
-    - service: light.turn_on
-      entity_id:
-        - light.garage_interior
-      data:
-       brightness_pct: 50
 
         ##########################################################
-        ## Turn Off Garage Light After Midnight
+        ## Turn Off Exterior Garage Light After Midnight
         ##########################################################
 
-- alias: Lights - Turn Off Garage Light After Midnight
+- alias: Lights - Turn Off Exterior Garage Light After Midnight
 
   trigger:
     - platform: state
@@ -182,10 +140,10 @@
         - light.garage_light
 
         ##########################################################
-        ## Turn On Garage Light at Sunset
+        ## Turn On Exterior Garage Light at Sunset
         ##########################################################
 
-- alias: Lights - Turn On Garage Light at Sunset
+- alias: Lights - Turn On Exterior Garage Light at Sunset
 
   trigger:
     - platform: sun
@@ -205,10 +163,10 @@
        brightness_pct: 1
 
         ##########################################################
-        ## Turn Off Garage Light at Midnight
+        ## Turn Off Exterior Garage Light at Midnight
         ##########################################################
 
-- alias: Lights - Turn Off Garage Light at Midnight
+- alias: Lights - Turn Off Exterior Garage Light at Midnight
 
   trigger:
    - platform: time
@@ -234,10 +192,10 @@
         - light.garage_light
 
         ##########################################################
-        ## Turn Off Garage Light at Midnight Friends Visiting Weekdays
+        ## Turn Off Exterior Garage Light at Midnight Friends Visiting Weekdays
         ##########################################################
 
-- alias: Lights - Turn Off Garage Light at Midnight Friends Visiting Weekdays
+- alias: Lights - Turn Off Exterior Garage Light at Midnight Friends Visiting Weekdays
 
   trigger:
    - platform: time

@@ -195,6 +195,12 @@
       state: 'off'
 
   action:
+    - service: light.turn_on
+      entity_id:
+        - light.garage_interior
+      data:
+       flash: long
+    - delay: '00:00:15'
     - service: cover.close_cover
       entity_id: cover.garage_door
 
@@ -307,6 +313,12 @@
       state: 'off'
 
   action:
+    - service: light.turn_on
+      entity_id:
+        - light.garage_interior
+      data:
+       flash: long
+    - delay: '00:00:15'
     - service: cover.close_cover
       entity_id: cover.garage_door
 
@@ -371,7 +383,6 @@
       data:
        color_temp: 366
        brightness_pct: 20
-
 
         ##########################################################
         ## USER1 Home Turn on Lights during Rain
@@ -487,7 +498,7 @@
         transition: 120
 
         ##########################################################
-        ## USER1 Home Turn Dim Garage Light after 16 Mins
+        ## USER1 Home Dim Garage Light after 16 Mins
         ##########################################################
 
 - alias: Location - USER1 Home Dim Garage Light after 16 Mins
@@ -840,6 +851,12 @@
       state: 'off'
 
   action:
+    - service: light.turn_on
+      entity_id:
+        - light.garage_interior
+      data:
+       flash: long
+    - delay: '00:00:15'
     - service: cover.close_cover
       entity_id: cover.garage_door
 
@@ -861,6 +878,12 @@
       state: 'off'
 
   action:
+    - service: light.turn_on
+      entity_id:
+        - light.garage_interior
+      data:
+       flash: long
+    - delay: '00:00:15'
     - service: cover.close_cover
       entity_id: cover.garage_door
 
