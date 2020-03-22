@@ -2,7 +2,7 @@
 # Overview
 My personal [Home Assistant Core](https://home-assistant.io) configurations with 300+ automations.  These are my active automations and configurations that I use every day.  Updated frequently as I add more devices and come up with more and more complicated ways to do simple tasks.
 
-Published configruations working with Home Assistant Core Version: 0.107.4
+Published configruations working with Home Assistant Core Version: 0.107.5
 
 # <a name="menu">Menu</a>
  | [Hubs](#hubs) | [Lighting](#lighting) | [Climate](#climate)| [Outlets & Switches](#outlets)|  [Locks](#locks) | [Security](#security) | [Voice Assistant](#voice) | [Media](#media) | [Sensors](#sensors) | [Cameras](#cameras) | [Garage](#garage) | [Vacuum](#vacuum) | [Network](#network) | [Other Hardware](#other)| [Software](#software) | [Retired Devices](#retired)  | [Screenshots](#screenshots) |
@@ -164,6 +164,8 @@ I also send camera feeds as a payload on a few iOS notifications, those can most
 | [Honeywell Ademco 958 Overhead Door Contacts](https://amzn.to/33CpKZG) | 1 | NA | [ESPHome](https://www.home-assistant.io/integrations/esphome/)| Door Sensor used with ESPHome Relay |
 
 Similar to locks, the Garage door is mostly automated to open / close based on location and after a set amount of time.  Examples can be found in [location.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml) and [garage.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/garage.yaml)
+
+ESPhome configuration can be found in [garage_door_relay.yaml](https://github.com/geekofweek/homeassistant/blob/master/esphome/garage_door_relay/garage_door_relay.yaml)
 
 ## <a name="vacuum">Vacuum</a>
 
