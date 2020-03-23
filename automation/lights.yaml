@@ -170,7 +170,7 @@
 
   trigger:
    - platform: time
-     at: '23:59'
+     at: '00:00'
 
   condition:
     - condition: state
@@ -199,7 +199,7 @@
 
   trigger:
    - platform: time
-     at: '23:59'
+     at: '00:00'
 
   condition:
     - condition: state
@@ -263,7 +263,7 @@
 
   trigger:
    - platform: time
-     at: '23:59'
+     at: '23:45'
 
   condition:
     - condition: state
@@ -281,7 +281,7 @@
       entity_id:
         - light.front_porch
       data:
-       transition: 300
+       transition: 900
 
         ##########################################################
         ## Turn off Front Porch After Midnight
@@ -457,7 +457,7 @@
 
   trigger:
     - platform: time
-      at: '23:59'
+      at: '23:55'
 
   condition:
     - condition: state
@@ -492,7 +492,7 @@
 
   trigger:
     - platform: time
-      at: '23:59'
+      at: '23:55'
 
   condition:
     - condition: state

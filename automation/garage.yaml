@@ -21,6 +21,9 @@
     - condition: state
       entity_id: input_boolean.disable_auto_garage
       state: 'off'
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'open'
 
   action:
     - service: light.turn_on
@@ -147,6 +150,9 @@
         - wed
         - thu
         - fri
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'closed'
 
   action:
     - service: cover.open_cover

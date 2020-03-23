@@ -41,8 +41,6 @@
     - service: fan.turn_off
       entity_id:
         - fan.office_fan
-    - service: cover.close_cover
-      entity_id: cover.garage_door
     - service: homeassistant.turn_off
       entity_id:
         - input_boolean.guest_mode
@@ -88,6 +86,30 @@
         - media_player.sonos_backyard_patio
 
         ##########################################################
+        ## Household Away Mode Close Garage
+        ##########################################################
+
+- alias: Location - Household Away Mode Close Garage
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'home'
+      to: 'not_home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'open'
+
+  action:
+    - service: cover.open_cover
+      entity_id: cover.garage_door
+
+        ##########################################################
         ## USER1 Home from Walking Unlock Doors Turn on Garage Light
         ##########################################################
 
@@ -117,10 +139,10 @@
         - lock.front_door
 
         ##########################################################
-        ## USER1 Home from Driving Open Garage Door Unlock Door
+        ## USER1 Home from Driving Unlock Door
         ##########################################################
 
-- alias: Location - USER1 Home from Driving Open Garage Door Unlock Door
+- alias: Location - USER1 Home from Driving Unlock Door
 
   trigger:
     - platform: state
@@ -141,12 +163,46 @@
     - condition: state
       entity_id: input_boolean.USER1_away_driving
       state: 'on'
+    - condition: state
+      entity_id: lock.back_door
+      state: 'locked'
+
+  action:
+    - service: lock.unlock
+      entity_id: lock.back_door
+
+        ##########################################################
+        ## USER1 Home from Driving Open Garage Door
+        ##########################################################
+
+- alias: Location - USER1 Home from Driving Open Garage Door
+
+  trigger:
+    - platform: state
+      entity_id: person.USER1
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_auto_garage
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER1_away
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.USER1_away_driving
+      state: 'on'
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'closed'
 
   action:
     - service: cover.open_cover
       entity_id: cover.garage_door
-    - service: lock.unlock
-      entity_id: lock.back_door
 
         ##########################################################
         ## After USER1 Home Lock Doors
@@ -193,6 +249,9 @@
     - condition: state
       entity_id: input_boolean.disable_auto_garage
       state: 'off'
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'open'
 
   action:
     - service: light.turn_on
@@ -227,7 +286,6 @@
       entity_id: input_boolean.USER2_away_driving
       state: 'off'
 
-
   action:
     - service: lock.unlock
       entity_id:
@@ -235,10 +293,10 @@
         - lock.front_door
 
         ##########################################################
-        ## USER2 Home from Driving Open Garage Door Unlock Door
+        ## USER2 Home from Driving Unlock Door
         ##########################################################
 
-- alias: Location - USER2 Home from Driving Open Garage Door Unlock Door
+- alias: Location - USER2 Home from Driving Unlock Door
 
   trigger:
     - platform: state
@@ -259,12 +317,46 @@
     - condition: state
       entity_id: input_boolean.USER2_away_driving
       state: 'on'
+    - condition: state
+      entity_id: lock.back_door
+      state: 'locked'
+
+  action:
+    - service: lock.unlock
+      entity_id: lock.back_door
+
+        ##########################################################
+        ## USER2 Home from Driving Open Garage
+        ##########################################################
+
+- alias: Location - USER2 Home from Driving Open Garage
+
+  trigger:
+    - platform: state
+      entity_id: person.USER2
+#      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_auto_garage
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER2_away
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.USER2_away_driving
+      state: 'on'
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'closed'
 
   action:
     - service: cover.open_cover
       entity_id: cover.garage_door
-    - service: lock.unlock
-      entity_id: lock.back_door
 
         ##########################################################
         ## After USER2 Home Lock Doors
@@ -311,6 +403,9 @@
     - condition: state
       entity_id: input_boolean.disable_auto_garage
       state: 'off'
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'open'
 
   action:
     - service: light.turn_on
@@ -849,6 +944,9 @@
     - condition: state
       entity_id: input_boolean.disable_auto_garage
       state: 'off'
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'open'
 
   action:
     - service: light.turn_on
@@ -876,6 +974,9 @@
     - condition: state
       entity_id: input_boolean.disable_auto_garage
       state: 'off'
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'open'
 
   action:
     - service: light.turn_on

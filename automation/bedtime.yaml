@@ -44,8 +44,6 @@
     - service: fan.turn_off
       entity_id:
         - fan.office_fan
-    - service: cover.close_cover
-      entity_id: cover.garage_door
     - service: homeassistant.turn_off
       entity_id:
         - input_boolean.interior_holiday
@@ -130,8 +128,6 @@
     - service: fan.turn_off
       entity_id:
         - fan.office_fan
-    - service: cover.close_cover
-      entity_id: cover.garage_door
     - service: homeassistant.turn_off
       entity_id:
         - input_boolean.interior_holiday
@@ -321,6 +317,37 @@
       entity_id:
         - switch.lower_backyard_lighting
         - switch.backyard_patio_lighting
+
+        ##########################################################
+        ## Bedtime Close Garage if Open
+        ##########################################################
+
+- alias: Bedtime - Bedtime Close Garage if Open
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'open'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.garage_interior
+      data:
+       flash: long
+    - delay: '00:00:15'
+    - service: cover.close_cover
+      entity_id: cover.garage_door
+
 
         ##########################################################
         ## Reset Bedtime Switch
