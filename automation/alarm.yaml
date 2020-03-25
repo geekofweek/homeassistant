@@ -471,10 +471,10 @@
         message: Garage Door Alarm Triggered!
         data:
           apns_headers:
-           'apns-collapse-id': 'security-alarm-door'
+           'apns-collapse-id': 'garage-garage-camera'
           push:
-            badge: 0
-            category: "alarm"
+            category: camera
+          entity_id: camera.garage
 
         ##########################################################
         ## Garage Alarm Away
@@ -507,10 +507,10 @@
         message: Garage Door Alarm Triggered!
         data:
           apns_headers:
-           'apns-collapse-id': 'security-alarm-door'
+           'apns-collapse-id': 'garage-garage-camera'
           push:
-            badge: 0
-            category: "alarm"
+            category: camera
+          entity_id: camera.garage
 
         ##########################################################
         ## Disable Alarm when Home

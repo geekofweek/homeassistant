@@ -187,6 +187,60 @@
 #################################################################
 
         #################################################################
+        ## Garage Open iOS Notification
+        #################################################################
+
+- alias: Garage - Garage Open iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: cover.garage_door
+      to: 'open'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.mobile_app_USER1s_iphone
+      data:
+        message: Garage Door Open
+        data:
+          apns_headers:
+           'apns-collapse-id': 'garage-garage-camera'
+          push:
+            category: camera
+          entity_id: camera.garage
+
+        #################################################################
+        ## Garage Closed iOS Notification
+        #################################################################
+
+- alias: Garage - Garage Closed iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: cover.garage_door
+      to: 'closed'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.mobile_app_USER1s_iphone
+      data:
+        message: Garage Door Closed
+        data:
+          apns_headers:
+           'apns-collapse-id': 'garage-garage-camera'
+          push:
+            category: camera
+          entity_id: camera.garage
+
+        #################################################################
         ## Garage Door Still Open iOS Notification
         #################################################################
 
