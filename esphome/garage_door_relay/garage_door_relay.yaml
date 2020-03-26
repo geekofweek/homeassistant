@@ -28,6 +28,8 @@ ota:
 #web_server:
 #  port: 80
 
+#Temperature Sensor
+
 binary_sensor:
 - platform: gpio
   pin:
@@ -38,8 +40,8 @@ binary_sensor:
   id: garage_door_sensor
   device_class: garage_door
   filters:
-    - delayed_on: 30ms
-    - delayed_off: 1s
+    - delayed_on: 500ms
+    - delayed_off: 500ms
     - delayed_on_off: 1s
 
 switch:
@@ -79,3 +81,11 @@ cover:
       - switch.turn_on: relay1
       - delay: 1s
       - switch.turn_off: relay1
+
+sensor:
+  - platform: dallas
+    address: 0x8B01192D506AD828
+    name: "Garage Temperature"
+
+dallas:
+  - pin: 14

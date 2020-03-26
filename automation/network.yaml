@@ -16,6 +16,7 @@
         hours: 0
         minutes: 1
         seconds: 0
+
   condition:
     - condition: state
       entity_id: input_boolean.disable_notifications
@@ -43,6 +44,7 @@
         hours: 0
         minutes: 1
         seconds: 0
+
   condition:
     - condition: state
       entity_id: input_boolean.disable_notifications
@@ -168,15 +170,16 @@
       entity_id: switch.att_router
 
         ##########################################################
-        ## Turn on at&t Router in Vacation Mode
+        ## Turn on at&t Router when Away
         ##########################################################
 
-- alias: network - Turn on at&t Router in Vacation Mode
+- alias: network - Turn on at&t Router when Away
 
   trigger:
     - platform: state
-      entity_id: input_boolean.vacation_mode
-      to: 'on'
+      entity_id: group.household
+      from: 'home'
+      to: 'not_home'
 
   condition:
     - condition: state
@@ -185,7 +188,30 @@
 
   action:
     - service: switch.turn_on
-      entity_id: switch.att_router
+      entity_id:
+        - switch.att_router
+
+        ##########################################################
+        ## Turn off at&t Router when Home
+        ##########################################################
+
+- alias: network - Turn on at&t Router when Away
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.att_router
 
         ##########################################################
         ## Household Away Turn on Camera POE

@@ -90,6 +90,7 @@
   trigger:
     - platform: state
       entity_id: cover.garage_door
+      from: 'open'
       to: 'closed'
 
   condition:
@@ -110,6 +111,7 @@
   trigger:
     - platform: state
       entity_id: cover.garage_door
+      from: 'closed'
       to: 'open'
 
   condition:
@@ -195,6 +197,7 @@
   trigger:
     - platform: state
       entity_id: cover.garage_door
+      from: 'closed'
       to: 'open'
 
   condition:
@@ -222,6 +225,7 @@
   trigger:
     - platform: state
       entity_id: cover.garage_door
+      from: 'open'
       to: 'closed'
 
   condition:
