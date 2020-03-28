@@ -19,7 +19,7 @@ The ESPHome device was built using a custom board with screw down terminals that
 
 | Relay / Input | GPIO Pin | Purpose | Terminals | Terminals Used |
 | ------------- | :---: | ------------- | ------------- | ------------- |
-| Relay1 | GPIO21 | Garage Door Switch | NO, C, NC| | NO, C |
+| Relay1 | GPIO21 | Garage Door Switch | NO, C, NC| NO, C |
 | Relay2 | GPIO22 | Unused | NO, C, NC| Unused |
 | Relay3 | GPIO18 | Unused | NO, C, NC| Unused |
 | Relay4 | GPIO19 | Unused | NO, C, NC| Unused |
