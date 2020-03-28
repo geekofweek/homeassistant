@@ -23,3 +23,6 @@
 | IN4 | GPIO14 | Dallas Temp Sensor (Yellow) | IN4+ / 4.7K Ohm Resistor |
 | 3.3V | NA | Dallas Temp Sensor (Red) | 3.3v+ |
 | 5v | NA | Dallas Temp Sensor (Black) | 5v- / 4.7K Ohm Resistor |
+
+## Images
+![UI](images/4RelayESP32.jpeg?raw=true "ESP32")
