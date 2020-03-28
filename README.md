@@ -53,6 +53,8 @@ Lights are grouped via [light_group.yaml](https://github.com/geekofweek/homeassi
 
 I utilize a number of automations that adjust climate controls.  Mostly they can be found in [climate.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/climate.yaml). Ecobee room sensors are heavily used in [occupancy.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/occupancy.yaml) and as conditions in many automations
 
+More detailed information on the ESPhome configuration can be found in [here](https://github.com/geekofweek/homeassistant/tree/master/esphome/garage_door_relay)
+
 ## <a name="outlets">Outlets & Switches</a>
 
 | [Go to Menu](#menu) | [Home Screenshot](images/home-screenshot.jpg?raw=true "Home Page") |
@@ -168,7 +170,7 @@ I also send camera feeds as a payload on a few iOS notifications, those can most
 
 Similar to locks, the Garage door is mostly automated to open / close based on location and after a set amount of time.  Examples can be found in [location.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml) and [garage.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/garage.yaml)
 
-ESPhome configuration can be found in [garage_door_relay.yaml](https://github.com/geekofweek/homeassistant/blob/master/esphome/garage_door_relay/garage_door_relay.yaml)
+More detailed information on the ESPhome configuration can be found in [here](https://github.com/geekofweek/homeassistant/tree/master/esphome/garage_door_relay)
 
 ## <a name="vacuum">Vacuum</a>
 
@@ -223,6 +225,8 @@ Since I don’t use the network equipment as my primary presence detection metho
 | [Home Assistant Management Tool](https://github.com/geekofweek/homeassistant/blob/master/tools/ha-mgmt-docker.sh) | 1 | Ethernet | NA | Custom Shell script for managing Home Assistant |
 
 The iOS app is used for some notifications within various automations. The native iOS app is the main method of doing any location based automations via [location.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml) and many of the conditions I use are based on presence detection of household members.
+
+More detailed information on the custom Home Assistant Managment Tools can be found [here](https://github.com/geekofweek/homeassistant/tree/master/tools).
 
 ## <a name="retired">Retired</a>
 
