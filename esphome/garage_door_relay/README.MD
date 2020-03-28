@@ -6,6 +6,7 @@
 | [Honeywell Ademco 958 Overhead Door Contacts](https://amzn.to/33CpKZG) | 1 | [4 Relay ESP32](https://amzn.to/3abd0vG) | [ESPHome](https://www.home-assistant.io/integrations/esphome/)| Door Sensor used with ESPHome Relay |
 | [Temp Sensor Probe DS18b20](https://amzn.to/3bx9RGF) | 1 | [4 Relay ESP32](https://amzn.to/3abd0vG) | [ESPHome](https://www.home-assistant.io/integrations/esphome/) | Waterproof Temperature sensor, connected directly to ESPHome module |
 | [4.7K Ohm Metal Film Resistor](https://amzn.to/3ar95uB) | 1 | [4 Relay ESP32](https://amzn.to/3abd0vG) | [ESPHome](https://www.home-assistant.io/integrations/esphome/) | external pullup resistor |
+| [ABS Plastic IP65 Junction Box](https://amzn.to/3asXMCa) | 1 | NA | NA | Junction Box for ESP32 Board and wires |
 
 ## GPIO Mapping
 
