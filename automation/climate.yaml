@@ -21,21 +21,63 @@
     - condition: state
       entity_id: input_boolean.disable_climate
       state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
     - service: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
-#     re-enable Summer or Winter Mode
-#    - service: homeassistant.turn_on
-#      entity_id: switch.summer_mode
-    - service: homeassistant.turn_on
-      entity_id: switch.winter_mode
-#    - service: homeassistant.turn_on
-#      entity_id: switch.spring_fall_mode
+    - delay: '00:00:30'
     - service: ecobee.set_fan_min_on_time
       data:
         entity_id: climate.main_floor
         fan_min_on_time: '15'
+
+        ##########################################################
+        ## Set Thermostat Away
+        ##########################################################
+
+- alias: Climate - Away
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
+
+  action:
+    - service: notify.mobile_app_USER1s_iphone
+      data:
+        message: House has been empty for 30 mins, shutting off HVAC
+        data:
+          apns_headers:
+           'apns-collapse-id': 'climate-away'
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.thermostat_away
+    - delay: '00:00:30'
+    - service: ecobee.set_fan_min_on_time
+      data:
+        entity_id: climate.main_floor
+        fan_min_on_time: '0'
 
         ##########################################################
         ## Thermostat on Demand Home
@@ -74,54 +116,10 @@
         preset_mode: 'away'
 
         ##########################################################
-        ## Set Thermostat Away
-        ##########################################################
-
-- alias: Climate - Away
-
-  trigger:
-    - platform: state
-      entity_id: group.household
-      from: 'home'
-      to: 'not_home'
-      for:
-        hours: 0
-        minutes: 30
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_home_away
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.disable_climate
-      state: 'off'
-
-  action:
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.thermostat_away
-    - service: homeassistant.turn_off
-      entity_id: switch.summer_mode
-    - service: homeassistant.turn_off
-      entity_id: switch.winter_mode
-    - service: homeassistant.turn_off
-      entity_id: switch.spring_fall_mode
-    - service: notify.mobile_app_USER1s_iphone
-      data:
-        message: House has been empty for 30 mins, shutting off HVAC
-        data:
-          apns_headers:
-           'apns-collapse-id': 'climate-away'
-    - service: ecobee.set_fan_min_on_time
-      data:
-        entity_id: climate.main_floor
-        fan_min_on_time: '0'
-
-        ##########################################################
         ## Turn Thermostat on Summer
         ##########################################################
 
-- alias: Climate - Turn on Summer
+- alias: Climate - Turn Thermostat on Summer
 
   trigger:
     - platform: numeric_state
@@ -136,11 +134,17 @@
     - condition: state
       entity_id: input_boolean.disable_climate
       state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
     - condition: numeric_state
       entity_id: 'sensor.uptime'
       above: '0.01'
     - condition: state
       entity_id: input_boolean.thermostat_away
+      state: 'on'
+    - condition: state
+      entity_id: switch.summer_mode
       state: 'on'
 
   action:
@@ -157,7 +161,7 @@
         ## Turn Thermostat off Summer
         ##########################################################
 
-- alias: Climate - Turn off Summer
+- alias: Climate - Turn Thermostat off Summer
 
   trigger:
     - platform: numeric_state
@@ -173,6 +177,9 @@
       entity_id: group.friends_and_family
       state: 'not_home'
     - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
       entity_id: input_boolean.disable_climate
       state: 'off'
     - condition: state
@@ -181,6 +188,9 @@
     - condition: numeric_state
       entity_id: 'sensor.uptime'
       above: '0.01'
+    - condition: state
+      entity_id: switch.summer_mode
+      state: 'on'
 
   action:
     - service: homeassistant.turn_on
@@ -196,7 +206,7 @@
         ## Turn Thermostat on Winter
         ##########################################################
 
-- alias: Climate - Turn on Winter
+- alias: Climate - Turn Thermostat on Winter
 
   trigger:
     - platform: numeric_state
@@ -209,6 +219,9 @@
 
   condition:
     - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
       entity_id: input_boolean.disable_climate
       state: 'off'
     - condition: numeric_state
@@ -216,6 +229,9 @@
       above: '0.01'
     - condition: state
       entity_id: input_boolean.thermostat_away
+      state: 'on'
+    - condition: state
+      entity_id: switch.winter_mode
       state: 'on'
 
   action:
@@ -232,7 +248,7 @@
         ## Turn Thermostat off Winter
         ##########################################################
 
-- alias: Climate - Turn off Winter
+- alias: Climate - Turn Thermostat off Winter
 
   trigger:
     - platform: numeric_state
@@ -245,6 +261,9 @@
 
   condition:
     - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
       entity_id: group.friends_and_family
       state: 'not_home'
     - condition: state
@@ -256,6 +275,9 @@
     - condition: state
       entity_id: input_boolean.thermostat_away
       state: 'off'
+    - condition: state
+      entity_id: switch.winter_mode
+      state: 'on'
 
   action:
     - service: homeassistant.turn_on
@@ -263,6 +285,107 @@
     - service: notify.mobile_app_USER1s_iphone
       data:
         message: Outside temp above 65 turning off Heat
+        data:
+          apns_headers:
+           'apns-collapse-id': 'climate-winter'
+
+        ##########################################################
+        ## Turn Thermostat on Spring/Fall
+        ##########################################################
+
+- alias: Climate - Turn Thermostat on Spring/Fall
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      below: 65
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+    - platform: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      above: 78
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+    - condition: numeric_state
+      entity_id: 'sensor.uptime'
+      above: '0.01'
+    - condition: state
+      entity_id: input_boolean.thermostat_away
+      state: 'on'
+    - condition: state
+      entity_id: switch.spring_fall_mode
+      state: 'on'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.thermostat_away
+    - service: notify.mobile_app_USER1s_iphone
+      data:
+        message: Outside temp below 65 or above 78 turning on HVAC
+        data:
+          apns_headers:
+           'apns-collapse-id': 'climate-winter'
+
+        ##########################################################
+        ## Turn Thermostat off Spring/Fall
+        ##########################################################
+
+- alias: Climate - Turn Thermostat off Spring/Fall
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      above: 65
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+    - platform: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      below: 78
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+    - condition: numeric_state
+      entity_id: 'sensor.uptime'
+      above: '0.01'
+    - condition: state
+      entity_id: input_boolean.thermostat_away
+      state: 'on'
+    - condition: state
+      entity_id: switch.spring_fall_mode
+      state: 'on'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.thermostat_away
+    - service: notify.mobile_app_USER1s_iphone
+      data:
+        message: Outside temp above 65 or below 78 turning off HVAC
         data:
           apns_headers:
            'apns-collapse-id': 'climate-winter'

@@ -13,15 +13,15 @@
   - platform: template
     switches:
       summer_mode:
-        value_template: "{{ is_state('group.summer_mode', 'on') }}"
+        value_template: "{{ is_state('input_boolean.summer_mode', 'on') }}"
         turn_on:
           service: homeassistant.turn_on
           data:
-            entity_id: group.summer_mode
+            entity_id: input_boolean.summer_mode
         turn_off:
           service: homeassistant.turn_off
           data:
-            entity_id: group.summer_mode
+            entity_id: input_boolean.summer_mode
 
         ##########################################################
         ## Winter Mode
@@ -30,15 +30,15 @@
   - platform: template
     switches:
       winter_mode:
-        value_template: "{{ is_state('group.winter_mode', 'on') }}"
+        value_template: "{{ is_state('input_boolean.winter_mode', 'on') }}"
         turn_on:
           service: homeassistant.turn_on
           data:
-            entity_id: group.winter_mode
+            entity_id: input_boolean.winter_mode
         turn_off:
           service: homeassistant.turn_off
           data:
-            entity_id: group.winter_mode
+            entity_id: input_boolean.winter_mode
 
         ##########################################################
         ## Spring / Fall Mode

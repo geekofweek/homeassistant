@@ -3,6 +3,159 @@
 #################################################################
 
         ##########################################################
+        ## Household Away Mode Close Garage
+        ##########################################################
+
+- alias: Garage - Household Away Mode Close Garage
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'home'
+      to: 'not_home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'open'
+
+  action:
+    - service: lifx.effect_pulse
+      data:
+       entity_id: light.garage_interior
+       cycles: '5'
+    - delay: '00:00:05'
+    - service: cover.close_cover
+      entity_id: cover.garage_door
+
+        ##########################################################
+        ## USER1 Home from Driving Open Garage Door
+        ##########################################################
+
+- alias: Garage - USER1 Home from Driving Open Garage Door
+
+  trigger:
+    - platform: state
+      entity_id: person.USER1
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_auto_garage
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER1_away
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.USER1_away_driving
+      state: 'on'
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'closed'
+
+  action:
+    - service: cover.open_cover
+      entity_id: cover.garage_door
+
+        ##########################################################
+        ## After USER1 Home Close Garage Door
+        ########################################################
+
+- alias: Garage - USER1 Home Close Garage
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_away
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_auto_garage
+      state: 'off'
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'open'
+
+  action:
+    - service: lifx.effect_pulse
+      data:
+       entity_id: light.garage_interior
+       cycles: '5'
+    - delay: '00:00:05'
+    - service: cover.close_cover
+      entity_id: cover.garage_door
+
+        ##########################################################
+        ## USER2 Home from Driving Open Garage
+        ##########################################################
+
+- alias: Garage - USER2 Home from Driving Open Garage
+
+  trigger:
+    - platform: state
+      entity_id: person.USER2
+#      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_auto_garage
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER2_away
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.USER2_away_driving
+      state: 'on'
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'closed'
+
+  action:
+    - service: cover.open_cover
+      entity_id: cover.garage_door
+
+        ##########################################################
+        ## After USER2 Home Close Garage Door
+        ########################################################
+
+- alias: Garage - USER2 Home Close Garage
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER2_away
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_auto_garage
+      state: 'off'
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'open'
+
+  action:
+    - service: lifx.effect_pulse
+      data:
+       entity_id: light.garage_interior
+       cycles: '5'
+    - delay: '00:00:05'
+    - service: cover.close_cover
+      entity_id: cover.garage_door
+
+        ##########################################################
         ## Close Garage Door after 30 Mins
         ##########################################################
 
@@ -140,6 +293,9 @@
     - condition: state
       entity_id: input_boolean.disable_auto_garage
       state: 'off'
+    - condition: state
+      entity_id: person.USER2
+      state: 'home'
     - condition: state
       entity_id: input_boolean.USER2_away
       state: 'off'

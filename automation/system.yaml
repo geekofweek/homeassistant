@@ -37,33 +37,6 @@
         - input_boolean.disable_water_automations
 
         ##########################################################
-        ## Set Weather Mode on Start
-        ##########################################################
-
-- alias: System - Set Weather Mode on Start
-
-  trigger:
-    - platform: homeassistant
-      event: start
-
-  condition:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-
-  action:
-    - delay: 00:02:00
-#    - service: switch.turn_on
-#      entity_id:
-#        - switch.summer_mode
-    - service: switch.turn_on
-      entity_id:
-        - switch.winter_mode
-#    - service: switch.turn_on
-#      entity_id:
-#       - switch.spring_fall_mode
-
-        ##########################################################
         ## Delay HomeKit Start
         ##########################################################
 
