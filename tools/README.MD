@@ -4,7 +4,7 @@ The [Home Assistant Management Tool](https://github.com/geekofweek/homeassistant
 
 - Bash Shell script, should work anywhere you can use Bash
 - All HA configs are stored on my local workstation within Dropbox (doesn’t have to be but I like the versioning and access to it from any machine).
-- Edit locally with Text Editor.  Currently using [Atom]( https://atom.io) and VIM
+- Edit locally with Text Editor.  Currently using [Visual Studio Code](https://code.visualstudio.com) and VIM
 
 #### Options:
 
