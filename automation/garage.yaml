@@ -26,12 +26,11 @@
       state: 'open'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.garage_interior
+    - service: lifx.effect_pulse
       data:
-       flash: long
-    - delay: '00:00:15'
+       entity_id: light.garage_interior
+       cycles: '5'
+    - delay: '00:00:05'
     - service: cover.close_cover
       entity_id: cover.garage_door
 
@@ -72,12 +71,11 @@
       state: 'open'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.garage_interior
+    - service: lifx.effect_pulse
       data:
-       flash: long
-    - delay: '00:00:15'
+       entity_id: light.garage_interior
+       cycles: '5'
+    - delay: '00:00:05'
     - service: cover.close_cover
       entity_id: cover.garage_door
 
@@ -167,22 +165,25 @@
 - alias: Garage - Flash Light When Garage Door Closes
 
   trigger:
-    - platform: state
-      entity_id: switch.garage_door_switch
-      from: 'off'
-      to: 'on'
+    - platform: event
+      event_type: call_service
+      event_data:
+        domain: cover
+        service: close_cover
 
   condition:
     - condition: state
       entity_id: cover.garage_door
       state: 'open'
+    - condition: state
+      entity_id: light.garage_interior
+      state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.garage_interior
+    - service: lifx.effect_pulse
       data:
-       flash: long
+       entity_id: light.garage_interior
+       cycles: '5'
 
 #################################################################
 ## Notifications

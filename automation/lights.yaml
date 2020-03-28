@@ -72,10 +72,6 @@
     - platform: state
       entity_id: cover.garage_door
       to: 'closed'
-      for:
-        hours: 0
-        minutes: 3
-        seconds: 0
 
   condition:
     - condition: state
@@ -86,9 +82,11 @@
       state: 'on'
 
   action:
-    - service: light.toggle
+    - service: light.turn_off
       entity_id:
         - light.garage_interior
+      data:
+       transition: 303
 
         ##########################################################
         ## Turn On Interior Garage Light when Garage Open
@@ -111,9 +109,12 @@
       state: 'off'
 
   action:
-    - service: light.toggle
+    - service: light.turn_on
       entity_id:
         - light.garage_interior
+      data:
+       brightness_pct: 100
+       transition: 14
 
         ##########################################################
         ## Turn Off Exterior Garage Light After Midnight
