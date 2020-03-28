@@ -1,3 +1,10 @@
+## Overview
+
+[ESPHome](https://esphome.io/index.html) configuration and steps used to enable auatomation of Garage Door Motor, Garage Door Open/Close Status, and temperature readings in detached garage.  Integration with Home Assistant via [ESPHome integration](https://www.home-assistant.io/integrations/esphome/).
+
+The ESPHome device was built using a custom board with screw down terminals that has 4 relays built in. [ESPHome Docker](https://esphome.io/guides/getting_started_command_line.html) was utlizied to compile the initial configuration and that was uploaded onto the ESP32 board. The ESP32 board is enclosed in an ABS plastic junction box and is powered via a USB cable.  The door sensor from honeywell are made for Garage Doors.
+
+
 ## Parts Used
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
