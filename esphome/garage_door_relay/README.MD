@@ -26,3 +26,6 @@
 
 ## Images
 ![UI](images/4RelayESP32.jpeg?raw=true "ESP32")
+
+## Home Assistant UI Example
+![UI](images/ha-esp32.png?raw=true "HA UI Example")
