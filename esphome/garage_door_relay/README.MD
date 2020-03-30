@@ -2,7 +2,7 @@
 
 [ESPHome](https://esphome.io/index.html) configuration and steps used to enable auatomation of Garage Door Motor, Garage Door Open/Close Status, and temperature readings in detached garage.  Integration with Home Assistant via [ESPHome integration](https://www.home-assistant.io/integrations/esphome/).
 
-The ESPHome device was built using a custom board with screw down terminals that has 4 relays built in. [ESPHome Docker](https://esphome.io/guides/getting_started_command_line.html) was utlizied to compile the initial configuration and that was uploaded onto the ESP32 board. The ESP32 board is enclosed in an ABS plastic junction box and is powered via a USB cable.  The door sensor from honeywell are made for Garage Doors.
+The ESPHome device was built using a custom board with screw down terminals that has 4 relays built in. [ESPHome Docker](https://esphome.io/guides/getting_started_command_line.html) was utlizied to compile the initial configuration and that was uploaded onto the ESP32 board. The ESP32 board is enclosed in an ABS plastic junction box and is powered via a micro USB cable.  The door sensor from honeywell are made for Garage Doors.
 
 
 ## Parts Used
@@ -17,19 +17,19 @@ The ESPHome device was built using a custom board with screw down terminals that
 
 ## GPIO Mapping
 
-| Terminal  | GPIO Pin | Purpose | Terminals Used |
-| ------------- | :---: | ------------- | ------------- |
-| Relay1 | GPIO21 | Garage Door Switch | NO / C |
-| Relay2 | GPIO22 | Unused | Unused |
-| Relay3 | GPIO18 | Unused | Unused |
-| Relay4 | GPIO19 | Unused | Unused |
-| AN1 | GPIO36 | Unused | Unused |
-| IN1 | GPIO05 | Unused | Unused |
-| IN2 | GPIO12 | Garage Door Sensor | IN2+ IN2- |
-| IN3 | GPIO13 | Unused | Unused |
-| IN4 | GPIO14 | Dallas Temp Sensor (Yellow) | IN4+ / 4.7K Ohm Resistor |
-| 3.3V | NA | Dallas Temp Sensor (Red) | 3.3v+ |
-| 5v | NA | Dallas Temp Sensor (Black) | 5v- / 4.7K Ohm Resistor |
+| Relay / Input | GPIO Pin | Purpose | Terminals | Terminals Used |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| **Relay1** | **GPIO21** | **Garage Door Switch** | NO, C, NC| **NO, C** |
+| Relay2 | GPIO22 | Unused | NO, C, NC| Unused |
+| Relay3 | GPIO18 | Unused | NO, C, NC| Unused |
+| Relay4 | GPIO19 | Unused | NO, C, NC| Unused |
+| AN1 | GPIO36 | Unused | AN1+, AN1- | Unused |
+| IN1 | GPIO05 | Unused | IN1+, IN1- | Unused |
+| **IN2** | **GPIO12** | **Garage Door Sensor** | IN2+, IN2- | **IN2+, IN2-** |
+| IN3 | GPIO13 | Unused | IN3+, IN3- | Unused |
+| **IN4** | **GPIO14** | **Dallas Temp Sensor (Yellow)** | IN4+, IN4- | **IN4+, 4.7K Ohm Resistor** |
+| **3.3V** | NA | **Dallas Temp Sensor (Red)** | 3.3v+ | **3.3v+** |
+| **5v** | NA | **Dallas Temp Sensor (Black**) | 5v+, 5v- | **5v-, 4.7K Ohm Resistor** |
 
 ## Images
 ![UI](images/4RelayESP32.jpeg?raw=true "ESP32")
