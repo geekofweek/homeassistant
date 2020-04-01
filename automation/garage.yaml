@@ -21,6 +21,9 @@
     - condition: state
       entity_id: cover.garage_door
       state: 'open'
+    - condition: state
+      entity_id: input_boolean.garage_door_motor
+      state: 'off'
 
   action:
     - service: lifx.effect_pulse
@@ -59,6 +62,9 @@
     - condition: state
       entity_id: cover.garage_door
       state: 'closed'
+    - condition: state
+      entity_id: input_boolean.garage_door_motor
+      state: 'off'
 
   action:
     - service: cover.open_cover
@@ -83,6 +89,9 @@
     - condition: state
       entity_id: cover.garage_door
       state: 'open'
+    - condition: state
+      entity_id: input_boolean.garage_door_motor
+      state: 'off'
 
   action:
     - service: lifx.effect_pulse
@@ -121,6 +130,9 @@
     - condition: state
       entity_id: cover.garage_door
       state: 'closed'
+    - condition: state
+      entity_id: input_boolean.garage_door_motor
+      state: 'off'
 
   action:
     - service: cover.open_cover
@@ -145,6 +157,9 @@
     - condition: state
       entity_id: cover.garage_door
       state: 'open'
+    - condition: state
+      entity_id: input_boolean.garage_door_motor
+      state: 'off'
 
   action:
     - service: lifx.effect_pulse
@@ -177,6 +192,9 @@
     - condition: state
       entity_id: cover.garage_door
       state: 'open'
+    - condition: state
+      entity_id: input_boolean.garage_door_motor
+      state: 'off'
 
   action:
     - service: lifx.effect_pulse
@@ -202,6 +220,9 @@
     - condition: state
       entity_id: cover.garage_door
       state: 'closed'
+    - condition: state
+      entity_id: input_boolean.garage_door_motor
+      state: 'off'
 
   action:
     - service: cover.open_cover
@@ -222,6 +243,9 @@
     - condition: state
       entity_id: cover.garage_door
       state: 'open'
+    - condition: state
+      entity_id: input_boolean.garage_door_motor
+      state: 'off'
 
   action:
     - service: lifx.effect_pulse
@@ -309,6 +333,9 @@
     - condition: state
       entity_id: cover.garage_door
       state: 'closed'
+    - condition: state
+      entity_id: input_boolean.garage_door_motor
+      state: 'off'
 
   action:
     - service: cover.open_cover
@@ -339,7 +366,48 @@
     - service: lifx.effect_pulse
       data:
        entity_id: light.garage_interior
-       cycles: '9'
+       cycles: '11'
+
+        ##########################################################
+        ## Garage Door Motor On
+        ##########################################################
+
+- alias: Garage - Garage Door Motor On
+
+  trigger:
+    - platform: event
+      event_type: call_service
+      event_data:
+        domain: cover
+        service: close_cover
+    - platform: event
+      event_type: call_service
+      event_data:
+        domain: cover
+        service: open_cover
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.garage_door_motor
+
+        ##########################################################
+        ## Garage Door Motor off
+        ##########################################################
+
+- alias: Garage - Garage Door Motor off
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.garage_door_motor
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 13
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.garage_door_motor
 
 #################################################################
 ## Notifications

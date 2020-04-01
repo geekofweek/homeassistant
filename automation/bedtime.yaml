@@ -337,6 +337,9 @@
     - condition: state
       entity_id: cover.garage_door
       state: 'open'
+    - condition: state
+      entity_id: input_boolean.garage_door_motor
+      state: 'off'
 
   action:
     - service: light.turn_on
