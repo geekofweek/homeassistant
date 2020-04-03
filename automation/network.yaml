@@ -71,6 +71,34 @@
         hours: 0
         minutes: 1
         seconds: 0
+    - platform: state
+      entity_id: binary_sensor.wan
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+    - platform: state
+      entity_id: binary_sensor.wan
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
+    - platform: state
+      entity_id: binary_sensor.wan
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+    - platform: state
+      entity_id: binary_sensor.wan
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 20
+        seconds: 0
 
   action:
     - service: switch.turn_on
@@ -125,6 +153,14 @@
       state: 'off'
 
   action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.att_router
+    - delay: 00:10:00
+    - service: switch.turn_on
+      entity_id:
+        - switch.att_router
+    - delay: 00:10:00
     - service: switch.turn_on
       entity_id:
         - switch.att_router

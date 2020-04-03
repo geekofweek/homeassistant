@@ -1937,6 +1937,9 @@
   action:
     - service: light.turn_off
       entity_id: light.USER2_s_office_ceiling
+    - service: switch.turn_off
+      entity_id:
+        - switch.USER2_office_desk_lamp
 
         ##########################################################
         ## Turn off USER2 Office Lights when No Motion Detected Night
@@ -1971,6 +1974,9 @@
   action:
     - service: light.turn_off
       entity_id: light.USER2_s_office_ceiling
+    - service: switch.turn_off
+      entity_id:
+        - switch.USER2_office_desk_lamp
 
         ##########################################################
         ## Turn on Upstairs Bathroom Lights when Motion Detected Evening
