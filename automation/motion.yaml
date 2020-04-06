@@ -467,7 +467,7 @@
       state: 'above_horizon'
     - condition: numeric_state
       entity_id: sensor.kitchen_light_level
-      below: '10'
+      below: '15'
     - condition: or
       conditions:
       - condition: state
@@ -1677,7 +1677,7 @@
       entity_id: sun.sun
       state: 'above_horizon'
     - condition: numeric_state
-      entity_id: sensor.USER1s_office_light_sensor
+      entity_id: sensor.USER1s_office_light_level
       below: '5'
 
   action:
@@ -1700,7 +1700,7 @@
 
   trigger:
     - platform: numeric_state
-      entity_id: sensor.USER1s_office_light_sensor
+      entity_id: sensor.USER1s_office_light_level
       above: '10'
       for:
         hours: 0
