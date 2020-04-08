@@ -4,6 +4,8 @@ My personal [Home Assistant Core](https://home-assistant.io) configurations with
 
 Published configruations working with Home Assistant Core Version: 0.108.0
 
+(*Original configurations built on Home Assistant Version: 0.14*)
+
 # <a name="menu">Menu</a>
  | [Hubs](#hubs) | [Lighting](#lighting) | [Climate](#climate)| [Outlets & Switches](#outlets)|  [Locks](#locks) | [Security](#security) | [Voice Assistant](#voice) | [Media](#media) | [Sensors](#sensors) | [Cameras](#cameras) | [Garage](#garage) | [Vacuum](#vacuum) | [Network](#network) | [Other Hardware](#other)| [Software](#software) | [Retired Devices](#retired)  | [Screenshots](#screenshots) |
 
