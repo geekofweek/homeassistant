@@ -117,7 +117,7 @@
     icon: mdi:car
 
         ##########################################################
-        ## Travel Time USER2 to Mercy
+        ## Travel Time USER2 to REDACTED
         ##########################################################
 
   sensor.USER2_to_REDACTED:
@@ -159,7 +159,7 @@
         ## REDACTED VPN Sensor
         ##########################################################
 
-  binary_sensor.rochester_vpn:
+  binary_sensor.REDACTED_vpn:
     icon: mdi:lan-connect
     friendly_name: REDACTED VPN
 
@@ -167,7 +167,7 @@
         ## REDACTED VPN Sensor
         ##########################################################
 
-  binary_sensor.charleston_vpn:
+  binary_sensor.REDACTED_vpn:
     icon: mdi:lan-connect
     friendly_name: REDACTED VPN
 
@@ -475,7 +475,7 @@
         ##########################################################
 
   light.laundry_room_light:
-    icon: mdi:washing-machine
+    icon: mdi:wall-sconce-flat
     friendly_name: Laundry Room Light
 
 #################################################################
@@ -619,6 +619,14 @@
     friendly_name: Washing Machine Wattage
 
         ##########################################################
+        ## Washing Machine Time Remaining
+        ##########################################################
+
+  sensor.washing_machine_time_remaining:
+    icon: mdi:timer
+    friendly_name: Washer Time Remaining
+
+        ##########################################################
         ## Dryer Status Sensor
         ##########################################################
 
@@ -632,6 +640,14 @@
   sensor.dryer_current_power:
     icon: mdi:power-plug
     friendly_name: Dryer Wattage
+
+        ##########################################################
+        ## Dryer Time Remaining
+        ##########################################################
+
+  sensor.dryer_time_remaining:
+    icon: mdi:timer
+    friendly_name: Dryer Time Remaining
 
 #################################################################
 ## Sump Pump

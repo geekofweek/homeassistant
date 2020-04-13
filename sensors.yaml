@@ -95,7 +95,16 @@
   - platform: template
     sensors:
       washing_machine_current_power:
-        value_template: '{{ states.switch.washing_machine.attributes.current_power_w }}'
+        value_template: '{{ states.sensor.washer.attributes.current_power_w }}'
+
+        ##########################################################
+        ## Washing Machine Time Remaining
+        ##########################################################
+
+  - platform: template
+    sensors:
+      washing_machine_time_remaining:
+        value_template: '{{ states.sensor.washer.attributes.remain_time }}'
 
         ##########################################################
         ## Dryer
@@ -105,6 +114,15 @@
     sensors:
       dryer_current_power:
         value_template: '{{ states.switch.dryer.attributes.current_power_w }}'
+
+        ##########################################################
+        ## Dryer Time Remaining
+        ##########################################################
+
+  - platform: template
+    sensors:
+      dryer_time_remaining:
+        value_template: '{{ states.sensor.dryer.attributes.remain_time }}'
 
         ##########################################################
         ## Sump Pump

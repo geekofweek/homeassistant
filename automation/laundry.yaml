@@ -81,13 +81,14 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.washing_machine_status
+#     entity_id: binary_sensor.washing_machine_status
+      entity_id: sensor.washer
       from: 'on'
       to: 'off'
       for:
         hours: 0
-        minutes: 1
-        seconds: 0
+        minutes: 0
+        seconds: 15
 
   condition:
     - condition: state
@@ -119,13 +120,14 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.dryer_status
+#     entity_id: binary_sensor.dryer_status
+      entity_id: sensor.dryer
       from: 'on'
       to: 'off'
       for:
         hours: 0
-        minutes: 1
-        seconds: 0
+        minutes: 0
+        seconds: 15
 
   condition:
     - condition: state
@@ -157,13 +159,14 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.washing_machine_status
+#     entity_id: binary_sensor.washing_machine_status
+      entity_id: sensor.washer
       from: 'on'
       to: 'off'
       for:
         hours: 0
-        minutes: 1
-        seconds: 0
+        minutes: 0
+        seconds: 15
 
   condition:
     - condition: state
@@ -195,13 +198,14 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.dryer_status
+#     entity_id: binary_sensor.dryer_status
+      entity_id: sensor.dryer
       from: 'on'
       to: 'off'
       for:
         hours: 0
-        minutes: 1
-        seconds: 0
+        minutes: 0
+        seconds: 15
 
   condition:
     - condition: state
@@ -289,7 +293,8 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.washing_machine_status
+#     entity_id: binary_sensor.washing_machine_status
+      entity_id: sensor.washer
       from: 'on'
       to: 'off'
       for:
@@ -326,7 +331,8 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.dryer_status
+#     entity_id: binary_sensor.dryer_status
+      entity_id: sensor.dryer
       from: 'on'
       to: 'off'
       for:
