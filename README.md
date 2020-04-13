@@ -163,7 +163,7 @@ I also send camera feeds as a payload on a few iOS notifications, those can most
 
 ## <a name="garage">Garage</a>
 
-| [Go to Menu](#menu) | [Location Screenshot](images/location-screenshot.jpg?raw=true "Location") |
+| [Go to Menu](#menu) | [Garage Screenshot](images/garage-screenshot.jpg?raw=true "Location") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
