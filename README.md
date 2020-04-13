@@ -277,6 +277,7 @@ More detailed information on the custom Home Assistant Managment Tools can be fo
 ![UI](images/offices-screenshot.jpg?raw=true "Offices")
 ![UI](images/basement-screenshot.jpg?raw=true "Basement")
 ![UI](images/outdoor-screenshot.jpg?raw=true "Outdoors")
+![UI](images/garage-screenshot.jpg?raw=true "Garage")
 ![UI](images/weather-screenshot.jpg?raw=true "Weather")
 ![UI](images/media-screenshot.jpg?raw=true "Media")
 ![UI](images/camera-screenshot.jpg?raw=true "Cameras")
