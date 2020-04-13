@@ -188,7 +188,7 @@ All Roomba related automations can be found in [roomba.yaml]( https://github.com
 
 ## <a name="appliances">Appliances</a>
 
-| [Go to Menu](#menu) | [Home Screenshot](images/home-screenshot.jpg?raw=true "Home Page") |
+| [Go to Menu](#menu) | [Basement Screenshot](images/basement-screenshot.jpg?raw=true "Home Page") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
