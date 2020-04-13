@@ -7,7 +7,7 @@ Published configruations working with Home Assistant Core Version: 0.108.3
 (*Original configurations built on Home Assistant Version: 0.14*)
 
 # <a name="menu">Menu</a>
- | [Hubs](#hubs) | [Lighting](#lighting) | [Climate](#climate)| [Outlets & Switches](#outlets)|  [Locks](#locks) | [Security](#security) | [Voice Assistant](#voice) | [Media](#media) | [Sensors](#sensors) | [Cameras](#cameras) | [Garage](#garage) | [Vacuum](#vacuum) | [Network](#network) | [Other Hardware](#other)| [Software](#software) | [Retired Devices](#retired)  | [Screenshots](#screenshots) |
+ | [Hubs](#hubs) | [Lighting](#lighting) | [Climate](#climate)| [Outlets & Switches](#outlets)|  [Locks](#locks) | [Security](#security) | [Voice Assistant](#voice) | [Media](#media) | [Sensors](#sensors) | [Cameras](#cameras) | [Garage](#garage) | [Vacuum](#vacuum) | [Appliances](#appliances) |[Network](#network) | [Other Hardware](#other)| [Software](#software) | [Retired Devices](#retired)  | [Screenshots](#screenshots) |
 
 ## <a name="hubs">Hubs</a>
 
@@ -185,6 +185,17 @@ More detailed information on the ESPhome configuration can be found in [here](ht
 | [iRobot Braava jet 240](https://amzn.to/2FRJnEa) | 1 | Bluetooth | NA | Currently not integrated into Home Assistant. Unknown if this can ever be automated |
 
 All Roomba related automations can be found in [roomba.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/roomba.yaml)
+
+## <a name="appliances">Appliances</a>
+
+| [Go to Menu](#menu) | [Home Screenshot](images/home-screenshot.jpg?raw=true "Home Page") |
+
+| Device  | Quantity | Connection | Home Assistant | Notes |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| [LG Washer WT7300CW](https://www.lg.com/us/washers/lg-WT7300CW-top-load-washer) | 1 | Wi-Fi | [LG ThinQ](https://github.com/ollo69/ha-smartthinq-washer)| Automated for notifications and remaining run time.  Currently using a custom component for testing purposes |
+| [LG Dryer DLGX7801WE](https://www.lg.com/us/dryers/lg-DLGX7801WE-gas-dryer) | 1 | Wi-Fi | [LG ThinQ](https://github.com/ollo69/ha-smartthinq-washer)| Automated for notifications and remaining run time. Currently using a custom component for testing purposes |
+
+All laundry related automations can be found in [laundry.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/laundry.yaml)
 
 ## <a name="network">Network</a>
 
