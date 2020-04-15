@@ -2,7 +2,7 @@
 # Overview
 My personal [Home Assistant Core](https://home-assistant.io) configurations with 300+ automations.  These are my active automations and configurations that I use every day.  Updated frequently as I add more devices and come up with more and more complicated ways to do simple tasks.
 
-Published configruations working with Home Assistant Core Version: 0.108.3
+Published configruations working with Home Assistant Core Version: 0.108.5
 
 (*Original configurations built on Home Assistant Version: 0.14*)
 
