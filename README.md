@@ -2,7 +2,7 @@
 # Overview
 My personal [Home Assistant Core](https://home-assistant.io) configurations with 300+ automations.  These are my active automations and configurations that I use every day.  Updated frequently as I add more devices and come up with more and more complicated ways to do simple tasks.
 
-Published configruations working with Home Assistant Core Version: 0.108.3
+Published configruations working with Home Assistant Core Version: 0.108.5
 
 (*Original configurations built on Home Assistant Version: 0.14*)
 
@@ -163,7 +163,7 @@ I also send camera feeds as a payload on a few iOS notifications, those can most
 
 ## <a name="garage">Garage</a>
 
-| [Go to Menu](#menu) | [Location Screenshot](images/location-screenshot.jpg?raw=true "Location") |
+| [Go to Menu](#menu) | [Garage Screenshot](images/garage-screenshot.jpg?raw=true "Location") |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -277,6 +277,7 @@ More detailed information on the custom Home Assistant Managment Tools can be fo
 ![UI](images/offices-screenshot.jpg?raw=true "Offices")
 ![UI](images/basement-screenshot.jpg?raw=true "Basement")
 ![UI](images/outdoor-screenshot.jpg?raw=true "Outdoors")
+![UI](images/garage-screenshot.jpg?raw=true "Garage")
 ![UI](images/weather-screenshot.jpg?raw=true "Weather")
 ![UI](images/media-screenshot.jpg?raw=true "Media")
 ![UI](images/camera-screenshot.jpg?raw=true "Cameras")
