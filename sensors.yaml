@@ -92,10 +92,10 @@
         ## Washing Machine
         ##########################################################
 
-  - platform: template
-    sensors:
-      washing_machine_current_power:
-        value_template: '{{ states.sensor.washer.attributes.current_power_w }}'
+#  - platform: template
+#    sensors:
+#      washing_machine_current_power:
+#        value_template: '{{ states.sensor.washer.attributes.current_power_w }}'
 
         ##########################################################
         ## Washing Machine Time Remaining
@@ -110,10 +110,10 @@
         ## Dryer
         ##########################################################
 
-  - platform: template
-    sensors:
-      dryer_current_power:
-        value_template: '{{ states.switch.dryer.attributes.current_power_w }}'
+#  - platform: template
+#    sensors:
+#      dryer_current_power:
+#        value_template: '{{ states.switch.dryer.attributes.current_power_w }}'
 
         ##########################################################
         ## Dryer Time Remaining

@@ -273,33 +273,33 @@
         ## Washing Machine Switch On
         #################################################################
 
-- alias: iOS Action - Washing Machine Switch On
+#- alias: iOS Action - Washing Machine Switch On
 
-  trigger:
-    - platform: event
-      event_type: ios.notification_action_fired
-      event_data:
-        actionName: WASHINGMACHINE_TURN_ON_SWITCH
+#  trigger:
+#    - platform: event
+#      event_type: ios.notification_action_fired
+#      event_data:
+#        actionName: WASHINGMACHINE_TURN_ON_SWITCH
 
-  action:
-    - service: switch.turn_on
-      entity_id: switch.washing_machine
+#  action:
+#    - service: switch.turn_on
+#      entity_id: switch.washing_machine
 
         #################################################################
         ## Dryer Switch On
         #################################################################
 
-- alias: iOS Action - Dryer Switch On
+#- alias: iOS Action - Dryer Switch On
 
-  trigger:
-    - platform: event
-      event_type: ios.notification_action_fired
-      event_data:
-        actionName: DRYER_TURN_ON_SWITCH
+#  trigger:
+#    - platform: event
+#      event_type: ios.notification_action_fired
+#      event_data:
+#        actionName: DRYER_TURN_ON_SWITCH
 
-  action:
-    - service: switch.turn_on
-      entity_id: switch.dryer
+#  action:
+#    - service: switch.turn_on
+#      entity_id: switch.dryer
 
         #################################################################
         ## Washing Machine Done Turn on Lights

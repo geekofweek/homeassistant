@@ -3,6 +3,75 @@
 #################################################################
 
         ##########################################################
+        ## Pause Downstairs Roomba when Doorbell Rings
+        ##########################################################
+
+- alias: Roomba - Pause Downstairs Roomba when Doorbell Rings
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: state
+      entity_id: vacuum.downstairs_roomba
+      state: 'on'
+
+  action:
+    - service: vacuum.start_pause
+      entity_id:
+        - vacuum.downstairs_roomba
+    - service: homeassistant.turn_on
+      entity_id:
+        - input_boolean.downstairs_roomba_pause
+
+        ##########################################################
+        ## Resume Downstairs Roomba after Doorbell Rings
+        ##########################################################
+
+- alias: Roomba - Resume Downstairs Roomba after Doorbell Rings
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: state
+      entity_id: vacuum.downstairs_roomba
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.downstairs_roomba_pause
+      state: 'on'
+
+  action:
+    - service: vacuum.start_pause
+      entity_id:
+        - vacuum.downstairs_roomba
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.downstairs_roomba_pause
+
+        ##########################################################
         ## Run Downstairs Roomba when Away
         ##########################################################
 

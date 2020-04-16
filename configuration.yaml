@@ -76,8 +76,8 @@ sonos:
 wemo:
   discovery: false
   static:
-    - REDACTED.50
-    - REDACTED.51
+#    - REDACTED.50
+#    - REDACTED.51
     - REDACTED.52
     - REDACTED.54
     - REDACTED.55
@@ -206,20 +206,6 @@ dyson:
   devices:
     - device_id: !secret dyson_id
       device_ip: REDACTED.11
-
-notify:
-  - name: REDACTED
-    platform: smtp
-    server: smtp.gmail.com
-    port: 587
-    timeout: 15
-    sender: REDACTED
-    encryption: starttls
-    username: REDACTED
-    password: !secret gmail_app_password
-    recipient:
-      - REDACTED@txt.att.net
-    sender_name: REDACTED
 
 alarm_control_panel:
   - platform: manual

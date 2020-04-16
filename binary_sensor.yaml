@@ -71,31 +71,31 @@
         ## Washing Machine
         ##########################################################
 
-  - platform: template
-    sensors:
-      washing_machine_status:
-        friendly_name: 'Washing Machine Status'
-        delay_on:
-          minutes: 3
-        delay_off:
-          minutes: 3
-        value_template: >-
-          {{ states('sensor.washing_machine_current_power')| int >= 6  }}
+#  - platform: template
+#    sensors:
+#      washing_machine_status:
+#        friendly_name: 'Washing Machine Status'
+#        delay_on:
+#          minutes: 3
+#        delay_off:
+#          minutes: 3
+#        value_template: >-
+#          {{ states('sensor.washing_machine_current_power')| int >= 6  }}
 
         ##########################################################
         ## Dryer
         ##########################################################
 
-  - platform: template
-    sensors:
-      dryer_status:
-        friendly_name: 'Dryer Status'
-        delay_on:
-          minutes: 3
-        delay_off:
-          minutes: 3
-        value_template: >-
-          {{ states('sensor.dryer_current_power')| int >= 6  }}
+#  - platform: template
+#    sensors:
+#      dryer_status:
+#        friendly_name: 'Dryer Status'
+#        delay_on:
+#          minutes: 3
+#        delay_off:
+#          minutes: 3
+#        value_template: >-
+#          {{ states('sensor.dryer_current_power')| int >= 6  }}
 
         ##########################################################
         ## Sump Pump
