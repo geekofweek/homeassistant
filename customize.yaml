@@ -486,7 +486,7 @@
         ## Surround Sound Receiver
         ##########################################################
 
-  media_player.media_center_receiver:
+  media_player.surround_sound_receiver:
     icon: mdi:speaker
     friendly_name: Surround Sound Receiver
 
@@ -502,11 +502,25 @@
     icon: mdi:robot-vacuum
 
         ##########################################################
+        ## Downstairs Roomba Bin Status
+        ##########################################################
+
+  sensor.downstairs_roomba_bin:
+    icon: mdi:delete-outline
+
+        ##########################################################
         ## Upstairs Roomba
         ##########################################################
 
   vacuum.upstairs_roomba:
     icon: mdi:robot-vacuum
+
+        ##########################################################
+        ## Upstairs Roomba Bin Status
+        ##########################################################
+
+  sensor.upstairs_roomba_bin:
+    icon: mdi:delete-outline
 
 #################################################################
 ## NAS
@@ -604,21 +618,6 @@
 #################################################################
 
         ##########################################################
-        ## Washing Machine Status Sensor
-        ##########################################################
-
-#  binary_sensor.washing_machine_status:
-#    icon: mdi:washing-machine
-
-        ##########################################################
-        ## Washing Machine Current Power Sensor
-        ##########################################################
-
-#  sensor.washing_machine_current_power:
-#    icon: mdi:power-plug
-#    friendly_name: Washing Machine Wattage
-
-        ##########################################################
         ## Washing Machine Time Remaining
         ##########################################################
 
@@ -627,19 +626,12 @@
     friendly_name: Washer Time Remaining
 
         ##########################################################
-        ## Dryer Status Sensor
+        ## Washing Machine Error Message
         ##########################################################
 
-#  binary_sensor.dryer_status:
-#    icon: mdi:tumble-dryer
-
-        ##########################################################
-        ## Dryer Current Power Sensor
-        ##########################################################
-
-#  sensor.dryer_current_power:
-#    icon: mdi:power-plug
-#    friendly_name: Dryer Wattage
+  sensor.washer_error:
+    icon: mdi:washing-machine-alert
+    friendly_name: Washer Error
 
         ##########################################################
         ## Dryer Time Remaining
@@ -648,6 +640,14 @@
   sensor.dryer_time_remaining:
     icon: mdi:timer
     friendly_name: Dryer Time Remaining
+
+        ##########################################################
+        ## Dryer Error Message
+        ##########################################################
+
+  sensor.dryer_error:
+    icon: mdi:tumble-dryer-alert
+    friendly_name: Dryer Error
 
 #################################################################
 ## Sump Pump

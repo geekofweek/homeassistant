@@ -18,7 +18,7 @@
         ##########################################################
 
   - platform: qnap
-    host: REDACTED.101
+    host: REDACTED.11
     port: 443
     username: !secret qnap_username
     password: !secret qnap_password
@@ -31,24 +31,6 @@
       - cpu_usage
       - drive_smart_status
       - volume_percentage_used
-
-        ##########################################################
-        ## UPS
-        ##########################################################
-
-  - platform: nut
-    name: UPS
-    host: REDACTED.101
-    port: REDACTED
-    alias: REDACTED
-    username: !secret nut_username
-    password: !secret nut_password
-    resources:
-      - ups.status.display
-      - battery.charge
-      - battery.runtime
-      - ups.load
-      - input.voltage
 
         ##########################################################
         ## Uptime
@@ -89,15 +71,6 @@
         value_template: "{{ states('sensor.ups_battery_runtime')|float / 60 }}"
 
         ##########################################################
-        ## Washing Machine
-        ##########################################################
-
-#  - platform: template
-#    sensors:
-#      washing_machine_current_power:
-#        value_template: '{{ states.sensor.washer.attributes.current_power_w }}'
-
-        ##########################################################
         ## Washing Machine Time Remaining
         ##########################################################
 
@@ -107,13 +80,13 @@
         value_template: '{{ states.sensor.washer.attributes.remain_time }}'
 
         ##########################################################
-        ## Dryer
+        ## Washing Machine Error Message
         ##########################################################
 
-#  - platform: template
-#    sensors:
-#      dryer_current_power:
-#        value_template: '{{ states.switch.dryer.attributes.current_power_w }}'
+  - platform: template
+    sensors:
+      washer_error:
+        value_template: '{{ states.sensor.washer.attributes.error_message }}'
 
         ##########################################################
         ## Dryer Time Remaining
@@ -123,6 +96,35 @@
     sensors:
       dryer_time_remaining:
         value_template: '{{ states.sensor.dryer.attributes.remain_time }}'
+
+        ##########################################################
+        ## Dryer Error Message
+        ##########################################################
+
+  - platform: template
+    sensors:
+      dryer_error:
+        value_template: '{{ states.sensor.dryer.attributes.error_message }}'
+
+        ##########################################################
+        ## Downstairs Roomba Bin Status
+        ##########################################################
+
+  - platform: template
+    sensors:
+      downstairs_roomba_bin:
+        value_template: '{{ states.vacuum.downstairs_roomba.attributes.bin_full }}'
+        friendly_name: 'Downstairs Roomba Bin Full'
+
+        ##########################################################
+        ## Upstairs Roomba Bin Status
+        ##########################################################
+
+  - platform: template
+    sensors:
+      upstairs_roomba_bin:
+        value_template: '{{ states.vacuum.upstairs_roomba.attributes.bin_full }}'
+        friendly_name: 'Upstairs Roomba Bin Full'
 
         ##########################################################
         ## Sump Pump

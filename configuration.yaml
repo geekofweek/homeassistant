@@ -52,7 +52,7 @@ vera:
 
 lifx:
   light:
-    - server: REDACTED.105
+    - server: REDACTED.240
       port: 56700
       broadcast: REDACTED.125
 
@@ -74,18 +74,16 @@ sonos:
       - REDACTED.213
 
 wemo:
-  discovery: false
+  discovery: true
   static:
-#    - REDACTED.50
-#    - REDACTED.51
-    - REDACTED.52
-    - REDACTED.54
-    - REDACTED.55
-    - REDACTED.79
+    - REDACTED.220
+    - REDACTED.221
+    - REDACTED.222
+    - REDACTED.223
 
 media_player:
   - platform: yamaha
-    name: "Media Center Receiver"
+    name: "Surround Sound Receiver"
     host: REDACTED.10
     source_ignore:
       - "AUX"
@@ -179,12 +177,12 @@ google:
 
 vacuum:
   - platform: roomba
-    host: REDACTED.8
+    host: REDACTED.230
     username: !secret downstairs_roomba_username
     password: !secret downstairs_roomba_password
     name: Downstairs Roomba
   - platform: roomba
-    host: REDACTED.9
+    host: REDACTED.231
     username: !secret upstairs_roomba_username
     password: !secret upstairs_roomba_password
     name: Upstairs Roomba
@@ -235,8 +233,8 @@ pi_hole:
 
 hacs:
   token: !secret githubtoken
-  sidepanel_title: Community
-  sidepanel_icon: mdi:alpha-c-box
+  sidepanel_title: Community Store
+  sidepanel_icon: mdi:home-assistant
   appdaemon: false
   python_script: false
 

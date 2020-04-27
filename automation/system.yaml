@@ -295,35 +295,6 @@
            'apns-collapse-id': 'system-chs-vpn-online'
 
         #################################################################
-        ## Plex Offline iOS Notification
-        #################################################################
-
-- alias: System - Plex Offline iOS Notification
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.plex_status
-      from: 'on'
-      to: 'off'
-      for:
-        hours: 0
-        minutes: 2
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  action:
-    - service: notify.mobile_app_USER1s_iphone
-      data:
-        message: Plex Server Appears Offline
-        data:
-          apns_headers:
-           'apns-collapse-id': 'system-chs-plex-offline'
-
-        #################################################################
         ## Home Assistant Started iOS Notification
         #################################################################
 

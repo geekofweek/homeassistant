@@ -219,7 +219,6 @@
       state: 'home'
     - condition: time
       weekday:
-        - sun
         - mon
         - tue
         - wed
@@ -460,7 +459,7 @@
 
   trigger:
     - platform: time
-      at: '23:55'
+      at: '00:00'
 
   condition:
     - condition: state
@@ -480,9 +479,7 @@
    - service: light.turn_off
      entity_id:
        - light.back_door
-     data:
-       transition: 300
-   - delay: '00:06:00'
+   - delay: '00:00:30'
    - service: light.turn_off
      entity_id:
        - light.back_door
@@ -495,7 +492,7 @@
 
   trigger:
     - platform: time
-      at: '23:55'
+      at: '00:00'
 
   condition:
     - condition: state
@@ -512,7 +509,6 @@
       state: 'home'
     - condition: time
       weekday:
-        - sun
         - mon
         - tue
         - wed
@@ -522,9 +518,7 @@
    - service: light.turn_off
      entity_id:
        - light.back_door
-     data:
-       transition: 300
-   - delay: '00:06:00'
+   - delay: '00:00:30'
    - service: light.turn_off
      entity_id:
        - light.back_door
@@ -705,7 +699,7 @@
 
   trigger:
     - platform: time
-      at: '00:01'
+      at: '00:00'
 
   condition:
     - condition: state
@@ -716,7 +710,6 @@
       state: 'home'
     - condition: time
       weekday:
-        - sun
         - mon
         - tue
         - wed

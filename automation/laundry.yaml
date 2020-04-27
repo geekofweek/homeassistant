@@ -2,73 +2,6 @@
 ## Laundry Automations
 #################################################################
 
-        ##########################################################
-        ## Shut off Washer and Dryer if Water Detected
-        ##########################################################
-
-#- alias: Laundry - Shut off Washer and Dryer if Water Detected
-
-#  trigger:
-#    - platform: state
-#      entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
-#      from: 'off'
-#      to: 'on'
-#    - platform: state
-#      entity_id: binary_sensor.washing_machine_water_sensor
-#      from: 'off'
-#      to: 'on'
-
-#  condition:
-#    - condition: state
-#      entity_id: input_boolean.disable_water_automations
-#      state: 'off'
-
-#  action:
-#    - service: switch.turn_off
-#      entity_id:
-#        - switch.washing_machine
-#        - switch.dryer
-
-        #################################################################
-        ## Turn On Washing Machine if Off on Startup
-        #################################################################
-
-#- alias: Laundry - Turn on Washing Machine if Off on Startup
-
-#  trigger:
-#    - platform: homeassistant
-#      event: start
-
-#  condition:
-#    - condition: state
-#      entity_id: switch.washing_machine
-#      state: 'off'
-
-#  action:
-#    - service: switch.turn_on
-#      entity_id:
-#        - switch.washing_machine
-
-        #################################################################
-        ## Turn On Dryer if Off on Startup
-        #################################################################
-
-#- alias: Laundry - Turn on Dryer if Off on Startup
-
-#  trigger:
-#    - platform: homeassistant
-#      event: start
-
-#  condition:
-#    - condition: state
-#      entity_id: switch.dryer
-#      state: 'off'
-
-#  action:
-#    - service: switch.turn_on
-#      entity_id:
-#        - switch.dryer
-
 #################################################################
 ## Notifications
 #################################################################
@@ -81,14 +14,13 @@
 
   trigger:
     - platform: state
-#     entity_id: binary_sensor.washing_machine_status
-      entity_id: sensor.washer
-      from: 'on'
-      to: 'off'
+      entity_id: binary_sensor.washer_wash_completed
+      from: 'off'
+      to: 'on'
       for:
         hours: 0
         minutes: 0
-        seconds: 15
+        seconds: 1
 
   condition:
     - condition: state
@@ -120,14 +52,13 @@
 
   trigger:
     - platform: state
-#     entity_id: binary_sensor.dryer_status
-      entity_id: sensor.dryer
-      from: 'on'
-      to: 'off'
+      entity_id: binary_sensor.dryer_dry_completed
+      from: 'off'
+      to: 'on'
       for:
         hours: 0
         minutes: 0
-        seconds: 15
+        seconds: 1
 
   condition:
     - condition: state
@@ -159,14 +90,13 @@
 
   trigger:
     - platform: state
-#     entity_id: binary_sensor.washing_machine_status
-      entity_id: sensor.washer
-      from: 'on'
-      to: 'off'
+      entity_id: binary_sensor.washer_wash_completed
+      from: 'off'
+      to: 'on'
       for:
         hours: 0
         minutes: 0
-        seconds: 15
+        seconds: 1
 
   condition:
     - condition: state
@@ -198,14 +128,13 @@
 
   trigger:
     - platform: state
-#     entity_id: binary_sensor.dryer_status
-      entity_id: sensor.dryer
-      from: 'on'
-      to: 'off'
+      entity_id: binary_sensor.dryer_dry_completed
+      from: 'off'
+      to: 'on'
       for:
         hours: 0
         minutes: 0
-        seconds: 15
+        seconds: 1
 
   condition:
     - condition: state
@@ -230,62 +159,6 @@
             category: "washingmachinedonelights"
 
         ##########################################################
-        ## Washing Machine Switch Off iOS Notification
-        ##########################################################
-
-#- alias: Laundry - Washing Machine Switch Off iOS Notification
-
-#  trigger:
-#    - platform: state
-#      entity_id: switch.washing_machine
-#      from: 'on'
-#      to: 'off'
-
-#  condition:
-#    - condition: state
-#      entity_id: input_boolean.disable_notifications
-#      state: 'off'
-
-#  action:
-#    - service: notify.mobile_app_USER1s_iphone
-#      data:
-#        message: Washing Machine Switch Turned Off!
-#        data:
-#          apns_headers:
-#           'apns-collapse-id': 'laundry-switch'
-#          push:
-#            badge: 0
-#            category: "washingmachineswitch"
-
-        ##########################################################
-        ## Dryer Switch Off iOS Notification
-        ##########################################################
-
-#- alias: Laundry - Dryer Switch Off iOS Notification
-
-#  trigger:
-#    - platform: state
-#      entity_id: switch.dryer
-#      from: 'on'
-#      to: 'off'
-
-#  condition:
-#    - condition: state
-#      entity_id: input_boolean.disable_notifications
-#      state: 'off'
-
-#  action:
-#    - service: notify.mobile_app_USER1s_iphone
-#      data:
-#        message: Dryer Switch Turned Off!
-#        data:
-#          apns_headers:
-#           'apns-collapse-id': 'laundry-switch'
-#          push:
-#            badge: 0
-#            category: "dryerswitch"
-
-        ##########################################################
         ## Washing Machine Done - Audio Notification
         ##########################################################
 
@@ -293,14 +166,13 @@
 
   trigger:
     - platform: state
-#     entity_id: binary_sensor.washing_machine_status
-      entity_id: sensor.washer
-      from: 'on'
-      to: 'off'
+      entity_id: binary_sensor.washer_wash_completed
+      from: 'off'
+      to: 'on'
       for:
         hours: 0
-        minutes: 1
-        seconds: 0
+        minutes: 0
+        seconds: 1
 
   condition:
     - condition: state
@@ -331,14 +203,13 @@
 
   trigger:
     - platform: state
-#     entity_id: binary_sensor.dryer_status
-      entity_id: sensor.dryer
-      from: 'on'
-      to: 'off'
+      entity_id: binary_sensor.dryer_dry_completed
+      from: 'off'
+      to: 'on'
       for:
         hours: 0
-        minutes: 1
-        seconds: 0
+        minutes: 0
+        seconds: 1
 
   condition:
     - condition: state
