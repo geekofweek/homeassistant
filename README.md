@@ -1,3 +1,8 @@
+  <h4>
+    <a href="https://github.com/geekofweek/homeassistant/stargazers"><img src="https://img.shields.io/github/stars/geekofweek/homeassistant.svg?style=plasticr"/></a>
+    <a href="https://github.com/geekofweek/homeassistant/commits/master"><img src="https://img.shields.io/github/last-commit/geekofweek/homeassistant.svg?style=plasticr"/></a>
+  <a href=https://community.home-assistant.io/t/geekoftheweek"><img src="https://img.shields.io/badge/HA%20community-forum-orange"/></a>                                                                                                                        
+  </h4>
 
 # Overview
 My personal [Home Assistant Core](https://home-assistant.io) configurations with 300+ automations.  These are my active automations and configurations that I use every day.  Updated frequently as I add more devices and come up with more and more complicated ways to do simple tasks.
