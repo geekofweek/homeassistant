@@ -1,8 +1,9 @@
-  <h4>
-    <a href="https://github.com/geekofweek/homeassistant/stargazers"><img src="https://img.shields.io/github/stars/geekofweek/homeassistant.svg?style=plasticr"/></a>
-    <a href="https://github.com/geekofweek/homeassistant/commits/master"><img src="https://img.shields.io/github/last-commit/geekofweek/homeassistant.svg?style=plasticr"/></a>
-  <a href="https://community.home-assistant.io/u/geekoftheweek/summary"><img src="https://img.shields.io/badge/HA%20community-forum-orange"/></a>                                                                                                                        
-  </h4>
+[![GitHub stars](https://img.shields.io/github/stars/geekofweek/homeassistant.svg?style=plasticr)](https://github.com/geekofweek/homeassistant/stargazers)
+[![GitHub last commit](https://img.shields.io/github/last-commit/geekofweek/homeassistant.svg?style=plasticr)](https://github.com/geekofweek/homeassistant/commits/master)
+[![HA Version](https://img.shields.io/badge/Running%20Home%20Assistant-0.109.1%20-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
+[![HA Version](https://img.shields.io/badge/Original%20Home%20Assistant-0.14%20-darkblue)](https://github.com/home-assistant/core/releases/0.14)
+[![HA Community](https://img.shields.io/badge/HA%20community-forum-orange)](https://community.home-assistant.io/u/geekoftheweek/summary)
+
 
 # Overview
 My personal [Home Assistant Core](https://home-assistant.io) configurations with 300+ automations.  These are my active automations and configurations that I use every day.  Updated frequently as I add more devices and come up with more and more complicated ways to do simple tasks.
