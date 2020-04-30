@@ -89,6 +89,15 @@
         value_template: '{{ states.sensor.washer.attributes.error_message }}'
 
         ##########################################################
+        ## Washing Machine Tub Clean Count
+        ##########################################################
+
+  - platform: template
+    sensors:
+      washer_tub_clean:
+        value_template: '{{ states.sensor.washer.attributes.tubclean_count }}'
+
+        ##########################################################
         ## Dryer Time Remaining
         ##########################################################
 
@@ -105,26 +114,6 @@
     sensors:
       dryer_error:
         value_template: '{{ states.sensor.dryer.attributes.error_message }}'
-
-        ##########################################################
-        ## Downstairs Roomba Bin Status
-        ##########################################################
-
-  - platform: template
-    sensors:
-      downstairs_roomba_bin:
-        value_template: '{{ states.vacuum.downstairs_roomba.attributes.bin_full }}'
-        friendly_name: 'Downstairs Roomba Bin Full'
-
-        ##########################################################
-        ## Upstairs Roomba Bin Status
-        ##########################################################
-
-  - platform: template
-    sensors:
-      upstairs_roomba_bin:
-        value_template: '{{ states.vacuum.upstairs_roomba.attributes.bin_full }}'
-        friendly_name: 'Upstairs Roomba Bin Full'
 
         ##########################################################
         ## Sump Pump
@@ -240,30 +229,6 @@
       sump_pump_water_sensor_batt:
         value_template: '{{ states.binary_sensor.sump_pump_water_sensor_liquid_detected.attributes.battery_level }}'
         friendly_name: 'Sump Pump Water Sensor'
-        unit_of_measurement: '%'
-        device_class: battery
-
-        ##########################################################
-        ## Downstairs Roomba Battery
-        ##########################################################
-
-  - platform: template
-    sensors:
-      downstairs_roomba_batt:
-        value_template: '{{ states.vacuum.downstairs_roomba.attributes.battery_level }}'
-        friendly_name: 'Downstairs Roomba'
-        unit_of_measurement: '%'
-        device_class: battery
-
-        ##########################################################
-        ## Upstairs Roomba Battery
-        ##########################################################
-
-  - platform: template
-    sensors:
-      upstairs_roomba_batt:
-        value_template: '{{ states.vacuum.upstairs_roomba.attributes.battery_level }}'
-        friendly_name: 'Upstairs Roomba'
         unit_of_measurement: '%'
         device_class: battery
 

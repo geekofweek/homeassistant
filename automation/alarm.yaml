@@ -412,19 +412,14 @@
       entity_id: group.friends_and_family
       state: 'not_home'
     - condition: state
-      entity_id: vacuum.downstairs_roomba
-      state: 'off'
-      for:
-        hours: 0
-        minutes: 5
-        seconds: 0
+      entity_id: vacuum.main_floor_roomba
+      state: 'docked'
     - condition: state
       entity_id: vacuum.upstairs_roomba
-      state: 'off'
-      for:
-        hours: 0
-        minutes: 5
-        seconds: 0
+      state: 'docked'
+    - condition: state
+      entity_id: vacuum.basement_roomba
+      state: 'docked'
     - condition: state
       entity_id: alarm_control_panel.alarm
       state: 'armed_away'

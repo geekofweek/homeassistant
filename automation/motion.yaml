@@ -1371,6 +1371,10 @@
     - condition: state
       entity_id: light.basement_lighting
       state: 'on'
+    - condition: state
+      entity_id: vacuum.basement_roomba
+      state: 'docked'
+
 
   action:
     - service: light.turn_off
@@ -1406,6 +1410,10 @@
     - condition: time
       after: '22:00'
       before: '07:00'
+    - condition: state
+      entity_id: vacuum.basement_roomba
+      state: 'docked'
+
 
   action:
     - service: light.turn_off
