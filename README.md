@@ -1,7 +1,7 @@
   <h4>
     <a href="https://github.com/geekofweek/homeassistant/stargazers"><img src="https://img.shields.io/github/stars/geekofweek/homeassistant.svg?style=plasticr"/></a>
     <a href="https://github.com/geekofweek/homeassistant/commits/master"><img src="https://img.shields.io/github/last-commit/geekofweek/homeassistant.svg?style=plasticr"/></a>
-  <a href=https://community.home-assistant.io/u/geekoftheweek/summary"><img src="https://img.shields.io/badge/HA%20community-forum-orange"/></a>                                                                                                                        
+  <a href="https://community.home-assistant.io/u/geekoftheweek/summary"><img src="https://img.shields.io/badge/HA%20community-forum-orange"/></a>                                                                                                                        
   </h4>
 
 # Overview
