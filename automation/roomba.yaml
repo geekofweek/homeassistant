@@ -729,7 +729,7 @@
 
   trigger:
     - platform: state
-      entity_id: vacuum.baesment_roomba
+      entity_id: vacuum.basement_roomba
       to: 'cleaning'
 
   condition:
@@ -752,14 +752,14 @@
 
   trigger:
     - platform: state
-      entity_id: vacuum.baesment_roomba
+      entity_id: vacuum.basement_roomba
       to: 'docked'
       for:
         hours: 0
         minutes: 5
         seconds: 0
     - platform: state
-      entity_id: vacuum.baesment_roomba
+      entity_id: vacuum.basement_roomba
       to: 'paused'
       for:
         hours: 0
