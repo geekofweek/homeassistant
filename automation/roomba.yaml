@@ -26,7 +26,7 @@
       state: 'cleaning'
 
   action:
-    - service: vacuum.start_pause
+    - service: vacuum.pause
       entity_id:
         - vacuum.main_floor_roomba
     - service: homeassistant.turn_on
@@ -59,17 +59,12 @@
     - condition: state
       entity_id: input_boolean.main_floor_roomba_pause
       state: 'on'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: vacuum.main_floor_roomba
-        state: 'paused'
-      - condition: state
-        entity_id: vacuum.main_floor_roomba
-        state: 'stopped'
+    - condition: state
+      entity_id: vacuum.main_floor_roomba
+      state: 'paused'
 
   action:
-    - service: vacuum.start_pause
+    - service: vacuum.start
       entity_id:
         - vacuum.main_floor_roomba
     - service: homeassistant.turn_off
@@ -113,7 +108,7 @@
       above: 99
 
   action:
-    - service: vacuum.turn_on
+    - service: vacuum.start
       entity_id:
         - vacuum.main_floor_roomba
 
@@ -154,7 +149,7 @@
       above: 99
 
   action:
-    - service: vacuum.turn_on
+    - service: vacuum.start
       entity_id:
         - vacuum.upstairs_roomba
 
@@ -246,7 +241,7 @@
         state: 'REDACTED'
 
   action:
-    - service: vacuum.turn_on
+    - service: vacuum.start
       entity_id:
         - vacuum.main_floor_roomba
 
@@ -288,15 +283,15 @@
       above: 99
 
   action:
-    - service: vacuum.turn_on
+    - service: vacuum.start
       entity_id:
         - vacuum.upstairs_roomba
 
         ##########################################################
-        ## Run Roomba Weekends
+        ## Run Main Floor Roomba Weekends
         ##########################################################
 
-- alias: Roomba - Run Roomba Weekends
+- alias: Roomba - Run Main Floor Roomba Weekends
 
   trigger:
    - platform: time
@@ -335,7 +330,7 @@
         state: 'REDACTED'
 
   action:
-    - service: vacuum.turn_on
+    - service: vacuum.start
       entity_id:
         - vacuum.main_floor_roomba
 
@@ -390,7 +385,7 @@
         state: 'REDACTED'
 
   action:
-    - service: vacuum.turn_on
+    - service: vacuum.start
       entity_id:
         - vacuum.upstairs_roomba
 
@@ -437,7 +432,7 @@
         state: 'REDACTED'
 
   action:
-    - service: vacuum.turn_on
+    - service: vacuum.start
       entity_id:
         - vacuum.upstairs_roomba
 
@@ -490,7 +485,7 @@
         state: 'REDACTED'
 
   action:
-    - service: vacuum.turn_on
+    - service: vacuum.start
       entity_id:
         - vacuum.basement_roomba
 
@@ -881,7 +876,7 @@
       to: 'docked'
       for:
         hours: 0
-        minutes: 4
+        minutes: 2
         seconds: 0
 
   condition:
@@ -1048,7 +1043,7 @@
         - fri
 
   action:
-    - service: vacuum.turn_on
+    - service: vacuum.start
       entity_id:
         - vacuum.main_floor_roomba
 

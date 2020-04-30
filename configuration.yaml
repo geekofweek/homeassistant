@@ -46,32 +46,13 @@ lutron_caseta:
     certfile: !secret lutron_certfile
     ca_certs: !secret lutron_cacerts
 
-vera:
-  vera_controller_url: http://REDACTED.3:3480/
-  exclude: [ 19]
-
-lifx:
-  light:
-    - server: REDACTED.240
-      port: 56700
-      broadcast: REDACTED.125
-
-sonos:
-  media_player:
-    hosts:
-      - REDACTED.201
-      - REDACTED.202
-      - REDACTED.203
-      - REDACTED.204
-      - REDACTED.205
-      - REDACTED.206
-      - REDACTED.207
-      - REDACTED.208
-      - REDACTED.209
-      - REDACTED.210
-      - REDACTED.211
-      - REDACTED.212
-      - REDACTED.213
+dyson:
+  username: !secret dyson_username
+  password: !secret dyson_password
+  language: US
+  devices:
+    - device_id: !secret dyson_id
+      device_ip: REDACTED.11
 
 wemo:
   discovery: true
@@ -108,20 +89,6 @@ media_player:
       AUDIO1: "TV Audio"
       AUDIO2: "Sonos Digital"
       AUDIO3: "Sonos"
-
-remote:
-  - platform: harmony
-    name: Media Center
-    host: REDACTED.5
-    activity: Watch TV
-  - platform: harmony
-    name: Bedroom TV
-    host: REDACTED.6
-    activity: Watch TV
-  - platform: harmony
-    name: Office TV
-    host: REDACTED.7
-    activity: Watch TV
 
 camera:
   - platform: generic
@@ -180,18 +147,6 @@ weather:
     api_key: !secret darksky_api_key
     mode: daily
     name: "REDACTED, MO"
-
-nest:
-  client_id: !secret nest_client_id
-  client_secret: !secret nest_client_secret
-
-dyson:
-  username: !secret dyson_username
-  password: !secret dyson_password
-  language: US
-  devices:
-    - device_id: !secret dyson_id
-      device_ip: REDACTED.11
 
 alarm_control_panel:
   - platform: manual

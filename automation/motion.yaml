@@ -1371,10 +1371,14 @@
     - condition: state
       entity_id: light.basement_lighting
       state: 'on'
-    - condition: state
-      entity_id: vacuum.basement_roomba
-      state: 'docked'
-
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: vacuum.basement_roomba
+        state: 'docked'
+      - condition: state
+        entity_id: vacuum.basement_roomba
+        state: 'paused'
 
   action:
     - service: light.turn_off
