@@ -58,8 +58,11 @@
           apns_headers:
            'apns-collapse-id': 'security-alarm'
           push:
-            badge: 0
-            category: "alarm"
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
+              category: "alarm"
     - service: notify.mobile_app_USER1s_iphone
       data:
         message: Alarm! (Front Porch Camera)
@@ -151,8 +154,11 @@
           apns_headers:
            'apns-collapse-id': 'security-alarm'
           push:
-            badge: 0
-            category: "alarm"
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
+              category: "alarm"
     - service: notify.mobile_app_USER1s_iphone
       data:
         message: Alarm! (Front Porch Camera)
@@ -218,8 +224,11 @@
           apns_headers:
            'apns-collapse-id': 'security-alarm'
           push:
-            badge: 0
-            category: "alarm"
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
+              category: "alarm"
     - service: notify.mobile_app_USER2_s_iphone
       data:
         message: Panic Button Has Been Pressed!

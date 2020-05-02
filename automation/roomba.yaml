@@ -228,17 +228,17 @@
     - condition: numeric_state
       entity_id: sensor.main_floor_roomba_battery_level
       above: 99
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: person.USER2
-        state: 'not_home'
-      - condition: state
-        entity_id: person.USER2
-        state: 'Lake'
-      - condition: state
-        entity_id: person.USER2
-        state: 'REDACTED'
+  #  - condition: or
+  #    conditions:
+  #    - condition: state
+  #      entity_id: person.USER2
+  #      state: 'not_home'
+  #    - condition: state
+  #      entity_id: person.USER2
+  #      state: 'Lake'
+  #    - condition: state
+  #      entity_id: person.USER2
+  #      state: 'REDACTED'
 
   action:
     - service: vacuum.start
@@ -317,17 +317,17 @@
     - condition: state
       entity_id: group.friends_and_family
       state: 'not_home'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: person.USER2
-        state: 'not_home'
-      - condition: state
-        entity_id: person.USER2
-        state: 'Lake'
-      - condition: state
-        entity_id: person.USER2
-        state: 'REDACTED'
+  #  - condition: or
+  #    conditions:
+  #    - condition: state
+  #      entity_id: person.USER2
+  #      state: 'not_home'
+  #    - condition: state
+  #      entity_id: person.USER2
+  #      state: 'Lake'
+  #    - condition: state
+  #      entity_id: person.USER2
+  #      state: 'REDACTED'
 
   action:
     - service: vacuum.start
@@ -341,10 +341,12 @@
 - alias: Roomba - Run Upstairs Roomba Weekdays
 
   trigger:
+#   - platform: time
+#     at: '07:00'
+#   - platform: time
+#     at: '07:30'
    - platform: time
-     at: '07:00'
-   - platform: time
-     at: '07:30'
+     at: '18:00'
 
   condition:
     - condition: state
@@ -372,17 +374,17 @@
     - condition: state
       entity_id: person.USER1
       state: 'home'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: person.USER2
-        state: 'not_home'
-      - condition: state
-        entity_id: person.USER2
-        state: 'Lake'
-      - condition: state
-        entity_id: person.USER2
-        state: 'REDACTED'
+#    - condition: or
+#      conditions:
+#      - condition: state
+#        entity_id: person.USER2
+#        state: 'not_home'
+#      - condition: state
+#        entity_id: person.USER2
+#        state: 'Lake'
+#      - condition: state
+#        entity_id: person.USER2
+#        state: 'REDACTED'
 
   action:
     - service: vacuum.start
@@ -419,17 +421,17 @@
     - condition: state
       entity_id: group.friends_and_family
       state: 'not_home'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: person.USER2
-        state: 'not_home'
-      - condition: state
-        entity_id: person.USER2
-        state: 'Lake'
-      - condition: state
-        entity_id: person.USER2
-        state: 'REDACTED'
+#    - condition: or
+#      conditions:
+#      - condition: state
+#        entity_id: person.USER2
+#        state: 'not_home'
+#      - condition: state
+#        entity_id: person.USER2
+#        state: 'Lake'
+#      - condition: state
+#        entity_id: person.USER2
+#        state: 'REDACTED'
 
   action:
     - service: vacuum.start
@@ -456,9 +458,7 @@
     - condition: time
       weekday:
         - mon
-        - tue
         - wed
-        - thu
         - fri
     - condition: state
       entity_id: vacuum.basement_roomba
@@ -466,23 +466,29 @@
     - condition: state
       entity_id: group.friends_and_family
       state: 'not_home'
+    - condition: state
+      entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.basement_door_water_sensor
+      state: 'off'
     - condition: numeric_state
       entity_id: sensor.basement_roomba_battery_level
       above: 99
     - condition: state
       entity_id: person.USER1
       state: 'home'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: person.USER2
-        state: 'not_home'
-      - condition: state
-        entity_id: person.USER2
-        state: 'Lake'
-      - condition: state
-        entity_id: person.USER2
-        state: 'REDACTED'
+#    - condition: or
+#      conditions:
+#      - condition: state
+#        entity_id: person.USER2
+#        state: 'not_home'
+#      - condition: state
+#        entity_id: person.USER2
+#        state: 'Lake'
+#      - condition: state
+#        entity_id: person.USER2
+#        state: 'REDACTED'
 
   action:
     - service: vacuum.start
@@ -1177,7 +1183,7 @@
       to: 'cleaning'
       for:
         hours: 1
-        minutes: 20
+        minutes: 0
         seconds: 0
 
   condition:
@@ -1202,7 +1208,7 @@
       to: 'cleaning'
       for:
         hours: 1
-        minutes: 20
+        minutes: 0
         seconds: 0
 
   condition:
@@ -1330,8 +1336,9 @@
 - alias: Roomba - Main Floor Full iOS Notification
 
   trigger:
-    - platform: template
-      value_template: "{%if is_state_attr('vacuum.main_floor_roomba', 'bin_full', true) %}true{%endif%}"
+    - platform: state
+      entity_id: binary_sensor.main_floor_roomba_bin_full
+      to: 'True'
 
   condition:
     - condition: state
@@ -1359,8 +1366,9 @@
 - alias: Roomba - Upstairs Full iOS Notification
 
   trigger:
-    - platform: template
-      value_template: "{%if is_state_attr('vacuum.upstairs_roomba', 'bin_full', true) %}true{%endif%}"
+    - platform: state
+      entity_id: binary_sensor.upstairs_roomba_bin_full
+      to: 'True'
 
   condition:
     - condition: state
@@ -1388,8 +1396,9 @@
 - alias: Roomba - Basement Full iOS Notification
 
   trigger:
-    - platform: template
-      value_template: "{%if is_state_attr('vacuum.basement_roomba', 'bin_full', true) %}true{%endif%}"
+    - platform: state
+      entity_id: binary_sensor.basement_roomba_bin_full
+      to: 'True'
 
   condition:
     - condition: state

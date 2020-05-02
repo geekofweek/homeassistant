@@ -378,7 +378,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.water_heater_water_sensor
+      entity_id: binary_sensor.coal_room_water_sensor
       from: 'off'
       to: 'on'
 
@@ -390,10 +390,10 @@
   action:
     - service: notify.mobile_app_USER1s_iphone
       data:
-        message: Water Detected by Water Heater!
+        message: Water Detected in Coal Room!
         data:
           apns_headers:
-           'apns-collapse-id': 'water-water-heater'
+           'apns-collapse-id': 'water-coal-room'
 
         ##########################################################
         ## Utility Sink Water Sensor iOS Notification
