@@ -21,7 +21,9 @@
       - switch
       - climate
       - lock
+      - vacuum
     include_entities:
+      - alarm_control_panel.alarm
       - cover.garage_door
       - lock.front_door
       - lock.back_door
@@ -48,3 +50,5 @@
       - climate.office_fan
       - switch.front_yard_lighting
       - switch.backyard_lighting
+      - sensor.main_floor_humidity
+      - sensor.office_fan_humidity

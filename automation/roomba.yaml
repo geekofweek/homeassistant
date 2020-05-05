@@ -319,6 +319,9 @@
     - condition: state
       entity_id: group.friends_and_family
       state: 'not_home'
+    - condition: state
+      entity_id: input_select.remote
+      state: 'PowerOff'
   #  coronavirus override
   #  remove after quarantine
   #  - condition: or
@@ -353,6 +356,10 @@
 #     at: '07:30'
    - platform: time
      at: '18:00'
+   - platform: time
+     at: '18:30'
+   - platform: time
+     at: '19:00'
 
   condition:
     - condition: state
@@ -378,10 +385,25 @@
       entity_id: group.friends_and_family
       state: 'not_home'
     - condition: state
-      entity_id: person.USER1
+      entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: binary_sensor.USER1s_office_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.USER2s_office_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.stairs_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.upstairs_bathroom_motion
+      state: 'off'
 #  coronavirus override
 #  remove after quarantine
+#    - condition: state
+#      entity_id: person.USER1
+#      state: 'home'
 #    - condition: or
 #      conditions:
 #      - condition: state
@@ -408,6 +430,10 @@
   trigger:
    - platform: time
      at: '16:00'
+   - platform: time
+     at: '16:30'
+   - platform: time
+     at: '17:00'
 
   condition:
     - condition: state
@@ -421,7 +447,7 @@
         - sat
         - sun
     - condition: state
-      entity_id: vacuum.main_floor_roomba
+      entity_id: vacuum.upstairs_roomba
       state: 'docked'
     - condition: numeric_state
       entity_id: sensor.upstairs_roomba_battery_level
@@ -429,6 +455,18 @@
     - condition: state
       entity_id: group.friends_and_family
       state: 'not_home'
+    - condition: state
+      entity_id: binary_sensor.USER1s_office_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.USER2s_office_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.stairs_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.upstairs_bathroom_motion
+      state: 'off'
 #  coronavirus override
 #  remove after quarantine
 #    - condition: or
@@ -508,10 +546,10 @@
         - vacuum.basement_roomba
 
         ##########################################################
-        ## Turn on low lights at night for Roomba
+        ## Turn on low lights at night for Main Floor Roomba
         ##########################################################
 
-- alias: Roomba - Turn on low lights at night for Roomba
+- alias: Roomba - Turn on low lights at night for Main Floor Roomba
 
   trigger:
     - platform: state
@@ -537,7 +575,6 @@
       entity_id:
         - light.bedroom_ceiling
         - light.bedroom_closet_ceiling
-        - light.basement_stairs
       data:
        brightness_pct: 50
        color_temp: 447
@@ -590,7 +627,6 @@
       entity_id:
         - light.bedroom_closet_ceiling
         - light.bedroom_ceiling
-        - light.basement_stairs
       data:
        brightness_pct: 50
        color_temp: 447
@@ -818,6 +854,13 @@
         hours: 0
         minutes: 2
         seconds: 0
+    - platform: state
+      entity_id: vacuum.main_floor_roomba
+      to: 'stopped'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
 
   condition:
     - condition: state
@@ -829,6 +872,9 @@
     - condition: sun
       after: sunset
       after_offset: "-00:90:00"
+    - condition: state
+      entity_id: group.interior_lights
+      state: 'on'
 
   action:
     - service: light.turn_off
@@ -848,6 +894,20 @@
       for:
         hours: 0
         minutes: 4
+        seconds: 0
+    - platform: state
+      entity_id: vacuum.upstairs_roomba
+      to: 'paused'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+    - platform: state
+      entity_id: vacuum.upstairs_roomba
+      to: 'stopped'
+      for:
+        hours: 0
+        minutes: 2
         seconds: 0
 
   condition:
@@ -892,6 +952,20 @@
     - platform: state
       entity_id: vacuum.upstairs_roomba
       to: 'docked'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+    - platform: state
+      entity_id: vacuum.upstairs_roomba
+      to: 'paused'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+    - platform: state
+      entity_id: vacuum.upstairs_roomba
+      to: 'stopped'
       for:
         hours: 0
         minutes: 2
@@ -1012,10 +1086,10 @@
         - input_boolean.disable_occupancy
 
         ##########################################################
-        ## Run Roomba when USER2 Leaves
+        ## Run Main Floor Roomba when USER2 Leaves
         ##########################################################
 
-- alias: Roomba - Run Roomba when USER2 Leaves
+- alias: Roomba - Run Main Floor Roomba when USER2 Leaves
 
   trigger:
     - platform: state
@@ -1195,7 +1269,7 @@
       to: 'cleaning'
       for:
         hours: 1
-        minutes: 0
+        minutes: 5
         seconds: 0
 
   condition:
@@ -1510,6 +1584,9 @@
     - condition: state
       entity_id: group.friends_and_family
       state: 'not_home'
+    - condition: state
+      entity_id: input_select.remote
+      state: 'PowerOff'
 
   action:
     - service: notify.mobile_app_USER2_s_iphone
@@ -1525,6 +1602,10 @@
   trigger:
    - platform: time
      at: '17:55'
+   - platform: time
+     at: '18:25'
+   - platform: time
+     at: '18:55'
 
   condition:
     - condition: state
@@ -1553,8 +1634,20 @@
       entity_id: group.friends_and_family
       state: 'not_home'
     - condition: state
-      entity_id: person.USER1
+      entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: binary_sensor.USER1s_office_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.USER2s_office_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.stairs_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.upstairs_bathroom_motion
+      state: 'off'
 
   action:
     - service: notify.mobile_app_USER2_s_iphone
@@ -1570,6 +1663,10 @@
   trigger:
    - platform: time
      at: '15:55'
+   - platform: time
+     at: '16:25'
+   - platform: time
+     at: '16:55'
 
   condition:
     - condition: state
@@ -1594,6 +1691,21 @@
     - condition: state
       entity_id: group.friends_and_family
       state: 'not_home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: binary_sensor.USER1s_office_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.USER2s_office_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.stairs_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.upstairs_bathroom_motion
+      state: 'off'
 
   action:
     - service: notify.mobile_app_USER2_s_iphone

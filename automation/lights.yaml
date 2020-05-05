@@ -878,6 +878,8 @@
         - light.basement_lights
         - light.laundry_room_light
         - light.basement_stairs
+        - light.basement_storage_area_ceiling
+        - light.craft_room_ceiling
       data:
        brightness_pct: 100
 
@@ -898,6 +900,8 @@
       entity_id:
         - light.basement_lights
         - light.basement_stairs
+        - light.basement_storage_area_ceiling
+        - light.craft_room_ceiling
       data:
        brightness_pct: 100
     - service: light.turn_on
@@ -932,6 +936,8 @@
         - light.basement_light_3
         - light.basement_light_4
         - light.work_bench_light
+        - light.craft_room_ceiling
+        - light.basement_storage_area_ceiling
         - light.craft_room_ceiling
     - service: light.turn_on
       entity_id:
@@ -999,6 +1005,7 @@
         - light.basement_light_4
         - light.laundry_room_light
         - light.craft_room_ceiling
+        - light.basement_storage_area_ceiling
     - service: light.turn_on
       entity_id:
         - light.basement_light_1

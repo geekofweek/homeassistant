@@ -260,6 +260,10 @@
         - light.basement_lights
         - light.basement_stairs
         - light.laundry_room_light
+        - light.craft_room_ceiling
+        - light.basement_storage_area_ceiling
+      data:
+        brightness_pct: 100
     - service: light.turn_on
       entity_id:
         - light.work_bench_light

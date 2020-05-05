@@ -687,3 +687,28 @@
           push:
             badge: 0
             category: "frontdoorlock"
+
+        ##########################################################
+        ## Ring Battery Low
+        ##########################################################
+
+- alias: Doorbell - Ring Battery Low
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.ring_front_door_battery
+      below: 20
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.mobile_app_USER1s_iphone
+      data:
+        message: Ring Battery Low, Replace Battery Soon

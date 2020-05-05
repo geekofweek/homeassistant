@@ -196,6 +196,8 @@ influxdb:
   password: !secret influxdb_password
   include:
     entities:
+      - climate.main_floor
+      - climate.office_fan
       - sensor.living_room_temperature
       - sensor.main_floor_temperature
       - sensor.kitchen_temperature
