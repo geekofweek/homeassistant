@@ -17,9 +17,14 @@
     - condition: state
       entity_id: group.household
       state: 'not_home'
-    - condition: state
-      entity_id: group.friends_and_family
-      state: 'not_home'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'not_home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'unknown'
 
   action:
     - service: homeassistant.turn_on

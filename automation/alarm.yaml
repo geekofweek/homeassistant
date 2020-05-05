@@ -17,9 +17,14 @@
     - condition: state
       entity_id: group.household
       state: 'not_home'
-    - condition: state
-      entity_id: group.friends_and_family
-      state: 'not_home'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'not_home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'unknown'
 
   action:
     - service: light.turn_on
@@ -335,11 +340,16 @@
       entity_id: group.household
       state: 'not_home'
     - condition: state
-      entity_id: group.friends_and_family
-      state: 'not_home'
-    - condition: state
       entity_id: alarm_control_panel.alarm
       state: 'armed_away'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'not_home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'unknown'
 
   action:
     - service: alarm_control_panel.alarm_trigger
@@ -418,9 +428,6 @@
       entity_id: group.household
       state: 'not_home'
     - condition: state
-      entity_id: group.friends_and_family
-      state: 'not_home'
-    - condition: state
       entity_id: vacuum.main_floor_roomba
       state: 'docked'
     - condition: state
@@ -432,6 +439,14 @@
     - condition: state
       entity_id: alarm_control_panel.alarm
       state: 'armed_away'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'not_home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'unknown'
 
   action:
     - service: alarm_control_panel.alarm_trigger
@@ -496,11 +511,16 @@
       entity_id: group.household
       state: 'not_home'
     - condition: state
-      entity_id: group.friends_and_family
-      state: 'not_home'
-    - condition: state
       entity_id: alarm_control_panel.alarm
       state: 'armed_away'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'not_home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'unknown'
 
   action:
     #- service: alarm_control_panel.alarm_trigger
@@ -597,11 +617,16 @@
       entity_id: group.household
       state: 'not_home'
     - condition: state
-      entity_id: group.friends_and_family
-      state: 'not_home'
-    - condition: state
       entity_id: alarm_control_panel.alarm
       state: 'disarmed'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'not_home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'unknown'
 
   action:
     - service: alarm_control_panel.alarm_arm_away

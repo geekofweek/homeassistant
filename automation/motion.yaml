@@ -325,14 +325,19 @@
       entity_id: group.household
       state: 'home'
     - condition: state
-      entity_id: group.friends_and_family
-      state: 'not_home'
-    - condition: state
       entity_id: light.living_room_lights
       state: 'on'
     - condition: state
       entity_id: sun.sun
       state: 'above_horizon'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'not_home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'unknown'
 
   action:
     - service: light.turn_off
@@ -366,9 +371,6 @@
       entity_id: person.USER1
       state: 'home'
     - condition: state
-      entity_id: group.friends_and_family
-      state: 'not_home'
-    - condition: state
       entity_id: light.living_room_lights
       state: 'on'
     - condition: state
@@ -385,6 +387,14 @@
       - condition: state
         entity_id: person.USER2
         state: 'REDACTED'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'not_home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'unknown'
 
   action:
     - service: light.turn_off
@@ -723,9 +733,6 @@
       entity_id: person.USER1
       state: 'home'
     - condition: state
-      entity_id: group.friends_and_family
-      state: 'not_home'
-    - condition: state
       entity_id: light.kitchen_lights
       state: 'on'
     - condition: state
@@ -742,6 +749,14 @@
       - condition: state
         entity_id: person.USER2
         state: 'REDACTED'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'not_home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'unknown'
 
   action:
     - service: light.turn_off
@@ -1101,9 +1116,6 @@
       entity_id: person.USER1
       state: 'home'
     - condition: state
-      entity_id: group.friends_and_family
-      state: 'not_home'
-    - condition: state
       entity_id: light.dining_room_lights
       state: 'on'
     - condition: state
@@ -1120,6 +1132,14 @@
       - condition: state
         entity_id: person.USER2
         state: 'REDACTED'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'not_home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'unknown'
 
   action:
     - service: light.turn_off
