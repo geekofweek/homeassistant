@@ -200,9 +200,9 @@
   - platform: command_line
     switches:
       pihole_1_switch:
-        command_on: "curl -X GET 'http://REDACTED.4/REDACTED/api.php?enable&auth=REDACTED'"
-        command_off: "curl -X GET 'http://REDACTED.4/REDACTED/api.php?disable=1800&auth=REDACTED'"
-        command_state: "curl -X GET 'http://REDACTED.4/REDACTED/api.php?status'"
+        command_on: "curl -X GET 'http://pihole-01.network.REDACTED/REDACTED/api.php?enable&auth=REDACTED'"
+        command_off: "curl -X GET 'http://pihole-01.network.REDACTED/REDACTED/api.php?disable=1800&auth=REDACTED'"
+        command_state: "curl -X GET 'http://pihole-01.network.REDACTED/REDACTED/api.php?status'"
         value_template: "{{ value_json.status == 'enabled' }}"
 
         ##########################################################
@@ -212,7 +212,7 @@
   - platform: command_line
     switches:
       pihole_2_switch:
-        command_on: "curl -X GET 'http://REDACTED.5/REDACTED/api.php?enable&auth=REDACTED'"
-        command_off: "curl -X GET 'http://REDACTED.5/REDACTED/api.php?disable=1800&auth=REDACTED'"
-        command_state: "curl -X GET 'http://REDACTED.5/REDACTED/api.php?status'"
+        command_on: "curl -X GET 'http://pihole-02.network.REDACTED/REDACTED/api.php?enable&auth=REDACTED'"
+        command_off: "curl -X GET 'http://pihole-02.network.REDACTED/REDACTED/api.php?disable=1800&auth=REDACTED'"
+        command_state: "curl -X GET 'http://pihole-02.network.REDACTED/REDACTED/api.php?status'"
         value_template: "{{ value_json.status == 'enabled' }}"

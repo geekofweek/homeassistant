@@ -357,24 +357,16 @@
         - vacuum.main_floor_roomba
 
         ##########################################################
-        ## Run Upstairs Roomba Weekdays
+        ## Run Upstairs Roomba Weekday Morninings
         ##########################################################
 
-- alias: Roomba - Run Upstairs Roomba Weekdays
+- alias: Roomba - Run Upstairs Roomba Weekday Morninings
 
   trigger:
-#  coronavirus override
-#  remove after quarantine
-#   - platform: time
-#     at: '07:00'
-#   - platform: time
-#     at: '07:30'
    - platform: time
-     at: '18:00'
+     at: '07:00'
    - platform: time
-     at: '18:30'
-   - platform: time
-     at: '19:00'
+     at: '07:30'
 
   condition:
     - condition: state
@@ -411,22 +403,80 @@
     - condition: state
       entity_id: binary_sensor.upstairs_bathroom_motion
       state: 'off'
-#  coronavirus override
-#  remove after quarantine
-#    - condition: state
-#      entity_id: person.USER1
-#      state: 'home'
-#    - condition: or
-#      conditions:
-#      - condition: state
-#        entity_id: person.USER2
-#        state: 'not_home'
-#      - condition: state
-#        entity_id: person.USER2
-#        state: 'Lake'
-#      - condition: state
-#        entity_id: person.USER2
-#        state: 'REDACTED'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: person.USER2
+        state: 'not_home'
+      - condition: state
+        entity_id: person.USER2
+        state: 'Lake'
+      - condition: state
+        entity_id: person.USER2
+        state: 'REDACTED'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'not_home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'unknown'
+
+  action:
+    - service: vacuum.start
+      entity_id:
+        - vacuum.upstairs_roomba
+
+        ##########################################################
+        ## Run Upstairs Roomba Weekdays Evenings
+        ##########################################################
+
+- alias: Roomba - Run Upstairs Roomba Weekdays Evenings
+
+  trigger:
+   - platform: time
+     at: '18:00'
+   - platform: time
+     at: '18:30'
+   - platform: time
+     at: '19:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.upstairs_roomba_ran
+      state: 'off'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+    - condition: state
+      entity_id: vacuum.upstairs_roomba
+      state: 'docked'
+    - condition: numeric_state
+      entity_id: sensor.upstairs_roomba_battery_level
+      above: 99
+    - condition: state
+      entity_id: binary_sensor.USER1s_office_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.USER2s_office_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.stairs_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.upstairs_bathroom_motion
+      state: 'off'
     - condition: or
       conditions:
       - condition: state

@@ -36,12 +36,12 @@ http:
 
 hue:
   bridges:
-    - host: REDACTED.2
+    - host: 'REDACTED.2'
       allow_hue_groups: false
       allow_unreachable: true
 
 lutron_caseta:
-    host: REDACTED.4
+    host: 'lutron.network.REDACTED'
     keyfile: !secret lutron_keyfile
     certfile: !secret lutron_certfile
     ca_certs: !secret lutron_cacerts
@@ -52,20 +52,20 @@ dyson:
   language: US
   devices:
     - device_id: !secret dyson_id
-      device_ip: REDACTED.11
+      device_ip: 'REDACTED-office-fan.network.REDACTED'
 
 wemo:
   discovery: true
   static:
-    - REDACTED.220
-    - REDACTED.221
-    - REDACTED.222
-    - REDACTED.223
+    - 'att-router-switch.network.REDACTED'
+    - 'REDACTED-office-air-purifier.network.REDACTED'
+    - 'lower-backyard-lighting.network.REDACTED'
+    - 'USER2-office-desk-lamp.network.REDACTED'
 
 media_player:
   - platform: yamaha
     name: "Surround Sound Receiver"
-    host: REDACTED.10
+    host: 'receiver.network.REDACTED'
     source_ignore:
       - "AUX"
       - "AV1"
@@ -93,43 +93,43 @@ media_player:
 camera:
   - platform: generic
     name: Front Porch
-    still_image_url: https://REDACTED.11/snap.jpeg
-    stream_source: rtsp://REDACTED.3:7447/REDACTED
+    still_image_url: https://front-porch-camera.network.REDACTED/snap.jpeg
+    stream_source: rtsp://cloudkey.network.REDACTED:7447/REDACTED
     verify_ssl: false
   - platform: generic
     name: Driveway
-    still_image_url: https://REDACTED.6/snap.jpeg
-    stream_source: rtsp://REDACTED.3:7447/REDACTED
+    still_image_url: https://driveway-camera.network.REDACTED/snap.jpeg
+    stream_source: rtsp://cloudkey.network.REDACTED:7447/REDACTED
     verify_ssl: false
   - platform: generic
     name: Garage
-    still_image_url: https://REDACTED.7/snap.jpeg
-    stream_source: rtsp://REDACTED.3:7447/REDACTED
+    still_image_url: https://garage-camera.network.REDACTED/snap.jpeg
+    stream_source: rtsp://cloudkey.network.REDACTED:7447/REDACTED
     verify_ssl: false
   - platform: generic
     name: Backyard Gate
-    still_image_url: https://REDACTED.9/snap.jpeg
-    stream_source: rtsp://REDACTED.3:7447/REDACTED
+    still_image_url: https://backyard-gate-camera.network.REDACTED/snap.jpeg
+    stream_source: rtsp://cloudkey.network.REDACTED:7447/REDACTED
     verify_ssl: false
   - platform: generic
     name: Side Yard
-    still_image_url: https://REDACTED.10/snap.jpeg
-    stream_source: rtsp://REDACTED.3:7447/REDACTED
+    still_image_url: https://side-yard-camera.network.REDACTED/snap.jpeg
+    stream_source: rtsp://cloudkey.network.REDACTED:7447/REDACTED
     verify_ssl: false
   - platform: generic
     name: Backyard
-    still_image_url: https://REDACTED.8/snap.jpeg
-    stream_source: rtsp://REDACTED.3:7447/REDACTED
+    still_image_url: https://backyard-camera.network.REDACTED/snap.jpeg
+    stream_source: rtsp://cloudkey.network.REDACTED:7447/REDACTED
     verify_ssl: false
   - platform: generic
     name: Basement
-    still_image_url: https://REDACTED.12/snap.jpeg
-    stream_source: rtsp://REDACTED.3:7447/REDACTED
+    still_image_url: https://basement-camera.network.REDACTED/snap.jpeg
+    stream_source: rtsp://cloudkey.network.REDACTED:7447/REDACTED
     verify_ssl: false
   - platform: generic
     name: Living Room
-    still_image_url: https://REDACTED.13/snap.jpeg
-    stream_source: rtsp://REDACTED.3:7447/yb1q1StMMJm4y3D9
+    still_image_url: https://living-room-camera.network.REDACTED/snap.jpeg
+    stream_source: rtsp://cloudkey.network.REDACTED:7447/yb1q1StMMJm4y3D9
     verify_ssl: false
 
 tts:
@@ -167,10 +167,10 @@ alarm_control_panel:
       pending_time: 30
 
 pi_hole:
-  - host: 'REDACTED.4'
+  - host: 'pihole-01.network.REDACTED'
     name: 'Primary Pi-Hole'
     api_key: !secret primary_pi_hole_api_key
-  - host: 'REDACTED.5'
+  - host: 'pihole-02.network.REDACTED'
     name: 'Secondary Pi-Hole'
     api_key: !secret secondary_pi_hole_api_key
 
@@ -190,7 +190,7 @@ route53:
     - home
 
 influxdb:
-  host: REDACTED.10
+  host: 'influxdb.network.REDACTED'
   database: !secret influxdb_database
   username: !secret influxdb_username
   password: !secret influxdb_password

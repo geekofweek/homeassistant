@@ -76,7 +76,8 @@
         brightness_pct: 100
         color_temp: 447
     - service: light.turn_on
-      entity_id: light.media_center_lighting
+      entity_id: 
+        - light.media_center_lighting
       data:
        transition: 5
        effect: random
@@ -165,7 +166,8 @@
         brightness_pct: 100
         color_temp: 447
     - service: light.turn_on
-      entity_id: light.media_center_lighting
+      entity_id: 
+        - light.media_center_lighting
       data:
        transition: 5
        effect: random
@@ -258,7 +260,8 @@
         brightness_pct: 100
         color_temp: 447
     - service: light.turn_on
-      entity_id: light.media_center_lighting
+      entity_id: 
+        - light.media_center_lighting
       data:
        transition: 30
        effect: random
@@ -492,7 +495,8 @@
       data:
         brightness_pct: 2
     - service: light.turn_on
-      entity_id: light.kitchen_sink
+      entity_id: 
+        - light.kitchen_sink
       data:
        brightness_pct: 2
 
@@ -542,7 +546,8 @@
       data:
         brightness_pct: 2
     - service: light.turn_on
-      entity_id: light.kitchen_sink
+      entity_id: 
+        - light.kitchen_sink
       data:
         brightness_pct: 100
 
@@ -1679,12 +1684,14 @@
     - delay: '00:00:01'
     - service: climate.set_hvac_mode
       data:
-        entity_id: climate.office_fan
+        entity_id: 
+          - climate.office_fan
         hvac_mode: cool
     - delay: '00:00:01'
     - service: fan.oscillate
       data:
-        entity_id: fan.office_fan
+        entity_id: 
+          - fan.office_fan
         oscillating: 'true'
     - service: switch.turn_on
       entity_id:
@@ -1838,7 +1845,8 @@
 
   action:
     - service: light.turn_off
-      entity_id: light.USER1_office_lights
+      entity_id: 
+        - light.USER1_office_lights
 
         ##########################################################
         ## Turn off USER1's Office Lights when No Motion Detected
@@ -1877,7 +1885,8 @@
 
   action:
     - service: light.turn_off
-      entity_id: light.USER1_office_lights
+      entity_id: 
+        - light.USER1_office_lights
 
         ##########################################################
         ## Turn on Dining Room Lights and Bathroom Lights When USER2 Working
@@ -1965,7 +1974,8 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.USER2_s_office_ceiling
+      entity_id: 
+        - light.USER2_s_office_ceiling
       data:
         brightness_pct: 2
 
@@ -2000,7 +2010,8 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.USER2_s_office_ceiling
+      entity_id: 
+        - light.USER2_s_office_ceiling
       data:
         brightness_pct: 100
 
@@ -2035,7 +2046,8 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.USER2_s_office_ceiling
+      entity_id: 
+        - light.USER2_s_office_ceiling
       data:
         brightness_pct: 15
 
@@ -2076,7 +2088,8 @@
 
   action:
     - service: light.turn_off
-      entity_id: light.USER2_s_office_ceiling
+      entity_id: 
+        - light.USER2_s_office_ceiling
     - service: switch.turn_off
       entity_id:
         - switch.USER2_office_desk_lamp
@@ -2124,7 +2137,8 @@
 
   action:
     - service: light.turn_off
-      entity_id: light.USER2_s_office_ceiling
+      entity_id: 
+        - light.USER2_s_office_ceiling
     - service: switch.turn_off
       entity_id:
         - switch.USER2_office_desk_lamp
