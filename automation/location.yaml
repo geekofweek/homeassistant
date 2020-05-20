@@ -896,14 +896,11 @@
         - wed
         - thu
         - fri
-    - condition: or
+    - condition: not
       conditions:
       - condition: state
         entity_id: group.friends_and_family
-        state: 'not_home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'unknown'
+        state: 'home'
 
   action:
     - service: light.turn_off
@@ -1384,6 +1381,17 @@
     - condition: time
       after: '09:00'
       before: '22:00'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: media_player.sonos_living_room
+        state: 'idle'
+      - condition: state
+        entity_id: media_player.sonos_dining_room
+        state: 'idle'
+      - condition: state
+        entity_id: media_player.sonos_kitchen
+        state: 'idle'
 
   action:
     - delay: '00:00:04'
@@ -1433,6 +1441,9 @@
     - condition: time
       after: '09:00'
       before: '22:00'
+    - condition: state
+      entity_id: media_player.sonos_USER2s_office
+      state: 'idle'
 
   action:
     - delay: '00:00:60'
@@ -1470,6 +1481,17 @@
     - condition: time
       after: '09:00'
       before: '22:00'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: media_player.sonos_living_room
+        state: 'idle'
+      - condition: state
+        entity_id: media_player.sonos_dining_room
+        state: 'idle'
+      - condition: state
+        entity_id: media_player.sonos_kitchen
+        state: 'idle'
 
   action:
     - delay: '00:00:04'
@@ -1519,6 +1541,14 @@
     - condition: time
       after: '09:00'
       before: '22:00'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: media_player.sonos_USER1s_office
+        state: 'idle'
+      - condition: state
+        entity_id: media_player.sonos_USER1s_office_move
+        state: 'idle'
 
   action:
     - delay: '00:00:60'
@@ -1562,6 +1592,17 @@
     - condition: time
       after: '09:00'
       before: '22:00'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: media_player.sonos_living_room
+        state: 'idle'
+      - condition: state
+        entity_id: media_player.sonos_dining_room
+        state: 'idle'
+      - condition: state
+        entity_id: media_player.sonos_kitchen
+        state: 'idle'
 
   action:
     - delay: '00:00:03'

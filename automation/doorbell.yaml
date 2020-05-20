@@ -146,9 +146,11 @@
     - condition: state
       entity_id: input_boolean.disable_doorbell
       state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'not_home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
 
   action:
     - service: light.turn_on
@@ -186,9 +188,11 @@
     - condition: state
       entity_id: input_boolean.disable_doorbell
       state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'not_home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
 
   action:
     - service: light.turn_off
@@ -227,9 +231,11 @@
     - condition: state
       entity_id: input_boolean.disable_doorbell
       state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'not_home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
 
   action:
     - service: light.turn_on
@@ -267,9 +273,11 @@
     - condition: state
       entity_id: input_boolean.disable_doorbell
       state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'not_home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
 
   action:
     - service: light.turn_off
@@ -288,152 +296,6 @@
         - light.garage_light
       data:
         brightness_pct: 1
-
-        ##########################################################
-        ## Front Doorbell Bathroom Audio Notification
-        ##########################################################
-
-- alias: Doorbell - Front Doorbell Bathroom Notification
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.ring_front_door_ding
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.disable_doorbell
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.bathroom_occupancy
-      state: 'on'
-
-  action:
-    - service: script.turn_on
-      entity_id: script.say
-      data:
-        variables:
-          master: 'media_player.sonos_bathroom'
-          where: 'media_player.sonos_bathroom'
-          volume: '.6'
-          what: 'Someone is at the Front Door'
-
-        ##########################################################
-        ## Front Doorbell Basement Audio Notification
-        ##########################################################
-
-- alias: Doorbell - Front Doorbell Basement Notification
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.ring_front_door_ding
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.disable_doorbell
-      state: 'off'
-
-  action:
-    - service: script.turn_on
-      entity_id: script.say
-      data:
-        variables:
-          master: 'media_player.sonos_move'
-          where: 'media_player.sonos_move'
-          volume: '.6'
-          what: 'Someone is at the Front Door'
-
-        ##########################################################
-        ## Front Doorbell Kitchen Audio Notification
-        ##########################################################
-
-- alias: Doorbell - Front Doorbell Kitchen Notification
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.ring_front_door_ding
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.disable_doorbell
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.kitchen_occupancy
-      state: 'on'
-
-  action:
-    - service: script.turn_on
-      entity_id: script.say
-      data:
-        variables:
-          master: 'media_player.sonos_kitchen'
-          where: 'media_player.sonos_kitchen'
-          volume: '.6'
-          what: 'Someone is at the Front Door'
-
-        ##########################################################
-        ## Front Doorbell Office Audio Notification
-        ##########################################################
-
-- alias: Doorbell - Front Doorbell Office Notification
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.ring_front_door_ding
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.disable_doorbell
-      state: 'off'
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: binary_sensor.office_occupancy
-          state: 'on'
-        - condition: state
-          entity_id: binary_sensor.USER2_office_occupancy
-          state: 'on'
-
-  action:
-    - service: script.turn_on
-      entity_id: script.say
-      data:
-        variables:
-          master: 'media_player.sonos_USER1s_office'
-          where: 'media_player.sonos_USER1s_office, media_player.sonos_USER1s_office_move, media_player.sonos_USER2s_office'
-          volume: '.6'
-          what: 'Someone is at the Front Door'
 
         ##########################################################
         ## Front Door Camera TV when Doorbell Rings

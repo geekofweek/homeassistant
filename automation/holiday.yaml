@@ -1430,47 +1430,11 @@
       at: '01:55'
 
   condition:
-    condition: or
+    condition: not
     conditions:
       - condition: state
         entity_id: input_select.holiday
-        state: 'Christmas'
-      - condition: state
-        entity_id: input_select.holiday
-        state: 'Halloween'
-      - condition: state
-        entity_id: input_select.holiday
-        state: "St. Patrick's Day"
-      - condition: state
-        entity_id: input_select.holiday
-        state: 'Easter'
-      - condition: state
-        entity_id: input_select.holiday
-        state: "Valentine's Day"
-      - condition: state
-        entity_id: input_select.holiday
-        state: 'Thanksgiving'
-      - condition: state
-        entity_id: input_select.holiday
-        state: 'Labor Day'
-      - condition: state
-        entity_id: input_select.holiday
-        state: 'Memorial Day'
-      - condition: state
-        entity_id: input_select.holiday
-        state: 'Independence Day'
-      - condition: state
-        entity_id: input_select.holiday
-        state: "New Year's Eve"
-      - condition: state
-        entity_id: input_select.holiday
-        state: 'Cardinals Game'
-      - condition: state
-        entity_id: input_select.holiday
-        state: 'Blues Game'
-      - condition: state
-        entity_id: input_select.holiday
-        state: 'Veterans Day'
+        state: 'None'
 
   action:
     - service: light.turn_off

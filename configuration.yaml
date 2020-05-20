@@ -3,12 +3,6 @@
 #################################################################
 
 homeassistant:
-  name: Home
-  latitude: !secret latitude
-  longitude: !secret longitude
-  elevation: !secret elevation
-  unit_system: imperial
-  time_zone: America/Chicago
   customize: !include customize.yaml
 frontend:
 updater:
@@ -26,9 +20,6 @@ stream:
 http:
   ssl_certificate: !secret ssl_certificate
   ssl_key: !secret ssl_key
-  base_url: !secret base_url
-  #ip_ban_enabled: true
-  #login_attempts_threshold: 10
 
 #################################################################
 ## Components
@@ -152,7 +143,7 @@ alarm_control_panel:
   - platform: manual
     name: Alarm
     code_arm_required: false
-    pending_time: 30
+    arming_time: 30
     delay_time: 30
     trigger_time: 120
     disarmed:
@@ -160,19 +151,11 @@ alarm_control_panel:
     armed_home:
       delay_time: 30
       trigger_time: 60
-      pending_time: 30
+      arming_time: 30
     armed_away:
       delay_time: 15
       trigger_time: 120
-      pending_time: 30
-
-pi_hole:
-  - host: 'pihole-01.network.REDACTED'
-    name: 'Primary Pi-Hole'
-    api_key: !secret primary_pi_hole_api_key
-  - host: 'pihole-02.network.REDACTED'
-    name: 'Secondary Pi-Hole'
-    api_key: !secret secondary_pi_hole_api_key
+      arming_time: 30
 
 hacs:
   token: !secret githubtoken

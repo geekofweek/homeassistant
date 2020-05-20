@@ -14,17 +14,16 @@
       to: 'on'
 
   condition:
-    - condition: state
-      entity_id: group.household
-      state: 'not_home'
-    - condition: or
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+    - condition: not
       conditions:
       - condition: state
         entity_id: group.friends_and_family
-        state: 'not_home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'unknown'
+        state: 'home'
 
   action:
     - service: homeassistant.turn_on
@@ -116,9 +115,11 @@
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'not_home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
 
   action:
     - service: homeassistant.turn_on

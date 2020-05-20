@@ -227,25 +227,17 @@
       above: 99
   #  coronavirus override
   #  remove after quarantine
-  #  - condition: or
+  #  - condition: not
   #    conditions:
   #    - condition: state
   #      entity_id: person.USER2
-  #      state: 'not_home'
-  #    - condition: state
-  #      entity_id: person.USER2
-  #      state: 'Lake'
-  #    - condition: state
-  #      entity_id: person.USER2
-  #      state: 'REDACTED'
-    - condition: or
+  #      state: 'home'
+    - condition: not
       conditions:
       - condition: state
         entity_id: group.friends_and_family
-        state: 'not_home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'unknown'
+        state: 'home'
+
 
   action:
     - service: vacuum.start
@@ -279,20 +271,19 @@
     - condition: state
       entity_id: vacuum.upstairs_roomba
       state: 'docked'
-    - condition: state
-      entity_id: group.household
-      state: 'not_home'
     - condition: numeric_state
       entity_id: sensor.upstairs_roomba_battery_level
       above: 99
-    - condition: or
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+    - condition: not
       conditions:
       - condition: state
         entity_id: group.friends_and_family
-        state: 'not_home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'unknown'
+        state: 'home'
 
   action:
     - service: vacuum.start
@@ -329,27 +320,20 @@
     - condition: state
       entity_id: input_select.remote
       state: 'PowerOff'
-  #  coronavirus override
-  #  remove after quarantine
-  #  - condition: or
-  #    conditions:
-  #    - condition: state
-  #      entity_id: person.USER2
-  #      state: 'not_home'
-  #    - condition: state
-  #      entity_id: person.USER2
-  #      state: 'Lake'
-  #    - condition: state
-  #      entity_id: person.USER2
-  #      state: 'REDACTED'
-    - condition: or
+    - condition: state
+      entity_id: binary_sensor.living_room_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.dining_room_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.kitchen_motion
+      state: 'off'
+    - condition: not
       conditions:
       - condition: state
         entity_id: group.friends_and_family
-        state: 'not_home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'unknown'
+        state: 'home'
 
   action:
     - service: vacuum.start
@@ -406,25 +390,16 @@
     - condition: state
       entity_id: person.USER1
       state: 'home'
-    - condition: or
+    - condition: not
       conditions:
       - condition: state
         entity_id: person.USER2
-        state: 'not_home'
-      - condition: state
-        entity_id: person.USER2
-        state: 'Lake'
-      - condition: state
-        entity_id: person.USER2
-        state: 'REDACTED'
-    - condition: or
+        state: 'home'
+    - condition: not
       conditions:
       - condition: state
         entity_id: group.friends_and_family
-        state: 'not_home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'unknown'
+        state: 'home'
 
   action:
     - service: vacuum.start
@@ -477,14 +452,11 @@
     - condition: state
       entity_id: binary_sensor.upstairs_bathroom_motion
       state: 'off'
-    - condition: or
+    - condition: not
       conditions:
       - condition: state
         entity_id: group.friends_and_family
-        state: 'not_home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'unknown'
+        state: 'home'
 
   action:
     - service: vacuum.start
@@ -534,27 +506,11 @@
     - condition: state
       entity_id: binary_sensor.upstairs_bathroom_motion
       state: 'off'
-#  coronavirus override
-#  remove after quarantine
-#    - condition: or
-#      conditions:
-#      - condition: state
-#        entity_id: person.USER2
-#        state: 'not_home'
-#      - condition: state
-#        entity_id: person.USER2
-#        state: 'Lake'
-#      - condition: state
-#        entity_id: person.USER2
-#        state: 'REDACTED'
-    - condition: or
+    - condition: not
       conditions:
       - condition: state
         entity_id: group.friends_and_family
-        state: 'not_home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'unknown'
+        state: 'home'
 
   action:
     - service: vacuum.start
@@ -600,25 +556,16 @@
       state: 'home'
 #  coronavirus override
 #  remove after quarantine
-#    - condition: or
+#    - condition: not
 #      conditions:
 #      - condition: state
 #        entity_id: person.USER2
-#        state: 'not_home'
-#      - condition: state
-#        entity_id: person.USER2
-#        state: 'Lake'
-#      - condition: state
-#        entity_id: person.USER2
-#        state: 'REDACTED'
-    - condition: or
+#        state: 'home'
+    - condition: not
       conditions:
       - condition: state
         entity_id: group.friends_and_family
-        state: 'not_home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'unknown'
+        state: 'home'
 
   action:
     - service: vacuum.start
@@ -640,20 +587,19 @@
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'not_home'
     - condition: sun
       after: sunset
       after_offset: "-00:90:00"
-    - condition: or
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+    - condition: not
       conditions:
       - condition: state
         entity_id: group.friends_and_family
-        state: 'not_home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'unknown'
+        state: 'home'
 
   action:
     - service: light.turn_on
@@ -698,19 +644,18 @@
       entity_id: input_boolean.disable_roomba
       state: 'off'
     - condition: state
-      entity_id: group.household
-      state: 'not_home'
-    - condition: state
       entity_id: vacuum.main_floor_roomba
       state: 'cleaning'
-    - condition: or
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+    - condition: not
       conditions:
       - condition: state
         entity_id: group.friends_and_family
-        state: 'not_home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'unknown'
+        state: 'home'
 
   action:
     - service: light.turn_on
@@ -956,15 +901,17 @@
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'not_home'
     - condition: sun
       after: sunset
       after_offset: "-00:90:00"
     - condition: state
       entity_id: group.interior_lights
       state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
 
   action:
     - service: light.turn_off
@@ -1126,9 +1073,11 @@
     - condition: sun
       after: sunset
       after_offset: "-00:90:00"
-    - condition: state
-      entity_id: group.household
-      state: 'not_home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
 
   action:
     - service: light.turn_off
@@ -1203,7 +1152,7 @@
       state: 'off'
     - condition: time
       after: '10:01'
-      before: '17:00'
+      before: '18:00'
     - condition: state
       entity_id: vacuum.main_floor_roomba
       state: 'docked'
@@ -1220,14 +1169,11 @@
         - wed
         - thu
         - fri
-    - condition: or
+    - condition: not
       conditions:
       - condition: state
         entity_id: group.friends_and_family
-        state: 'not_home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'unknown'
+        state: 'home'
 
   action:
     - service: vacuum.start
@@ -1634,14 +1580,11 @@
     - condition: numeric_state
       entity_id: sensor.main_floor_roomba_battery_level
       above: 99
-    - condition: or
+    - condition: not
       conditions:
       - condition: state
         entity_id: group.friends_and_family
-        state: 'not_home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'unknown'
+        state: 'home'
 
   action:
     - service: notify.mobile_app_USER2_s_iphone
@@ -1681,14 +1624,20 @@
     - condition: state
       entity_id: input_select.remote
       state: 'PowerOff'
-    - condition: or
+    - condition: state
+      entity_id: binary_sensor.living_room_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.dining_room_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.kitchen_motion
+      state: 'off'
+    - condition: not
       conditions:
       - condition: state
         entity_id: group.friends_and_family
-        state: 'not_home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'unknown'
+        state: 'home'
 
   action:
     - service: notify.mobile_app_USER2_s_iphone
@@ -1747,14 +1696,11 @@
     - condition: state
       entity_id: binary_sensor.upstairs_bathroom_motion
       state: 'off'
-    - condition: or
+    - condition: not
       conditions:
       - condition: state
         entity_id: group.friends_and_family
-        state: 'not_home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'unknown'
+        state: 'home'
 
   action:
     - service: notify.mobile_app_USER2_s_iphone
@@ -1810,14 +1756,11 @@
     - condition: state
       entity_id: binary_sensor.upstairs_bathroom_motion
       state: 'off'
-    - condition: or
+    - condition: not
       conditions:
       - condition: state
         entity_id: group.friends_and_family
-        state: 'not_home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'unknown'
+        state: 'home'
 
   action:
     - service: notify.mobile_app_USER2_s_iphone
@@ -1864,14 +1807,11 @@
     - condition: state
       entity_id: person.USER1
       state: 'home'
-    - condition: or
+    - condition: not
       conditions:
       - condition: state
         entity_id: group.friends_and_family
-        state: 'not_home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'unknown'
+        state: 'home'
 
   action:
     - service: notify.mobile_app_USER2_s_iphone

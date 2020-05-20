@@ -1150,20 +1150,11 @@
      at: '06:00'
 
   condition:
-    condition: or
+    condition: not
     conditions:
       - condition: state
         entity_id: media_player.bedroom_appletv
-        state: 'paused'
-      - condition: state
-        entity_id: media_player.bedroom_appletv
-        state: 'idle'
-      - condition: state
-        entity_id: media_player.bedroom_appletv
-        state: 'off'
-      - condition: state
-        entity_id: media_player.bedroom_appletv
-        state: 'unknown'
+        state: 'playing'
 
   action:
     - service: input_select.select_option

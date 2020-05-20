@@ -131,6 +131,11 @@
     - condition: state
       entity_id: switch.winter_mode
       state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: weather.REDACTED
+        state: 'rainy'
 
   action:
     - service: switch.turn_on
@@ -163,6 +168,11 @@
     - condition: state
       entity_id: switch.winter_mode
       state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: weather.REDACTED
+        state: 'rainy'
 
   action:
     - service: switch.turn_on

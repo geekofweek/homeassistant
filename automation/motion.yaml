@@ -38,20 +38,11 @@
       - condition: state
         entity_id: group.friends_and_family
         state: 'home'
-    - condition: or
+    - condition: not
       conditions:
       - condition: state
         entity_id: media_player.living_room_appletv
-        state: 'paused'
-      - condition: state
-        entity_id: media_player.living_room_appletv
-        state: 'idle'
-      - condition: state
-        entity_id: media_player.living_room_appletv
-        state: 'unknown'
-      - condition: state
-        entity_id: media_player.living_room_appletv
-        state: 'off'
+        state: 'playing'
     - condition: or
       conditions:
       - condition: state
@@ -128,20 +119,11 @@
       - condition: state
         entity_id: group.friends_and_family
         state: 'home'
-    - condition: or
+    - condition: not
       conditions:
       - condition: state
         entity_id: media_player.living_room_appletv
-        state: 'paused'
-      - condition: state
-        entity_id: media_player.living_room_appletv
-        state: 'idle'
-      - condition: state
-        entity_id: media_player.living_room_appletv
-        state: 'unknown'
-      - condition: state
-        entity_id: media_player.living_room_appletv
-        state: 'off'
+        state: 'playing'
     - condition: or
       conditions:
       - condition: state
@@ -222,20 +204,11 @@
       - condition: state
         entity_id: group.friends_and_family
         state: 'home'
-    - condition: or
+    - condition: not
       conditions:
       - condition: state
         entity_id: media_player.living_room_appletv
-        state: 'paused'
-      - condition: state
-        entity_id: media_player.living_room_appletv
-        state: 'idle'
-      - condition: state
-        entity_id: media_player.living_room_appletv
-        state: 'unknown'
-      - condition: state
-        entity_id: media_player.living_room_appletv
-        state: 'off'
+        state: 'playing'
     - condition: or
       conditions:
       - condition: state
@@ -333,14 +306,11 @@
     - condition: state
       entity_id: sun.sun
       state: 'above_horizon'
-    - condition: or
+    - condition: not
       conditions:
       - condition: state
         entity_id: group.friends_and_family
-        state: 'not_home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'unknown'
+        state: 'home'
 
   action:
     - service: light.turn_off
@@ -379,25 +349,16 @@
     - condition: state
       entity_id: sun.sun
       state: 'above_horizon'
-    - condition: or
+    - condition: not
       conditions:
       - condition: state
         entity_id: person.USER2
-        state: 'not_home'
-      - condition: state
-        entity_id: person.USER2
-        state: 'Lake'
-      - condition: state
-        entity_id: person.USER2
-        state: 'REDACTED'
-    - condition: or
+        state: 'home'
+    - condition: not
       conditions:
       - condition: state
         entity_id: group.friends_and_family
-        state: 'not_home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'unknown'
+        state: 'home'
 
   action:
     - service: light.turn_off
@@ -743,25 +704,16 @@
     - condition: state
       entity_id: sun.sun
       state: 'above_horizon'
-    - condition: or
+    - condition: not
       conditions:
       - condition: state
         entity_id: person.USER2
-        state: 'not_home'
-      - condition: state
-        entity_id: person.USER2
-        state: 'Lake'
-      - condition: state
-        entity_id: person.USER2
-        state: 'REDACTED'
-    - condition: or
+        state: 'home'
+    - condition: not
       conditions:
       - condition: state
         entity_id: group.friends_and_family
-        state: 'not_home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'unknown'
+        state: 'home'
 
   action:
     - service: light.turn_off
@@ -1126,25 +1078,16 @@
     - condition: state
       entity_id: sun.sun
       state: 'above_horizon'
-    - condition: or
+    - condition: not
       conditions:
       - condition: state
         entity_id: person.USER2
-        state: 'not_home'
-      - condition: state
-        entity_id: person.USER2
-        state: 'Lake'
-      - condition: state
-        entity_id: person.USER2
-        state: 'REDACTED'
-    - condition: or
+        state: 'home'
+    - condition: not
       conditions:
       - condition: state
         entity_id: group.friends_and_family
-        state: 'not_home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'unknown'
+        state: 'home'
 
   action:
     - service: light.turn_off
@@ -1312,17 +1255,14 @@
     - condition: time
       after: '07:00'
       before: '22:00'
-    - condition: or
+    - condition: not
       conditions:
       - condition: state
         entity_id: vacuum.upstairs_roomba
-        state: 'docked'
+        state: 'cleaning'
       - condition: state
         entity_id: vacuum.upstairs_roomba
-        state: 'paused'
-      - condition: state
-        entity_id: vacuum.upstairs_roomba
-        state: 'stopped'
+        state: 'returning'
 
   action:
     - service: light.turn_off
@@ -1361,17 +1301,14 @@
     - condition: time
       after: '22:00'
       before: '07:00'
-    - condition: or
+    - condition: not
       conditions:
       - condition: state
         entity_id: vacuum.upstairs_roomba
-        state: 'docked'
+        state: 'cleaning'
       - condition: state
         entity_id: vacuum.upstairs_roomba
-        state: 'paused'
-      - condition: state
-        entity_id: vacuum.upstairs_roomba
-        state: 'stopped'
+        state: 'returning'
 
   action:
     - service: light.turn_off
@@ -1474,17 +1411,14 @@
     - condition: state
       entity_id: light.basement_lighting
       state: 'on'
-    - condition: or
+    - condition: not
       conditions:
       - condition: state
         entity_id: vacuum.basement_roomba
-        state: 'docked'
+        state: 'cleaning'
       - condition: state
         entity_id: vacuum.basement_roomba
-        state: 'paused'
-      - condition: state
-        entity_id: vacuum.basement_roomba
-        state: 'stopped'
+        state: 'returning'
 
   action:
     - service: light.turn_off
@@ -1520,10 +1454,14 @@
     - condition: time
       after: '22:00'
       before: '07:00'
-    - condition: state
-      entity_id: vacuum.basement_roomba
-      state: 'docked'
-
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.basement_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.basement_roomba
+        state: 'returning'
 
   action:
     - service: light.turn_off
@@ -1871,17 +1809,14 @@
     - condition: state
       entity_id: light.USER1_office_lights
       state: 'on'
-    - condition: or
+    - condition: not
       conditions:
       - condition: state
         entity_id: vacuum.upstairs_roomba
-        state: 'docked'
+        state: 'cleaning'
       - condition: state
         entity_id: vacuum.upstairs_roomba
-        state: 'paused'
-      - condition: state
-        entity_id: vacuum.upstairs_roomba
-        state: 'stopped'
+        state: 'returning'
 
   action:
     - service: light.turn_off
@@ -2074,17 +2009,14 @@
     - condition: state
       entity_id: light.USER2_s_office_ceiling
       state: 'on'
-    - condition: or
+    - condition: not
       conditions:
       - condition: state
         entity_id: vacuum.upstairs_roomba
-        state: 'docked'
+        state: 'cleaning'
       - condition: state
         entity_id: vacuum.upstairs_roomba
-        state: 'paused'
-      - condition: state
-        entity_id: vacuum.upstairs_roomba
-        state: 'stopped'
+        state: 'returning'
 
   action:
     - service: light.turn_off
@@ -2123,17 +2055,14 @@
     - condition: time
       after: '23:00'
       before: '07:00'
-    - condition: or
+    - condition: not
       conditions:
       - condition: state
         entity_id: vacuum.upstairs_roomba
-        state: 'docked'
+        state: 'cleaning'
       - condition: state
         entity_id: vacuum.upstairs_roomba
-        state: 'paused'
-      - condition: state
-        entity_id: vacuum.upstairs_roomba
-        state: 'stopped'
+        state: 'returning'
 
   action:
     - service: light.turn_off
