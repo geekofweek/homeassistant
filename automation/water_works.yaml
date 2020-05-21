@@ -207,6 +207,9 @@
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_startup_notifications
+      state: 'off'
 
   action:
     - service: notify.mobile_app_USER1s_iphone

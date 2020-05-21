@@ -4,18 +4,10 @@
 
 homeassistant:
   customize: !include customize.yaml
-frontend:
+default_config:
 updater:
   reporting: false
-sun:
 discovery:
-config:
-person:
-system_health:
-mobile_app:
-ssdp:
-zeroconf:
-map:
 stream:
 http:
   ssl_certificate: !secret ssl_certificate
@@ -27,7 +19,7 @@ http:
 
 hue:
   bridges:
-    - host: 'REDACTED.2'
+    - host: REDACTED.2
       allow_hue_groups: false
       allow_unreachable: true
 

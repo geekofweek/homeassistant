@@ -334,6 +334,11 @@
       - condition: state
         entity_id: group.friends_and_family
         state: 'home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: person.USER2
+        state: 'home'
 
   action:
     - service: vacuum.start
@@ -510,6 +515,11 @@
       conditions:
       - condition: state
         entity_id: group.friends_and_family
+        state: 'home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: person.USER2
         state: 'home'
 
   action:
@@ -1592,59 +1602,6 @@
         message: Main Floor Roomba will Run in 5 Mins
 
         ##########################################################
-        ## Run Main Floor Roomba Weekends iOS Notification
-        ##########################################################
-
-- alias: Roomba - Run Main Floor Roomba Weekends iOS Notification
-
-  trigger:
-   - platform: time
-     at: '12:55'
-
-  condition:
-    - condition: state
-      entity_id: person.USER2
-      state: 'home'
-    - condition: state
-      entity_id: input_boolean.disable_roomba
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.main_floor_roomba_ran
-      state: 'off'
-    - condition: time
-      weekday:
-        - sat
-        - sun
-    - condition: state
-      entity_id: vacuum.main_floor_roomba
-      state: 'docked'
-    - condition: numeric_state
-      entity_id: sensor.main_floor_roomba_battery_level
-      above: 99
-    - condition: state
-      entity_id: input_select.remote
-      state: 'PowerOff'
-    - condition: state
-      entity_id: binary_sensor.living_room_motion
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.dining_room_motion
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.kitchen_motion
-      state: 'off'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
-
-  action:
-    - service: notify.mobile_app_USER2_s_iphone
-      data:
-        message: Main Floor Roomba will Run in 5 Mins
-
-        ##########################################################
         ## Run Upstairs Roomba Weekdays iOS Notification
         ##########################################################
 
@@ -1677,66 +1634,6 @@
         - fri
     - condition: state
       entity_id: vacuum.upstairs_roomba
-      state: 'docked'
-    - condition: numeric_state
-      entity_id: sensor.upstairs_roomba_battery_level
-      above: 99
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: binary_sensor.USER1s_office_motion
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.USER2s_office_motion
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.stairs_motion
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.upstairs_bathroom_motion
-      state: 'off'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
-
-  action:
-    - service: notify.mobile_app_USER2_s_iphone
-      data:
-        message: Upstairs Roomba will Run in 5 Mins
-
-        ##########################################################
-        ## Run Upstairs Roomba Weekends iOS Notification
-        ##########################################################
-
-- alias: Roomba - Run Upstairs Roomba Weekends iOS Notification
-
-  trigger:
-   - platform: time
-     at: '15:55'
-   - platform: time
-     at: '16:25'
-   - platform: time
-     at: '16:55'
-
-  condition:
-    - condition: state
-      entity_id: person.USER2
-      state: 'home'
-    - condition: state
-      entity_id: input_boolean.disable_roomba
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.upstairs_roomba_ran
-      state: 'off'
-    - condition: time
-      weekday:
-        - sat
-        - sun
-    - condition: state
-      entity_id: vacuum.main_floor_roomba
       state: 'docked'
     - condition: numeric_state
       entity_id: sensor.upstairs_roomba_battery_level
