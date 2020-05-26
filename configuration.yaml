@@ -149,13 +149,6 @@ alarm_control_panel:
       trigger_time: 120
       arming_time: 30
 
-hacs:
-  token: !secret githubtoken
-  sidepanel_title: Community Store
-  sidepanel_icon: mdi:home-assistant
-  appdaemon: false
-  python_script: false
-
 route53:
   aws_access_key_id: !secret aws_access_key_id_route53
   aws_secret_access_key: !secret aws_secret_access_key_route53

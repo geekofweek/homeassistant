@@ -35,7 +35,7 @@
         fan_min_on_time: '15'
 
         ##########################################################
-        ## 
+        ## Set Thermostat Away
         ##########################################################
 
 - alias: Climate - Away
@@ -313,7 +313,7 @@
         seconds: 0
     - platform: numeric_state
       entity_id: sensor.REDACTED_temperature
-      above: 84
+      above: 82
       for:
         hours: 0
         minutes: 30
@@ -361,7 +361,7 @@
     - platform: numeric_state
       entity_id: sensor.REDACTED_temperature
       above: 65
-      below: 78
+      below: 75
       for:
         hours: 0
         minutes: 30
@@ -429,10 +429,10 @@
         hvac_mode: heat
 
         ##########################################################
-        ## Summer Mode On Turn on AC
+        ## Summer Mode On Turn on Cool
         ##########################################################
 
-- alias: Climate - Summer Mode On Turn on AC
+- alias: Climate - Summer Mode On Turn on Cool
 
   trigger:
     - platform: state
@@ -495,11 +495,13 @@
       entity_id: group.household
       state: 'home'
     - condition: state
-      entity_id: switch.summer_mode
-      state: 'on'
-    - condition: state
       entity_id: input_boolean.disable_climate
       state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: switch.winter_mode
+        state: 'on'
 
   action:
     - service: homeassistant.turn_on
@@ -529,12 +531,6 @@
 
   condition:
     - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: group.overnight_guests
-      state: 'home'
-    - condition: state
       entity_id: input_boolean.guest_mode
       state: 'on'
     - condition: state
@@ -543,6 +539,12 @@
     - condition: state
       entity_id: input_boolean.disable_climate
       state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.overnight_guests
+      state: 'home'
 
   action:
     - service: climate.set_preset_mode
@@ -566,11 +568,14 @@
       after: '00:00'
       before: '04:59'
     - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
       entity_id: input_boolean.disable_climate
       state: 'off'
+    - condition: state
+      entity_id: group.overnight_guests
+      state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
     - service: climate.set_preset_mode
@@ -721,19 +726,16 @@
         option: 'None'
 
         ##########################################################
-        ## Adjust Thermostat at 2p when Hot
+        ## Adjust Thermostat at Noon when Hot
         ##########################################################
 
-- alias: Climate - Adjust Thermostat at 2p when Hot
+- alias: Climate - Adjust Thermostat at Noon when Hot
 
   trigger:
     - platform: time
-      at: '14:00'
+      at: '12:00'
 
   condition:
-    - condition: state
-      entity_id: person.USER1
-      state: 'home'
     - condition: state
       entity_id: input_boolean.thermostat_away
       state: 'off'
@@ -753,6 +755,12 @@
         - wed
         - thu
         - fri
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
     - service: climate.set_preset_mode
@@ -761,10 +769,10 @@
         preset_mode: 'Upstairs'
 
         ##########################################################
-        ## Adjust Thermostat when over 80
+        ## Adjust Thermostat at 1p when Hot
         ##########################################################
 
-- alias: Climate - Adjust Thermostat at 2p when Hot
+- alias: Climate - Adjust Thermostat at 1p when Hot
 
 
   trigger:
@@ -778,9 +786,6 @@
 
   condition:
     - condition: state
-      entity_id: person.USER1
-      state: 'home'
-    - condition: state
       entity_id: input_boolean.thermostat_away
       state: 'off'
     - condition: state
@@ -790,7 +795,7 @@
       entity_id: input_boolean.disable_climate
       state: 'off'
     - condition: time
-      after: '14:00'
+      after: '12:00'
       before: '19:00'
     - condition: time
       weekday:
@@ -799,6 +804,12 @@
         - wed
         - thu
         - fri
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
     - service: climate.set_preset_mode
@@ -823,9 +834,6 @@
     - condition: state
       entity_id: input_boolean.thermostat_away
       state: 'off'
-    - condition: state
-      entity_id: switch.summer_mode
-      state: 'on'
     - condition: state
       entity_id: input_boolean.disable_climate
       state: 'off'
