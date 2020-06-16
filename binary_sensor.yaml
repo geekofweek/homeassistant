@@ -39,6 +39,15 @@
     scan_interval: 60
 
         ##########################################################
+        ## REDACTEDny VPN Monitor
+        ##########################################################
+
+  - platform: ping
+    host: REDACTEDny-router.network.REDACTED
+    name: REDACTEDny VPN
+    scan_interval: 60
+
+        ##########################################################
         ## Living Room Camera Monitor
         ##########################################################
 
@@ -70,3 +79,14 @@
           seconds: 1
         value_template: >-
           {{ states('sensor.sump_pump_current_power')| int >= 1  }}
+
+        ##########################################################
+        ## Washer Tub Clean
+        ##########################################################
+
+  - platform: template
+    sensors:
+      washer_tub_clean_on:
+        friendly_name: "Washer Tub Clean"
+        device_class: problem
+        value_template: "{{ states('sensor.washer_tub_clean')|float > 29 }}"

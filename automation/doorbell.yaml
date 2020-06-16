@@ -329,7 +329,7 @@
     - service: camera.play_stream
       data:
         entity_id: camera.front_porch
-        media_player: media_player.living_room_apple_tv
+        media_player: media_player.living_room_appletv
 
         ##########################################################
         ## Front Door Camera TV when Doorbell Rings and Motion Detected
@@ -369,7 +369,7 @@
     - service: camera.play_stream
       data:
         entity_id: camera.front_porch
-        media_player: media_player.living_room_apple_tv
+        media_player: media_player.living_room_appletv
     - service: input_select.select_option
       data:
         entity_id: input_select.remote
@@ -413,7 +413,7 @@
     - service: camera.play_stream
       data:
         entity_id: camera.front_porch
-        media_player: media_player.office_appletv
+        media_player: media_player.USER1_s_office_apple_tv
     - service: input_select.select_option
       data:
         entity_id: input_select.office_remote
@@ -457,7 +457,7 @@
     - service: camera.play_stream
       data:
         entity_id: camera.front_porch
-        media_player: media_player.office_appletv
+        media_player: media_player.USER1_s_office_apple_tv
 
         ##########################################################
         ## Front Door Camera Bedroom TV when Doorbell Rings

@@ -250,55 +250,265 @@
         - switch.att_router
 
         ##########################################################
+        ## Turn on Garage Fan (Network Cooling) when above 80 Degrees
+        ##########################################################
+
+- alias: network - Turn on Garage Fan when above 80 Degrees
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.garage_temperature
+      above: 87
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.garage_fan
+
+        ##########################################################
+        ## Turn off Garage Fan (Network Cooling) when below 80 Degrees
+        ##########################################################
+
+- alias: network - Turn off Garage Fan when below 80 Degrees
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.garage_temperature
+      below: 87
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.garage_fan
+
+        ##########################################################
         ## Household Away Turn on Camera POE
         ##########################################################
 
-#- alias: Network - Household Away Turn on Camera POE
+- alias: Network - Household Away Turn on Camera POE
 
-#  trigger:
-#    - platform: state
-#      entity_id: group.household
-#      from: 'home'
-#      to: 'not_home'
-#      for:
-#        hours: 0
-#        minutes: 1
-#        seconds: 0
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
 
-#  condition:
-#    - condition: state
-#      entity_id: input_boolean.disable_home_away
-#      state: 'off'
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
 
-#  action:
-#    - service: switch.turn_on
-#      entity_id:
-#        - switch.living_room_camera
-#        - switch.basement_camera
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.living_room_camera
+        - switch.basement_camera
 
         ##########################################################
         ## Household Home Turn off Camera POE
         ##########################################################
 
-#- alias: Network - Household Home Turn off Camera POE
+- alias: Network - Household Home Turn off Camera POE
 
-#  trigger:
-#    - platform: state
-#      entity_id: group.household
-#      from: 'not_home'
-#      to: 'home'
-#      for:
-#        hours: 0
-#        minutes: 1
-#        seconds: 0
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'not_home'
+      to: 'home'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
 
-#  condition:
-#    - condition: state
-#      entity_id: input_boolean.disable_home_away
-#      state: 'off'
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
 
-#  action:
-#    - service: switch.turn_off
-#      entity_id:
-#        - switch.living_room_camera
-#        - switch.basement_camera
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.living_room_camera
+        - switch.basement_camera
+
+#################################################################
+## Notifications
+#################################################################
+
+        #################################################################
+        ## REDACTED VPN Offline iOS Notification
+        #################################################################
+
+- alias: Network - REDACTED VPN Offline iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.REDACTED_vpn
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.mobile_app_USER1s_iphone
+      data:
+        message: REDACTED VPN Offline
+        data:
+          apns_headers:
+           'apns-collapse-id': 'system-roc-vpn-offline'
+
+        #################################################################
+        ## REDACTED VPN Online iOS Notification
+        #################################################################
+
+- alias: Network - REDACTED VPN Online iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.REDACTED_vpn
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.mobile_app_USER1s_iphone
+      data:
+        message: REDACTED VPN Online
+        data:
+          apns_headers:
+           'apns-collapse-id': 'system-roc-vpn-online'
+
+        #################################################################
+        ## REDACTED VPN Offline iOS Notification
+        #################################################################
+
+- alias: Network - REDACTED VPN Offline iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.REDACTED_vpn
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.mobile_app_USER1s_iphone
+      data:
+        message: REDACTED VPN Offline
+        data:
+          apns_headers:
+           'apns-collapse-id': 'system-chs-vpn-offline'
+
+        #################################################################
+        ## REDACTED VPN Online iOS Notification
+        #################################################################
+
+- alias: Network - REDACTED VPN Online iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.REDACTED_vpn
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.mobile_app_USER1s_iphone
+      data:
+        message: REDACTED VPN Online
+        data:
+          apns_headers:
+           'apns-collapse-id': 'system-chs-vpn-online'
+
+        #################################################################
+        ## REDACTED VPN Offline iOS Notification
+        #################################################################
+
+- alias: Network - REDACTED VPN Offline iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.REDACTED_vpn
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.mobile_app_USER1s_iphone
+      data:
+        message: REDACTED VPN Offline
+        data:
+          apns_headers:
+           'apns-collapse-id': 'system-REDACTED-vpn-offline'
+
+        #################################################################
+        ## REDACTED VPN Online iOS Notification
+        #################################################################
+
+- alias: Network - REDACTED VPN Online iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.REDACTED_vpn
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.mobile_app_USER1s_iphone
+      data:
+        message: REDACTED VPN Online
+        data:
+          apns_headers:
+           'apns-collapse-id': 'system-REDACTED-vpn-online'

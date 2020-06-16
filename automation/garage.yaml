@@ -99,6 +99,8 @@
        entity_id: light.garage_interior
        cycles: '5'
     - delay: '00:00:05'
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.garage_door_motor
     - service: cover.close_cover
       entity_id: cover.garage_door
 
@@ -167,6 +169,8 @@
        entity_id: light.garage_interior
        cycles: '5'
     - delay: '00:00:05'
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.garage_door_motor
     - service: cover.close_cover
       entity_id: cover.garage_door
 

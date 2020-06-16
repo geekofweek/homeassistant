@@ -46,7 +46,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 10
+        minutes: 5
         seconds: 0
 
   condition:
@@ -225,19 +225,11 @@
     - condition: numeric_state
       entity_id: sensor.main_floor_roomba_battery_level
       above: 99
-  #  coronavirus override
-  #  remove after quarantine
-  #  - condition: not
-  #    conditions:
-  #    - condition: state
-  #      entity_id: person.USER2
-  #      state: 'home'
     - condition: not
       conditions:
       - condition: state
         entity_id: group.friends_and_family
         state: 'home'
-
 
   action:
     - service: vacuum.start
@@ -457,6 +449,9 @@
     - condition: state
       entity_id: binary_sensor.upstairs_bathroom_motion
       state: 'off'
+    - condition: state
+      entity_id: binary_sensor.USER2_office_occupancy
+      state: 'off'
     - condition: not
       conditions:
       - condition: state
@@ -564,13 +559,16 @@
     - condition: state
       entity_id: person.USER1
       state: 'home'
-#  coronavirus override
-#  remove after quarantine
-#    - condition: not
-#      conditions:
-#      - condition: state
-#        entity_id: person.USER2
-#        state: 'home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.washer
+        state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.dryer
+        state: 'on'
     - condition: not
       conditions:
       - condition: state
@@ -1652,6 +1650,9 @@
       state: 'off'
     - condition: state
       entity_id: binary_sensor.upstairs_bathroom_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.USER2_office_occupancy
       state: 'off'
     - condition: not
       conditions:

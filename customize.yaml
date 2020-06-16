@@ -160,7 +160,7 @@
         ##########################################################
 
   binary_sensor.REDACTED_vpn:
-    icon: mdi:lan-connect
+    icon: mdi:lan-pending
     friendly_name: REDACTED VPN
 
         ##########################################################
@@ -168,8 +168,16 @@
         ##########################################################
 
   binary_sensor.REDACTED_vpn:
-    icon: mdi:lan-connect
+    icon: mdi:lan-pending
     friendly_name: REDACTED VPN
+
+        ##########################################################
+        ## REDACTEDny VPN Sensor
+        ##########################################################
+
+  binary_sensor.REDACTEDny_vpn:
+    icon: mdi:lan-pending
+    friendly_name: REDACTEDny VPN
 
 #################################################################
 ## Water Sensors
@@ -272,7 +280,7 @@
 
   switch.backyard_lighting:
     icon: mdi:gate
-    friendly_name: Backyard Lighting
+    friendly_name: Backyard Landscape Lighting
 
         ##########################################################
         ## Living Room Random Color Switch
@@ -601,6 +609,14 @@
   sensor.dryer_error:
     icon: mdi:tumble-dryer-alert
     friendly_name: Dryer Error
+
+        ##########################################################
+        ## Washer Tub Clean
+        ##########################################################
+
+  binary_sensor.washer_tub_clean_on:
+    icon: mdi:washing-machine-alert
+    friendly_name: Washer Tub Clean Required
 
 #################################################################
 ## Sump Pump
