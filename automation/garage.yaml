@@ -384,11 +384,15 @@
       event_data:
         domain: cover
         service: close_cover
+        service_data:
+          entity_id: cover.garage_door
     - platform: event
       event_type: call_service
       event_data:
         domain: cover
         service: open_cover
+        service_data:
+          entity_id: cover.garage_door
 
   action:
     - service: homeassistant.turn_on
@@ -407,7 +411,7 @@
       for:
         hours: 0
         minutes: 0
-        seconds: 13
+        seconds: 15
 
   action:
     - service: homeassistant.turn_off

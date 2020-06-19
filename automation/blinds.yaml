@@ -27,6 +27,9 @@
     - condition: state
       entity_id: sun.sun
       state: 'above_horizon'
+    - condition: state
+      entity_id: vacuum.upstairs_roomba
+      state: 'docked'
 
   action:
     - service: cover.open_cover
@@ -70,7 +73,6 @@
   trigger:
     - platform: sun
       event: 'sunset'
-      offset: '-00:05:00'
 
   condition:
     - condition: state
