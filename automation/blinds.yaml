@@ -1,0 +1,86 @@
+#################################################################
+## Blinds Automations
+#################################################################
+
+        ##########################################################
+        ## Open USER1's Office Blinds When Motion Detected
+        ##########################################################
+
+- alias: Blinds - USER1's Office Blinds When Motion Detected
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER1s_office_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: cover.USER1_s_office_blinds
+      state: 'closed'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+
+  action:
+    - service: cover.open_cover
+      entity_id:
+        - cover.USER1_s_office_blinds
+
+        ##########################################################
+        ## Close USER1's Office Blinds When No Motion Detected
+        ##########################################################
+
+- alias: Blinds - Close USER1's Office Blinds When No Motion Detected
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.USER1s_office_light_level
+      above: '10'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.USER1_s_office_blinds
+      state: 'open'
+
+  action:
+    - service: cover.close_cover
+      entity_id:
+        - cover.USER1_s_office_blinds
+
+        ##########################################################
+        ## Close USER1's Blinds at Sunset
+        ##########################################################
+
+- alias: Blinds - Close USER1's Blinds at Sunset
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:05:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.USER1_s_office_blinds
+      state: 'open'
+
+  action:
+    - service: cover.close_cover
+      entity_id:
+        - cover.USER1_s_office_blinds

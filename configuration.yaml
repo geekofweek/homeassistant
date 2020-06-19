@@ -158,6 +158,14 @@ route53:
   records:
     - home
 
+cover:
+  - platform: group
+    name: USER1's Office Blinds
+    entities:
+      - cover.REDACTEDs_office_blinds_right
+      - cover.REDACTEDs_office_blinds_left
+      - cover.REDACTEDs_office_blinds_center
+
 influxdb:
   host: 'influxdb.network.REDACTED'
   database: !secret influxdb_database

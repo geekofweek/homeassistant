@@ -42,6 +42,9 @@
     - service: fan.turn_off
       entity_id:
         - fan.office_fan
+    - service: cover.close_cover
+      entity_id:
+        - cover.USER1_s_office_blinds
     - service: homeassistant.turn_off
       entity_id:
         - input_boolean.guest_mode
@@ -756,6 +759,9 @@
     - service: light.turn_off
       entity_id:
         - light.USER1_office_lights
+    - service: cover.close_cover
+      entity_id:
+        - cover.USER1_s_office_blinds
 
         ##########################################################
         ## USER2 Away Shut off Office
