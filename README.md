@@ -9,7 +9,7 @@
 My personal [Home Assistant Container](https://home-assistant.io) configurations with 300+ automations.  These are my active automations and configurations that I use every day.  Updated frequently as I add more devices and come up with more and more complicated ways to do simple tasks.
 
 # <a name="menu">Menu</a>
- | [Hubs](#hubs) | [Lighting](#lighting) | [Climate](#climate)| [Outlets & Switches](#outlets)|  [Locks](#locks) | [Security](#security) | [Voice Assistant](#voice) | [Media](#media) | [Sensors](#sensors) | [Cameras](#cameras) | [Garage](#garage) | [Vacuum](#vacuum) | [Appliances](#appliances) | [Network](#network) | [Other Hardware](#other)| [Software](#software) | [Retired Devices](#retired)  | [Screenshots](#screenshots) |
+ | [Hubs](#hubs) | [Lighting](#lighting) | [Climate](#climate)| [Outlets & Switches](#outlets)|  [Locks](#locks) | [Security](#security) | [Voice Assistant](#voice) | [Media](#media) | [Sensors](#sensors) | [Cameras](#cameras) | [Garage](#garage) | [Vacuum](#vacuum) | [Blinds](#blinds) |[Appliances](#appliances) | [Network](#network) | [Other Hardware](#other)| [Software](#software) | [Retired Devices](#retired)  | [Screenshots](#screenshots) |
 
 ## <a name="hubs">Hubs</a>
 
@@ -20,6 +20,7 @@ My personal [Home Assistant Container](https://home-assistant.io) configurations
 | [Hue Hub v2](https://amzn.to/2IpNA3G)| 1 | Ethernet | [Philips Hue](https://www.home-assistant.io/components/hue/) | Used to control all Zigbee smart bulbs |
 | [Lutron Smart Bridge 2](https://amzn.to/2GpRGEX)| 1 | Ethernet | [Lutron Caseta](https://www.home-assistant.io/components/lutron_caseta/)| Used to control Lutron Caseta light switches and dimmers |
 | [Vera Plus](https://amzn.to/2IJGx4M)| 1 | Ethernet | [Vera](https://www.home-assistant.io/components/vera/) | Used as a dumb hub to connect Z-Wave devices.|
+| [IKEA TRÅDFRI](https://www.ikea.com/us/en/p/tradfri-gateway-white-00337813/)| 1 | Ethernet | [IKEA TRÅDFRI](https://www.home-assistant.io/integrations/tradfri/) | Currently only used to support the IKEA line of blinds |
 
 Relevant hub configurations can be found within [configuration.yaml](https://github.com/geekofweek/homeassistant/blob/master/configuration.yaml)
 
@@ -187,6 +188,16 @@ More detailed information on the ESPhome configuration can be found in [here](ht
 | [iRobot Braava jet 240](https://amzn.to/2FRJnEa) | 1 | Bluetooth | NA | Currently not integrated into Home Assistant. Unknown if this can ever be automated |
 
 All Roomba related automations can be found in [roomba.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/roomba.yaml)
+
+## <a name="blinds">Blinds</a>
+
+| [Go to Menu](#menu) | [Home Screenshot](images/home-screenshot.jpg?raw=true "Home Page") |
+
+| Device  | Quantity | Connection | Home Assistant | Notes |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| [Ikea FYRTUR](https://www.ikea.com/us/en/cat/electric-blinds-44531/) | 3 | Zigbee | [IKEA TRÅDFRI](https://www.home-assistant.io/integrations/tradfri/)| Automated to open and close blinds based on motion, location, and sun elevation |
+
+All Blinds related automations can be found in [blinds.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/blinds.yaml)
 
 ## <a name="appliances">Appliances</a>
 
