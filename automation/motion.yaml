@@ -1612,6 +1612,9 @@
     - condition: state
       entity_id: switch.air_purifier
       state: 'off'
+    - condition: state
+      entity_id: vacuum.upstairs_roomba
+      state: 'docked'
 
   action:
     - service: fan.turn_on

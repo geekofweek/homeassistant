@@ -43,9 +43,10 @@
 - alias: Blinds - Close USER1's Office Blinds When No Motion Detected
 
   trigger:
-    - platform: numeric_state
-      entity_id: sensor.USER1s_office_light_level
-      above: '10'
+    - platform: state
+      entity_id: binary_sensor.USER1s_office_motion
+      from: 'on'
+      to: 'off'
       for:
         hours: 0
         minutes: 30
@@ -65,14 +66,66 @@
         - cover.USER1_s_office_blinds
 
         ##########################################################
-        ## Close USER1's Blinds at Sunset
+        ## Close USER1's Office Blinds Halfway Before Sunset
         ##########################################################
 
-- alias: Blinds - Close USER1's Blinds at Sunset
+- alias: Blinds - Close USER1's Office Blinds Halfway Before Sunset
 
   trigger:
     - platform: sun
       event: 'sunset'
+      offset: '-00:30:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.USER1_s_office_blinds
+      state: 'open'
+
+  action:
+    - service: cover.set_cover_position
+      data:
+        entity_id: cover.USER1_s_office_blinds
+        position: 50
+
+        ##########################################################
+        ## Close USER1's Office Blinds to 25 Before Sunset
+        ##########################################################
+
+- alias: Blinds - Close USER1's Office Blinds to 25 Before Sunset
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:10:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.USER1_s_office_blinds
+      state: 'open'
+
+  action:
+    - service: cover.set_cover_position
+      data:
+        entity_id: cover.USER1_s_office_blinds
+        position: 25
+
+        ##########################################################
+        ## Close USER1's Office Blinds when Sun Below Horizon
+        ##########################################################
+
+- alias: Blinds - Close USER1's Office Blinds when Sun Below Horizon
+
+  trigger:
+    - platform: state
+      entity_id: sun.sun
+      from: 'above_horizon'
+      to: 'below_horizon'
 
   condition:
     - condition: state
