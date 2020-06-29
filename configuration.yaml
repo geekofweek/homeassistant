@@ -46,6 +46,10 @@ wemo:
     - 'USER2-office-desk-lamp.network.REDACTED'
     - 'garage-fan.network.REDACTED'
 
+bond:
+  host: bond.network.REDACTED
+  token: !secret bond_token
+
 media_player:
   - platform: yamaha
     name: "Surround Sound Receiver"

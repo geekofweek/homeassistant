@@ -252,6 +252,13 @@
         transition: 900
         brightness_pct: 50
         color_temp: 447
+    - delay: '00:00:30'
+    - service: light.turn_on
+      entity_id:
+        - light.front_porch
+      data:
+        brightness_pct: 50
+        color_temp: 447
 
         ##########################################################
         ## Turn Off Front Porch at Midnight
@@ -1028,3 +1035,79 @@
         - light.basement_light_1
         - light.basement_light_2
         - light.basement_stairs
+
+    #################################################################
+    ## Turn on Right Front Porch Light if not On
+    #################################################################
+
+- alias: Lights - Turn on Right Front Porch Light if not On
+
+  trigger:
+    - platform: state
+      entity_id: light.front_porch_left
+      to: 'on'
+      for:
+        seconds: 30
+
+  condition:
+    - condition: state
+      entity_id: light.front_porch_right
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.front_porch_right
+
+#################################################################
+## Notifications
+#################################################################
+
+    #################################################################
+    ## Front Porch Light Not On
+    #################################################################
+
+- alias: Lights - Front Porch Light Not On
+
+  trigger:
+    - platform: state
+      entity_id: light.front_porch_left
+      to: 'on'
+      for:
+        seconds: 05
+    - platform: state
+      entity_id: light.front_porch_left
+      to: 'on'
+      for:
+        seconds: 60
+    - platform: state
+      entity_id: light.front_porch_left
+      to: 'on'
+      for:
+        seconds: 90
+    - platform: state
+      entity_id: light.front_porch_left
+      to: 'on'
+      for:
+        seconds: 120
+    - platform: state
+      entity_id: light.front_porch_left
+      to: 'on'
+      for:
+        seconds: 900
+
+  condition:
+    - condition: state
+      entity_id: light.front_porch_right
+      state: 'off'
+
+  action:
+    - service: notify.mobile_app_USER1s_iphone
+      data:
+        message: Front Porch Light Did Not Turn On
+        data:
+          apns_headers:
+           'apns-collapse-id': 'USER1-home'
+          push:
+            category: camera
+          entity_id: camera.front_porch

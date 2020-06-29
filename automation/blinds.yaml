@@ -48,8 +48,8 @@
       from: 'on'
       to: 'off'
       for:
-        hours: 0
-        minutes: 30
+        hours: 1
+        minutes: 0
         seconds: 0
 
   condition:
@@ -74,7 +74,7 @@
   trigger:
     - platform: sun
       event: 'sunset'
-      offset: '-00:30:00'
+      offset: '-00:45:00'
 
   condition:
     - condition: state

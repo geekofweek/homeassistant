@@ -27,7 +27,7 @@
   - platform: ping
     host: REDACTED-router.network.REDACTED
     name: REDACTED VPN
-    scan_interval: 60
+    scan_interval: 300
 
         ##########################################################
         ## REDACTED VPN Monitor
@@ -36,16 +36,16 @@
   - platform: ping
     host: REDACTED-router-roc.network.REDACTED
     name: REDACTED VPN
-    scan_interval: 60
+    scan_interval: 300
 
         ##########################################################
-        ## REDACTEDny VPN Monitor
+        ## REDACTED VPN Monitor
         ##########################################################
 
   - platform: ping
-    host: REDACTEDny-router.network.REDACTED
-    name: REDACTEDny VPN
-    scan_interval: 60
+    host: REDACTED-router.network.REDACTED
+    name: REDACTED VPN
+    scan_interval: 300
 
         ##########################################################
         ## Living Room Camera Monitor
@@ -54,7 +54,7 @@
   - platform: ping
     host: living-room-camera.network.REDACTED
     name: Living Room Camera
-    scan_interval: 60
+    scan_interval: 90
 
         ##########################################################
         ## Basement Camera Monitor
@@ -63,7 +63,7 @@
   - platform: ping
     host: basement-camera.network.REDACTED
     name: Basement Camera
-    scan_interval: 60
+    scan_interval: 90
 
         ##########################################################
         ## Sump Pump

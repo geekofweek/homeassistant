@@ -42,6 +42,8 @@
     - service: fan.turn_off
       entity_id:
         - fan.office_fan
+        - fan.living_room_east
+        - fan.living_room_west
     - service: cover.close_cover
       entity_id:
         - cover.USER1_s_office_blinds
