@@ -19,6 +19,9 @@
       state: 'home'
 
   action:
+    - service: light.turn_off
+      entity_id:
+        - light.living_room_fan_lights
     - service: light.turn_on
       entity_id:
         - light.living_room_lamps
@@ -77,7 +80,7 @@
   action:
     - service: light.turn_on
       entity_id:
-        - light.living_room_lights
+        - light.living_room_accent_lights
       data:
         effect: stop
     - delay: '00:00:05'

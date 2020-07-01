@@ -14,8 +14,20 @@
       - light.living_room_lamps
       - light.media_center_lighting
       - light.globe
+      - light.living_room_fan_lights
+
+  - platform: group
+    name: Living Room Fan Lights
+    entities:
       - light.living_room_ceiling_east
       - light.living_room_ceiling_west
+
+  - platform: group
+    name: Living Room Accent Lights
+    entities:
+      - light.living_room_lamps
+      - light.media_center_lighting
+      - light.globe
 
   - platform: group
     name: Bedroom Closet Ceiling

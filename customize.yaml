@@ -172,12 +172,12 @@
     friendly_name: REDACTED VPN
 
         ##########################################################
-        ## REDACTEDny VPN Sensor
+        ## REDACTED VPN Sensor
         ##########################################################
 
-  binary_sensor.REDACTEDny_vpn:
+  binary_sensor.REDACTED_vpn:
     icon: mdi:lan-pending
-    friendly_name: REDACTEDny VPN
+    friendly_name: REDACTED VPN
 
 #################################################################
 ## Water Sensors
@@ -486,6 +486,22 @@
     icon: mdi:wall-sconce-flat
     friendly_name: Laundry Room Light
 
+        ##########################################################
+        ## Living Room Fan Lights
+        ##########################################################
+
+  light.living_room_fan_lights:
+    icon: mdi:ceiling-light
+    friendly_name: Living Room Fan Lights
+
+        ##########################################################
+        ## Living Room Accent Lights
+        ##########################################################
+
+  light.living_room_accent_lights:
+    icon: mdi:floor-lamp
+    friendly_name: Living Room Accent Lights
+
 #################################################################
 ## Receiver
 #################################################################
@@ -637,3 +653,23 @@
   sensor.sump_pump_current_power:
     icon: mdi:power-plug
     friendly_name: Sump Pump Wattage
+
+#################################################################
+## Fans
+#################################################################
+
+        ##########################################################
+        ## Living Room Fans Group
+        ##########################################################
+
+  group.living_room_fans:
+    icon: mdi:fan
+    friendly_name: Living Room Fans
+
+        ##########################################################
+        ## Living Room Fans Switch
+        ##########################################################
+
+  switch.living_room_fans:
+    icon: mdi:fan
+    friendly_name: Living Room Fans

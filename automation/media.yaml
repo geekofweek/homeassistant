@@ -104,6 +104,14 @@
         - light.kitchen_lights
         - light.bathroom_lights
         - light.hallway_light
+    - delay: '00:00:30' 
+    - service: light.turn_off
+      entity_id:
+        - light.living_room_lights
+        - light.dining_room_lights
+        - light.kitchen_lights
+        - light.bathroom_lights
+        - light.hallway_light
 
         ##########################################################
         ## Turn Off Watching Plex Boolean
@@ -176,7 +184,7 @@
       entity_id: input_boolean.watching_plex
       state: 'off'
     - condition: state
-      entity_id: input_select.remote
+      entity_id: input_select.living_room_tv_remote
       state: 'Watch TV'
 
   action:
@@ -255,7 +263,7 @@
       entity_id: input_boolean.watching_plex
       state: 'off'
     - condition: state
-      entity_id: input_select.remote
+      entity_id: input_select.living_room_tv_remote
       state: 'Watch TV'
 
   action:
@@ -330,7 +338,7 @@
       entity_id: input_boolean.watching_plex
       state: 'off'
     - condition: state
-      entity_id: input_select.remote
+      entity_id: input_select.living_room_tv_remote
       state: 'Watch TV'
 
   action:
@@ -341,6 +349,14 @@
        transition: 10
     - service: light.turn_off
       entity_id:
+        - light.dining_room_lights
+        - light.kitchen_lights
+        - light.bathroom_lights
+        - light.hallway_light
+    - delay: '00:00:20' 
+    - service: light.turn_off
+      entity_id:
+        - light.living_room_lights
         - light.dining_room_lights
         - light.kitchen_lights
         - light.bathroom_lights
@@ -380,7 +396,7 @@
       entity_id: input_boolean.watching_plex
       state: 'off'
     - condition: state
-      entity_id: input_select.remote
+      entity_id: input_select.living_room_tv_remote
       state: 'Watch TV'
 
   action:
@@ -395,6 +411,14 @@
         - light.kitchen_lights
         - light.bathroom_lights
         - light.hallway_light
+    - delay: '00:00:20' 
+    - service: light.turn_off
+      entity_id:
+        - light.living_room_lights
+        - light.dining_room_lights
+        - light.kitchen_lights
+        - light.bathroom_lights
+        - light.hallway_light
 
       #################################################################
       ## Living Room / Media Center Remote
@@ -404,21 +428,21 @@
 
   trigger:
     - platform: state
-      entity_id: remote.media_center
+      entity_id: remote.living_room_tv
 
   action:
     - delay: '00:00:20'
     - service: input_select.select_option
       data_template:
-        entity_id: input_select.remote
+        entity_id: input_select.living_room_tv_remote
         option: >
-          {{ states.remote.media_center.attributes.current_activity }}
+          {{ states.remote.living_room_tv.attributes.current_activity }}
 
 - alias: Media - Remote start activity from input select media center
 
   trigger:
     - platform: state
-      entity_id: input_select.remote
+      entity_id: input_select.living_room_tv_remote
 
   action:
     - service: script.turn_on
@@ -438,7 +462,7 @@
     - delay: '00:00:10'
     - service: input_select.select_option
       data_template:
-        entity_id: input_select.bedroom_remote
+        entity_id: input_select.bedroom_tv_remote
         option: >
           {{ states.remote.bedroom_tv.attributes.current_activity }}
 
@@ -446,7 +470,7 @@
 
   trigger:
     - platform: state
-      entity_id: input_select.bedroom_remote
+      entity_id: input_select.bedroom_tv_remote
 
   action:
     - service: script.turn_on
@@ -460,7 +484,7 @@
 
   trigger:
     - platform: state
-      entity_id: input_select.bedroom_remote
+      entity_id: input_select.bedroom_tv_remote
       to: 'Watch TV'
 
   action:
@@ -481,7 +505,7 @@
   action:
     - service: input_select.select_option
       data:
-        entity_id: input_select.bedroom_remote
+        entity_id: input_select.bedroom_tv_remote
         option: "Watch TV"
 
         ##########################################################
@@ -492,7 +516,7 @@
 
   trigger:
     - platform: state
-      entity_id: input_select.bedroom_remote
+      entity_id: input_select.bedroom_tv_remote
       to: 'PowerOff'
 
   action:
@@ -513,7 +537,7 @@
   action:
     - service: input_select.select_option
       data:
-        entity_id: input_select.bedroom_remote
+        entity_id: input_select.bedroom_tv_remote
         option: "PowerOff"
 
       #################################################################
@@ -524,21 +548,21 @@
 
   trigger:
     - platform: state
-      entity_id: remote.office_tv
+      entity_id: remote.USER1_s_office_tv
 
   action:
     - delay: '00:00:10'
     - service: input_select.select_option
       data_template:
-        entity_id: input_select.office_remote
+        entity_id: input_select.USER1_s_office_tv_remote
         option: >
-          {{ states.remote.office_tv.attributes.current_activity }}
+          {{ states.remote.USER1_s_office_tv.attributes.current_activity }}
 
 - alias: Media - Remote start activity from input select Office TV
 
   trigger:
     - platform: state
-      entity_id: input_select.office_remote
+      entity_id: input_select.USER1_s_office_tv_remote
 
   action:
     - service: script.turn_on
@@ -552,7 +576,7 @@
 
   trigger:
     - platform: state
-      entity_id: input_select.office_remote
+      entity_id: input_select.USER1_s_office_tv_remote
       to: 'Watch TV'
 
   action:
@@ -573,7 +597,7 @@
   action:
     - service: input_select.select_option
       data:
-        entity_id: input_select.office_remote
+        entity_id: input_select.USER1_s_office_tv_remote
         option: "Watch TV"
 
         ##########################################################
@@ -584,7 +608,7 @@
 
   trigger:
     - platform: state
-      entity_id: input_select.office_remote
+      entity_id: input_select.USER1_s_office_tv_remote
       to: 'PowerOff'
 
   action:
@@ -605,7 +629,7 @@
   action:
     - service: input_select.select_option
       data:
-        entity_id: input_select.office_remote
+        entity_id: input_select.USER1_s_office_tv_remote
         option: "PowerOff"
 
 
@@ -1159,5 +1183,5 @@
   action:
     - service: input_select.select_option
       data:
-        entity_id: input_select.bedroom_remote
+        entity_id: input_select.bedroom_tv_remote
         option: "PowerOff"

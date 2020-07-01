@@ -216,3 +216,20 @@
         command_off: "curl -X GET 'http://pihole-02.network.REDACTED/REDACTED/api.php?disable=1800&auth=REDACTED'"
         command_state: "curl -X GET 'http://pihole-02.network.REDACTED/REDACTED/api.php?status'"
         value_template: "{{ value_json.status == 'enabled' }}"
+
+        ##########################################################
+        ## Living Room Fans
+        ##########################################################
+
+  - platform: template
+    switches:
+      living_room_fans:
+        value_template: "{{ is_state('group.living_room_fans', 'on') }}"
+        turn_on:
+          service: homeassistant.turn_on
+          data:
+            entity_id: group.living_room_fans
+        turn_off:
+          service: homeassistant.turn_off
+          data:
+            entity_id: group.living_room_fans

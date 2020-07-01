@@ -319,10 +319,10 @@
     - condition: or
       conditions:
       - condition: state
-        entity_id: input_select.remote
+        entity_id: input_select.living_room_tv_remote
         state: 'Watch TV'
       - condition: state
-        entity_id: input_select.remote
+        entity_id: input_select.living_room_tv_remote
         state: 'Play Sonos'
 
   action:
@@ -351,7 +351,7 @@
       entity_id: input_boolean.disable_doorbell
       state: 'off'
     - condition: state
-      entity_id: input_select.remote
+      entity_id: input_select.living_room_tv_remote
       state: 'PowerOff'
     - condition: time
       after: '08:00'
@@ -372,12 +372,12 @@
         media_player: media_player.living_room_appletv
     - service: input_select.select_option
       data:
-        entity_id: input_select.remote
+        entity_id: input_select.living_room_tv_remote
         option: "Watch TV"
     - delay: '00:02:00'
     - service: input_select.select_option
       data:
-        entity_id: input_select.remote
+        entity_id: input_select.living_room_tv_remote
         option: "PowerOff"
 
         ##########################################################
@@ -406,7 +406,7 @@
       entity_id: binary_sensor.office_occupancy
       state: 'on'
     - condition: state
-      entity_id: input_select.office_remote
+      entity_id: input_select.USER1_s_office_tv_remote
       state: 'PowerOff'
 
   action:
@@ -416,12 +416,12 @@
         media_player: media_player.USER1_s_office_apple_tv
     - service: input_select.select_option
       data:
-        entity_id: input_select.office_remote
+        entity_id: input_select.USER1_s_office_tv_remote
         option: "Watch TV"
     - delay: '00:05:00'
     - service: input_select.select_option
       data:
-        entity_id: input_select.office_remote
+        entity_id: input_select.USER1_s_office_tv_remote
         option: "PowerOff"
 
         ##########################################################
@@ -450,7 +450,7 @@
       entity_id: binary_sensor.office_occupancy
       state: 'on'
     - condition: state
-      entity_id: input_select.office_remote
+      entity_id: input_select.USER1_s_office_tv_remote
       state: 'WatchTV'
 
   action:
@@ -479,7 +479,7 @@
       entity_id: input_boolean.disable_doorbell
       state: 'off'
     - condition: state
-      entity_id: input_select.bedroom_remote
+      entity_id: input_select.bedroom_tv_remote
       state: 'Watch TV'
     - condition: time
       after: '08:00'

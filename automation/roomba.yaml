@@ -310,7 +310,7 @@
       entity_id: sensor.main_floor_roomba_battery_level
       above: 99
     - condition: state
-      entity_id: input_select.remote
+      entity_id: input_select.living_room_tv_remote
       state: 'PowerOff'
     - condition: state
       entity_id: binary_sensor.living_room_motion
@@ -619,7 +619,7 @@
        color_temp: 447
     - service: light.turn_on
       entity_id:
-        - light.living_room_lights
+        - light.living_room_accent_lights
       data:
        brightness_pct: 50
        color_temp: 447
@@ -675,7 +675,7 @@
        color_temp: 447
     - service: light.turn_on
       entity_id:
-        - light.living_room_lights
+        - light.living_room_accent_lights
       data:
        brightness_pct: 75
        color_temp: 447
