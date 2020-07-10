@@ -12,6 +12,10 @@ stream:
 http:
   ssl_certificate: !secret ssl_certificate
   ssl_key: !secret ssl_key
+logger:
+  default: warn
+  logs:
+     custom_components.bond: debug
 
 #################################################################
 ## Components
@@ -45,9 +49,10 @@ wemo:
     - 'lower-backyard-lighting.network.REDACTED'
     - 'USER2-office-desk-lamp.network.REDACTED'
     - 'garage-fan.network.REDACTED'
+    - 'bond-switch.network.REDACTED'
 
 bond:
-  host: bond.network.REDACTED
+  host: REDACTED.9
   token: !secret bond_token
 
 media_player:

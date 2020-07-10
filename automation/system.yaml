@@ -72,6 +72,31 @@
     - delay: 00:02:00
     - service: homekit.start
 
+        #################################################################
+        ## Restart Bond Home Hub when Offline
+        #################################################################
+
+- alias: System - Restart Bond Home Hub when Offline
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bond_home_hub
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.bond_home_hub
+    - delay: 00:00:45
+    - service: switch.turn_on
+      entity_id:
+        - switch.bond_home_hub
+
 #################################################################
 ## Notifications
 #################################################################
@@ -250,3 +275,30 @@
         data:
           apns_headers:
            'apns-collapse-id': 'system-update'
+
+
+        #################################################################
+        ## Bond Home Hub Offline iOS Notification
+        #################################################################
+
+- alias: System - Bond Home Hub Offline iOS Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bond_home_hub
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 9
+        seconds: 30
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.mobile_app_USER1s_iphone
+      data:
+        message: Bond Hub Offline. Restarting Hub

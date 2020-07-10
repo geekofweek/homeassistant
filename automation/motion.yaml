@@ -246,10 +246,10 @@
         brightness_pct: 25
 
         ##########################################################
-        ## Turn off Living Lights when No Motion Detected
+        ## Turn off Living Room Lights when No Motion Detected
         ##########################################################
 
-- alias: Motion - Turn off Living Lights when No Motion Detected
+- alias: Motion - Turn off Living Room Lights when No Motion Detected
 
   trigger:
     - platform: state
@@ -278,10 +278,10 @@
         - light.living_room_lights
 
         ##########################################################
-        ## Turn off Living Lights when No Motion Detected when Daytime
+        ## Turn off Living Room Lights when No Motion Detected when Daytime
         ##########################################################
 
-- alias: Motion - Turn off Living Lights when No Motion Detected Daytime
+- alias: Motion - Turn off Living Room Lights when No Motion Detected when Daytime
 
   trigger:
     - platform: state
@@ -318,10 +318,10 @@
         - light.living_room_lights
 
         ##########################################################
-        ## Turn off Living Lights when No Motion Detected when Daytime USER2 Away
+        ## Turn off Living Room Lights when No Motion Detected when Daytime USER2 Away
         ##########################################################
 
-- alias: Motion - Turn off Living Lights when No Motion Detected when Daytime USER2 Away
+- alias: Motion - Turn off Living Room Lights when No Motion Detected when Daytime USER2 Away
 
   trigger:
     - platform: state
@@ -364,6 +364,113 @@
     - service: light.turn_off
       entity_id:
         - light.living_room_lights
+
+        ##########################################################
+        ## Turn on Living Room Fans when Motion Detected and USER2 Away
+        ##########################################################
+
+- alias: Motion - Turn on Living Room Fans when Motion Detected and USER2 Away
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.living_room_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: group.living_room_fans
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: person.USER2
+        state: 'home'
+
+  action:
+    - service: fan.turn_on
+      entity_id:
+        - fan.living_room_east
+        - fan.living_room_west
+
+        ##########################################################
+        ## Turn on Living Room Fans when Motion Detected at Night
+        ##########################################################
+
+- alias: Motion - Turn on Living Room Fans when Motion Detected at Night
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.living_room_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.living_room_fans
+      state: 'off'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: time
+      after: '21:30'
+      before: '02:00'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+
+  action:
+    - service: fan.turn_on
+      entity_id:
+        - fan.living_room_east
+        - fan.living_room_west
+
+        ##########################################################
+        ## Turn off Living Room Fans when No Motion Detected
+        ##########################################################
+
+- alias: Motion - Turn off Living Room Fans when No Motion Detected
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.living_room_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: group.living_room_fans
+      state: 'on'
+
+  action:
+    - service: fan.turn_off
+      entity_id:
+        - fan.living_room_east
+        - fan.living_room_west
 
         ##########################################################
         ## Turn on Kitchen Lights when Motion Detected Evening
@@ -1668,6 +1775,38 @@
         - switch.air_purifier
 
         ##########################################################
+        ## Turn off Office TV when No Motion Detected
+        ##########################################################
+
+- alias: Motion - Turn off Office TV when No Motion Detected
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER1s_office_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 20
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: input_select.USER1_s_office_tv_remote
+        state: 'PowerOff'
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.USER1_s_office_tv_remote
+        option: "PowerOff"
+
+        ##########################################################
         ## Turn on USER1's Office Lights when Motion Detected Night
         ##########################################################
 
@@ -1737,6 +1876,9 @@
     - condition: state
       entity_id: sun.sun
       state: 'above_horizon'
+    - condition: state
+      entity_id: cover.USER1_s_office_blinds
+      state: 'closed'
     - condition: or
       conditions:
       - condition: numeric_state

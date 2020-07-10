@@ -764,6 +764,10 @@
     - service: cover.close_cover
       entity_id:
         - cover.USER1_s_office_blinds
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.USER1_s_office_tv_remote
+        option: "PowerOff"
 
         ##########################################################
         ## USER2 Away Shut off Office

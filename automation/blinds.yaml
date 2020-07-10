@@ -99,7 +99,7 @@
   trigger:
     - platform: sun
       event: 'sunset'
-      offset: '-00:10:00'
+      offset: '-00:17:00'
 
   condition:
     - condition: state
@@ -114,6 +114,30 @@
       data:
         entity_id: cover.USER1_s_office_blinds
         position: 25
+
+        ##########################################################
+        ## Close USER1's Office Blinds to 1 at Sunset
+        ##########################################################
+
+- alias: Blinds - Close USER1's Office Blinds to 1 at Sunset
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.USER1_s_office_blinds
+      state: 'open'
+
+  action:
+    - service: cover.set_cover_position
+      data:
+        entity_id: cover.USER1_s_office_blinds
+        position: 1
 
         ##########################################################
         ## Close USER1's Office Blinds when Sun Below Horizon
@@ -139,3 +163,28 @@
     - service: cover.close_cover
       entity_id:
         - cover.USER1_s_office_blinds
+
+        ##########################################################
+        ## Turn off USER1's Office Lights when Blinds are Open
+        ##########################################################
+
+- alias: Blinds - Turn off USER1's Office Lights when Blinds are Open
+
+  trigger:
+    - platform: state
+      entity_id: cover.USER1_s_office_blinds
+      from: 'closed'
+      to: 'open'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: light.USER1_office_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.USER1_office_lights
