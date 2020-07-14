@@ -81,8 +81,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '15:00'
-      before: '23:59'
+      after: '15:00:00'
+      before: '23:59:00'
     - condition: state
       entity_id: input_select.holiday
       state: 'Christmas'
@@ -116,8 +116,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '15:00'
-      before: '23:59'
+      after: '15:00:00'
+      before: '23:59:00'
     - condition: state
       entity_id: input_select.holiday
       state: 'Christmas'
@@ -151,8 +151,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '15:00'
-      before: '23:59'
+      after: '15:00:00'
+      before: '23:59:00'
     - condition: state
       entity_id: input_select.holiday
       state: 'Christmas'
@@ -186,8 +186,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '15:00'
-      before: '23:59'
+      after: '15:00:00'
+      before: '23:59:00'
     - condition: state
       entity_id: input_select.holiday
       state: 'Christmas'
@@ -351,8 +351,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '15:00'
-      before: '23:59'
+      after: '15:00:00'
+      before: '23:59:00'
     - condition: state
       entity_id: input_select.holiday
       state: 'Halloween'
@@ -386,8 +386,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '15:00'
-      before: '23:59'
+      after: '15:00:00'
+      before: '23:59:00'
     - condition: state
       entity_id: input_select.holiday
       state: 'Halloween'
@@ -421,8 +421,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '15:00'
-      before: '23:59'
+      after: '15:00:00'
+      before: '23:59:00'
     - condition: state
       entity_id: input_select.holiday
       state: 'Halloween'
@@ -456,8 +456,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '15:00'
-      before: '23:59'
+      after: '15:00:00'
+      before: '23:59:00'
     - condition: state
       entity_id: input_select.holiday
       state: 'Halloween'
@@ -1427,7 +1427,7 @@
 
   trigger:
     - platform: time
-      at: '01:55'
+      at: '01:55:00'
 
   condition:
     condition: not
@@ -1450,7 +1450,7 @@
 
   trigger:
     - platform: time
-      at: '04:00'
+      at: '04:00:00'
 
   condition:
     condition: or

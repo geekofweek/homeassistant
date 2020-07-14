@@ -224,7 +224,7 @@
 
   trigger:
     - platform: time
-      at: '23:00'
+      at: '23:00:00'
 
   condition:
     - condition: state
@@ -252,8 +252,8 @@
 
   condition:
     - condition: time
-      after: '00:00'
-      before: '06:00'
+      after: '00:00:00'
+      before: '06:00:00'
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -270,7 +270,7 @@
 
   trigger:
     - platform: time
-      at: '10:00'
+      at: '10:00:00'
 
   action:
     - service: homeassistant.turn_off

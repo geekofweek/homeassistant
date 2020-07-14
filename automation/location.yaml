@@ -564,8 +564,8 @@
       entity_id: input_boolean.USER2_away
       state: 'on'
     - condition: time
-      after: '15:45'
-      before: '17:30'
+      after: '15:45:00'
+      before: '17:30:00'
     - condition: time
       weekday:
         - mon
@@ -866,8 +866,8 @@
 
   condition:
     - condition: time
-      after: '05:00'
-      before: '07:00'
+      after: '05:00:00'
+      before: '07:00:00'
     - condition: state
       entity_id: input_boolean.disable_lock_unlock_doors
       state: 'off'
@@ -896,8 +896,8 @@
 
   condition:
     - condition: time
-      after: '06:00'
-      before: '07:30'
+      after: '06:00:00'
+      before: '07:30:00'
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
@@ -988,8 +988,8 @@
       entity_id: input_boolean.disable_home_away
       state: 'off'
     - condition: time
-      after: '13:00'
-      before: '23:59'
+      after: '13:00:00'
+      before: '23:59:00'
 
   action:
     - service: switch.turn_on
@@ -1372,7 +1372,7 @@
         ## Welcome Home USER1 Audio Greeting
         ##########################################################
 
-- alias: Notification Audio - Welcome Home USER1
+- alias: Location - Welcome Home USER1
 
   trigger:
     - platform: state
@@ -1391,8 +1391,8 @@
       entity_id: input_boolean.disable_notifications
       state: 'off'
     - condition: time
-      after: '09:00'
-      before: '22:00'
+      after: '09:00:00'
+      before: '22:00:00'
     - condition: or
       conditions:
       - condition: state
@@ -1413,7 +1413,7 @@
         variables:
           master: 'media_player.sonos_living_room'
           where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen'
-          volume: '0.5'
+          volume: 0.5
           what: 'Welcome home, USER1.'
     - delay: '00:02:00'
     - service: homeassistant.turn_off
@@ -1423,7 +1423,7 @@
         ## Notify USER2s Office that USER1 is Home
         ##########################################################
 
-- alias: Notification Audio - Notify USER2s Office that USER1 is Home
+- alias: Location - Notify USER2s Office that USER1 is Home
 
   trigger:
     - platform: state
@@ -1451,8 +1451,8 @@
       entity_id: input_boolean.disable_notifications
       state: 'off'
     - condition: time
-      after: '09:00'
-      before: '22:00'
+      after: '09:00:00'
+      before: '22:00:00'
     - condition: state
       entity_id: media_player.sonos_USER2s_office
       state: 'idle'
@@ -1465,14 +1465,14 @@
         variables:
           master: 'media_player.sonos_USER2s_office'
           where: 'media_player.sonos_USER2s_office'
-          volume: '0.5'
+          volume: 0.5
           what: 'USER1, is Home.'
 
         ##########################################################
         ## Welcome Home USER2 Audio Greeting
         ##########################################################
 
-- alias: Notification Audio - Welcome Home USER2
+- alias: Location - Welcome Home USER2
 
   trigger:
     - platform: state
@@ -1491,8 +1491,8 @@
       entity_id: input_boolean.disable_notifications
       state: 'off'
     - condition: time
-      after: '09:00'
-      before: '22:00'
+      after: '09:00:00'
+      before: '22:00:00'
     - condition: or
       conditions:
       - condition: state
@@ -1513,7 +1513,7 @@
         variables:
           master: 'media_player.sonos_living_room'
           where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen'
-          volume: '0.5'
+          volume: 0.5
           what: 'Welcome home, USER2.'
     - delay: '00:02:00'
     - service: homeassistant.turn_off
@@ -1523,7 +1523,7 @@
         ## Notify USER1s Office that USER2 is Home
         ##########################################################
 
-- alias: Notification Audio - Notify USER1s Office that USER2 is Home
+- alias: Location - Notify USER1s Office that USER2 is Home
 
   trigger:
     - platform: state
@@ -1551,8 +1551,8 @@
       entity_id: input_boolean.disable_notifications
       state: 'off'
     - condition: time
-      after: '09:00'
-      before: '22:00'
+      after: '09:00:00'
+      before: '22:00:00'
     - condition: or
       conditions:
       - condition: state
@@ -1570,14 +1570,14 @@
         variables:
           master: 'media_player.sonos_USER1s_office'
           where: 'media_player.sonos_USER1s_office, media_player.sonos_USER1s_office_move'
-          volume: '0.5'
+          volume: 0.5
           what: 'USER2, is Home'
 
         ##########################################################
         ## Welcome Home USER1 and USER2 Audio Greeting
         ##########################################################
 
-- alias: Notification Audio - Welcome Home USER1 and USER2 Audio Greeting
+- alias: Location - Welcome Home USER1 and USER2 Audio Greeting
 
   trigger:
     - platform: state
@@ -1602,8 +1602,8 @@
       entity_id: input_boolean.disable_notifications
       state: 'off'
     - condition: time
-      after: '09:00'
-      before: '22:00'
+      after: '09:00:00'
+      before: '22:00:00'
     - condition: or
       conditions:
       - condition: state
@@ -1624,7 +1624,7 @@
         variables:
           master: 'media_player.sonos_living_room'
           where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen'
-          volume: '0.5'
+          volume: 0.5
           what: 'Welcome Home, USER1 and USER2'
     - delay: '00:02:00'
     - service: homeassistant.turn_off
@@ -1634,7 +1634,7 @@
         ## USER2 Left Work Audio Notification
         #################################################################
 
-- alias: Notification Audio - USER2 Left Work
+- alias: Location - USER2 Left Work
 
   trigger:
     - platform: state
@@ -1656,8 +1656,8 @@
       entity_id: input_boolean.disable_notifications
       state: 'off'
     - condition: time
-      after: '09:00'
-      before: '19:00'
+      after: '09:00:00'
+      before: '19:00:00'
 
   action:
     - service: sonos.snapshot
@@ -1703,7 +1703,7 @@
         - media_player.sonos_USER1s_office
         - media_player.sonos_USER1s_office_move
       data:
-        volume_level: '0.6'
+        volume_level: 0.6
     - delay: '00:00:02'
     - service: tts.amazon_polly_say
       data_template:

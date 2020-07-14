@@ -21,12 +21,6 @@ logger:
 ## Components
 #################################################################
 
-hue:
-  bridges:
-    - host: REDACTED.2
-      allow_hue_groups: false
-      allow_unreachable: true
-
 lutron_caseta:
     host: 'lutron.network.REDACTED'
     keyfile: !secret lutron_keyfile

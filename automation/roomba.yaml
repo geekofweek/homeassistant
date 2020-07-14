@@ -98,8 +98,8 @@
       entity_id: input_boolean.main_floor_roomba_ran
       state: 'off'
     - condition: time
-      after: '08:00'
-      before: '23:59'
+      after: '08:00:00'
+      before: '23:59:00'
     - condition: state
       entity_id: vacuum.main_floor_roomba
       state: 'docked'
@@ -139,8 +139,8 @@
       entity_id: input_boolean.upstairs_roomba_ran
       state: 'off'
     - condition: time
-      after: '08:00'
-      before: '23:59'
+      after: '08:00:00'
+      before: '23:59:00'
     - condition: state
       entity_id: vacuum.upstairs_roomba
       state: 'docked'
@@ -203,7 +203,7 @@
 
   trigger:
    - platform: time
-     at: '10:00'
+     at: '10:00:00'
 
   condition:
     - condition: state
@@ -244,7 +244,7 @@
 
   trigger:
    - platform: time
-     at: '10:00'
+     at: '10:00:00'
 
   condition:
     - condition: state
@@ -290,7 +290,7 @@
 
   trigger:
    - platform: time
-     at: '13:00'
+     at: '13:00:00'
 
   condition:
     - condition: state
@@ -345,9 +345,9 @@
 
   trigger:
    - platform: time
-     at: '07:00'
+     at: '07:00:00'
    - platform: time
-     at: '07:30'
+     at: '07:30:00'
 
   condition:
     - condition: state
@@ -411,11 +411,11 @@
 
   trigger:
    - platform: time
-     at: '18:00'
+     at: '18:00:00'
    - platform: time
-     at: '18:30'
+     at: '18:30:00'
    - platform: time
-     at: '19:00'
+     at: '19:00:00'
 
   condition:
     - condition: state
@@ -471,11 +471,11 @@
 
   trigger:
    - platform: time
-     at: '16:00'
+     at: '16:00:00'
    - platform: time
-     at: '16:30'
+     at: '16:30:00'
    - platform: time
-     at: '17:00'
+     at: '17:00:00'
 
   condition:
     - condition: state
@@ -530,7 +530,7 @@
 
   trigger:
    - platform: time
-     at: '10:00'
+     at: '10:00:00'
 
   condition:
     - condition: state
@@ -739,8 +739,8 @@
       entity_id: input_boolean.disable_roomba
       state: 'off'
     - condition: time
-      after: '07:00'
-      before: '08:00'
+      after: '07:00:00'
+      before: '08:00:00'
 
   action:
     - service: light.turn_on
@@ -762,7 +762,7 @@
   trigger:
     - platform: sun
       event: 'sunrise'
-      offset: '+00:46:00'
+      offset: '+00:45:00'
 
   condition:
     - condition: state
@@ -772,8 +772,8 @@
       entity_id: vacuum.upstairs_roomba
       state: 'cleaning'
     - condition: time
-      after: '07:00'
-      before: '08:30'
+      after: '07:00:00'
+      before: '08:30:00'
 
   action:
     - service: light.turn_on
@@ -1033,8 +1033,8 @@
       entity_id: binary_sensor.stairs_motion
       state: 'off'
     - condition: time
-      after: '07:00'
-      before: '09:00'
+      after: '07:00:00'
+      before: '09:00:00'
 
   action:
     - service: light.turn_off
@@ -1159,8 +1159,8 @@
       entity_id: input_boolean.disable_roomba
       state: 'off'
     - condition: time
-      after: '10:01'
-      before: '18:00'
+      after: '10:01:00'
+      before: '18:00:00'
     - condition: state
       entity_id: vacuum.main_floor_roomba
       state: 'docked'
@@ -1212,8 +1212,8 @@
       entity_id: input_boolean.disable_roomba
       state: 'off'
     - condition: time
-      after: '10:01'
-      before: '18:30'
+      after: '10:01:00'
+      before: '18:30:00'
     - condition: state
       entity_id: vacuum.main_floor_roomba
       state: 'cleaning'
@@ -1361,7 +1361,7 @@
 
   trigger:
    - platform: time
-     at: '00:01'
+     at: '00:01:00'
 
   action:
     - service: homeassistant.turn_off
@@ -1563,7 +1563,7 @@
 
   trigger:
    - platform: time
-     at: '09:55'
+     at: '09:55:00'
 
   condition:
     - condition: state
@@ -1607,11 +1607,11 @@
 
   trigger:
    - platform: time
-     at: '17:55'
+     at: '17:55:00'
    - platform: time
-     at: '18:25'
+     at: '18:25:00'
    - platform: time
-     at: '18:55'
+     at: '18:55:00'
 
   condition:
     - condition: state
@@ -1673,7 +1673,7 @@
 
   trigger:
    - platform: time
-     at: '09:55'
+     at: '09:55:00'
 
   condition:
     - condition: state

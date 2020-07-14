@@ -354,8 +354,8 @@
       entity_id: input_select.living_room_tv_remote
       state: 'PowerOff'
     - condition: time
-      after: '08:00'
-      before: '22:00'
+      after: '08:00:00'
+      before: '22:00:00'
     - condition: or
       conditions:
       - condition: state
@@ -397,8 +397,8 @@
       entity_id: input_boolean.disable_doorbell
       state: 'off'
     - condition: time
-      after: '08:00'
-      before: '23:00'
+      after: '08:00:00'
+      before: '23:00:00'
     - condition: state
       entity_id: person.USER1
       state: 'home'
@@ -441,8 +441,8 @@
       entity_id: input_boolean.disable_doorbell
       state: 'off'
     - condition: time
-      after: '08:00'
-      before: '03:30'
+      after: '08:00:00'
+      before: '03:30:00'
     - condition: state
       entity_id: person.USER1
       state: 'home'
@@ -482,8 +482,8 @@
       entity_id: input_select.bedroom_tv_remote
       state: 'Watch TV'
     - condition: time
-      after: '08:00'
-      before: '21:00'
+      after: '08:00:00'
+      before: '21:00:00'
 
   action:
     - service: camera.play_stream

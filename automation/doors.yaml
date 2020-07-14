@@ -85,8 +85,8 @@
 
   condition:
     - condition: time
-      after: '00:00'
-      before: '05:00'
+      after: '00:00:00'
+      before: '05:00:00'
     - condition: state
       entity_id: input_boolean.disable_door_open_lights_on
       state: 'off'
@@ -209,8 +209,8 @@
 
   condition:
     - condition: time
-      after: '00:00'
-      before: '05:00'
+      after: '00:00:00'
+      before: '05:00:00'
     - condition: state
       entity_id: input_boolean.disable_door_open_lights_on
       state: 'off'

@@ -182,8 +182,8 @@
       entity_id: input_boolean.disable_notifications
       state: 'off'
     - condition: time
-      after: '09:00'
-      before: '20:30'
+      after: '09:00:00'
+      before: '20:00:00'
 
   action:
     - service: script.turn_on
@@ -192,7 +192,7 @@
         variables:
           master: 'media_player.sonos_living_room'
           where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen, media_player.sonos_USER1s_office, media_player.sonos_USER1s_office_move, media_player.sonos_USER2s_office'
-          volume: '0.5'
+          volume: 0.5
           what: 'Washing Machine Has Finished'
 
         ##########################################################
@@ -219,8 +219,8 @@
       entity_id: input_boolean.disable_notifications
       state: 'off'
     - condition: time
-      after: '09:00'
-      before: '20:30'
+      after: '09:00:00'
+      before: '20:00:00'
 
   action:
     - service: script.turn_on
@@ -229,7 +229,7 @@
         variables:
           master: 'media_player.sonos_living_room'
           where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen, media_player.sonos_USER1s_office, media_player.sonos_USER1s_office_move, media_player.sonos_USER2s_office'
-          volume: '0.5'
+          volume: 0.5
           what: 'Dryer Has Finished'
 
         ##########################################################

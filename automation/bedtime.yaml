@@ -213,8 +213,8 @@
       entity_id: input_boolean.thermostat_away
       state: 'off'
     - condition: time
-      after: '17:00'
-      before: '23:30'
+      after: '17:00:00'
+      before: '23:30:00'
 
   action:
     - service: climate.set_preset_mode
@@ -239,8 +239,8 @@
 
   condition:
     - condition: time
-      after: '00:00'
-      before: '06:00'
+      after: '00:00:00'
+      before: '06:00:00'
     - condition: state
       entity_id: input_select.holiday
       state: 'None'
@@ -282,8 +282,8 @@
 
   condition:
     - condition: time
-      after: '00:00'
-      before: '07:30'
+      after: '00:00:00'
+      before: '07:30:00'
     - condition: not
       conditions:
         - condition: state

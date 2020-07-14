@@ -28,8 +28,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '07:00'
-      before: '02:00'
+      after: '07:00:00'
+      before: '02:00:00'
     - condition: or
       conditions:
       - condition: state
@@ -105,8 +105,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '02:00'
-      before: '03:00'
+      after: '02:00:00'
+      before: '03:00:00'
     - condition: time
       weekday:
         - fri
@@ -186,13 +186,13 @@
       entity_id: sun.sun
       state: 'above_horizon'
     - condition: time
-      after: '07:00'
-      before: '02:00'
+      after: '07:00:00'
+      before: '02:00:00'
     - condition: or
       conditions:
       - condition: numeric_state
         entity_id: sensor.living_room_light_level
-        below: '10'
+        below: 10
       - condition: state
         entity_id: sensor.living_room_light_level
         state: 'unknown'
@@ -425,8 +425,8 @@
       entity_id: person.USER1
       state: 'home'
     - condition: time
-      after: '21:30'
-      before: '02:00'
+      after: '21:30:00'
+      before: '02:00:00'
     - condition: or
       conditions:
       - condition: state
@@ -495,8 +495,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '07:00'
-      before: '22:00'
+      after: '07:00:00'
+      before: '22:00:00'
     - condition: or
       conditions:
       - condition: state
@@ -545,8 +545,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '22:00'
-      before: '07:00'
+      after: '22:00:00'
+      before: '07:00:00'
     - condition: or
       conditions:
       - condition: state
@@ -594,7 +594,7 @@
       conditions:
       - condition: numeric_state
         entity_id: sensor.kitchen_light_level
-        below: '15'
+        below: 15
       - condition: state
         entity_id: sensor.kitchen_light_level
         state: 'unknown'
@@ -649,8 +649,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '06:00'
-      before: '22:00'
+      after: '06:00:00'
+      before: '22:00:00'
 
   action:
     - service: light.turn_off
@@ -687,8 +687,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '22:00'
-      before: '06:00'
+      after: '22:00:00'
+      before: '06:00:00'
     - condition: time
       weekday:
         - sun
@@ -732,8 +732,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '22:00'
-      before: '06:00'
+      after: '22:00:00'
+      before: '06:00:00'
     - condition: time
       weekday:
         - fri
@@ -850,8 +850,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '07:00'
-      before: '21:00'
+      after: '07:00:00'
+      before: '21:00:00'
     - condition: or
       conditions:
       - condition: state
@@ -896,8 +896,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '21:00'
-      before: '00:00'
+      after: '21:00:00'
+      before: '00:00:00'
     - condition: time
       weekday:
         - sun
@@ -949,8 +949,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '21:00'
-      before: '02:00'
+      after: '21:00:00'
+      before: '02:00:00'
     - condition: time
       weekday:
         - fri
@@ -1003,7 +1003,7 @@
       conditions:
       - condition: numeric_state
         entity_id: sensor.dining_room_light_level
-        below: '25'
+        below: 25
       - condition: state
         entity_id: sensor.dining_room_light_level
         state: 'unknown'
@@ -1058,8 +1058,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '22:00'
-      before: '07:00'
+      after: '22:00:00'
+      before: '07:00:00'
     - condition: time
       weekday:
         - sun
@@ -1104,8 +1104,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '22:00'
-      before: '07:00'
+      after: '22:00:00'
+      before: '07:00:00'
     - condition: time
       weekday:
         - fri
@@ -1225,8 +1225,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '07:00'
-      before: '22:00'
+      after: '07:00:00'
+      before: '22:00:00'
     - condition: or
       conditions:
       - condition: state
@@ -1266,8 +1266,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '22:00'
-      before: '07:00'
+      after: '22:00:00'
+      before: '07:00:00'
     - condition: or
       conditions:
       - condition: state
@@ -1310,7 +1310,7 @@
       conditions:
       - condition: numeric_state
         entity_id: sensor.stairs_light_level
-        below: '15'
+        below: 15
       - condition: state
         entity_id: sensor.stairs_light_level
         state: 'unknown'
@@ -1360,8 +1360,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '07:00'
-      before: '22:00'
+      after: '07:00:00'
+      before: '22:00:00'
     - condition: not
       conditions:
       - condition: state
@@ -1406,8 +1406,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '22:00'
-      before: '07:00'
+      after: '22:00:00'
+      before: '07:00:00'
     - condition: not
       conditions:
       - condition: state
@@ -1559,8 +1559,8 @@
       entity_id: light.basement_lighting
       state: 'on'
     - condition: time
-      after: '22:00'
-      before: '07:00'
+      after: '22:00:00'
+      before: '07:00:00'
     - condition: not
       conditions:
       - condition: state
@@ -1595,8 +1595,8 @@
       entity_id: light.USER2s_bedroom_closet
       state: 'off'
     - condition: time
-      after: '04:30'
-      before: '22:30'
+      after: '04:30:00'
+      before: '22:30:00'
     - condition: time
       weekday:
         - sun
@@ -1883,7 +1883,7 @@
       conditions:
       - condition: numeric_state
         entity_id: sensor.USER1s_office_light_level
-        below: '5'
+        below: 5
       - condition: state
         entity_id: sensor.USER1s_office_light_level
         state: 'unknown'
@@ -1909,7 +1909,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.USER1s_office_light_level
-      above: '10'
+      above: 10
       for:
         hours: 0
         minutes: 30
@@ -1994,8 +1994,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '04:45'
-      before: '07:00'
+      after: '04:45:00'
+      before: '07:00:00'
     - condition: time
       weekday:
         - mon
@@ -2082,8 +2082,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '07:00'
-      before: '23:00'
+      after: '07:00:00'
+      before: '23:00:00'
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -2118,8 +2118,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '23:00'
-      before: '07:00'
+      after: '23:00:00'
+      before: '07:00:00'
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -2198,8 +2198,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '23:00'
-      before: '07:00'
+      after: '23:00:00'
+      before: '07:00:00'
     - condition: not
       conditions:
       - condition: state
@@ -2243,8 +2243,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '07:00'
-      before: '22:00'
+      after: '07:00:00'
+      before: '22:00:00'
 
   action:
     - service: light.turn_on
@@ -2279,8 +2279,8 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '22:00'
-      before: '07:00'
+      after: '22:00:00'
+      before: '07:00:00'
 
   action:
     - service: light.turn_on
@@ -2318,7 +2318,7 @@
       conditions:
       - condition: numeric_state
         entity_id: sensor.upstairs_bathroom_light_level
-        below: '10'
+        below: 10
       - condition: state
         entity_id: sensor.upstairs_bathroom_light_level
         state: 'unknown'

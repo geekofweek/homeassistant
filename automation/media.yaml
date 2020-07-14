@@ -179,7 +179,7 @@
       entity_id: input_boolean.disable_media_lights
       state: 'off'
     - condition: time
-      after: '21:30'
+      after: '21:30:00'
     - condition: state
       entity_id: input_boolean.watching_plex
       state: 'off'
@@ -257,8 +257,8 @@
       entity_id: input_boolean.disable_media_lights
       state: 'off'
     - condition: time
-      after: '00:00'
-      before: '03:00'
+      after: '00:00:00'
+      before: '03:00:00'
     - condition: state
       entity_id: input_boolean.watching_plex
       state: 'off'
@@ -332,8 +332,8 @@
       entity_id: input_boolean.disable_media_lights
       state: 'off'
     - condition: time
-      after: '00:00'
-      before: '03:00'
+      after: '00:00:00'
+      before: '03:00:00'
     - condition: state
       entity_id: input_boolean.watching_plex
       state: 'off'
@@ -391,7 +391,7 @@
       entity_id: input_boolean.disable_media_lights
       state: 'off'
     - condition: time
-      after: '21:30'
+      after: '21:30:00'
     - condition: state
       entity_id: input_boolean.watching_plex
       state: 'off'
@@ -641,7 +641,7 @@
 
   trigger:
     - platform: time
-      at: '05:00'
+      at: '05:00:00'
 
   action:
     - service: sonos.unjoin
@@ -751,7 +751,7 @@
         - media_player.sonos_kitchen
         - media_player.sonos_bathroom
       data:
-        volume_level: '0.4'
+        volume_level: 0.4
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
@@ -804,7 +804,7 @@
         - media_player.sonos_kitchen
         - media_player.sonos_bathroom
       data:
-        volume_level: '0.4'
+        volume_level: 0.4
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
@@ -857,7 +857,7 @@
         - media_player.sonos_kitchen
         - media_player.sonos_bathroom
       data:
-        volume_level: '0.4'
+        volume_level: 0.4
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
@@ -910,7 +910,7 @@
         - media_player.sonos_kitchen
         - media_player.sonos_bathroom
       data:
-        volume_level: '0.4'
+        volume_level: 0.4
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
@@ -963,7 +963,7 @@
         - media_player.sonos_kitchen
         - media_player.sonos_bathroom
       data:
-        volume_level: '0.4'
+        volume_level: 0.4
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
@@ -1094,14 +1094,14 @@
 
   trigger:
    - platform: time
-     at: '22:00'
+     at: '22:00:00'
 
   action:
     - service: media_player.volume_set
       entity_id:
         - media_player.sonos_backyard_patio
       data:
-        volume_level: '0.3'
+        volume_level: 0.3
 
         ##########################################################
         ## Turn Off Backyard Sonos at Midnight
@@ -1111,7 +1111,7 @@
 
   trigger:
    - platform: time
-     at: '23:59'
+     at: '23:59:00'
 
   action:
     - service: media_player.media_stop
@@ -1130,15 +1130,15 @@
 
   condition:
     - condition: time
-      after: '22:00'
-      before: '23:59'
+      after: '22:00:00'
+      before: '23:59:00'
 
   action:
     - service: media_player.volume_set
       entity_id:
         - media_player.sonos_backyard_patio
       data:
-        volume_level: '0.3'
+        volume_level: 0.3
 
 
         ##########################################################
@@ -1153,15 +1153,15 @@
 
   condition:
     - condition: time
-      after: '00:00'
-      before: '06:00'
+      after: '00:00:00'
+      before: '06:00:00'
 
   action:
     - service: media_player.volume_set
       entity_id:
         - media_player.sonos_backyard_patio
       data:
-        volume_level: '0.3'
+        volume_level: 0.3
 
         ##########################################################
         ## Turn Off Bedroom TV at 6a (Sleep Timer Fix)
@@ -1171,7 +1171,7 @@
 
   trigger:
    - platform: time
-     at: '06:00'
+     at: '06:00:00'
 
   condition:
     condition: not
