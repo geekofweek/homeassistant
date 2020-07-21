@@ -18,7 +18,7 @@ My personal [Home Assistant Container](https://home-assistant.io) configurations
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [Hue Hub v2](https://amzn.to/2IpNA3G)| 1 | Ethernet | [Philips Hue](https://www.home-assistant.io/components/hue/) | Used to control all Zigbee smart bulbs |
-| [Lutron Smart Bridge 2](https://amzn.to/2GpRGEX)| 1 | Ethernet | [Lutron Caseta](https://www.home-assistant.io/components/lutron_caseta/)| Used to control Lutron Caseta light switches and dimmers |
+| [Lutron Smart Bridge 2 Pro](https://amzn.to/2WLpKEF)| 1 | Ethernet | [Lutron Caseta](https://github.com/upsert/lutron-caseta-pro) (Custom Component)| Controls Lutron Caseta light switches, dimmers, and Pico remotes |
 | [Vera Plus](https://amzn.to/2IJGx4M)| 1 | Ethernet | [Vera](https://www.home-assistant.io/components/vera/) | Used as a dumb hub to connect Z-Wave devices.|
 | [IKEA TRÅDFRI](https://www.ikea.com/us/en/p/tradfri-gateway-white-00337813/)| 1 | Ethernet | [IKEA TRÅDFRI](https://www.home-assistant.io/integrations/tradfri/) | Currently only used to support the IKEA line of blinds |
 | [Bond Home](https://amzn.to/3i7dLds)| 1 | Wi-Fi | [Bond Home](https://github.com/nguyer/homeassistant-bond-home) (Custom Component) | Controls ceiling fans and lights via RF remote control commands.  Existing fans are each wired to a single switch that controls both power and light with fan and light controls done via a physical remote.  The Bond Home Hub allowed for sending of those RF remote commands via the hub and the local API makes it possible to send said commands from Home Assistant. |
@@ -280,6 +280,8 @@ More detailed information on the custom Home Assistant Managment Tools can be fo
 | [Insignia - Wi-Fi Garage Door Controller](https://www.bestbuy.com/site/insignia-wi-fi-garage-door-controller-for-apple-homekit-white/5933701.p?skuId=5933701) | 1 | Wi-Fi | [HomeKit Controller](https://www.home-assistant.io/components/homekit_controller/)| Automated to open / close garage door on location and auto close after specific time intervals |
 | [Ring Video Doorbell](https://amzn.to/2KvrzwP) | 1 | Wi-Fi | [Ring](https://www.home-assistant.io/components/ring/) / [Ring Binary Sensor](https://www.home-assistant.io/components/binary_sensor.ring/) | Automated around binary sensors via motion or doorbell button press.  Replaced with a Version 3 Plus. |
 | [iRobot Roomba 650](https://amzn.to/2wO2w60) | 1 | NA | NA | Currently not integrated into Home Assistant. Investigating options for future integration |
+| [Lutron Smart Bridge 2](https://amzn.to/2GpRGEX)| 1 | Ethernet | [Lutron Caseta](https://www.home-assistant.io/components/lutron_caseta/)| Replaced with a Lutron Smart Bridge 2 Pro |
+
 
 # <a name="screenshots">Screenshots</a>
 
