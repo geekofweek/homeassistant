@@ -158,7 +158,7 @@ Smoke detectors, like the water sensors, have one real function to alert me of s
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [Ring Video Doorbell 3 Plus](https://amzn.to/34ysSWV) | 1 | Wi-Fi | [Ring](https://www.home-assistant.io/components/ring/) / [Ring Binary Sensor](https://www.home-assistant.io/components/binary_sensor.ring/) | Automated around binary sensors via motion or doorbell button press |
-| [Ubiquiti Unifi Protect G4 Pro](https://amzn.to/2CrW5cK) | 1 | Ethernet | [Unifi Protect](https://github.com/briis/unifiprotect)(Custom Component) | 1080p POE Camera. |
+| [Ubiquiti Unifi Protect G4 Pro](https://amzn.to/2CrW5cK) | 1 | Ethernet | [Unifi Protect](https://github.com/briis/unifiprotect)(Custom Component) | 4K POE Camera. |
 | [Ubiquiti UVC-G3 UniFi Video Camera](https://amzn.to/2L987ah) | 1 | Ethernet | [Unifi Protect](https://github.com/briis/unifiprotect)(Custom Component) | 1080p POE Camera. |
 | [Ubiquiti UniFi Video G3 Flex](https://amzn.to/2PKrSqA) | 6 | Ethernet | [Unifi Protect](https://github.com/briis/unifiprotect)(Custom Component) | 1080p POE Camera. |
 | [Ubiquiti UniFi Cloud Key Gen2 Plus](https://amzn.to/2RUxtz1) | 1 | Ethernet | [Unifi Protect](https://github.com/briis/unifiprotect)(Custom Component) | Unifi Protect NVR. |
