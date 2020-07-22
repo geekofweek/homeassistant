@@ -1,0 +1,141 @@
+#################################################################
+## Fan Automations
+#################################################################
+
+#################################################################
+## Pico Remotes
+#################################################################
+
+  #################################################################
+  ## Living Room Fans On Pico Remote
+  #################################################################
+
+- alias: Fan - Living Room Fans On Pico Remote
+
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_fan_remote
+      to: '8'
+
+  condition:
+    - condition: state
+      entity_id: group.living_room_fans
+      state: 'off'
+
+  action:
+    - service: fan.turn_on
+      entity_id:
+        - fan.living_room_east
+        - fan.living_room_west
+
+  #################################################################
+  ## Living Room Fans Off Pico Remote
+  #################################################################
+
+- alias: Fan - Living Room Fans Off Pico Remote
+
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_fan_remote
+      to: '16'
+
+  condition:
+    - condition: state
+      entity_id: group.living_room_fans
+      state: 'on'
+
+  action:
+    - service: fan.turn_off
+      entity_id:
+        - fan.living_room_east
+        - fan.living_room_west
+
+  #################################################################
+  ## Living Room Fans Low to Med Speed Pico Remote
+  #################################################################
+
+- alias: Fan - Living Room Fans Low to Med Speed Pico Remote
+
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_fan_remote
+      to: '2'
+
+  condition:
+    - condition: state
+      entity_id: group.living_room_fans
+      state: 'on'
+    - condition: or
+      conditions:
+      - condition: template
+        value_template: "{%if is_state_attr('fan.living_room_east', 'speed', 'low') %}true{%endif%}"
+      - condition: template
+        value_template: "{%if is_state_attr('fan.living_room_west', 'speed', 'low') %}true{%endif%}"
+
+  action:
+    - service: fan.set_speed
+      data:
+        entity_id:
+          - fan.living_room_east
+          - fan.living_room_west
+        speed: medium
+
+  #################################################################
+  ## Living Room Fans Med to High Speed Pico Remote
+  #################################################################
+
+- alias: Fan - Living Room Fans Med to High Speed Pico Remote
+
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_fan_remote
+      to: '2'
+
+  condition:
+    - condition: state
+      entity_id: group.living_room_fans
+      state: 'on'
+    - condition: or
+      conditions:
+      - condition: template
+        value_template: "{%if is_state_attr('fan.living_room_east', 'speed', 'medium') %}true{%endif%}"
+      - condition: template
+        value_template: "{%if is_state_attr('fan.living_room_west', 'speed', 'medium') %}true{%endif%}"
+
+  action:
+    - service: fan.set_speed
+      data:
+        entity_id:
+          - fan.living_room_east
+          - fan.living_room_west
+        speed: high
+
+  #################################################################
+  ## Living Room Fans High to Low Speed Pico Remote
+  #################################################################
+
+- alias: Fan - Living Room Fans High to Low Speed Pico Remote
+
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_fan_remote
+      to: '2'
+
+  condition:
+    - condition: state
+      entity_id: group.living_room_fans
+      state: 'on'
+    - condition: or
+      conditions:
+      - condition: template
+        value_template: "{%if is_state_attr('fan.living_room_east', 'speed', 'high') %}true{%endif%}"
+      - condition: template
+        value_template: "{%if is_state_attr('fan.living_room_west', 'speed', 'high') %}true{%endif%}"
+
+  action:
+    - service: fan.set_speed
+      data:
+        entity_id:
+          - fan.living_room_east
+          - fan.living_room_west
+        speed: low

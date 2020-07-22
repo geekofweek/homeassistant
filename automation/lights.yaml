@@ -252,13 +252,6 @@
         transition: 900
         brightness_pct: 50
         color_temp: 447
-    - delay: '00:00:30'
-    - service: light.turn_on
-      entity_id:
-        - light.front_porch
-      data:
-        brightness_pct: 50
-        color_temp: 447
 
         ##########################################################
         ## Turn Off Front Porch at Midnight
@@ -287,6 +280,10 @@
         - light.front_porch
       data:
        transition: 900
+    - delay: '00:16:00'
+    - service: light.turn_off
+      entity_id:
+        - light.front_porch
 
         ##########################################################
         ## Turn off Front Porch After Midnight
@@ -324,6 +321,10 @@
         - light.front_porch
       data:
        transition: 300
+    - delay: '00:06:00'
+    - service: light.turn_off
+      entity_id:
+        - light.front_porch
 
         ##########################################################
         ## Turn off Front Porch After 2a
@@ -358,6 +359,10 @@
         - light.front_porch
       data:
        transition: 300
+    - delay: '00:06:00'
+    - service: light.turn_off
+      entity_id:
+        - light.front_porch
 
         ##########################################################
         ## Turn On Front Yard Lighting at Sunset
@@ -473,11 +478,11 @@
    - service: light.turn_off
      entity_id:
        - light.back_door
-   - delay: '00:00:30'
+   - delay: '00:00:90'
    - service: light.turn_off
      entity_id:
        - light.back_door
-
+       
         ##########################################################
         ## Turn Off Back Door at Midnight Weekdays Friends Visiting
         ##########################################################
@@ -509,7 +514,7 @@
    - service: light.turn_off
      entity_id:
        - light.back_door
-   - delay: '00:00:30'
+   - delay: '00:00:90'
    - service: light.turn_off
      entity_id:
        - light.back_door
@@ -676,7 +681,7 @@
       entity_id:
         - light.backyard_patio
         - light.backyard_deck
-    - delay: '00:00:30'
+    - delay: '00:00:90'
     - service: light.turn_off
       entity_id:
         - light.backyard_patio
@@ -715,7 +720,7 @@
       entity_id:
         - light.backyard_patio
         - light.backyard_deck
-    - delay: '00:00:30'
+    - delay: '00:00:90'
     - service: light.turn_off
       entity_id:
         - light.backyard_patio
@@ -1047,7 +1052,7 @@
       entity_id: light.front_porch_left
       to: 'on'
       for:
-        seconds: 30
+        seconds: 60
 
   condition:
     - condition: state
@@ -1060,6 +1065,150 @@
         - light.front_porch_right
 
 #################################################################
+## Pico Remotes
+#################################################################
+
+  #################################################################
+  ## Living Room Lights On Pico Remote
+  #################################################################
+
+- alias: Lights - Living Room Lights On Pico Remote
+
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_light_remote
+      to: '1'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.living_room_accent_lights
+      data:
+        brightness_pct: 100
+
+  #################################################################
+  ## Living Room Lights Off Pico Remote
+  #################################################################
+
+- alias: Lights - Living Room Lights Off Pico Remote
+
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_light_remote
+      to: '4'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.living_room_accent_lights
+
+  #################################################################
+  ## Living Room Lights Increase Brightness Pico Remote
+  #################################################################
+
+- alias: Lights - Living Room Lights Increase Brightness Pico Remote
+
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_light_remote
+      to: '8'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.living_room_accent_lights
+      data:
+        brightness_step_pct: 10
+
+  #################################################################
+  ## Living Room Lights Decrease Brightness Pico Remote
+  #################################################################
+
+- alias: Lights - Living Room Lights Decrease Brightness Pico Remote
+
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_light_remote
+      to: '16'
+
+  condition:
+    - condition: state
+      entity_id: light.living_room_accent_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.living_room_accent_lights
+      data:
+        brightness_step_pct: -10
+
+  #################################################################
+  ## Living Room Lights Default Color Pico Remote
+  #################################################################
+
+- alias: Lights - Living Room Lights Default Color Pico Remote
+
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_light_remote
+      to: '2'
+
+  condition:
+    - condition: state
+      entity_id: light.living_room_accent_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.living_room_accent_lights
+      data:
+        color_temp: 447
+
+  #################################################################
+  ## Living Room Fan Lights On Pico Remote
+  #################################################################
+
+- alias: Lights - Living Room Fan Lights On Pico Remote
+
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_fan_remote
+      to: '1'
+
+  condition:
+    - condition: state
+      entity_id: light.living_room_fan_lights
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.living_room_fan_lights
+
+  #################################################################
+  ## Living Room Fan Lights Off Pico Remote
+  #################################################################
+
+- alias: Lights - Living Room Fan Lights Off Pico Remote
+
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_fan_remote
+      to: '4'
+
+  condition:
+    - condition: state
+      entity_id: light.living_room_fan_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.living_room_fan_lights
+
+#################################################################
 ## Notifications
 #################################################################
 
@@ -1070,11 +1219,6 @@
 - alias: Lights - Front Porch Light Not On
 
   trigger:
-    - platform: state
-      entity_id: light.front_porch_left
-      to: 'on'
-      for:
-        seconds: 05
     - platform: state
       entity_id: light.front_porch_left
       to: 'on'

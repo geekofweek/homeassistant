@@ -14,18 +14,22 @@ http:
   ssl_key: !secret ssl_key
 logger:
   default: warn
-  logs:
-     custom_components.bond: debug
 
 #################################################################
 ## Components
 #################################################################
 
-lutron_caseta:
-    host: 'lutron.network.REDACTED'
-    keyfile: !secret lutron_keyfile
-    certfile: !secret lutron_certfile
-    ca_certs: !secret lutron_cacerts
+hue:
+  bridges:
+    - host: REDACTED.2
+      allow_hue_groups: false
+      allow_unreachable: true
+
+lutron_caseta_pro:
+  bridges:
+    - host: lutron.network.REDACTED
+      mac: !secret lutron_caseta_pro_mac
+      switch: [ 17, 22 ]
 
 dyson:
   username: !secret dyson_username
@@ -76,48 +80,6 @@ media_player:
       AUDIO1: "TV Audio"
       AUDIO2: "Sonos Digital"
       AUDIO3: "Sonos"
-
-camera:
-  - platform: generic
-    name: Front Porch
-    still_image_url: https://front-porch-camera.network.REDACTED/snap.jpeg
-    stream_source: rtsp://cloudkey.network.REDACTED:7447/REDACTED
-    verify_ssl: false
-  - platform: generic
-    name: Driveway
-    still_image_url: https://driveway-camera.network.REDACTED/snap.jpeg
-    stream_source: rtsp://cloudkey.network.REDACTED:7447/REDACTED
-    verify_ssl: false
-  - platform: generic
-    name: Garage
-    still_image_url: https://garage-camera.network.REDACTED/snap.jpeg
-    stream_source: rtsp://cloudkey.network.REDACTED:7447/REDACTED
-    verify_ssl: false
-  - platform: generic
-    name: Backyard Gate
-    still_image_url: https://backyard-gate-camera.network.REDACTED/snap.jpeg
-    stream_source: rtsp://cloudkey.network.REDACTED:7447/REDACTED
-    verify_ssl: false
-  - platform: generic
-    name: Side Yard
-    still_image_url: https://side-yard-camera.network.REDACTED/snap.jpeg
-    stream_source: rtsp://cloudkey.network.REDACTED:7447/REDACTED
-    verify_ssl: false
-  - platform: generic
-    name: Backyard
-    still_image_url: https://backyard-camera.network.REDACTED/snap.jpeg
-    stream_source: rtsp://cloudkey.network.REDACTED:7447/REDACTED
-    verify_ssl: false
-  - platform: generic
-    name: Basement
-    still_image_url: https://basement-camera.network.REDACTED/snap.jpeg
-    stream_source: rtsp://cloudkey.network.REDACTED:7447/REDACTED
-    verify_ssl: false
-  - platform: generic
-    name: Living Room
-    still_image_url: https://living-room-camera.network.REDACTED/snap.jpeg
-    stream_source: rtsp://cloudkey.network.REDACTED:7447/yb1q1StMMJm4y3D9
-    verify_ssl: false
 
 tts:
   - platform: amazon_polly
