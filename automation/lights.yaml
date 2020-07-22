@@ -1208,6 +1208,81 @@
       entity_id:
         - light.living_room_fan_lights
 
+  #################################################################
+  ## Basement Lights On Pico Remote
+  #################################################################
+
+- alias: Lights - Basement Lights On Pico Remote
+
+  trigger:
+    - platform: state
+      entity_id: sensor.basement_stairs_light_switch
+      to: '1'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.basement_lights
+      data:
+        brightness_pct: 100
+
+  #################################################################
+  ## Basement Lights Off Pico Remote
+  #################################################################
+
+- alias: Lights - Basement Lights Off Pico Remote
+
+  trigger:
+    - platform: state
+      entity_id: sensor.basement_stairs_light_switch
+      to: '4'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.basement_lights
+
+  #################################################################
+  ## Basement Lights Increase Brightness Pico Remote
+  #################################################################
+
+- alias: Lights - Basement Lights Increase Brightness Pico Remote
+
+  trigger:
+    - platform: state
+      entity_id: sensor.basement_stairs_light_switch
+      to: '8'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.basement_lights
+      data:
+        brightness_step_pct: 10
+
+  #################################################################
+  ## Basement Lights Decrease Brightness Pico Remote
+  #################################################################
+
+- alias: Lights - Basement Lights Decrease Brightness Pico Remote
+
+  trigger:
+    - platform: state
+      entity_id: sensor.basement_stairs_light_switch
+      to: '16'
+
+  condition:
+    - condition: state
+      entity_id: light.basement_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.basement_lights
+      data:
+        brightness_step_pct: -10
+
 #################################################################
 ## Notifications
 #################################################################
