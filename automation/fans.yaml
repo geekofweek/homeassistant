@@ -15,7 +15,7 @@
   trigger:
     - platform: state
       entity_id: sensor.living_room_fan_remote
-      to: '8'
+      to: '2'
 
   condition:
     - condition: state
@@ -27,6 +27,8 @@
       entity_id:
         - fan.living_room_east
         - fan.living_room_west
+    - delay:
+        seconds: 1
 
   #################################################################
   ## Living Room Fans Off Pico Remote
@@ -37,7 +39,7 @@
   trigger:
     - platform: state
       entity_id: sensor.living_room_fan_remote
-      to: '16'
+      to: '2'
 
   condition:
     - condition: state
@@ -49,17 +51,46 @@
       entity_id:
         - fan.living_room_east
         - fan.living_room_west
+    - delay:
+        seconds: 1
 
   #################################################################
-  ## Living Room Fans Low to Med Speed Pico Remote
+  ## Living Room Fans Off to On Pico Remote Raise or Lower
   #################################################################
 
-- alias: Fan - Living Room Fans Low to Med Speed Pico Remote
+- alias: Fan - Living Room Fans Off to On Pico Remote Raise or Lower
 
   trigger:
     - platform: state
       entity_id: sensor.living_room_fan_remote
-      to: '2'
+      to: '8'
+    - platform: state
+      entity_id: sensor.living_room_fan_remote
+      to: '16'
+
+  condition:
+    - condition: state
+      entity_id: group.living_room_fans
+      state: 'off'
+
+  action:
+    - service: fan.turn_on
+      entity_id:
+        - fan.living_room_east
+        - fan.living_room_west
+    - delay:
+        seconds: 1
+
+  #################################################################
+  ## Living Room Fans Low to Med Pico Remote Raise
+  #################################################################
+
+- alias: Fan - Living Room Fans Low to Med Pico Remote Raise
+
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_fan_remote
+      to: '8'
 
   condition:
     - condition: state
@@ -79,17 +110,19 @@
           - fan.living_room_east
           - fan.living_room_west
         speed: medium
+    - delay:
+        seconds: 1
 
   #################################################################
-  ## Living Room Fans Med to High Speed Pico Remote
+  ## Living Room Fans Med to High Pico Remote Raise
   #################################################################
 
-- alias: Fan - Living Room Fans Med to High Speed Pico Remote
+- alias: Fan - Living Room Fans Med to High Pico Remote Raise
 
   trigger:
     - platform: state
       entity_id: sensor.living_room_fan_remote
-      to: '2'
+      to: '8'
 
   condition:
     - condition: state
@@ -109,17 +142,19 @@
           - fan.living_room_east
           - fan.living_room_west
         speed: high
+    - delay:
+        seconds: 1
 
   #################################################################
-  ## Living Room Fans High to Low Speed Pico Remote
+  ## Living Room Fans High to Med Pico Remote Lower
   #################################################################
 
-- alias: Fan - Living Room Fans High to Low Speed Pico Remote
+- alias: Fan - Living Room Fans High to Med Pico Remote Lower
 
   trigger:
     - platform: state
       entity_id: sensor.living_room_fan_remote
-      to: '2'
+      to: '16'
 
   condition:
     - condition: state
@@ -138,4 +173,68 @@
         entity_id:
           - fan.living_room_east
           - fan.living_room_west
+        speed: medium
+    - delay:
+        seconds: 1
+
+  #################################################################
+  ## Living Room Fans Med to Low Pico Remote Lower
+  #################################################################
+
+- alias: Fan - Living Room Fans Med to Low Pico Remote Lower
+
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_fan_remote
+      to: '16'
+
+  condition:
+    - condition: state
+      entity_id: group.living_room_fans
+      state: 'on'
+    - condition: or
+      conditions:
+      - condition: template
+        value_template: "{%if is_state_attr('fan.living_room_east', 'speed', 'medium') %}true{%endif%}"
+      - condition: template
+        value_template: "{%if is_state_attr('fan.living_room_west', 'speed', 'medium') %}true{%endif%}"
+
+  action:
+    - service: fan.set_speed
+      data:
+        entity_id:
+          - fan.living_room_east
+          - fan.living_room_west
         speed: low
+    - delay:
+        seconds: 1
+
+  #################################################################
+  ## Living Room Fans Low to Off Pico Remote Lower
+  #################################################################
+
+- alias: Fan - Living Room Fans Low to Off Pico Remote Lower
+
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_fan_remote
+      to: '16'
+
+  condition:
+    - condition: state
+      entity_id: group.living_room_fans
+      state: 'on'
+    - condition: or
+      conditions:
+      - condition: template
+        value_template: "{%if is_state_attr('fan.living_room_east', 'speed', 'low') %}true{%endif%}"
+      - condition: template
+        value_template: "{%if is_state_attr('fan.living_room_west', 'speed', 'low') %}true{%endif%}"
+
+  action:
+    - service: fan.turn_off
+      entity_id:
+        - fan.living_room_east
+        - fan.living_room_west
+    - delay:
+        seconds: 1

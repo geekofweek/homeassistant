@@ -667,12 +667,41 @@
 #################################################################
 
         ##########################################################
+        ## Living Room Fan East
+        ##########################################################
+
+  fan.living_room_east:
+    assumed_state: false
+
+        ##########################################################
+        ## Living Room Fan West
+        ##########################################################
+
+  fan.living_room_west:
+    assumed_state: false
+
+        ##########################################################
+        ## Living Room Ceiling Light (East)
+        ##########################################################
+
+  light.living_room_ceiling_east:
+    assumed_state: false
+
+        ##########################################################
+        ## Living Room Ceiling Light (West)
+        ##########################################################
+
+  light.living_room_ceiling_west:
+    assumed_state: false
+
+        ##########################################################
         ## Living Room Fans Group
         ##########################################################
 
   group.living_room_fans:
     icon: mdi:fan
     friendly_name: Living Room Fans
+    assumed_state: false
 
         ##########################################################
         ## Living Room Fans Switch

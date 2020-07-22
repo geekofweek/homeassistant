@@ -1085,6 +1085,8 @@
         - light.living_room_accent_lights
       data:
         brightness_pct: 100
+    - delay:
+        seconds: 1
 
   #################################################################
   ## Living Room Lights Off Pico Remote
@@ -1101,6 +1103,8 @@
     - service: light.turn_off
       entity_id:
         - light.living_room_accent_lights
+    - delay:
+        seconds: 1
 
   #################################################################
   ## Living Room Lights Increase Brightness Pico Remote
@@ -1119,6 +1123,8 @@
         - light.living_room_accent_lights
       data:
         brightness_step_pct: 10
+    - delay:
+        seconds: 1
 
   #################################################################
   ## Living Room Lights Decrease Brightness Pico Remote
@@ -1142,6 +1148,8 @@
         - light.living_room_accent_lights
       data:
         brightness_step_pct: -10
+    - delay:
+        seconds: 1
 
   #################################################################
   ## Living Room Lights Default Color Pico Remote
@@ -1165,6 +1173,8 @@
         - light.living_room_accent_lights
       data:
         color_temp: 447
+    - delay:
+        seconds: 1
 
   #################################################################
   ## Living Room Fan Lights On Pico Remote
@@ -1186,6 +1196,8 @@
     - service: light.turn_on
       entity_id:
         - light.living_room_fan_lights
+    - delay:
+        seconds: 1
 
   #################################################################
   ## Living Room Fan Lights Off Pico Remote
@@ -1207,6 +1219,8 @@
     - service: light.turn_off
       entity_id:
         - light.living_room_fan_lights
+    - delay:
+        seconds: 1
 
   #################################################################
   ## Basement Lights On Pico Remote
@@ -1222,9 +1236,11 @@
   action:
     - service: light.turn_on
       entity_id:
-        - light.basement_lights
+        - light.basement_lighting
       data:
         brightness_pct: 100
+    - delay:
+        seconds: 1
 
   #################################################################
   ## Basement Lights Off Pico Remote
@@ -1240,7 +1256,9 @@
   action:
     - service: light.turn_off
       entity_id:
-        - light.basement_lights
+        - light.basement_lighting
+    - delay:
+        seconds: 1
 
   #################################################################
   ## Basement Lights Increase Brightness Pico Remote
@@ -1256,9 +1274,11 @@
   action:
     - service: light.turn_on
       entity_id:
-        - light.basement_lights
+        - light.basement_lighting
       data:
         brightness_step_pct: 10
+    - delay:
+        seconds: 1
 
   #################################################################
   ## Basement Lights Decrease Brightness Pico Remote
@@ -1273,15 +1293,17 @@
 
   condition:
     - condition: state
-      entity_id: light.basement_lights
+      entity_id: light.basement_lighting
       state: 'on'
 
   action:
     - service: light.turn_on
       entity_id:
-        - light.basement_lights
+        - light.basement_lighting
       data:
         brightness_step_pct: -10
+    - delay:
+        seconds: 1
 
 #################################################################
 ## Notifications

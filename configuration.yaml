@@ -19,12 +19,6 @@ logger:
 ## Components
 #################################################################
 
-hue:
-  bridges:
-    - host: REDACTED.2
-      allow_hue_groups: false
-      allow_unreachable: true
-
 lutron_caseta_pro:
   bridges:
     - host: lutron.network.REDACTED
@@ -48,10 +42,6 @@ wemo:
     - 'USER2-office-desk-lamp.network.REDACTED'
     - 'garage-fan.network.REDACTED'
     - 'bond-switch.network.REDACTED'
-
-bond:
-  host: REDACTED.9
-  token: !secret bond_token
 
 media_player:
   - platform: yamaha
@@ -115,13 +105,13 @@ alarm_control_panel:
       trigger_time: 120
       arming_time: 30
 
-route53:
-  aws_access_key_id: !secret aws_access_key_id_route53
-  aws_secret_access_key: !secret aws_secret_access_key_route53
-  zone: !secret aws_zone_route53
-  domain: !secret aws_domain_route53
-  records:
-    - home
+#route53:
+#  aws_access_key_id: !secret aws_access_key_id_route53
+#  aws_secret_access_key: !secret aws_secret_access_key_route53
+#  zone: !secret aws_zone_route53
+#  domain: !secret aws_domain_route53
+#  records:
+#    - home
 
 cover:
   - platform: group
