@@ -1305,6 +1305,61 @@
     - delay:
         seconds: 1
 
+  #################################################################
+  ## Living Room Fan Dimm Lights Pico Remote
+  #################################################################
+
+- alias: Lights - Living Room Fan Dimm Lights
+
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_fan_remote
+      to: '1'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 2
+
+  condition:
+    - condition: state
+      entity_id: light.living_room_fan_lights
+      state: 'on'
+
+  action:
+    - service: script.turn_on
+      entity_id:
+        - script.living_room_fan_light_dimmer
+    - delay:
+        seconds: 3
+
+  #################################################################
+  ## Living Room Fan Lights Start Dimmer Reset
+  #################################################################
+
+- alias: Lights - Living Room Fan Lights Start Dimmer Reset
+
+  trigger:
+    - platform: state
+      entity_id: switch.living_room_east_fan_dimmer
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 10
+    - platform: state
+      entity_id: switch.living_room_east_fan_dimmer
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 10
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.living_room_east_fan_dimmer
+        - switch.living_room_east_fan_dimmer
+
 #################################################################
 ## Notifications
 #################################################################

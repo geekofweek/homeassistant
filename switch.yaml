@@ -233,3 +233,23 @@
           service: homeassistant.turn_off
           data:
             entity_id: group.living_room_fans
+
+        ##########################################################
+        ## Living Room East Fan Dimmer
+        ##########################################################
+
+  - platform: command_line
+    switches:
+      living_room_east_fan_dimmer:
+        command_on: 'curl -H "BOND-Token: REDACTED" -i http://bond.network.REDACTED/v2/devices/REDACTED/actions/StartDimmer -X PUT -d "{}"'
+        command_off: 'curl -H "BOND-Token: REDACTED" -i http://bond.network.REDACTED/v2/devices/REDACTED/actions/Stop -X PUT -d "{}"'
+
+        ##########################################################
+        ## Living Room West Fan Dimmer
+        ##########################################################
+
+  - platform: command_line
+    switches:
+      living_room_west_fan_dimmer:
+        command_on: 'curl -H "BOND-Token: REDACTED" -i http://bond.network.REDACTED/v2/devices/REDACTED/actions/StartDimmer -X PUT -d "{}"'
+        command_off: 'curl -H "BOND-Token: REDACTED" -i http://bond.network.REDACTED/v2/devices/REDACTED/actions/Stop -X PUT -d "{}"'
