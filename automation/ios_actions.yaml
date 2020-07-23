@@ -7,6 +7,7 @@
         #################################################################
 
 - alias: iOS Action - Bedtime
+  id: 'ios_action_bedtime'
 
   trigger:
     - platform: event
@@ -24,6 +25,7 @@
         #################################################################
 
 - alias: iOS Action - Arm Alarm Home
+  id: 'ios_action_arm_alarm_home'
 
   trigger:
     - platform: event
@@ -40,6 +42,7 @@
         #################################################################
 
 - alias: iOS Action - Arm Alarm Away
+  id: 'ios_action_arm_alarm_away'
 
   trigger:
     - platform: event
@@ -56,6 +59,7 @@
         #################################################################
 
 - alias: iOS Action - Disarm Alarm
+  id: 'ios_action_disarm_alarm'
 
   trigger:
     - platform: event
@@ -76,6 +80,7 @@
         #################################################################
 
 - alias: iOS Action - Unlock Doors
+  id: 'ios_action_unlock_doors'
 
   trigger:
     - platform: event
@@ -94,6 +99,7 @@
         #################################################################
 
 - alias: iOS Action - Lock Doors
+  id: 'ios_action_lock_doors'
 
   trigger:
     - platform: event
@@ -113,6 +119,7 @@
         #################################################################
 
 - alias: iOS Action - Unlock Front Door
+  id: 'ios_action_unlock_front_door'
 
   trigger:
     - platform: event
@@ -130,6 +137,7 @@
         #################################################################
 
 - alias: iOS Action - Close Garage
+  id: 'ios_action_close_garage'
 
   trigger:
     - platform: event
@@ -145,7 +153,8 @@
         ## Open Garage
         #################################################################
 
-- alias: iOS Action - Close Garage
+- alias: iOS Action - Open Garage
+  id: 'ios_action_open_garage'
 
   trigger:
     - platform: event
@@ -162,6 +171,7 @@
         #################################################################
 
 - alias: iOS Action - Sound Alarm
+  id: 'ios_action_sound_alarm'
 
   trigger:
     - platform: event
@@ -178,6 +188,7 @@
         #################################################################
 
 - alias: iOS Action - Silence Alarm
+  id: 'ios_action_silence_alarm'
 
   trigger:
     - platform: event
@@ -194,6 +205,7 @@
         #################################################################
 
 - alias: iOS Action - Disable Alarm
+  id: 'ios_action_disable_alarm'
 
   trigger:
     - platform: event
@@ -210,6 +222,7 @@
         #################################################################
 
 - alias: iOS Action - Enable Alarm
+  id: 'ios_action_enable_alarm'
 
   trigger:
     - platform: event
@@ -226,6 +239,7 @@
         #################################################################
 
 - alias: iOS Action - Siren
+  id: 'ios_action_siren'
 
   trigger:
     - platform: event
@@ -242,6 +256,7 @@
         #################################################################
 
 - alias: iOS Action - Fireplace Off
+  id: 'ios_action_fireplace_off'
 
   trigger:
     - platform: event
@@ -258,6 +273,7 @@
         #################################################################
 
 - alias: iOS Action - Disable Smoke Alarm
+  id: 'ios_action_disable_smoke_alarm'
 
   trigger:
     - platform: event
@@ -270,42 +286,11 @@
       entity_id: input_boolean.disable_smoke_alarm
 
         #################################################################
-        ## Washing Machine Switch On
+        ## Washing Machine Done Turn On Lights
         #################################################################
 
-#- alias: iOS Action - Washing Machine Switch On
-
-#  trigger:
-#    - platform: event
-#      event_type: ios.notification_action_fired
-#      event_data:
-#        actionName: WASHINGMACHINE_TURN_ON_SWITCH
-
-#  action:
-#    - service: switch.turn_on
-#      entity_id: switch.washing_machine
-
-        #################################################################
-        ## Dryer Switch On
-        #################################################################
-
-#- alias: iOS Action - Dryer Switch On
-
-#  trigger:
-#    - platform: event
-#      event_type: ios.notification_action_fired
-#      event_data:
-#        actionName: DRYER_TURN_ON_SWITCH
-
-#  action:
-#    - service: switch.turn_on
-#      entity_id: switch.dryer
-
-        #################################################################
-        ## Washing Machine Done Turn on Lights
-        #################################################################
-
-- alias: iOS Action - Washing Machine Done Turn on Lights
+- alias: iOS Action - Washing Machine Done Turn On Lights
+  id: 'ios_action_washing_machine_done_turn_on_lights'
 
   trigger:
     - platform: event

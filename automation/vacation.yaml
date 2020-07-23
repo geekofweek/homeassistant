@@ -6,7 +6,8 @@
         ## Vacation Mode On
         ##########################################################
 
-- alias: Vacation - Vacation Mode On
+- alias: Vacation - Mode On
+  id: 'vacation_mode_on'
 
   trigger:
     - platform: state
@@ -38,7 +39,8 @@
         ## Vacation Mode Off
         ##########################################################
 
-- alias: Vacation - Vacation Mode On
+- alias: Vacation - Mode Off
+  id: 'vacation_mode_off'
 
   trigger:
     - platform: state
@@ -56,10 +58,11 @@
        - input_boolean.disable_motion
 
         ##########################################################
-        ## Turn on Vacation Mode when Gone 24 Hours
+        ## Turn On Vacation Mode when Gone 24 Hours
         ##########################################################
 
-- alias: Vacation - Turn on when Gone 24 Hours
+- alias: Vacation - Turn On when Gone 24 Hours
+  id: 'vacation_turn_on_when_gone_24_hours'
 
   trigger:
     - platform: state
@@ -84,6 +87,7 @@
         ##########################################################
 
 - alias: Vacation - Turn off when Home
+  id: 'vacation_turn_off_when_home'
 
   trigger:
     - platform: state
@@ -101,10 +105,11 @@
       entity_id: input_boolean.vacation_mode
 
         ##########################################################
-        ## Turn on Vacation Mode when Thermostat set to Vacation
+        ## Turn On Vacation Mode when Thermostat set to Vacation
         ##########################################################
 
-- alias: Vacation - Turn on Vacation Mode when Thermostat set to Vacation
+- alias: Vacation - Turn On when Thermostat set to Vacation
+  id: 'vacation_turn_on_when_thermostat_set_to_vacation'
 
   trigger:
     - platform: state
@@ -126,10 +131,11 @@
       entity_id: input_boolean.vacation_mode
 
         ##########################################################
-        ## Turn on Vacation Mode when at the Lake
+        ## Turn On Vacation Mode when at the Lake
         ##########################################################
 
-- alias: Vacation - Turn on when at the Lake
+- alias: Vacation - Turn On when at the Lake
+  id: 'vacation_turn_on_when_at_the_lake'
 
   trigger:
     - platform: state
@@ -151,6 +157,7 @@
         ##########################################################
 
 - alias: Vacation - Turn off when leaving the Lake
+  id: 'vacation_turn_off_when_leaving_the_lake'
 
   trigger:
     - platform: state
@@ -168,10 +175,11 @@
       entity_id: input_boolean.vacation_mode
 
         ##########################################################
-        ## Vacation Lights on at Night
+        ## Vacation Lights On at Night
         ##########################################################
 
-- alias: Vacation - Lights on at Night
+- alias: Vacation - Lights On at Night
+  id: 'vacation_lights_on_at_night'
 
   trigger:
     - platform: state
@@ -203,7 +211,8 @@
         ## Vacation Mode Lights off at Midnight
         ##########################################################
 
-- alias: Vacation - Lights Off Midnight
+- alias: Vacation - Lights Off at Midnight
+  id: 'vacation_lights_off_at_midnight'
 
   trigger:
     - platform: time
@@ -227,7 +236,8 @@
         ## Vacation Mode Lights off at 10p
         ##########################################################
 
-- alias: Vacation - Lights Off 10p
+- alias: Vacation - Lights Off at 10p
+  id: 'vacation_lights_off_at_10p'
 
   trigger:
     - platform: time

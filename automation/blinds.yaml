@@ -7,6 +7,7 @@
         ##########################################################
 
 - alias: Blinds - USER1's Office Blinds When Motion Detected
+  id: 'blinds_USER1_office_blinds_when_motion_detected'
 
   trigger:
     - platform: state
@@ -41,6 +42,7 @@
         ##########################################################
 
 - alias: Blinds - Close USER1's Office Blinds When No Motion Detected
+  id: 'blinds_close_USER1_office_blinds_when_no_motion_detected'
 
   trigger:
     - platform: state
@@ -70,6 +72,7 @@
         ##########################################################
 
 - alias: Blinds - Close USER1's Office Blinds Halfway Before Sunset
+  id: 'blinds_close_USER1_office_blinds_halfway_before_sunset'
 
   trigger:
     - platform: sun
@@ -95,6 +98,7 @@
         ##########################################################
 
 - alias: Blinds - Close USER1's Office Blinds to 25 Before Sunset
+  id: 'blinds_close_USER1_office_blinds_to_25_before_sunset'
 
   trigger:
     - platform: sun
@@ -120,6 +124,7 @@
         ##########################################################
 
 - alias: Blinds - Close USER1's Office Blinds to 1 at Sunset
+  id: 'blinds_close_USER1_office_blinds_to_1_at_sunset'
 
   trigger:
     - platform: sun
@@ -144,6 +149,7 @@
         ##########################################################
 
 - alias: Blinds - Close USER1's Office Blinds when Sun Below Horizon
+  id: 'blinds_close_USER1_office_blinds_when_sun_below_horizon'
 
   trigger:
     - platform: state
@@ -165,10 +171,11 @@
         - cover.USER1_s_office_blinds
 
         ##########################################################
-        ## Turn off USER1's Office Lights when Blinds are Open
+        ## Turn Off USER1's Office Lights when Blinds are Open
         ##########################################################
 
-- alias: Blinds - Turn off USER1's Office Lights when Blinds are Open
+- alias: Blinds - Turn Off USER1's Office Lights when Blinds are Open
+  id: 'blinds_turn_off_USER1_office_lights_when_blinds_are_open'
 
   trigger:
     - platform: state

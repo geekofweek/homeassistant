@@ -7,6 +7,7 @@
         ##########################################################
 
 - alias: Location - Household Away Mode
+  id: 'location_household_away_mode'
 
   trigger:
     - platform: state
@@ -92,10 +93,11 @@
         - media_player.sonos_backyard_patio
 
         ##########################################################
-        ## USER1 Home from Walking Unlock Doors Turn on Garage Light
+        ## USER1 Home from Walking Unlock Doors Turn On Garage Light
         ##########################################################
 
-- alias: Location - USER1 Home from Waling Unlock Doors Turn on Garage Light
+- alias: Location - USER1 Home from Waling Unlock Doors Turn On Garage Light
+  id: 'location_USER1_home_from_walking_unlock_doors_turn_on_garage_light'
 
   trigger:
     - platform: state
@@ -125,6 +127,7 @@
         ##########################################################
 
 - alias: Location - USER1 Home from Driving Unlock Door
+  id: 'location_USER1_home_from_driving_unlock_door'
 
   trigger:
     - platform: state
@@ -158,6 +161,7 @@
         ########################################################
 
 - alias: Location - After USER1 Home Lock Doors
+  id: 'location_after_USER1_home_lock_doors'
 
   trigger:
     - platform: state
@@ -187,6 +191,7 @@
         ##########################################################
 
 - alias: Location - USER2 Home from Walking Unlock Doors
+  id: 'location_USER2_home_from_walking_unlock_doors'
 
   trigger:
     - platform: state
@@ -216,6 +221,7 @@
         ##########################################################
 
 - alias: Location - USER2 Home from Driving Unlock Door
+  id: 'location_USER2_home_from_driving_unlock_door'
 
   trigger:
     - platform: state
@@ -249,6 +255,7 @@
         ########################################################
 
 - alias: Location - USER2 Home Lock Doors
+  id: 'location_USER2_home_lock_doors'
 
   trigger:
     - platform: state
@@ -274,10 +281,11 @@
         - lock.front_door
 
         ##########################################################
-        ## USER1 Home Turn on Lights
+        ## USER1 Home Turn On Lights
         ##########################################################
 
-- alias: Location - USER1 Home Turn on Lights
+- alias: Location - USER1 Home Turn On Lights
+  id: 'location_USER1_home_turn_on_lights'
 
   trigger:
     - platform: state
@@ -336,10 +344,11 @@
        brightness_pct: 20
 
         ##########################################################
-        ## USER1 Home Turn on Lights during Rain
+        ## USER1 Home Turn On Lights during Rain
         ##########################################################
 
-- alias: Location - USER1 Home Turn on Lights during Rain
+- alias: Location - USER1 Home Turn On Lights during Rain
+  id: 'location_USER1_home_turn_on_lights_during_rain'
 
   trigger:
     - platform: state
@@ -390,10 +399,11 @@
        brightness_pct: 20
 
         ##########################################################
-        ## USER1 Home Reset Front Porch Brightness
+        ## USER1 Home Reset Front Porch Lights Brightness
         ##########################################################
 
-- alias: Location - USER1 Home Reset Front Porch Brightness
+- alias: Location - USER1 Home Reset Front Porch Lights Brightness
+  id: 'location_USER1_home_reset_front_porch_lights_brightness'
 
   trigger:
     - platform: state
@@ -421,10 +431,11 @@
         transition: 120
 
         ##########################################################
-        ## USER1 Home Reset Back Door Brightness
+        ## USER1 Home Reset Back Door Lights Brightness
         ##########################################################
 
-- alias: Location - USER1 Home Reset Back Door Brightness
+- alias: Location - USER1 Home Reset Back Door Lights Brightness
+  id: 'location_USER1_home_reset_back_door_lights_brightness'
 
   trigger:
     - platform: state
@@ -453,6 +464,7 @@
         ##########################################################
 
 - alias: Location - USER1 Home Dim Garage Light after 16 Mins
+  id: 'location_USER1_home_dim_garage_light_after_16_mins'
 
   trigger:
     - platform: state
@@ -480,10 +492,11 @@
        brightness_pct: 2
 
         ##########################################################
-        ## USER2 Home Turn on Lights
+        ## USER2 Home Turn On Lights
         ##########################################################
 
-- alias: Location - USER2 Home Turn on Lights
+- alias: Location - USER2 Home Turn On Lights
+  id: 'location_USER2_home_turn_on_lights'
 
   trigger:
     - platform: state
@@ -542,10 +555,11 @@
        brightness_pct: 20
 
         ##########################################################
-        ## USER2 Home from Work Lights
+        ## USER2 Home from Work Lights Turn On Lights
         ##########################################################
 
-- alias: Location - USER2 Home from Work Lights
+- alias: Location - USER2 Home from Work Turn On Lights
+  id: 'location_USER2_home_from_work_turn_on_lights'
 
   trigger:
     - platform: state
@@ -591,10 +605,11 @@
        brightness_pct: 50
 
         ##########################################################
-        ## USER2 Home Turn on Lights during Rain
+        ## USER2 Home Turn On Lights during Rain
         ##########################################################
 
-- alias: Location - USER2 Home Turn on Lights during Rain
+- alias: Location - USER2 Home Turn On Lights during Rain
+  id: 'location_USER2_home_turn_on_lights_during_rain'
 
   trigger:
     - platform: state
@@ -645,10 +660,11 @@
        brightness_pct: 20
 
         ##########################################################
-        ## USER2 Home Reset Front Porch Brightness
+        ## USER2 Home Reset Front Porch Lights Brightness
         ##########################################################
 
-- alias: Location - USER2 Home Reset Front Porch Brightness
+- alias: Location - USER2 Home Reset Front Porch Lights Brightness
+  id: 'location_USER2_home_reset_front_porch_lights_brightness'
 
   trigger:
     - platform: state
@@ -676,10 +692,11 @@
         transition: 120
 
         ##########################################################
-        ## USER2 Home Reset Back Door Brightness
+        ## USER2 Home Reset Back Door Lights Brightness
         ##########################################################
 
-- alias: Location - USER2 Home Reset Back Door Brightness
+- alias: Location - USER2 Home Reset Back Door Lights Brightness
+  id: 'location_USER2_home_reset_back_door_lights_brightness'
 
   trigger:
     - platform: state
@@ -708,6 +725,7 @@
         ##########################################################
 
 - alias: Location - USER2 Home Dim Garage Light after 16 Mins
+  id: 'location_USER2_home_dim_garage_light_after_16_mins'
 
   trigger:
     - platform: state
@@ -735,10 +753,11 @@
        brightness_pct: 2
 
         ##########################################################
-        ## USER1 Away Shut off Office
+        ## USER1 Away Shut Off Office
         ##########################################################
 
-- alias: Location - USER1 Away Shut off Office
+- alias: Location - USER1 Away Shut Off Office
+  id: 'location_USER1_away_shut_off_office'
 
   trigger:
     - platform: state
@@ -770,10 +789,11 @@
         option: "PowerOff"
 
         ##########################################################
-        ## USER2 Away Shut off Office
+        ## USER2 Away Shut Off Office
         ##########################################################
 
-- alias: Location - USER2 Away Shut off Office
+- alias: Location - USER2 Away Shut Off Office
+  id: 'location_USER2_away_shut_off_office'
 
   trigger:
     - platform: state
@@ -799,6 +819,7 @@
         ##########################################################
 
 - alias: Location - Close Garage when USER1 Leaves
+  id: 'location_close_garage_when_USER1_leaves'
 
   trigger:
     - platform: state
@@ -828,6 +849,7 @@
         ##########################################################
 
 - alias: Location - Close Garage when USER2 Leaves
+  id: 'location_close_garage_when_USER2_leaves'
 
   trigger:
     - platform: state
@@ -857,6 +879,7 @@
         ##########################################################
 
 - alias: Location - Lock Back Door when USER2 Leaves
+  id: 'location_lock_back_door_when_USER2_leaves'
 
   trigger:
      - platform: state
@@ -883,10 +906,11 @@
       entity_id: lock.back_door
 
         ##########################################################
-        ## Turn off Lights when USER2 Leaves
+        ## Turn Off Lights when USER2 Leaves
         ##########################################################
 
-- alias: Location - Turn off Lights when USER2 Leaves
+- alias: Location - Turn Off Lights when USER2 Leaves
+  id: 'location_turn_off_lights_when_USER2_leaves'
 
   trigger:
     - platform: state
@@ -926,10 +950,11 @@
         - light.back_door
 
         ##########################################################
-        ## Turn on Outdoor Lighting when Home
+        ## Turn On Outdoor Lighting when Home
         ##########################################################
 
-- alias: Location - Turn on Outdoor Lighting when Home
+- alias: Location - Turn On Outdoor Lighting when Home
+  id: 'location_turn_on_outdoor_lighting_when_home'
 
   trigger:
     - platform: state
@@ -969,10 +994,11 @@
         brightness_pct: 2
 
         ##########################################################
-        ## Turn on Backyard Lighting when Friends Visiting
+        ## Turn On Backyard Lighting when Friends Visiting
         ##########################################################
 
-- alias: Location - Turn on Backyard Lighting when Friends Visiting
+- alias: Location - Turn On Backyard Lighting when Friends Visiting
+  id: 'location_turn_on_backyard_lighting_when_friends_visiting'
 
   trigger:
     - platform: state
@@ -1008,6 +1034,7 @@
         ##########################################################
 
 - alias: Location - Set USER1 Away Driving
+  id: 'location_set_USER1_away_driving'
 
   trigger:
     - platform: state
@@ -1028,7 +1055,8 @@
         ## Set USER1 Away after 1 Min
         ##########################################################
 
-- alias: Location - Set USER1 Away after 1 Mins
+- alias: Location - Set USER1 Away after 1 Min
+  id: 'location_set_USER1_away_after_1_min'
 
   trigger:
     - platform: state
@@ -1051,6 +1079,7 @@
         ##########################################################
 
 - alias: Location - Set USER1 Home after 10 Mins
+  id: 'location_set_USER1_home_after_10_mins'
 
   trigger:
     - platform: state
@@ -1074,6 +1103,7 @@
         ##########################################################
 
 - alias: Location - Set USER2 Away Driving
+  id: 'location_set_USER1_away_driving'
 
   trigger:
     - platform: state
@@ -1094,7 +1124,8 @@
         ## Set USER2 Away after 1 Min
         ##########################################################
 
-- alias: Location - Set USER2 Away after 1 Mins
+- alias: Location - Set USER2 Away after 1 Min
+  id: 'location_set_USER2_away_after_1_min'
 
   trigger:
     - platform: state
@@ -1117,6 +1148,7 @@
         ##########################################################
 
 - alias: Location - Set USER2 Home after 10 Mins
+  id: 'location_set_USER2_home_after_10_min'
 
   trigger:
     - platform: state
@@ -1144,6 +1176,7 @@
     #################################################################
 
 - alias: Location - USER1 Home Driving iOS Notification
+  id: 'location_USER1_home_driving_ios_notification'
 
   trigger:
     - platform: state
@@ -1187,6 +1220,7 @@
     #################################################################
 
 - alias: Location - USER1 Home Walking iOS Notification
+  id: 'location_USER1_home_walking_ios_notification'
 
   trigger:
     - platform: state
@@ -1230,6 +1264,7 @@
         #################################################################
 
 - alias: Location - USER1 Away iOS Notification
+  id: 'location_USER1_away_ios_notification'
 
   trigger:
     - platform: state
@@ -1255,6 +1290,7 @@
         #################################################################
 
 - alias: Location - USER2 Home Driving iOS Notification
+  id: 'location_USER2_home_driving_ios_notification'
 
   trigger:
     - platform: state
@@ -1288,7 +1324,8 @@
         ## USER2 Home Walking iOS Notification
         #################################################################
 
-- alias: Location - USER2 Walking Driving iOS Notification
+- alias: Location - USER2 Home Walking iOS Notification
+  id: 'location_USER2_home_walking_ios_notification'
 
   trigger:
     - platform: state
@@ -1323,6 +1360,7 @@
         #################################################################
 
 - alias: Location - USER2 Away iOS Notification
+  id: 'location_USER2_away_ios_notification'
 
   trigger:
     - platform: state
@@ -1348,6 +1386,7 @@
         #################################################################
 
 - alias: Location - USER2 Left Work iOS Notification
+  id: 'location_USER2_left_work_ios_notification'
 
   trigger:
     - platform: state
@@ -1372,7 +1411,8 @@
         ## Welcome Home USER1 Audio Greeting
         ##########################################################
 
-- alias: Location - Welcome Home USER1
+- alias: Location - Welcome Home USER1 Audio Greeting
+  id: 'location_welcome_home_USER1_audio_greeting'
 
   trigger:
     - platform: state
@@ -1424,6 +1464,7 @@
         ##########################################################
 
 - alias: Location - Notify USER2s Office that USER1 is Home
+  id: 'location_notify_USER2s_office_that_USER1_is_home'
 
   trigger:
     - platform: state
@@ -1472,7 +1513,8 @@
         ## Welcome Home USER2 Audio Greeting
         ##########################################################
 
-- alias: Location - Welcome Home USER2
+- alias: Location - Welcome Home USER2 Audio Greeting
+  id: 'location_welcome_home_USER2_audio_greeting'
 
   trigger:
     - platform: state
@@ -1524,6 +1566,7 @@
         ##########################################################
 
 - alias: Location - Notify USER1s Office that USER2 is Home
+  id: 'location_notify_USER1s_office_that_USER2_is_home'
 
   trigger:
     - platform: state
@@ -1578,6 +1621,7 @@
         ##########################################################
 
 - alias: Location - Welcome Home USER1 and USER2 Audio Greeting
+  id: 'location_welcome_home_USER1_and_USER2_audio_greeting'
 
   trigger:
     - platform: state
@@ -1634,7 +1678,8 @@
         ## USER2 Left Work Audio Notification
         #################################################################
 
-- alias: Location - USER2 Left Work
+- alias: Location - USER2 Left Work Audio Notification
+  id: 'location_USER2_left_work_audio_notification'
 
   trigger:
     - platform: state

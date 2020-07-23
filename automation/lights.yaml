@@ -7,6 +7,7 @@
         ##########################################################
 
 - alias: Lights - Reset Exterior Garage Light Brightness when Garage Closed
+  id: 'lights_reset_exterior_garage_light_brightness_when_garage_closed'
 
   trigger:
     - platform: state
@@ -36,10 +37,11 @@
        brightness_pct: 2
 
         ##########################################################
-        ## Turn on Exterior Garage Light when Garage Open
+        ## Turn On Exterior Garage Light when Garage Open
         ##########################################################
 
-- alias: Lights - Turn on Exterior Garage Light when Garage Open
+- alias: Lights - Turn On Exterior Garage Light when Garage Open
+  id: 'lights_turn_on_exterior_garage_light_when_garage_open'
 
   trigger:
     - platform: state
@@ -67,6 +69,7 @@
         ##########################################################
 
 - alias: Lights - Turn Off Interior Garage Light when Garage Closed
+  id: 'lights_turn_off_interior_garage_light_when_garage_closed'
 
   trigger:
     - platform: state
@@ -93,6 +96,7 @@
         ##########################################################
 
 - alias: Lights - Turn On Interior Garage Light when Garage Open
+  id: 'lights_turn_on_interior_garage_light_when_garage_open'
 
   trigger:
     - platform: state
@@ -121,6 +125,7 @@
         ##########################################################
 
 - alias: Lights - Turn Off Exterior Garage Light After Midnight
+  id: 'lights_turn_off_exterior_garage_light_after_midnight'
 
   trigger:
     - platform: state
@@ -147,6 +152,7 @@
         ##########################################################
 
 - alias: Lights - Turn On Exterior Garage Light at Sunset
+  id: 'lights_turn_on_exterior_garage_light_at_sunset'
 
   trigger:
     - platform: sun
@@ -170,6 +176,7 @@
         ##########################################################
 
 - alias: Lights - Turn Off Exterior Garage Light at Midnight
+  id: 'lights_turn_off_exterior_garage_light_at_midnight'
 
   trigger:
    - platform: time
@@ -198,6 +205,7 @@
         ##########################################################
 
 - alias: Lights - Turn Off Exterior Garage Light at Midnight Friends Visiting Weekdays
+  id: 'lights_turn_off_exterior_garage_light_at_midnight_friends_visiting_weekdays'
 
   trigger:
    - platform: time
@@ -226,10 +234,11 @@
         - light.garage_light
 
         ##########################################################
-        ## Turn On Front Porch at Sunset
+        ## Turn On Front Porch Lights at Sunset
         ##########################################################
 
-- alias: Lights - Turn on Front Porch at Sunset
+- alias: Lights - Turn On Front Porch Lights at Sunset
+  id: 'lights_turn_on_front_porch_lights_at_sunset'
 
   trigger:
     - platform: sun
@@ -254,10 +263,11 @@
         color_temp: 447
 
         ##########################################################
-        ## Turn Off Front Porch at Midnight
+        ## Turn Off Front Porch Lights at Midnight
         ##########################################################
 
-- alias: Lights - Turn Off Front Porch at Midnight
+- alias: Lights - Turn Off Front Porch Lights at Midnight
+  id: 'lights_turn_off_front_porch_lights_at_midnight'
 
   trigger:
    - platform: time
@@ -286,10 +296,11 @@
         - light.front_porch
 
         ##########################################################
-        ## Turn off Front Porch After Midnight
+        ## Turn Off Front Porch Lights After Midnight
         ##########################################################
 
-- alias: Lights - Turn off Front Porch After Midnight
+- alias: Lights - Turn Off Front Porch Lights After Midnight
+  id: 'lights_turn_off_front_porch_lights_after_midnight'
 
   trigger:
     - platform: state
@@ -327,10 +338,11 @@
         - light.front_porch
 
         ##########################################################
-        ## Turn off Front Porch After 2a
+        ## Turn Off Front Porch Lights After 2a
         ##########################################################
 
-- alias: Lights - Turn off Front Porch After 2a
+- alias: Lights - Turn Off Front Porch Lights After 2a
+  id: 'lights_turn_off_front_porch_lights_after_2a'
 
   trigger:
     - platform: state
@@ -369,6 +381,7 @@
         ##########################################################
 
 - alias: Lights - Turn On Front Yard Lighting at Sunset
+  id: 'lights_turn_on_front_yard_lighting_at_sunset'
 
   trigger:
     - platform: sun
@@ -385,6 +398,7 @@
         ##########################################################
 
 - alias: Lights - Turn Off Front Yard Lighting at 3a
+  id: 'lights_turn_off_front_yard_lighting_at_3a'
 
   trigger:
    - platform: time
@@ -400,6 +414,7 @@
         ##########################################################
 
 - alias: Lights - Turn Off Front Yard Lighting after 3a
+  id: 'lights_turn_off_front_yard_lighting_after_3a'
 
   trigger:
     - platform: state
@@ -428,10 +443,11 @@
         - switch.front_yard_lighting
 
         ##########################################################
-        ## Turn On Back Door at Sunset
+        ## Turn On Back Door Lights at Sunset
         ##########################################################
 
-- alias: Lights - Turn On Back Door at Sunset
+- alias: Lights - Turn On Back Door Lights at Sunset
+  id: 'lights_turn_on_back_door_lights_at_sunset'
 
   trigger:
     - platform: sun
@@ -452,10 +468,11 @@
         transition: 60
 
         ##########################################################
-        ## Turn Off Back Door at Midnight
+        ## Turn Off Back Door Lights at Midnight
         ##########################################################
 
-- alias: Lights - Back Door Off at Midnight
+- alias: Lights - Turn Off Back Door Lights at Midnight
+  id: 'lights_turn_off_back_door_lights_at_midnight'
 
   trigger:
     - platform: time
@@ -484,10 +501,11 @@
        - light.back_door
        
         ##########################################################
-        ## Turn Off Back Door at Midnight Weekdays Friends Visiting
+        ## Turn Off Back Door Lights at Midnight Weekdays Friends Visiting
         ##########################################################
 
-- alias: Lights - Turn Off Back Door at Midnight Weekdays Friends Visiting
+- alias: Lights - Turn Off Back Door Lights at Midnight Weekdays Friends Visiting
+  id: 'lights_turn_off_back_door_lights_at_midnight_weekdays_friends_visiting'
 
   trigger:
     - platform: time
@@ -520,10 +538,11 @@
        - light.back_door
 
         ##########################################################
-        ## Turn off Backyard Lighting After Midnight
+        ## Turn Off Backyard Lighting After Midnight
         ##########################################################
 
-- alias: Lights - Turn off Backyard Lighting After Midnight
+- alias: Lights - Turn Off Backyard Lighting After Midnight
+  id: 'lights_turn_off_backyard_lighting_after_midnight'
 
   trigger:
     - platform: state
@@ -563,10 +582,11 @@
         - switch.backyard_patio_lighting
 
         ##########################################################
-        ## Turn off Interior Lights at Sunrise
+        ## Turn Off Interior Lights at Sunrise
         ##########################################################
 
-- alias: Lights - Turn off Interior Lights at Sunrise
+- alias: Lights - Turn Off Interior Lights at Sunrise
+  id: 'lights_turn_off_interior_lights_at_sunrise'
 
   trigger:
     - platform: sun
@@ -594,10 +614,11 @@
         - group.interior_lights
 
         ##########################################################
-        ## Turn off Exterior Lights at Sunrise
+        ## Turn Off Exterior Lights at Sunrise
         ##########################################################
 
-- alias: Lights - Turn off Exterior Lights at Sunrise
+- alias: Lights - Turn Off Exterior Lights at Sunrise
+  id: 'lights_turn_off_exterior_lights_at_sunrise'
 
   trigger:
     - platform: sun
@@ -622,7 +643,8 @@
         ## Turn On Backyard Lighting at Sunset
         ##########################################################
 
-- alias: Lights - Turn on Backyard Lighting at Sunset
+- alias: Lights - Turn On Backyard Lighting at Sunset
+  id: 'lights_turn_on_backyard_lighting_at_sunset'
 
   trigger:
     - platform: sun
@@ -656,7 +678,8 @@
         ## Turn Off Backyard Lighting at Midnight
         ##########################################################
 
-- alias: Lights - Turn off Backyard Lighting at Midnight
+- alias: Lights - Turn Off Backyard Lighting at Midnight
+  id: 'lights_turn_off_backyard_lighting_at_midnight'
 
   trigger:
     - platform: time
@@ -692,6 +715,7 @@
         ##########################################################
 
 - alias: Lights - Turn Off Backyard Lighting At Midnight Weekedays Friends Visiting
+  id: 'lights_turn_off_backyard_lighting_at_midnight_weekdays_friends_visiting'
 
   trigger:
     - platform: time
@@ -731,6 +755,7 @@
         ##########################################################
 
 - alias: Lights - Media Center Lighting Random Color Every 30 Mins
+  id: 'lights_media_center_lighting_random_color_every_30_mins'
 
   trigger:
     - platform: time_pattern
@@ -763,6 +788,7 @@
         ##########################################################
 
 - alias: Lights - Set Globe Color Temp
+  id: 'lights_set_globe_color_temp'
 
   trigger:
     - platform: state
@@ -809,10 +835,11 @@
        color_temp: 366
 
         ##########################################################
-        ## Turn on Guest Bedroom Lamp when Ceiling is on
+        ## Turn On Guest Bedroom Lamp when Ceiling is On
         ##########################################################
 
-- alias: Lights - Turn on Guest Bedroom Lamp when Ceiling is on
+- alias: Lights - Turn On Guest Bedroom Lamp when Ceiling is On
+  id: 'lights_turn_on_guest_bedroom_lamp_when_ceiling_is_on'
 
   trigger:
     - platform: state
@@ -833,10 +860,11 @@
        brightness_pct: 50
 
         ##########################################################
-        ## Turn off Guest Bedroom Lamp when Ceiling is off
+        ## Turn Off Guest Bedroom Lamp when Ceiling is Off
         ##########################################################
 
-- alias: Lights - Turn off Guest Bedroom Lamp when Ceiling is off
+- alias: Lights - Turn Off Guest Bedroom Lamp when Ceiling is Off
+  id: 'lights_turn_off_guest_bedroom_lamp_when_ceiling_is_off'
 
   trigger:
     - platform: state
@@ -857,10 +885,11 @@
        transition: 3
 
         ##########################################################
-        ## Turn on Basement Lights when Workbench Switch Used
+        ## Turn On Basement Lights when Workbench Switch Used
         ##########################################################
 
-- alias: Lights - Turn on Basement Lights when Workbench Switch Used
+- alias: Lights - Turn On Basement Lights when Workbench Switch Used
+  id: 'lights_turn_on_basement_lights_when_workbench_switch_used'
 
   trigger:
     - platform: state
@@ -880,10 +909,11 @@
        brightness_pct: 100
 
         ##########################################################
-        ## Turn on Basement Lights when Laundry Room Switch Used
+        ## Turn On Basement Lights when Laundry Room Switch Used
         ##########################################################
 
-- alias: Lights - Turn on Basement Lights when Laundry Room Switch Used
+- alias: Lights - Turn On Basement Lights when Laundry Room Switch Used
+  id: 'lights_turn_on_basement_lights_when_laundry_room_switch_used'
 
   trigger:
     - platform: state
@@ -907,10 +937,11 @@
        brightness_pct: 25
 
         ##########################################################
-        ## Turn off Basement Lights when Laundry Switch Used
+        ## Turn Off Basement Lights when Laundry Switch Used
         ##########################################################
 
-- alias: Lights - Turn off Basement Lights when Laundry Switch Used
+- alias: Lights - Turn Off Basement Lights when Laundry Switch Used
+  id: 'lights_turn_off_basement_lights_when_laundry_switch_used'
 
   trigger:
     - platform: state
@@ -944,10 +975,11 @@
        brightness_pct: 25
 
         ##########################################################
-        ## Turn off Basement Stair Light when Laundry Switch Used
+        ## Turn Off Basement Stair Light when Laundry Switch Used
         ##########################################################
 
-- alias: Lights - Turn off Basement Stair Light when Laundry Switch Used
+- alias: Lights - Turn Off Basement Stair Light when Laundry Switch Used
+  id: 'lights_turn_off_basement_stair_light_when_laundry_switch_used'
 
   trigger:
     - platform: state
@@ -975,10 +1007,11 @@
         - light.basement_stairs
 
         ##########################################################
-        ## Turn off Basement Lights when Work Bench Switch Used
+        ## Turn Off Basement Lights when Work Bench Switch Used
         ##########################################################
 
-- alias: Lights - Turn off Basement Lights when Work Bench Switch Used
+- alias: Lights - Turn Off Basement Lights when Work Bench Switch Used
+  id: 'lights_turn_off_basement_lights_when_work_bench_switch_used'
 
   trigger:
     - platform: state
@@ -1011,10 +1044,11 @@
        brightness_pct: 25
 
         ##########################################################
-        ## Turn off Basement Stair Light when Work Bench Switch Used
+        ## Turn Off Basement Stair Light when Work Bench Switch Used
         ##########################################################
 
-- alias: Lights - Turn off Basement Stair Light when Work Bench Switch Used
+- alias: Lights - Turn Off Basement Stair Light when Work Bench Switch Used
+  id: 'lights_turn_off_basement_stair_light_when_work_bench_switch_used'
 
   trigger:
     - platform: state
@@ -1042,10 +1076,11 @@
         - light.basement_stairs
 
     #################################################################
-    ## Turn on Right Front Porch Light if not On
+    ## Turn On Right Front Porch Light if not On
     #################################################################
 
-- alias: Lights - Turn on Right Front Porch Light if not On
+- alias: Lights - Turn On Right Front Porch Light if not On
+  id: 'lights_turn_on_right_front_porch_light_if_not_on'
 
   trigger:
     - platform: state
@@ -1065,6 +1100,346 @@
         - light.front_porch_right
 
 #################################################################
+## Color Modes
+#################################################################
+
+        ##########################################################
+        ## Living Room Lights Random Color On
+        ##########################################################
+
+- alias: Lights - Living Room Lights Random Color On
+  id: 'lights_living_room_lights_random_color_on'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.livingroom_rainbow
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.living_room_fan_lights
+    - service: light.turn_on
+      entity_id:
+        - light.living_room_lamps
+        - light.media_center_lighting
+        - light.globe
+      data:
+        effect: random
+        brightness_pct: 100
+    - delay: '00:00:05'
+    - service: light.turn_on
+      entity_id: light.living_room_lamp_1
+      data:
+        effect: colorloop
+        brightness_pct: 100
+    - delay: '00:00:17'
+    - service: light.turn_on
+      entity_id: light.media_center_lighting
+      data:
+        effect: colorloop
+        brightness_pct: 100
+    - delay: '00:00:31'
+    - service: light.turn_on
+      entity_id: light.globe
+      data:
+        effect: colorloop
+        brightness_pct: 100
+    - delay: '00:00:43'
+    - service: light.turn_on
+      entity_id: light.living_room_lamp_2
+      data:
+        effect: colorloop
+        brightness_pct: 100
+
+        ##########################################################
+        ## Living Room Lights Random Color Off
+        ##########################################################
+
+- alias: Lights - Living Room Lights Random Color Off
+  id: 'lights_living_room_lights_random_color_off'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.livingroom_rainbow
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.bedtime
+      state: 'off'
+    - condition: state
+      entity_id: light.living_room_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.living_room_accent_lights
+      data:
+        effect: stop
+    - delay: '00:00:05'
+    - service: light.turn_on
+      entity_id:
+        - light.living_room_lamps
+      data:
+        effect: stop
+        transition: 30
+        brightness_pct: 100
+        color_temp: 447
+    - service: light.turn_on
+      entity_id: light.media_center_lighting
+      data:
+        transition: 30
+        effect: random
+        brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.globe
+      data:
+        effect: stop
+        transition: 30
+        brightness_pct: 20
+        color_temp: 366
+
+        ##########################################################
+        ## Bedroom Lights Random Color On
+        ##########################################################
+
+- alias: Lights - Bedroom Lights Random Color On
+  id: 'lights_bedroom_lights_random_color_on'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedroom_rainbow
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.USER1s_nightstand
+        - light.USER2s_nightstand
+        - light.bedroom_lamp
+      data:
+        effect: random
+        brightness_pct: 100
+    - service: light.turn_off
+      entity_id:
+        - light.closet_lamp
+        - light.bedroom_closet_ceiling
+    - delay: '00:00:05'
+    - service: light.turn_on
+      entity_id: light.USER1s_nightstand
+      data:
+        effect: colorloop
+        brightness_pct: 100
+    - delay: '00:00:17'
+    - service: light.turn_on
+      entity_id: light.bedroom_lamp
+      data:
+        effect: colorloop
+        brightness_pct: 100
+    - delay: '00:00:31'
+    - service: light.turn_on
+      entity_id: light.USER2s_nightstand
+      data:
+        effect: colorloop
+        brightness_pct: 100
+
+        ##########################################################
+        ## Bedroom Lights Random Color Off
+        ##########################################################
+
+- alias: Lights - Bedroom Lights Random Color Off
+  id: 'lights_bedroom_lights_random_color_off'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedroom_rainbow
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.bedtime
+      state: 'off'
+    - condition: state
+      entity_id: light.bedroom_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.USER1s_nightstand
+        - light.USER2s_nightstand
+        - light.bedroom_lamp
+      data:
+        effect: stop
+    - delay: '00:00:05'
+    - service: light.turn_on
+      entity_id:
+        - light.USER1s_nightstand
+        - light.USER2s_nightstand
+        - light.bedroom_lamp
+      data:
+        effect: stop
+        transition: 30
+        color_temp: 447
+        brightness_pct: 50
+    - service: light.turn_on
+      entity_id:
+        - light.closet_lamp
+        - light.bedroom_closet_ceiling
+      data:
+        effect: stop
+        transition: 30
+        brightness_pct: 50
+
+        ##########################################################
+        ## Office Lamp Random Color On
+        ##########################################################
+
+- alias: Lights - Office Lamp Random Color On
+  id: 'lights_office_lamp_random_color_on'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.office_rainbow
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.office_rainbow
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.office_lamp
+      data:
+        effect: colorloop
+        transition: 30
+        brightness_pct: 100
+
+        ##########################################################
+        ## Office Lamp Random Color Off
+        ##########################################################
+
+- alias: Lights - Office Lamp Random Color Off
+  id: 'lights_office_lamp_random_color_off'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.office_rainbow
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.bedtime
+      state: 'off'
+    - condition: state
+      entity_id: light.office_lamp
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.office_lamp
+      data:
+        effect: stop
+        transition: 30
+        color_temp: 447
+        brightness_pct: 100
+
+        ##########################################################
+        ## Front Porch Lights Random Color On
+        ##########################################################
+
+- alias: Lights - Front Porch Lights Random Color On
+  id: 'lights_front_porch_lights_random_color_on'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.front_porch_rainbow
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.bedtime
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id:  light.front_porch_left
+      data:
+        effect: random
+        brightness_pct: 100
+    - service: light.turn_on
+      entity_id: light.front_porch_right
+      data:
+        effect: random
+        brightness_pct: 100
+    - delay: '00:00:05'
+    - service: light.turn_on
+      entity_id: light.front_porch_left
+      data:
+        effect: colorloop
+        brightness_pct: 100
+    - delay: '00:00:23'
+    - service: light.turn_on
+      entity_id: light.front_porch_right
+      data:
+        effect: colorloop
+        brightness_pct: 100
+
+        ##########################################################
+        ## Front Porch Lights Random Color Off
+        ##########################################################
+
+- alias: Lights - Front Porch Lights Random Color Off
+  id: 'lights_front_porch_lights_random_color_off'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.front_porch_rainbow
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: light.front_porch
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.front_porch
+      data:
+        effect: stop
+    - delay: '00:00:01'
+    - service: light.turn_on
+      entity_id: light.front_porch
+      data:
+        effect: stop
+        transition: 60
+        brightness_pct: 50
+        color_temp: 447
+
+#################################################################
 ## Pico Remotes
 #################################################################
 
@@ -1073,6 +1448,7 @@
   #################################################################
 
 - alias: Lights - Living Room Lights On Pico Remote
+  id: 'lights_living_room_lights_on_pico_remote'
 
   trigger:
     - platform: state
@@ -1093,6 +1469,7 @@
   #################################################################
 
 - alias: Lights - Living Room Lights Off Pico Remote
+  id: 'lights_living_room_lights_off_pico_remote'
 
   trigger:
     - platform: state
@@ -1111,6 +1488,7 @@
   #################################################################
 
 - alias: Lights - Living Room Lights Increase Brightness Pico Remote
+  id: 'lights_living_room_lights_increase_brightness_pico_remote'
 
   trigger:
     - platform: state
@@ -1131,6 +1509,7 @@
   #################################################################
 
 - alias: Lights - Living Room Lights Decrease Brightness Pico Remote
+  id: 'lights_living_room_lights_decrease_brightness_pico_remote'
 
   trigger:
     - platform: state
@@ -1156,6 +1535,7 @@
   #################################################################
 
 - alias: Lights - Living Room Lights Default Color Pico Remote
+  id: 'lights_living_room_lights_default_color_pico_remote'
 
   trigger:
     - platform: state
@@ -1181,6 +1561,7 @@
   #################################################################
 
 - alias: Lights - Living Room Fan Lights On Pico Remote
+  id: 'lights_living_room_fan_lights_on_pico_remote'
 
   trigger:
     - platform: state
@@ -1204,6 +1585,7 @@
   #################################################################
 
 - alias: Lights - Living Room Fan Lights Off Pico Remote
+  id: 'lights_living_room_fan_lights_off_pico_remote'
 
   trigger:
     - platform: state
@@ -1227,6 +1609,7 @@
   #################################################################
 
 - alias: Lights - Basement Lights On Pico Remote
+  id: 'lights_basement_lights_on_pico_remote'
 
   trigger:
     - platform: state
@@ -1247,6 +1630,7 @@
   #################################################################
 
 - alias: Lights - Basement Lights Off Pico Remote
+  id: 'lights_basement_lights_off_pico_remote'
 
   trigger:
     - platform: state
@@ -1265,6 +1649,7 @@
   #################################################################
 
 - alias: Lights - Basement Lights Increase Brightness Pico Remote
+  id: 'lights_basement_lights_increase_brightness_pico_remote'
 
   trigger:
     - platform: state
@@ -1285,6 +1670,7 @@
   #################################################################
 
 - alias: Lights - Basement Lights Decrease Brightness Pico Remote
+  id: 'lights_basement_lights_decrease_brightness_pico_remote'
 
   trigger:
     - platform: state
@@ -1309,7 +1695,8 @@
   ## Living Room Fan Dimm Lights Pico Remote
   #################################################################
 
-- alias: Lights - Living Room Fan Dimm Lights
+- alias: Lights - Living Room Fan Dimm Lights Pico Remote
+  id: 'lights_living_room_fan_dimm)lights_pico_remote'
 
   trigger:
     - platform: state
@@ -1337,6 +1724,7 @@
   #################################################################
 
 - alias: Lights - Living Room Fan Lights Start Dimmer Reset
+  id: 'lights_living_room_fan_lights_start_dimmer_reset'
 
   trigger:
     - platform: state
@@ -1365,10 +1753,11 @@
 #################################################################
 
     #################################################################
-    ## Front Porch Light Not On
+    ## Front Porch Light Not On iOS Notification
     #################################################################
 
-- alias: Lights - Front Porch Light Not On
+- alias: Lights - Front Porch Light Not On iOS Notification
+  id: 'lights_front_porch_light_not_on_ios_notification'
 
   trigger:
     - platform: state

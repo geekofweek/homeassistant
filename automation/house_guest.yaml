@@ -3,6 +3,7 @@
         ##########################################################
 
 - alias: Guest - House Guest Unlock Doors
+  id: 'guest_house_guest_unlock_doors'
 
   trigger:
     - platform: state
@@ -29,6 +30,7 @@
         ########################################################
 
 - alias: Guest - After Guest Home Lock Doors
+  id: 'guest_after_guest_home_lock_doors'
 
   trigger:
     - platform: state
@@ -54,10 +56,11 @@
         - lock.front_door
 
         ##########################################################
-        ## House Guest Home Turn on Lights
+        ## House Guest Home Turn On Lights
         ##########################################################
 
-- alias: Guest - House Guest Turn on Lights
+- alias: Guest - House Guest Turn On Lights
+  id: 'guest_house_guest_turn_on_lights'
 
   trigger:
     - platform: state
@@ -119,10 +122,11 @@
        brightness_pct: 20
 
         ##########################################################
-        ## House Guest Home Reset Front Porch Brightness
+        ## House Guest Home Reset Front Porch Lights Brightness
         ##########################################################
 
-- alias: Guest - House Guest Reset Front Porch Brightness
+- alias: Guest - House Guest Reset Front Porch Lights Brightness
+  id: 'guest_house_guest_reset_front_porch_lights_brightness'
 
   trigger:
     - platform: state
@@ -146,10 +150,11 @@
         transition: 120
 
         ##########################################################
-        ## House Guest Home Reset Back Door / Garage Brightness
+        ## House Guest Home Reset Back Door / Garage Lights Brightness
         ##########################################################
 
-- alias: Guest - House Guest Reset Back Door / Garage Brightness
+- alias: Guest - House Guest Reset Back Door / Garage Lights Brightness
+  id: 'guest_house_guest_reset_back_door_garage_lights_brightness'
 
   trigger:
     - platform: state
@@ -181,6 +186,7 @@
         ##########################################################
 
 - alias: Guest - Set House Guest Away after 15 Mins
+  id: 'guest_set_house_guest_away_after_15_mins'
 
   trigger:
     - platform: state
@@ -201,6 +207,7 @@
         ##########################################################
 
 - alias: Guest - Set House Guest Home after 10 Mins
+  id: 'guest_set_house_guest_home_after_10_mins'
 
   trigger:
     - platform: state
@@ -221,6 +228,7 @@
         ##########################################################
 
 - alias: Guest - Enable Guest Mode Before Midnight
+  id: 'guest_enable_guest_mode_before_midnight'
 
   trigger:
     - platform: time
@@ -243,6 +251,7 @@
         ##########################################################
 
 - alias: Guest - Enable Guest Mode after Midnight
+  id: 'guest_enable_guest_mode_after_midnight'
 
   trigger:
     - platform: state
@@ -263,10 +272,11 @@
       entity_id: input_boolean.guest_mode
 
         ##########################################################
-        ## Turn off Guest Mode During the Day
+        ## Turn Off Guest Mode During the Day
         ##########################################################
 
-- alias: Guest - Turn off Guest Mode During the Day
+- alias: Guest - Turn Off Guest Mode During the Day
+  id: 'guest_turn_off_guest_mode_during_the_day'
 
   trigger:
     - platform: time
@@ -284,7 +294,8 @@
         ## Guest Arrived iOS Notification
         #################################################################
 
-- alias: Guest - Guest Arrived iOS Notification
+- alias: Guest - Arrived iOS Notification
+  id: 'guest_arrived_ios_notification'
 
   trigger:
     - platform: state

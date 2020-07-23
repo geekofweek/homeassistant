@@ -7,6 +7,7 @@
         ##########################################################
 
 - alias: Bug Zapper - Turn On Bug Zapper at Sunset
+  id: 'bug_zapper_turn_on_bug_zapper_at_sunset'
 
   trigger:
     - platform: sun
@@ -30,10 +31,11 @@
         - switch.bug_zapper
 
         ##########################################################
-        ## Turn off Bug Zapper at Sunrise
+        ## Turn Off Bug Zapper at Sunrise
         ##########################################################
 
-- alias: Bug Zapper - Turn off Bug Zapper at Sunrise
+- alias: Bug Zapper - Turn Off Bug Zapper at Sunrise
+  id: 'bug_zapper_turn_off_bug_zapper_at_sunrise'
 
   trigger:
     - platform: sun
@@ -55,6 +57,7 @@
         ##########################################################
 
 - alias: Bug Zapper - Turn Off Bug Zapper in the Rain
+  id: 'bug_zapper_turn_off_bug_zapper_in_the_rain'
 
   trigger:
     - platform: state
@@ -80,6 +83,7 @@
         ##########################################################
 
 - alias: Bug Zapper - Turn On Bug Zapper After Rain Stops
+  id: 'bug_zapper_turn_on_bug_zapper_after_rain_stops'
 
   trigger:
     - platform: state
@@ -106,10 +110,11 @@
         - switch.bug_zapper
 
         ##########################################################
-        ## Turn on Bug Zapper when Returning Home
+        ## Turn On Bug Zapper when Returning Home
         ##########################################################
 
-- alias: Bug Zapper - Turn on Bug Zapper when Returning Home
+- alias: Bug Zapper - Turn On Bug Zapper when Returning Home
+  id: 'bug_zapper_turn_bug_zapper_when_returning_home'
 
   trigger:
     - platform: state
@@ -143,10 +148,11 @@
         - switch.bug_zapper
 
         ##########################################################
-        ## Turn on Bug Zapper when Returning Home before Sunset
+        ## Turn On Bug Zapper when Returning Home before Sunset
         ##########################################################
 
-- alias: Bug Zapper - Turn on Bug Zapper when Returning Home before Sunset
+- alias: Bug Zapper - Turn On Bug Zapper when Returning Home before Sunset
+  id: 'bug_zapper_turn_on_bug_zapper_when_returning_home_before_sunset'
 
   trigger:
     - platform: state

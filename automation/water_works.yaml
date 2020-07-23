@@ -7,6 +7,7 @@
         ##########################################################
 
 - alias: Water Works - Sound Alarm When Water Detected Lights
+  id: 'water_works_sound_alarm_when_water_detected_lights'
 
   trigger:
     - platform: state
@@ -60,6 +61,7 @@
         ##########################################################
 
 - alias: Water Works - Shut Off Water Main When Water Detected
+  id: 'water_works_shut_off_water_main_when_water_detected'
 
   trigger:
     - platform: state
@@ -105,6 +107,7 @@
         ##########################################################
 
 - alias: Water Works - Shut Off Water Main When Vacation Mode On
+  id: 'water_works_shut_off_water_main_when_vacation_mode_on'
 
   trigger:
     - platform: state
@@ -132,7 +135,8 @@
         ## Turn On Water Main When Vacation Mode Off
         ##########################################################
 
-- alias: Water Works - Shut On Water Main When Vacation Mode Off
+- alias: Water Works - Turn On Water Main When Vacation Mode Off
+  id: 'water_works_turn_on_water_main_when_vacation_mode_off'
 
   trigger:
     - platform: state
@@ -165,6 +169,7 @@
         ##########################################################
 
 - alias: Water Works - Water Main Turned Off iOS Notification
+  id: 'water_works_water_main_turned_off_ios_notification'
 
   trigger:
     - platform: state
@@ -196,6 +201,7 @@
         ##########################################################
 
 - alias: Water Works - Water Main Turned On iOS Notification
+  id: 'water_works_water_main_turned_on_ios_notification'
 
   trigger:
     - platform: state
@@ -230,6 +236,7 @@
         ##########################################################
 
 - alias: Water Works - Sump Pump Power Off iOS Notification
+  id: 'water_works_sump_pump_power_off_ios_notification'
 
   trigger:
     - platform: state
@@ -253,6 +260,7 @@
         ##########################################################
 
 - alias: Water Works - Basement Drain Water Sensor iOS Notification
+  id: 'water_works_basement_drain_water_sensor_ios_notification'
 
   trigger:
     - platform: state
@@ -278,6 +286,7 @@
         ##########################################################
 
 - alias: Water Works - Kitchen Sink Water Sensor iOS Notification
+  id: 'water_works_kitchen_sink_water_sensor_ios_notification'
 
   trigger:
     - platform: state
@@ -303,6 +312,7 @@
         ##########################################################
 
 - alias: Water Works - Bathroom Sink Water Sensor iOS Notification
+  id: 'water_works_bathroom_sink_water_sensor_ios_notification'
 
   trigger:
     - platform: state
@@ -328,6 +338,7 @@
         ##########################################################
 
 - alias: Water Works - Basement Door Water Sensor iOS Notification
+  id: 'water_works_basement_door_water_sensor_ios_notification'
 
   trigger:
     - platform: state
@@ -353,6 +364,7 @@
         ##########################################################
 
 - alias: Water Works - Upstairs Bathroom Water Sensor iOS Notification
+  id: 'water_works_upstairs_bathroom_water_sensor_ios_notification'
 
   trigger:
     - platform: state
@@ -374,10 +386,11 @@
            'apns-collapse-id': 'water-upstairs-bathroom'
 
         ##########################################################
-        ## Water Heater Water Sensor iOS Notification
+        ## Coal Room Water Sensor iOS Notification
         ##########################################################
 
-- alias: Water Works - Water Heater Water Sensor iOS Notification
+- alias: Water Works - Coal Room Water Sensor iOS Notification
+  id: 'water_works_coal_room_water_sensor_ios_notification'
 
   trigger:
     - platform: state
@@ -403,6 +416,7 @@
         ##########################################################
 
 - alias: Water Works - Utility Sink Water Sensor iOS Notification
+  id: 'water_works_utility_sink_water_sensor_ios_notification'
 
   trigger:
     - platform: state
@@ -428,6 +442,7 @@
         ##########################################################
 
 - alias: Water Works - Washing Machine Water Sensor iOS Notification
+  id: 'water_works_washing_mashine_water_sensor_ios_notficiation'
 
   trigger:
     - platform: state
@@ -453,6 +468,7 @@
         ##########################################################
 
 - alias: Water Works - Sump Pump Water Sensor iOS Notification
+  id: 'water_works_sump_pump_water_sensor_ios_notification'
 
   trigger:
     - platform: state
@@ -474,10 +490,11 @@
            'apns-collapse-id': 'water-sump-pump'
 
         ##########################################################
-        ## Sump Pump On Send iOS Notification
+        ## Sump Pump On iOS Notification
         ##########################################################
 
-- alias: Water Works - Sump Pump On Send iOS Notification
+- alias: Water Works - Sump Pump On iOS Notification
+  id: 'water_works_sump_pump_on_ios_notification'
 
   trigger:
     - platform: state
@@ -504,6 +521,7 @@
         ##########################################################
 
 - alias: Water Works - Basement Drain Water Sensor Audio Notification
+  id: 'water_works_basement_drain_water_sensor_audio_notification'
 
   trigger:
     - platform: state
@@ -537,6 +555,7 @@
         ##########################################################
 
 - alias: Water Works - Kitchen Sink Water Sensor Audio Notification
+  id: 'water_works_kitchen_sink_water_sensor_audio_notification'
 
   trigger:
     - platform: state
@@ -570,6 +589,7 @@
         ##########################################################
 
 - alias: Water Works - Bathroom Sink Water Sensor Audio Notification
+  id: 'water_works_bathroom_sink_water_sensor_audio_notification'
 
   trigger:
     - platform: state
@@ -603,6 +623,7 @@
         ##########################################################
 
 - alias: Water Works - Upstairs Bathroom Sink Water Sensor Audio Notification
+  id: 'water_works_upstairs_bathroom_sink_water_sensor_audio_notification'
 
   trigger:
     - platform: state
@@ -636,6 +657,7 @@
         ##########################################################
 
 - alias: Water Works - Utility Sink Water Sensor Audio Notification
+  id: 'water_works_utility_sink_water_sensor_audio_notification'
 
   trigger:
     - platform: state
@@ -669,6 +691,7 @@
         ##########################################################
 
 - alias: Water Works - Washing Machine Water Sensor Audio Notification
+  id: 'water_works_washing_machine_water_sensor_audio_notification'
 
   trigger:
     - platform: state

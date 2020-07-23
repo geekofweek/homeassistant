@@ -7,6 +7,7 @@
         ##########################################################
 
 - alias: System - Reset Overrides at 7a
+  id: 'system_reset_overrides_at_7a'
 
   trigger:
    - platform: time
@@ -44,6 +45,7 @@
         ##########################################################
 
 - alias: System - Disable Erroneous Startup Notifications
+  id: 'system_disable_erroneous_startup_notifications'
 
   trigger:
     - platform: homeassistant
@@ -63,6 +65,7 @@
         ##########################################################
 
 - alias: System - Delay HomeKit Start
+  id: 'system_delay_homekit_start'
 
   trigger:
     - platform: homeassistant
@@ -77,6 +80,7 @@
         #################################################################
 
 - alias: System - Restart Bond Home Hub when Offline
+  id: 'system_restart_bond_home_hub_when_offline'
 
   trigger:
     - platform: state
@@ -106,6 +110,7 @@
         #################################################################
 
 - alias: System - NAS Warning iOS Notification
+  id: 'system_nas_warning_ios_notification'
 
   trigger:
     - platform: state
@@ -130,6 +135,7 @@
         ##########################################################
 
 - alias: System - UPS Power Loss Alert iOS Notification
+  id: 'system_ups_power_loss_alert_ios_notification'
 
   trigger:
     - platform: numeric_state
@@ -154,6 +160,7 @@
         ##########################################################
 
 - alias: System - UPS Power Restored Alert iOS Notification
+  id: 'system_ups_power_restored_alert_ios_notification'
 
   trigger:
     - platform: numeric_state
@@ -181,6 +188,7 @@
         ##########################################################
 
 - alias: System - UPS Low Battery Alert iOS Notification
+  id: 'system_ups_low_battery_alert_ios_notification'
 
   trigger:
     - platform: numeric_state
@@ -205,6 +213,7 @@
         ##########################################################
 
 - alias: System - UPS Low Runtime Alert iOS Notification
+  id: 'system_ups_low_runtime_alert_ios_notification'
 
   trigger:
     - platform: numeric_state
@@ -229,6 +238,7 @@
         #################################################################
 
 - alias: System - Home Assistant Start iOS Notification
+  id: 'system_home_assistant_start_ios_notification'
 
   trigger:
     - platform: homeassistant
@@ -252,6 +262,7 @@
         #################################################################
 
 - alias: System - Home Assistant Update iOS Notification
+  id: 'system_home_assistant_update_ios_notification'
 
   trigger:
     - platform: state
@@ -282,6 +293,7 @@
         #################################################################
 
 - alias: System - Bond Home Hub Offline iOS Notification
+  id: 'system_bond_home_hub_offline_ios_notification'
 
   trigger:
     - platform: state

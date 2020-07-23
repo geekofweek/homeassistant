@@ -7,6 +7,7 @@
         ##########################################################
 
 - alias: Bedtime
+  id: 'bedtime'
 
   trigger:
     - platform: state
@@ -97,6 +98,7 @@
         ##########################################################
 
 - alias: Bedtime - Guest Mode
+  id: 'bedtime_guest_mode'
 
   trigger:
     - platform: state
@@ -195,6 +197,7 @@
         ##########################################################
 
 - alias: Bedtime - Before 11:30p
+  id: 'bedtime_before_1130p'
 
   trigger:
     - platform: state
@@ -227,6 +230,7 @@
         ##########################################################
 
 - alias: Bedtime - After Midnight
+  id: 'bedtime_after_midnight'
 
   trigger:
     - platform: state
@@ -270,6 +274,7 @@
         ##########################################################
 
 - alias: Bedtime - After Midnight Holiday
+  id: 'bedtime_after_midnight_holiday'
 
   trigger:
     - platform: state
@@ -307,7 +312,8 @@
         ## Bedtime Close Garage if Open
         ##########################################################
 
-- alias: Bedtime - Bedtime Close Garage if Open
+- alias: Bedtime - Close Garage if Open
+  id: 'bedtime_close_garage_if_open'
 
   trigger:
     - platform: state
@@ -342,6 +348,7 @@
         ##########################################################
 
 - alias: Bedtime - Reset Switch
+  id: 'bedtime_reset_switch'
 
   trigger:
     - platform: state

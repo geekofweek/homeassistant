@@ -7,6 +7,7 @@
         ##########################################################
 
 - alias: Locks - Lock Front Door After 30 Mins
+  id: 'locks_lock_front_door_after_30_mins'
 
   trigger:
     - platform: state
@@ -38,6 +39,7 @@
         ##########################################################
 
 - alias: Locks - Lock Back Door After 2 Hours
+  id: 'locks_lock_back_door_after_2_hours'
 
   trigger:
     - platform: state
@@ -73,6 +75,7 @@
         ##########################################################
 
 - alias: Locks - Lock Basement Door After 45 Mins
+  id: 'locks_lock_basement_door_after_45_mins'
 
   trigger:
     - platform: state
@@ -108,6 +111,7 @@
         ##########################################################
 
 - alias: Locks - Lock Doors at 2a
+  id: 'locks_lock_back_door_at_2a'
 
   trigger:
     - platform: time

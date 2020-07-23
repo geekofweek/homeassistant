@@ -7,6 +7,7 @@
         ##########################################################
 
 - alias: Alarm - Triggered Armed Away
+  id: 'alarm_triggered_armed_away'
 
   trigger:
     - platform: state
@@ -118,6 +119,7 @@
         ##########################################################
 
 - alias: Alarm - Triggered Armed Home
+  id: 'alarm_triggered_armed_home'
 
   trigger:
     - platform: state
@@ -214,6 +216,7 @@
         ##########################################################
 
 - alias: Alarm - Panic Button On
+  id: 'alarm_panic_button_on'
 
   trigger:
     - platform: state
@@ -269,6 +272,7 @@
         ##########################################################
 
 - alias: Alarm - Panic Button Off
+  id: 'alarm_panic_button_off'
 
   trigger:
     - platform: state
@@ -285,6 +289,7 @@
         ##########################################################
 
 - alias: Alarm - Panic Button Auto Off
+  id: 'alarm_panic_button_auto_off'
 
   trigger:
     - platform: state
@@ -305,6 +310,7 @@
         ##########################################################
 
 - alias: Alarm - Siren is On
+  id: 'alarm_siren_is_on'
 
   trigger:
     - platform: state
@@ -327,6 +333,7 @@
         ##########################################################
 
 - alias: Alarm - Away Door Alarm
+  id: 'alarm_away_door_alarm'
 
   trigger:
     - platform: state
@@ -368,6 +375,7 @@
         ##########################################################
 
 - alias: Alarm - Home Door Alarm
+  id: 'alarm_home_door_alarm'
 
   trigger:
     - platform: state
@@ -410,6 +418,7 @@
         #################################################################
 
 - alias: Alarm - Motion Alarm Away
+  id: 'alarm_motion_alarm_away'
 
   trigger:
     - platform: state
@@ -464,6 +473,7 @@
         ##########################################################
 
 - alias: Alarm - Garage Alarm Home
+  id: 'alarm_garage_alarm_home'
 
   trigger:
     - platform: state
@@ -497,6 +507,7 @@
         ##########################################################
 
 - alias: Alarm - Garage Alarm Home
+  id: 'alarm_garage_alarm_home'
 
   trigger:
     - platform: state
@@ -537,6 +548,7 @@
         ##########################################################
 
 - alias: Alarm - Disable Alarm when Home
+  id: 'alarm_disable_alarm_when_home'
 
   trigger:
     - platform: state
@@ -560,6 +572,7 @@
         ##########################################################
 
 - alias: Alarm - Disable Alarm when USER1 or USER2 Home
+  id: 'alarm_disable_alarm_when_USER1_or_USER2_home'
 
   trigger:
     - platform: state
@@ -591,6 +604,7 @@
         ##########################################################
 
 - alias: Alarm - Enable Alarm when Away
+  id: 'alarm_enable_alarm_when_away'
 
   trigger:
     - platform: state
@@ -626,6 +640,7 @@
         ##########################################################
 
 - alias: Alarm - Arm Home at Bedtime
+  id: 'alarm_arm_home_at_bedtime'
 
   trigger:
     - platform: state
@@ -654,6 +669,7 @@
         ##########################################################
 
 - alias: Alarm - Disarm Armed Home in the Morning
+  id: 'alarm_disarm_armed_home_in_the_morning'
 
   trigger:
    - platform: time
@@ -679,7 +695,8 @@
     ## Alarm Armed Home iOS Notification
     #################################################################
 
-- alias: Alarm - Alarm Armed Home iOS Notification
+- alias: Alarm - Armed Home iOS Notification
+  id: 'alarm_armed_home_ios_notification'
 
   trigger:
     - platform: state
@@ -706,7 +723,8 @@
     ## Alarm Armed Away iOS Notification
     #################################################################
 
-- alias: Alarm - Alarm Armed Away iOS Notification
+- alias: Alarm - Armed Away iOS Notification
+  id: 'alarm_armed_away_ios_notification'
 
   trigger:
     - platform: state
@@ -742,7 +760,8 @@
     ## Alarm Disabled USER1 iOS Notification
     #################################################################
 
-- alias: Alarm - Alarm Disabled USER1 iOS Notification
+- alias: Alarm - Disabled USER1 iOS Notification
+  id: 'alarm_disabled_USER1_ios_notification'
 
   trigger:
     - platform: state
@@ -770,6 +789,7 @@
     #################################################################
 
 - alias: Alarm - Alarm Disabled USER2 iOS Notification
+  id: 'alarm_alarm_disabled_USER2_ios_notification'
 
   trigger:
     - platform: state

@@ -7,6 +7,7 @@
         ##########################################################
 
 - alias: Climate - Home
+  id: 'climate_home'
 
   trigger:
     - platform: state
@@ -39,6 +40,7 @@
         ##########################################################
 
 - alias: Climate - Away
+  id: 'climate_away'
 
   trigger:
     - platform: state
@@ -71,7 +73,7 @@
   action:
     - service: notify.mobile_app_USER1s_iphone
       data:
-        message: House has been empty for 30 mins, shutting off HVAC
+        message: House has been empty for 30 mins, shutting Off HVAC
         data:
           apns_headers:
            'apns-collapse-id': 'climate-away'
@@ -84,10 +86,11 @@
         fan_min_on_time: '0'
 
         ##########################################################
-        ## Thermostat on Demand Home
+        ## Thermostat On Demand Home
         ##########################################################
 
 - alias: Climate - On Demand Home
+  id: 'climate_on_demand_home'
 
   trigger:
     - platform: state
@@ -102,10 +105,11 @@
         resume_all: true
 
         ##########################################################
-        ## Thermostat on Demand Away
+        ## Thermostat On Demand Away
         ##########################################################
 
 - alias: Climate - On Demand Away
+  id: 'climate_on_demand_away'
 
   trigger:
     - platform: state
@@ -120,10 +124,11 @@
         preset_mode: 'away'
 
         ##########################################################
-        ## Turn Thermostat on Summer
+        ## Turn Thermostat On Summer
         ##########################################################
 
-- alias: Climate - Turn Thermostat on Summer
+- alias: Climate - Turn Thermostat On Summer
+  id: 'climate_turn_thermostat_on_summer'
 
   trigger:
     - platform: numeric_state
@@ -156,16 +161,17 @@
       entity_id: input_boolean.thermostat_away
     - service: notify.mobile_app_USER1s_iphone
       data:
-        message: Outside temp above 68 turning on AC
+        message: Outside temp above 68 turning On AC
         data:
           apns_headers:
            'apns-collapse-id': 'climate-summer'
 
         ##########################################################
-        ## Turn Thermostat off Summer
+        ## Turn Thermostat Off Summer
         ##########################################################
 
-- alias: Climate - Turn Thermostat off Summer
+- alias: Climate - Turn Thermostat Off Summer
+  id: 'climate_turn_thermostat_off_summer'
 
   trigger:
     - platform: numeric_state
@@ -203,16 +209,17 @@
       entity_id: input_boolean.thermostat_away
     - service: notify.mobile_app_USER1s_iphone
       data:
-        message: Outside temp below 68 shutting off AC
+        message: Outside temp below 68 shutting Off AC
         data:
           apns_headers:
            'apns-collapse-id': 'climate-summer'
 
         ##########################################################
-        ## Turn Thermostat on Winter
+        ## Turn Thermostat On Winter
         ##########################################################
 
-- alias: Climate - Turn Thermostat on Winter
+- alias: Climate - Turn Thermostat On Winter
+  id: 'climate_turn_thermostat_on_winter'
 
   trigger:
     - platform: numeric_state
@@ -245,16 +252,17 @@
       entity_id: input_boolean.thermostat_away
     - service: notify.mobile_app_USER1s_iphone
       data:
-        message: Outside temp below 65 turning on Heat
+        message: Outside temp below 65 turning On Heat
         data:
           apns_headers:
            'apns-collapse-id': 'climate-winter'
 
         ##########################################################
-        ## Turn Thermostat off Winter
+        ## Turn Thermostat Off Winter
         ##########################################################
 
-- alias: Climate - Turn Thermostat off Winter
+- alias: Climate - Turn Thermostat Off Winter
+  id: 'climate_turn_thermostat_off_winter'
 
   trigger:
     - platform: numeric_state
@@ -292,16 +300,17 @@
       entity_id: input_boolean.thermostat_away
     - service: notify.mobile_app_USER1s_iphone
       data:
-        message: Outside temp above 65 turning off Heat
+        message: Outside temp above 65 turning Off Heat
         data:
           apns_headers:
            'apns-collapse-id': 'climate-winter'
 
         ##########################################################
-        ## Turn Thermostat on Spring/Fall
+        ## Turn Thermostat On Spring/Fall
         ##########################################################
 
-- alias: Climate - Turn Thermostat on Spring/Fall
+- alias: Climate - Turn Thermostat On Spring/Fall
+  id: 'climate_turn_thermostat_on_spring_fall'
 
   trigger:
     - platform: numeric_state
@@ -346,16 +355,17 @@
       entity_id: input_boolean.thermostat_away
     - service: notify.mobile_app_USER1s_iphone
       data:
-        message: Outside temp below 65 or above 78 turning on HVAC
+        message: Outside temp below 65 or above 78 turning On HVAC
         data:
           apns_headers:
            'apns-collapse-id': 'climate-winter'
 
         ##########################################################
-        ## Turn Thermostat off Spring/Fall
+        ## Turn Thermostat Off Spring/Fall
         ##########################################################
 
-- alias: Climate - Turn Thermostat off Spring/Fall
+- alias: Climate - Turn Thermostat Off Spring/Fall
+  id: 'climate_turn_thermostat_off_spring_fall'
 
   trigger:
     - platform: numeric_state
@@ -389,7 +399,7 @@
       entity_id: input_boolean.thermostat_away
     - service: notify.mobile_app_USER1s_iphone
       data:
-        message: Outside temp above 65 or below 78 turning off HVAC
+        message: Outside temp above 65 or below 78 turning Off HVAC
         data:
           apns_headers:
            'apns-collapse-id': 'climate-winter'
@@ -399,6 +409,7 @@
         ##########################################################
 
 - alias: Climate - Spring / Fall Mode HVAC Auto
+  id: 'climate_spring_fall_mode_hvac_auto'
 
   trigger:
     - platform: state
@@ -412,10 +423,11 @@
         hvac_mode: 'heat_cool'
 
         ##########################################################
-        ## Winter Mode On Turn on Heat
+        ## Winter Mode On Turn On Heat
         ##########################################################
 
-- alias: Climate - Winter Mode On Turn on Heat
+- alias: Climate - Winter Mode On Turn On Heat
+  id: 'climate_winter_mode_on_turn_on_heat'
 
   trigger:
     - platform: state
@@ -429,10 +441,11 @@
         hvac_mode: heat
 
         ##########################################################
-        ## Summer Mode On Turn on Cool
+        ## Summer Mode On Turn On Cool
         ##########################################################
 
-- alias: Climate - Summer Mode On Turn on Cool
+- alias: Climate - Summer Mode On Turn On Cool
+  id: 'climate_summer_mode_on_turn_on_cool'
 
   trigger:
     - platform: state
@@ -450,6 +463,7 @@
         ##########################################################
 
 - alias: Climate - Set Climate Home When USER2 Leaves Work
+  id: 'climate_set_climate_home_when_USER2_leaves_work'
 
   trigger:
     - platform: state
@@ -475,10 +489,11 @@
       entity_id: input_boolean.thermostat_away
 
         ##########################################################
-        ## Turn off Thermostat when Door Opens for Extended Period
+        ## Turn Off Thermostat when Door Opens for Extended Period
         ##########################################################
 
-- alias: Climate - Turn off when Door Opens for Extended Period
+- alias: Climate - Turn Off when Door Opens for Extended Period
+  id: 'climate_turn_off_when_door_opens_for_extended_period'
 
   trigger:
     - platform: state
@@ -508,13 +523,13 @@
       entity_id: input_boolean.thermostat_away
     - service: notify.mobile_app_USER1s_iphone
       data:
-        message: Door has been left open, shutting off AC
+        message: Door has been left open, shutting Off AC
         data:
           apns_headers:
            'apns-collapse-id': 'climate-door-open'
     - service: notify.mobile_app_USER2_s_iphone
       data:
-        message: Door has been left open, shutting off AC
+        message: Door has been left open, shutting Off AC
         data:
           apns_headers:
            'apns-collapse-id': 'climate-door-open'
@@ -523,7 +538,8 @@
         ## Adjust Thermostat for Overnight Guests before Midnight
         ##########################################################
 
-- alias: Climate - Turn on Guest Settings before Midnight
+- alias: Climate - Turn On Guest Settings before Midnight
+  id: 'climate_turn_on_guest_settings_before_midnight'
 
   trigger:
     - platform: time
@@ -556,7 +572,8 @@
         ## Adjust Thermostat for Overnight Guests after Midnight
         ##########################################################
 
-- alias: Climate - Turn on Guest Settings after Midnight
+- alias: Climate - Turn On Guest Settings after Midnight
+  id: 'climate_turn_on_guest_settings_after_midnight'
 
   trigger:
     - platform: state
@@ -588,6 +605,7 @@
         ##########################################################
 
 - alias: Climate - Set Thermostat Home if USER2 Working at 5a
+  id: 'climate_set_thermostat_home_if_USER2_working_at_5a'
 
   trigger:
     - platform: time
@@ -628,6 +646,7 @@
         ##########################################################
 
 - alias: Climate - Reset Thermostat when USER2 Leaves
+  id: 'climate_reset_thermostat_when_USER2_leaves'
 
   trigger:
     - platform: state
@@ -667,6 +686,7 @@
         ##########################################################
 
 - alias: Climate - Reset Thermostat Mode After Selection
+  id: 'climate_reset_thermostat_mode_after_selection'
 
   trigger:
     - platform: state
@@ -730,6 +750,7 @@
         ##########################################################
 
 - alias: Climate - Adjust Thermostat to Upstairs Mode at Noon when Hot
+  id: 'climate_adjust_thermostat_to_upstairs_mode_at_noon_when_hot'
 
   trigger:
     - platform: time
@@ -773,6 +794,7 @@
         ##########################################################
 
 - alias: Climate - Adjust Thermostat to Upstairs Mode when Hot Between 12-7
+  id: 'climate_adjust_thermostat_to_upstairs_mode_when_hot_between_12_7'
 
 
   trigger:
@@ -818,10 +840,11 @@
         preset_mode: 'Upstairs'
 
         ##########################################################
-        ## Reset Thermostat at 10p if on Upstairs Mode
+        ## Reset Thermostat at 10p if On Upstairs Mode
         ##########################################################
 
-- alias: Climate - Reset Thermostat at 10p if on Upstairs Mode
+- alias: Climate - Reset Thermostat at 10p if On Upstairs Mode
+  id: 'climate_reset_thermostat_at_10p_if_on_upstairs_mode'
 
   trigger:
     - platform: time
@@ -864,6 +887,7 @@
         ##########################################################
 
 - alias: Climate - Lower Temperature when Guests Visiting
+  id: 'climate_lower_temerature_when_guest_visiting'
 
   trigger:
     - platform: state
@@ -906,6 +930,7 @@
         ##########################################################
 
 - alias: Climate - Reset Temperature when Guests Leaves
+  id: 'climate_reset_temperature_when_guest_leaves'
 
   trigger:
     - platform: state
@@ -952,6 +977,7 @@
         #################################################################
 
 - alias: Climate - Adjust Thermostat if Fireplace On
+  id: 'climate_adjust_thermostat_if_fireplace_on'
 
   trigger:
     - platform: state
@@ -984,10 +1010,11 @@
         preset_mode: 'Fireplace'
 
         #################################################################
-        ## Reset Thermostat when Fireplace off
+        ## Reset Thermostat when Fireplace Off
         #################################################################
 
-- alias: Climate - Reset Thermostat when Fireplace off
+- alias: Climate - Reset Thermostat when Fireplace Off
+  id: 'climate_reset_thermostat_when_fireplace_off'
 
   trigger:
     - platform: state
@@ -1024,6 +1051,7 @@
         #################################################################
 
 - alias: Climate - Fireplace On when Nobody Home iOS Notification
+  id: 'climate_fireplace_on_when_nobody_home_ios_notification'
 
   trigger:
     - platform: state
@@ -1053,10 +1081,11 @@
             category: "fireplace"
 
         #################################################################
-        ## Fireplace on for 4 Hours iOS Notification
+        ## Fireplace On for 4 Hours iOS Notification
         #################################################################
 
-- alias: Climate - Fireplace on for 4 Hours iOS Notification
+- alias: Climate - Fireplace On for 4 Hours iOS Notification
+  id: 'climate_fireplace_on_for_4_hours_ios_notification'
 
   trigger:
     - platform: state
@@ -1079,7 +1108,7 @@
   action:
     - service: notify.mobile_app_USER1s_iphone
       data:
-        message: Fireplace has been on for 4 Hours
+        message: Fireplace has been On for 4 Hours
         data:
           apns_headers:
            'apns-collapse-id': 'fireplace'
@@ -1088,7 +1117,7 @@
             category: "fireplace"
     - service: notify.mobile_app_USER2_s_iphone
       data:
-        message: Fireplace has been on for 4 Hours
+        message: Fireplace has been On for 4 Hours
         data:
           apns_headers:
            'apns-collapse-id': 'fireplace'
@@ -1101,10 +1130,11 @@
 #################################################################
 
         ##########################################################
-        ## Turn on Office Fan Heat when Cold Outside
+        ## Turn On Office Fan Heat when Cold Outside
         ##########################################################
 
-- alias: Climate - Turn on Office Fan Heat when Cold Outside
+- alias: Climate - Turn On Office Fan Heat when Cold Outside
+  id: 'climate_turn_on_office_fan_heat_when_cold_outside'
 
   trigger:
     - platform: numeric_state
@@ -1154,10 +1184,11 @@
         oscillating: 'true'
 
         ##########################################################
-        ## Turn off Office Fan Heat when warmer Outside
+        ## Turn Off Office Fan Heat when warmer Outside
         ##########################################################
 
-- alias: Climate - Turn off Office Fan Heat when warmer Outside
+- alias: Climate - Turn Off Office Fan Heat when warmer Outside
+  id: 'climate_turn_off_office_fan_heat_when_warmer_outside'
 
   trigger:
     - platform: numeric_state
@@ -1210,10 +1241,11 @@
 #################################################################
 
         ##########################################################
-        ## Turn on Basement Heater when Motion Detected
+        ## Turn On Basement Heater when Motion Detected
         ##########################################################
 
-- alias: Climate - Turn on Basement Heater when Motion Detected
+- alias: Climate - Turn On Basement Heater when Motion Detected
+  id: 'climate_turn_on_basement_heater_when_motion_detected'
 
   trigger:
     - platform: state
@@ -1246,10 +1278,11 @@
       entity_id: switch.basement_heater
 
         ##########################################################
-        ## Turn off Basement Heater when no Motion
+        ## Turn Off Basement Heater when no Motion
         ##########################################################
 
-- alias: Climate - Turn off Basement Heater when no Motion
+- alias: Climate - Turn Off Basement Heater when no Motion
+  id: 'climate_turn_off_basement_heater_when_no_motion'
 
   trigger:
     - platform: state
@@ -1277,10 +1310,11 @@
       entity_id: switch.basement_heater
 
         ##########################################################
-        ## Turn off Basement Heater when Warm
+        ## Turn Off Basement Heater when Warm
         ##########################################################
 
-- alias: Climate - Turn off Basement Heater when Warm
+- alias: Climate - Turn Off Basement Heater when Warm
+  id: 'climate_turn_off_basement_heater_when_warm'
 
   trigger:
     - platform: numeric_state
@@ -1308,6 +1342,7 @@
         ##########################################################
 
 - alias: Climate - Clear Thermostat Hold Mode Manually
+  id: 'climate_clear_thermostat_hold_manually'
 
   trigger:
     - platform: state
@@ -1327,6 +1362,7 @@
         ##########################################################
 
 - alias: Climate - Set Home Mode Manually
+  id: 'climate_set_home_mode_manually'
 
   trigger:
     - platform: state
@@ -1346,6 +1382,7 @@
         ##########################################################
 
 - alias: Climate - Set Away Mode Manually
+  id: 'climate_set_away_mode_manually'
 
   trigger:
     - platform: state
@@ -1361,6 +1398,7 @@
         ##########################################################
 
 - alias: Climate - Set Sleep Mode Manually
+  id: 'climate_set_sleep_mode_manually'
 
   trigger:
     - platform: state
@@ -1380,6 +1418,7 @@
         ##########################################################
 
 - alias: Climate - Set Upstairs Mode Manually
+  id: 'climate_set_upstairs_mode_manually'
 
   trigger:
     - platform: state
@@ -1399,6 +1438,7 @@
         ##########################################################
 
 - alias: Climate - Set Guest Mode Manually
+  id: 'climate_set_guest_mode_manually'
 
   trigger:
     - platform: state
@@ -1418,6 +1458,7 @@
         ##########################################################
 
 - alias: Climate - Set Fireplace Mode Manually
+  id: 'climate_set_fireplace_mode_manually'
 
   trigger:
     - platform: state
@@ -1437,6 +1478,7 @@
         ##########################################################
 
 - alias: Climate - Summer Mode On Everything Else Off
+  id: 'climate_summer_mode_on_everything_else_off'
 
   trigger:
     - platform: state
@@ -1454,6 +1496,7 @@
         ##########################################################
 
 - alias: Climate - Winter Mode On Everything Else Off
+  id: 'climate_winter_mode_on_everything_else_off'
 
   trigger:
     - platform: state
@@ -1471,6 +1514,7 @@
         ##########################################################
 
 - alias: Climate - Spring / Fall Mode On Everything Else Off
+  id: 'climate_spring_fall_mode_on_everything_else_off'
 
   trigger:
     - platform: state

@@ -3,10 +3,11 @@
 #################################################################
 
         ##########################################################
-        ## Turn On Front Porch when Front Door Opens
+        ## Turn On Front Porch Lights when Front Door Opens
         ##########################################################
 
-- alias: Doors - Turn on Front Porch when Front Opens
+- alias: Doors - Turn On Front Porch Lights when Front Door Opens
+  id: 'doors_turn_on_front_porch_lights_when_front_door_opens'
 
   trigger:
     - platform: state
@@ -30,10 +31,11 @@
         brightness_pct: 100
 
         ##########################################################
-        ## Reset Front Door Brightness when Front Door Closes
+        ## Reset Front Porch Lights Brightness when Front Door Closes
         ##########################################################
 
-- alias: Doors - Reset Front Porch Brightness when Front Closes
+- alias: Doors - Reset Front Porch Lights Brightness when Front Door Closes
+  id: 'doors_reset_front_porch_lights_brightness_when_front_door_closes'
 
   trigger:
     - platform: state
@@ -68,10 +70,11 @@
         transition: 120
 
         ##########################################################
-        ## Turn off Front Porch when Door Closes between 12-5a
+        ## Turn Off Front Porch Lights when Front Door Closes between 12-5a
         ##########################################################
 
-- alias: Doors - Turn off Front Porch when Front Closes between 12-5a
+- alias: Doors - Turn Off Front Porch Lights when Front Door Closes between 12-5a
+  id: 'doors_turn_off_front_porch_lights_when_front_door_closes_between_12_5a'
 
   trigger:
     - platform: state
@@ -105,10 +108,11 @@
         transition: 900
 
         ##########################################################
-        ## Turn On Living Room when Front Door Opens
+        ## Turn On Living Room Lights when Front Door Opens
         ##########################################################
 
-- alias: Doors - Turn on Living Room when Front Opens
+- alias: Doors - Turn On Living Room Lights when Front Door Opens
+  id: 'doors_turn_on_living_room_lights_when_front_door_opens'
 
   trigger:
     - platform: state
@@ -133,10 +137,11 @@
        brightness_pct: 100
 
         ##########################################################
-        ## Turn on Back Door Lights when Door Opens
+        ## Turn On Back Door Lights when Back Door Opens
         ##########################################################
 
-- alias: Doors - Turn on Back Door Lights when Door Opens
+- alias: Doors - Turn On Back Door Lights when Back Door Opens
+  id: 'doors_turn_on_back_door_lights_when_back_door_opens'
 
   trigger:
     - platform: state
@@ -160,10 +165,11 @@
        brightness_pct: 100
 
         ##########################################################
-        ## Reset Back Door Brightness when Door Closes
+        ## Reset Back Door Lights Brightness when Back Door Closes
         ##########################################################
 
-- alias: Doors - Reset Back Brightness when Door Closes
+- alias: Doors - Reset Back Door Lights Brightness when Back Door Closes
+  id: 'doors_reset_back_door_lights_brightness_when_back_door_closes'
 
   trigger:
     - platform: state
@@ -192,10 +198,11 @@
         transition: 300
 
         ##########################################################
-        ## Turn off Back Door when Door Closes between 12-5a
+        ## Turn Off Back Door Lights when Back Door Closes between 12-5a
         ##########################################################
 
-- alias: Doors - Turn off Back when Door Closes between 12-5a
+- alias: Doors - Turn Off Back Door Lights when Back Door Closes between 12-5a
+  id: 'doors_turn_off_back_door_lights_when_back_door_closes_between_12_5a'
 
   trigger:
     - platform: state
@@ -231,10 +238,11 @@
         transition: 900
 
         ##########################################################
-        ## Turn on Basement Lights when Door Opens and Lights Off
+        ## Turn On Basement Lights when Basement Door Opens and Lights Off
         ##########################################################
 
-- alias: Doors - Turn on Basement Lights when Door Opens and Lights Off
+- alias: Doors - Turn On Basement Lights when Basement Door Opens and Lights Off
+  id: 'doors_turn_on_basement_lights_when_basement_door_opens_and_lights_off'
 
   trigger:
     - platform: state

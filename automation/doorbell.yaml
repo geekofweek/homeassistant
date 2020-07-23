@@ -3,10 +3,11 @@
 #################################################################
 
         ##########################################################
-        ## Turn On Front Porch when Doorbell Rings
+        ## Turn On Front Porch Lights when Doorbell Rings
         ##########################################################
 
-- alias: Doorbell - Turn On Front Porch when Rung
+- alias: Doorbell - Turn On Front Porch Lights when Rung
+  id: 'doorbell_turn_on_front_porch_lights_when_rung'
 
   trigger:
     - platform: state
@@ -30,10 +31,11 @@
         brightness_pct: 100
 
         ##########################################################
-        ## Reset Front Porch Brightness After Doorbell Rings
+        ## Reset Front Porch Lights Brightness After Doorbell Rings
         ##########################################################
 
-- alias: Doorbell - Reset Front Porch Brightness After Ring
+- alias: Doorbell - Reset Front Porch Lights Brightness After Ring
+  id: 'doorbell_reset_front_porch_lights_brightness_after_ring'
 
   trigger:
     - platform: state
@@ -62,10 +64,11 @@
         transition: 900
 
         ##########################################################
-        ## Turn On Front Porch when Motion Detected
+        ## Turn On Front Porch Lights when Motion Detected
         ##########################################################
 
-- alias: Doorbell - Turn On Front Porch when Motion Detected
+- alias: Doorbell - Turn On Front Porch Lights when Motion Detected
+  id: 'doorbell_turn_on_front_porch_lights_when_motion_detected'
 
   trigger:
     - platform: state
@@ -89,10 +92,11 @@
         brightness_pct: 100
 
         ##########################################################
-        ## Reset Front Porch Brightness After Motion Detected
+        ## Reset Front Porch Lights Brightness After Motion Detected
         ##########################################################
 
-- alias: Doorbell - Reset Front Porch Brightness After Motion Detected
+- alias: Doorbell - Reset Front Porch Lights Brightness After Motion Detected
+  id: 'doorbell_reset_front_porch_lights_brightness_after_motion_detected'
 
   trigger:
     - platform: state
@@ -132,6 +136,7 @@
         ##########################################################
 
 - alias: Doorbell - Turn On Lights when Ring and Away
+  id: 'doorbell_turn_on_lights_when_ring_and_away'
 
   trigger:
     - platform: state
@@ -170,6 +175,7 @@
         ##########################################################
 
 - alias: Doorbell - Turn Off Lights After Ring and Away
+  id: 'doorbell_turn_off_lights_after_ring_and_away'
 
   trigger:
     - platform: state
@@ -217,6 +223,7 @@
         ##########################################################
 
 - alias: Doorbell - Turn On Lights when Motion Detected and Away
+  id: 'doorbell_turn_on_lights_when_motion_detected_and_away'
 
   trigger:
     - platform: state
@@ -255,6 +262,7 @@
         ##########################################################
 
 - alias: Doorbell - Turn Off Lights After Motion Detected and Away
+  id: 'doorbell_turn_off_lights_after_motion_dtected_and_away'
 
   trigger:
     - platform: state
@@ -302,6 +310,7 @@
         ##########################################################
 
 - alias: Doorbell - Front Door Camera TV when Doorbell Rings
+  id: 'doorbell_front_door_camera_tv_when_doorbell_rings'
 
   trigger:
     - platform: state
@@ -336,6 +345,7 @@
         ##########################################################
 
 - alias: Doorbell - Front Door Camera TV when Doorbell Rings and Motion Detected
+  id: 'doorbell_front_door_camera_tv_when_doorbell_rings_and_motion_detected'
 
   trigger:
     - platform: state
@@ -385,6 +395,7 @@
         ##########################################################
 
 - alias: Doorbell - Camera Office TV when Doorbell Rings TV Off
+  id: 'doorbell_camera_office_tv_when_doorbell_rings_tv_off'
 
   trigger:
     - platform: state
@@ -429,6 +440,7 @@
         ##########################################################
 
 - alias: Doorbell - Camera Office TV when Doorbell Rings TV On
+  id: 'doorbell_camera_office_tv_when_doorbell_rings_tv_on'
 
   trigger:
     - platform: state
@@ -464,6 +476,7 @@
         ##########################################################
 
 - alias: Doorbell - Front Door Camera Bedroom TV when Doorbell Rings
+  id: 'doorbell_front_door_camera_bedroom_tv_when_doorbell_rings'
 
   trigger:
     - platform: state
@@ -499,7 +512,8 @@
         ## Doorbell Ring iOS Notification
         ##########################################################
 
-- alias: Doorbell - Doorbell Ring iOS Notification
+- alias: Doorbell - Ring iOS Notification
+  id: 'doorbell_ring_ios_notification'
 
   trigger:
     - platform: state
@@ -555,6 +569,7 @@
         ##########################################################
 
 - alias: Doorbell - Ring Battery Low
+  id: 'doorbell_ring_battery_low'
 
   trigger:
     - platform: numeric_state

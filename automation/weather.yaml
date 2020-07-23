@@ -7,6 +7,7 @@
         ##########################################################
 
 - alias: Weather - Turn Globe Blue when Raining
+  id: 'weather_turn_globe_blue_when_raining'
 
   trigger:
     - platform: state
@@ -35,10 +36,11 @@
         transition: 30
 
         ##########################################################
-        ## Reset Globe when Not Raining
+        ## Reset Globe Color when Not Raining
         ##########################################################
 
-- alias: Weather - Turn Globe Blue when Raining
+- alias: Weather - Reset Globe Color when Not Raining
+  id: 'weather_reset_globe_color_when_not_raining'
 
   trigger:
     - platform: state
@@ -66,6 +68,7 @@
         ##########################################################
 
 - alias: Weather - Set Globe Blue when On and Raining
+  id: 'weather_set_globe_blue_when_on_and_raining'
 
   trigger:
     - platform: state

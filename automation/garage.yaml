@@ -7,6 +7,7 @@
         ##########################################################
 
 - alias: Garage - Household Away Mode Close Garage
+  id: 'garage_household_away_mode_close_garage'
 
   trigger:
     - platform: state
@@ -39,6 +40,7 @@
         ##########################################################
 
 - alias: Garage - USER1 Home from Driving Open Garage Door
+  id: 'garage_USER1_home_from_driving_open_garage_door'
 
   trigger:
     - platform: state
@@ -75,6 +77,7 @@
         ########################################################
 
 - alias: Garage - USER1 Home Close Garage
+  id: 'garage_USER1_home_close_garage'
 
   trigger:
     - platform: state
@@ -109,6 +112,7 @@
         ##########################################################
 
 - alias: Garage - USER2 Home from Driving Open Garage
+  id: 'garage_USER2_home_from_driving_open_garage'
 
   trigger:
     - platform: state
@@ -145,6 +149,7 @@
         ########################################################
 
 - alias: Garage - USER2 Home Close Garage
+  id: 'garage_USER2_home_close_garage'
 
   trigger:
     - platform: state
@@ -179,6 +184,7 @@
         ##########################################################
 
 - alias: Garage - Close After 30 Mins
+  id: 'garage_close_after_30_mins'
 
   trigger:
     - platform: state
@@ -210,10 +216,11 @@
       entity_id: cover.garage_door
 
         ##########################################################
-        ## Garage Door Open on Demand (Echo Integration)
+        ## Garage Door Open On Demand (Echo Integration)
         ##########################################################
 
-- alias: Garage - Open on Demand
+- alias: Garage - Open On Demand
+  id: 'garage_open_on_demand'
 
   trigger:
     - platform: state
@@ -233,10 +240,11 @@
       entity_id: cover.garage_door
 
         ##########################################################
-        ## Garage Door Close on Demand (Echo Integration)
+        ## Garage Door Close On Demand (Echo Integration)
         ##########################################################
 
-- alias: Garage - Close on Demand
+- alias: Garage - Close On Demand
+  id: 'garage_close_on_demand'
 
   trigger:
     - platform: state
@@ -261,10 +269,11 @@
       entity_id: cover.garage_door
 
         ##########################################################
-        ## Turn off Garage Door Boolean when Closed
+        ## Turn Off Garage Door Boolean when Closed
         ##########################################################
 
-- alias: Garage - Turn off Garage Door Boolean when Closed
+- alias: Garage - Turn Off Garage Door Boolean when Closed
+  id: 'garage_turn_off_garage_door_boolean_when_closed'
 
   trigger:
     - platform: state
@@ -282,10 +291,11 @@
       entity_id: input_boolean.garage_door
 
         ##########################################################
-        ## Turn on Garage Door Boolean when Open
+        ## Turn On Garage Door Boolean when Open
         ##########################################################
 
-- alias: Garage - Turn on Garage Door Boolean when Open
+- alias: Garage - Turn On Garage Door Boolean when Open
+  id: 'garage_turn_on_garage_door_boolean_when_open'
 
   trigger:
     - platform: state
@@ -307,6 +317,7 @@
         ##########################################################
 
 - alias: Garage - USER2 Leaving for Work Open Garage
+  id: 'garage_USER2_leaving_for_work_open_garage'
 
   trigger:
     - platform: state
@@ -350,6 +361,7 @@
         ##########################################################
 
 - alias: Garage - Flash Light When Garage Door Closes
+  id: 'garage_flash_light_when_garage_door_closes'
 
   trigger:
     - platform: event
@@ -376,7 +388,8 @@
         ## Garage Door Motor On
         ##########################################################
 
-- alias: Garage - Garage Door Motor On
+- alias: Garage - Door Motor On
+  id: 'garage_door_motor_on'
 
   trigger:
     - platform: event
@@ -399,10 +412,11 @@
       entity_id: input_boolean.garage_door_motor
 
         ##########################################################
-        ## Garage Door Motor off
+        ## Garage Door Motor Off
         ##########################################################
 
-- alias: Garage - Garage Door Motor off
+- alias: Garage - Door Motor Off
+  id: 'garage_door_motor_off'
 
   trigger:
     - platform: state
@@ -425,7 +439,8 @@
         ## Garage Open iOS Notification
         #################################################################
 
-- alias: Garage - Garage Open iOS Notification
+- alias: Garage - Open iOS Notification
+  id: 'garage_open_ios_notification'
 
   trigger:
     - platform: state
@@ -453,7 +468,8 @@
         ## Garage Closed iOS Notification
         #################################################################
 
-- alias: Garage - Garage Closed iOS Notification
+- alias: Garage - Closed iOS Notification
+  id: 'garage_closed_ios_notification'
 
   trigger:
     - platform: state
@@ -481,7 +497,8 @@
         ## Garage Door Still Open iOS Notification
         #################################################################
 
-- alias: Garage - Garage Door Still Open iOS Notification
+- alias: Garage - Door Still Open iOS Notification
+  id: 'garage_door_still_open_ios_notification'
 
   trigger:
     - platform: state

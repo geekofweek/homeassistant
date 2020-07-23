@@ -3,10 +3,11 @@
 #################################################################
 
         ##########################################################
-        ## Smoke Alarm Turn on Lights
+        ## Smoke Alarm Turn On Lights
         ##########################################################
 
-- alias: Smoke Alarm - Smoke Alarm Turn on Lights
+- alias: Smoke Alarm - Turn On Lights
+  id: 'smoke_alarm_turn_on_lights'
 
   trigger:
     - platform: state
@@ -83,6 +84,7 @@
         ##########################################################
 
 - alias: Smoke Alarm - Smoke Audio Alarm
+  id: 'smoke_alarm_smoke_audio_alarm'
 
   trigger:
     - platform: state
@@ -151,6 +153,7 @@
         ##########################################################
 
 - alias: Smoke Alarm - CO Alarm Text Notification
+  id: 'smoke_alarm_co_alarm_text_notification'
 
   trigger:
     - platform: state
@@ -222,10 +225,11 @@
           entity_id: camera.driveway
 
         ##########################################################
-        ## CO Alarm Turn on Lights
+        ## CO Alarm Turn On Lights
         ##########################################################
 
-- alias: Smoke Alarm - CO Alarm Turn on Lights
+- alias: Smoke Alarm - CO Alarm Turn On Lights
+  id: 'smoke_alarm_co_alarm_turn_on_lights'
 
   trigger:
     - platform: state
@@ -302,6 +306,7 @@
         ##########################################################
 
 - alias: Smoke Alarm - CO Audio Alarm
+  id: 'smoke_alarm_co_audio_alarm'
 
   trigger:
     - platform: state
@@ -370,6 +375,7 @@
         ##########################################################
 
 - alias: Smoke Alarm - Reset Disable Fire Alarm
+  id: 'smoke_alarm_reset_disable_fire_alarm'
 
   trigger:
     - platform: state
@@ -393,7 +399,8 @@
         ## Smoke Alarm Warning iOS Notification
         ##########################################################
 
-- alias: Smoke Alarm - Smoke Alarm Warning iOS Notification
+- alias: Smoke Alarm - Warning iOS Notification
+  id: 'smoke_alarm_warning_ios_notification'
 
   trigger:
     - platform: state
@@ -454,7 +461,8 @@
         ## Smoke Alarm iOS Notification
         ##########################################################
 
-- alias: Smoke Alarm - Smoke Alarm iOS Notification
+- alias: Smoke Alarm - iOS Notification
+  id: 'smoke_alarm_ios_notification'
 
   trigger:
     - platform: state

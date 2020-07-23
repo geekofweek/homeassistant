@@ -7,6 +7,7 @@
     #################################################################
 
 - alias: Network - WAN Down Notification
+  id: 'network_wan_down_notification'
 
   trigger:
     - platform: state
@@ -34,6 +35,7 @@
     #################################################################
 
 - alias: Network - WAN Up Notification
+  id: 'network_wan_up_notification'
 
   trigger:
     - platform: state
@@ -58,10 +60,11 @@
         notification_id: "1"
 
         ##########################################################
-        ## WAN Down Power on at&t Router
+        ## WAN Down Power On at&t Router
         ##########################################################
 
-- alias: Network - WAN Down Power on att Router
+- alias: Network - WAN Down Power On att Router
+  id: 'network_wan_down_power_on_att_router'
 
   trigger:
     - platform: state
@@ -106,16 +109,17 @@
         - switch.att_router
     - service: notify.mobile_app_USER1s_iphone
       data:
-        message: Internet is Down, Turning on at&t Router
+        message: Internet is Down, Turning On at&t Router
         data:
           apns_headers:
            'apns-collapse-id': 'internets-down'
 
         ##########################################################
-        ## WAN Up Power off at&t Router
+        ## WAN Up Power Off at&t Router
         ##########################################################
 
-- alias: Network - WAN Up Power off att Router
+- alias: Network - WAN Up Power Off att Router
+  id: 'network_wan_up_power_off_att_router'
 
   trigger:
     - platform: state
@@ -132,16 +136,17 @@
         - switch.att_router
     - service: notify.mobile_app_USER1s_iphone
       data:
-        message: Internet is Up, Shutting off at&t Router
+        message: Internet is Up, Shutting Off at&t Router
         data:
           apns_headers:
            'apns-collapse-id': 'internets-up'
 
         #################################################################
-        ## WAN Down on Startup Turn on at&t Router
+        ## WAN Down On Startup Turn On at&t Router
         #################################################################
 
-- alias: network - WAN Down on Startup Turn on at&t Router
+- alias: network - WAN Down On Startup Turn On att Router
+  id: 'network_wan_down_on_startup_turn_on_att_router'
 
   trigger:
     - platform: homeassistant
@@ -166,10 +171,11 @@
         - switch.att_router
 
         ##########################################################
-        ## Turn on at&t Router in Vacation Mode
+        ## Turn On at&t Router in Vacation Mode
         ##########################################################
 
-- alias: network - Turn on at&t Router in Vacation Mode
+- alias: network - Turn On att Router in Vacation Mode
+  id: 'network_turn_on_att_router_in_vacation_mode'
 
   trigger:
     - platform: state
@@ -186,10 +192,11 @@
       entity_id: switch.att_router
 
         ##########################################################
-        ## Turn off at&t Router after Vacation Mode
+        ## Turn Off at&t Router after Vacation Mode
         ##########################################################
 
-- alias: network - Turn off at&t Router after Vacation Mode
+- alias: network - Turn Off att Router after Vacation Mode
+  id: 'network_turn_off_att_router_after_vacation_mode'
 
   trigger:
     - platform: state
@@ -206,10 +213,11 @@
       entity_id: switch.att_router
 
         ##########################################################
-        ## Turn on at&t Router when Away
+        ## Turn On at&t Router when Away
         ##########################################################
 
-- alias: network - Turn on at&t Router when Away
+- alias: network - Turn On att Router when Away
+  id: 'network_turn_on_att_router_when_away'
 
   trigger:
     - platform: state
@@ -228,10 +236,11 @@
         - switch.att_router
 
         ##########################################################
-        ## Turn off at&t Router when Home
+        ## Turn Off at&t Router when Home
         ##########################################################
 
-- alias: network - Turn on at&t Router when Away
+- alias: network - Turn Off att Router when Home
+  id: 'network_turn_off_att_router_when_home'
 
   trigger:
     - platform: state
@@ -250,10 +259,11 @@
         - switch.att_router
 
         ##########################################################
-        ## Turn on Garage Fan (Network Cooling) when above 80 Degrees
+        ## Turn On Garage Fan (Network Cooling) when above 87 Degrees
         ##########################################################
 
-- alias: network - Turn on Garage Fan when above 80 Degrees
+- alias: network - Turn On Garage Fan when above 87 Degrees
+  id: 'network_turn_on_garage_fan_when_above_87_degrees'
 
   trigger:
     - platform: numeric_state
@@ -266,10 +276,11 @@
         - switch.garage_fan
 
         ##########################################################
-        ## Turn off Garage Fan (Network Cooling) when below 80 Degrees
+        ## Turn Off Garage Fan (Network Cooling) when below 87 Degrees
         ##########################################################
 
-- alias: network - Turn off Garage Fan when below 80 Degrees
+- alias: network - Turn Off Garage Fan when below 87 Degrees
+  id: 'network_turn_off_garage_fan_when_below_87_degrees'
 
   trigger:
     - platform: numeric_state
@@ -282,10 +293,11 @@
         - switch.garage_fan
 
         ##########################################################
-        ## Household Away Turn on Camera POE
+        ## Household Away Turn On Camera POE
         ##########################################################
 
-- alias: Network - Household Away Turn on Camera POE
+- alias: Network - Household Away Turn On Camera POE
+  id: 'network_household_away_turn_on_camera_poe'
 
   trigger:
     - platform: state
@@ -309,10 +321,11 @@
         - switch.basement_camera
 
         ##########################################################
-        ## Household Home Turn off Camera POE
+        ## Household Home Turn Off Camera POE
         ##########################################################
 
-- alias: Network - Household Home Turn off Camera POE
+- alias: Network - Household Home Turn Off Camera POE
+  id: 'network_household_home_turn_off_camera_poe'
 
   trigger:
     - platform: state
@@ -344,6 +357,7 @@
         #################################################################
 
 - alias: Network - REDACTED VPN Offline iOS Notification
+  id: 'network_REDACTED_vpn_offline_ios_notification'
 
   trigger:
     - platform: state
@@ -369,39 +383,11 @@
            'apns-collapse-id': 'system-roc-vpn-offline'
 
         #################################################################
-        ## REDACTED VPN Online iOS Notification
-        #################################################################
-
-- alias: Network - REDACTED VPN Online iOS Notification
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.REDACTED_vpn
-      from: 'off'
-      to: 'on'
-      for:
-        hours: 0
-        minutes: 5
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  action:
-    - service: notify.mobile_app_USER1s_iphone
-      data:
-        message: REDACTED VPN Online
-        data:
-          apns_headers:
-           'apns-collapse-id': 'system-roc-vpn-online'
-
-        #################################################################
         ## REDACTED VPN Offline iOS Notification
         #################################################################
 
 - alias: Network - REDACTED VPN Offline iOS Notification
+  id: 'network_REDACTED_vpn_offline_ios_notification'
 
   trigger:
     - platform: state
@@ -425,90 +411,3 @@
         data:
           apns_headers:
            'apns-collapse-id': 'system-chs-vpn-offline'
-
-        #################################################################
-        ## REDACTED VPN Online iOS Notification
-        #################################################################
-
-- alias: Network - REDACTED VPN Online iOS Notification
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.REDACTED_vpn
-      from: 'off'
-      to: 'on'
-      for:
-        hours: 0
-        minutes: 5
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  action:
-    - service: notify.mobile_app_USER1s_iphone
-      data:
-        message: REDACTED VPN Online
-        data:
-          apns_headers:
-           'apns-collapse-id': 'system-chs-vpn-online'
-
-        #################################################################
-        ## REDACTED VPN Offline iOS Notification
-        #################################################################
-
-- alias: Network - REDACTED VPN Offline iOS Notification
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.REDACTED_vpn
-      from: 'on'
-      to: 'off'
-      for:
-        hours: 0
-        minutes: 5
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  action:
-    - service: notify.mobile_app_USER1s_iphone
-      data:
-        message: REDACTED VPN Offline
-        data:
-          apns_headers:
-           'apns-collapse-id': 'system-REDACTED-vpn-offline'
-
-        #################################################################
-        ## REDACTED VPN Online iOS Notification
-        #################################################################
-
-- alias: Network - REDACTED VPN Online iOS Notification
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.REDACTED_vpn
-      from: 'off'
-      to: 'on'
-      for:
-        hours: 0
-        minutes: 5
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  action:
-    - service: notify.mobile_app_USER1s_iphone
-      data:
-        message: REDACTED VPN Online
-        data:
-          apns_headers:
-           'apns-collapse-id': 'system-REDACTED-vpn-online'

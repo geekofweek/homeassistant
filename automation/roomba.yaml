@@ -7,6 +7,7 @@
         ##########################################################
 
 - alias: Roomba - Pause Main Floor Roomba when Doorbell Rings
+  id: 'roomba_pause_main_floor_roomba_when_doorbell_rings'
 
   trigger:
     - platform: state
@@ -38,6 +39,7 @@
         ##########################################################
 
 - alias: Roomba - Resume Main Floor Roomba after Doorbell Rings
+  id: 'roomba_resume_main_floor_roomba_after_doorbell_rings'
 
   trigger:
     - platform: state
@@ -76,6 +78,7 @@
         ##########################################################
 
 - alias: Roomba - Run Main Floor Roomba when Away
+  id: 'roomba_run_main_floor_roomba_when_away'
 
   trigger:
     - platform: state
@@ -117,6 +120,7 @@
         ##########################################################
 
 - alias: Roomba - Run Upstairs Roomba when Away
+  id: 'roomba_run_upstairs_roomba_when_away'
 
   trigger:
     - platform: state
@@ -158,6 +162,7 @@
         ##########################################################
 
 - alias: Roomba - Shut Off Roombas when Home
+  id: 'roomba_shut_off_roombas_when_home'
 
   trigger:
     - platform: state
@@ -200,6 +205,7 @@
         ##########################################################
 
 - alias: Roomba - Run Main Floor Roomba Weekdays
+  id: 'roomba_run_main_floor_roomba_weekdays'
 
   trigger:
    - platform: time
@@ -241,6 +247,7 @@
         ##########################################################
 
 - alias: Roomba - Run Upstairs Roomba Weekdays when not Home
+  id: 'roomba_run_upstairs_roomba_weekdays_when_not_home'
 
   trigger:
    - platform: time
@@ -287,6 +294,7 @@
         ##########################################################
 
 - alias: Roomba - Run Main Floor Roomba Weekends
+  id: 'roomba_run_main_floor_roomba_weekends'
 
   trigger:
    - platform: time
@@ -338,10 +346,11 @@
         - vacuum.main_floor_roomba
 
         ##########################################################
-        ## Run Upstairs Roomba Weekday Morninings
+        ## Run Upstairs Roomba Weekday Mornings
         ##########################################################
 
-- alias: Roomba - Run Upstairs Roomba Weekday Morninings
+- alias: Roomba - Run Upstairs Roomba Weekday Mornings
+  id: 'roomba_run_upstairs_roomba_weekday_mornings'
 
   trigger:
    - platform: time
@@ -408,6 +417,7 @@
         ##########################################################
 
 - alias: Roomba - Run Upstairs Roomba Weekdays Evenings
+  id: 'roomba_run_upstairs_roomba_weekdays_evenings'
 
   trigger:
    - platform: time
@@ -468,6 +478,7 @@
         ##########################################################
 
 - alias: Roomba - Run Upstairs Roomba Weekends
+  id: 'roomba_run_upstairs_roomba_weekends'
 
   trigger:
    - platform: time
@@ -527,6 +538,7 @@
         ##########################################################
 
 - alias: Roomba - Run Basement Roomba Weekdays
+  id: 'roomba_run_basement_roomba_weekdays'
 
   trigger:
    - platform: time
@@ -581,10 +593,11 @@
         - vacuum.basement_roomba
 
         ##########################################################
-        ## Turn on low lights at night for Main Floor Roomba
+        ## Turn On low lights at night for Main Floor Roomba
         ##########################################################
 
-- alias: Roomba - Turn on low lights at night for Main Floor Roomba
+- alias: Roomba - Turn On low lights at night for Main Floor Roomba
+  id: 'roomba_turn_on_low_lights_at_night_for_main_floor_roomba'
 
   trigger:
     - platform: state
@@ -638,10 +651,11 @@
         - input_boolean.disable_occupancy
 
         ##########################################################
-        ## Turn on Lights at Sunset if Main Floor Roomba Running
+        ## Turn On Lights at Sunset if Main Floor Roomba Running
         ##########################################################
 
-- alias: Roomba - Turn on Lights at Sunset if Main Floor Roomba Running
+- alias: Roomba - Turn On Lights at Sunset if Main Floor Roomba Running
+  id: 'roomba_turn_on_lights_at_sunset_if_main_floor_roomba_running'
 
   trigger:
     - platform: sun
@@ -694,10 +708,11 @@
         - input_boolean.disable_occupancy
 
         ##########################################################
-        ## Turn on low lights at night for Upstairs Roomba
+        ## Turn On low lights at night for Upstairs Roomba
         ##########################################################
 
-- alias: Roomba - Turn on low lights at night for Upstairs Roomba
+- alias: Roomba - Turn On low lights at night for Upstairs Roomba
+  id: 'roomba_turn_on_low_lights_at_night_for_upstairs_roomba'
 
   trigger:
     - platform: state
@@ -724,10 +739,11 @@
        brightness_pct: 35
 
         ##########################################################
-        ## Turn on low lights morning for Upstairs Roomba
+        ## Turn On low lights morning for Upstairs Roomba
         ##########################################################
 
-- alias: Roomba - Turn on low lights morning for Upstairs Roomba
+- alias: Roomba - Turn On low lights morning for Upstairs Roomba
+  id: 'roomba_turn_on_low_lights_morning_for_upstairs_roomba'
 
   trigger:
     - platform: state
@@ -754,10 +770,11 @@
        brightness_pct: 35
 
         ##########################################################
-        ## Turn on Lights at Sunrise if Upstairs Roomba Running
+        ## Turn On Lights at Sunrise if Upstairs Roomba Running
         ##########################################################
 
-- alias: Roomba - Turn on Lights at Sunrise if Upstairs Roomba Running
+- alias: Roomba - Turn On Lights at Sunrise if Upstairs Roomba Running
+  id: 'roomba_turn_on_lights_at_sunrise_if_upstairs_roomba_running'
 
   trigger:
     - platform: sun
@@ -787,10 +804,11 @@
        brightness_pct: 35
 
         ##########################################################
-        ## Turn on Lights at Sunset if Upstairs Roomba Running
+        ## Turn On Lights at Sunset if Upstairs Roomba Running
         ##########################################################
 
-- alias: Roomba - Turn on Lights at Sunset if Upstairs Roomba Running
+- alias: Roomba - Turn On Lights at Sunset if Upstairs Roomba Running
+  id: 'roomba_turn_on_lights_at_sunset_if_upstairs_roomba_running'
 
   trigger:
     - platform: sun
@@ -819,10 +837,11 @@
         - input_boolean.disable_occupancy
 
         ##########################################################
-        ## Turn on lights for Basement Roomba
+        ## Turn On lights for Basement Roomba
         ##########################################################
 
-- alias: Roomba - Turn on lights for Basement Roomba
+- alias: Roomba - Turn On lights for Basement Roomba
+  id: 'roomba_turn_on_lights_for_basement_roomba'
 
   trigger:
     - platform: state
@@ -842,10 +861,11 @@
        brightness_pct: 100
 
         ##########################################################
-        ## Turn off lights when Basement Roomba finished
+        ## Turn Off lights when Basement Roomba finished
         ##########################################################
 
-- alias: Roomba - Turn off lights when Basement Roomba finished
+- alias: Roomba - Turn Off lights when Basement Roomba finished
+  id: 'roomba_turn_off_lights_when_basement_roomba_finished'
 
   trigger:
     - platform: state
@@ -877,10 +897,11 @@
         - light.basement_lighting
 
         ##########################################################
-        ## Turn off lights at night when Main Floor Roomba finished
+        ## Turn Off lights at night when Main Floor Roomba finished
         ##########################################################
 
-- alias: Roomba - Turn off lights at night when Main Floor Roomba finished
+- alias: Roomba - Turn Off lights at night when Main Floor Roomba finished
+  id: 'roomba_turn_off_lights_at_night_when_main_floor_roomba_finished'
 
   trigger:
     - platform: state
@@ -927,10 +948,11 @@
         - group.interior_lights
 
         ##########################################################
-        ## Turn off lights at night when Upstairs Roomba finished when Home
+        ## Turn Off lights at night when Upstairs Roomba finished when Home
         ##########################################################
 
-- alias: Roomba - Turn off lights at night when Upstairs Roomba finished when Home
+- alias: Roomba - Turn Off lights at night when Upstairs Roomba finished when Home
+  id: 'roomba_turn_off_lights_at_night_when_upstairs_roomba_finished_when_home'
 
   trigger:
     - platform: state
@@ -988,10 +1010,11 @@
         - light.upstairs_bathroom_lights
 
         ##########################################################
-        ## Turn off lights Morning when Upstairs Roomba finished when Home
+        ## Turn Off lights Morning when Upstairs Roomba finished when Home
         ##########################################################
 
-- alias: Roomba - Turn off lights Morning when Upstairs Roomba finished when Home
+- alias: Roomba - Turn Off lights Morning when Upstairs Roomba finished when Home
+  id: 'roomba_turn_off_lighst_morning_when_upstairs_roomba_finished_when_home'
 
   trigger:
     - platform: state
@@ -1046,10 +1069,11 @@
         - light.upstairs_bathroom_lights
 
         ##########################################################
-        ## Turn off lights at night when Upstairs Roomba finished when not Home
+        ## Turn Off lights at night when Upstairs Roomba finished when not Home
         ##########################################################
 
-- alias: Roomba - Turn off lights at night when Upstairs Roomba finished when not Home
+- alias: Roomba - Turn Off lights at night when Upstairs Roomba finished when not Home
+  id: 'roomba_turn_off_lights_at_night_when_upstairs_roomba_finished_when_not_home'
 
   trigger:
     - platform: state
@@ -1101,6 +1125,7 @@
         ##########################################################
 
 - alias: Roomba - Enable Occupancy Automations when Roomba finished
+  id: 'roomba_enable_occupancy_automations_when_roomba_finished'
 
   trigger:
     - platform: state
@@ -1137,6 +1162,7 @@
         ##########################################################
 
 - alias: Roomba - Run Main Floor Roomba when USER2 Leaves
+  id: 'roomba_run_main_floor_roomba_when_USER2_leaves'
 
   trigger:
     - platform: state
@@ -1189,10 +1215,11 @@
         - vacuum.main_floor_roomba
 
         ##########################################################
-        ## Turn off Roomba when USER2 Home
+        ## Turn Off Roomba when USER2 Home
         ##########################################################
 
-- alias: Roomba - Turn off Roomba when USER2 Home
+- alias: Roomba - Turn Off Roomba when USER2 Home
+  id: 'roomba_turn_off_roomba_when_USER2_home'
 
   trigger:
     - platform: state
@@ -1237,10 +1264,11 @@
         - vacuum.main_floor_roomba
 
         ##########################################################
-        ## Turn off Roomba when House Friends and Family Arrive
+        ## Turn Off Roomba when Friends and Family Arrive
         ##########################################################
 
-- alias: Roomba - Turn off Roomba when House Friends and Family Arrive
+- alias: Roomba - Turn Off Roomba when Friends and Family Arrive
+  id: 'roomba_turn_off_roomba_when_frinds_and_family_arrive'
 
   trigger:
     - platform: state
@@ -1283,6 +1311,7 @@
         ##########################################################
 
 - alias: Roomba - Set Upstairs Roomba has Ran for the Day
+  id: 'roomba_set_upstairs_roomba_has_ran_for_the_day'
 
   trigger:
     - platform: state
@@ -1308,6 +1337,7 @@
         ##########################################################
 
 - alias: Roomba - Set Main Floor Roomba has Ran for the Day
+  id: 'roomba_set_main_floor_roomba_has_ran_for_the_day'
 
   trigger:
     - platform: state
@@ -1333,6 +1363,7 @@
         ##########################################################
 
 - alias: Roomba - Set Basement Roomba has Ran for the Day
+  id: 'roomba_set_basement_roomba_has_ran_for_the_day'
 
   trigger:
     - platform: state
@@ -1358,6 +1389,7 @@
         ##########################################################
 
 - alias: Roomba - Reset Roomba has ran for the day
+  id: 'roomba_reset_roomba_has_ran_for_the_day'
 
   trigger:
    - platform: time
@@ -1379,6 +1411,7 @@
         ##########################################################
 
 - alias: Roomba - Main Floor Stuck iOS Notification
+  id: 'roomba_main_floor_stuck_ios_notification'
 
   trigger:
     - platform: template
@@ -1408,6 +1441,7 @@
         ##########################################################
 
 - alias: Roomba - Upstairs Stuck iOS Notification
+  id: 'roomba_upstairs_stuck_ios_notification'
 
   trigger:
     - platform: template
@@ -1437,6 +1471,7 @@
         ##########################################################
 
 - alias: Roomba - Basement Stuck iOS Notification
+  id: 'roomba_basement_stuck_ios_notification'
 
   trigger:
     - platform: template
@@ -1466,6 +1501,7 @@
         ##########################################################
 
 - alias: Roomba - Main Floor Full iOS Notification
+  id: 'roomba_main_floor_full_ios_notification'
 
   trigger:
     - platform: state
@@ -1496,6 +1532,7 @@
         ##########################################################
 
 - alias: Roomba - Upstairs Full iOS Notification
+  id: 'roomba_upstairs_full_ios_notification'
 
   trigger:
     - platform: state
@@ -1526,6 +1563,7 @@
         ##########################################################
 
 - alias: Roomba - Basement Full iOS Notification
+  id: 'roomba_basement_full_ios_notification'
 
   trigger:
     - platform: state
@@ -1560,6 +1598,7 @@
         ##########################################################
 
 - alias: Roomba - Main Floor Roomba Weekdays iOS Notification
+  id: 'roomba_mainfloor_roomba_weekdays_ios_notifications'
 
   trigger:
    - platform: time
@@ -1600,10 +1639,11 @@
         message: Main Floor Roomba will Run in 5 Mins
 
         ##########################################################
-        ## Run Upstairs Roomba Weekdays iOS Notification
+        ## Upstairs Roomba Weekdays iOS Notification
         ##########################################################
 
-- alias: Roomba - Run Upstairs Roomba Weekdays iOS Notification
+- alias: Roomba - Upstairs Roomba Weekdays iOS Notification
+  id: 'roomba_upstairs_roomba_weekdays_ios_notification'
 
   trigger:
    - platform: time
@@ -1666,10 +1706,11 @@
         message: Upstairs Roomba will Run in 5 Mins
 
         ##########################################################
-        ## Run Basement Roomba Weekdays iOS Notification
+        ## Basement Roomba Weekdays iOS Notification
         ##########################################################
 
-- alias: Roomba - Run Basement Roomba Weekdays iOS Notification
+- alias: Roomba - Basement Roomba Weekdays iOS Notification
+  id: 'roomba_basement_roomba_weekday_ios_notification'
 
   trigger:
    - platform: time
