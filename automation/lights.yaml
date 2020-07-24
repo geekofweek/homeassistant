@@ -1531,32 +1531,6 @@
         seconds: 1
 
   #################################################################
-  ## Living Room Lights Default Color Pico Remote
-  #################################################################
-
-- alias: Lights - Living Room Lights Default Color Pico Remote
-  id: 'lights_living_room_lights_default_color_pico_remote'
-
-  trigger:
-    - platform: state
-      entity_id: sensor.living_room_light_remote
-      to: '2'
-
-  condition:
-    - condition: state
-      entity_id: light.living_room_accent_lights
-      state: 'on'
-
-  action:
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_accent_lights
-      data:
-        color_temp: 447
-    - delay:
-        seconds: 1
-
-  #################################################################
   ## Living Room Fan Lights On Pico Remote
   #################################################################
 

@@ -1125,6 +1125,54 @@
             badge: 0
             category: "fireplace"
 
+  #################################################################
+  ## Fireplace On Pico Remote
+  #################################################################
+
+- alias: Climate - Fireplace On Pico Remote
+  id: 'climate_fireplace_on_pico_remote'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_light_remote
+      to: '2'
+
+  condition:
+    - condition: state
+      entity_id: switch.fireplace
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.fireplace
+    - delay:
+        seconds: 30
+
+  #################################################################
+  ## Fireplace Off Pico Remote
+  #################################################################
+
+- alias: Climate - Fireplace Off Pico Remote
+  id: 'climate_fireplace_off_pico_remote'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_light_remote
+      to: '2'
+
+  condition:
+    - condition: state
+      entity_id: switch.fireplace
+      state: 'on'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.fireplace
+    - delay:
+        seconds: 30
+
 #################################################################
 ## Office Fan / Heater / Air Purifier
 #################################################################
