@@ -395,6 +395,9 @@
       entity_id: person.USER1
       state: 'home'
     - condition: state
+      entity_id: vacuum.main_floor_roomba
+      state: 'docked'
+    - condition: state
       entity_id: group.living_room_fans
       state: 'off'
     - condition: not
@@ -432,6 +435,9 @@
     - condition: state
       entity_id: person.USER1
       state: 'home'
+    - condition: state
+      entity_id: vacuum.main_floor_roomba
+      state: 'docked'
     - condition: time
       after: '21:30:00'
       before: '02:00:00'
@@ -1660,7 +1666,7 @@
         ##########################################################
 
 - alias: Motion - Turn On USER2's Closet Light when Motion Detected Weekends
-  id: 'motion_turn_on_USER2s_closet_light_when_motion_detected_weekdays'
+  id: 'motion_turn_on_USER2s_closet_light_when_motion_detected_weekends'
 
   trigger:
     - platform: state

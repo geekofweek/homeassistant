@@ -105,13 +105,13 @@ alarm_control_panel:
       trigger_time: 120
       arming_time: 30
 
-#route53:
-#  aws_access_key_id: !secret aws_access_key_id_route53
-#  aws_secret_access_key: !secret aws_secret_access_key_route53
-#  zone: !secret aws_zone_route53
-#  domain: !secret aws_domain_route53
-#  records:
-#    - home
+route53:
+  aws_access_key_id: !secret aws_access_key_id_route53
+  aws_secret_access_key: !secret aws_secret_access_key_route53
+  zone: !secret aws_zone_route53
+  domain: !secret aws_domain_route53
+  records:
+    - home
 
 cover:
   - platform: group
