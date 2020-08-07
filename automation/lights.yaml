@@ -881,8 +881,6 @@
     - service: light.turn_off
       entity_id:
         - light.guest_bedroom_nightstand
-      data:
-       transition: 3
 
         ##########################################################
         ## Turn On Basement Lights when Workbench Switch Used
@@ -1530,6 +1528,34 @@
     - delay:
         seconds: 1
 
+   #################################################################
+   ## Living Room Lights Default Color Pico Remote
+   #################################################################
+
+- alias: Lights - Living Room Lights Default Color Pico Remote
+  id: 'lights_living_room_lights_default_color_pico_remote'  
+
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_light_remote
+      to: '1'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 2
+
+  condition:
+    - condition: state
+      entity_id: light.living_room_accent_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.living_room_accent_lights
+      data:
+        color_temp: 447 
+
   #################################################################
   ## Living Room Fan Lights On Pico Remote
   #################################################################
@@ -1759,6 +1785,9 @@
     - condition: state
       entity_id: light.front_porch_right
       state: 'off'
+    - condition: time
+      after: '00:01:00'
+      before: '23:44:00'
 
   action:
     - service: notify.mobile_app_USER1s_iphone

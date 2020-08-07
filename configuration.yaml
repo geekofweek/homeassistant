@@ -8,6 +8,8 @@ default_config:
 updater:
   reporting: false
 discovery:
+  ignore:
+    - harmony
 stream:
 http:
   ssl_certificate: !secret ssl_certificate
