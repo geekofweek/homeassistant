@@ -5,90 +5,83 @@ title: Home
 views:
   - badges: []
     cards:
-      - card:
-          cards:
-            - entity: alarm_control_panel.alarm
-              states:
-                - arm_home
-                - arm_away
-              type: alarm-panel
-          type: vertical-stack
-        conditions:
-          - entity: alarm_control_panel.alarm
-            state_not: disarmed
-        type: conditional
-      - entities:
-          - entity: person.USER1
-          - entity: person.USER2
-        title: Household
-        type: glance
-      - card:
-          show_state: false
-          title: Friends and Family
-          type: glance
-        entities:
-          - person.REDACTED
-          - person.REDACTED
-          - person.REDACTED
-          - person.REDACTED
-          - person.REDACTED
-          - person.REDACTED
-          - person.REDACTED
-          - person.REDACTED
-          - person.REDACTED
-          - person.REDACTED
-          - person.REDACTED
-          - person.REDACTED
-          - person.REDACTED
-          - person.REDACTED
-          - person.REDACTED
-          - person.REDACTED
-          - person.REDACTED
-        show_empty: false
-        state_filter:
-          - home
-        type: entity-filter
-      - entities:
-          - entity: light.living_room_lights
-          - entity: light.dining_room_lights
-          - entity: light.bedroom_lights
-          - entity: light.kitchen_lights
-          - entity: light.hallway_light
-          - entity: light.bathroom_lights
-          - entity: light.stairs_light
-          - entity: light.basement_lighting
-          - entity: light.USER1_office_lights
-            name: USER1's Office
-          - entity: light.USER2_office_lights
-            name: USER2's Office
-          - entity: light.guest_bedroom_lights
-          - entity: light.upstairs_bathroom_lights
-        title: Interior Lights
-        type: entities
-      - entities:
-          - entity: light.front_porch
-          - entity: light.back_door
-          - entity: light.backyard_deck
-          - entity: light.backyard_patio
-          - entity: light.garage_light
-          - entity: light.garage_interior
-          - entity: switch.front_yard_lighting
-            state_color: true
-          - entity: switch.backyard_lighting
-            state_color: true
-        title: Exterior Lights
-        type: entities
-      - entities:
-          - entity: input_select.remote
-            name: Living Room Media Center Remote
-          - entity: input_select.bedroom_remote
-            name: Bedroom TV Remote
-          - entity: input_select.office_remote
-            name: USER1's Office TV Remote
-          - entity: input_select.sonos
-        show_header_toggle: false
-        title: Remote
-        type: entities
+      - cards:
+          - card:
+              cards:
+                - entity: alarm_control_panel.alarm
+                  states:
+                    - arm_home
+                    - arm_away
+                  type: alarm-panel
+              type: vertical-stack
+            conditions:
+              - entity: alarm_control_panel.alarm
+                state_not: disarmed
+            type: conditional
+          - entities:
+              - entity: person.USER1
+              - entity: person.USER2
+            title: Household
+            type: glance
+          - card:
+              show_state: false
+              title: Friends and Family
+              type: glance
+            entities:
+              - person.REDACTED
+              - person.REDACTED
+              - person.REDACTED
+              - person.REDACTED
+              - person.REDACTED
+              - person.REDACTED
+              - person.REDACTED
+              - person.REDACTED
+              - person.REDACTED
+              - person.REDACTED
+              - person.REDACTED
+              - person.REDACTED
+              - person.REDACTED
+              - person.REDACTED
+              - person.REDACTED
+              - person.REDACTED
+              - person.REDACTED
+            show_empty: false
+            state_filter:
+              - home
+            type: entity-filter
+          - entities:
+              - entity: light.living_room_lights
+              - entity: light.dining_room_lights
+              - entity: light.bedroom_lights
+              - entity: light.kitchen_lights
+              - entity: light.hallway_light
+              - entity: light.bathroom_lights
+              - entity: light.stairs_light
+              - entity: light.basement_lighting
+              - entity: light.USER1_office_lights
+                name: USER1's Office
+              - entity: light.USER2_office_lights
+                name: USER2's Office
+              - entity: light.guest_bedroom_lights
+              - entity: light.upstairs_bathroom_lights
+            title: Interior Lights
+            type: entities
+        type: vertical-stack
+      - cards:
+          - entities:
+              - entity: light.front_porch
+              - entity: light.back_door
+              - entity: light.backyard_deck
+              - entity: light.backyard_patio
+              - entity: light.garage_light
+              - entity: light.garage_interior
+              - entity: switch.front_yard_lighting
+                state_color: true
+              - entity: switch.backyard_lighting
+                state_color: true
+            title: Exterior Lights
+            type: entities
+        type: vertical-stack
       - cards:
           - entities:
               - entity: vacuum.main_floor_roomba
@@ -96,20 +89,6 @@ views:
               - entity: vacuum.basement_roomba
             title: Vacuums
             type: glance
-          - card:
-              entity: binary_sensor.main_floor_roomba_bin_full
-              hold_action:
-                action: none
-              icon_height: 50px
-              show_icon: true
-              show_name: true
-              tap_action:
-                action: none
-              type: button
-            conditions:
-              - entity: binary_sensor.main_floor_roomba_bin_full
-                state: 'True'
-            type: conditional
           - card:
               entity: binary_sensor.upstairs_roomba_bin_full
               hold_action:
@@ -122,7 +101,7 @@ views:
               type: button
             conditions:
               - entity: binary_sensor.upstairs_roomba_bin_full
-                state: 'True'
+                state: 'on'
             type: conditional
           - card:
               entity: binary_sensor.basement_roomba_bin_full
@@ -136,15 +115,34 @@ views:
               type: button
             conditions:
               - entity: binary_sensor.basement_roomba_bin_full
-                state: 'True'
+                state: 'on'
             type: conditional
+          - entities:
+              - entity: input_select.living_room_tv_remote
+                name: Living Room
+              - entity: input_select.bedroom_tv_remote
+                name: Bedroom
+              - entity: input_select.USER1_s_office_tv_remote
+                name: USER1's Office
+            show_icon: true
+            show_state: true
+            title: TV Remote
+            type: glance
           - entities:
               - entity: climate.main_floor
               - entity: switch.fireplace
+                hold_action:
+                  action: more-info
+                tap_action:
+                  action: toggle
               - entity: climate.office_fan
                 name: Office
               - entity: switch.basement_heater
+                hold_action:
+                  action: more-info
                 name: Basement
+                tap_action:
+                  action: toggle
               - entity: sensor.REDACTED_temperature
                 name: Outdoor
             title: Climate Control
@@ -152,62 +150,81 @@ views:
           - entities:
               - entity: lock.front_door
                 name: Front Door
-                tap_action:
-                  action: toggle
-                hold_action:
-                  action: more-info
               - entity: lock.back_door
                 name: Back Door
-                tap_action:
-                  action: toggle
-                hold_action:
-                  action: more-info
               - entity: lock.basement_door
                 name: Basement Door
-                tap_action:
-                  action: toggle
-                hold_action:
-                  action: more-info
             title: Locks
             type: glance
+          - entity: cover.garage_door
+            hold_action:
+              action: more-info
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+            type: button
         type: vertical-stack
-      - entity: cover.garage_door
-        hold_action:
-          action: more-info
-        state_color: true
-        tap_action:
-          action: toggle
-        type: entity-button
       - cards:
-          - camera_view: live
+          - aspect_ratio: 56%
+            camera_view: live
             entity: camera.front_porch
+            show_name: true
             show_state: false
             type: picture-entity
-          - camera_view: live
+          - cards:
+              - aspect_ratio: 56%
+                camera_view: live
+                entity: camera.driveway
+                show_name: true
+                show_state: false
+                type: picture-entity
+            type: vertical-stack
+        type: vertical-stack
+      - cards:
+          - aspect_ratio: 56%
+            camera_view: live
+            entity: camera.garage
+            show_state: false
+            type: picture-entity
+          - aspect_ratio: 56%
+            camera_view: live
             entity: camera.backyard_gate
             show_state: false
             type: picture-entity
         type: vertical-stack
       - cards:
-          - camera_view: live
-            entity: camera.driveway
-            show_state: false
-            type: picture-entity
-          - camera_view: live
-            entity: camera.garage
-            show_state: false
-            type: picture-entity
-        type: vertical-stack
-      - cards:
-          - camera_view: live
+          - aspect_ratio: 56%
+            camera_view: live
             entity: camera.backyard
             show_state: false
             type: picture-entity
-          - camera_view: live
+          - aspect_ratio: 56%
+            camera_view: live
             entity: camera.side_yard
             show_state: false
             type: picture-entity
         type: vertical-stack
+      - card:
+          aspect_ratio: 56%
+          camera_view: live
+          entity: camera.living_room
+          show_state: false
+          type: picture-entity
+        conditions:
+          - entity: camera.living_room
+            state: recording
+        type: conditional
+      - card:
+          aspect_ratio: 56%
+          camera_view: live
+          entity: camera.basement
+          show_state: false
+          type: picture-entity
+        conditions:
+          - entity: camera.basement
+            state: recording
+        type: conditional
     icon: 'mdi:home'
     path: home
     title: Home
@@ -221,8 +238,10 @@ views:
                 name: Media Center Lighting
               - entity: light.globe
                 name: Globe
-              - entity: switch.living_room_ceiling_fan
-                name: Ceiling Fan
+              - entity: light.living_room_ceiling_east
+                name: Ceiling (East)
+              - entity: light.living_room_ceiling_west
+                name: Ceiling (West)
             show_header_toggle: false
             title: Living Room
             type: entities
@@ -248,12 +267,12 @@ views:
           - cards:
               - entity: vacuum.main_floor_roomba
                 hold_action:
-                  action: more-info
+                  action: none
                 name: Main Floor Roomba
                 show_icon: true
                 show_name: true
                 tap_action:
-                  action: toggle
+                  action: more-info
                 type: entity-button
               - entity: switch.livingroom_rainbow
                 hold_action:
@@ -265,6 +284,26 @@ views:
                 tap_action:
                   action: toggle
                 type: entity-button
+            type: horizontal-stack
+          - cards:
+              - entity: fan.living_room_east
+                hold_action:
+                  action: more-info
+                name: East Fan
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: toggle
+                type: button
+              - entity: fan.living_room_west
+                hold_action:
+                  action: more-info
+                name: West Fan
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: toggle
+                type: button
             type: horizontal-stack
           - cards:
               - entity: sensor.living_room_temperature
@@ -293,7 +332,8 @@ views:
         type: vertical-stack
       - cards:
           - entities:
-              - entity: input_select.remote
+              - entity: input_select.living_room_tv_remote
+                name: Living Room TV
               - entity: input_select.sonos
               - input_boolean.group_all_sonos
             show_header_toggle: false
@@ -487,10 +527,10 @@ views:
         type: vertical-stack
       - cards:
           - entities:
-              - entity: input_select.bedroom_remote
-                name: Bedroom TV Remote
+              - entity: input_select.bedroom_tv_remote
+                name: Bedroom TV
             show_header_toggle: false
-            title: Remote
+            title: TV Remote
             type: entities
           - entity: media_player.sonos_bedroom
             type: media-control
@@ -499,7 +539,7 @@ views:
           - entity: media_player.guest_bedroom_appletv
             type: media-control
         type: vertical-stack
-    icon: 'mdi:hotel'
+    icon: 'mdi:bed'
     path: bedrooms
     title: Bedrooms
   - badges: []
@@ -568,14 +608,23 @@ views:
           - cards:
               - entity: vacuum.upstairs_roomba
                 hold_action:
-                  action: more-info
-                icon_height: 91px
+                  action: none
                 name: Upstairs Roomba
                 show_icon: true
                 show_name: true
                 tap_action:
-                  action: toggle
+                  action: more-info
                 type: entity-button
+              - entity: cover.USER1_s_office_blinds
+                hold_action:
+                  action: more-info
+                icon: 'mdi:blinds'
+                name: Blinds
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: toggle
+                type: button
             type: horizontal-stack
           - cards:
               - entity: fan.office_fan
@@ -673,19 +722,12 @@ views:
             theme: default
             type: glance
         type: vertical-stack
-      - card:
-          entity: media_player.plex_office_appletv
-          type: media-control
-        conditions:
-          - entity: media_player.plex_office_appletv
-            state: playing
-        type: conditional
       - cards:
           - entities:
-              - entity: input_select.office_remote
-                name: USER1's Office TV Remote
+              - entity: input_select.USER1_s_office_tv_remote
+                name: USER1's Office TV
             show_header_toggle: false
-            title: Remote
+            title: TV Remote
             type: entities
           - entity: media_player.USER1_s_office_apple_tv
             type: media-control
@@ -696,7 +738,7 @@ views:
           - entity: media_player.sonos_USER2s_office
             type: media-control
         type: vertical-stack
-    icon: 'mdi:desktop-mac'
+    icon: 'mdi:desk'
     path: offices
     title: Offices
   - badges: []
@@ -713,13 +755,13 @@ views:
             type: entities
           - entity: vacuum.basement_roomba
             hold_action:
-              action: more-info
+              action: none
             icon_height: 91px
             name: Basement Roomba
             show_icon: true
             show_name: true
             tap_action:
-              action: toggle
+              action: more-info
             type: button
           - cards:
               - entity: lock.basement_door
@@ -789,6 +831,17 @@ views:
                 state: 'on'
             type: conditional
           - card:
+              entities:
+                - entity: binary_sensor.washer_tub_clean_on
+              show_name: false
+              show_state: false
+              title: Run Washer Tub Clean
+              type: glance
+            conditions:
+              - entity: binary_sensor.washer_tub_clean_on
+                state: 'on'
+            type: conditional
+          - card:
               entity: sensor.dryer_time_remaining
               type: entity
             conditions:
@@ -837,9 +890,9 @@ views:
                 name: Sump Pump
             show_state: false
             type: glance
+          - entity: media_player.sonos_move
+            type: media-control
         type: vertical-stack
-      - entity: media_player.sonos_move
-        type: media-control
     icon: 'mdi:stairs'
     path: basements
     title: Basement
@@ -1030,11 +1083,11 @@ views:
     cards:
       - cards:
           - entities:
-              - entity: input_select.remote
-                name: Living Room Media Center Remote
-              - entity: input_select.bedroom_remote
-                name: Bedroom TV Remote
-              - entity: input_select.office_remote
+              - entity: input_select.living_room_tv_remote
+                name: Living Room TV
+              - entity: input_select.bedroom_tv_remote
+                name: Bedroom TV
+              - entity: input_select.USER1_s_office_tv_remote
                 name: USER1's Office TV
               - input_select.sonos
               - input_boolean.group_all_sonos
@@ -1092,56 +1145,64 @@ views:
   - badges: []
     cards:
       - cards:
-          - camera_view: live
+          - aspect_ratio: 56%
+            camera_view: live
             entity: camera.front_porch
             show_state: false
             type: picture-entity
-          - camera_view: live
+          - aspect_ratio: 56%
+            camera_view: live
             entity: camera.backyard_gate
             show_state: false
             type: picture-entity
         type: vertical-stack
       - cards:
-          - camera_view: live
+          - aspect_ratio: 56%
+            camera_view: live
             entity: camera.driveway
             show_state: false
             type: picture-entity
-          - camera_view: live
+          - aspect_ratio: 56%
+            camera_view: live
             entity: camera.garage
             show_state: false
             type: picture-entity
         type: vertical-stack
       - cards:
-          - camera_view: live
+          - aspect_ratio: 56%
+            camera_view: live
             entity: camera.backyard
             show_state: false
             type: picture-entity
-          - camera_view: live
+          - aspect_ratio: 56%
+            camera_view: live
             entity: camera.side_yard
             show_state: false
             type: picture-entity
         type: vertical-stack
       - card:
+          aspect_ratio: 56%
           camera_view: live
           entity: camera.living_room
           show_state: false
           type: picture-entity
         conditions:
-          - entity: binary_sensor.living_room_camera
-            state: 'on'
+          - entity: camera.living_room
+            state: recording
         type: conditional
       - aspect_ratio: 56%
         entity: camera.front_door
         show_state: false
         type: picture-entity
       - card:
+          aspect_ratio: 56%
           camera_view: live
           entity: camera.basement
           show_state: false
           type: picture-entity
         conditions:
-          - entity: binary_sensor.basement_camera
-            state: 'on'
+          - entity: camera.basement
+            state: recording
         type: conditional
     icon: 'mdi:cctv'
     path: cameras
@@ -1176,8 +1237,7 @@ views:
                 type: entity-button
             type: horizontal-stack
         type: vertical-stack
-      - type: vertical-stack
-        cards:
+      - cards:
           - columns: 3
             entities:
               - entity: binary_sensor.living_room_motion
@@ -1208,10 +1268,32 @@ views:
             show_state: false
             title: Doors
             type: glance
-      - type: vertical-stack
-        cards:
-          - type: glance
+          - columns: 3
             entities:
+              - entity: binary_sensor.motion_front_porch
+                icon: 'mdi:door-closed'
+                name: Front Porch
+              - entity: binary_sensor.motion_driveway
+                icon: 'mdi:car'
+                name: Driveway
+              - entity: binary_sensor.motion_garage
+                icon: 'mdi:garage-variant'
+                name: Garage
+              - entity: binary_sensor.motion_backyard_gate
+                icon: 'mdi:gate'
+                name: Backyard Gate
+              - entity: binary_sensor.motion_backyard
+                icon: 'mdi:flower'
+                name: Backyard
+              - entity: binary_sensor.motion_side_yard
+                icon: 'mdi:sprout'
+                name: Side Yard
+            show_state: false
+            title: Camera Motion
+            type: glance
+        type: vertical-stack
+      - cards:
+          - entities:
               - entity: lock.front_door
                 name: Front Door
               - entity: lock.back_door
@@ -1219,6 +1301,7 @@ views:
               - entity: lock.basement_door
                 name: Basement Door
             title: Locks
+            type: glance
           - entities:
               - entity: binary_sensor.ring_front_door_ding
                 name: Ring
@@ -1245,10 +1328,10 @@ views:
                 icon: 'mdi:shower'
                 name: Bathroom
               - entity: binary_sensor.office_occupancy
-                icon: 'mdi:desktop-mac'
+                icon: 'mdi:desk'
                 name: USER1's Office
               - entity: binary_sensor.USER2_office_occupancy
-                icon: 'mdi:desktop-mac'
+                icon: 'mdi:desk'
                 name: USER2's Office
               - entity: binary_sensor.guest_bedroom_occupancy
                 icon: 'mdi:hotel'
@@ -1263,6 +1346,7 @@ views:
             show_state: false
             title: Occupancy
             type: glance
+        type: vertical-stack
       - cards:
           - entities:
               - entity: sensor.living_room_nest_protect_smoke_status
@@ -1316,8 +1400,7 @@ views:
       - user: REDACTED
   - badges: []
     cards:
-      - type: vertical-stack
-        cards:
+      - cards:
           - entities:
               - entity: person.USER1
               - entity: person.USER2
@@ -1359,6 +1442,7 @@ views:
             show_header_toggle: false
             title: Traffic Cameras
             type: entities
+        type: vertical-stack
       - dark_mode: false
         entities:
           - entity: person.USER1
@@ -1372,36 +1456,23 @@ views:
     title: Location
   - badges: []
     cards:
-      - type: vertical-stack
-        cards:
+      - cards:
           - entities:
               - entity: binary_sensor.wan
               - entity: binary_sensor.gateway
               - entity: binary_sensor.REDACTED_vpn
               - entity: binary_sensor.REDACTED_vpn
+              - entity: binary_sensor.REDACTED_vpn
               - entity: switch.att_router
+              - entity: group.pihole
+              - entity: group.REDACTED_pihole
+              - entity: switch.REDACTED_pi_hole
+              - entity: switch.REDACTED_pi_hole
             show_header_toggle: false
             title: Network
             type: entities
-          - entities:
-              - entity: switch.pihole_1_switch
-                icon: 'mdi:power'
-                name: 'DNS #1 Ad Blocker'
-              - entity: sensor.pihole_1_status
-                icon: 'mdi:dns'
-                name: 'DNS #1 Ad Blocker Enabled'
-              - type: divider
-              - entity: switch.pihole_2_switch
-                icon: 'mdi:power'
-                name: 'DNS #2 Ad Blocker'
-              - entity: sensor.pihole_2_status
-                icon: 'mdi:dns'
-                name: 'DNS #2 Ad Blocker Enabled'
-            show_header_toggle: false
-            title: DNS
-            type: entities
-      - type: vertical-stack
-        cards:
+        type: vertical-stack
+      - cards:
           - cards:
               - entities:
                   - entity: sensor.server_uptime
@@ -1466,8 +1537,8 @@ views:
                     type: gauge
                 type: horizontal-stack
             type: vertical-stack
-      - type: vertical-stack
-        cards:
+        type: vertical-stack
+      - cards:
           - cards:
               - entities:
                   - entity: sensor.nas_status
@@ -1528,9 +1599,10 @@ views:
                     type: gauge
                 type: horizontal-stack
             type: vertical-stack
-          - type: entity
-            entity: sensor.uptime
+          - entity: sensor.uptime
             name: Home Assistant Uptime
+            type: entity
+        type: vertical-stack
       - entities:
           - entity: input_boolean.disable_climate
           - entity: input_boolean.disable_notifications
@@ -1545,6 +1617,7 @@ views:
           - entity: input_boolean.disable_lock_unlock_doors
           - entity: input_boolean.disable_media_lights
           - entity: input_boolean.disable_motion
+          - entity: input_boolean.disable_blinds
           - entity: input_boolean.disable_occupancy
           - entity: input_boolean.disable_rainy_day
           - entity: input_boolean.disable_water_automations
@@ -1556,8 +1629,7 @@ views:
     title: System Equipment
   - badges: []
     cards:
-      - type: vertical-stack
-        cards:
+      - cards:
           - entities:
               - entity: sensor.ring_front_door_battery
                 name: Ring Doorbell
@@ -1569,8 +1641,8 @@ views:
               - entity: sensor.upstairs_roomba_battery_level
               - entity: sensor.basement_roomba_battery_level
             show_header_toggle: false
-            type: entities
             title: Vacuums
+            type: entities
           - entities:
               - entity: sensor.front_door_lock_batt
                 name: Front Door
@@ -1597,8 +1669,8 @@ views:
             show_header_toggle: false
             title: Alarm
             type: entities
-      - type: vertical-stack
-        cards:
+        type: vertical-stack
+      - cards:
           - entities:
               - entity: sensor.living_room_motion_batt
                 name: Living Room
@@ -1643,16 +1715,23 @@ views:
             show_header_toggle: false
             title: Water Sensors
             type: entities
-      - entities:
-          - entity: sensor.living_room_nest_protect_battery_health
-          - entity: sensor.bedroom_nest_protect_battery_health
-          - entity: sensor.hallway_nest_protect_battery_health
-          - entity: sensor.kitchen_nest_protect_battery_health
-          - entity: sensor.upstairs_nest_protect_battery_health
-          - entity: sensor.basement_nest_protect_battery_health
-        show_header_toggle: false
-        title: Smoke Detectors
-        type: entities
+        type: vertical-stack
+      - cards:
+          - entities:
+              - entity: sensor.USER1s_office_blinds_remote
+            title: Blinds
+            type: entities
+          - entities:
+              - entity: sensor.living_room_nest_protect_battery_health
+              - entity: sensor.bedroom_nest_protect_battery_health
+              - entity: sensor.hallway_nest_protect_battery_health
+              - entity: sensor.kitchen_nest_protect_battery_health
+              - entity: sensor.upstairs_nest_protect_battery_health
+              - entity: sensor.basement_nest_protect_battery_health
+            show_header_toggle: false
+            title: Smoke Detectors
+            type: entities
+        type: vertical-stack
     icon: 'mdi:battery-charging-100'
     title: Battery Levels
     visible:
@@ -1691,42 +1770,73 @@ views:
             - domain: input_boolean
         show_empty: false
         type: 'custom:auto-entities'
-      - card:
-          show_header_toggle: false
-          title: Device Trackers
-          type: entities
-        filter:
-          include:
-            - entity_id: device_tracker.*
-        show_empty: false
-        type: 'custom:auto-entities'
       - cards:
-          - entity: sensor.USER1s_iphone_geocoded_location
-            name: USER1's Location
-            type: sensor
-          - entity: sensor.USER2_iphone_geocoded_location
-            name: USER2's Location
-            type: sensor
+          - entities:
+              - entity: sun.sun
+            type: glance
         type: vertical-stack
       - entities:
-          - entity: binary_sensor.garage_door_sensor
-          - entity: switch.garage_door_switch
-          - entity: input_boolean.garage_door_motor
-          - entity: cover.garage_door
-          - entity: sensor.garage_temperature
-        show_header_toggle: false
-        title: Garage
+          - entity: cover.USER1s_office_blinds_left
+            name: Left
+          - entity: cover.USER1s_office_blinds_center
+            name: Center
+          - entity: cover.USER1s_office_blinds_right
+            name: Right
+        title: Office Blinds
+        type: glance
+      - cards:
+          - entities:
+              - entity: binary_sensor.garage_door_sensor
+              - entity: switch.garage_door_switch
+              - entity: input_boolean.garage_door_motor
+              - entity: cover.garage_door
+              - entity: sensor.garage_temperature
+              - entity: switch.garage_fan
+            show_header_toggle: false
+            title: Garage
+            type: entities
+          - entities:
+              - entity: sensor.garage_temperature
+              - entity: sensor.REDACTED_temperature
+            hours_to_show: 24
+            refresh_interval: 0
+            type: history-graph
+        type: vertical-stack
+      - cards:
+          - card:
+              show_header_toggle: false
+              title: Device Trackers
+              type: entities
+            filter:
+              include:
+                - entity_id: device_tracker.*
+            show_empty: false
+            type: 'custom:auto-entities'
+          - cards:
+              - entity: sensor.USER1s_iphone_geocoded_location
+                name: USER1's Location
+                type: sensor
+              - entity: sensor.USER2_iphone_geocoded_location
+                name: USER2's Location
+                type: sensor
+            type: vertical-stack
+        type: vertical-stack
+      - entities:
+          - entity: switch.living_room_camera
+          - entity: switch.basement_camera
+        title: Indoor Cameras
         type: entities
       - entities:
-          - entity: sensor.USER1s_iphone_activity
-            name: USER1
-          - entity: sensor.USER2_iphone_activity
-            name: USER2
-        title: Activity
-        type: glance
-      - entities:
-          - entity: sun.sun
-        type: glance
+          - entity: sensor.living_room_light_remote
+          - entity: sensor.living_room_fan_remote
+          - entity: sensor.living_room_sonos_in_wall
+          - entity: sensor.living_room_sonos_remote
+          - entity: sensor.kitchen_sonos_in_wall
+          - entity: sensor.upstairs_hallway_light_switch
+          - entity: sensor.basement_stairs_light_switch
+          - entity: sensor.guest_bedroom_light_remote
+        title: Pico Remotes
+        type: entities
       - card:
           entity: media_player.plex_living_room_appletv
           type: media-control
@@ -1734,24 +1844,23 @@ views:
           - entity: media_player.plex_living_room_appletv
             state: playing
         type: conditional
-      - card:
-          show_header_toggle: false
-          title: Device Trackers
-          type: entities
-        filter:
-          include:
-            - entity_id: device_tracker.living_room_camera
-              icon: 'mdi:cctv'
-            - entity_id: device_tracker.basement_camera
-              icon: 'mdi:cctv'
-        show_empty: false
-        type: 'custom:auto-entities'
       - entities:
-          - entity: sensor.garage_temperature
-          - entity: sensor.REDACTED_temperature
-        hours_to_show: 24
-        refresh_interval: 0
-        type: history-graph
+          - entity: light.front_porch_left
+          - entity: light.front_porch_right
+        title: Front Porch Lights
+        type: entities
+      - entities:
+          - entity: switch.living_room_ceiling_fan
+          - entity: group.living_room_fans
+          - entity: script.living_room_fan_light_dimmer
+        title: Fans
+        type: entities
+      - entities:
+          - entity: binary_sensor.bond_home_hub
+          - entity: switch.bond_home_hub
+        show_header_toggle: false
+        title: Bond Home Hub
+        type: entities
     icon: 'mdi:tune'
     path: troubleshoot
     title: Troubleshoot

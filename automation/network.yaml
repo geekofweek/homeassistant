@@ -348,12 +348,39 @@
         - switch.living_room_camera
         - switch.basement_camera
 
+        ##########################################################
+        ## Re-Enable Pi-hole After 15 Mins
+        ##########################################################
+
+- alias: Network - Re-Enable Pi-hole After 15 Mins
+  id: 'network_reenable_pihole_after_15_mins'
+
+  trigger:
+    - platform: state
+      entity_id: group.pihole
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.pihole
+      state: 'off'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id:
+        - group.pihole
+
 #################################################################
 ## Notifications
 #################################################################
 
         #################################################################
-        ## REDACTED VPN Offline iOS Notification
+        ## REDACTED (REDACTED) VPN Offline iOS Notification
         #################################################################
 
 - alias: Network - REDACTED VPN Offline iOS Notification
@@ -377,13 +404,13 @@
   action:
     - service: notify.mobile_app_USER1s_iphone
       data:
-        message: REDACTED VPN Offline
+        message: REDACTED (REDACTED) VPN Offline
         data:
           apns_headers:
-           'apns-collapse-id': 'system-roc-vpn-offline'
+           'apns-collapse-id': 'network-vpn-offline'
 
         #################################################################
-        ## REDACTED VPN Offline iOS Notification
+        ## REDACTED (REDACTED) VPN Offline iOS Notification
         #################################################################
 
 - alias: Network - REDACTED VPN Offline iOS Notification
@@ -407,7 +434,37 @@
   action:
     - service: notify.mobile_app_USER1s_iphone
       data:
-        message: REDACTED VPN Offline
+        message: REDACTED (REDACTED) VPN Offline
         data:
           apns_headers:
-           'apns-collapse-id': 'system-chs-vpn-offline'
+           'apns-collapse-id': 'network-vpn-offline'
+
+        #################################################################
+        ## REDACTED (REDACTED) VPN Offline iOS Notification
+        #################################################################
+
+- alias: Network - REDACTED VPN Offline iOS Notification
+  id: 'network_REDACTED_vpn_offline_ios_notification'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.REDACTED_vpn
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.mobile_app_USER1s_iphone
+      data:
+        message: REDACTED (REDACTED) VPN Offline
+        data:
+          apns_headers:
+           'apns-collapse-id': 'network-vpn-offline'

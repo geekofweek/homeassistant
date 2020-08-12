@@ -2,7 +2,6 @@
 ## Sensors
 #################################################################
 
-
         ##########################################################
         ## Server
         ##########################################################
@@ -443,19 +442,6 @@
       thermostat_climate_mode:
         value_template: '{{ states.climate.main_floor.attributes.preset_mode }}'
         friendly_name: 'Thermostat Mode'
-
-        ##########################################################
-        ## Pihole Status
-        ##########################################################
-
-  - platform: command_line
-    name: PiHole 1 Status
-    command: curl -X GET 'http://pihole-01.network.REDACTED/REDACTED/api.php?status'
-    value_template: "{{ value_json.status == 'enabled' }}"
-  - platform: command_line
-    name: PiHole 2 Status
-    command: curl -X GET 'http://pihole-02.network.REDACTED/REDACTED/api.php?status'
-    value_template: "{{ value_json.status == 'enabled' }}"
 
         ##########################################################
         ## Weather

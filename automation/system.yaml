@@ -39,6 +39,9 @@
         - input_boolean.downstairs_roomba_pause
         - input_boolean.disable_startup_notifications
         - input_boolean.disable_blinds
+    - service: homeassistant.turn_on
+      entity_id:
+        - group.pihole
 
         ##########################################################
         ## Disable Erroneous Startup Notifications

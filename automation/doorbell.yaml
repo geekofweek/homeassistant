@@ -545,24 +545,6 @@
           push:
             category: camera
           entity_id: camera.front_porch
-    - service: notify.mobile_app_USER1s_iphone
-      data:
-        message: Unlock Front Door?
-        data:
-          apns_headers:
-           'apns-collapse-id': 'doorbell-door-unlock'
-          push:
-            badge: 0
-            category: "frontdoorlock"
-    - service: notify.mobile_app_USER2_s_iphone
-      data:
-        message: Unlock Front Door?
-        data:
-          apns_headers:
-           'apns-collapse-id': 'doorbell-door-unlock'
-          push:
-            badge: 0
-            category: "frontdoorlock"
 
         ##########################################################
         ## Ring Battery Low
