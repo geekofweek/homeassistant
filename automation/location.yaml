@@ -1205,15 +1205,15 @@
           push:
             category: camera
           entity_id: camera.driveway
-    - service: notify.mobile_app_USER2_s_iphone
-      data:
-        message: USER1 Home
-        data:
-          apns_headers:
-           'apns-collapse-id': 'USER1-home'
-          push:
-            category: camera
-          entity_id: camera.driveway
+#    - service: notify.mobile_app_USER2_s_iphone
+#      data:
+#        message: USER1 Home
+#        data:
+#          apns_headers:
+#           'apns-collapse-id': 'USER1-home'
+#          push:
+#            category: camera
+#          entity_id: camera.driveway
 
     #################################################################
     ## USER1 Home Walking iOS Notification
@@ -1249,15 +1249,15 @@
           push:
             category: camera
           entity_id: camera.front_porch
-    - service: notify.mobile_app_USER2_s_iphone
-      data:
-        message: USER1 Home
-        data:
-          apns_headers:
-           'apns-collapse-id': 'USER1-home'
-          push:
-            category: camera
-          entity_id: camera.front_porch
+#    - service: notify.mobile_app_USER2_s_iphone
+#      data:
+#        message: USER1 Home
+#        data:
+#          apns_headers:
+#           'apns-collapse-id': 'USER1-home'
+#          push:
+#            category: camera
+#          entity_id: camera.front_porch
 
         #################################################################
         ## USER1 Away iOS Notification

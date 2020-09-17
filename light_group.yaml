@@ -53,6 +53,14 @@
       - light.bedroom_ceiling
 
   - platform: group
+    name: Bedroom Lamps
+    entities:
+      - light.USER1s_nightstand
+      - light.USER2s_nightstand
+      - light.bedroom_lamp
+      - light.closet_lamp
+
+  - platform: group
     name: Kitchen Lights
     entities:
       - light.kitchen_ceiling

@@ -259,7 +259,7 @@
         - switch.att_router
 
         ##########################################################
-        ## Turn On Garage Fan (Network Cooling) when above 87 Degrees
+        ## Turn On Garage Fan (Network Cooling) when above 78 Degrees
         ##########################################################
 
 - alias: network - Turn On Garage Fan when above 87 Degrees
@@ -268,7 +268,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.garage_temperature
-      above: 87
+      above: 78
 
   action:
     - service: switch.turn_on
@@ -276,7 +276,7 @@
         - switch.garage_fan
 
         ##########################################################
-        ## Turn Off Garage Fan (Network Cooling) when below 87 Degrees
+        ## Turn Off Garage Fan (Network Cooling) when below 78 Degrees
         ##########################################################
 
 - alias: network - Turn Off Garage Fan when below 87 Degrees
@@ -285,7 +285,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.garage_temperature
-      below: 87
+      below: 78
 
   action:
     - service: switch.turn_off

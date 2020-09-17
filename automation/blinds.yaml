@@ -31,6 +31,8 @@
     - condition: state
       entity_id: vacuum.upstairs_roomba
       state: 'docked'
+    - condition: time
+      after: '08:00:00'
 
   action:
     - service: cover.open_cover

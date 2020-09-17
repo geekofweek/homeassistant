@@ -1555,7 +1555,7 @@
         - light.living_room_accent_lights
       data:
         color_temp: 447 
-
+        
   #################################################################
   ## Living Room Fan Lights On Pico Remote
   #################################################################
@@ -1579,6 +1579,63 @@
         - light.living_room_fan_lights
     - delay:
         seconds: 1
+
+  #################################################################
+  ## Living Room Fan Dimm Lights Pico Remote
+  #################################################################
+
+- alias: Lights - Living Room Fan Dimm Lights Pico Remote
+  id: 'lights_living_room_fan_dimm)lights_pico_remote'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_fan_remote
+      to: '1'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 2
+
+  condition:
+    - condition: state
+      entity_id: light.living_room_fan_lights
+      state: 'on'
+
+  action:
+    - service: script.turn_on
+      entity_id:
+        - script.living_room_fan_light_dimmer
+    - delay:
+        seconds: 3
+
+  #################################################################
+  ## Living Room Fan Lights Start Dimmer Reset
+  #################################################################
+
+- alias: Lights - Living Room Fan Lights Start Dimmer Reset
+  id: 'lights_living_room_fan_lights_start_dimmer_reset'
+
+  trigger:
+    - platform: state
+      entity_id: switch.living_room_east_fan_dimmer
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 10
+    - platform: state
+      entity_id: switch.living_room_east_fan_dimmer
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 10
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.living_room_east_fan_dimmer
+        - switch.living_room_east_fan_dimmer
 
   #################################################################
   ## Living Room Fan Lights Off Pico Remote
@@ -1692,61 +1749,162 @@
         seconds: 1
 
   #################################################################
-  ## Living Room Fan Dimm Lights Pico Remote
+  ## Basement Lights On Center Pico Button
   #################################################################
 
-- alias: Lights - Living Room Fan Dimm Lights Pico Remote
-  id: 'lights_living_room_fan_dimm)lights_pico_remote'
+- alias: Lights - Basement Lights On Center Pico Button
+  id: 'lights_basement_lights_on_center_pico_button'
 
   trigger:
     - platform: state
-      entity_id: sensor.living_room_fan_remote
+      entity_id: sensor.basement_stairs_light_switch
+      to: '2'
+
+  condition:
+    - condition: state
+      entity_id: light.basement_lighting
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.basement_lighting
+    - delay:
+        seconds: 1
+
+  #################################################################
+  ## Basement Lights Off Center Pico Button
+  #################################################################
+
+- alias: Lights - Basement Lights Off Center Pico Button
+  id: 'lights_basement_lights_off_center_pico_button'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.basement_stairs_light_switch
+      to: '2'
+
+  condition:
+    - condition: state
+      entity_id: light.basement_lighting
+      state: 'on'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.basement_lighting
+    - delay:
+        seconds: 1
+
+  #################################################################
+  ## Bedroom Lamps On Pico Remote
+  #################################################################
+
+- alias: Lights - Bedroom Lamps On Pico Remote
+  id: 'bedroom_lamps_on_pico_remote'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.bedroom_light_remote
+      to: '1'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.bedroom_lamps
+      data:
+        brightness_pct: 100
+    - delay:
+        seconds: 1
+
+  #################################################################
+  ## Bedroom Lamps Off Pico Remote
+  #################################################################
+
+- alias: Lights - Bedroom Lamps Off Pico Remote
+  id: 'lights_bedroom_lamps_off_pico_remote'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.bedroom_light_remote
+      to: '4'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.bedroom_lights
+    - delay:
+        seconds: 1
+
+  #################################################################
+  ## Bedroom Lamps Increase Brightness Pico Remote
+  #################################################################
+
+- alias: Lights - Bedroom Lamps Increase Brightness Pico Remote
+  id: 'lights_bedroom_lamps_increase_brightness_pico_remote'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.bedroom_light_remote
+      to: '8'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.bedroom_lamps
+      data:
+        brightness_step_pct: 10
+    - delay:
+        seconds: 1
+
+  #################################################################
+  ## Bedroom Lamps Decrease Brightness Pico Remote
+  #################################################################
+
+- alias: Lights - Bedroom Lamp Decrease Brightness Pico Remote
+  id: 'lights_bedroom_lamps_decrease_brightness_pico_remote'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.bedroom_light_remote
+      to: '16'
+
+  condition:
+    - condition: state
+      entity_id: light.bedroom_lamps
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.bedroom_lamps
+      data:
+        brightness_step_pct: -10
+    - delay:
+        seconds: 1
+
+   #################################################################
+   ## Bedroom Lights On Pico Remote
+   #################################################################
+
+- alias: Lights - Bedroom Lights On Pico Remote
+  id: 'lights_bedroom_lights_on_pico_remote'  
+
+  trigger:
+    - platform: state
+      entity_id: sensor.bedroom_light_remote
       to: '1'
       for:
         hours: 0
         minutes: 0
         seconds: 2
 
-  condition:
-    - condition: state
-      entity_id: light.living_room_fan_lights
-      state: 'on'
-
   action:
-    - service: script.turn_on
+    - service: light.turn_on
       entity_id:
-        - script.living_room_fan_light_dimmer
-    - delay:
-        seconds: 3
-
-  #################################################################
-  ## Living Room Fan Lights Start Dimmer Reset
-  #################################################################
-
-- alias: Lights - Living Room Fan Lights Start Dimmer Reset
-  id: 'lights_living_room_fan_lights_start_dimmer_reset'
-
-  trigger:
-    - platform: state
-      entity_id: switch.living_room_east_fan_dimmer
-      to: 'on'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 10
-    - platform: state
-      entity_id: switch.living_room_east_fan_dimmer
-      to: 'on'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 10
-
-  action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.living_room_east_fan_dimmer
-        - switch.living_room_east_fan_dimmer
+        - light.bedroom_lights
+      data:
+        color_temp: 447 
 
 #################################################################
 ## Notifications

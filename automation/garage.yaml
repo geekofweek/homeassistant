@@ -538,15 +538,15 @@
           push:
             category: camera
           entity_id: camera.garage
-    - service: notify.mobile_app_USER2_s_iphone
-      data:
-        message: Garage Door is Still Open!
-        data:
-          apns_headers:
-           'apns-collapse-id': 'garage-garage-camera'
-          push:
-            category: camera
-          entity_id: camera.garage
+#    - service: notify.mobile_app_USER2_s_iphone
+#      data:
+#        message: Garage Door is Still Open!
+#        data:
+#          apns_headers:
+#           'apns-collapse-id': 'garage-garage-camera'
+#          push:
+#            category: camera
+#          entity_id: camera.garage
     - service: notify.mobile_app_USER1s_iphone
       data:
         message: Garage Door Still Open Close It?
@@ -556,12 +556,12 @@
           push:
             badge: 0
             category: "garage"
-    - service: notify.mobile_app_USER2_s_iphone
-      data:
-        message: Garage Door Still Open Close It?
-        data:
-          apns_headers:
-           'apns-collapse-id': 'garage-open'
-          push:
-            badge: 0
-            category: "garage"
+#    - service: notify.mobile_app_USER2_s_iphone
+#      data:
+#        message: Garage Door Still Open Close It?
+#        data:
+#          apns_headers:
+#           'apns-collapse-id': 'garage-open'
+#          push:
+#            badge: 0
+#            category: "garage"

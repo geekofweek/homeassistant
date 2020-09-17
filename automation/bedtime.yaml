@@ -363,3 +363,27 @@
   action:
     - service: homeassistant.turn_off
       entity_id: input_boolean.bedtime
+
+        #################################################################
+        ## Bedtime On Pico Remote
+        #################################################################
+
+- alias: Bedtime - Bedtime On Pico Remote
+  id: 'bedtime_on_pico_remote'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.bedroom_light_remote
+      to: '2'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.bedtime
+      state: 'off'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id:
+        - input_boolean.bedtime
+    - delay:
+        seconds: 30

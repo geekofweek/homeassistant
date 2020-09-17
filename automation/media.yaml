@@ -49,9 +49,10 @@
        effect: random
        brightness_pct: 75
     - service: light.turn_on
-      entity_id: light.hallway_light
+      entity_id: 
+        - light.hallway_light
       data:
-       brightness_pct: 15
+       brightness_pct: 25
     - service: light.turn_on
       entity_id:
         - light.dining_room_table

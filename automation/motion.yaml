@@ -894,6 +894,7 @@
     - service: light.turn_on
       entity_id:
         - light.hallway_light
+        - light.dining_room_ceiling
       data:
        brightness_pct: 25
 
@@ -922,7 +923,7 @@
       state: 'below_horizon'
     - condition: time
       after: '21:00:00'
-      before: '00:00:00'
+      before: '23:59:00'
     - condition: time
       weekday:
         - sun
@@ -1103,6 +1104,45 @@
         - light.hallway_light
 
         ##########################################################
+        ## Turn Off Dining Room Lights when No Motion Detected Evenings
+        ##########################################################
+
+- alias: Motion - Turn Off Dining Room Lights when No Motion Detected Evenings
+  id: 'motion_turn_off_dining_room_lights_when_no_motion_detected_evenings'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.dining_room_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.dining_room_lights
+      state: 'on'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '06:00:00'
+      before: '22:00:00'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.dining_room_lights
+
+        ##########################################################
         ## Turn Off Dining Room Lights when No Motion Detected Weekends
         ##########################################################
 
@@ -1159,7 +1199,7 @@
       from: 'on'
       to: 'off'
       for:
-        hours: 2
+        hours: 1
         minutes: 0
         seconds: 0
 

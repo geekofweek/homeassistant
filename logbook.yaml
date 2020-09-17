@@ -1,6 +1,7 @@
 #################################################################
 ## Logbook
 #################################################################
+
   exclude:
     domains:
       - updater
@@ -70,5 +71,9 @@
       - sensor.main_floor_humidity
       - sensor.office_fan_humidity
       - sensor.REDACTED_humidity
-      - sensor.washing_machine_current_power
-      - sensor.dryer_current_power
+      - binary_sensor.motion_front_porch
+      - binary_sensor.motion_driveway
+      - binary_sensor.motion_garage
+      - binary_sensor.motion_backyard_gate
+      - binary_sensor.motion_backyard
+      - binary_sensor.motion_side_yard

@@ -58,7 +58,7 @@
     - service: homeassistant.turn_on
       entity_id:
         - input_boolean.disable_startup_notifications
-    - delay: 00:01:00
+    - delay: 00:02:00
     - service: homeassistant.turn_off
       entity_id:
         - input_boolean.disable_startup_notifications

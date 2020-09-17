@@ -86,33 +86,33 @@
           push:
             category: camera
           entity_id: camera.backyard
-    - service: notify.mobile_app_USER2_s_iphone
-      data:
-        message: Alarm Away Triggered!
-        data:
-          apns_headers:
-           'apns-collapse-id': 'security-alarm'
-          push:
-            badge: 0
-            category: "alarm"
-    - service: notify.mobile_app_USER2_s_iphone
-      data:
-        message: Alarm! (Front Porch Camera)
-        data:
-          apns_headers:
-           'apns-collapse-id': 'security-front-porch-camera'
-          push:
-            category: camera
-          entity_id: camera.front_porch
-    - service: notify.mobile_app_USER2_s_iphone
-      data:
-        message: Alarm! (Backyard Camera)
-        data:
-          apns_headers:
-           'apns-collapse-id': 'security-backyard-camera'
-          push:
-            category: camera
-          entity_id: camera.backyard
+#    - service: notify.mobile_app_USER2_s_iphone
+#      data:
+#        message: Alarm Away Triggered!
+#        data:
+#          apns_headers:
+#           'apns-collapse-id': 'security-alarm'
+#          push:
+#            badge: 0
+#            category: "alarm"
+#    - service: notify.mobile_app_USER2_s_iphone
+#      data:
+#        message: Alarm! (Front Porch Camera)
+#        data:
+#          apns_headers:
+#           'apns-collapse-id': 'security-front-porch-camera'
+#          push:
+#            category: camera
+#          entity_id: camera.front_porch
+#    - service: notify.mobile_app_USER2_s_iphone
+#      data:
+#        message: Alarm! (Backyard Camera)
+#        data:
+#          apns_headers:
+#           'apns-collapse-id': 'security-backyard-camera'
+#          push:
+#            category: camera
+#          entity_id: camera.backyard
 
         ##########################################################
         ## Alarm Triggered Armed Home
@@ -183,33 +183,33 @@
           push:
             category: camera
           entity_id: camera.backyard
-    - service: notify.mobile_app_USER2_s_iphone
-      data:
-        message: Alarm Home Triggered!
-        data:
-          apns_headers:
-           'apns-collapse-id': 'security-alarm'
-          push:
-            badge: 0
-            category: "alarm"
-    - service: notify.mobile_app_USER2_s_iphone
-      data:
-        message: Alarm! (Front Porch Camera)
-        data:
-          apns_headers:
-           'apns-collapse-id': 'security-front-porch-camera'
-          push:
-            category: camera
-          entity_id: camera.front_porch
-    - service: notify.mobile_app_USER2_s_iphone
-      data:
-        message: Alarm! (Backyard Camera)
-        data:
-          apns_headers:
-           'apns-collapse-id': 'security-backyard-camera'
-          push:
-            category: camera
-          entity_id: camera.backyard
+#    - service: notify.mobile_app_USER2_s_iphone
+#      data:
+#        message: Alarm Home Triggered!
+#        data:
+#          apns_headers:
+#           'apns-collapse-id': 'security-alarm'
+#          push:
+#            badge: 0
+#            category: "alarm"
+#    - service: notify.mobile_app_USER2_s_iphone
+#      data:
+#        message: Alarm! (Front Porch Camera)
+#        data:
+#          apns_headers:
+#           'apns-collapse-id': 'security-front-porch-camera'
+#          push:
+#            category: camera
+#          entity_id: camera.front_porch
+#    - service: notify.mobile_app_USER2_s_iphone
+#      data:
+#        message: Alarm! (Backyard Camera)
+#        data:
+#          apns_headers:
+#           'apns-collapse-id': 'security-backyard-camera'
+#          push:
+#            category: camera
+#          entity_id: camera.backyard
 
         ##########################################################
         ## Panic Button On
@@ -236,15 +236,15 @@
               critical: 1
               volume: 1.0
               category: "alarm"
-    - service: notify.mobile_app_USER2_s_iphone
-      data:
-        message: Panic Button Has Been Pressed!
-        data:
-          apns_headers:
-           'apns-collapse-id': 'security-alarm'
-          push:
-            badge: 0
-            category: "alarm"
+#    - service: notify.mobile_app_USER2_s_iphone
+#      data:
+#        message: Panic Button Has Been Pressed!
+#        data:
+#          apns_headers:
+#           'apns-collapse-id': 'security-alarm'
+#          push:
+#            badge: 0
+#            category: "alarm"
     - service: light.turn_on
       entity_id:
         - light.hue_lights
@@ -746,15 +746,15 @@
           push:
             badge: 0
             category: "disablealarm"
-    - service: notify.mobile_app_USER2_s_iphone
-      data:
-        message: Alarm is Armed Away
-        data:
-          apns_headers:
-           'apns-collapse-id': 'alarm-on'
-          push:
-            badge: 0
-            category: "disablealarm"
+    #- service: notify.mobile_app_USER2_s_iphone
+    #  data:
+    #    message: Alarm is Armed Away
+    #    data:
+    #      apns_headers:
+    #       'apns-collapse-id': 'alarm-on'
+    #      push:
+    #        badge: 0
+    #        category: "disablealarm"
 
     #################################################################
     ## Alarm Disabled USER1 iOS Notification

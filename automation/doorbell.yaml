@@ -421,14 +421,15 @@
       state: 'PowerOff'
 
   action:
-    - service: camera.play_stream
-      data:
-        entity_id: camera.front_porch
-        media_player: media_player.USER1_s_office_apple_tv
     - service: input_select.select_option
       data:
         entity_id: input_select.USER1_s_office_tv_remote
         option: "Watch TV"
+    - delay: '00:00:05'
+    - service: camera.play_stream
+      data:
+        entity_id: camera.front_porch
+        media_player: media_player.USER1_s_office_apple_tv
     - delay: '00:05:00'
     - service: input_select.select_option
       data:
@@ -536,15 +537,15 @@
           push:
             category: camera
           entity_id: camera.front_porch
-    - service: notify.mobile_app_USER2_s_iphone
-      data:
-        message: Someone is at the Front Door
-        data:
-          apns_headers:
-           'apns-collapse-id': 'doorbell-front-porch-camera'
-          push:
-            category: camera
-          entity_id: camera.front_porch
+#    - service: notify.mobile_app_USER2_s_iphone
+#      data:
+#        message: Someone is at the Front Door
+#        data:
+#          apns_headers:
+#           'apns-collapse-id': 'doorbell-front-porch-camera'
+#          push:
+#            category: camera
+#          entity_id: camera.front_porch
 
         ##########################################################
         ## Ring Battery Low

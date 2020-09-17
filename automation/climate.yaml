@@ -527,12 +527,12 @@
         data:
           apns_headers:
            'apns-collapse-id': 'climate-door-open'
-    - service: notify.mobile_app_USER2_s_iphone
-      data:
-        message: Door has been left open, shutting Off AC
-        data:
-          apns_headers:
-           'apns-collapse-id': 'climate-door-open'
+#    - service: notify.mobile_app_USER2_s_iphone
+#      data:
+#        message: Door has been left open, shutting Off AC
+#        data:
+#          apns_headers:
+#           'apns-collapse-id': 'climate-door-open'
 
         ##########################################################
         ## Adjust Thermostat for Overnight Guests before Midnight
@@ -1115,15 +1115,15 @@
           push:
             badge: 0
             category: "fireplace"
-    - service: notify.mobile_app_USER2_s_iphone
-      data:
-        message: Fireplace has been On for 4 Hours
-        data:
-          apns_headers:
-           'apns-collapse-id': 'fireplace'
-          push:
-            badge: 0
-            category: "fireplace"
+#    - service: notify.mobile_app_USER2_s_iphone
+#      data:
+#        message: Fireplace has been On for 4 Hours
+#        data:
+#          apns_headers:
+#           'apns-collapse-id': 'fireplace'
+#          push:
+#            badge: 0
+#            category: "fireplace"
 
   #################################################################
   ## Fireplace On Pico Remote

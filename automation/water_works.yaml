@@ -189,12 +189,12 @@
         data:
           apns_headers:
            'apns-collapse-id': 'water-main-off'
-    - service: notify.mobile_app_USER2_s_iphone
-      data:
-        message: Water Main Has Been Shut Off!
-        data:
-          apns_headers:
-           'apns-collapse-id': 'water-main-off'
+#    - service: notify.mobile_app_USER2_s_iphone
+#      data:
+#        message: Water Main Has Been Shut Off!
+#        data:
+#          apns_headers:
+#           'apns-collapse-id': 'water-main-off'
 
         ##########################################################
         ## Water Main Turned On iOS Notification
@@ -224,12 +224,12 @@
         data:
           apns_headers:
            'apns-collapse-id': 'water-main-on'
-    - service: notify.mobile_app_USER2_s_iphone
-      data:
-        message: Water Main Has Been Turned Back On.
-        data:
-          apns_headers:
-           'apns-collapse-id': 'water-main-on'
+#    - service: notify.mobile_app_USER2_s_iphone
+#      data:
+#        message: Water Main Has Been Turned Back On.
+#        data:
+#          apns_headers:
+#           'apns-collapse-id': 'water-main-on'
 
         ##########################################################
         ## Sump Pump Power Off iOS Notification
