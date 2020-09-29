@@ -71,7 +71,7 @@
         state: 'home'
 
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: House has been empty for 30 mins, shutting Off HVAC
         data:
@@ -159,7 +159,7 @@
   action:
     - service: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: Outside temp above 68 turning On AC
         data:
@@ -207,7 +207,7 @@
   action:
     - service: homeassistant.turn_on
       entity_id: input_boolean.thermostat_away
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: Outside temp below 68 shutting Off AC
         data:
@@ -250,7 +250,7 @@
   action:
     - service: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: Outside temp below 65 turning On Heat
         data:
@@ -298,7 +298,7 @@
   action:
     - service: homeassistant.turn_on
       entity_id: input_boolean.thermostat_away
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: Outside temp above 65 turning Off Heat
         data:
@@ -353,7 +353,7 @@
   action:
     - service: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: Outside temp below 65 or above 78 turning On HVAC
         data:
@@ -397,7 +397,7 @@
   action:
     - service: homeassistant.turn_on
       entity_id: input_boolean.thermostat_away
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: Outside temp above 65 or below 78 turning Off HVAC
         data:
@@ -521,13 +521,13 @@
   action:
     - service: homeassistant.turn_on
       entity_id: input_boolean.thermostat_away
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: Door has been left open, shutting Off AC
         data:
           apns_headers:
            'apns-collapse-id': 'climate-door-open'
-#    - service: notify.mobile_app_USER2_s_iphone
+#    - service: notify.USER2_devices
 #      data:
 #        message: Door has been left open, shutting Off AC
 #        data:
@@ -1070,7 +1070,7 @@
         state: 'home'
 
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: Fireplace Turned On!
         data:
@@ -1106,7 +1106,7 @@
       state: 'off'
 
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: Fireplace has been On for 4 Hours
         data:
@@ -1115,7 +1115,7 @@
           push:
             badge: 0
             category: "fireplace"
-#    - service: notify.mobile_app_USER2_s_iphone
+#    - service: notify.USER2_devices
 #      data:
 #        message: Fireplace has been On for 4 Hours
 #        data:

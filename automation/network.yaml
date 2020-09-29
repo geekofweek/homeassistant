@@ -107,7 +107,7 @@
     - service: switch.turn_on
       entity_id:
         - switch.att_router
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: Internet is Down, Turning On at&t Router
         data:
@@ -134,7 +134,7 @@
     - service: switch.turn_off
       entity_id:
         - switch.att_router
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: Internet is Up, Shutting Off at&t Router
         data:
@@ -402,7 +402,7 @@
       state: 'off'
 
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: REDACTED (REDACTED) VPN Offline
         data:
@@ -432,7 +432,7 @@
       state: 'off'
 
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: REDACTED (REDACTED) VPN Offline
         data:
@@ -462,7 +462,7 @@
       state: 'off'
 
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: REDACTED (REDACTED) VPN Offline
         data:

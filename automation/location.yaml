@@ -1196,7 +1196,7 @@
       state: 'off'
 
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: USER1 Home
         data:
@@ -1205,15 +1205,6 @@
           push:
             category: camera
           entity_id: camera.driveway
-#    - service: notify.mobile_app_USER2_s_iphone
-#      data:
-#        message: USER1 Home
-#        data:
-#          apns_headers:
-#           'apns-collapse-id': 'USER1-home'
-#          push:
-#            category: camera
-#          entity_id: camera.driveway
 
     #################################################################
     ## USER1 Home Walking iOS Notification
@@ -1240,7 +1231,7 @@
       state: 'off'
 
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: USER1 Home
         data:
@@ -1249,19 +1240,10 @@
           push:
             category: camera
           entity_id: camera.front_porch
-#    - service: notify.mobile_app_USER2_s_iphone
-#      data:
-#        message: USER1 Home
-#        data:
-#          apns_headers:
-#           'apns-collapse-id': 'USER1-home'
-#          push:
-#            category: camera
-#          entity_id: camera.front_porch
 
-        #################################################################
-        ## USER1 Away iOS Notification
-        #################################################################
+    #################################################################
+    ## USER1 Away iOS Notification
+    #################################################################
 
 - alias: Location - USER1 Away iOS Notification
   id: 'location_USER1_away_ios_notification'
@@ -1278,7 +1260,7 @@
       state: 'off'
 
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: USER1 Away
         data:
@@ -1310,7 +1292,7 @@
       state: 'off'
 
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: USER2 Home
         data:
@@ -1345,7 +1327,7 @@
       state: 'off'
 
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: USER2 Home
         data:
@@ -1374,7 +1356,7 @@
       state: 'off'
 
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: USER2 Away
         data:
@@ -1400,7 +1382,7 @@
       state: 'off'
 
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: "USER2 has left work, ETA: {{states('sensor.USER2_to_home')}} mins"
         data:

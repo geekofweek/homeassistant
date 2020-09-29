@@ -14,6 +14,7 @@ stream:
 http:
   ssl_certificate: !secret ssl_certificate
   ssl_key: !secret ssl_key
+  ip_ban_enabled: true
 logger:
   default: warn
 
@@ -161,6 +162,24 @@ influxdb:
       - sensor.ups_battery_runtime_mins
       - sensor.ups_input_voltage
       - sensor.ups_battery_charge
+
+#################################################################
+## Notifications
+#################################################################
+
+notify:
+  - platform: group
+    name: REDACTED_devices
+    services:
+      - service: mobile_app_REDACTEDs_iphone
+      - service: mobile_app_REDACTED_s_ipad
+      - service: mobile_app_REDACTEDs_imac
+
+  - platform: group
+    name: USER2_devices
+    services:
+      - service: mobile_app_USER2_s_iphone
+      - service: mobile_app_USER2_s_ipad
 
 #################################################################
 ## Includes

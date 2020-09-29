@@ -126,7 +126,7 @@
       state: 'off'
 
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: NAS RAID Failing
         data:
@@ -151,7 +151,7 @@
       state: 'off'
 
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: Power Outage Detected
         data:
@@ -179,7 +179,7 @@
       state: 'off'
 
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: Power Restored
         data:
@@ -204,7 +204,7 @@
       state: 'off'
 
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: "UPS Battery below 15%"
         data:
@@ -229,7 +229,7 @@
       state: 'off'
 
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: "15 mins of UPS Battery Remaining!"
         data:
@@ -253,7 +253,7 @@
       state: 'off'
 
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: Home Assistant Started
         data:
@@ -283,7 +283,7 @@
       state: 'off'
 
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: Update Available for Home Assistant
         data:
@@ -314,6 +314,6 @@
       state: 'off'
 
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: Bond Hub Offline. Restarting Hub

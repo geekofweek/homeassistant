@@ -634,7 +634,7 @@
       entity_id:
         - light.living_room_accent_lights
       data:
-       brightness_pct: 50
+       brightness_pct: 100
        color_temp: 447
     - service: light.turn_on
       entity_id:
@@ -1429,12 +1429,6 @@
         data:
           apns_headers:
            'apns-collapse-id': 'main-floor-roomba-stuck'
-#    - service: notify.mobile_app_USER2_s_iphone
-#      data:
-#        message: Main Floor Roomba is Stuck, Please Help
-#        data:
-#          apns_headers:
-#           'apns-collapse-id': 'main-floor-roomba-stuck'
 
         ##########################################################
         ## Upstairs Roomba is Stuck iOS Notification
@@ -1459,12 +1453,6 @@
         data:
           apns_headers:
            'apns-collapse-id': 'upstairs-roomba-stuck'
-#    - service: notify.mobile_app_USER2_s_iphone
-#      data:
-#        message: Upstairs Roomba is Stuck, Please Help
-#        data:
-#          apns_headers:
-#           'apns-collapse-id': 'upstairs-roomba-stuck'
 
         ##########################################################
         ## Basement Roomba is Stuck iOS Notification
@@ -1489,12 +1477,6 @@
         data:
           apns_headers:
            'apns-collapse-id': 'basement-roomba-stuck'
-#    - service: notify.mobile_app_USER2_s_iphone
-#      data:
-#        message: Basement Roomba is Stuck, Please Help
-#        data:
-#          apns_headers:
-#           'apns-collapse-id': 'basement-roomba-stuck'
 
         ##########################################################
         ## Main Floor Roomba is Full iOS Notification
@@ -1520,12 +1502,6 @@
         data:
           apns_headers:
            'apns-collapse-id': 'main-floor-roomba-full'
-#    - service: notify.mobile_app_USER2_s_iphone
-#      data:
-#        message: Main Floor Roomba is Full, Empty It
-#        data:
-#          apns_headers:
-#           'apns-collapse-id': 'main-floor-roomba-full'
 
         ##########################################################
         ## Upstairs Roomba is Full iOS Notification
@@ -1551,12 +1527,6 @@
         data:
           apns_headers:
            'apns-collapse-id': 'upstairs-roomba-full'
-#    - service: notify.mobile_app_USER2_s_iphone
-#      data:
-#        message: Upstairs Roomba is Full, Empty It
-#        data:
-#          apns_headers:
-#           'apns-collapse-id': 'upstairs-roomba-full'
 
         ##########################################################
         ## Basement Roomba is Full iOS Notification
@@ -1582,177 +1552,3 @@
         data:
           apns_headers:
            'apns-collapse-id': 'basement-roomba-full'
-#    - service: notify.mobile_app_USER2_s_iphone
-#      data:
-#        message: Basement Roomba is Full, Empty It
-#        data:
-#          apns_headers:
-#           'apns-collapse-id': 'basement-roomba-full'
-
-#################################################################
-## Temp Notifications for Quarantine
-#################################################################
-
-        ##########################################################
-        ## Main Floor Roomba Weekdays iOS Notification
-        ##########################################################
-
-- alias: Roomba - Main Floor Roomba Weekdays iOS Notification
-  id: 'roomba_mainfloor_roomba_weekdays_ios_notifications'
-
-  trigger:
-   - platform: time
-     at: '09:55:00'
-
-  condition:
-    - condition: state
-      entity_id: person.USER2
-      state: 'home'
-    - condition: state
-      entity_id: input_boolean.disable_roomba
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.main_floor_roomba_ran
-      state: 'off'
-    - condition: time
-      weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
-    - condition: state
-      entity_id: vacuum.main_floor_roomba
-      state: 'docked'
-    - condition: numeric_state
-      entity_id: sensor.main_floor_roomba_battery_level
-      above: 99
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
-
-  action:
-    - service: notify.mobile_app_USER2_s_iphone
-      data:
-        message: Main Floor Roomba will Run in 5 Mins
-
-        ##########################################################
-        ## Upstairs Roomba Weekdays iOS Notification
-        ##########################################################
-
-- alias: Roomba - Upstairs Roomba Weekdays iOS Notification
-  id: 'roomba_upstairs_roomba_weekdays_ios_notification'
-
-  trigger:
-   - platform: time
-     at: '17:55:00'
-   - platform: time
-     at: '18:25:00'
-   - platform: time
-     at: '18:55:00'
-
-  condition:
-    - condition: state
-      entity_id: person.USER2
-      state: 'home'
-    - condition: state
-      entity_id: input_boolean.disable_roomba
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.upstairs_roomba_ran
-      state: 'off'
-    - condition: time
-      weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
-    - condition: state
-      entity_id: vacuum.upstairs_roomba
-      state: 'docked'
-    - condition: numeric_state
-      entity_id: sensor.upstairs_roomba_battery_level
-      above: 99
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: binary_sensor.USER1s_office_motion
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.USER2s_office_motion
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.stairs_motion
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.upstairs_bathroom_motion
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.USER2_office_occupancy
-      state: 'off'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
-
-  action:
-    - service: notify.mobile_app_USER2_s_iphone
-      data:
-        message: Upstairs Roomba will Run in 5 Mins
-
-        ##########################################################
-        ## Basement Roomba Weekdays iOS Notification
-        ##########################################################
-
-- alias: Roomba - Basement Roomba Weekdays iOS Notification
-  id: 'roomba_basement_roomba_weekday_ios_notification'
-
-  trigger:
-   - platform: time
-     at: '09:55:00'
-
-  condition:
-    - condition: state
-      entity_id: person.USER2
-      state: 'home'
-    - condition: state
-      entity_id: input_boolean.disable_roomba
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.basement_roomba_ran
-      state: 'off'
-    - condition: time
-      weekday:
-        - mon
-        - wed
-        - fri
-    - condition: state
-      entity_id: vacuum.basement_roomba
-      state: 'docked'
-    - condition: state
-      entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.basement_door_water_sensor
-      state: 'off'
-    - condition: numeric_state
-      entity_id: sensor.basement_roomba_battery_level
-      above: 99
-    - condition: state
-      entity_id: person.USER1
-      state: 'home'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
-
-  action:
-    - service: notify.mobile_app_USER2_s_iphone
-      data:
-        message: Basement Roomba will Run in 5 Mins

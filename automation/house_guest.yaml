@@ -309,7 +309,7 @@
       state: 'off'
 
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: Guest Arrived (Front Porch Camera)
         data:
@@ -318,7 +318,7 @@
           push:
             category: camera
           entity_id: camera.front_porch
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: Guest Arrived (Garage Camera)
         data:
@@ -327,3 +327,12 @@
           push:
             category: camera
           entity_id: camera.driveway
+    - service: notify.USER1_devices
+      data:
+        message: Unlock Doors?
+        data:
+          apns_headers:
+           'apns-collapse-id': 'unlock-doors'
+          push:
+            badge: 0
+            category: "locks"

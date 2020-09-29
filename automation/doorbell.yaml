@@ -510,11 +510,11 @@
 #################################################################
 
         ##########################################################
-        ## Doorbell Ring iOS Notification
+        ## Doorbell Ring iOS USER1 Notification
         ##########################################################
 
-- alias: Doorbell - Ring iOS Notification
-  id: 'doorbell_ring_ios_notification'
+- alias: Doorbell - Ring iOS USER1 Notification
+  id: 'doorbell_ring_ios_USER1_notification'
 
   trigger:
     - platform: state
@@ -526,9 +526,9 @@
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
-
+      
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: Someone is at the Front Door
         data:
@@ -537,15 +537,44 @@
           push:
             category: camera
           entity_id: camera.front_porch
-#    - service: notify.mobile_app_USER2_s_iphone
-#      data:
-#        message: Someone is at the Front Door
-#        data:
-#          apns_headers:
-#           'apns-collapse-id': 'doorbell-front-porch-camera'
-#          push:
-#            category: camera
-#          entity_id: camera.front_porch
+    - service: notify.USER1_devices
+      data:
+        message: Unlock Front Door?
+        data:
+          apns_headers:
+           'apns-collapse-id': 'unlock-doors'
+          push:
+            badge: 0
+            category: "frontdoorlock"
+
+        ##########################################################
+        ## Doorbell Ring iOS USER2 Notification
+        ##########################################################
+
+- alias: Doorbell - Ring iOS USER2 Notification
+  id: 'doorbell_ring_ios_USER2_notification'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+      
+  action:
+    - service: notify.USER2_devices
+      data:
+        message: Someone is at the Front Door
+        data:
+          apns_headers:
+           'apns-collapse-id': 'doorbell-front-porch-camera'
+          push:
+            category: camera
+          entity_id: camera.front_porch
 
         ##########################################################
         ## Ring Battery Low
@@ -569,6 +598,6 @@
       state: 'off'
 
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: Ring Battery Low, Replace Battery Soon

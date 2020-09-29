@@ -205,7 +205,7 @@
       state: 'off'
 
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: Carbon Monoxide Alarm!
         data:
@@ -213,16 +213,20 @@
            'apns-collapse-id': 'co-alarm'
           push:
             category: camera
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
           entity_id: camera.driveway
-#    - service: notify.mobile_app_USER2_s_iphone
-#      data:
-#        message: Carbon Monoxide Alarm!
-#        data:
-#          apns_headers:
-#           'apns-collapse-id': 'co-alarm-'
-#          push:
-#            category: camera
-#          entity_id: camera.driveway
+    - service: notify.USER2_devices
+      data:
+        message: Carbon Monoxide Alarm!
+        data:
+          apns_headers:
+           'apns-collapse-id': 'co-alarm-'
+          push:
+            category: camera
+          entity_id: camera.driveway
 
         ##########################################################
         ## CO Alarm Turn On Lights
@@ -447,7 +451,7 @@
         seconds: 1
 
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: Warning Smoke Alarm Might Sound!
         data:
@@ -514,7 +518,7 @@
       state: 'off'
 
   action:
-    - service: notify.mobile_app_USER1s_iphone
+    - service: notify.USER1_devices
       data:
         message: Smoke Alarm!
         data:
