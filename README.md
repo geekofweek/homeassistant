@@ -198,7 +198,7 @@ All Roomba related automations can be found in [roomba.yaml]( https://github.com
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
-| [Ikea FYRTUR](https://www.ikea.com/us/en/cat/electric-blinds-44531/) | 3 | Zigbee | [IKEA TRÅDFRI](https://www.home-assistant.io/integrations/tradfri/)| Automated to open and close blinds based on motion, location, and sun elevation |
+| [Ikea FYRTUR](https://www.ikea.com/us/en/cat/electric-blinds-44531/) | 10 | Zigbee | [IKEA TRÅDFRI](https://www.home-assistant.io/integrations/tradfri/)| Automated to open and close blinds based on motion, location, and sun elevation |
 
 All Blinds related automations can be found in [blinds.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/blinds.yaml)
 
