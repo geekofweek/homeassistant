@@ -2,6 +2,10 @@
 ## Blinds Automations
 #################################################################
 
+#################################################################
+## USER1's Office
+#################################################################
+
         ##########################################################
         ## Open USER1's Office Blinds When Motion Detected
         ##########################################################
@@ -197,3 +201,364 @@
     - service: light.turn_off
       entity_id:
         - light.USER1_office_lights
+
+#################################################################
+## Stairs
+#################################################################
+
+        ##########################################################
+        ## Open Stairs Blinds at Sunrise
+        ##########################################################
+
+- alias: Blinds - Open Stairs Blinds at Sunrise
+  id: 'blinds_open_stairs_blinds_at_sunrise'
+
+  trigger:
+    - platform: sun
+      event: 'sunrise'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.stairs_blinds
+      state: 'closed'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: cover.open_cover
+      entity_id:
+        - cover.stairs_blinds
+
+        ##########################################################
+        ## Close Stairs Blinds at Sunset
+        ##########################################################
+
+- alias: Blinds - Close Stairs Blinds at Sunset
+  id: 'blinds_close_stairs_blinds_at_sunset'
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.stairs_blinds
+      state: 'open'
+
+  action:
+    - service: cover.close_cover
+      entity_id:
+        - cover.stairs_blinds
+
+        ##########################################################
+        ## Turn Off Stair Lights when Blinds are Open
+        ##########################################################
+
+- alias: Blinds - Turn Off Stair Lights when Blinds are Open
+  id: 'blinds_turn_off_stair_lights_when_blinds_are_open'
+
+  trigger:
+    - platform: state
+      entity_id: cover.stairs_blinds
+      from: 'closed'
+      to: 'open'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: light.stairs_light
+      state: 'on'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.stairs_light
+
+#################################################################
+## USER2's Office
+#################################################################
+
+        ##########################################################
+        ## Open USER2's Office Blinds When Motion Detected
+        ##########################################################
+
+- alias: Blinds - USER2's Office Blinds When Motion Detected
+  id: 'blinds_USER2_office_blinds_when_motion_detected'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER2s_office_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: person.USER2
+      state: 'home'
+    - condition: state
+      entity_id: cover.USER2_s_office_blinds
+      state: 'closed'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: state
+      entity_id: vacuum.upstairs_roomba
+      state: 'docked'
+
+  action:
+    - service: cover.open_cover
+      entity_id:
+        - cover.USER2_s_office_blinds
+
+        ##########################################################
+        ## Close USER2's Office Blinds When No Motion Detected
+        ##########################################################
+
+- alias: Blinds - Close USER2's Office Blinds When No Motion Detected
+  id: 'blinds_close_USER2_office_blinds_when_no_motion_detected'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER2s_office_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.USER2_s_office_blinds
+      state: 'open'
+
+  action:
+    - service: cover.close_cover
+      entity_id:
+        - cover.USER2_s_office_blinds
+
+        ##########################################################
+        ## Close USER2's Office Blinds Halfway Before Sunset
+        ##########################################################
+
+- alias: Blinds - Close USER2's Office Blinds Halfway Before Sunset
+  id: 'blinds_close_USER2_office_blinds_halfway_before_sunset'
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:45:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.USER2_s_office_blinds
+      state: 'open'
+
+  action:
+    - service: cover.set_cover_position
+      data:
+        entity_id: cover.USER2_s_office_blinds
+        position: 50
+
+        ##########################################################
+        ## Close USER2's Office Blinds to 25 Before Sunset
+        ##########################################################
+
+- alias: Blinds - Close USER2's Office Blinds to 25 Before Sunset
+  id: 'blinds_close_USER2_office_blinds_to_25_before_sunset'
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:17:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.USER2_s_office_blinds
+      state: 'open'
+
+  action:
+    - service: cover.set_cover_position
+      data:
+        entity_id: cover.USER2_s_office_blinds
+        position: 25
+
+        ##########################################################
+        ## Close USER2's Office Blinds to 1 at Sunset
+        ##########################################################
+
+- alias: Blinds - Close USER2's Office Blinds to 1 at Sunset
+  id: 'blinds_close_USER2_office_blinds_to_1_at_sunset'
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.USER2_s_office_blinds
+      state: 'open'
+
+  action:
+    - service: cover.set_cover_position
+      data:
+        entity_id: cover.USER2_s_office_blinds
+        position: 1
+
+        ##########################################################
+        ## Close USER2's Office Blinds when Sun Below Horizon
+        ##########################################################
+
+- alias: Blinds - Close USER1's Office Blinds when Sun Below Horizon
+  id: 'blinds_close_USER1_office_blinds_when_sun_below_horizon'
+
+  trigger:
+    - platform: state
+      entity_id: sun.sun
+      from: 'above_horizon'
+      to: 'below_horizon'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.USER2_s_office_blinds
+      state: 'open'
+
+  action:
+    - service: cover.close_cover
+      entity_id:
+        - cover.USER2_s_office_blinds
+
+        ##########################################################
+        ## Turn Off USER2's Office Lights when Blinds are Open
+        ##########################################################
+
+- alias: Blinds - Turn Off USER2's Office Lights when Blinds are Open
+  id: 'blinds_turn_off_USER2_office_lights_when_blinds_are_open'
+
+  trigger:
+    - platform: state
+      entity_id: cover.USER2_s_office_blinds
+      from: 'closed'
+      to: 'open'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: light.USER2_office_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.USER2_office_lights
+
+#################################################################
+## Bedroom
+#################################################################
+
+        ##########################################################
+        ## Open Bedroom Blinds at 10a Weekdays
+        ##########################################################
+
+- alias: Blinds - Open Bedroom Blinds at 10a Weekdays
+  id: 'blinds_open_bedroom_blinds_at_10a_weekdays'
+
+  trigger:
+   - platform: time
+     at: '10:00:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.bedroom_closet_blinds
+      state: 'closed'     
+    - condition: state
+      entity_id: group.household
+      state: 'home'     
+
+  action:
+    - service: cover.open_cover
+      entity_id:
+        - cover.bedroom_closet_blinds
+
+        ##########################################################
+        ## Close Bedroom Blinds Before Sunset
+        ##########################################################
+
+- alias: Blinds - Close Bedroom Blinds Before Sunset
+  id: 'blinds_close_bedroom_blinds_before_sunset'
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:45:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.bedroom_closet_blinds
+      state: 'open'
+
+  action:
+    - service: cover.close_cover
+      entity_id:
+        - cover.bedroom_closet_blinds
+
+        ##########################################################
+        ## Turn Off Bedroom Lights when Blinds are Open
+        ##########################################################
+
+- alias: Blinds - Turn Off Bedroom Lights when Blinds are Open
+  id: 'blinds_turn_off_bedroom_lights_when_blinds_are_open'
+
+  trigger:
+    - platform: state
+      entity_id: cover.bedroom_closet_blinds
+      from: 'closed'
+      to: 'open'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: light.bedroom_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.bedroom_lights

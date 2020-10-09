@@ -48,6 +48,9 @@
     - service: cover.close_cover
       entity_id:
         - cover.USER1_s_office_blinds
+        - cover.USER2_s_office_blinds
+        - cover.stairs_blinds
+        - cover.bedroom_closet_blinds
     - service: homeassistant.turn_off
       entity_id:
         - input_boolean.guest_mode

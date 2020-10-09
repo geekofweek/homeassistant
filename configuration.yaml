@@ -116,14 +116,6 @@ route53:
   records:
     - home
 
-cover:
-  - platform: group
-    name: USER1's Office Blinds
-    entities:
-      - cover.REDACTEDs_office_blinds_right
-      - cover.REDACTEDs_office_blinds_left
-      - cover.REDACTEDs_office_blinds_center
-
 influxdb:
   host: 'influxdb.network.REDACTED'
   database: !secret influxdb_database
@@ -200,3 +192,5 @@ homekit: !include homekit.yaml
 ios: !include ios.yaml
 switch: !include switch.yaml
 emulated_hue: !include emulated_hue.yaml
+cover: !include cover_group.yaml
+cloud: !include cloud.yaml

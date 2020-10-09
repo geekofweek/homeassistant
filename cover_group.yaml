@@ -1,0 +1,45 @@
+#################################################################
+## Cover Group
+#################################################################
+
+        ##########################################################
+        ## USER1's Office
+        ##########################################################
+
+  - platform: group
+    name: USER1's Office Blinds
+    entities:
+      - cover.USER1s_office_blinds_right
+      - cover.USER1s_office_blinds_left
+      - cover.USER1s_office_blinds_center
+
+        ##########################################################
+        ## USER2's Office
+        ##########################################################
+
+  - platform: group
+    name: USER2's Office Blinds
+    entities:
+      - cover.USER2s_office_blinds_left
+      - cover.USER2s_office_blinds_right
+
+        ##########################################################
+        ## Bedroom
+        ##########################################################
+
+  - platform: group
+    name: Bedroom Closet Blinds
+    entities:
+      - cover.bedroom_closet_blinds_center
+      - cover.bedroom_closet_blinds_left
+      - cover.bedroom_closet_blinds_right
+
+        ##########################################################
+        ## Stairs
+        ##########################################################
+
+  - platform: group
+    name: Stairs Blinds
+    entities:
+      - cover.stairs_blinds_left
+      - cover.stairs_blinds_right
