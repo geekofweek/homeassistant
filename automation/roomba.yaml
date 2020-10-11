@@ -739,11 +739,11 @@
        brightness_pct: 35
 
         ##########################################################
-        ## Turn On low lights morning for Upstairs Roomba
+        ## Turn On lights for Upstairs Roomba
         ##########################################################
 
-- alias: Roomba - Turn On low lights morning for Upstairs Roomba
-  id: 'roomba_turn_on_low_lights_morning_for_upstairs_roomba'
+- alias: Roomba - Turn On low lights for Upstairs Roomba
+  id: 'roomba_turn_on_lights_for_upstairs_roomba'
 
   trigger:
     - platform: state
@@ -754,9 +754,6 @@
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
-    - condition: time
-      after: '07:00:00'
-      before: '08:00:00'
 
   action:
     - service: light.turn_on
@@ -768,73 +765,6 @@
         - light.upstairs_bathroom_vanity
       data:
        brightness_pct: 35
-
-        ##########################################################
-        ## Turn On Lights at Sunrise if Upstairs Roomba Running
-        ##########################################################
-
-- alias: Roomba - Turn On Lights at Sunrise if Upstairs Roomba Running
-  id: 'roomba_turn_on_lights_at_sunrise_if_upstairs_roomba_running'
-
-  trigger:
-    - platform: sun
-      event: 'sunrise'
-      offset: '+00:45:00'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_roomba
-      state: 'off'
-    - condition: state
-      entity_id: vacuum.upstairs_roomba
-      state: 'cleaning'
-    - condition: time
-      after: '07:00:00'
-      before: '08:30:00'
-
-  action:
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_s_office_ceiling
-        - light.USER2_s_office_ceiling
-        - light.guest_bedroom_ceiling
-        - light.stairs_light
-        - light.upstairs_bathroom_vanity
-      data:
-       brightness_pct: 35
-
-        ##########################################################
-        ## Turn On Lights at Sunset if Upstairs Roomba Running
-        ##########################################################
-
-- alias: Roomba - Turn On Lights at Sunset if Upstairs Roomba Running
-  id: 'roomba_turn_on_lights_at_sunset_if_upstairs_roomba_running'
-
-  trigger:
-    - platform: sun
-      event: 'sunset'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_roomba
-      state: 'off'
-    - condition: state
-      entity_id: vacuum.upstairs_roomba
-      state: 'cleaning'
-
-  action:
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_s_office_ceiling
-        - light.USER2_s_office_ceiling
-        - light.guest_bedroom_ceiling
-        - light.stairs_light
-        - light.upstairs_bathroom_vanity
-      data:
-       brightness_pct: 35
-    - service: homeassistant.turn_on
-      entity_id:
-        - input_boolean.disable_occupancy
 
         ##########################################################
         ## Turn On lights for Basement Roomba

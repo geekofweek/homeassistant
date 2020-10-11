@@ -2143,6 +2143,9 @@
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
+    - condition: state
+      entity_id: cover.USER2_s_office_blinds
+      state: 'closed'
 
   action:
     - service: light.turn_on

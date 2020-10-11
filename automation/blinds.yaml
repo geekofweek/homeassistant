@@ -2,6 +2,32 @@
 ## Blinds Automations
 #################################################################
 
+        ##########################################################
+        ## Close All Blinds when Sun Below Horizon
+        ##########################################################
+
+- alias: Blinds - Close All Blinds when Sun Below Horizon
+  id: 'blinds_close_all_blinds_when_sun_below_horizon'
+
+  trigger:
+    - platform: state
+      entity_id: sun.sun
+      from: 'above_horizon'
+      to: 'below_horizon'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+
+  action:
+    - service: cover.close_cover
+      entity_id:
+        - cover.USER1_s_office_blinds
+        - cover.USER2_s_office_blinds
+        - cover.bedroom_closet_blinds
+        - cover.stairs_blinds
+
 #################################################################
 ## USER1's Office
 #################################################################
@@ -151,32 +177,6 @@
         position: 1
 
         ##########################################################
-        ## Close USER1's Office Blinds when Sun Below Horizon
-        ##########################################################
-
-- alias: Blinds - Close USER1's Office Blinds when Sun Below Horizon
-  id: 'blinds_close_USER1_office_blinds_when_sun_below_horizon'
-
-  trigger:
-    - platform: state
-      entity_id: sun.sun
-      from: 'above_horizon'
-      to: 'below_horizon'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_blinds
-      state: 'off'
-    - condition: state
-      entity_id: cover.USER1_s_office_blinds
-      state: 'open'
-
-  action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.USER1_s_office_blinds
-
-        ##########################################################
         ## Turn Off USER1's Office Lights when Blinds are Open
         ##########################################################
 
@@ -207,15 +207,56 @@
 #################################################################
 
         ##########################################################
-        ## Open Stairs Blinds at Sunrise
+        ## Open Stairs Blinds When Motion Detected
         ##########################################################
 
-- alias: Blinds - Open Stairs Blinds at Sunrise
-  id: 'blinds_open_stairs_blinds_at_sunrise'
+- alias: Blinds - Open Stairs Blinds When Motion Detected
+  id: 'blinds_stairs_blinds_open_when_motion_detected'
 
   trigger:
-    - platform: sun
-      event: 'sunrise'
+    - platform: state
+      entity_id: binary_sensor.stairs_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: cover.stairs_blinds
+      state: 'closed'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: state
+      entity_id: vacuum.upstairs_roomba
+      state: 'docked'
+
+  action:
+    - service: cover.open_cover
+      entity_id:
+        - cover.stairs_blinds
+
+        ##########################################################
+        ## Close Stairs Blinds When No Motion Detected
+        ##########################################################
+
+- alias: Blinds - Close Stairs Blinds When No Motion Detected
+  id: 'blinds_close_stairs_blinds_when_no_motion_detected'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.stairs_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 2
+        minutes: 0
+        seconds: 0
 
   condition:
     - condition: state
@@ -223,13 +264,22 @@
       state: 'off'
     - condition: state
       entity_id: cover.stairs_blinds
-      state: 'closed'
+      state: 'open'
     - condition: state
-      entity_id: group.household
-      state: 'home'
+      entity_id: binary_sensor.USER1s_office_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.USER2s_office_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.upstairs_bathroom_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.stairs_motion
+      state: 'off'
 
   action:
-    - service: cover.open_cover
+    - service: cover.close_cover
       entity_id:
         - cover.stairs_blinds
 
@@ -506,6 +556,13 @@
     - condition: state
       entity_id: group.household
       state: 'home'     
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
 
   action:
     - service: cover.open_cover
