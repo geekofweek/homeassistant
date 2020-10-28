@@ -275,6 +275,14 @@
     - condition: state
       entity_id: light.living_room_lights
       state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'returning'
 
   action:
     - service: light.turn_off
@@ -316,6 +324,14 @@
       - condition: state
         entity_id: group.friends_and_family
         state: 'home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'returning'
 
   action:
     - service: light.turn_off
@@ -365,6 +381,14 @@
       - condition: state
         entity_id: group.friends_and_family
         state: 'home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'returning'
 
   action:
     - service: light.turn_off
@@ -670,6 +694,14 @@
     - condition: time
       after: '06:00:00'
       before: '22:00:00'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'returning'
 
   action:
     - service: light.turn_off
@@ -716,6 +748,14 @@
         - tue
         - wed
         - thu
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'returning'
 
   action:
     - service: light.turn_off
@@ -759,6 +799,14 @@
       weekday:
         - fri
         - sat
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'returning'
 
   action:
     - service: light.turn_off
@@ -795,6 +843,14 @@
     - condition: state
       entity_id: sun.sun
       state: 'above_horizon'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'returning'
 
   action:
     - service: light.turn_off
@@ -844,6 +900,14 @@
       - condition: state
         entity_id: group.friends_and_family
         state: 'home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'returning'
 
   action:
     - service: light.turn_off
@@ -1096,6 +1160,14 @@
         - tue
         - wed
         - thu
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'returning'
 
   action:
     - service: light.turn_off
@@ -1136,6 +1208,14 @@
     - condition: time
       after: '06:00:00'
       before: '22:00:00'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'returning'
 
   action:
     - service: light.turn_off
@@ -1179,6 +1259,14 @@
       weekday:
         - fri
         - sat
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'returning'
 
   action:
     - service: light.turn_off
@@ -1216,6 +1304,15 @@
     - condition: state
       entity_id: sun.sun
       state: 'above_horizon'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'returning'
+
 
   action:
     - service: light.turn_off
@@ -1266,6 +1363,14 @@
       - condition: state
         entity_id: group.friends_and_family
         state: 'home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'returning'
 
   action:
     - service: light.turn_off
@@ -1528,6 +1633,14 @@
     - condition: state
       entity_id: sun.sun
       state: 'above_horizon'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'returning'
 
   action:
     - service: light.turn_off
@@ -1656,11 +1769,11 @@
         - light.basement_lighting
 
         ##########################################################
-        ## Turn On USER2's Closet Light when Motion Detected Weekdays
+        ## Turn On USER2 Closet Light when Motion Detected Weekdays
         ##########################################################
 
-- alias: Motion - Turn On USER2's Closet Light when Motion Detected Weekdays
-  id: 'motion_turn_on_USER2s_closet_light_when_motion_detected_weekdays'
+- alias: Motion - Turn On USER2 Closet Light when Motion Detected Weekdays
+  id: 'motion_turn_on_USER2_closet_light_when_motion_detected_weekdays'
 
   trigger:
     - platform: state
@@ -1702,11 +1815,11 @@
         brightness_pct: 100
 
         ##########################################################
-        ## Turn On USER2's Closet Light when Motion Detected Weekends
+        ## Turn On USER2 Closet Light when Motion Detected Weekends
         ##########################################################
 
-- alias: Motion - Turn On USER2's Closet Light when Motion Detected Weekends
-  id: 'motion_turn_on_USER2s_closet_light_when_motion_detected_weekends'
+- alias: Motion - Turn On USER2 Closet Light when Motion Detected Weekends
+  id: 'motion_turn_on_USER2_closet_light_when_motion_detected_weekends'
 
   trigger:
     - platform: state
@@ -1742,11 +1855,11 @@
         brightness_pct: 100
 
         ##########################################################
-        ## Turn Off USER2's Closet Light when No Motion Detected
+        ## Turn Off USER2 Closet Light when No Motion Detected
         ##########################################################
 
-- alias: Motion - Turn Off USER2's Closet Light when No Motion Detected
-  id: 'motion_turn_off_USER2s_closet_light_when_no_motion_detected'
+- alias: Motion - Turn Off USER2 Closet Light when No Motion Detected
+  id: 'motion_turn_off_USER2_closet_light_when_no_motion_detected'
 
   trigger:
     - platform: state
@@ -1775,11 +1888,11 @@
         - light.USER2s_bedroom_closet
 
         ##########################################################
-        ## Turn On Office Fan when Motion Detected
+        ## Turn On USER1 Office Fan when Motion Detected
         ##########################################################
 
-- alias: Motion - Turn On Office Fan when Motion Detected
-  id: 'motion_turn_on_office_fan_when_motion_detected'
+- alias: Motion - Turn On USER1 Office Fan when Motion Detected
+  id: 'motion_turn_on_USER1_office_fan_when_motion_detected'
 
   trigger:
     - platform: state
@@ -1830,11 +1943,11 @@
         - switch.air_purifier
 
         ##########################################################
-        ## Turn Off Office Fan when No Motion Detected
+        ## Turn Off USER1 Office Fan when No Motion Detected
         ##########################################################
 
-- alias: Motion - Turn Off Office Fan when No Motion Detected
-  id: 'motion_turn_off_office_fan_when_no_motion_detected'
+- alias: Motion - Turn Off USER1 Office Fan when No Motion Detected
+  id: 'motion_turn_off_USER1_office_fan_when_no_motion_detected'
 
   trigger:
     - platform: state
@@ -1860,11 +1973,11 @@
         - switch.air_purifier
 
         ##########################################################
-        ## Turn Off Office TV when No Motion Detected
+        ## Turn Off USER1 Office TV when No Motion Detected
         ##########################################################
 
-- alias: Motion - Turn Off Office TV when No Motion Detected
-  id: 'motion_turn_off_office_tv_when_no_motion_detected'
+- alias: Motion - Turn Off USER1 Office TV when No Motion Detected
+  id: 'motion_turn_off_USER1_office_tv_when_no_motion_detected'
 
   trigger:
     - platform: state
@@ -1893,11 +2006,11 @@
         option: "PowerOff"
 
         ##########################################################
-        ## Turn On USER1's Office Lights when Motion Detected Night
+        ## Turn On USER1 Office Lights when Motion Detected Night
         ##########################################################
 
-- alias: Motion - Turn On USER1's Office Lights when Motion Detected Night
-  id: 'motion_turn_on_USER1s_office_lights_when_motion_detected_night'
+- alias: Motion - Turn On USER1 Office Lights when Motion Detected Night
+  id: 'motion_turn_on_USER1_office_lights_when_motion_detected_night'
 
   trigger:
     - platform: state
@@ -1936,11 +2049,11 @@
         brightness_pct: 15
 
         ##########################################################
-        ## Turn On USER1's Office Lights when Motion Detected Daytime
+        ## Turn On USER1 Office Lights when Motion Detected Daytime
         ##########################################################
 
-- alias: Motion - Turn On USER1's Office Lights when Motion Detected Daytime
-  id: 'motion_turn_on_USER1s_office_lights_when_motion_detected_daytime'
+- alias: Motion - Turn On USER1 Office Lights when Motion Detected Daytime
+  id: 'motion_turn_on_USER1_office_lights_when_motion_detected_daytime'
 
   trigger:
     - platform: state
@@ -1989,11 +2102,11 @@
         brightness_pct: 2
 
         ##########################################################
-        ## Turn Off USER1's Office Lights with Light Level Daytime
+        ## Turn Off USER1 Office Lights with Light Level Daytime
         ##########################################################
 
-- alias: Motion - Turn Off USER1's Office Lights with Light Level Daytime
-  id: 'motion_turn_off_USER1s_office_lights_with_light_level_daytime'
+- alias: Motion - Turn Off USER1 Office Lights with Light Level Daytime
+  id: 'motion_turn_off_USER1_office_lights_with_light_level_daytime'
 
   trigger:
     - platform: numeric_state
@@ -2014,6 +2127,14 @@
     - condition: state
       entity_id: sun.sun
       state: 'above_horizon'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'returning'
 
   action:
     - service: light.turn_off
@@ -2021,11 +2142,11 @@
         - light.USER1_office_lights
 
         ##########################################################
-        ## Turn Off USER1's Office Lights when No Motion Detected
+        ## Turn Off USER1 Office Lights when No Motion Detected
         ##########################################################
 
-- alias: Motion - Turn Off USER1's Office Lights when No Motion Detected
-  id: 'motion_turn_off_USER1s_office_lights_when_no_motion_detected'
+- alias: Motion - Turn Off USER1 Office Lights when No Motion Detected
+  id: 'motion_turn_off_USER1_office_lights_when_no_motion_detected'
 
   trigger:
     - platform: state
@@ -2143,9 +2264,14 @@
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
-    - condition: state
-      entity_id: cover.USER2_s_office_blinds
-      state: 'closed'
+    - condition: or
+      conditions:
+      - condition: numeric_state
+        entity_id: sensor.USER2s_office_light_level
+        below: 5
+      - condition: state
+        entity_id: sensor.USER2s_office_light_level
+        state: 'unknown'
 
   action:
     - service: light.turn_on
@@ -2153,6 +2279,46 @@
         - light.USER2_s_office_ceiling
       data:
         brightness_pct: 2
+
+        ##########################################################
+        ## Turn Off USER2 Office Lights with Light Level Daytime
+        ##########################################################
+
+- alias: Motion - Turn Off USER2 Office Lights with Light Level Daytime
+  id: 'motion_turn_off_USER2_office_lights_with_light_level_daytime'
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.USER2s_office_light_level
+      above: 60
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: light.USER2_office_lights
+      state: 'on'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'returning'
+
+  action:
+    - service: light.turn_off
+      entity_id: 
+        - light.USER2_office_lights   
 
         ##########################################################
         ## Turn On USER2 Office Lights when Motion Detected Evening

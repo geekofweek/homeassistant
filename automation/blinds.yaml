@@ -551,9 +551,6 @@
       entity_id: input_boolean.disable_blinds
       state: 'off'
     - condition: state
-      entity_id: cover.bedroom_closet_blinds
-      state: 'closed'     
-    - condition: state
       entity_id: group.household
       state: 'home'     
     - condition: time
@@ -614,6 +611,14 @@
     - condition: state
       entity_id: light.bedroom_lights
       state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'returning'
 
   action:
     - service: light.turn_off
