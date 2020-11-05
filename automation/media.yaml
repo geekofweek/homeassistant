@@ -7,6 +7,7 @@
         ##########################################################
 
 - alias: Media - Plex Stopped Lights On
+  id: 'media_plex_stopped_lights_on'
 
   trigger:
     - platform: state
@@ -77,6 +78,7 @@
         ##########################################################
 
 - alias: Media - Plex Started Lights Off
+  id: 'media_plex_started_lights_off'
 
   trigger:
     - platform: state
@@ -119,6 +121,7 @@
         ##########################################################
 
 - alias: Media - Turn Off Watching Plex Boolean
+  id: 'media_turn_off_watching_plex_boolean'
 
   trigger:
     - platform: state
@@ -152,6 +155,7 @@
         ##########################################################
 
 - alias: Media - Late Night TV Watching Lights On before Midnight
+  id: 'media_late_night_tv_watching_lights_on_before_midnight'
 
   trigger:
     - platform: state
@@ -230,6 +234,7 @@
         ##########################################################
 
 - alias: Media - Late Night TV Watching Lights On after Midnight
+  id: 'media_late_night_tv_watching_lights_on_after_midnight'
 
   trigger:
     - platform: state
@@ -309,6 +314,7 @@
         ##########################################################
 
 - alias: Media - Late Night TV Watching Lights Off after Midnight
+  id: 'media_late_night_tv_watching_lights_off_after_midnight'
 
   trigger:
     - platform: state
@@ -368,6 +374,7 @@
         ##########################################################
 
 - alias: Media - Late Night TV Watching Lights Off before Midnight
+  id: 'media_late_night_tv_watching_lights_off_before_midnight'
 
   trigger:
     - platform: state
@@ -426,6 +433,7 @@
       #################################################################
 
 - alias: Media - Remote external update Media Center
+  id: 'media_remote_external_update_media_center'
 
   trigger:
     - platform: state
@@ -454,6 +462,7 @@
       #################################################################
 
 - alias: Media - Remote external update Bedroom TV
+  id: 'media_remote_external_update_bedroom_tv'
 
   trigger:
     - platform: state
@@ -482,6 +491,7 @@
         ##########################################################
 
 - alias: Media - Bedroom Harmony turn On Boolean
+  id: 'media_bedroom_harmony_turn_on_boolean'
 
   trigger:
     - platform: state
@@ -497,6 +507,7 @@
         ##########################################################
 
 - alias: Media - Bedroom Harmony Input Select On from Boolean
+  id: 'media_bedroom_harmony_input_select_on_from_boolean'
 
   trigger:
     - platform: state
@@ -514,6 +525,7 @@
         ##########################################################
 
 - alias: Media - Bedroom Harmony turn Off Boolean
+  id: 'media_bedroom_harmony_turn_off_boolean'
 
   trigger:
     - platform: state
@@ -529,6 +541,7 @@
         ##########################################################
 
 - alias: Media - Bedroom Harmony Input Select Off from Boolean
+  id: 'media_bedroom_harmony_input_select_off_from_boolean'
 
   trigger:
     - platform: state
@@ -546,6 +559,7 @@
       #################################################################
 
 - alias: Media - Remote external update Office TV
+  id: 'media_remote_external_update_office_tv'
 
   trigger:
     - platform: state
@@ -560,6 +574,7 @@
           {{ states.remote.USER1_s_office_tv.attributes.current_activity }}
 
 - alias: Media - Remote start activity from input select Office TV
+  id: 'media_remote_start_activity_from_input_select_office_tv'
 
   trigger:
     - platform: state
@@ -574,6 +589,7 @@
         ##########################################################
 
 - alias: Media - Office Harmony turn On Boolean
+  id: 'media_office_harmony_turn_on_boolean'
 
   trigger:
     - platform: state
@@ -589,6 +605,7 @@
         ##########################################################
 
 - alias: Media - Office Harmony Input Select On from Boolean
+  id: 'media_office_harmony_input_select_on_from_boolean'
 
   trigger:
     - platform: state
@@ -606,6 +623,7 @@
         ##########################################################
 
 - alias: Media - Office Harmony turn Off Boolean
+  id: 'media_office_harmony_turn_off_boolean'
 
   trigger:
     - platform: state
@@ -621,6 +639,7 @@
         ##########################################################
 
 - alias: Media - Office Harmony Input Select Off from Boolean
+  id: 'media_office_harmony_input_select_off_from_boolean'
 
   trigger:
     - platform: state
@@ -639,6 +658,7 @@
       #################################################################
 
 - alias: Media - Reset Sonos Every Morning
+  id: 'media_reset_sonos_every_morning'
 
   trigger:
     - platform: time
@@ -689,6 +709,7 @@
         ##########################################################
 
 - alias: Media - Group All Sonos
+  id: 'media_group_all_sonos'
 
   trigger:
     - platform: state
@@ -721,6 +742,7 @@
         ##########################################################
 
 - alias: Media - Play Pop Music
+  id: 'media_play_pop_music'
 
   trigger:
     - platform: state
@@ -774,6 +796,7 @@
         ##########################################################
 
 - alias: Media - Play Jazz Music
+  id: 'media_play_jazz_music'
 
   trigger:
     - platform: state
@@ -827,6 +850,7 @@
         ##########################################################
 
 - alias: Media - Play Classical Music
+  id: 'media_play_classical_music'
 
   trigger:
     - platform: state
@@ -880,6 +904,7 @@
         ##########################################################
 
 - alias: Media - Play Electronic Music
+  id: 'media_play_electronic_music'
 
   trigger:
     - platform: state
@@ -933,6 +958,7 @@
         ##########################################################
 
 - alias: Media - Play Chill Music
+  id: 'media_play_chill_music'
 
   trigger:
     - platform: state
@@ -986,6 +1012,7 @@
         ##########################################################
 
 - alias: Media - Sonos start activity from input select Pop Music
+  id: 'media_sonos_start_activity_from_input_select_pop_music'
 
   trigger:
     - platform: state
@@ -1001,6 +1028,7 @@
         ##########################################################
 
 - alias: Media - Sonos start activity from input select Jazz Music
+  id: 'media_sonos_start_activity_from_input_select_jazz_music'
 
   trigger:
     - platform: state
@@ -1016,6 +1044,7 @@
         ##########################################################
 
 - alias: Media - Sonos start activity from input select Chill Music
+  id: 'media_sonos_start_activity_from_input_select_chill_music'
 
   trigger:
     - platform: state
@@ -1031,6 +1060,7 @@
         ##########################################################
 
 - alias: Media - Sonos start activity from input select Electronic Music
+  id: 'media_sonos_start_activity_from_input_select_electronic_music'
 
   trigger:
     - platform: state
@@ -1046,6 +1076,7 @@
         ##########################################################
 
 - alias: Media - Sonos start activity from input select Classical Music
+  id: 'media_sonos_start_activity_from_input_select_classical_music'
 
   trigger:
     - platform: state
@@ -1061,6 +1092,7 @@
         ##########################################################
 
 - alias: Media - Sonos stop activity from input select Off
+  id: 'media_sonos_stop_activity_from_input_select_off'
 
   trigger:
     - platform: state
@@ -1092,6 +1124,7 @@
         ##########################################################
 
 - alias: Media - Turn Down Backyard Sonos at 10p
+  id: 'media_turn_down_backyard_sonos_at_10p'
 
   trigger:
    - platform: time
@@ -1109,6 +1142,7 @@
         ##########################################################
 
 - alias: Media - Turn Off Backyard Sonos at Midnight
+  id: 'media_turn_off_backyard_sonos_at_midnight'
 
   trigger:
    - platform: time
@@ -1124,6 +1158,7 @@
         ##########################################################
 
 - alias: Media - Reset Backyard Sonos Volume after 10p
+  id: 'media_reset_backyard_sonos_volume_after_10p'
 
   trigger:
    - platform: template
@@ -1147,6 +1182,7 @@
         ##########################################################
 
 - alias: Media - Reset Backyard Sonos Volume after Midnight
+  id: 'media_reset_backyard_sonos_volume_after_midnight'
 
   trigger:
    - platform: template
@@ -1169,6 +1205,7 @@
         ##########################################################
 
 - alias: Media - Turn Off Bedroom TV at 6a
+  id: 'media_turn_off_bedroom_tv_at_6a'
 
   trigger:
    - platform: time
@@ -1186,3 +1223,29 @@
       data:
         entity_id: input_select.bedroom_tv_remote
         option: "PowerOff"
+
+        ##########################################################
+        ## Turn on Surround Sound Receiver When Sonos Port Playing
+        ##########################################################
+
+- alias: Media - Turn on Surround Sound Receiver When Sonos Port Playing
+  id: 'media_turn_on_surround_sound_receiver_when_sonos_port_playing'
+
+  trigger:
+    - platform: state
+      entity_id: media_player.sonos_surround_sound
+      to: 'playing'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: media_player.turn_on
+      entity_id: media_player.surround_sound_receiver
+    - delay: '00:00:05'
+    - service: media_player.select_source
+      entity_id: media_player.surround_sound_receiver
+      data:
+        source: 'Sonos'
