@@ -457,6 +457,31 @@
     - service: script.turn_on
       entity_id: script.input_select_harmony
 
+        ##########################################################
+        ## Living Room TV Turn Off Harmony Activity if TV Off
+        ##########################################################
+
+- alias: Media - Living Room TV Turn Off Harmony Activity if TV Off
+  id: 'media_living_room_tv_turn_off_harmony_activity_if_tv_off'
+
+  trigger:
+    - platform: state
+      entity_id: media_player.living_room_tv
+      to: 'off'
+
+  condition:
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: input_select.living_room_tv_remote
+        state: 'PowerOff'
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.living_room_tv_remote
+        option: "PowerOff"      
+
       #################################################################
       ## Bedroom Remote
       #################################################################
@@ -485,6 +510,31 @@
   action:
     - service: script.turn_on
       entity_id: script.input_select_bedroom_harmony
+
+        ##########################################################
+        ## Bedroom TV Turn Off Harmony Activity if TV Off
+        ##########################################################
+
+- alias: Media - Bedroom TV Turn Off Harmony Activity if TV Off
+  id: 'media_bedroom_tv_turn_off_harmony_activity_if_tv_off'
+
+  trigger:
+    - platform: state
+      entity_id: media_player.bedroom_tv
+      to: 'off'
+
+  condition:
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: input_select.bedroom_tv_remote
+        state: 'PowerOff'
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.bedroom_tv_remote
+        option: "PowerOff"
 
         ##########################################################
         ## Bedroom Harmony turn On Boolean
@@ -1201,30 +1251,6 @@
         volume_level: 0.3
 
         ##########################################################
-        ## Turn Off Bedroom TV at 6a (Sleep Timer Fix)
-        ##########################################################
-
-- alias: Media - Turn Off Bedroom TV at 6a
-  id: 'media_turn_off_bedroom_tv_at_6a'
-
-  trigger:
-   - platform: time
-     at: '06:00:00'
-
-  condition:
-    condition: not
-    conditions:
-      - condition: state
-        entity_id: media_player.bedroom_appletv
-        state: 'playing'
-
-  action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.bedroom_tv_remote
-        option: "PowerOff"
-
-        ##########################################################
         ## Turn on Surround Sound Receiver When Sonos Port Playing
         ##########################################################
 
@@ -1249,3 +1275,85 @@
       entity_id: media_player.surround_sound_receiver
       data:
         source: 'Sonos'
+
+        ##########################################################
+        ## Turn off Living Room Lights When Playing Xbox
+        ##########################################################
+
+- alias: Media - Turn off Living Room Lights When Playing Xbox
+  id: 'media_turn_off_living_room_lights_when_playing_xbox'
+
+  trigger:
+    - platform: state
+      entity_id: input_select.living_room_tv_remote
+      to: 'Play Xbox'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'home'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '21:00:00'
+      before: '05:00:00'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.living_room_lamps
+        - light.living_room_ceiling_east
+        - light.living_room_ceiling_west
+
+        ##########################################################
+        ## Turn on Living Room Lights When Done Playing Xbox
+        ##########################################################
+
+- alias: Christmas - Turn on Living Room Lights When Done Playing Xbox
+  id: 'media_turn_on_living_room_lights_when_done_playing_xbox'
+
+  trigger:
+    - platform: state
+      entity_id: input_select.living_room_tv_remote
+      from: 'Play Xbox'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'home'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '21:00:00'
+      before: '05:00:00'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.living_room_accent_lights

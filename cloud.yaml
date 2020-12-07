@@ -45,6 +45,8 @@
         - switch.fireplace
         - switch.bug_zapper
         - light.living_room_fan_lights
+        - switch.christmas_tree
+        - switch.exterior_christmas_lights
       exclude_domains:
         - alarm_control_panel
         - automation
@@ -245,6 +247,14 @@
         name: Bug Zapper
         description: Backyard Bug Zapper
         display_categories: SMARTPLUG
+      switch.exterior_christmas_lights:
+        name: Christmas Lights
+        description: Exterior Christmas Lights
+        display_categories: SWITCH
+      switch.christmas_tree:
+        name: Christmas Tree
+        description: Christmas Tree Lights
+        display_categories: SWITCH
 
         ##########################################################
         ## Lights

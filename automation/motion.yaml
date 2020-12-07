@@ -2281,46 +2281,6 @@
         brightness_pct: 2
 
         ##########################################################
-        ## Turn Off USER2 Office Lights with Light Level Daytime
-        ##########################################################
-
-- alias: Motion - Turn Off USER2 Office Lights with Light Level Daytime
-  id: 'motion_turn_off_USER2_office_lights_with_light_level_daytime'
-
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.USER2s_office_light_level
-      above: 60
-      for:
-        hours: 0
-        minutes: 30
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_motion
-      state: 'off'
-    - condition: state
-      entity_id: light.USER2_office_lights
-      state: 'on'
-    - condition: state
-      entity_id: sun.sun
-      state: 'above_horizon'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: vacuum.upstairs_roomba
-        state: 'cleaning'
-      - condition: state
-        entity_id: vacuum.upstairs_roomba
-        state: 'returning'
-
-  action:
-    - service: light.turn_off
-      entity_id: 
-        - light.USER2_office_lights   
-
-        ##########################################################
         ## Turn On USER2 Office Lights when Motion Detected Evening
         ##########################################################
 
@@ -2415,9 +2375,6 @@
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
-    - condition: state
-      entity_id: light.USER2_s_office_ceiling
-      state: 'on'
     - condition: not
       conditions:
       - condition: state
@@ -2426,6 +2383,14 @@
       - condition: state
         entity_id: vacuum.upstairs_roomba
         state: 'returning'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: light.USER2_office_lights
+        state: 'on'
+      - condition: state
+        entity_id: switch.USER2_office_desk_lamp
+        state: 'on'
 
   action:
     - service: light.turn_off
