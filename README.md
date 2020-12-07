@@ -1,6 +1,6 @@
 [![GitHub stars](https://img.shields.io/github/stars/geekofweek/homeassistant.svg?style=plasticr)](https://github.com/geekofweek/homeassistant/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/geekofweek/homeassistant.svg?style=plasticr)](https://github.com/geekofweek/homeassistant/commits/master)
-[![HA Version](https://img.shields.io/badge/Running%20Home%20Assistant-0.117.4%20-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
+[![HA Version](https://img.shields.io/badge/Running%20Home%20Assistant-0.118.5%20-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
 [![HA Version](https://img.shields.io/badge/Original%20Home%20Assistant-0.14%20-darkblue)](https://github.com/home-assistant/core/releases/0.14)
 [![HA Community](https://img.shields.io/badge/HA%20community-forum-orange)](https://community.home-assistant.io/u/geekoftheweek/summary)
 
@@ -128,6 +128,8 @@ I go for native Echo integration wherever possible, but a few devices are not cu
 | [Sonos Connect:AMP](https://amzn.to/2rQ0XzM) | 1 | Wi-Fi |  [Sonos](https://www.home-assistant.io/components/media_player.sonos/) | Audio playback and Home Assistant TTS. Connects Sonos to outdoor speakers |
 | [Lutron Caseta Pico Remote Control for Audio](https://amzn.to/2QsBtnj) | 3 | Lutron Clear Connect | [Lutron Caseta Pro](https://github.com/upsert/lutron-caseta-pro) (Custom Component) | Decora wall mountable remote. Used to control Sonos |
 | [Logitech Harmony Hub](https://amzn.to/2IuEvlS) | 3 | Wi-Fi | [Harmony Hub Remote](https://www.home-assistant.io/components/remote.harmony/) | Controls various AV equipment and other devices that utilize infrared remotes |
+| [Samsung QN75Q80TA](https://amzn.to/3qzvOx7) | 1 | Wi-Fi | [Samsung Smart TV](https://www.home-assistant.io/integrations/samsungtv/) | 75" 4K QLED TV |
+| [LG OLED55BXPUA](https://amzn.to/36THinl) | 1 | Wi-Fi | [LG webOS Smart TV](https://www.home-assistant.io/integrations/webostv/) | 55" 4K OLED TV |
 | [Yamaha RX-V483BL](https://amzn.to/2DhNh89) | 1 | Wi-Fi | [Yamaha Network Receivers](https://www.home-assistant.io/components/media_player.yamaha/) | Surround Sound Receiver. Works in conjunction with the Sonos Connect, Harmony Hub, Apple TV 4k and various other media devices |
 | [Plex Media Server](https://plex.tv) | 1 | Ethernet | [Plex](https://www.home-assistant.io/components/media_player.plex) / [Plex Activity Monitor](https://www.home-assistant.io/components/sensor.plex/) |  Media Server|  
 
