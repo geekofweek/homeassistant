@@ -901,8 +901,6 @@
         - light.basement_lights
         - light.laundry_room_light
         - light.basement_stairs
-        - light.basement_storage_area_ceiling
-        - light.craft_room_ceiling
       data:
        brightness_pct: 100
 
@@ -924,8 +922,6 @@
       entity_id:
         - light.basement_lights
         - light.basement_stairs
-        - light.basement_storage_area_ceiling
-        - light.craft_room_ceiling
       data:
        brightness_pct: 100
     - service: light.turn_on
@@ -958,51 +954,9 @@
   action:
     - service: light.turn_off
       entity_id:
-        - light.basement_light_3
-        - light.basement_light_4
+        - light.basement_stairs
+        - light.basement_lights
         - light.work_bench_light
-        - light.craft_room_ceiling
-        - light.basement_storage_area_ceiling
-        - light.craft_room_ceiling
-    - service: light.turn_on
-      entity_id:
-        - light.basement_light_1
-        - light.basement_light_2
-        - light.basement_stairs
-      data:
-       brightness_pct: 25
-
-        ##########################################################
-        ## Turn Off Basement Stair Light when Laundry Switch Used
-        ##########################################################
-
-- alias: Lights - Turn Off Basement Stair Light when Laundry Switch Used
-  id: 'lights_turn_off_basement_stair_light_when_laundry_switch_used'
-
-  trigger:
-    - platform: state
-      entity_id: light.laundry_room_light
-      from: 'on'
-      to: 'off'
-      for:
-        hours: 0
-        minutes: 2
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: light.basement_lighting
-      state: 'on'
-
-  action:
-    - service: light.turn_off
-      entity_id:
-        - light.basement_light_1
-        - light.basement_light_2
-        - light.basement_stairs
 
         ##########################################################
         ## Turn Off Basement Lights when Work Bench Switch Used
@@ -1028,50 +982,9 @@
   action:
     - service: light.turn_off
       entity_id:
-        - light.basement_light_3
-        - light.basement_light_4
+        - light.basement_stairs
+        - light.basement_lights
         - light.laundry_room_light
-        - light.craft_room_ceiling
-        - light.basement_storage_area_ceiling
-    - service: light.turn_on
-      entity_id:
-        - light.basement_light_1
-        - light.basement_light_2
-        - light.basement_stairs
-      data:
-       brightness_pct: 25
-
-        ##########################################################
-        ## Turn Off Basement Stair Light when Work Bench Switch Used
-        ##########################################################
-
-- alias: Lights - Turn Off Basement Stair Light when Work Bench Switch Used
-  id: 'lights_turn_off_basement_stair_light_when_work_bench_switch_used'
-
-  trigger:
-    - platform: state
-      entity_id: light.work_bench_light
-      from: 'on'
-      to: 'off'
-      for:
-        hours: 0
-        minutes: 3
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: light.basement_lighting
-      state: 'on'
-
-  action:
-    - service: light.turn_off
-      entity_id:
-        - light.basement_light_1
-        - light.basement_light_2
-        - light.basement_stairs
 
     #################################################################
     ## Turn On Right Front Porch Light if not On
@@ -1676,7 +1589,10 @@
   action:
     - service: light.turn_on
       entity_id:
-        - light.basement_lighting
+        - light.basement_stairs
+        - light.basement_lights
+        - light.work_bench_light
+        - light.laundry_room_light
       data:
         brightness_pct: 100
     - delay:
@@ -1716,7 +1632,9 @@
   action:
     - service: light.turn_on
       entity_id:
-        - light.basement_lighting
+        - light.basement_stairs
+        - light.basement_lights
+        - light.work_bench_light
       data:
         brightness_step_pct: 10
     - delay:
@@ -1733,16 +1651,26 @@
     - platform: state
       entity_id: sensor.basement_stairs_light_switch
       to: '16'
-
+    
   condition:
-    - condition: state
-      entity_id: light.basement_lighting
-      state: 'on'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: light.basement_stairs
+        state: 'on'
+      - condition: state
+        entity_id: light.basement_lights
+        state: 'on'
+      - condition: state
+        entity_id: light.work_bench_light
+        state: 'on'
 
   action:
     - service: light.turn_on
       entity_id:
-        - light.basement_lighting
+        - light.basement_stairs
+        - light.basement_lights
+        - light.work_bench_light
       data:
         brightness_step_pct: -10
     - delay:
@@ -1761,14 +1689,25 @@
       to: '2'
 
   condition:
-    - condition: state
-      entity_id: light.basement_lighting
-      state: 'off'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: light.basement_stairs
+        state: 'off'
+      - condition: state
+        entity_id: light.basement_lights
+        state: 'off'
+      - condition: state
+        entity_id: light.work_bench_light
+        state: 'off'
 
   action:
     - service: light.turn_on
       entity_id:
-        - light.basement_lighting
+        - light.basement_stairs
+        - light.basement_lights
+        - light.work_bench_light
+        - light.laundry_room_light
     - delay:
         seconds: 1
 
@@ -1785,14 +1724,25 @@
       to: '2'
 
   condition:
-    - condition: state
-      entity_id: light.basement_lighting
-      state: 'on'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: light.basement_stairs
+        state: 'on'
+      - condition: state
+        entity_id: light.basement_lights
+        state: 'on'
+      - condition: state
+        entity_id: light.work_bench_light
+        state: 'on'
 
   action:
     - service: light.turn_off
       entity_id:
-        - light.basement_lighting
+        - light.basement_stairs
+        - light.basement_lights
+        - light.work_bench_light
+        - light.laundry_room_light
     - delay:
         seconds: 1
 

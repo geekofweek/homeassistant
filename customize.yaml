@@ -42,6 +42,48 @@
   sensor.REDACTED_temperature:
     friendly_name: 'Outdoor Temperature'
 
+        ##########################################################
+        ## Craft Room Temperature
+        ##########################################################
+
+  sensor.craft_room_temperature:
+    device_class: temperature
+
+        ##########################################################
+        ## Craft Room Temperature
+        ##########################################################
+
+  sensor.craft_room_humidity:
+    device_class: humidity    
+
+        ##########################################################
+        ## Fitness Room Temperature
+        ##########################################################
+
+  sensor.fitness_room_temperature:
+    device_class: temperature
+
+        ##########################################################
+        ## Fitness Room Temperature
+        ##########################################################
+
+  sensor.fitness_room_humidity:
+    device_class: humidity    
+
+        ##########################################################
+        ## Bathroom Temperature
+        ##########################################################
+
+  sensor.bathroom_temperature_vera:
+    device_class: temperature
+
+        ##########################################################
+        ## Bathroom Temperature
+        ##########################################################
+
+  sensor.bathroom_humidity:
+    device_class: humidity        
+
 #################################################################
 ## Device Tracker
 #################################################################
@@ -346,6 +388,22 @@
     icon: mdi:fire-truck
     friendly_name: Disable Fire Alarm
 
+        ##########################################################
+        ## Bedroom Sonos Beam Speech Enhance
+        ##########################################################
+
+  switch.bedroom_sonos_speech_enhance:
+    icon: mdi:account-voice
+    friendly_name: Bedroom Sonos Speech Enhance
+
+        ##########################################################
+        ## Bedroom Sonos Beam Night Sound
+        ##########################################################
+
+  switch.bedroom_sonos_night_sound:
+    icon: mdi:weather-night
+    friendly_name: Bedroom Sonos Night Sound
+
 #################################################################
 ## Lights
 #################################################################
@@ -435,7 +493,7 @@
         ##########################################################
 
   light.basement_lighting:
-    icon: mdi:stairs
+    icon: mdi:stairs-down
     friendly_name: Basement
 
         ##########################################################

@@ -338,14 +338,14 @@
             category: "locks"
 
         ##########################################################
-        ## Unlock Door for Contractors
+        ## Unlock Door for Contractors Remove when Project Done
         ##########################################################
 
-- alias: Guest - Unlock Door for Contractors
+- alias: Guest - Unlock Door for Contractors Remove when Project Done
 
   trigger:
    - platform: time
-     at: '07:30:00'
+     at: '07:00:00'
 
   condition:
     - condition: state

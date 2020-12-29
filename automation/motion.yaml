@@ -1379,6 +1379,250 @@
         - light.hallway_light
 
         ##########################################################
+        ## Turn On Bathroom Lights when Motion Detected Daytime
+        ##########################################################
+
+- alias: Motion - Turn On Bathroom Lights when Motion Detected Daytime
+  id: 'motion_turn_on_bathroom_lights_when_motion_detected_daytime'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bathroom_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.bathroom_lights
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.bathroom_vanity
+      data:
+        brightness_pct: 50
+    - service: light.turn_on
+      entity_id:
+        - light.bathroom_shower
+      data:
+        brightness_pct: 25
+
+        ##########################################################
+        ## Turn On Bathroom Lights when Motion Detected Evening
+        ##########################################################
+
+- alias: Motion - Turn On Bathroom Lights when Motion Detected Evening
+  id: 'motion_turn_on_bathroom_lights_when_motion_detected_evening'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bathroom_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.bathroom_lights
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '06:00:00'
+      before: '22:00:00'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.bathroom_vanity
+      data:
+        brightness_pct: 75
+    - service: light.turn_on
+      entity_id:
+        - light.bathroom_shower
+      data:
+        brightness_pct: 25
+
+        ##########################################################
+        ## Turn On Bathroom Lights when Motion Detected Night
+        ##########################################################
+
+- alias: Motion - Turn On Bathroom Lights when Motion Detected Night
+  id: 'motion_turn_on_bathroom_lights_when_motion_detected_night'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bathroom_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.bathroom_lights
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '22:00:00'
+      before: '00:00:00'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.bathroom_vanity
+      data:
+        brightness_pct: 25
+
+        ##########################################################
+        ## Turn On Bathroom Lights when Motion Detected Late Night
+        ##########################################################
+
+- alias: Motion - Turn On Bathroom Lights when Motion Detected Late Night
+  id: 'motion_turn_on_bathroom_lights_when_motion_detected_late_night'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bathroom_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.bathroom_lights
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '00:00:00'
+      before: '06:00:00'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.bathroom_vanity
+      data:
+        brightness_pct: 2
+
+        ##########################################################
+        ## Turn Off Bathroom Lights when No Motion Detected
+        ##########################################################
+
+- alias: Motion - Turn Off Bathroom Lights when No Motion Detected
+  id: 'motion_turn_off_bathroom_lights_when_no_motion_detected'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bathroom_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.bathroom_lights
+      state: 'on'
+    - condition: time
+      after: '06:00:00'
+      before: '23:59:00'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'returning'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.bathroom_lights
+
+        ##########################################################
+        ## Turn Off Bathroom Lights when No Motion Detected Late Night
+        ##########################################################
+
+- alias: Motion - Turn Off Bathroom Lights when No Motion Detected Late Night
+  id: 'motion_turn_off_bathroom_lights_when_no_motion_detected_late_night'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bathroom_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.bathroom_lights
+      state: 'on'
+    - condition: time
+      after: '00:00:00'
+      before: '06:00:00'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'returning'
+
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.bathroom_lights        
+        
+        ##########################################################
         ## Turn On Stair Lights when Motion Detected Evening
         ##########################################################
 
@@ -1679,7 +1923,10 @@
   action:
     - service: light.turn_on
       entity_id:
-        - light.basement_lighting
+        - light.basement_stairs
+        - light.basement_lights
+        - light.work_bench_light
+        - light.laundry_room_light
       data:
         brightness_pct: 100
 
@@ -1722,7 +1969,10 @@
   action:
     - service: light.turn_off
       entity_id:
-        - light.basement_lighting
+        - light.basement_stairs
+        - light.basement_lights
+        - light.work_bench_light
+        - light.laundry_room_light
 
         ##########################################################
         ## Turn Off Basement Lights when No Motion Detected Night
@@ -1766,7 +2016,252 @@
   action:
     - service: light.turn_off
       entity_id:
-        - light.basement_lighting
+        - light.basement_stairs
+        - light.basement_lights
+        - light.work_bench_light
+        - light.laundry_room_light
+
+        ##########################################################
+        ## Turn On Craft Room Lights when Motion Detected
+        ##########################################################
+
+- alias: Motion - Turn On Craft Room Lights when Motion Detected
+  id: 'motion_turn_on_craft_room_lights_when_motion_detected'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.craft_room_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: light.craft_room_ceiling
+      state: 'off'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'home'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.craft_room_ceiling
+      data:
+        brightness_pct: 100
+
+        ##########################################################
+        ## Turn Off Craft Room Lights when No Motion Detected
+        ##########################################################
+
+- alias: Motion - Turn Off Craft Room Lights when No Motion Detected
+  id: 'motion_turn_off_craft_room_lights_when_no_motion_detected'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.craft_room_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.craft_room_ceiling
+      state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.basement_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.basement_roomba
+        state: 'returning'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.craft_room_ceiling
+
+        ##########################################################
+        ## Turn Off Craft Room Lights when No Motion Detected Night
+        ##########################################################
+
+- alias: Motion - Turn Off Craft Room Lights when No Motion Detected Night
+  id: 'motion_turn_off_craft_room_lights_when_no_motion_detected_night'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.craft_room_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.craft_room_ceiling
+      state: 'on'
+    - condition: time
+      after: '22:00:00'
+      before: '07:00:00'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.basement_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.basement_roomba
+        state: 'returning'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.craft_room_ceiling
+
+        ##########################################################
+        ## Turn On Fitness Room Lights when Motion Detected
+        ##########################################################
+
+- alias: Motion - Turn On Fitness Room Lights when Motion Detected
+  id: 'motion_turn_on_fitness_room_lights_when_motion_detected'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.fitness_room_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: light.fitness_room_ceiling
+      state: 'off'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'home'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.fitness_room_ceiling
+      data:
+        brightness_pct: 100
+
+        ##########################################################
+        ## Turn Off Fitness Room Lights when No Motion Detected
+        ##########################################################
+
+- alias: Motion - Turn Off Fitness Room Lights when No Motion Detected
+  id: 'motion_turn_off_fitness_room_lights_when_no_motion_detected'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.fitness_room_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.fitness_room_ceiling
+      state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.basement_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.basement_roomba
+        state: 'returning'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.fitness_room_ceiling
+
+        ##########################################################
+        ## Turn Off Fitness Room Lights when No Motion Detected Night
+        ##########################################################
+
+- alias: Motion - Turn Off Fitness Room Lights when No Motion Detected Night
+  id: 'motion_turn_off_fitness_room_lights_when_no_motion_detected_night'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.fitness_room_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.fitness_room_ceiling
+      state: 'on'
+    - condition: time
+      after: '22:00:00'
+      before: '07:00:00'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.basement_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.basement_roomba
+        state: 'returning'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.fitness_room_ceiling
 
         ##########################################################
         ## Turn On USER2 Closet Light when Motion Detected Weekdays
@@ -2180,11 +2675,11 @@
         - light.USER1_office_lights
 
         ##########################################################
-        ## Turn On Dining Room Lights and Bathroom Lights When USER2 Working
+        ## Turn On Dining Room Lights Lights When USER2 Working
         ##########################################################
 
-- alias: Motion - Turn On Dining Room Lights and Bathroom Lights When USER2 Working
-  id: 'motion_turn_on_dining_room_lights_and_bathroom_lights_when_USER2_working'
+- alias: Motion - Turn On Dining Room Lights When USER2 Working
+  id: 'motion_turn_on_dining_room_lights_when_USER2_working'
 
   trigger:
     - platform: state
@@ -2227,16 +2722,6 @@
         - light.hallway_light
       data:
        brightness_pct: 2
-    - service: light.turn_on
-      entity_id:
-        - light.bathroom_shower
-      data:
-       brightness_pct: 2
-    - service: light.turn_on
-      entity_id:
-        - light.bathroom_vanity
-      data:
-       brightness_pct: 20
 
         ##########################################################
         ## Turn On USER2 Office Lights when Motion Detected Daytime

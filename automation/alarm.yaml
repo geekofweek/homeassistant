@@ -53,7 +53,7 @@
       data:
         variables:
           master: 'media_player.sonos_living_room'
-          where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen, media_player.sonos_bathroom, media_player.sonos_bedroom, media_player.sonos_USER1s_office, media_player.sonos_USER1s_office_move, media_player.sonos_USER2s_office, media_player.sonos_move'
+          where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen, media_player.sonos_bathroom, media_player.sonos_bedroom, media_player.sonos_bedroom_closet, media_player.sonos_USER1s_office, media_player.sonos_USER1s_office_move, media_player.sonos_USER2s_office, media_player.sonos_move'
           volume: 1.0
           what: 'You are not Authorized to be Here. Law Enforcement Has Been Notified!'
     - service: notify.USER1_devices
@@ -409,7 +409,7 @@
       data:
         variables:
           master: 'media_player.sonos_living_room'
-          where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen, media_player.sonos_bathroom, media_player.sonos_bedroom, media_player.sonos_USER1s_office, media_player.sonos_USER1s_office_move, media_player.sonos_USER2s_office, media_player.sonos_move'
+          where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen, media_player.sonos_bathroom, media_player.sonos_bedroom, media_player.sonos_bedroom_closet, media_player.sonos_USER1s_office, media_player.sonos_USER1s_office_move, media_player.sonos_USER2s_office, media_player.sonos_move'
           volume: 0.5
           what: 'Warning Alarm will Trigger in 15 Seconds'
     - service: alarm_control_panel.alarm_trigger

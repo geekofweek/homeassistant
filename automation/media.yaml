@@ -468,6 +468,10 @@
     - platform: state
       entity_id: media_player.living_room_tv
       to: 'off'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
 
   condition:
     - condition: not
@@ -522,6 +526,10 @@
     - platform: state
       entity_id: media_player.bedroom_tv
       to: 'off'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
 
   condition:
     - condition: not
@@ -723,6 +731,7 @@
         - media_player.sonos_kitchen
         - media_player.sonos_bathroom
         - media_player.sonos_bedroom
+        - media_player.sonos_bedroom_closet
         - media_player.sonos_USER1s_office
         - media_player.sonos_USER1s_office_move
         - media_player.sonos_USER2s_office
@@ -736,6 +745,7 @@
         - media_player.sonos_kitchen
         - media_player.sonos_bathroom
         - media_player.sonos_bedroom
+        - media_player.sonos_bedroom_closet
         - media_player.sonos_USER1s_office
         - media_player.sonos_USER1s_office_move
         - media_player.sonos_USER2s_office
@@ -783,6 +793,7 @@
         - media_player.sonos_kitchen
         - media_player.sonos_bathroom
         - media_player.sonos_bedroom
+        - media_player.sonos_bedroom_closet
         - media_player.sonos_USER1s_office
         - media_player.sonos_USER2s_office
         - media_player.sonos_move

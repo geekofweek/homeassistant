@@ -32,13 +32,6 @@
       - volume_percentage_used
 
         ##########################################################
-        ## Uptime
-        ##########################################################
-
-  - platform: uptime
-    unit_of_measurement: days
-
-        ##########################################################
         ## Waze Travel Time
         ##########################################################
 
@@ -300,6 +293,42 @@
       stairs_motion_batt:
         value_template: '{{ states.binary_sensor.stairs_motion.attributes.battery_level }}'
         friendly_name: 'Stairs Motion Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+
+        ##########################################################
+        ## Craft Room Motion Sensor Battery
+        ##########################################################
+
+  - platform: template
+    sensors:
+      craft_room_motion_batt:
+        value_template: '{{ states.binary_sensor.craft_room_motion.attributes.battery_level }}'
+        friendly_name: 'Craft Room Motion Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+
+        ##########################################################
+        ## Fitness Room Motion Sensor Battery
+        ##########################################################
+
+  - platform: template
+    sensors:
+      fitness_room_motion_batt:
+        value_template: '{{ states.binary_sensor.fitness_room_motion.attributes.battery_level }}'
+        friendly_name: 'Fitness Room Motion Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+     
+        ##########################################################
+        ## Bathroom Motion Sensor Battery
+        ##########################################################
+
+  - platform: template
+    sensors:
+      bathroom_motion_batt:
+        value_template: '{{ states.binary_sensor.bathroom_motion.attributes.battery_level }}'
+        friendly_name: 'Bathroom Motion Sensor'
         unit_of_measurement: '%'
         device_class: battery
 

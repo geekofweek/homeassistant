@@ -229,3 +229,43 @@
       living_room_west_fan_dimmer:
         command_on: 'curl -H "BOND-Token: REDACTED" -i http://bond.network.REDACTED/v2/devices/REDACTED/actions/StartDimmer -X PUT -d "{}"'
         command_off: 'curl -H "BOND-Token: REDACTED" -i http://bond.network.REDACTED/v2/devices/REDACTED/actions/Stop -X PUT -d "{}"'
+
+        ##########################################################
+        ## Bedroom Sonos Beam Speech Enhance
+        ##########################################################
+
+  - platform: template
+    switches:
+      bedroom_sonos_speech_enhance:
+        friendly_name: "Bedroom Sonos Speech Enhance"
+        value_template: "{{ state_attr('media_player.sonos_bedroom', 'speech_enhance') }}"
+        turn_on:
+          service: sonos.set_option
+          data:
+            entity_id: media_player.sonos_bedroom
+            speech_enhance: true
+        turn_off:
+          service: sonos.set_option
+          data:
+            entity_id: media_player.sonos_bedroom
+            speech_enhance: false
+
+        ##########################################################
+        ## Bedroom Sonos Beam Night Sound
+        ##########################################################
+
+  - platform: template
+    switches:
+      bedroom_sonos_night_sound:
+        friendly_name: "Bedroom Sonos Night Sound"
+        value_template: "{{ state_attr('media_player.sonos_bedroom', 'night_sound') }}"
+        turn_on:
+          service: sonos.set_option
+          data:
+            entity_id: media_player.sonos_bedroom
+            night_sound: true
+        turn_off:
+          service: sonos.set_option
+          data:
+            entity_id: media_player.sonos_bedroom
+            night_sound: false
