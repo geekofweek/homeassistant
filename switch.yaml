@@ -269,3 +269,43 @@
           data:
             entity_id: media_player.sonos_bedroom
             night_sound: false
+
+        ##########################################################
+        ## Fitness Room Sonos Beam Speech Enhance
+        ##########################################################
+
+  - platform: template
+    switches:
+      fitness_room_sonos_speech_enhance:
+        friendly_name: "Fitness Room Sonos Speech Enhance"
+        value_template: "{{ state_attr('media_player.sonos_fitness_room', 'speech_enhance') }}"
+        turn_on:
+          service: sonos.set_option
+          data:
+            entity_id: media_player.sonos_fitness_room
+            speech_enhance: true
+        turn_off:
+          service: sonos.set_option
+          data:
+            entity_id: media_player.sonos_fitness_room
+            speech_enhance: false
+
+        ##########################################################
+        ## Fitness Room Sonos Beam Night Sound
+        ##########################################################
+
+  - platform: template
+    switches:
+      fitness_room_sonos_night_sound:
+        friendly_name: "Fitness Room Sonos Night Sound"
+        value_template: "{{ state_attr('media_player.sonos_fitness_room', 'night_sound') }}"
+        turn_on:
+          service: sonos.set_option
+          data:
+            entity_id: media_player.sonos_fitness_room
+            night_sound: true
+        turn_off:
+          service: sonos.set_option
+          data:
+            entity_id: media_player.sonos_fitness_room
+            night_sound: false

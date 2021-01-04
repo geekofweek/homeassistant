@@ -122,44 +122,44 @@ route53:
   records:
     - home
 
-influxdb:
-  host: 'influxdb.network.REDACTED'
-  database: !secret influxdb_database
-  username: !secret influxdb_username
-  password: !secret influxdb_password
-  include:
-    entities:
-      - climate.main_floor
-      - climate.office_fan
-      - sensor.living_room_temperature
-      - sensor.main_floor_temperature
-      - sensor.kitchen_temperature
-      - sensor.bedroom_temperature
-      - sensor.bathroom_temperature
-      - sensor.office_temperature
-      - sensor.USER2_office_temperature
-      - sensor.guest_bedroom_temperature
-      - sensor.basement_temperature
-      - sensor.laundry_room_temperature
-      - sensor.garage_temperature
-      - sensor.main_floor_humidity
-      - sensor.office_fan_humidity
-      - sensor.REDACTED_humidity
-      - sensor.REDACTED_temperature
-      - sensor.nas_status
-      - sensor.nas_smart_status_drive_0_1
-      - sensor.nas_smart_status_drive_0_2
-      - sensor.nas_smart_status_drive_0_3
-      - sensor.nas_smart_status_drive_0_4
-      - sensor.nas_cpu_usage
-      - sensor.nas_memory_usage
-      - sensor.nas_volume_used_storage
-      - sensor.nas_system_temperature
-      - sensor.uptime
-      - sensor.ups_status
-      - sensor.ups_battery_runtime_mins
-      - sensor.ups_input_voltage
-      - sensor.ups_battery_charge
+#influxdb:
+#  host: 'influxdb.network.REDACTED'
+#  database: !secret influxdb_database
+#  username: !secret influxdb_username
+#  password: !secret influxdb_password
+#  include:
+#    entities:
+#      - climate.main_floor
+#      - climate.office_fan
+#      - sensor.living_room_temperature
+#      - sensor.main_floor_temperature
+#      - sensor.kitchen_temperature
+#      - sensor.bedroom_temperature
+#      - sensor.bathroom_temperature
+#      - sensor.office_temperature
+#      - sensor.USER2_office_temperature
+#      - sensor.guest_bedroom_temperature
+#      - sensor.basement_temperature
+#      - sensor.laundry_room_temperature
+#      - sensor.garage_temperature
+#      - sensor.main_floor_humidity
+#      - sensor.office_fan_humidity
+#      - sensor.REDACTED_humidity
+#      - sensor.REDACTED_temperature
+#      - sensor.nas_status
+#      - sensor.nas_smart_status_drive_0_1
+#      - sensor.nas_smart_status_drive_0_2
+#      - sensor.nas_smart_status_drive_0_3
+#      - sensor.nas_smart_status_drive_0_4
+#      - sensor.nas_cpu_usage
+#      - sensor.nas_memory_usage
+#      - sensor.nas_volume_used_storage
+#      - sensor.nas_system_temperature
+#      - sensor.uptime
+#      - sensor.ups_status
+#      - sensor.ups_battery_runtime_mins
+#      - sensor.ups_input_voltage
+#      - sensor.ups_battery_charge
 
 #################################################################
 ## Notifications
