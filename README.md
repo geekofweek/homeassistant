@@ -163,7 +163,7 @@ Smoke detectors, like the water sensors, have one real function to alert me of s
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [Ring Video Doorbell 3 Plus](https://amzn.to/34ysSWV) | 1 | Wi-Fi | [Ring](https://www.home-assistant.io/components/ring/) / [Ring Binary Sensor](https://www.home-assistant.io/components/binary_sensor.ring/) | Automated around binary sensors via motion or doorbell button press |
 | [Ubiquiti Unifi Protect G4 Pro](https://amzn.to/2CrW5cK) | 1 | Ethernet | [Unifi Protect](https://github.com/briis/unifiprotect)(Custom Component) | 4K POE Camera. |
-| [Ubiquiti UVC-G3 UniFi Video Camera](https://amzn.to/2L987ah) | 1 | Ethernet | [Unifi Protect](https://github.com/briis/unifiprotect)(Custom Component) | 1080p POE Camera. |
+| [Ubiquiti G4 Bullet](https://amzn.to/2XRWtIv) | 1 | Ethernet | [Unifi Protect](https://github.com/briis/unifiprotect)(Custom Component) | 1440p POE Camera. |
 | [Ubiquiti UniFi Video G3 Flex](https://amzn.to/2PKrSqA) | 6 | Ethernet | [Unifi Protect](https://github.com/briis/unifiprotect)(Custom Component) | 1080p POE Camera. |
 | [Ubiquiti UniFi Cloud Key Gen2 Plus](https://amzn.to/2RUxtz1) | 1 | Ethernet | [Unifi Protect](https://github.com/briis/unifiprotect)(Custom Component) | Unifi Protect NVR. |
 
@@ -274,6 +274,7 @@ More detailed information on the custom Home Assistant Managment Tools can be fo
 | [iHome WiFI Smart Plug](https://amzn.to/2rReF4z) | 2 | Wink Hub (Wi-Fi) | [Wink Switch](https://www.home-assistant.io/components/switch.wink/) | Not using these anymore due to overall poor reliability |
 | [Foscam FI9800P](https://amzn.to/2Gu6r7I) | 1 | Wi-Fi | [Foscam IP Camera](https://www.home-assistant.io/components/camera.foscam/) | Replaced by Unifi G3 Flex |
 | [Ubiquiti UniFi Cloud Key](https://amzn.to/2Waveqn) | 1 | Ethernet | [Ubiquiti Unifi WAP](https://www.home-assistant.io/components/device_tracker.unifi/) | Unifi Controller. Replaced by CloudKey gen2 Plus |
+| [Ubiquiti UVC-G3 UniFi Video Camera](https://amzn.to/2L987ah) | 2 | Ethernet | [Unifi Protect](https://github.com/briis/unifiprotect)(Custom Component) | 1080p POE Camera. Replaced with G4 versions |
 | [MyQ Smart Garage Door Opener](https://amzn.to/2Iu4Joy) | 1 | Wi-Fi | [MyQ Cover](https://www.home-assistant.io/components/cover.myq/)| Got fed up with the sheer disrepect this device had for reliability. Would work great for months, then decide it had enough and work when it felt like. |
 | [MyQ Home Bridge](https://amzn.to/2LyCQk7) | 1 | Wi-Fi | [MyQ Cover](https://www.home-assistant.io/components/cover.myq/)| See Above |
 | [TP-Link Smart Plug HS100](https://amzn.to/2L5Bt9r) | 1 | Wi-Fi | [TP-Link Switch](https://www.home-assistant.io/components/switch.tplink/) | No longer needed, might re-use at some point |
