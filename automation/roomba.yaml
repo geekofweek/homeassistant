@@ -441,9 +441,7 @@
     - condition: time
       weekday:
         - mon
-        - tue
         - wed
-        - thu
         - fri
     - condition: state
       entity_id: vacuum.upstairs_roomba
@@ -471,12 +469,6 @@
       - condition: state
         entity_id: group.friends_and_family
         state: 'home'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: person.USER2
-        state: 'home'
-
 
   action:
     - service: vacuum.start
@@ -507,7 +499,6 @@
       state: 'off'
     - condition: time
       weekday:
-        - sat
         - sun
     - condition: state
       entity_id: vacuum.upstairs_roomba
@@ -531,11 +522,6 @@
       conditions:
       - condition: state
         entity_id: group.friends_and_family
-        state: 'home'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: person.USER2
         state: 'home'
 
   action:

@@ -47,7 +47,12 @@
       - light.USER1_office_lights
       - light.USER2_office_lights
       - light.guest_bedroom_lights
-      - light.basement_lighting
+      - light.basement_lights
+      - light.basement_stairs
+      - light.work_bench_light
+      - light.laundry_room_light
+      - light.craft_room_ceiling
+      - light.fitness_room_ceiling
       - light.front_porch
       - light.back_door
       - light.backyard_deck
@@ -73,11 +78,14 @@
       - binary_sensor.living_room_motion
       - binary_sensor.dining_room_motion
       - binary_sensor.kitchen_motion
+      - binary_sensor.bathroom_motion
       - binary_sensor.USER1s_office_motion
       - binary_sensor.USER2s_office_motion
       - binary_sensor.stairs_motion
       - binary_sensor.upstairs_bathroom_motion
       - binary_sensor.basement_motion
+      - binary_sensor.craft_room_motion
+      - binary_sensor.fitness_room_motion
       - binary_sensor.front_door_opened
       - binary_sensor.back_door_opened
       - binary_sensor.basement_door_opened
@@ -93,6 +101,12 @@
       - sensor.laundry_room_temperature
       - sensor.garage_temperature
       - sensor.office_fan_humidity
+      - sensor.craft_room_temperature
+      - sensor.fitness_room_temperature
+      - sensor.bathroom_humidity
+      - sensor.craft_room_humidity
+      - sensor.fitness_room_humidity
+
   entity_config:
       camera.front_porch:
         stream_source: "-rtsp_transport tcp -re -i rtsp://unifi.network.REDACTED:7447/REDACTED"
@@ -101,7 +115,7 @@
         linked_motion_sensor: binary_sensor.motion_front_porch
         linked_doorbell_sensor: binary_sensor.ring_front_door_ding
       camera.driveway:
-        stream_source: "-rtsp_transport tcp -re -i rtsp://unifi.network.REDACTED:7447/Zg18sJl3jhvxYBnz"
+        stream_source: "-rtsp_transport tcp -re -i rtsp://unifi.network.REDACTED:7447/REDACTED"
         video_codec: copy
         support_audio: True
         linked_motion_sensor: binary_sensor.motion_driveway

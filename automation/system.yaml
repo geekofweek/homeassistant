@@ -80,6 +80,37 @@
     - service: homekit.start
 
         #################################################################
+        ## Reload Vera Sensors on Home Assistant Start
+        #################################################################
+
+- alias: System - Reload Vera Sensors on Home Assistant Start
+  id: 'system_reload_vera_sensors_on_home_assistant_start'
+
+  trigger:
+    - platform: homeassistant
+      event: start
+
+  action:
+    - service: homeassistant.update_entity
+      data:
+        entity_id:
+          - sensor.bathroom_temperature_vera
+          - sensor.craft_room_temperature
+          - sensor.fitness_room_temperature
+          - sensor.bathroom_humidity
+          - sensor.craft_room_humidity
+          - sensor.fitness_room_humidity
+          - sensor.living_room_light_level
+          - sensor.kitchen_light_level
+          - sensor.dining_room_light_level
+          - sensor.bathroom_light_level
+          - sensor.USER1s_office_light_level
+          - sensor.USER2s_office_light_level
+          - sensor.craft_room_light_level
+          - sensor.fitness_room_light_level
+          - sensor.stairs_light_level
+
+        #################################################################
         ## Restart Bond Home Hub when Offline
         #################################################################
 

@@ -1724,25 +1724,14 @@
       to: '2'
 
   condition:
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: light.basement_stairs
-        state: 'on'
-      - condition: state
-        entity_id: light.basement_lights
-        state: 'on'
-      - condition: state
-        entity_id: light.work_bench_light
-        state: 'on'
+    - condition: state
+      entity_id: light.basement_lighting
+      state: 'on'
 
   action:
     - service: light.turn_off
       entity_id:
-        - light.basement_stairs
-        - light.basement_lights
-        - light.work_bench_light
-        - light.laundry_room_light
+        - light.basement_lighting
     - delay:
         seconds: 1
 

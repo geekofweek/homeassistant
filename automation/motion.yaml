@@ -465,11 +465,9 @@
     - condition: time
       after: '21:30:00'
       before: '02:00:00'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
     - service: fan.turn_on
@@ -636,7 +634,7 @@
       conditions:
       - condition: numeric_state
         entity_id: sensor.kitchen_light_level
-        below: 15
+        below: 30
       - condition: state
         entity_id: sensor.kitchen_light_level
         state: 'unknown'
@@ -1968,6 +1966,12 @@
     - condition: state
       entity_id: light.basement_lighting
       state: 'on'
+    - condition: state
+      entity_id: binary_sensor.fitness_room_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.craft_room_motion
+      state: 'off'
     - condition: not
       conditions:
       - condition: state
@@ -2430,8 +2434,12 @@
     - service: fan.turn_on
       entity_id:
         - fan.office_fan
+    - delay: '00:00:01'
+    - service: dyson.set_auto_mode
+      entity_id:
+        - fan.office_fan
       data:
-        speed: 'AUTO'
+        auto_mode: true
     - delay: '00:00:01'
     - service: climate.set_hvac_mode
       data:
@@ -2879,22 +2887,14 @@
       - condition: state
         entity_id: vacuum.upstairs_roomba
         state: 'returning'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: light.USER2_office_lights
-        state: 'on'
-      - condition: state
-        entity_id: switch.USER2_office_desk_lamp
-        state: 'on'
+    - condition: state
+      entity_id: light.USER2_office_lights
+      state: 'on'
 
   action:
     - service: light.turn_off
       entity_id: 
         - light.USER2_s_office_ceiling
-    - service: switch.turn_off
-      entity_id:
-        - switch.USER2_office_desk_lamp
 
         ##########################################################
         ## Turn Off USER2 Office Lights when No Motion Detected Night
@@ -2939,9 +2939,6 @@
     - service: light.turn_off
       entity_id: 
         - light.USER2_s_office_ceiling
-    - service: switch.turn_off
-      entity_id:
-        - switch.USER2_office_desk_lamp
 
         ##########################################################
         ## Turn On Upstairs Bathroom Lights when Motion Detected Evening

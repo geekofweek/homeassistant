@@ -767,6 +767,11 @@
       data:
         entity_id: input_select.sonos
         option: "None"
+    - service: switch.turn_off
+      data:
+        entity_id: 
+          - switch.bedroom_sonos_night_sound
+          - switch.fitness_room_sonos_night_sound
 
         ##########################################################
         ## Group All Sonos
@@ -1293,6 +1298,37 @@
       entity_id: media_player.surround_sound_receiver
       data:
         source: 'Sonos'
+
+        ##########################################################
+        ## Turn on Bedroom Sonos Night Sound Weeknights
+        ##########################################################
+
+- alias: Media - Turn on Bedroom Sonos Night Sound Weeknights
+  id: 'media_turn_on_bedroom_sonos_night_sound_weeknights'
+
+  trigger:
+    - platform: time
+      at: '23:30:00'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: person.USER2
+      state: 'home'
+    - condition: time
+      weekday:
+        - sun
+        - mon
+        - tue
+        - wed
+        - thu
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.bedroom_sonos_night_sound
 
         ##########################################################
         ## Turn off Living Room Lights When Playing Xbox

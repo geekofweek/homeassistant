@@ -85,26 +85,6 @@
     device_class: humidity        
 
 #################################################################
-## Device Tracker
-#################################################################
-
-        ##########################################################
-        ## USER1 Locative iPhone Device Tracker
-        ##########################################################
-
-  device_tracker.REDACTED:
-    icon: mdi:cellphone-iphone
-    friendly_name: USER1's iPhone (Locative)
-
-        ##########################################################
-        ## USER2 Locative iPhone Device Tracker
-        ##########################################################
-
-  device_tracker.REDACTED:
-    icon: mdi:cellphone-iphone
-    friendly_name: USER2's iPhone (Locative)
-
-#################################################################
 ## Covers
 #################################################################
 
@@ -228,6 +208,94 @@
   binary_sensor.bond_home_hub:
     icon: mdi:lan-pending
     friendly_name: Bond Home Hub
+
+#################################################################
+## Motion Sensors
+#################################################################
+
+        ##########################################################
+        ## Living Room Motion Sensor
+        ##########################################################
+
+  binary_sensor.living_room_motion:
+    device_class: motion
+
+        ##########################################################
+        ## Dining Room Motion Sensor
+        ##########################################################
+
+  binary_sensor.dining_room_motion:
+    device_class: motion
+
+        ##########################################################
+        ## Kitchen Motion Sensor
+        ##########################################################
+
+  binary_sensor.kitchen_motion:
+    device_class: motion
+
+        ##########################################################
+        ## Bathroom Motion Sensor
+        ##########################################################
+
+  binary_sensor.bathroom_motion:
+    device_class: motion
+
+        ##########################################################
+        ## USER1's Office Motion Sensor
+        ##########################################################
+
+  binary_sensor.USER1s_office_motion:
+    device_class: motion
+
+        ##########################################################
+        ## USER2's Office Motion Sensor
+        ##########################################################
+
+  binary_sensor.USER2s_office_motion:
+    device_class: motion
+
+        ##########################################################
+        ## Stair's Motion Sensor
+        ##########################################################
+
+  binary_sensor.stairs_motion:
+    device_class: motion
+
+        ##########################################################
+        ## Upstairs Bathroom Motion Sensor
+        ##########################################################
+
+  binary_sensor.upstairs_bathroom_motion:
+    device_class: motion
+
+        ##########################################################
+        ## USER2's Closet Motion Sensor
+        ##########################################################
+
+  binary_sensor.USER2_bedroom_closet_motion:
+    device_class: motion
+
+        ##########################################################
+        ## Basement Motion Sensor
+        ##########################################################
+
+  binary_sensor.basement_motion:
+    device_class: motion
+
+        ##########################################################
+        ## Craft Room Motion Sensor
+        ##########################################################
+
+  binary_sensor.craft_room_motion:
+    device_class: motion
+
+        ##########################################################
+        ## Fitness Room Motion Sensor
+        ##########################################################
+
+  binary_sensor.fitness_room_motion:
+    device_class: motion
 
 #################################################################
 ## Water Sensors
@@ -811,12 +879,4 @@
 
   group.pihole:
     icon: mdi:pi-hole
-    friendly_name: REDACTED (REDACTED) Ad Blocking
-
-        ##########################################################
-        ## REDACTED Pi-hole Group
-        ##########################################################    
-
-  group.REDACTED_pihole:
-    icon: mdi:pi-hole
-    friendly_name: REDACTED (REDACTED) Ad Blocking
+    friendly_name: Ad Blocking

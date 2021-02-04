@@ -336,30 +336,3 @@
           push:
             badge: 0
             category: "locks"
-
-        ##########################################################
-        ## Unlock Door for Contractors Remove when Project Done
-        ##########################################################
-
-- alias: Guest - Unlock Door for Contractors Remove when Project Done
-
-  trigger:
-   - platform: time
-     at: '07:00:00'
-
-  condition:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: time
-      weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
-
-  action:
-    - service: lock.unlock
-      entity_id:
-        - lock.basement_door
