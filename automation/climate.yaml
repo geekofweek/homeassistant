@@ -153,8 +153,8 @@
       entity_id: input_boolean.thermostat_away
       state: 'on'
     - condition: state
-      entity_id: switch.summer_mode
-      state: 'on'
+      entity_id: sensor.season
+      state: 'summer'
 
   action:
     - service: homeassistant.turn_off
@@ -196,8 +196,8 @@
       entity_id: 'sensor.uptime'
       above: 0.01
     - condition: state
-      entity_id: switch.summer_mode
-      state: 'on'
+      entity_id: sensor.season
+      state: 'summer'
     - condition: not
       conditions:
       - condition: state
@@ -244,8 +244,8 @@
       entity_id: input_boolean.thermostat_away
       state: 'on'
     - condition: state
-      entity_id: switch.winter_mode
-      state: 'on'
+      entity_id: sensor.season
+      state: 'winter'
 
   action:
     - service: homeassistant.turn_off
@@ -287,8 +287,8 @@
       entity_id: input_boolean.thermostat_away
       state: 'off'
     - condition: state
-      entity_id: switch.winter_mode
-      state: 'on'
+      entity_id: sensor.season
+      state: 'winter'
     - condition: not
       conditions:
       - condition: state
@@ -341,9 +341,14 @@
     - condition: state
       entity_id: input_boolean.thermostat_away
       state: 'on'
-    - condition: state
-      entity_id: switch.spring_fall_mode
-      state: 'on'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: sensor.season
+        state: 'spring'
+      - condition: state
+        entity_id: sensor.season
+        state: 'fall'
     - condition: not
       conditions:
       - condition: state
@@ -390,9 +395,14 @@
     - condition: state
       entity_id: input_boolean.thermostat_away
       state: 'off'
-    - condition: state
-      entity_id: switch.spring_fall_mode
-      state: 'on'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: sensor.season
+        state: 'spring'
+      - condition: state
+        entity_id: sensor.season
+        state: 'fall'
 
   action:
     - service: homeassistant.turn_on
@@ -405,34 +415,16 @@
            'apns-collapse-id': 'climate-winter'
 
         ##########################################################
-        ## Spring / Fall Mode HVAC Auto
+        ## Winter Season Turn On Heat
         ##########################################################
 
-- alias: Climate - Spring / Fall Mode HVAC Auto
-  id: 'climate_spring_fall_mode_hvac_auto'
+- alias: Climate - Winter Season Turn On Heat
+  id: 'climate_winter_season_turn_on_heat'
 
   trigger:
     - platform: state
-      entity_id: switch.spring_fall_mode
-      to: 'on'
-
-  action:
-    - service: climate.set_hvac_mode
-      data:
-        entity_id: climate.main_floor
-        hvac_mode: 'heat_cool'
-
-        ##########################################################
-        ## Winter Mode On Turn On Heat
-        ##########################################################
-
-- alias: Climate - Winter Mode On Turn On Heat
-  id: 'climate_winter_mode_on_turn_on_heat'
-
-  trigger:
-    - platform: state
-      entity_id: switch.winter_mode
-      to: 'on'
+      entity_id: sensor.season
+      to: 'winter'
 
   action:
     - service: climate.set_hvac_mode
@@ -441,22 +433,58 @@
         hvac_mode: heat
 
         ##########################################################
-        ## Summer Mode On Turn On Cool
+        ## Spring Season HVAC Auto
         ##########################################################
 
-- alias: Climate - Summer Mode On Turn On Cool
-  id: 'climate_summer_mode_on_turn_on_cool'
+- alias: Climate - Spring Season HVAC Auto
+  id: 'climate_spring_season_hvac_auto'
 
   trigger:
     - platform: state
-      entity_id: switch.summer_mode
-      to: 'on'
+      entity_id: sensor.season
+      to: 'spring'
+
+  action:
+    - service: climate.set_hvac_mode
+      data:
+        entity_id: climate.main_floor
+        hvac_mode: 'heat_cool'
+
+        ##########################################################
+        ## Summer Season Turn On Cool
+        ##########################################################
+
+- alias: Climate - Summer Season Turn On Cool
+  id: 'climate_summer_season_turn_on_cool'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.season
+      to: 'summer'
 
   action:
     - service: climate.set_hvac_mode
       data:
         entity_id: climate.main_floor
         hvac_mode: cool
+
+        ##########################################################
+        ## Fall Season HVAC Auto
+        ##########################################################
+
+- alias: Climate - Fall Season HVAC Auto
+  id: 'climate_fall_season_hvac_auto'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.season
+      to: 'fall'
+
+  action:
+    - service: climate.set_hvac_mode
+      data:
+        entity_id: climate.main_floor
+        hvac_mode: 'heat_cool'
 
         ##########################################################
         ## Set Thermostat Home When USER2 Leaves Work
@@ -515,8 +543,8 @@
     - condition: not
       conditions:
       - condition: state
-        entity_id: switch.winter_mode
-        state: 'on'
+        entity_id: sensor.season
+        state: 'winter'
 
   action:
     - service: homeassistant.turn_on
@@ -599,47 +627,6 @@
       data:
         entity_id: climate.main_floor
         preset_mode: 'Guest'
-
-        ##########################################################
-        ## Set Thermostat Home if USER2 Working at 5a
-        ##########################################################
-
-- alias: Climate - Set Thermostat Home if USER2 Working at 5a
-  id: 'climate_set_thermostat_home_if_USER2_working_at_5a'
-
-  trigger:
-    - platform: time
-      at: '05:00:00'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.thermostat_away
-      state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: switch.winter_mode
-      state: 'on'
-    - condition: state
-      entity_id: person.USER2
-      state: 'home'
-    - condition: state
-      entity_id: input_boolean.disable_climate
-      state: 'off'
-    - condition: time
-      weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
-
-  action:
-    - service: climate.set_temperature
-      data:
-        entity_id: climate.main_floor
-        temperature: 70
 
         ##########################################################
         ## Reset Thermostat when USER2 Leaves
@@ -761,8 +748,8 @@
       entity_id: input_boolean.thermostat_away
       state: 'off'
     - condition: state
-      entity_id: switch.summer_mode
-      state: 'on'
+      entity_id: sensor.season
+      state: 'summer'
     - condition: numeric_state
       entity_id: sensor.REDACTED_temperature
       above: 79
@@ -811,8 +798,8 @@
       entity_id: input_boolean.thermostat_away
       state: 'off'
     - condition: state
-      entity_id: switch.summer_mode
-      state: 'on'
+      entity_id: sensor.season
+      state: 'summer'
     - condition: state
       entity_id: input_boolean.disable_climate
       state: 'off'
@@ -913,8 +900,8 @@
       entity_id: group.household
       state: 'home'
     - condition: state
-      entity_id: switch.summer_mode
-      state: 'on'
+      entity_id: sensor.season
+      state: 'summer'
     - condition: state
       entity_id: sensor.thermostat_climate_mode
       state: 'Home'
@@ -959,8 +946,8 @@
       entity_id: sensor.thermostat_climate_mode
       state: 'Temperature Hold'
     - condition: state
-      entity_id: switch.summer_mode
-      state: 'on'
+      entity_id: sensor.season
+      state: 'summer'
 
   action:
     - service: ecobee.resume_program
@@ -991,8 +978,8 @@
 
   condition:
     - condition: state
-      entity_id: switch.winter_mode
-      state: 'on'
+      entity_id: sensor.season
+      state: 'winter'
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -1028,8 +1015,8 @@
 
   condition:
     - condition: state
-      entity_id: switch.winter_mode
-      state: 'on'
+      entity_id: sensor.season
+      state: 'winter'
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -1187,7 +1174,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.REDACTED_temperature
-      below: 20
+      below: 15
       for:
         hours: 0
         minutes: 30
@@ -1198,8 +1185,8 @@
       entity_id: input_boolean.disable_climate
       state: 'off'
     - condition: state
-      entity_id: switch.winter_mode
-      state: 'on'
+      entity_id: sensor.season
+      state: 'winter'
     - condition: state
       entity_id: person.USER1
       state: 'home'
@@ -1212,6 +1199,11 @@
     - condition: state
       entity_id: sensor.office_fan_oscillating_mode
       state: 'True'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: person.USER2
+        state: 'home'
 
   action:
     - service: fan.turn_on
@@ -1245,7 +1237,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.REDACTED_temperature
-      above: 20
+      above: 15
       for:
         hours: 0
         minutes: 30
@@ -1256,8 +1248,8 @@
       entity_id: input_boolean.disable_climate
       state: 'off'
     - condition: state
-      entity_id: switch.winter_mode
-      state: 'on'
+      entity_id: sensor.season
+      state: 'winter'
     - condition: state
       entity_id: person.USER1
       state: 'home'
@@ -1314,8 +1306,8 @@
       entity_id: group.household
       state: 'home'
     - condition: state
-      entity_id: switch.winter_mode
-      state: 'on'
+      entity_id: sensor.season
+      state: 'winter'
     - condition: state
       entity_id: switch.basement_heater
       state: 'off'
@@ -1528,57 +1520,3 @@
         preset_mode: 'Fireplace'
     - service: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
-
-        ##########################################################
-        ## Summer Mode On Everything Else Off
-        ##########################################################
-
-- alias: Climate - Summer Mode On Everything Else Off
-  id: 'climate_summer_mode_on_everything_else_off'
-
-  trigger:
-    - platform: state
-      entity_id: switch.summer_mode
-      to: 'on'
-
-  action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - switch.winter_mode
-        - switch.spring_fall_mode
-
-        ##########################################################
-        ## Winter Mode On Everything Else Off
-        ##########################################################
-
-- alias: Climate - Winter Mode On Everything Else Off
-  id: 'climate_winter_mode_on_everything_else_off'
-
-  trigger:
-    - platform: state
-      entity_id: switch.winter_mode
-      to: 'on'
-
-  action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - switch.summer_mode
-        - switch.spring_fall_mode
-
-        ##########################################################
-        ## Spring / Fall Mode On Everything Else Off
-        ##########################################################
-
-- alias: Climate - Spring / Fall Mode On Everything Else Off
-  id: 'climate_spring_fall_mode_on_everything_else_off'
-
-  trigger:
-    - platform: state
-      entity_id: switch.spring_fall_mode
-      to: 'on'
-
-  action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - switch.winter_mode
-        - switch.summer_mode

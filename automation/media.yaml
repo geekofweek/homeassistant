@@ -189,8 +189,8 @@
       entity_id: input_boolean.watching_plex
       state: 'off'
     - condition: state
-      entity_id: input_select.living_room_tv_remote
-      state: 'Watch TV'
+      entity_id: switch.living_room_tv_watch_tv
+      state: 'on'
 
   action:
     - service: light.turn_on
@@ -269,8 +269,8 @@
       entity_id: input_boolean.watching_plex
       state: 'off'
     - condition: state
-      entity_id: input_select.living_room_tv_remote
-      state: 'Watch TV'
+      entity_id: switch.living_room_tv_watch_tv
+      state: 'on'
 
   action:
     - service: light.turn_on
@@ -345,8 +345,8 @@
       entity_id: input_boolean.watching_plex
       state: 'off'
     - condition: state
-      entity_id: input_select.living_room_tv_remote
-      state: 'Watch TV'
+      entity_id: switch.living_room_tv_watch_tv
+      state: 'on'
 
   action:
     - service: light.turn_off
@@ -404,8 +404,8 @@
       entity_id: input_boolean.watching_plex
       state: 'off'
     - condition: state
-      entity_id: input_select.living_room_tv_remote
-      state: 'Watch TV'
+      entity_id: switch.living_room_tv_watch_tv
+      state: 'on'
 
   action:
     - service: light.turn_off
@@ -544,74 +544,6 @@
         entity_id: input_select.bedroom_tv_remote
         option: "PowerOff"
 
-        ##########################################################
-        ## Bedroom Harmony turn On Boolean
-        ##########################################################
-
-- alias: Media - Bedroom Harmony turn On Boolean
-  id: 'media_bedroom_harmony_turn_on_boolean'
-
-  trigger:
-    - platform: state
-      entity_id: input_select.bedroom_tv_remote
-      to: 'Watch TV'
-
-  action:
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.bedroom_tv
-
-        ##########################################################
-        ## Bedroom Harmony Input Select On from Boolean
-        ##########################################################
-
-- alias: Media - Bedroom Harmony Input Select On from Boolean
-  id: 'media_bedroom_harmony_input_select_on_from_boolean'
-
-  trigger:
-    - platform: state
-      entity_id: input_boolean.bedroom_tv
-      to: 'on'
-
-  action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.bedroom_tv_remote
-        option: "Watch TV"
-
-        ##########################################################
-        ## Bedroom Harmony turn Off Boolean
-        ##########################################################
-
-- alias: Media - Bedroom Harmony turn Off Boolean
-  id: 'media_bedroom_harmony_turn_off_boolean'
-
-  trigger:
-    - platform: state
-      entity_id: input_select.bedroom_tv_remote
-      to: 'PowerOff'
-
-  action:
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.bedroom_tv
-
-        ##########################################################
-        ## Bedroom Harmony Input Select Off from Boolean
-        ##########################################################
-
-- alias: Media - Bedroom Harmony Input Select Off from Boolean
-  id: 'media_bedroom_harmony_input_select_off_from_boolean'
-
-  trigger:
-    - platform: state
-      entity_id: input_boolean.bedroom_tv
-      to: 'off'
-
-  action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.bedroom_tv_remote
-        option: "PowerOff"
-
       #################################################################
       ## Office Remote
       #################################################################
@@ -641,75 +573,6 @@
   action:
     - service: script.turn_on
       entity_id: script.input_select_office_harmony
-
-        ##########################################################
-        ## Office Harmony turn On Boolean
-        ##########################################################
-
-- alias: Media - Office Harmony turn On Boolean
-  id: 'media_office_harmony_turn_on_boolean'
-
-  trigger:
-    - platform: state
-      entity_id: input_select.USER1_s_office_tv_remote
-      to: 'Watch TV'
-
-  action:
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.office_tv
-
-        ##########################################################
-        ## Office Harmony Input Select On from Boolean
-        ##########################################################
-
-- alias: Media - Office Harmony Input Select On from Boolean
-  id: 'media_office_harmony_input_select_on_from_boolean'
-
-  trigger:
-    - platform: state
-      entity_id: input_boolean.office_tv
-      to: 'on'
-
-  action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.USER1_s_office_tv_remote
-        option: "Watch TV"
-
-        ##########################################################
-        ## Office Harmony turn Off Boolean
-        ##########################################################
-
-- alias: Media - Office Harmony turn Off Boolean
-  id: 'media_office_harmony_turn_off_boolean'
-
-  trigger:
-    - platform: state
-      entity_id: input_select.USER1_s_office_tv_remote
-      to: 'PowerOff'
-
-  action:
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.office_tv
-
-        ##########################################################
-        ## Office Harmony Input Select Off from Boolean
-        ##########################################################
-
-- alias: Media - Office Harmony Input Select Off from Boolean
-  id: 'media_office_harmony_input_select_off_from_boolean'
-
-  trigger:
-    - platform: state
-      entity_id: input_boolean.office_tv
-      to: 'off'
-
-  action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.USER1_s_office_tv_remote
-        option: "PowerOff"
-
 
       #################################################################
       ## Reset Sonos Every Morning
@@ -862,7 +725,7 @@
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
-        option: "Play Pop Music"
+        option: "Pop Music"
 
         ##########################################################
         ## Play Jazz Music
@@ -916,7 +779,7 @@
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
-        option: "Play Jazz Music"
+        option: "Jazz Music"
 
         ##########################################################
         ## Play Classical Music
@@ -970,7 +833,7 @@
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
-        option: "Play Classical Music"
+        option: "Classical Music"
 
         ##########################################################
         ## Play Electronic Music
@@ -1024,7 +887,7 @@
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
-        option: "Play Electronic Music"
+        option: "Electronic Music"
 
         ##########################################################
         ## Play Chill Music
@@ -1078,7 +941,7 @@
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
-        option: "Play Chill Music"
+        option: "Chill Music"
 
         ##########################################################
         ## Sonos start activity from input select Pop Music
@@ -1090,7 +953,7 @@
   trigger:
     - platform: state
       entity_id: input_select.sonos
-      to: 'Play Pop Music'
+      to: 'Pop Music'
 
   action:
     - service: homeassistant.turn_on
@@ -1106,7 +969,7 @@
   trigger:
     - platform: state
       entity_id: input_select.sonos
-      to: 'Play Jazz Music'
+      to: 'Jazz Music'
 
   action:
     - service: homeassistant.turn_on
@@ -1122,7 +985,7 @@
   trigger:
     - platform: state
       entity_id: input_select.sonos
-      to: 'Play Chill Music'
+      to: 'Chill Music'
 
   action:
     - service: homeassistant.turn_on
@@ -1138,7 +1001,7 @@
   trigger:
     - platform: state
       entity_id: input_select.sonos
-      to: 'Play Electronic Music'
+      to: 'Electronic Music'
 
   action:
     - service: homeassistant.turn_on
@@ -1154,7 +1017,7 @@
   trigger:
     - platform: state
       entity_id: input_select.sonos
-      to: 'Play Classical Music'
+      to: 'Classical Music'
 
   action:
     - service: homeassistant.turn_on
@@ -1339,8 +1202,8 @@
 
   trigger:
     - platform: state
-      entity_id: input_select.living_room_tv_remote
-      to: 'Play Xbox'
+      entity_id: switch.living_room_tv_play_xbox
+      to: 'on'
       for:
         hours: 0
         minutes: 2
@@ -1381,8 +1244,8 @@
 
   trigger:
     - platform: state
-      entity_id: input_select.living_room_tv_remote
-      from: 'Play Xbox'
+      entity_id: switch.living_room_tv_play_xbox
+      to: 'off'
       for:
         hours: 0
         minutes: 0

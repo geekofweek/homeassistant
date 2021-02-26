@@ -57,7 +57,7 @@
 
   trigger:
    - platform: time
-     at: '13:00:00'
+     at: '10:00:00'
 
   condition:
     - condition: state
@@ -303,11 +303,11 @@
         - vacuum.basement_roomba
 
         ##########################################################
-        ## Run Upstairs Roomba Weekdays when not Home
+        ## Run Upstairs Roomba Mornings when Away
         ##########################################################
 
-- alias: Roomba - Run Upstairs Roomba Weekdays when not Home
-  id: 'roomba_run_upstairs_roomba_weekdays_when_not_home'
+- alias: Roomba - Run Upstairs Roomba Mornings when Away
+  id: 'roomba_run_upstairs_roomba_mornings_when_away'
 
   trigger:
    - platform: time
@@ -320,13 +320,7 @@
     - condition: state
       entity_id: input_boolean.upstairs_roomba_ran
       state: 'off'
-    - condition: time
-      weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
+
     - condition: state
       entity_id: vacuum.upstairs_roomba
       state: 'docked'
@@ -337,73 +331,6 @@
       conditions:
       - condition: state
         entity_id: group.household
-        state: 'home'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
-
-  action:
-    - service: vacuum.start
-      entity_id:
-        - vacuum.upstairs_roomba
-
-        ##########################################################
-        ## Run Upstairs Roomba Weekday Mornings
-        ##########################################################
-
-- alias: Roomba - Run Upstairs Roomba Weekday Mornings
-  id: 'roomba_run_upstairs_roomba_weekday_mornings'
-
-  trigger:
-   - platform: time
-     at: '07:00:00'
-   - platform: time
-     at: '07:30:00'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_roomba
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.upstairs_roomba_ran
-      state: 'off'
-    - condition: time
-      weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
-    - condition: state
-      entity_id: vacuum.upstairs_roomba
-      state: 'docked'
-    - condition: numeric_state
-      entity_id: sensor.upstairs_roomba_battery_level
-      above: 99
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: binary_sensor.USER1s_office_motion
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.USER2s_office_motion
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.stairs_motion
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.upstairs_bathroom_motion
-      state: 'off'
-    - condition: state
-      entity_id: person.USER1
-      state: 'home'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: person.USER2
         state: 'home'
     - condition: not
       conditions:
@@ -463,60 +390,6 @@
       state: 'off'
     - condition: state
       entity_id: binary_sensor.USER2_office_occupancy
-      state: 'off'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
-
-  action:
-    - service: vacuum.start
-      entity_id:
-        - vacuum.upstairs_roomba
-
-        ##########################################################
-        ## Run Upstairs Roomba Weekends
-        ##########################################################
-
-- alias: Roomba - Run Upstairs Roomba Weekends
-  id: 'roomba_run_upstairs_roomba_weekends'
-
-  trigger:
-   - platform: time
-     at: '16:00:00'
-   - platform: time
-     at: '16:30:00'
-   - platform: time
-     at: '17:00:00'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_roomba
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.upstairs_roomba_ran
-      state: 'off'
-    - condition: time
-      weekday:
-        - sun
-    - condition: state
-      entity_id: vacuum.upstairs_roomba
-      state: 'docked'
-    - condition: numeric_state
-      entity_id: sensor.upstairs_roomba_battery_level
-      above: 99
-    - condition: state
-      entity_id: binary_sensor.USER1s_office_motion
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.USER2s_office_motion
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.stairs_motion
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.upstairs_bathroom_motion
       state: 'off'
     - condition: not
       conditions:
@@ -865,17 +738,15 @@
     - condition: time
       after: '09:59:00'
       before: '12:00:00'
-    - condition: or
-      conditions:
-      - condition: numeric_state
-        entity_id: sensor.living_room_light_level
-        below: 15
-      - condition: numeric_state
-        entity_id: sensor.kitchen_light_level
-        below: 10
-      - condition: numeric_state
-        entity_id: sensor.dining_room_light_level
-        below: 10
+    - condition: numeric_state
+      entity_id: sensor.living_room_light_level
+      below: 15
+    - condition: numeric_state
+      entity_id: sensor.kitchen_light_level
+      below: 25
+    - condition: numeric_state
+      entity_id: sensor.dining_room_light_level
+      below: 10
     - condition: not
       conditions:
       - condition: state

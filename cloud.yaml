@@ -44,8 +44,10 @@
         - switch.fireplace
         - switch.bug_zapper
         - light.living_room_fan_lights
-        - switch.christmas_tree
-        - switch.exterior_christmas_lights
+        - switch.bedroom_tv_watch_tv
+        - switch.USER1_s_office_tv_watch_tv
+        - switch.USER1_s_office_tv_play_xbox_one
+
       exclude_domains:
         - alarm_control_panel
         - automation
@@ -134,14 +136,6 @@
       input_boolean.garage_door:
         name: Garage Door
         description: Garage Door
-        display_categories: SWITCH
-      input_boolean.bedroom_tv:
-        name: Bedroom TV
-        description: Bedroom TV Remote
-        display_categories: SWITCH
-      input_boolean.office_tv:
-        name: Office TV
-        description: USER1's Office TV Remote
         display_categories: SWITCH
       input_boolean.livingroom_rainbow:
         name: Living Room Random Color
@@ -242,13 +236,17 @@
         name: Bug Zapper
         description: Backyard Bug Zapper
         display_categories: SMARTPLUG
-      switch.exterior_christmas_lights:
-        name: Christmas Lights
-        description: Exterior Christmas Lights
+      switch.bedroom_tv_watch_tv:
+        name: Bedroom TV
+        description: Bedroom TV Remote
         display_categories: SWITCH
-      switch.christmas_tree:
-        name: Christmas Tree
-        description: Christmas Tree Lights
+      switch.USER1_s_office_tv_watch_tv:
+        name: Office TV
+        description: USER1's Office TV Remote
+        display_categories: SWITCH
+      switch.USER1_s_office_tv_play_xbox_one:
+        name: Office Xbox
+        description: USER1's Office Xbox
         display_categories: SWITCH
 
         ##########################################################

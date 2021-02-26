@@ -44,20 +44,16 @@
       - condition: state
         entity_id: media_player.living_room_appletv
         state: 'playing'
-    - condition: or
+    - condition: not
       conditions:
       - condition: state
-        entity_id: input_select.living_room_tv_remote
-        state: 'PowerOff'
+        entity_id: switch.living_room_tv_play_xbox
+        state: 'on'
+    - condition: not
+      conditions:
       - condition: state
-        entity_id: input_select.living_room_tv_remote
-        state: 'Watch TV'
-      - condition: state
-        entity_id: input_select.living_room_tv_remote
-        state: 'Play Sonos'
-      - condition: state
-        entity_id: input_select.living_room_tv_remote
-        state: 'Watch Over the Air TV'
+        entity_id: switch.living_room_tv_play_nintendo_switch
+        state: 'on'
 
   action:
     - service: light.turn_on
@@ -126,20 +122,16 @@
       - condition: state
         entity_id: media_player.living_room_appletv
         state: 'playing'
-    - condition: or
+    - condition: not
       conditions:
       - condition: state
-        entity_id: input_select.living_room_tv_remote
-        state: 'PowerOff'
+        entity_id: switch.living_room_tv_play_xbox
+        state: 'on'
+    - condition: not
+      conditions:
       - condition: state
-        entity_id: input_select.living_room_tv_remote
-        state: 'Watch TV'
-      - condition: state
-        entity_id: input_select.living_room_tv_remote
-        state: 'Play Sonos'
-      - condition: state
-        entity_id: input_select.living_room_tv_remote
-        state: 'Watch Over the Air TV'
+        entity_id: switch.living_room_tv_play_nintendo_switch
+        state: 'on'
 
   action:
     - service: light.turn_on
@@ -212,20 +204,16 @@
       - condition: state
         entity_id: media_player.living_room_appletv
         state: 'playing'
-    - condition: or
+    - condition: not
       conditions:
       - condition: state
-        entity_id: input_select.living_room_tv_remote
-        state: 'PowerOff'
+        entity_id: switch.living_room_tv_play_xbox
+        state: 'on'
+    - condition: not
+      conditions:
       - condition: state
-        entity_id: input_select.living_room_tv_remote
-        state: 'Watch TV'
-      - condition: state
-        entity_id: input_select.living_room_tv_remote
-        state: 'Play Sonos'
-      - condition: state
-        entity_id: input_select.living_room_tv_remote
-        state: 'Watch Over the Air TV'
+        entity_id: switch.living_room_tv_play_nintendo_switch
+        state: 'on'
 
   action:
     - service: light.turn_on
@@ -634,7 +622,7 @@
       conditions:
       - condition: numeric_state
         entity_id: sensor.kitchen_light_level
-        below: 30
+        below: 40
       - condition: state
         entity_id: sensor.kitchen_light_level
         state: 'unknown'
@@ -1311,7 +1299,6 @@
         entity_id: vacuum.main_floor_roomba
         state: 'returning'
 
-
   action:
     - service: light.turn_off
       entity_id:
@@ -1613,7 +1600,6 @@
       - condition: state
         entity_id: vacuum.main_floor_roomba
         state: 'returning'
-
 
   action:
     - service: light.turn_off
@@ -2768,21 +2754,13 @@
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
-    - condition: or
-      conditions:
-      - condition: numeric_state
-        entity_id: sensor.USER2s_office_light_level
-        below: 5
-      - condition: state
-        entity_id: sensor.USER2s_office_light_level
-        state: 'unknown'
 
   action:
     - service: light.turn_on
       entity_id: 
         - light.USER2_s_office_ceiling
       data:
-        brightness_pct: 2
+        brightness_pct: 75
 
         ##########################################################
         ## Turn On USER2 Office Lights when Motion Detected Evening
@@ -2871,8 +2849,8 @@
       from: 'on'
       to: 'off'
       for:
-        hours: 0
-        minutes: 30
+        hours: 1
+        minutes: 0
         seconds: 0
 
   condition:

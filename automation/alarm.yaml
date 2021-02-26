@@ -439,8 +439,8 @@
       to: 'on'
       for:
         hours: 0
-        minutes: 0
-        seconds: 10
+        minutes: 1
+        seconds: 30
 
   condition:
     - condition: not
@@ -694,6 +694,41 @@
     - condition: state
       entity_id: alarm_control_panel.alarm
       state: 'armed_home'
+
+  action:
+    - service: alarm_control_panel.alarm_disarm
+      entity_id: alarm_control_panel.alarm
+
+        ##########################################################
+        ## Disarm Armed Home in the Morning on Motion
+        ##########################################################
+
+- alias: Alarm - Disarm Armed Home in the Morning on Motion
+  id: 'alarm_disarm_armed_home_in_the_morning_on_motion'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.living_room_motion
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.kitchen_motion
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.basement_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: alarm_control_panel.alarm
+      state: 'armed_home'
+    - condition: time
+      after: '05:00:00'
 
   action:
     - service: alarm_control_panel.alarm_disarm

@@ -201,11 +201,11 @@
         - light.garage_interior
 
         ##########################################################
-        ## Bedtime Before 11:30p
+        ## Bedtime Before 11:00p
         ##########################################################
 
-- alias: Bedtime - Before 11:30p
-  id: 'bedtime_before_1130p'
+- alias: Bedtime - Before 11:00p
+  id: 'bedtime_before_11p'
 
   trigger:
     - platform: state
@@ -225,7 +225,7 @@
       state: 'off'
     - condition: time
       after: '17:00:00'
-      before: '23:30:00'
+      before: '23:00:00'
 
   action:
     - service: climate.set_preset_mode

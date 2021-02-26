@@ -15,6 +15,7 @@ http:
   ssl_certificate: !secret ssl_certificate
   ssl_key: !secret ssl_key
   ip_ban_enabled: true
+  login_attempts_threshold: 10
 logger:
   default: warn
   logs:

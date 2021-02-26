@@ -16,14 +16,16 @@
 
   condition:
     - condition: state
-      entity_id: switch.winter_mode
-      state: 'off'
-    - condition: state
       entity_id: group.household
       state: 'home'
     - condition: state
       entity_id: switch.bug_zapper
       state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.season
+        state: 'winter'
 
   action:
     - service: switch.turn_on
@@ -100,9 +102,11 @@
     - condition: state
       entity_id: group.household
       state: 'home'
-    - condition: state
-      entity_id: switch.winter_mode
-      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.season
+        state: 'winter'
 
   action:
     - service: switch.turn_on
@@ -133,14 +137,16 @@
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
-    - condition: state
-      entity_id: switch.winter_mode
-      state: 'off'
     - condition: not
       conditions:
       - condition: state
         entity_id: weather.REDACTED
         state: 'rainy'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.season
+        state: 'winter'
 
   action:
     - service: switch.turn_on
@@ -171,14 +177,16 @@
     - condition: sun
       after: sunset
       after_offset: "-00:30:00"
-    - condition: state
-      entity_id: switch.winter_mode
-      state: 'off'
     - condition: not
       conditions:
       - condition: state
         entity_id: weather.REDACTED
         state: 'rainy'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.season
+        state: 'winter'
 
   action:
     - service: switch.turn_on
