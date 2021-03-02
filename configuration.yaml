@@ -123,6 +123,19 @@ route53:
   records:
     - home
 
+octoprint:
+  host: 3d-printer.network.REDACTED
+  api_key: !secret octoprint_api
+  name: 3D Printer
+  bed: true
+  number_of_tools: 1
+
+camera:
+  - platform: mjpeg
+    name: 3D Printer
+    still_image_url: http://3d-printer.network.REDACTED/webcam/?action=snapshot
+    mjpeg_url: http://3d-printer.network.REDACTED/webcam/?action=stream
+
 #influxdb:
 #  host: 'influxdb.network.REDACTED'
 #  database: !secret influxdb_database

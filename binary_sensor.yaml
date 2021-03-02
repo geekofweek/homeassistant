@@ -81,3 +81,12 @@
         friendly_name: "Washer Tub Clean"
         device_class: problem
         value_template: "{{ states('sensor.washer_tub_clean')|float > 29 }}"
+
+        ##########################################################
+        ## 3D Printer
+        ##########################################################
+
+  - platform: octoprint
+    monitored_conditions:
+      - Printing
+      - Printing Error
