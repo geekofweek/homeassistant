@@ -244,6 +244,8 @@ Since I don’t use the network equipment as my primary presence detection metho
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [Intel NUC NUC8i5BEH](https://amzn.to/2GxgStD) | 1 | Ethernet | NA | Primary Linux server. Docker Containers and Plex media server run off this device. |
 | [QNAP TS-453 Pro](https://amzn.to/2wRmtJh) | 1 | Ethernet | [QNAP Sensor](https://www.home-assistant.io/components/sensor.qnap/)| Main storage array. Configured with 4x [WD Red Pro 4TB NAS Hard Disk Drives](https://amzn.to/2IvE7DO) |
+| [Creality Ender 3 V2](https://amzn.to/3bROjXf) | 1 | Wi-Fi | [OctoPrint](https://www.home-assistant.io/integrations/octoprint/)| 3D Printer connected to Home Assitant via OctoPrint running on a Raspberry Pi 3 B+ |
+| [HP OfficeJet Pro 8025](https://amzn.to/3bRP3vv) | 1 | Wi-Fi | [Internet Printing Protocol (IPP)](https://www.home-assistant.io/integrations/ipp/)| Regualr inkjet printer that works whenever it feels like because it's a printer. |
 | [APC 1500VA Back-Up UPS](https://amzn.to/2LopbsD) | 1 | USB / Ethernet | [NUT Sensor](https://www.home-assistant.io/components/sensor.nut/)| Primary Uninterruptible Power Supply (UPS). Connected via the NUT component utlizing the QNAP NAS native UPS server component |
 
 ## <a name="software">Software</a>
