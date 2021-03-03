@@ -31,14 +31,6 @@ lutron_caseta_pro:
       mac: !secret lutron_caseta_pro_mac
       switch: [ 17, 22 ]
 
-dyson:
-  username: !secret dyson_username
-  password: !secret dyson_password
-  language: US
-  devices:
-    - device_id: !secret dyson_id
-      device_ip: 'REDACTED-office-fan.network.REDACTED'
-
 wemo:
   discovery: true
   static:

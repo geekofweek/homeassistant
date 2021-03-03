@@ -1194,11 +1194,8 @@
       entity_id: binary_sensor.office_occupancy
       state: 'on'
     - condition: state
-      entity_id: sensor.office_fan_auto_mode
-      state: 'True'
-    - condition: state
-      entity_id: sensor.office_fan_oscillating_mode
-      state: 'True'
+      entity_id: fan.USER1s_office_fan
+      state: 'on'
     - condition: not
       conditions:
       - condition: state
@@ -1208,11 +1205,11 @@
   action:
     - service: fan.turn_on
       entity_id:
-        - fan.office_fan
+        - fan.USER1s_office_fan
     - delay: '00:00:01'
-    - service: dyson.set_auto_mode
+    - service: dyson_local.set_auto_mode
       entity_id:
-        - fan.office_fan
+        - fan.USER1s_office_fan
       data:
         auto_mode: true
     - delay: '00:00:01'
@@ -1224,7 +1221,7 @@
     - delay: '00:00:01'
     - service: fan.oscillate
       data:
-        entity_id: fan.office_fan
+        entity_id: fan.USER1s_office_fan
         oscillating: 'true'
 
         ##########################################################
@@ -1257,20 +1254,17 @@
       entity_id: binary_sensor.office_occupancy
       state: 'on'
     - condition: state
-      entity_id: sensor.office_fan_auto_mode
-      state: 'True'
-    - condition: state
-      entity_id: sensor.office_fan_oscillating_mode
-      state: 'True'
+      entity_id: fan.USER1s_office_fan
+      state: 'on'
 
   action:
     - service: fan.turn_on
       entity_id:
-        - fan.office_fan
+        - fan.USER1s_office_fan
     - delay: '00:00:01'
-    - service: dyson.set_auto_mode
+    - service: dyson_local.set_auto_mode
       entity_id:
-        - fan.office_fan
+        - fan.USER1s_office_fan
       data:
         auto_mode: true
     - delay: '00:00:01'
@@ -1281,7 +1275,7 @@
     - delay: '00:00:01'
     - service: fan.oscillate
       data:
-        entity_id: fan.office_fan
+        entity_id: fan.USER1s_office_fan
         oscillating: 'true'
 
 #################################################################

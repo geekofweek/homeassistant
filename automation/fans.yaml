@@ -108,12 +108,12 @@
         value_template: "{%if is_state_attr('fan.living_room_west', 'speed', 'low') %}true{%endif%}"
 
   action:
-    - service: fan.set_speed
+    - service: fan.set_percentage
       data:
         entity_id:
           - fan.living_room_east
           - fan.living_room_west
-        speed: medium
+        percentage: 50
     - delay:
         seconds: 1
 
@@ -141,12 +141,12 @@
         value_template: "{%if is_state_attr('fan.living_room_west', 'speed', 'medium') %}true{%endif%}"
 
   action:
-    - service: fan.set_speed
+    - service: fan.set_percentage
       data:
         entity_id:
           - fan.living_room_east
           - fan.living_room_west
-        speed: high
+        percentage: 100
     - delay:
         seconds: 1
 
@@ -174,12 +174,12 @@
         value_template: "{%if is_state_attr('fan.living_room_west', 'speed', 'high') %}true{%endif%}"
 
   action:
-    - service: fan.set_speed
+    - service: fan.set_percentage
       data:
         entity_id:
           - fan.living_room_east
           - fan.living_room_west
-        speed: medium
+        percentage: 50
     - delay:
         seconds: 1
 
@@ -207,12 +207,12 @@
         value_template: "{%if is_state_attr('fan.living_room_west', 'speed', 'medium') %}true{%endif%}"
 
   action:
-    - service: fan.set_speed
+    - service: fan.set_percentage
       data:
         entity_id:
           - fan.living_room_east
           - fan.living_room_west
-        speed: low
+        percentage: 25
     - delay:
         seconds: 1
 

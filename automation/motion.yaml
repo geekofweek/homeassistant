@@ -2404,11 +2404,8 @@
       entity_id: person.USER1
       state: 'home'
     - condition: state
-      entity_id: sensor.office_fan_auto_mode
-      state: 'False'
-    - condition: state
-      entity_id: sensor.office_fan_oscillating_mode
-      state: 'False'
+      entity_id: fan.USER1s_office_fan
+      state: 'off'
     - condition: state
       entity_id: switch.air_purifier
       state: 'off'
@@ -2419,11 +2416,11 @@
   action:
     - service: fan.turn_on
       entity_id:
-        - fan.office_fan
+        - fan.USER1s_office_fan
     - delay: '00:00:01'
-    - service: dyson.set_auto_mode
+    - service: dyson_local.set_auto_mode
       entity_id:
-        - fan.office_fan
+        - fan.USER1s_office_fan
       data:
         auto_mode: true
     - delay: '00:00:01'
@@ -2436,7 +2433,7 @@
     - service: fan.oscillate
       data:
         entity_id: 
-          - fan.office_fan
+          - fan.USER1s_office_fan
         oscillating: 'true'
     - service: switch.turn_on
       entity_id:
@@ -2467,7 +2464,7 @@
   action:
     - service: fan.turn_off
       entity_id:
-        - fan.office_fan
+        - fan.USER1s_office_fan
     - service: switch.turn_off
       entity_id:
         - switch.air_purifier
