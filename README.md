@@ -1,6 +1,6 @@
 [![GitHub stars](https://img.shields.io/github/stars/geekofweek/homeassistant.svg?style=plasticr)](https://github.com/geekofweek/homeassistant/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/geekofweek/homeassistant.svg?style=plasticr)](https://github.com/geekofweek/homeassistant/commits/master)
-[![HA Version](https://img.shields.io/badge/Running%20Home%20Assistant-2021.2.3%20-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
+[![HA Version](https://img.shields.io/badge/Running%20Home%20Assistant-2021.3.0%20-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
 [![HA Version](https://img.shields.io/badge/Original%20Home%20Assistant-0.14%20-darkblue)](https://github.com/home-assistant/core/releases/0.14)
 [![HA Community](https://img.shields.io/badge/HA%20community-forum-orange)](https://community.home-assistant.io/u/geekoftheweek/summary)
 
@@ -55,7 +55,7 @@ Lights are grouped via [light_group.yaml](https://github.com/geekofweek/homeassi
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [Ecobee 3](https://amzn.to/2L72d9A) | 1 | Wi-Fi | [ecobee](https://www.home-assistant.io/components/ecobee/) / [Ecobee Thermostat](https://www.home-assistant.io/components/climate.ecobee/) | Used as primary thermostat |
 | [Ecobee Room Sensor](https://amzn.to/2L9cORm) | 9 | Ecobee3 | [Ecobee Binary Sensor](https://www.home-assistant.io/components/binary_sensor.ecobee/) | Provides room temperature and room occupancy.|
-| [Dyson Pure Hot + Cool Link](https://amzn.to/2RQjDtR) | 1 | Wi-Fi | [Dyson](https://www.home-assistant.io/components/dyson/) | Dyson Fan with Heater and Air Purifier|
+| [Dyson Pure Hot + Cool Link](https://amzn.to/2RQjDtR) | 1 | Wi-Fi | [Dyson](https://github.com/shenxn/ha-dyson/ (Custom Component) | Dyson Fan with Heater and Air Purifier|
 | [Temp Sensor Probe DS18b20](https://amzn.to/3bx9RGF) | 1 | [4 Relay ESP32](https://amzn.to/3abd0vG) | [ESPHome](https://www.home-assistant.io/integrations/esphome/) | Waterproof Temperature sensor, connected directly to ESPHome module |
 
 I utilize a number of automations that adjust climate controls.  Mostly they can be found in [climate.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/climate.yaml). Ecobee room sensors are heavily used in [occupancy.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/occupancy.yaml) and as conditions in many automations
