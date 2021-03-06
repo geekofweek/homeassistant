@@ -849,3 +849,47 @@
   group.pihole:
     icon: mdi:pi-hole
     friendly_name: Ad Blocking
+
+#################################################################
+## 3D Printer
+#################################################################
+
+        ##########################################################
+        ## Bed Temperature
+        ##########################################################
+
+  sensor.3d_printer_actual_bed_temp:
+    friendly_name: Bed Temperature
+    unit_of_measurement: C
+
+        ##########################################################
+        ## Bed Target Temperature
+        ##########################################################
+
+  sensor.3d_printer_target_bed_temp:
+    friendly_name: Bed Target Temperature
+    unit_of_measurement: C
+
+        ##########################################################
+        ## Nozzle Temperature
+        ##########################################################
+
+  sensor.3d_printer_actual_tool0_temp:
+    friendly_name: Nozzle Temperature
+    unit_of_measurement: C
+
+        ##########################################################
+        ## Nozzle Target Temperature
+        ##########################################################
+
+  sensor.3d_printer_target_tool0_temp:
+    friendly_name: Nozzle Target Temperature
+    unit_of_measurement: C
+
+        ##########################################################
+        ## Printing Error
+        ##########################################################
+
+  binary_sensor.3d_printer_printing_error:
+    friendly_name: Print Error
+    icon: mdi:printer-3d-nozzle-alert
