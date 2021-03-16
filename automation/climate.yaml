@@ -1207,11 +1207,9 @@
       entity_id:
         - fan.USER1s_office_fan
     - delay: '00:00:01'
-    - service: dyson_local.set_auto_mode
+    - service: switch.turn_on
       entity_id:
-        - fan.USER1s_office_fan
-      data:
-        auto_mode: true
+        - switch.office_fan_auto_mode
     - delay: '00:00:01'
     - service: climate.set_temperature
       data:
@@ -1262,11 +1260,9 @@
       entity_id:
         - fan.USER1s_office_fan
     - delay: '00:00:01'
-    - service: dyson_local.set_auto_mode
+    - service: switch.turn_on
       entity_id:
-        - fan.USER1s_office_fan
-      data:
-        auto_mode: true
+        - switch.office_fan_auto_mode
     - delay: '00:00:01'
     - service: climate.set_hvac_mode
       data:

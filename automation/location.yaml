@@ -33,17 +33,13 @@
         - light.backyard_deck
     - service: switch.turn_off
       entity_id:
+        - switch.office_fan_auto_mode
         - switch.air_purifier
         - switch.lower_backyard_lighting
         - switch.backyard_patio_lighting
         - switch.fireplace
         - switch.basement_heater
         - switch.bug_zapper
-    - service: fan.turn_off
-      entity_id:
-        - fan.USER1s_office_fan
-        - fan.living_room_east
-        - fan.living_room_west
     - service: cover.close_cover
       entity_id:
         - cover.USER1_s_office_blinds
@@ -96,6 +92,12 @@
         - media_player.sonos_craft_room
         - media_player.sonos_fitness_room
         - media_player.sonos_backyard_patio
+    - delay: '00:00:01'
+    - service: fan.turn_off
+      entity_id:
+        - fan.USER1s_office_fan
+        - fan.living_room_east
+        - fan.living_room_west
 
         ##########################################################
         ## USER1 Home from Walking Unlock Doors Turn On Garage Light
@@ -776,6 +778,10 @@
       state: 'off'
 
   action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.office_fan_auto_mode
+    - delay: '00:00:01'
     - service: switch.turn_off
       entity_id:
         - switch.air_purifier

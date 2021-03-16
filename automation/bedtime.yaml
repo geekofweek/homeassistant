@@ -53,16 +53,12 @@
         - light.garage_interior
     - service: switch.turn_off
       entity_id:
+        - switch.office_fan_auto_mode
         - switch.air_purifier
         - switch.lower_backyard_lighting
         - switch.backyard_patio_lighting
         - switch.fireplace
         - switch.basement_heater
-    - service: fan.turn_off
-      entity_id:
-        - fan.USER1s_office_fan
-        - fan.living_room_east
-        - fan.living_room_west
     - service: cover.close_cover
       entity_id:
         - cover.USER1_s_office_blinds
@@ -90,12 +86,19 @@
       data:
         entity_id: input_select.sonos
         option: "None"
+    - delay: '00:00:01'
+    - service: fan.turn_off
+      entity_id:
+        - fan.USER1s_office_fan
+        - fan.living_room_east
+        - fan.living_room_west
     - delay: '00:00:60'
     - service: light.turn_off
       entity_id:
         - light.backyard_patio
         - light.backyard_deck
         - light.garage_interior
+
 
         ##########################################################
         ## Bedtime Guest Mode
@@ -132,16 +135,12 @@
         - light.garage_interior
     - service: switch.turn_off
       entity_id:
+        - switch.office_fan_auto_mode
         - switch.air_purifier
         - switch.lower_backyard_lighting
         - switch.backyard_patio_lighting
         - switch.fireplace
         - switch.basement_heater
-    - service: fan.turn_off
-      entity_id:
-        - fan.USER1s_office_fan
-        - fan.living_room_east
-        - fan.living_room_west
     - service: cover.close_cover
       entity_id:
         - cover.USER1_s_office_blinds
@@ -193,6 +192,12 @@
       data:
         entity_id: climate.main_floor
         preset_mode: 'smart3'
+    - delay: '00:00:01'
+    - service: fan.turn_off
+      entity_id:
+        - fan.USER1s_office_fan
+        - fan.living_room_east
+        - fan.living_room_west
     - delay: '00:00:60'
     - service: light.turn_off
       entity_id:

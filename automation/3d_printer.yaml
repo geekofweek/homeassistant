@@ -30,7 +30,7 @@
         message: 3D Print Complete
         data:
           apns_headers:
-           'apns-collapse-id': '3d-print'
+           'apns-collapse-id': '3d-print-finished'
           push:
             category: camera
           entity_id: camera.3d_printer
@@ -72,138 +72,51 @@
         message: PowREDACTEDg Off 3D Printer
         data:
           apns_headers:
-           'apns-collapse-id': '3d-print'
+           'apns-collapse-id': '3d-print-power-off'
     - service: switch.turn_off
       entity_id:
         - switch.3d_printer
 
         ##########################################################
-        ## Turn Off 3D Printer at Bedtime if Not Printing
+        ## 3D Printer On Turn On Light
         ##########################################################
 
-- alias: 3D-Printer - Turn Off at Bedtime if Not Printing
-  id: '3d_printer_turn_off_at_bedtime_if_not_printing'
+- alias: 3D-Printer - Printer On Turn On Light
+  id: '3d_printer_on_turn_on_light'
 
   trigger:
     - platform: state
-      entity_id: input_boolean.bedtime
-      to: 'on'
-      for:
-        hours: 0
-        minutes: 6
-        seconds: 0
-
-  condition:
-    - condition: numeric_state
-      entity_id: sensor.3d_printer_actual_tool0_temp
-      below: 25
-    - condition: numeric_state
-      entity_id: sensor.3d_printer_actual_bed_temp
-      below: 30
-    - condition: state
-      entity_id: binary_sensor.3d_printer_printing
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.3d_printer_printing_error
-      state: 'off'
-    - condition: state
       entity_id: switch.3d_printer
-      state: 'on'
-
-  action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.3d_printer
-
-        ##########################################################
-        ## Turn Off 3D Printer When Away if Not Printing
-        ##########################################################
-
-- alias: 3D-Printer - Turn Off When Away if Not Printing
-  id: '3d_printer_turn_off_when_away_if_not_printing'
-
-  trigger:
-    - platform: state
-      entity_id: group.household
-      from: 'home'
-      to: 'not_home'
-      for:
-        hours: 0
-        minutes: 5
-        seconds: 0
-
-  condition:
-    - condition: numeric_state
-      entity_id: sensor.3d_printer_actual_tool0_temp
-      below: 25
-    - condition: numeric_state
-      entity_id: sensor.3d_printer_actual_bed_temp
-      below: 30
-    - condition: state
-      entity_id: binary_sensor.3d_printer_printing
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.3d_printer_printing_error
-      state: 'off'
-    - condition: state
-      entity_id: switch.3d_printer
-      state: 'on'
-
-  action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.3d_printer
-
-        ##########################################################
-        ## 3D Print Started Turn On Lamp
-        ##########################################################
-
-- alias: 3D-Printer - Print Started Turn On Lamp
-  id: '3d_printer_print_started_turn_on_lamp'
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.3d_printer_printing
       from: 'off'
       to: 'on'
       for:
         hours: 0
         minutes: 0
-        seconds: 45
-
-  condition:
-    - condition: state
-      entity_id: binary_sensor.3d_printer_printing_error
-      state: 'off'
+        seconds: 30
 
   action:
     - service: light.turn_on
       entity_id:
-        - light.3d_printer_lamp
+        - light.3d_printer_light
 
         ##########################################################
-        ## 3D Print Complete Turn Off Lamp
+        ## 3D Printer Off Turn Off Light
         ##########################################################
 
-- alias: 3D-Printer - 3D Print Complete Turn Off Lamp
-  id: '3d_printer_print_complete_turn_off_lamp'
+- alias: 3D-Printer - Printer Off Turn Off Light
+  id: '3d_printer_off_turn_off_light'
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.3d_printer_printing
+      entity_id: switch.3d_printer
       from: 'on'
       to: 'off'
       for:
         hours: 0
-        minutes: 5
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: binary_sensor.3d_printer_printing_error
-      state: 'off'
+        minutes: 0
+        seconds: 30
 
   action:
     - service: light.turn_off
       entity_id:
-        - light.3d_printer_lamp
+        - light.3d_printer_light
