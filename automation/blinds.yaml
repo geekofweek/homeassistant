@@ -3,11 +3,11 @@
 #################################################################
 
         ##########################################################
-        ## Close All Blinds when Sun Below Horizon
+        ## Close Blinds when Sun Below Horizon
         ##########################################################
 
-- alias: Blinds - Close All Blinds when Sun Below Horizon
-  id: 'blinds_close_all_blinds_when_sun_below_horizon'
+- alias: Blinds - Close Blinds when Sun Below Horizon
+  id: 'blinds_close_blinds_when_sun_below_horizon'
 
   trigger:
     - platform: state
@@ -23,7 +23,6 @@
   action:
     - service: cover.close_cover
       entity_id:
-        - cover.USER1_s_office_blinds
         - cover.USER2_s_office_blinds
         - cover.bedroom_closet_blinds
         - cover.stairs_blinds
@@ -93,6 +92,9 @@
     - condition: state
       entity_id: cover.USER1_s_office_blinds
       state: 'open'
+    - condition: state
+      entity_id: binary_sensor.USER1s_office_window_right
+      state: 'off'
 
   action:
     - service: cover.close_cover
@@ -126,11 +128,11 @@
         position: 50
 
         ##########################################################
-        ## Close USER1's Office Blinds to 25 Before Sunset
+        ## Close USER1's Office Blinds to 25 Before Sunset Window Closed
         ##########################################################
 
-- alias: Blinds - Close USER1's Office Blinds to 25 Before Sunset
-  id: 'blinds_close_USER1_office_blinds_to_25_before_sunset'
+- alias: Blinds - Close USER1's Office Blinds to 25 Before Sunset Window Closed
+  id: 'blinds_close_USER1_office_blinds_to_25_before_sunset_window_closed'
 
   trigger:
     - platform: sun
@@ -144,12 +146,103 @@
     - condition: state
       entity_id: cover.USER1_s_office_blinds
       state: 'open'
+    - condition: state
+      entity_id: binary_sensor.USER1s_office_window_right
+      state: 'off'
 
   action:
     - service: cover.set_cover_position
       data:
         entity_id: cover.USER1_s_office_blinds
         position: 25
+
+        ##########################################################
+        ## Close USER1's Office Blinds to 25 Before Sunset Window Open
+        ##########################################################
+
+- alias: Blinds - Close USER1's Office Blinds to 25 Before Sunset Window Open
+  id: 'blinds_close_USER1_office_blinds_to_25_before_sunset_window_open'
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:17:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.USER1_s_office_blinds
+      state: 'open'
+    - condition: state
+      entity_id: binary_sensor.USER1s_office_window_right
+      state: 'on'
+
+  action:
+    - service: cover.set_cover_position
+      data:
+        entity_id:
+          - cover.USER1s_office_blinds_left
+          - cover.USER1s_office_blinds_center
+        position: 25
+
+        ##########################################################
+        ## Close USER1's Office Blinds when Sun Below Horizon and Window Closed
+        ##########################################################
+
+- alias: Blinds - Close USER1's Office Blinds when Sun Below Horizon and Window Closed
+  id: 'blinds_close_USER1s_office_blinds_when_sun_below_horizon_window_closed'
+
+  trigger:
+    - platform: state
+      entity_id: sun.sun
+      from: 'above_horizon'
+      to: 'below_horizon'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.USER1s_office_window_right
+      state: 'off'
+
+  action:
+    - service: cover.close_cover
+      entity_id:
+        - cover.USER1_s_office_blinds
+
+        ##########################################################
+        ## Close USER1's Office Blinds Partially when Sun Below Horizon and Window Open
+        ##########################################################
+
+- alias: Blinds - Close USER1's Office Blinds Partially when Sun Below Horizon and Window Open
+  id: 'blinds_close_USER1s_office_blinds_partially_when_sun_below_horizon_and_window_open'
+
+  trigger:
+    - platform: state
+      entity_id: sun.sun
+      from: 'above_horizon'
+      to: 'below_horizon'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.USER1s_office_window_right
+      state: 'on'
+
+  action:
+    - service: cover.close_cover
+      entity_id:
+        - cover.USER1s_office_blinds_left
+        - cover.USER1s_office_blinds_center
+    - service: cover.set_cover_position
+      data:
+        entity_id: cover.USER1s_office_blinds_right
+        position: 45
 
         ##########################################################
         ## Turn Off USER1's Office Lights when Blinds are Open

@@ -159,6 +159,18 @@
         device_class: battery
 
         ##########################################################
+        ## USER1's Office Window Right Battery
+        ##########################################################
+
+  - platform: template
+    sensors:
+      REDACTED_office_window_right_window_sensor_batt:
+        value_template: '{{ states.binary_sensor.REDACTEDs_office_window_right.attributes.battery_level }}'
+        friendly_name: "USER1's Office Window Sensor (Right)"
+        unit_of_measurement: '%'
+        device_class: battery
+
+        ##########################################################
         ## Siren Battery
         ##########################################################
 

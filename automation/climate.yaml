@@ -146,9 +146,6 @@
     - condition: state
       entity_id: group.household
       state: 'home'
-    - condition: numeric_state
-      entity_id: 'sensor.uptime'
-      above: 0.01
     - condition: state
       entity_id: input_boolean.thermostat_away
       state: 'on'
@@ -192,9 +189,6 @@
     - condition: state
       entity_id: input_boolean.thermostat_away
       state: 'off'
-    - condition: numeric_state
-      entity_id: 'sensor.uptime'
-      above: 0.01
     - condition: state
       entity_id: sensor.season
       state: 'summer'
@@ -237,9 +231,6 @@
     - condition: state
       entity_id: input_boolean.disable_climate
       state: 'off'
-    - condition: numeric_state
-      entity_id: 'sensor.uptime'
-      above: 0.01
     - condition: state
       entity_id: input_boolean.thermostat_away
       state: 'on'
@@ -280,9 +271,6 @@
     - condition: state
       entity_id: input_boolean.disable_climate
       state: 'off'
-    - condition: numeric_state
-      entity_id: 'sensor.uptime'
-      above: 0.01
     - condition: state
       entity_id: input_boolean.thermostat_away
       state: 'off'
@@ -335,9 +323,6 @@
     - condition: state
       entity_id: input_boolean.disable_climate
       state: 'off'
-    - condition: numeric_state
-      entity_id: 'sensor.uptime'
-      above: 0.01
     - condition: state
       entity_id: input_boolean.thermostat_away
       state: 'on'
@@ -389,9 +374,6 @@
     - condition: state
       entity_id: input_boolean.disable_climate
       state: 'off'
-    - condition: numeric_state
-      entity_id: 'sensor.uptime'
-      above: 0.01
     - condition: state
       entity_id: input_boolean.thermostat_away
       state: 'off'

@@ -2460,10 +2460,6 @@
       state: 'off'
 
   action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.office_fan_auto_mode
-    - delay: '00:00:01'
     - service: fan.turn_off
       entity_id:
         - fan.USER1s_office_fan

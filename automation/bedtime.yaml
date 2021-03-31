@@ -53,7 +53,6 @@
         - light.garage_interior
     - service: switch.turn_off
       entity_id:
-        - switch.office_fan_auto_mode
         - switch.air_purifier
         - switch.lower_backyard_lighting
         - switch.backyard_patio_lighting
@@ -86,7 +85,6 @@
       data:
         entity_id: input_select.sonos
         option: "None"
-    - delay: '00:00:01'
     - service: fan.turn_off
       entity_id:
         - fan.USER1s_office_fan
@@ -135,7 +133,6 @@
         - light.garage_interior
     - service: switch.turn_off
       entity_id:
-        - switch.office_fan_auto_mode
         - switch.air_purifier
         - switch.lower_backyard_lighting
         - switch.backyard_patio_lighting
@@ -192,7 +189,6 @@
       data:
         entity_id: climate.main_floor
         preset_mode: 'smart3'
-    - delay: '00:00:01'
     - service: fan.turn_off
       entity_id:
         - fan.USER1s_office_fan
