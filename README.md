@@ -150,6 +150,7 @@ Harmony Hubs work via a combination of [input_selects]( https://github.com/geeko
 | [ZOOZ 4-in-1 Sensor ZSE40](https://amzn.to/3aTqGhZ) | 4 | Vera Plus (Z-Wave) | [Vera Binary Sensor](https://www.home-assistant.io/components/vera/) | Motion,temperature, humidity, and light level sensor used to automate around motion events. |
 | [Dome Home Automation Leak Sensor](https://amzn.to/2IA5XBj) | 8 | Vera Plus (Z-Wave) | [Vera Binary Sensor](https://www.home-assistant.io/components/vera/) | Water sensors used to detect the pressence of water as a preventive measure |
 | [Aeon Labs Water Sensor](https://amzn.to/2rM6KFE) | 2 | Vera Plus (Z-Wave) | [Vera Binary Sensor](https://www.home-assistant.io/components/vera/) | Water sensors used to detect the pressence of water as a preventive measure |
+| [Ecolink Door/Window Sensor](https://amzn.to/3cCjhUU) | 2 | Vera Plus (Z-Wave) | [Vera Binary Sensor](https://www.home-assistant.io/components/vera/) | Trial run on Window sensors to stop my blinds from closing when a Window is Open.  Starting small but we all know how that will end up.  ALL THE WINDOWS! |
 
 Water sensors serve one major function, to alert me to the presence of water.  Almost all of those automations can be fond via [water_works.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/water_works.yaml)
 
