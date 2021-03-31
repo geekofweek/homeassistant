@@ -107,12 +107,13 @@ Door sensors, motion sensors, and the alarm siren are used in many different way
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
-| [Amazon Echo](https://amzn.to/2KuPHjd) | 1 | Wi-Fi | [Emulated Hue Bridge](https://www.home-assistant.io/components/emulated_hue/) | Audio only Voice Assistant |
-| [Amazon Echo Dot](https://amzn.to/2wSreSW) | 6 | Wi-Fi | [Emulated Hue Bridge](https://www.home-assistant.io/components/emulated_hue/) | Audio only Voice Assistant |
-| [Amazon Echo Spot](https://amzn.to/2rOVZ6a) | 1 | Wi-Fi | [Emulated Hue Bridge](https://www.home-assistant.io/components/emulated_hue/) | Voice Assistant with small display |
-| [Amazon Echo Show](https://amzn.to/2rRhN0n) | 1 | Wi-Fi |  [Emulated Hue Bridge](https://www.home-assistant.io/components/emulated_hue/) |Voice Assistant with display |
+| [Amazon Echo](https://amzn.to/2KuPHjd) | 1 | Wi-Fi | [Home Assistant Cloud](https://www.home-assistant.io/cloud/) | Audio only Voice Assistant |
+| [Amazon Echo Dot](https://amzn.to/2wSreSW) | 7 | Wi-Fi | [Home Assistant Cloud](https://www.home-assistant.io/cloud/) | Audio only Voice Assistant |
+| [Amazon Echo Spot](https://amzn.to/2rOVZ6a) | 1 | Wi-Fi | [Home Assistant Cloud](https://www.home-assistant.io/cloud/) | Voice Assistant with small display |
+| [Amazon Echo Show](https://amzn.to/2rRhN0n) | 1 | Wi-Fi | [Home Assistant Cloud](https://www.home-assistant.io/cloud/) |Voice Assistant with display |
+| [Amazon Echo Show 5](https://amzn.to/3sPEh09) | 1 | Wi-Fi | [Home Assistant Cloud](https://www.home-assistant.io/cloud/) |Voice Assistant with display 
 
-I go for native Echo integration wherever possible, but a few devices are not currently supported where I've had to implement some work arounds via emulated hue.  Most of these are just exposed via an [input_boolean]( https://github.com/geekofweek/homeassistant/blob/master/input_boolean.yaml) and [customize.yaml]( https://github.com/geekofweek/homeassistant/blob/master/customize.yaml).  This allows the ability to have echo turn on or off an [input_boolean]( https://github.com/geekofweek/homeassistant/blob/master/input_boolean.yaml)  in turn triggering an automation.
+I go for native Echo integration wherever possible, but a few devices are not currently supported where I've had to implement some work arounds via Home Assistant Cloud (previously Emulated Hue).  Most of these are just exposed via an [input_boolean]( https://github.com/geekofweek/homeassistant/blob/master/input_boolean.yaml) and [customize.yaml]( https://github.com/geekofweek/homeassistant/blob/master/customize.yaml).  This allows the ability to have echo turn on or off an [input_boolean]( https://github.com/geekofweek/homeassistant/blob/master/input_boolean.yaml)  in turn triggering an automation.
 
 ## <a name="media">Media</a>
 
