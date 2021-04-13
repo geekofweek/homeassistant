@@ -18,10 +18,6 @@ http:
   login_attempts_threshold: 10
 logger:
   default: warn
-  logs:
-    homeassistant.components.unifiprotect: info
-    libdyson: debug
-    custom_components.dyson_local: debug
     
 #################################################################
 ## Components
@@ -118,17 +114,17 @@ route53:
     - home
 
 octoprint:
-  host: 3d-printer.network.REDACTED
-  api_key: !secret octoprint_api
-  name: 3D Printer
-  bed: true
-  number_of_tools: 1
+  - host: 3d-printer-ender.network.REDACTED
+    api_key: !secret octoprint_api
+    name: Ender
+    bed: true
+    number_of_tools: 1
 
 camera:
   - platform: mjpeg
-    name: 3D Printer
-    still_image_url: http://3d-printer.network.REDACTED/webcam/?action=snapshot
-    mjpeg_url: http://3d-printer.network.REDACTED/webcam/?action=stream
+    name: Ender
+    still_image_url: http://3d-printer-ender.network.REDACTED/webcam/?action=snapshot
+    mjpeg_url: http://3d-printer-ender.network.REDACTED/webcam/?action=stream
 
 #################################################################
 ## Notifications

@@ -3,15 +3,15 @@
 #################################################################
 
         ##########################################################
-        ## 3D Print Finished
+        ## Ender 3D Print Finished
         ##########################################################
 
-- alias: 3D-Printer - Print Finished
-  id: '3d_printer_print_finished'
+- alias: 3D-Printer - Ender Print Finished
+  id: '3d_printer_ender_print_finished'
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.3d_printer_printing
+      entity_id: binary_sensor.ender_printing
       from: 'on'
       to: 'off'
       for:
@@ -27,24 +27,24 @@
   action:
     - service: notify.USER1_devices
       data:
-        message: 3D Print Complete
+        message: 3D Print Complete (Ender)
         data:
           apns_headers:
-           'apns-collapse-id': '3d-print-finished'
+           'apns-collapse-id': '3d-print-finished-ender'
           push:
             category: camera
-          entity_id: camera.3d_printer
+          entity_id: camera.ender
 
         ##########################################################
-        ## Power Off 3D Printer When Print Complete
+        ## Power Off Ender 3D Printer When Print Complete
         ##########################################################
 
-- alias: 3D-Printer - Power Off When Print Complete
-  id: '3d_printer_power_off_when_print_complete'
+- alias: 3D-Printer - Power Off Ender When Print Complete
+  id: '3d_printer_power_off_ender_when_print_complete'
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.3d_printer_printing
+      entity_id: binary_sensor.ender_printing
       from: 'on'
       to: 'off'
       for:
@@ -54,28 +54,28 @@
 
   condition:
     - condition: numeric_state
-      entity_id: sensor.3d_printer_actual_tool0_temp
+      entity_id: sensor.ender_actual_tool0_temp
       below: 25
     - condition: numeric_state
-      entity_id: sensor.3d_printer_actual_bed_temp
+      entity_id: sensor.ender_actual_bed_temp
       below: 30
     - condition: state
-      entity_id: binary_sensor.3d_printer_printing_error
+      entity_id: binary_sensor.ender_printing_error
       state: 'off'
     - condition: state
-      entity_id: binary_sensor.3d_printer_printing
+      entity_id: binary_sensor.ender_printing
       state: 'off'
 
   action:
     - service: notify.USER1_devices
       data:
-        message: PowREDACTEDg Off 3D Printer
+        message: PowREDACTEDg Off 3D Printer (Ender)
         data:
           apns_headers:
-           'apns-collapse-id': '3d-print-power-off'
+           'apns-collapse-id': '3d-print-power-off-ender'
     - service: switch.turn_off
       entity_id:
-        - switch.3d_printer
+        - switch.3d_printer_ender
 
         ##########################################################
         ## 3D Printer On Turn On Light
@@ -86,7 +86,7 @@
 
   trigger:
     - platform: state
-      entity_id: switch.3d_printer
+      entity_id: switch.3d_printer_ender
       from: 'off'
       to: 'on'
       for:
@@ -108,7 +108,7 @@
 
   trigger:
     - platform: state
-      entity_id: switch.3d_printer
+      entity_id: switch.3d_printer_ender
       from: 'on'
       to: 'off'
       for:

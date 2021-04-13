@@ -64,21 +64,6 @@
       entity_id:
         - input_boolean.disable_startup_notifications
 
-        ##########################################################
-        ## Delay HomeKit Start
-        ##########################################################
-
-- alias: System - Delay HomeKit Start
-  id: 'system_delay_homekit_start'
-
-  trigger:
-    - platform: homeassistant
-      event: start
-
-  action:
-    - delay: 00:02:00
-    - service: homekit.start
-
         #################################################################
         ## Reload Vera Sensors on Home Assistant Start
         #################################################################
