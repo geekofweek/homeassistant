@@ -904,3 +904,43 @@
   binary_sensor.ender_printing_error:
     friendly_name: Print Error
     icon: mdi:printer-3d-nozzle-alert
+
+        ##########################################################
+        ## Prusa Bed Temperature
+        ##########################################################
+
+  sensor.prusa_actual_bed_temp:
+    friendly_name: Bed Temperature
+    unit_of_measurement: C
+
+        ##########################################################
+        ## Prusa Bed Target Temperature
+        ##########################################################
+
+  sensor.prusa_target_bed_temp:
+    friendly_name: Bed Target Temperature
+    unit_of_measurement: C
+
+        ##########################################################
+        ## Prusa Nozzle Temperature
+        ##########################################################
+
+  sensor.prusa_actual_tool0_temp:
+    friendly_name: Nozzle Temperature
+    unit_of_measurement: C
+
+        ##########################################################
+        ## Prusa Nozzle Target Temperature
+        ##########################################################
+
+  sensor.prusa_target_tool0_temp:
+    friendly_name: Nozzle Target Temperature
+    unit_of_measurement: C
+
+        ##########################################################
+        ## Prusa Printing Error
+        ##########################################################
+
+  binary_sensor.prusa_printing_error:
+    friendly_name: Print Error
+    icon: mdi:printer-3d-nozzle-alert

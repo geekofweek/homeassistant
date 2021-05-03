@@ -583,3 +583,23 @@
       ender_time_remaining_format:
        friendly_name: 'Printing Time Remaining'
        value_template: "{{ states('sensor.ender_time_remaining') | int | timestamp_custom('%H:%M:%S', 0) }}"
+
+       ##########################################################
+        ## Prusa 3D Printer Fix Time Elapsed
+        ##########################################################
+
+  - platform: template
+    sensors:
+      prusa_time_elapsed_format:
+       friendly_name: 'Printing Time Elapsed'
+       value_template: "{{ states('sensor.prusa_time_elapsed') | int | timestamp_custom('%H:%M:%S', 0) }}"
+
+        ##########################################################
+        ## Prusa 3D Printer Fix Time Remaining
+        ##########################################################
+
+  - platform: template
+    sensors:
+      prusa_time_remaining_format:
+       friendly_name: 'Printing Time Remaining'
+       value_template: "{{ states('sensor.prusa_time_remaining') | int | timestamp_custom('%H:%M:%S', 0) }}"

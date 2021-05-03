@@ -36,6 +36,40 @@
           entity_id: camera.ender
 
         ##########################################################
+        ## Prusa 3D Print Finished
+        ##########################################################
+
+- alias: 3D-Printer - Prusa Print Finished
+  id: '3d_printer_prusa_print_finished'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.prusa_printing
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 30
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.USER1_devices
+      data:
+        message: 3D Print Complete (Prusa)
+        data:
+          apns_headers:
+           'apns-collapse-id': '3d-print-finished-prusa'
+          push:
+            category: camera
+          entity_id: camera.prusa
+
+
+        ##########################################################
         ## Power Off Ender 3D Printer When Print Complete
         ##########################################################
 
@@ -49,7 +83,7 @@
       to: 'off'
       for:
         hours: 1
-        minutes: 0
+        minutes: 30
         seconds: 0
 
   condition:
@@ -78,6 +112,48 @@
         - switch.3d_printer_ender
 
         ##########################################################
+        ## Power Off Prusa 3D Printer When Print Complete
+        ##########################################################
+
+- alias: 3D-Printer - Power Off Prusa When Print Complete
+  id: '3d_printer_power_off_prusa_when_print_complete'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.prusa_printing
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.prusa_actual_tool0_temp
+      below: 25
+    - condition: numeric_state
+      entity_id: sensor.prusa_actual_bed_temp
+      below: 30
+    - condition: state
+      entity_id: binary_sensor.prusa_printing_error
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.prusa_printing
+      state: 'off'
+
+  action:
+    - service: notify.USER1_devices
+      data:
+        message: PowREDACTEDg Off 3D Printer (Prusa)
+        data:
+          apns_headers:
+           'apns-collapse-id': '3d-print-power-off-prusa'
+    - service: switch.turn_off
+      entity_id:
+        - switch.3d_printer_prusa
+
+        ##########################################################
         ## 3D Printer On Turn On Light
         ##########################################################
 
@@ -93,6 +169,19 @@
         hours: 0
         minutes: 0
         seconds: 30
+    - platform: state
+      entity_id: switch.3d_printer_prusa
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+
+  condition:
+    - condition: state
+      entity_id: light.3d_printer_light
+      state: 'off'
 
   action:
     - service: light.turn_on
@@ -100,11 +189,11 @@
         - light.3d_printer_light
 
         ##########################################################
-        ## 3D Printer Off Turn Off Light
+        ## 3D Printer Off Turn Off Light Ender
         ##########################################################
 
-- alias: 3D-Printer - Printer Off Turn Off Light
-  id: '3d_printer_off_turn_off_light'
+- alias: 3D-Printer - Printer Off Turn Off Light Ender
+  id: '3d_printer_off_turn_off_light_ender'
 
   trigger:
     - platform: state
@@ -115,6 +204,38 @@
         hours: 0
         minutes: 0
         seconds: 30
+
+  condition:
+    - condition: state
+      entity_id: switch.3d_printer_prusa
+      state: 'off'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.3d_printer_light
+
+        ##########################################################
+        ## 3D Printer Off Turn Off Light Prusa
+        ##########################################################
+
+- alias: 3D-Printer - Printer Off Turn Off Light Prusa
+  id: '3d_printer_off_turn_off_light_ender'
+
+  trigger:
+    - platform: state
+      entity_id: switch.3d_printer_prusa
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+
+  condition:
+    - condition: state
+      entity_id: switch.3d_printer_ender
+      state: 'off'
 
   action:
     - service: light.turn_off
