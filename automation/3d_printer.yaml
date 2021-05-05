@@ -99,6 +99,9 @@
     - condition: state
       entity_id: binary_sensor.ender_printing
       state: 'off'
+    - condition: state
+      entity_id: switch.3d_printer_ender
+      state: 'on'
 
   action:
     - service: notify.USER1_devices
@@ -141,6 +144,9 @@
     - condition: state
       entity_id: binary_sensor.prusa_printing
       state: 'off'
+    - condition: state
+      entity_id: switch.3d_printer_prusa
+      state: 'on'
 
   action:
     - service: notify.USER1_devices
@@ -209,6 +215,9 @@
     - condition: state
       entity_id: switch.3d_printer_prusa
       state: 'off'
+    - condition: state
+      entity_id: light.3d_printer_light
+      state: 'on'
 
   action:
     - service: light.turn_off
@@ -220,7 +229,7 @@
         ##########################################################
 
 - alias: 3D-Printer - Printer Off Turn Off Light Prusa
-  id: '3d_printer_off_turn_off_light_ender'
+  id: '3d_printer_off_turn_off_light_prusa'
 
   trigger:
     - platform: state
@@ -236,6 +245,9 @@
     - condition: state
       entity_id: switch.3d_printer_ender
       state: 'off'
+    - condition: state
+      entity_id: light.3d_printer_light
+      state: 'on'
 
   action:
     - service: light.turn_off

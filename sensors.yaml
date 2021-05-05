@@ -38,26 +38,6 @@
       - volume_percentage_used
 
         ##########################################################
-        ## Waze Travel Time
-        ##########################################################
-
-  - platform: waze_travel_time
-    name: USER2 To Home
-    origin: person.USER2
-    destination: zone.home
-    region: 'US'
-  - platform: waze_travel_time
-    name: USER1 To Home
-    origin: person.REDACTED
-    destination: zone.home
-    region: 'US'
-  - platform: waze_travel_time
-    name: USER2 To REDACTED
-    origin: person.USER2
-    destination: zone.REDACTED
-    region: 'US'
-
-        ##########################################################
         ## UPS
         ##########################################################
 
