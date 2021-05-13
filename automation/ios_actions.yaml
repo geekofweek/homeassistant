@@ -84,35 +84,15 @@
 
   trigger:
     - platform: event
-      event_type: ios.notification_action_fired
+      event_type: mobile_app_notification_action
       event_data:
-        actionName: UNLOCK_DOORS
+        action: "unlock_doors"
 
   action:
     - service: lock.unlock
       entity_id:
         - lock.back_door
         - lock.front_door
-
-        #################################################################
-        ## Lock Doors
-        #################################################################
-
-- alias: iOS Action - Lock Doors
-  id: 'ios_action_lock_doors'
-
-  trigger:
-    - platform: event
-      event_type: ios.notification_action_fired
-      event_data:
-        actionName: LOCK_DOORS
-
-  action:
-    - service: lock.lock
-      entity_id:
-       - lock.front_door
-       - lock.back_door
-       - lock.basement_door
 
         #################################################################
         ## Unlock Front Door
@@ -123,9 +103,9 @@
 
   trigger:
     - platform: event
-      event_type: ios.notification_action_fired
+      event_type: mobile_app_notification_action
       event_data:
-        actionName: FRONT_DOOR_UNLOCK
+        action: "unlock_front_door"
 
   action:
     - service: lock.unlock
@@ -141,9 +121,9 @@
 
   trigger:
     - platform: event
-      event_type: ios.notification_action_fired
+      event_type: mobile_app_notification_action
       event_data:
-        actionName: CLOSE_GARAGE
+        action: "close_garage"
 
   action:
     - service: cover.close_cover
@@ -158,33 +138,16 @@
 
   trigger:
     - platform: event
-      event_type: ios.notification_action_fired
+      event_type: mobile_app_notification_action
       event_data:
-        actionName: OPEN_GARAGE
+        action: "open_garage"
 
   action:
     - service: cover.open_cover
       entity_id: cover.garage_door
 
         #################################################################
-        ## Sound Alarm
-        #################################################################
-
-- alias: iOS Action - Sound Alarm
-  id: 'ios_action_sound_alarm'
-
-  trigger:
-    - platform: event
-      event_type: ios.notification_action_fired
-      event_data:
-        actionName: SOUND_ALARM
-
-  action:
-    - service: alarm_control_panel.alarm_trigger
-      entity_id: alarm_control_panel.alarm
-
-        #################################################################
-        ## Silence Alarm
+        ## Disarm Alarm
         #################################################################
 
 - alias: iOS Action - Silence Alarm
@@ -192,26 +155,9 @@
 
   trigger:
     - platform: event
-      event_type: ios.notification_action_fired
+      event_type: mobile_app_notification_action
       event_data:
-        actionName: SILENCE_ALARM
-
-  action:
-    - service: alarm_control_panel.alarm_disarm
-      entity_id: alarm_control_panel.alarm
-
-        #################################################################
-        ## Disable Alarm
-        #################################################################
-
-- alias: iOS Action - Disable Alarm
-  id: 'ios_action_disable_alarm'
-
-  trigger:
-    - platform: event
-      event_type: ios.notification_action_fired
-      event_data:
-        actionName: DISABLE_ALARM
+        action: "disarm_alarm"
 
   action:
     - service: alarm_control_panel.alarm_disarm
@@ -226,16 +172,16 @@
 
   trigger:
     - platform: event
-      event_type: ios.notification_action_fired
+      event_type: mobile_app_notification_action
       event_data:
-        actionName: ENABLEALARM
+        action: "arm_alarm"
 
   action:
     - service: alarm_control_panel.alarm_arm_away
       entity_id: alarm_control_panel.alarm
 
         #################################################################
-        ## Siren
+        ## Siren Off
         #################################################################
 
 - alias: iOS Action - Siren
@@ -243,9 +189,9 @@
 
   trigger:
     - platform: event
-      event_type: ios.notification_action_fired
+      event_type: mobile_app_notification_action
       event_data:
-        actionName: SIREN
+        action: "siren_off"
 
   action:
     - service: switch.turn_off
@@ -260,45 +206,10 @@
 
   trigger:
     - platform: event
-      event_type: ios.notification_action_fired
+      event_type: mobile_app_notification_action
       event_data:
-        actionName: FIREPLACE_OFF
+        action: "fireplace_off"
 
   action:
     - service: switch.turn_off
       entity_id: switch.fireplace
-
-        #################################################################
-        ## Disable Fire Alarm
-        #################################################################
-
-- alias: iOS Action - Disable Smoke Alarm
-  id: 'ios_action_disable_smoke_alarm'
-
-  trigger:
-    - platform: event
-      event_type: ios.notification_action_fired
-      event_data:
-        actionName: SMOKEALARM_OFF
-
-  action:
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.disable_smoke_alarm
-
-        #################################################################
-        ## Washing Machine Done Turn On Lights
-        #################################################################
-
-- alias: iOS Action - Washing Machine Done Turn On Lights
-  id: 'ios_action_washing_machine_done_turn_on_lights'
-
-  trigger:
-    - platform: event
-      event_type: ios.notification_action_fired
-      event_data:
-        actionName: WASHINGMACHINE_DONE_LIGHTS
-
-  action:
-    - service: light.turn_on
-      entity_id:
-        - light.laundry_room_light

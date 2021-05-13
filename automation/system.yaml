@@ -147,8 +147,8 @@
       data:
         message: NAS RAID Failing
         data:
-          apns_headers:
-           'apns-collapse-id': 'system-nas'
+          tag: nas
+          group: system
 
         ##########################################################
         ## UPS Power Loss Alert iOS Notification
@@ -172,8 +172,8 @@
       data:
         message: Power Outage Detected
         data:
-          apns_headers:
-           'apns-collapse-id': 'system-ups-power-failure'
+          tag: ups
+          group: system
 
         ##########################################################
         ## UPS Power Restored Alert iOS Notification
@@ -200,8 +200,8 @@
       data:
         message: Power Restored
         data:
-          apns_headers:
-           'apns-collapse-id': 'system-ups-power-restored'
+          tag: ups
+          group: system
 
         ##########################################################
         ## UPS Low Battery Alert iOS Notification
@@ -225,8 +225,8 @@
       data:
         message: "UPS Battery below 15%"
         data:
-          apns_headers:
-           'apns-collapse-id': 'system-ups-low-batt'
+          tag: ups
+          group: system
 
         ##########################################################
         ## UPS Low Runtime Alert iOS Notification
@@ -250,8 +250,8 @@
       data:
         message: "15 mins of UPS Battery Remaining!"
         data:
-          apns_headers:
-           'apns-collapse-id': 'system-ups-low-runtime'
+          tag: ups
+          group: system
 
         #################################################################
         ## Home Assistant Started iOS Notification
@@ -274,8 +274,8 @@
       data:
         message: Home Assistant Started
         data:
-          apns_headers:
-           'apns-collapse-id': 'system-start'
+          tag: homeassistant
+          group: system
 
         #################################################################
         ## Home Assistant Update iOS Notification
@@ -304,9 +304,8 @@
       data:
         message: Update Available for Home Assistant
         data:
-          apns_headers:
-           'apns-collapse-id': 'system-update'
-
+          tag: homeassistant
+          group: system
 
         #################################################################
         ## Bond Home Hub Offline iOS Notification
@@ -334,3 +333,6 @@
     - service: notify.USER1_devices
       data:
         message: Bond Hub Offline. Restarting Hub
+        data:
+          tag: bond
+          group: system

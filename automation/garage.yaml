@@ -458,11 +458,14 @@
       data:
         message: Garage Door Open
         data:
-          apns_headers:
-           'apns-collapse-id': 'garage-garage-camera'
-          push:
-            category: camera
+          tag: garage
+          group: garage
           entity_id: camera.garage
+          actions:
+            - action: "close_garage"
+              title: "Close Garage Door"
+              destructive: true
+              uri: "/lovelace/garage"
 
         #################################################################
         ## Garage Closed iOS Notification
@@ -487,11 +490,14 @@
       data:
         message: Garage Door Closed
         data:
-          apns_headers:
-           'apns-collapse-id': 'garage-garage-camera'
-          push:
-            category: camera
+          tag: garage
+          group: garage
           entity_id: camera.garage
+          actions:
+            - action: "open_garage"
+              title: "Open Garage Door"
+              destructive: true
+              uri: "/lovelace/garage"
 
         #################################################################
         ## Garage Door Still Open iOS Notification
@@ -533,17 +539,11 @@
       data:
         message: Garage Door is Still Open!
         data:
-          apns_headers:
-           'apns-collapse-id': 'garage-garage-camera'
-          push:
-            category: camera
+          tag: garage
+          group: garage
           entity_id: camera.garage
-    - service: notify.USER1_devices
-      data:
-        message: Garage Door Still Open Close It?
-        data:
-          apns_headers:
-           'apns-collapse-id': 'garage-open'
-          push:
-            badge: 0
-            category: "garage"
+          actions:
+            - action: "close_garage"
+              title: "Close Garage Door"
+              destructive: true
+              uri: "/lovelace/garage"

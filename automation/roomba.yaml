@@ -1159,8 +1159,8 @@
       data:
         message: Main Floor Roomba is Stuck, Please Help
         data:
-          apns_headers:
-           'apns-collapse-id': 'main-floor-roomba-stuck'
+          tag: main-floor-roomba
+          group: roomba
 
         ##########################################################
         ## Upstairs Roomba is Stuck iOS Notification
@@ -1183,8 +1183,8 @@
       data:
         message: Upstairs Roomba is Stuck, Please Help
         data:
-          apns_headers:
-           'apns-collapse-id': 'upstairs-roomba-stuck'
+          tag: upstairs-roomba
+          group: roomba
 
         ##########################################################
         ## Basement Roomba is Stuck iOS Notification
@@ -1207,8 +1207,8 @@
       data:
         message: Basement Roomba is Stuck, Please Help
         data:
-          apns_headers:
-           'apns-collapse-id': 'basement-roomba-stuck'
+          tag: basement-roomba
+          group: roomba
 
         ##########################################################
         ## Main Floor Roomba is Full iOS Notification
@@ -1232,8 +1232,8 @@
       data:
         message: Main Floor Roomba is Full, Empty It
         data:
-          apns_headers:
-           'apns-collapse-id': 'main-floor-roomba-full'
+          tag: main-floor-roomba
+          group: roomba
 
         ##########################################################
         ## Upstairs Roomba is Full iOS Notification
@@ -1257,8 +1257,8 @@
       data:
         message: Upstairs Roomba is Full, Empty It
         data:
-          apns_headers:
-           'apns-collapse-id': 'upstairs-roomba-full'
+          tag: upstairs-roomba
+          group: roomba
 
         ##########################################################
         ## Basement Roomba is Full iOS Notification
@@ -1282,5 +1282,5 @@
       data:
         message: Basement Roomba is Full, Empty It
         data:
-          apns_headers:
-           'apns-collapse-id': 'basement-roomba-full'
+          tag: basement-roomba
+          group: roomba

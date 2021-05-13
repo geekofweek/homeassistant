@@ -1239,10 +1239,8 @@
       data:
         message: USER1 Home
         data:
-          apns_headers:
-           'apns-collapse-id': 'USER1-home'
-          push:
-            category: camera
+          tag: USER1-location
+          group: location
           entity_id: camera.driveway
 
     #################################################################
@@ -1274,10 +1272,8 @@
       data:
         message: USER1 Home
         data:
-          apns_headers:
-           'apns-collapse-id': 'USER1-home'
-          push:
-            category: camera
+          tag: USER1-location
+          group: location
           entity_id: camera.front_porch
 
     #################################################################
@@ -1303,8 +1299,8 @@
       data:
         message: USER1 Away
         data:
-          apns_headers:
-           'apns-collapse-id': 'USER1-away'
+          tag: USER1-location
+          group: location
 
         #################################################################
         ## USER2 Home Driving iOS Notification 
@@ -1335,10 +1331,8 @@
       data:
         message: USER2 Home
         data:
-          apns_headers:
-           'apns-collapse-id': 'USER2-home'
-          push:
-            category: camera
+          tag: USER2-location
+          group: location
           entity_id: camera.driveway
 
         #################################################################
@@ -1370,10 +1364,8 @@
       data:
         message: USER2 Home
         data:
-          apns_headers:
-           'apns-collapse-id': 'USER2-home'
-          push:
-            category: camera
+          tag: USER2-location
+          group: location
           entity_id: camera.front_porch
 
         #################################################################
@@ -1399,8 +1391,8 @@
       data:
         message: USER2 Away
         data:
-          apns_headers:
-           'apns-collapse-id': 'USER2-away'
+          tag: USER2-location
+          group: location
 
         #################################################################
         ## USER2 Left Work iOS Notification
@@ -1425,8 +1417,8 @@
       data:
         message: "USER2 has left work, ETA: {{states('sensor.USER2_to_home')}} mins"
         data:
-          apns_headers:
-           'apns-collapse-id': 'USER2-work'
+          tag: USER2-location
+          group: location
 
         ##########################################################
         ## Welcome Home USER1 Audio Greeting

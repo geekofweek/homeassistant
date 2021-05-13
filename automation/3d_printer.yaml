@@ -29,10 +29,8 @@
       data:
         message: 3D Print Complete (Ender)
         data:
-          apns_headers:
-           'apns-collapse-id': '3d-print-finished-ender'
-          push:
-            category: camera
+          tag: ender_finished
+          group: 3d_printer
           entity_id: camera.ender
 
         ##########################################################
@@ -62,12 +60,9 @@
       data:
         message: 3D Print Complete (Prusa)
         data:
-          apns_headers:
-           'apns-collapse-id': '3d-print-finished-prusa'
-          push:
-            category: camera
+          tag: prusa_finished
+          group: 3d_printer
           entity_id: camera.prusa
-
 
         ##########################################################
         ## Power Off Ender 3D Printer When Print Complete
@@ -108,8 +103,8 @@
       data:
         message: PowREDACTEDg Off 3D Printer (Ender)
         data:
-          apns_headers:
-           'apns-collapse-id': '3d-print-power-off-ender'
+          tag: ender_power_off
+          group: 3d_printer
     - service: switch.turn_off
       entity_id:
         - switch.3d_printer_ender
@@ -153,8 +148,8 @@
       data:
         message: PowREDACTEDg Off 3D Printer (Prusa)
         data:
-          apns_headers:
-           'apns-collapse-id': '3d-print-power-off-prusa'
+          tag: prusa_power_off
+          group: 3d_printer
     - service: switch.turn_off
       entity_id:
         - switch.3d_printer_prusa

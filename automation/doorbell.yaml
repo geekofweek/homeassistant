@@ -332,20 +332,13 @@
       data:
         message: Someone is at the Front Door
         data:
-          apns_headers:
-           'apns-collapse-id': 'doorbell-front-porch-camera'
-          push:
-            category: camera
+          tag: doorbell
+          group: doorbell
           entity_id: camera.front_porch
-    - service: notify.USER1_devices
-      data:
-        message: Unlock Front Door?
-        data:
-          apns_headers:
-           'apns-collapse-id': 'unlock-doors'
-          push:
-            badge: 0
-            category: "frontdoorlock"
+          actions:
+            - action: "unlock_front_door"
+              title: "Unlock Front Door"
+              destructive: true
 
         ##########################################################
         ## Doorbell Ring iOS USER2 Notification
@@ -370,11 +363,14 @@
       data:
         message: Someone is at the Front Door
         data:
-          apns_headers:
-           'apns-collapse-id': 'doorbell-front-porch-camera'
-          push:
-            category: camera
-          entity_id: camera.front_porch
+          tag: doorbell
+          group: doorbell
+          entity_id: 
+           - camera.front_porch
+          actions:
+            - action: "unlock_front_door"
+              title: "Unlock Front Door"
+              destructive: true
 
         ##########################################################
         ## Ring Battery Low
@@ -401,3 +397,6 @@
     - service: notify.USER1_devices
       data:
         message: Ring Battery Low, Replace Battery Soon
+        data:
+          tag: doorbell-battery
+          group: doorbell

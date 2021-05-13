@@ -111,8 +111,8 @@
       data:
         message: Internet is Down, Turning On at&t Router
         data:
-          apns_headers:
-           'apns-collapse-id': 'internets-down'
+          tag: internet
+          group: network
 
         ##########################################################
         ## WAN Up Power Off at&t Router
@@ -138,8 +138,8 @@
       data:
         message: Internet is Up, Shutting Off at&t Router
         data:
-          apns_headers:
-           'apns-collapse-id': 'internets-up'
+          tag: internet
+          group: network
 
         #################################################################
         ## WAN Down On Startup Turn On at&t Router

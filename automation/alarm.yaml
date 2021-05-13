@@ -58,62 +58,46 @@
           what: 'You are not Authorized to be Here. Law Enforcement Has Been Notified!'
     - service: notify.USER1_devices
       data:
-        message: Alarm Away Triggered!
+        message: Alarm Triggered!
         data:
-          apns_headers:
-           'apns-collapse-id': 'security-alarm'
           push:
-            badge: 0
-            category: "alarm"
             sound:
               name: default
               critical: 1
               volume: 1.0
-    - service: notify.USER1_devices
-      data:
-        message: Alarm! (Front Porch Camera)
-        data:
-          apns_headers:
-           'apns-collapse-id': 'security-front-porch-camera'
-          push:
-            category: camera
-          entity_id: camera.front_porch
-    - service: notify.USER1_devices
-      data:
-        message: Alarm! (Backyard Camera)
-        data:
-          apns_headers:
-           'apns-collapse-id': 'security-backyard-camera'
-          push:
-            category: camera
-          entity_id: camera.backyard
+          tag: alarm
+          group: alarm
+          entity_id:
+           - camera.front_porch
+          actions:
+            - action: "disarm_alarm"
+              title: "Disable Alarm System"
+              destructive: true
+              uri: "/lovelace/alarm"
+            - action: "siren_off"
+              title: "Siren Off"
+              uri: "/lovelace/alarm"
     - service: notify.USER2_devices
       data:
-        message: Alarm Away Triggered!
+        message: Alarm Triggered!
         data:
-          apns_headers:
-           'apns-collapse-id': 'security-alarm'
           push:
-            badge: 0
-            category: "alarm"
-    - service: notify.USER2_devices
-      data:
-        message: Alarm! (Front Porch Camera)
-        data:
-          apns_headers:
-           'apns-collapse-id': 'security-front-porch-camera'
-          push:
-            category: camera
-          entity_id: camera.front_porch
-    - service: notify.USER2_devices
-      data:
-        message: Alarm! (Backyard Camera)
-        data:
-          apns_headers:
-           'apns-collapse-id': 'security-backyard-camera'
-          push:
-            category: camera
-          entity_id: camera.backyard
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
+          tag: alarm
+          group: alarm
+          entity_id:
+           - camera.front_porch
+          actions:
+            - action: "disarm_alarm"
+              title: "Disable Alarm System"
+              destructive: true
+              uri: "/lovelace/alarm"
+            - action: "siren_off"
+              title: "Siren Off"
+              uri: "/lovelace/alarm"
 
         ##########################################################
         ## Alarm Triggered Armed Home
@@ -156,62 +140,46 @@
         - switch.siren
     - service: notify.USER1_devices
       data:
-        message: Alarm Home Triggered!
+        message: Alarm Triggered!
         data:
-          apns_headers:
-           'apns-collapse-id': 'security-alarm'
           push:
-            badge: 0
-            category: "alarm"
             sound:
               name: default
               critical: 1
               volume: 1.0
-    - service: notify.USER1_devices
-      data:
-        message: Alarm! (Front Porch Camera)
-        data:
-          apns_headers:
-           'apns-collapse-id': 'security-front-porch-camera'
-          push:
-            category: camera
-          entity_id: camera.front_porch
-    - service: notify.USER1_devices
-      data:
-        message: Alarm! (Backyard Camera)
-        data:
-          apns_headers:
-           'apns-collapse-id': 'security-backyard-camera'
-          push:
-            category: camera
-          entity_id: camera.backyard
+          tag: alarm
+          group: alarm
+          entity_id:
+           - camera.front_porch
+          actions:
+            - action: "disarm_alarm"
+              title: "Disable Alarm System"
+              destructive: true
+              uri: "/lovelace/alarm"
+            - action: "siren_off"
+              title: "Siren Off"
+              uri: "/lovelace/alarm"
     - service: notify.USER2_devices
       data:
-        message: Alarm Home Triggered!
+        message: Alarm Triggered!
         data:
-          apns_headers:
-           'apns-collapse-id': 'security-alarm'
           push:
-            badge: 0
-            category: "alarm"
-    - service: notify.USER2_devices
-      data:
-        message: Alarm! (Front Porch Camera)
-        data:
-          apns_headers:
-           'apns-collapse-id': 'security-front-porch-camera'
-          push:
-            category: camera
-          entity_id: camera.front_porch
-    - service: notify.USER2_devices
-      data:
-        message: Alarm! (Backyard Camera)
-        data:
-          apns_headers:
-           'apns-collapse-id': 'security-backyard-camera'
-          push:
-            category: camera
-          entity_id: camera.backyard
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
+          tag: alarm
+          group: alarm
+          entity_id:
+           - camera.front_porch
+          actions:
+            - action: "disarm_alarm"
+              title: "Disable Alarm System"
+              destructive: true
+              uri: "/lovelace/alarm"
+            - action: "siren_off"
+              title: "Siren Off"
+              uri: "/lovelace/alarm"
 
         ##########################################################
         ## Panic Button On
@@ -226,28 +194,6 @@
       to: 'on'
 
   action:
-    - service: notify.USER1_devices
-      data:
-        message: Panic Button Has Been Pressed!
-        data:
-          apns_headers:
-           'apns-collapse-id': 'security-alarm'
-          push:
-            badge: 0
-            category: "alarm"
-            sound:
-              name: default
-              critical: 1
-              volume: 1.0
-    - service: notify.USER2_devices
-      data:
-        message: Panic Button Has Been Pressed!
-        data:
-          apns_headers:
-           'apns-collapse-id': 'security-alarm'
-          push:
-            badge: 0
-            category: "alarm"
     - service: light.turn_on
       entity_id:
         - light.hue_lights
@@ -269,6 +215,40 @@
     - service: switch.turn_on
       entity_id:
         - switch.siren
+    - service: notify.USER1_devices
+      data:
+        message: Panic Button Has Been Pressed!
+        data:
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
+          tag: alarm
+          group: alarm
+          entity_id:
+           - camera.front_porch
+          actions:
+            - action: "siren_off"
+              title: "Siren Off"
+              uri: "/lovelace/alarm"
+    - service: notify.USER2_devices
+      data:
+        message: Panic Button Has Been Pressed!
+        data:
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
+          tag: alarm
+          group: alarm
+          entity_id:
+           - camera.front_porch
+          actions:
+            - action: "siren_off"
+              title: "Siren Off"
+              uri: "/lovelace/alarm"
 
         ##########################################################
         ## Panic Button Off
@@ -309,38 +289,6 @@
         - switch.siren
 
         ##########################################################
-        ## Siren is On
-        ##########################################################
-
-- alias: Alarm - Siren is On
-  id: 'alarm_siren_is_on'
-
-  trigger:
-    - platform: state
-      entity_id: switch.siren
-      to: 'on'
-
-  action:
-    - service: notify.USER1_devices
-      data:
-        message: Siren has Turned On
-        data:
-          apns_headers:
-           'apns-collapse-id': 'security-alarm'
-          push:
-            badge: 0
-            category: "siren"
-    - service: notify.mobile_app_USER1s_imac
-      data:
-        message: Siren has Turned On
-        data:
-          apns_headers:
-           'apns-collapse-id': 'security-alarm'
-          push:
-            badge: 0
-            category: "siren"
-
-        ##########################################################
         ## Door Alarm Away
         ##########################################################
 
@@ -372,15 +320,6 @@
     - service: alarm_control_panel.alarm_trigger
       entity_id:
         - alarm_control_panel.alarm
-    - service: notify.USER1_devices
-      data:
-        message: Door Alarm Triggered!
-        data:
-          apns_headers:
-           'apns-collapse-id': 'security-alarm-door'
-          push:
-            badge: 0
-            category: "alarm"
 
         ##########################################################
         ## Door Alarm Home
@@ -404,27 +343,52 @@
       state: 'armed_home'
 
   action:
-    - service: script.turn_on
-      entity_id: script.say
-      data:
-        variables:
-          master: 'media_player.sonos_living_room'
-          where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen, media_player.sonos_bathroom, media_player.sonos_bedroom, media_player.sonos_bedroom_closet, media_player.sonos_USER1s_office, media_player.sonos_USER1s_office_move, media_player.sonos_USER2s_office, media_player.sonos_move, media_player.sonos_fitness_room, media_player.sonos_craft_room'
-          volume: 0.5
-          what: 'Warning Alarm will Trigger in 15 Seconds'
-    - service: alarm_control_panel.alarm_trigger
-      entity_id:
-        - alarm_control_panel.alarm
     - service: notify.USER1_devices
       data:
         message: Door Alarm Triggered!
         data:
-          apns_headers:
-           'apns-collapse-id': 'security-alarm-door'
           push:
-            badge: 0
-            category: "alarm"
-            
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
+          tag: alarm
+          group: alarm
+          entity_id:
+           - camera.front_porch
+          actions:
+            - action: "disarm_alarm"
+              title: "Disable Alarm System"
+              destructive: true
+              uri: "/lovelace/alarm"
+            - action: "siren_off"
+              title: "Siren Off"
+              uri: "/lovelace/alarm"
+    - service: notify.USER2_devices
+      data:
+        message: Door Alarm Triggered!
+        data:
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
+          tag: alarm
+          group: alarm
+          entity_id:
+           - camera.front_porch
+          actions:
+            - action: "disarm_alarm"
+              title: "Disable Alarm System"
+              destructive: true
+              uri: "/lovelace/alarm"
+            - action: "siren_off"
+              title: "Siren Off"
+              uri: "/lovelace/alarm"
+    - service: alarm_control_panel.alarm_trigger
+      entity_id:
+        - alarm_control_panel.alarm
+
         #################################################################
         ## Motion Alarm Away
         #################################################################
@@ -470,15 +434,6 @@
     - service: alarm_control_panel.alarm_trigger
       entity_id:
         - alarm_control_panel.alarm
-    - service: notify.USER1_devices
-      data:
-        message: Motion Alarm Triggered!
-        data:
-          apns_headers:
-           'apns-collapse-id': 'security-alarm-motion'
-          push:
-            badge: 0
-            category: "alarm"
 
         ##########################################################
         ## Garage Alarm Home
@@ -501,17 +456,12 @@
       state: 'armed_home'
 
   action:
-    #- service: alarm_control_panel.alarm_trigger
-    #  entity_id:
-    #    - alarm_control_panel.alarm
     - service: notify.USER1_devices
       data:
         message: Garage Door Alarm Triggered!
         data:
-          apns_headers:
-           'apns-collapse-id': 'garage-garage-camera'
-          push:
-            category: camera
+          tag: alarm
+          group: alarm
           entity_id: camera.garage
 
         ##########################################################
@@ -542,17 +492,12 @@
       state: 'armed_away'
 
   action:
-    #- service: alarm_control_panel.alarm_trigger
-    #  entity_id:
-    #    - alarm_control_panel.alarm
     - service: notify.USER1_devices
       data:
         message: Garage Door Alarm Triggered!
         data:
-          apns_headers:
-           'apns-collapse-id': 'garage-garage-camera'
-          push:
-            category: camera
+          tag: alarm
+          group: alarm
           entity_id: camera.garage
 
         ##########################################################
@@ -677,29 +622,6 @@
       entity_id: alarm_control_panel.alarm
 
         ##########################################################
-        ## Disarm Armed Home in the Morning
-        ##########################################################
-
-- alias: Alarm - Disarm Armed Home in the Morning
-  id: 'alarm_disarm_armed_home_in_the_morning'
-
-  trigger:
-   - platform: time
-     at: '05:00:00'
-
-  condition:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: alarm_control_panel.alarm
-      state: 'armed_home'
-
-  action:
-    - service: alarm_control_panel.alarm_disarm
-      entity_id: alarm_control_panel.alarm
-
-        ##########################################################
         ## Disarm Armed Home in the Morning on Motion
         ##########################################################
 
@@ -758,13 +680,15 @@
   action:
     - service: notify.USER1_devices
       data:
-        message: Alarm is Armed Home
+        message: Alarm is Armed
         data:
-          apns_headers:
-           'apns-collapse-id': 'alarm-on'
-          push:
-            badge: 0
-            category: "disablealarm"
+          tag: alarm
+          group: alarm
+          actions:
+            - action: "disarm_alarm"
+              title: "Disable Alarm System"
+              destructive: true
+              uri: "/lovelace/alarm"
 
     #################################################################
     ## Alarm Armed Away iOS Notification
@@ -786,20 +710,22 @@
   action:
     - service: notify.USER1_devices
       data:
-        message: Alarm is Armed Away
+        message: Alarm is Armed
         data:
-          apns_headers:
-           'apns-collapse-id': 'alarm-on'
-          push:
-            badge: 0
-            category: "disablealarm"
+          tag: alarm
+          group: alarm
+          actions:
+            - action: "disarm_alarm"
+              title: "Disable Alarm System"
+              destructive: true
+              uri: "/lovelace/alarm"
 
     #################################################################
-    ## Alarm Disabled USER1 iOS Notification
+    ## Alarm Disabled iOS Notification
     #################################################################
 
-- alias: Alarm - Disabled USER1 iOS Notification
-  id: 'alarm_disabled_USER1_ios_notification'
+- alias: Alarm - Disabled iOS Notification
+  id: 'alarm_disabled_ios_notification'
 
   trigger:
     - platform: state
@@ -816,8 +742,10 @@
       data:
         message: Alarm is Disarmed
         data:
-          apns_headers:
-           'apns-collapse-id': 'alarm-off'
-          push:
-            badge: 0
-            category: "enablealarm"
+          tag: alarm
+          group: alarm
+          actions:
+            - action: "arm_alarm"
+              title: "Arm Alarm System"
+              destructive: true
+              uri: "/lovelace/alarm"

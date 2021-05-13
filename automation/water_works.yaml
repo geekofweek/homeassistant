@@ -187,8 +187,8 @@
       data:
         message: Water Main Has Been Shut Off!
         data:
-          apns_headers:
-           'apns-collapse-id': 'water-main-off'
+          tag: water-main
+          group: water
 
         ##########################################################
         ## Water Main Turned On iOS Notification
@@ -216,8 +216,8 @@
       data:
         message: Water Main Has Been Turned Back On
         data:
-          apns_headers:
-           'apns-collapse-id': 'water-main-on'
+          tag: water-main
+          group: water
 
         ##########################################################
         ## Sump Pump Power Off iOS Notification
@@ -241,7 +241,9 @@
     - service: notify.USER1_devices
       data:
         message: Sump Pump Switch Turned Off!
-
+        data:
+          tag: sump-pump
+          group: water
 
         ##########################################################
         ## Basement Drain Water Sensor iOS Notification
@@ -266,8 +268,8 @@
       data:
         message: Water Detected in Basement Drain!
         data:
-          apns_headers:
-           'apns-collapse-id': 'water-basement-drain'
+          tag: water-leak
+          group: water
 
         ##########################################################
         ## Kitchen Sink Water Sensor iOS Notification
@@ -292,8 +294,8 @@
       data:
         message: Water Detected Under Kitchen Sink!
         data:
-          apns_headers:
-           'apns-collapse-id': 'water-kitchen-sink'
+          tag: water-leak
+          group: water
 
         ##########################################################
         ## Bathroom Sink Water Sensor iOS Notification
@@ -318,8 +320,8 @@
       data:
         message: Water Detected Under Bathroom Sink!
         data:
-          apns_headers:
-           'apns-collapse-id': 'water-basement-sink'
+          tag: water-leak
+          group: water
 
         ##########################################################
         ## Basement Door Water Sensor iOS Notification
@@ -344,8 +346,8 @@
       data:
         message: Water Detected by Basement Door!
         data:
-          apns_headers:
-           'apns-collapse-id': 'water-basement-door'
+          tag: water-leak
+          group: water
 
         ##########################################################
         ## Upstairs Bathroom Water Sensor iOS Notification
@@ -370,8 +372,8 @@
       data:
         message: Water Detected in Upstairs Bathroom!
         data:
-          apns_headers:
-           'apns-collapse-id': 'water-upstairs-bathroom'
+          tag: water-leak
+          group: water
 
         ##########################################################
         ## Coal Room Water Sensor iOS Notification
@@ -396,8 +398,8 @@
       data:
         message: Water Detected in Coal Room!
         data:
-          apns_headers:
-           'apns-collapse-id': 'water-coal-room'
+          tag: water-leak
+          group: water
 
         ##########################################################
         ## Utility Sink Water Sensor iOS Notification
@@ -422,8 +424,8 @@
       data:
         message: Water Detected Under Utility Sink!
         data:
-          apns_headers:
-           'apns-collapse-id': 'water-utility-sink'
+          tag: water-leak
+          group: water
 
         ##########################################################
         ## Washing Machine Water Sensor iOS Notification
@@ -448,8 +450,8 @@
       data:
         message: Water Detected by Washing Machine!
         data:
-          apns_headers:
-           'apns-collapse-id': 'water-washing-machine'
+          tag: water-leak
+          group: water
 
         ##########################################################
         ## Sump Pump Water Sensor iOS Notification
@@ -474,8 +476,8 @@
       data:
         message: Water Detected in Sump Pump!
         data:
-          apns_headers:
-           'apns-collapse-id': 'water-sump-pump'
+          tag: water-leak
+          group: water
 
         ##########################################################
         ## Sump Pump On iOS Notification
@@ -500,9 +502,8 @@
       data:
         message: Sump Pump has Turned On!
         data:
-          apns_headers:
-           'apns-collapse-id': 'water-sump-pump'
-
+          tag: sump-pump
+          group: water
 
         ##########################################################
         ## Basement Drain Water Sensor Audio Notification

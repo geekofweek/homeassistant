@@ -39,11 +39,8 @@
       data:
         message: Washing Machine Finished
         data:
-          apns_headers:
-           'apns-collapse-id': 'laundry-done'
-          push:
-            badge: 0
-            category: "washingmachinedonelights"
+          tag: washer
+          group: laundry
 
         ##########################################################
         ## Dryer Done - USER1 iOS Notification
@@ -78,11 +75,8 @@
       data:
         message: Dryer Finished
         data:
-          apns_headers:
-           'apns-collapse-id': 'laundry-done'
-          push:
-            badge: 0
-            category: "washingmachinedonelights"
+          tag: dryer
+          group: laundry
 
         ##########################################################
         ## Washing Machine Done - USER2 iOS Notification
@@ -117,11 +111,8 @@
       data:
         message: Washing Machine Finished
         data:
-          apns_headers:
-           'apns-collapse-id': 'laundry-done'
-          push:
-            badge: 0
-            category: "washingmachinedonelights"
+          tag: washer
+          group: laundry
 
         ##########################################################
         ## Dryer Done - USER2 iOS Notification
@@ -156,11 +147,8 @@
       data:
         message: Dryer Finished
         data:
-          apns_headers:
-           'apns-collapse-id': 'laundry-done'
-          push:
-            badge: 0
-            category: "washingmachinedonelights"
+          tag: dryer
+          group: laundry
 
         ##########################################################
         ## Washing Machine Done - Audio Notification
@@ -262,3 +250,6 @@
     - service: notify.mobile_app_USER1s_iphone
       data:
         message: Time to Run a Tub Clean Cycler on the Washer
+        data:
+          tag: washer-clean
+          group: laundry
