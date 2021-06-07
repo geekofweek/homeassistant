@@ -3,15 +3,15 @@
 #################################################################
 
         ##########################################################
-        ## Ender 3D Print Finished
+        ## Prusa Mini 3D Print Finished
         ##########################################################
 
-- alias: 3D-Printer - Ender Print Finished
-  id: '3d_printer_ender_print_finished'
+- alias: 3D-Printer - Prusa Mini Print Finished
+  id: '3d_printer_prusa_mini_print_finished'
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.ender_printing
+      entity_id: binary_sensor.prusa_mini_printing
       from: 'on'
       to: 'off'
       for:
@@ -27,11 +27,11 @@
   action:
     - service: notify.USER1_devices
       data:
-        message: 3D Print Complete (Ender)
+        message: 3D Print Complete (Prusa Mini)
         data:
-          tag: ender_finished
+          tag: prusa_mini_finished
           group: 3d_printer
-          entity_id: camera.ender
+          entity_id: camera.prusa_mini
 
         ##########################################################
         ## Prusa 3D Print Finished
@@ -65,15 +65,15 @@
           entity_id: camera.prusa
 
         ##########################################################
-        ## Power Off Ender 3D Printer When Print Complete
+        ## Power Off Prusa Mini 3D Printer When Print Complete
         ##########################################################
 
-- alias: 3D-Printer - Power Off Ender When Print Complete
-  id: '3d_printer_power_off_ender_when_print_complete'
+- alias: 3D-Printer - Power Off Prusa Mini When Print Complete
+  id: '3d_printer_power_off_prusa_mini_when_print_complete'
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.ender_printing
+      entity_id: binary_sensor.prusa_mini_printing
       from: 'on'
       to: 'off'
       for:
@@ -83,31 +83,31 @@
 
   condition:
     - condition: numeric_state
-      entity_id: sensor.ender_actual_tool0_temp
+      entity_id: sensor.prusa_mini_actual_tool0_temp
       below: 25
     - condition: numeric_state
-      entity_id: sensor.ender_actual_bed_temp
+      entity_id: sensor.prusa_mini_actual_bed_temp
       below: 30
     - condition: state
-      entity_id: binary_sensor.ender_printing_error
+      entity_id: binary_sensor.prusa_mini_printing_error
       state: 'off'
     - condition: state
-      entity_id: binary_sensor.ender_printing
+      entity_id: binary_sensor.prusa_mini_printing
       state: 'off'
     - condition: state
-      entity_id: switch.3d_printer_ender
+      entity_id: switch.3d_printer_prusa_mini
       state: 'on'
 
   action:
     - service: notify.USER1_devices
       data:
-        message: PowREDACTEDg Off 3D Printer (Ender)
+        message: PowREDACTEDg Off 3D Printer (Prusa Mini)
         data:
-          tag: ender_power_off
+          tag: prusa_mini_power_off
           group: 3d_printer
     - service: switch.turn_off
       entity_id:
-        - switch.3d_printer_ender
+        - switch.3d_printer_prusa_mini
 
         ##########################################################
         ## Power Off Prusa 3D Printer When Print Complete
@@ -163,7 +163,7 @@
 
   trigger:
     - platform: state
-      entity_id: switch.3d_printer_ender
+      entity_id: switch.3d_printer_prusa_mini
       from: 'off'
       to: 'on'
       for:
@@ -190,15 +190,15 @@
         - light.3d_printer_light
 
         ##########################################################
-        ## 3D Printer Off Turn Off Light Ender
+        ## 3D Printer Off Turn Off Light Prusa Mini
         ##########################################################
 
-- alias: 3D-Printer - Printer Off Turn Off Light Ender
-  id: '3d_printer_off_turn_off_light_ender'
+- alias: 3D-Printer - Printer Off Turn Off Light Prusa Mini
+  id: '3d_printer_off_turn_off_light_prusa_mini'
 
   trigger:
     - platform: state
-      entity_id: switch.3d_printer_ender
+      entity_id: switch.3d_printer_prusa_mini
       from: 'on'
       to: 'off'
       for:
@@ -238,7 +238,7 @@
 
   condition:
     - condition: state
-      entity_id: switch.3d_printer_ender
+      entity_id: switch.3d_printer_prusa_mini
       state: 'off'
     - condition: state
       entity_id: light.3d_printer_light

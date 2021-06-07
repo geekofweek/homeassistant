@@ -545,24 +545,24 @@
           {% endif %}
 
         ##########################################################
-        ## Ender 3D Printer Fix Time Elapsed
+        ## Prusa Mini 3D Printer Fix Time Elapsed
         ##########################################################
 
   - platform: template
     sensors:
-      ender_time_elapsed_format:
+      prusa_mini_time_elapsed_format:
        friendly_name: 'Printing Time Elapsed'
-       value_template: "{{ states('sensor.ender_time_elapsed') | int | timestamp_custom('%H:%M:%S', 0) }}"
+       value_template: "{{ states('sensor.prusa_mini_time_elapsed') | int | timestamp_custom('%H:%M:%S', 0) }}"
 
         ##########################################################
-        ## Ender 3D Printer Fix Time Remaining
+        ## Prusa Mini 3D Printer Fix Time Remaining
         ##########################################################
 
   - platform: template
     sensors:
-      ender_time_remaining_format:
+      prusa_mini_time_remaining_format:
        friendly_name: 'Printing Time Remaining'
-       value_template: "{{ states('sensor.ender_time_remaining') | int | timestamp_custom('%H:%M:%S', 0) }}"
+       value_template: "{{ states('sensor.prusa_mini_time_remaining') | int | timestamp_custom('%H:%M:%S', 0) }}"
 
        ##########################################################
         ## Prusa 3D Printer Fix Time Elapsed

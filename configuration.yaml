@@ -113,8 +113,8 @@ route53:
     - home
 
 octoprint:
-  - host: 3d-printer-ender.network.REDACTED
-    api_key: !secret octoprint_ender_api
+  - host: 3d-printer-prusa-mini.network.REDACTED
+    api_key: !secret octoprint_prusa_mini_api
     name: Ender
     bed: true
     number_of_tools: 1
@@ -127,8 +127,8 @@ octoprint:
 camera:
   - platform: mjpeg
     name: Ender
-    still_image_url: http://3d-printer-ender.network.REDACTED/webcam/?action=snapshot
-    mjpeg_url: http://3d-printer-ender.network.REDACTED/webcam/?action=stream
+    still_image_url: http://3d-printer-prusa-mini.network.REDACTED/webcam/?action=snapshot
+    mjpeg_url: http://3d-printer-prusa-mini.network.REDACTED/webcam/?action=stream
   - platform: mjpeg
     name: Prusa
     still_image_url: http://3d-printer-prusa.network.REDACTED/webcam/?action=snapshot

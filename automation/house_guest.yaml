@@ -85,7 +85,6 @@
         - light.kitchen_sink
         - light.living_room_lamps
         - light.dining_room_table
-        - light.guest_bedroom_lights
       data:
        color_temp: 447
        brightness_pct: 50
@@ -315,9 +314,35 @@
         data:
           tag: guest
           group: guest
-          entity_id: 
-            - camera.front_porch
+          entity_id: camera.front_porch
           actions:
             - action: "unlock_doors"
               title: "Unlock Doors"
               destructive: true
+
+        ##########################################################
+        ## Unlock Door for Contractors Remove when Project Done
+        ##########################################################
+
+- alias: Guest - Contractor Basement Unlock
+
+  trigger:
+   - platform: time
+     at: '07:45:00'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+
+  action:
+    - service: lock.unlock
+      entity_id:
+        - lock.basement_door
