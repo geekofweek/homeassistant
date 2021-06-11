@@ -79,7 +79,7 @@ say:
         entity_id: "{{ where }}"
         volume_level: "{{ volume }}"
     - delay: '00:00:02'
-    - service: tts.amazon_polly_say
+    - service: tts.cloud_say
       data_template:
         entity_id: "{{ master }}"
         message: "{{ what }}"

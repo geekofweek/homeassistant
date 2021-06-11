@@ -1766,7 +1766,7 @@
       data:
         volume_level: 0.6
     - delay: '00:00:02'
-    - service: tts.amazon_polly_say
+    - service: tts.cloud_say
       data_template:
         entity_id: media_player.sonos_USER1s_office
         message: "USER2 has left work, and will arrive Home in about, {{states('sensor.USER2_to_home')}} minutes"

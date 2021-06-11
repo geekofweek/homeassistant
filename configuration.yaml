@@ -70,11 +70,6 @@ media_player:
       AUDIO2: "Sonos Digital"
       AUDIO3: "Sonos"
 
-tts:
-  - platform: amazon_polly
-    aws_access_key_id: !secret aws_access_key_id
-    aws_secret_access_key: !secret aws_secret_access_key
-
 google:
   client_id: !secret google_client_id
   client_secret: !secret goole_client_secret
@@ -115,7 +110,7 @@ route53:
 octoprint:
   - host: 3d-printer-prusa-mini.network.REDACTED
     api_key: !secret octoprint_prusa_mini_api
-    name: Ender
+    name: Prusa Mini
     bed: true
     number_of_tools: 1
   - host: 3d-printer-prusa.network.REDACTED
@@ -126,7 +121,7 @@ octoprint:
 
 camera:
   - platform: mjpeg
-    name: Ender
+    name: Prusa Mini
     still_image_url: http://3d-printer-prusa-mini.network.REDACTED/webcam/?action=snapshot
     mjpeg_url: http://3d-printer-prusa-mini.network.REDACTED/webcam/?action=stream
   - platform: mjpeg
