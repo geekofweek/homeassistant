@@ -42,34 +42,6 @@ webostv:
   host: 'bedroom-tv.network.REDACTED'
   name: Bedroom TV
 
-media_player:
-  - platform: yamaha
-    name: "Surround Sound Receiver"
-    host: 'receiver.network.REDACTED'
-    source_ignore:
-      - "AUX"
-      - "AV1"
-      - "AV2"
-      - "AV3"
-      - "Bluetooth"
-      - "Deezer"
-      - "MusicCast Link"
-      - "NET RADIO"
-      - "Pandora"
-      - "SERVER"
-      - "Spotify"
-      - "TIDAL"
-      - "TUNER"
-      - "USB"
-    source_names:
-      HDMI1: "Apple TV"
-      HDMI2: "Xbox One X"
-      HDMI3: "Nintendo Switch"
-      HDMI4: "Wii U"
-      AUDIO1: "TV Audio"
-      AUDIO2: "Sonos Digital"
-      AUDIO3: "Sonos"
-
 google:
   client_id: !secret google_client_id
   client_secret: !secret goole_client_secret
