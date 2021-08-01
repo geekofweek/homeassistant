@@ -123,8 +123,12 @@ I go for native Echo integration wherever possible, but a few devices are not cu
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [Apple TV 4k](https://www.amazon.com/Apple-MQD22LL-A-TV-4K/dp/B075NCMLYL/ref=sr_1_2?ie=UTF8&qid=1526581374&sr=8-2&keywords=Apple+TV) | 4 | Wi-Fi | [Apple TV](https://www.home-assistant.io/components/apple_tv/) | Used for media playback on 4k TVs |
 | [Apple TV 4](https://www.amazon.com/Apple-TV-32GB-4th-Generation/dp/B075NFX24M/ref=sr_1_1?s=electronics&ie=UTF8&qid=1526581435&sr=1-1&keywords=Apple+TV) | 2 | Wi-Fi | [Apple TV](https://www.home-assistant.io/components/apple_tv/) | Used for media playback on TVs |
+| [Sonos Arc](https://amzn.to/3xb9JY1) | 1 | Ethernet |  [Sonos](https://www.home-assistant.io/components/media_player.sonos/) | TV Soundbar for audio playback and Home Assistant TTS. |
+| [Sonos Sub](https://amzn.to/3lgO5iB) | 1 | Ethernet | [Sonos](https://www.home-assistant.io/components/media_player.sonos/) | Audio playback and Home Assistant TTS |
 | [Sonos Play:1](https://amzn.to/2IrsIor) | 10 | Wi-Fi | [Sonos](https://www.home-assistant.io/components/media_player.sonos/) | Audio playback and Home Assistant TTS |
+| [Sonos One SL](https://amzn.to/37aXQqa) | 2 | Wi-Fi | [Sonos](https://www.home-assistant.io/components/media_player.sonos/) | Audio playback and Home Assistant TTS |
 | [Sonos Move](https://amzn.to/2mJ0mAk) | 2 | Wi-Fi | [Sonos](https://www.home-assistant.io/components/media_player.sonos/) | Portable Audio playback and Home Assistant TTS |
+| [Sonos Roam](https://amzn.to/3zZHU6v) | 1 | Wi-Fi | [Sonos](https://www.home-assistant.io/components/media_player.sonos/) | Portable Audio playback and Home Assistant TTS |
 | [Sonos Beam](https://amzn.to/3mWzhCM) | 2 | Wi-Fi | [Sonos](https://www.home-assistant.io/components/media_player.sonos/) | TV Soundbar for Audio playback and Home Assistant TTS |
 | [Sonos Port](https://amzn.to/3bnJyn8) | 1 | Ethernet |  [Sonos](https://www.home-assistant.io/components/media_player.sonos/) | Audio playback and Home Assistant TTS. Connects Sonos to existing surround sound system |
 | [Sonos Connect:AMP](https://amzn.to/2rQ0XzM) | 1 | Wi-Fi |  [Sonos](https://www.home-assistant.io/components/media_player.sonos/) | Audio playback and Home Assistant TTS. Connects Sonos to outdoor speakers |
@@ -132,7 +136,6 @@ I go for native Echo integration wherever possible, but a few devices are not cu
 | [Logitech Harmony Hub](https://amzn.to/2IuEvlS) | 3 | Wi-Fi | [Harmony Hub Remote](https://www.home-assistant.io/components/remote.harmony/) | Controls various AV equipment and other devices that utilize infrared remotes |
 | [Samsung QN75Q80TA](https://amzn.to/3qzvOx7) | 1 | Wi-Fi | [Samsung Smart TV](https://www.home-assistant.io/integrations/samsungtv/) | 75" 4K QLED TV |
 | [LG OLED55BXPUA](https://amzn.to/36THinl) | 1 | Wi-Fi | [LG webOS Smart TV](https://www.home-assistant.io/integrations/webostv/) | 55" 4K OLED TV |
-| [Yamaha RX-V483BL](https://amzn.to/2DhNh89) | 1 | Wi-Fi | [Yamaha Network Receivers](https://www.home-assistant.io/components/media_player.yamaha/) | Surround Sound Receiver. Works in conjunction with the Sonos Connect, Harmony Hub, Apple TV 4k and various other media devices |
 | [Plex Media Server](https://plex.tv) | 1 | Ethernet | [Plex](https://www.home-assistant.io/components/media_player.plex) / [Plex Activity Monitor](https://www.home-assistant.io/components/sensor.plex/) |  Media Server|  
 
 Most media player based automations can be found in [media.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/media.yaml) and some Text to Speech (TTS) based automation in various automations.
@@ -293,6 +296,7 @@ More detailed information on the custom Home Assistant Managment Tools can be fo
 | [iRobot Roomba 650](https://amzn.to/2wO2w60) | 1 | NA | NA | Currently not integrated into Home Assistant. Investigating options for future integration |
 | [Lutron Smart Bridge 2](https://amzn.to/2GpRGEX)| 1 | Ethernet | [Lutron Caseta](https://www.home-assistant.io/components/lutron_caseta/)| Replaced with a Lutron Smart Bridge 2 Pro |
 | [Creality Ender 3 V2](https://amzn.to/3bROjXf) | 1 | Wi-Fi | [OctoPrint](https://www.home-assistant.io/integrations/octoprint/)| 3D Printer connected to Home Assitant via OctoPrint running on a Raspberry Pi 3 B+.  Got tired of messing around with it, I just want to print useless objects with ease |
+| [Yamaha RX-V483BL](https://amzn.to/2DhNh89) | 1 | Wi-Fi | [Yamaha Network Receivers](https://www.home-assistant.io/components/media_player.yamaha/) | Surround Sound Receiver. Works in conjunction with the Sonos Connect, Harmony Hub, Apple TV 4k and various other media devices.  Replaced with Sonos Arc System |
 
 
 # <a name="screenshots">Screenshots</a>
