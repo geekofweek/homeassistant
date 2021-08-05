@@ -2481,7 +2481,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 20
+        minutes: 60
         seconds: 0
 
   condition:
@@ -2493,6 +2493,11 @@
       - condition: state
         entity_id: input_select.USER1_s_office_tv_remote
         state: 'PowerOff'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.USER1_s_office_apple_tv
+        state: 'playing'
 
   action:
     - service: input_select.select_option
@@ -2529,6 +2534,9 @@
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
+    - condition: state
+      entity_id: input_select.USER1_s_office_tv_remote
+      state: 'PowerOff'
 
   action:
     - service: light.turn_on

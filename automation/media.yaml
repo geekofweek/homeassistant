@@ -602,6 +602,7 @@
         - media_player.sonos_craft_room
         - media_player.sonos_fitness_room
         - media_player.sonos_backyard_patio
+        - media_player.sonos_roam
     - service: media_player.clear_playlist
       entity_id:
         - media_player.sonos_surround_sound
@@ -618,6 +619,7 @@
         - media_player.sonos_craft_room
         - media_player.sonos_fitness_room
         - media_player.sonos_backyard_patio
+        - media_player.sonos_roam
     - service: homeassistant.turn_off
       entity_id:
         - input_boolean.pop_music
@@ -1135,32 +1137,6 @@
         - media_player.sonos_backyard_patio
       data:
         volume_level: 0.3
-
-        ##########################################################
-        ## Turn on Surround Sound Receiver When Sonos Port Playing
-        ##########################################################
-
-- alias: Media - Turn on Surround Sound Receiver When Sonos Port Playing
-  id: 'media_turn_on_surround_sound_receiver_when_sonos_port_playing'
-
-  trigger:
-    - platform: state
-      entity_id: media_player.sonos_surround_sound
-      to: 'playing'
-
-  condition:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-
-  action:
-    - service: media_player.turn_on
-      entity_id: media_player.surround_sound_receiver
-    - delay: '00:00:05'
-    - service: media_player.select_source
-      entity_id: media_player.surround_sound_receiver
-      data:
-        source: 'audio3'
 
         ##########################################################
         ## Turn on Bedroom Sonos Night Sound Weeknights

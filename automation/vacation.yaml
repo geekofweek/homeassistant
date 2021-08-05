@@ -195,16 +195,14 @@
   action:
     - service: light.turn_on
       entity_id:
-        - light.USER1_s_office_ceiling
         - light.kitchen_sink
-        - light.bedroom_closet_ceiling
       data:
         brightness_pct: 2
     - service: light.turn_on
       entity_id:
         - light.living_room_lamps
       data:
-        brightness_pct: 25
+        brightness_pct: 50
         transition: 120
 
         ##########################################################
@@ -227,32 +225,7 @@
     - service: light.turn_off
       entity_id:
         - light.kitchen_sink
-    - delay: '00:10:04'
+    - delay: '00:37:04'
     - service: light.turn_off
       entity_id:
         - light.living_room_lamps
-
-        ##########################################################
-        ## Vacation Mode Lights off at 10p
-        ##########################################################
-
-- alias: Vacation - Lights Off at 10p
-  id: 'vacation_lights_off_at_10p'
-
-  trigger:
-    - platform: time
-      at: '22:13:51'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.vacation_mode
-      state: 'on'
-
-  action:
-    - service: light.turn_off
-      entity_id:
-        - light.bedroom_closet_ceiling
-    - delay: '00:15:32'
-    - service: light.turn_off
-      entity_id:
-        - light.USER1_s_office_ceiling

@@ -40,6 +40,7 @@
         - media_player.sonos_craft_room
         - media_player.sonos_fitness_room
         - media_player.sonos_backyard_patio
+        - media_player.sonos_roam
     - service: lock.lock
       entity_id:
        - lock.front_door
@@ -183,6 +184,7 @@
         - media_player.sonos_craft_room
         - media_player.sonos_fitness_room
         - media_player.sonos_backyard_patio
+        - media_player.sonos_roam
     - service: climate.set_preset_mode
       data:
         entity_id: climate.main_floor

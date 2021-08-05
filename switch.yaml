@@ -180,6 +180,46 @@
         command_off: 'curl -H "BOND-Token: REDACTED" -i http://bond.network.REDACTED/v2/devices/REDACTED/actions/Stop -X PUT -d "{}"'
 
         ##########################################################
+        ## Surround Sound Sonos Speech Enhance
+        ##########################################################
+
+  - platform: template
+    switches:
+      surround_sound_sonos_speech_enhance:
+        friendly_name: "Surround Sound Sonos Speech Enhance"
+        value_template: "{{ state_attr('media_player.sonos_surround_sound', 'speech_enhance') }}"
+        turn_on:
+          service: sonos.set_option
+          data:
+            entity_id: media_player.sonos_surround_sound
+            speech_enhance: true
+        turn_off:
+          service: sonos.set_option
+          data:
+            entity_id: media_player.sonos_surround_sound
+            speech_enhance: false
+
+        ##########################################################
+        ## Surround Sound Sonos Night Sound
+        ##########################################################
+
+  - platform: template
+    switches:
+      surround_sound_sonos_night_sound:
+        friendly_name: "Surround Sound Sonos Night Sound"
+        value_template: "{{ state_attr('media_player.sonos_surround_sound', 'night_sound') }}"
+        turn_on:
+          service: sonos.set_option
+          data:
+            entity_id: media_player.sonos_surround_sound
+            night_sound: true
+        turn_off:
+          service: sonos.set_option
+          data:
+            entity_id: media_player.sonos_surround_sound
+            night_sound: false
+
+        ##########################################################
         ## Bedroom Sonos Beam Speech Enhance
         ##########################################################
 
