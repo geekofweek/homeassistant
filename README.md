@@ -17,9 +17,9 @@ My personal [Home Assistant Container](https://home-assistant.io) configurations
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
+| [Aeotec Z-Stick 7](https://amzn.to/3xQXuA4)| 1 | USB | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Used to control all Z-Wave Devices.  Integrated via zwavejs2mqtt container |
 | [Hue Hub v2](https://amzn.to/2IpNA3G)| 1 | Ethernet | [Philips Hue](https://www.home-assistant.io/components/hue/) | Used to control all Zigbee smart bulbs |
 | [Lutron Smart Bridge 2 Pro](https://amzn.to/2WLpKEF)| 1 | Ethernet | [Lutron Caseta Pro](https://github.com/upsert/lutron-caseta-pro) (Custom Component)| Controls Lutron Caseta light switches, dimmers, and Pico remotes |
-| [Vera Plus](https://amzn.to/2IJGx4M)| 1 | Ethernet | [Vera](https://www.home-assistant.io/components/vera/) | Used as a dumb hub to connect Z-Wave devices.|
 | [IKEA TRÅDFRI](https://www.ikea.com/us/en/p/tradfri-gateway-white-00337813/)| 1 | Ethernet | [IKEA TRÅDFRI](https://www.home-assistant.io/integrations/tradfri/) | Currently only used to support the IKEA line of blinds |
 | [Bond Home](https://amzn.to/3i7dLds)| 1 | Wi-Fi | [Bond Home](https://www.home-assistant.io/integrations/bond/) | Controls ceiling fans and lights via RF remote control commands.  Existing fans are each wired to a single switch that controls both power and light with fan and light controls done via a physical remote.  The Bond Home Hub allowed for sending of those RF remote commands via the hub and the local API makes it possible to send said commands from Home Assistant. |
 
@@ -276,6 +276,7 @@ More detailed information on the custom Home Assistant Managment Tools can be fo
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
+| [Vera Plus](https://amzn.to/2IJGx4M)| 1 | Ethernet | [Vera](https://www.home-assistant.io/components/vera/) | Used as a dumb hub to connect Z-Wave devices. Replaced by a Z-Wave Stick |
 | [Wink Hub v1](https://amzn.to/2wMUjis)| 1 | Wi-Fi | [Wink](https://www.home-assistant.io/components/wink/) | ~~Semi retired, using it as a z-wave repeater for Vera.~~ Once upon a time I really loved Wink, but when you don't stock hardware for almost a year and your buisness model is selling hardware... time for that slow ride to the Cloud API in the sky. Not to mention the massive outages when staff clock out and don't fix until morning (forget to renew an expired certificate anyone). It was a fun ride Wink, hopefully your death will not be to slow and painful, but i.am+ wants to watch the world burn... probably.|
 | [Quirky + GE Aros Smart Window Air Conditioner](https://amzn.to/2ImtdEi) | 1 | Wi-Fi | [Wink Climate](https://www.home-assistant.io/components/climate.wink/) | No longer used after new HVAC system installed.  Cooling effieceny had dropped and was more of an energy hog than actually making a difference in temprature comfort. |
 | [Frigidaire Cool Connect Smart Portable Air Conditioner](https://amzn.to/2k7kszE) | 1 | Wi-Fi | [Harmony Hub Remote](https://www.home-assistant.io/components/remote.harmony/) | No longer in daily use after new HVAC system installed. May be brought back into service as needed. |
