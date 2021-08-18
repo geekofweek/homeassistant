@@ -40,6 +40,11 @@
     - condition: not
       conditions:
       - condition: state
+        entity_id: person.USER2
+        state: 'home'
+    - condition: not
+      conditions:
+      - condition: state
         entity_id: group.friends_and_family
         state: 'home'
 
@@ -127,6 +132,9 @@
     - condition: state
       entity_id: vacuum.main_floor_roomba
       state: 'cleaning'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
     - service: vacuum.pause
@@ -450,6 +458,11 @@
       - condition: state
         entity_id: sensor.dryer
         state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: person.USER2
+        state: 'home'
     - condition: not
       conditions:
       - condition: state

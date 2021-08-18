@@ -69,7 +69,7 @@
         delay_off:
           seconds: 1
         value_template: >-
-          {{ states('sensor.sump_pump_current_power')| int >= 1  }}
+          {{ states('sensor.sump_pump_switch_electric_consumed_w')| int >= 1  }}
 
         ##########################################################
         ## Washer Tub Clean

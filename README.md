@@ -70,10 +70,10 @@ More detailed information on the ESPhome configuration can be found in [here](ht
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [Wemo Mini Smart Plug](https://amzn.to/2wQ05jE) | 4 | Wi-Fi | [Belkin WeMo](https://www.home-assistant.io/components/wemo/) | Smart outlets utilized to control various devices via powering the outlet on/off (fans, Christmas Tree, etc) |
 | [Wemo Insight Smart Plug](https://amzn.to/2CfzHRa) | 2 | Wi-Fi | [Belkin WeMo](https://www.home-assistant.io/components/wemo/) | Smart outlet utilized to monitor power to washing machine and dryer|
-| [Zooz Power Switch ZEN15](https://amzn.to/2WRPeiv) | 2 | Vera Plus (Z-Wave) | [Vera Switch](https://www.home-assistant.io/components/vera/) | Smart outlet utilized to monitor power to sump pump |
-| [GE Z-Wave Wireless Smart Lighting Control Outdoor Module](https://amzn.to/2KuFRxN) | 4 | Vera Plus (Z-Wave)| [Vera Switch](https://www.home-assistant.io/components/vera/) | Used to control low voltage outdoor lighting transformers, bug zapper, and Christmas lights (Holiday time only) |
-| [Remotec Zwave Dry Contact Fixture Module](https://amzn.to/2rOmcBW) | 1 | Vera Plus (Z-Wave)| [Vera Switch](https://www.home-assistant.io/components/vera/) | Used to control gas fireplace |
-| [Dome Home Automation Water Shut-Off Valve](https://amzn.to/2IzJR1J) | 1 | Vera Plus (Z-Wave)| [Vera Switch](https://www.home-assistant.io/components/vera/) | Used to shut off Water Main Supply to House in the event of water leak detected or while on Vacation |
+| [Zooz Power Switch ZEN15](https://amzn.to/2WRPeiv) | 2 | Z-Wave | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Smart outlet utilized to monitor power to sump pump |
+| [GE Z-Wave Wireless Smart Lighting Control Outdoor Module](https://amzn.to/2KuFRxN) | 4 | Z-Wave| [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Used to control low voltage outdoor lighting transformers, bug zapper, and Christmas lights (Holiday time only) |
+| [Remotec Zwave Dry Contact Fixture Module](https://amzn.to/2rOmcBW) | 1 | Z-Wave| [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Used to control gas fireplace |
+| [Dome Home Automation Water Shut-Off Valve](https://amzn.to/2IzJR1J) | 1 | Z-Wave| [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Used to shut off Water Main Supply to House in the event of water leak detected or while on Vacation |
 
 
 Switches and outlets are used in various capacities, some are for lighting and some are for fans type devices.  [lights.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/lights.yaml) and [occupancy.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/occupancy.yaml) should have some good examples.
@@ -86,7 +86,7 @@ Washing machine is automated around the Wemo Insight Plug.  This outlet can moni
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
-| [Schlage Connect Touchscreen Deadbolt](https://amzn.to/2KwXltd) | 3 | Vera Plus (Z-Wave) | [Vera Lock](https://www.home-assistant.io/components/vera/) | Smart locks used in automations to auto lock / unlock doors |
+| [Schlage Connect Touchscreen Deadbolt](https://amzn.to/2KwXltd) | 3 | Z-Wave | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Smart locks used in automations to auto lock / unlock doors |
 
 Locks are used mostly as a way to lock / unlock doors based on locations, see [location.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml) and [locks.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/locks.yaml) for some examples
 
@@ -96,8 +96,8 @@ Locks are used mostly as a way to lock / unlock doors based on locations, see [l
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
-| [GoControl Door/Window Sensor](https://amzn.to/2wOhLfn) | 3 | Vera Plus (Z-Wave) | [Vera Binary Sensor](https://www.home-assistant.io/components/vera/) | Door sensors to detect if exterior doors have been opened / closed |
-| [GoControl Siren and Strobe](https://amzn.to/2k4bK4U) | 1 | Vera Plus (Z-Wave) | [Vera Switch](https://www.home-assistant.io/components/vera/) | Alarm used for when alarm is triggered or when you want to get someone's attention|
+| [GoControl Door/Window Sensor](https://amzn.to/2wOhLfn) | 3 | Z-Wave | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Door sensors to detect if exterior doors have been opened / closed |
+| [GoControl Siren and Strobe](https://amzn.to/2k4bK4U) | 1 | Z-Wave | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Alarm used for when alarm is triggered or when you want to get someone's attention|
 
 Door sensors, motion sensors, and the alarm siren are used in many different ways via [alarm.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/alarm.yaml).  I've also implemented some of the alarm functions as part of [water_sensors.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/water_sensors.yaml).
 
@@ -149,12 +149,12 @@ Harmony Hubs work via a combination of [input_selects]( https://github.com/geeko
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [Nest Protect v2 Battery](https://amzn.to/2LJ0ACn) | 6 | Wi-Fi | [Nest](https://www.home-assistant.io/components/nest/) | Smoke Alarm and CO Alarm.  I realized most of my Smoke Alarms had long suprased the 10 year mark and it was time for some replacements. I usually avoid Google owned products for various reasons, but the Nest Protect line has high praise. |
-| [Dome Motion Detector - Light Sensor](https://amzn.to/2W9TMDS) | 8 | Vera Plus (Z-Wave) | [Vera Binary Sensor](https://www.home-assistant.io/components/vera/) | Motion and Light Level sensor used to automate around motion events and current room brightness. |
-| [GoControl PIR Motion Detector](https://amzn.to/2HCvyZJ) | 1 | Vera Plus (Z-Wave) | [Vera Binary Sensor](https://www.home-assistant.io/components/vera/) | Motion sensor used to automate around motion events. |
-| [ZOOZ 4-in-1 Sensor ZSE40](https://amzn.to/3aTqGhZ) | 4 | Vera Plus (Z-Wave) | [Vera Binary Sensor](https://www.home-assistant.io/components/vera/) | Motion,temperature, humidity, and light level sensor used to automate around motion events. |
-| [Dome Home Automation Leak Sensor](https://amzn.to/2IA5XBj) | 8 | Vera Plus (Z-Wave) | [Vera Binary Sensor](https://www.home-assistant.io/components/vera/) | Water sensors used to detect the pressence of water as a preventive measure |
-| [Aeon Labs Water Sensor](https://amzn.to/2rM6KFE) | 2 | Vera Plus (Z-Wave) | [Vera Binary Sensor](https://www.home-assistant.io/components/vera/) | Water sensors used to detect the pressence of water as a preventive measure |
-| [Ecolink Door/Window Sensor](https://amzn.to/3cCjhUU) | 2 | Vera Plus (Z-Wave) | [Vera Binary Sensor](https://www.home-assistant.io/components/vera/) | Trial run on Window sensors to stop my blinds from closing when a Window is Open.  Starting small but we all know how that will end up.  ALL THE WINDOWS! |
+| [Dome Motion Detector - Light Sensor](https://amzn.to/2W9TMDS) | 8 | Z-Wave | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Motion and Light Level sensor used to automate around motion events and current room brightness. |
+| [GoControl PIR Motion Detector](https://amzn.to/2HCvyZJ) | 1 | Z-Wave | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Motion sensor used to automate around motion events. |
+| [ZOOZ 4-in-1 Sensor ZSE40](https://amzn.to/3aTqGhZ) | 4 | Z-Wave | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Motion,temperature, humidity, and light level sensor used to automate around motion events. |
+| [Dome Home Automation Leak Sensor](https://amzn.to/2IA5XBj) | 8 | Z-Wave | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Water sensors used to detect the pressence of water as a preventive measure |
+| [Aeon Labs Water Sensor](https://amzn.to/2rM6KFE) | 2 | Z-Wave | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Water sensors used to detect the pressence of water as a preventive measure |
+| [Ecolink Door/Window Sensor](https://amzn.to/3cCjhUU) | 2 | Z-Wave | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Trial run on Window sensors to stop my blinds from closing when a Window is Open.  Starting small but we all know how that will end up.  ALL THE WINDOWS! |
 
 Water sensors serve one major function, to alert me to the presence of water.  Almost all of those automations can be fond via [water_works.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/water_works.yaml)
 
