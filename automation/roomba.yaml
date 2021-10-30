@@ -219,6 +219,11 @@
     - condition: numeric_state
       entity_id: sensor.main_floor_roomba_battery_level
       above: 99
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'home'
 
   action:
     - service: vacuum.start
@@ -261,6 +266,11 @@
     - condition: numeric_state
       entity_id: sensor.upstairs_roomba_battery_level
       above: 99
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'home'
 
   action:
     - service: vacuum.start

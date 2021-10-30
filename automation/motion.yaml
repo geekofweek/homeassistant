@@ -1380,9 +1380,14 @@
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'home'
     - condition: state
       entity_id: light.bathroom_lights
       state: 'off'
@@ -1419,9 +1424,14 @@
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'home'
     - condition: state
       entity_id: light.bathroom_lights
       state: 'off'
@@ -1461,9 +1471,14 @@
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'home'
     - condition: state
       entity_id: light.bathroom_lights
       state: 'off'
@@ -1498,9 +1513,14 @@
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: state
+        entity_id: group.friends_and_family
+        state: 'home'
     - condition: state
       entity_id: light.bathroom_lights
       state: 'off'
@@ -2049,6 +2069,11 @@
         state: 'home'
       - condition: state
         entity_id: group.friends_and_family
+        state: 'home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: person.REDACTED
         state: 'home'
 
   action:

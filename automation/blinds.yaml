@@ -62,6 +62,9 @@
       state: 'docked'
     - condition: time
       after: '08:00:00'
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      below: 90
 
   action:
     - service: cover.open_cover
@@ -95,6 +98,41 @@
     - condition: state
       entity_id: binary_sensor.USER1s_office_window_right
       state: 'off'
+
+  action:
+    - service: cover.close_cover
+      entity_id:
+        - cover.USER1_s_office_blinds
+
+        ##########################################################
+        ## Close USER1's Office Blinds When Hot Outside
+        ##########################################################
+
+- alias: Blinds - Close USER1's Office Blinds When Hot Outside
+  id: 'blinds_close_USER1_office_blinds_when_hot_outside'
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      above: 90
+      for:
+        hours: 0
+        minutes: 45
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.USER1_s_office_blinds
+      state: 'open'
+    - condition: state
+      entity_id: binary_sensor.USER1s_office_window_right
+      state: 'off'
+    - condition: state
+      entity_id: sensor.season
+      state: 'summer'
 
   action:
     - service: cover.close_cover
@@ -303,6 +341,9 @@
     - condition: state
       entity_id: vacuum.upstairs_roomba
       state: 'docked'
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      below: 90
 
   action:
     - service: cover.open_cover
@@ -345,6 +386,38 @@
     - condition: state
       entity_id: binary_sensor.stairs_motion
       state: 'off'
+
+  action:
+    - service: cover.close_cover
+      entity_id:
+        - cover.stairs_blinds
+
+        ##########################################################
+        ## Close Stairs Blinds When Hot Outside
+        ##########################################################
+
+- alias: Blinds - Close Stairs Blinds When Hot Outside
+  id: 'blinds_close_stairs_blinds_when_hot_outside'
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      above: 90
+      for:
+        hours: 0
+        minutes: 45
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.stairs_blinds
+      state: 'open'
+    - condition: state
+      entity_id: sensor.season
+      state: 'summer'
 
   action:
     - service: cover.close_cover
@@ -410,6 +483,9 @@
     - condition: state
       entity_id: vacuum.upstairs_roomba
       state: 'docked'
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      below: 90
 
   action:
     - service: cover.open_cover
@@ -440,6 +516,38 @@
     - condition: state
       entity_id: cover.USER2_s_office_blinds
       state: 'open'
+
+  action:
+    - service: cover.close_cover
+      entity_id:
+        - cover.USER2_s_office_blinds
+
+        ##########################################################
+        ## Close USER2's Office Blinds When Hot Outside
+        ##########################################################
+
+- alias: Blinds - Close USER2's Office Blinds When Hot Outside
+  id: 'blinds_close_USER2_office_blinds_when_hot_outside'
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      above: 90
+      for:
+        hours: 0
+        minutes: 45
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.USER2_s_office_blinds
+      state: 'open'
+    - condition: state
+      entity_id: sensor.season
+      state: 'summer'
 
   action:
     - service: cover.close_cover

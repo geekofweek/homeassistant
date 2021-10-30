@@ -317,6 +317,48 @@
       state: 'armed_away'
 
   action:
+    - service: notify.USER1_devices
+      data:
+        message: Door Alarm Triggered!
+        data:
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
+          tag: alarm
+          group: alarm
+          entity_id:
+           - camera.front_porch
+          actions:
+            - action: "disarm_alarm"
+              title: "Disable Alarm System"
+              destructive: true
+              uri: "/lovelace/alarm"
+            - action: "siren_off"
+              title: "Siren Off"
+              uri: "/lovelace/alarm"
+    - service: notify.USER2_devices
+      data:
+        message: Door Alarm Triggered!
+        data:
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
+          tag: alarm
+          group: alarm
+          entity_id:
+           - camera.front_porch
+          actions:
+            - action: "disarm_alarm"
+              title: "Disable Alarm System"
+              destructive: true
+              uri: "/lovelace/alarm"
+            - action: "siren_off"
+              title: "Siren Off"
+              uri: "/lovelace/alarm"
     - service: alarm_control_panel.alarm_trigger
       entity_id:
         - alarm_control_panel.alarm
@@ -429,11 +471,35 @@
     - condition: state
       entity_id: alarm_control_panel.alarm
       state: 'armed_away'
+    - condition: state
+      entity_id: switch.3d_printer_prusa
+      state: 'off'
+    - condition: state
+      entity_id: switch.3d_printer_prusa_mini
+      state: 'off'
 
   action:
-    - service: alarm_control_panel.alarm_trigger
-      entity_id:
-        - alarm_control_panel.alarm
+    - service: notify.USER1_devices
+      data:
+        message: Motion Alarm Triggered!
+        data:
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
+          tag: alarm
+          group: alarm
+          entity_id:
+           - camera.front_porch
+          actions:
+            - action: "disarm_alarm"
+              title: "Disable Alarm System"
+              destructive: true
+              uri: "/lovelace/alarm"
+#    - service: alarm_control_panel.alarm_trigger
+#      entity_id:
+#        - alarm_control_panel.alarm
 
         ##########################################################
         ## Garage Alarm Home

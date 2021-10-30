@@ -159,7 +159,9 @@
 
   action:
     - service: lock.unlock
-      entity_id: lock.back_door
+      entity_id: 
+        - lock.back_door
+        - lock.basement_door
 
         ##########################################################
         ## After USER1 Home Lock Doors
@@ -190,6 +192,7 @@
       entity_id:
         - lock.back_door
         - lock.front_door
+        - lock.basement_door
 
         ##########################################################
         ## USER2 Home from Walking Unlock Doors
@@ -1405,7 +1408,7 @@
   trigger:
     - platform: state
       entity_id: person.USER2
-      from: 'REDACTED'
+      from: 'Work'
       to: 'not_home'
 
   condition:
@@ -1698,7 +1701,7 @@
   trigger:
     - platform: state
       entity_id: person.USER2
-      from: 'REDACTED'
+      from: 'Work'
       to: 'not_home'
 
   condition:

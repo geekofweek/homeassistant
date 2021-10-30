@@ -17,7 +17,10 @@ http:
   login_attempts_threshold: 10
 logger:
   default: warn
-    
+  logs:
+    pyatv: debug
+    custom_components.apple_tv: debug
+
 #################################################################
 ## Components
 #################################################################
@@ -63,13 +66,13 @@ alarm_control_panel:
     disarmed:
       trigger_time: 0
     armed_home:
-      delay_time: 30
-      trigger_time: 60
       arming_time: 30
+      delay_time: 30
+      trigger_time: 120 
     armed_away:
+      arming_time: 30
       delay_time: 15
       trigger_time: 120
-      arming_time: 30
 
 route53:
   aws_access_key_id: !secret aws_access_key_id_route53

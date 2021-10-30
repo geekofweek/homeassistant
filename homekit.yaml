@@ -71,6 +71,7 @@
       - camera.side_yard
       - camera.backyard
       - camera.garage
+      - camera.front_yard
       - fan.living_room_east
       - fan.living_room_west
       - binary_sensor.living_room_motion
@@ -107,33 +108,38 @@
 
   entity_config:
       camera.front_porch:
-        stream_source: "-rtsp_transport tcp -re -i rtsp://unifi.network.REDACTED:7447/REDACTED"
+        stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
         video_codec: copy
         support_audio: True
         linked_motion_sensor: binary_sensor.motion_front_porch
         linked_doorbell_sensor: binary_sensor.ring_front_door_ding
       camera.driveway:
-        stream_source: "-rtsp_transport tcp -re -i rtsp://unifi.network.REDACTED:7447/REDACTED"
+        stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
         video_codec: copy
         support_audio: True
         linked_motion_sensor: binary_sensor.motion_driveway
       camera.backyard_gate:
-        stream_source: "-rtsp_transport tcp -re -i rtsp://unifi.network.REDACTED:7447/REDACTED"
+        stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
         video_codec: copy
         support_audio: True
         linked_motion_sensor: binary_sensor.motion_backyard_gate
       camera.backyard:
-        stream_source: "-rtsp_transport tcp -re -i rtsp://unifi.network.REDACTED:7447/REDACTED"
+        stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
         video_codec: copy
         support_audio: True
         linked_motion_sensor: binary_sensor.motion_backyard
       camera.side_yard:
-        stream_source: "-rtsp_transport tcp -re -i rtsp://unifi.network.REDACTED:7447/REDACTED"
+        stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
         video_codec: copy
         support_audio: True
         linked_motion_sensor: binary_sensor.motion_side_yard
       camera.garage:
-        stream_source: "-rtsp_transport tcp -re -i rtsp://unifi.network.REDACTED:7447/REDACTED"
+        stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
         video_codec: copy
         support_audio: True
         linked_motion_sensor: binary_sensor.motion_garage
+      camera.front_yard:
+        stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
+        video_codec: copy
+        support_audio: True
+        linked_motion_sensor: binary_sensor.motion_front_yard

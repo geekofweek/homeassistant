@@ -164,14 +164,14 @@
       for:
         hours: 0
         minutes: 0
-        seconds: 7
+        seconds: 30
     - platform: state
       entity_id: media_player.living_room_appletv
       to: 'idle'
       for:
         hours: 0
         minutes: 0
-        seconds: 7
+        seconds: 30
 
   condition:
     - condition: state
@@ -243,14 +243,14 @@
       for:
         hours: 0
         minutes: 0
-        seconds: 7
+        seconds: 30
     - platform: state
       entity_id: media_player.living_room_appletv
       to: 'idle'
       for:
         hours: 0
         minutes: 0
-        seconds: 7
+        seconds: 30
 
   condition:
     - condition: state
@@ -637,6 +637,7 @@
         entity_id: 
           - switch.bedroom_sonos_night_sound
           - switch.fitness_room_sonos_night_sound
+          - switch.surround_sound_sonos_night_sound
 
         ##########################################################
         ## Group All Sonos

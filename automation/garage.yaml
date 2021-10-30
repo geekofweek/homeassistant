@@ -117,7 +117,7 @@
   trigger:
     - platform: state
       entity_id: person.USER2
-#      from: 'not_home'
+      from: 'not_home'
       to: 'home'
 
   condition:
@@ -368,7 +368,8 @@
       event_type: call_service
       event_data:
         domain: cover
-        service: close_cover
+        service_data:
+          entity_id: cover.garage_door
 
   condition:
     - condition: state
@@ -425,7 +426,7 @@
       for:
         hours: 0
         minutes: 0
-        seconds: 15
+        seconds: 16
 
   action:
     - service: homeassistant.turn_off
