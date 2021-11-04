@@ -635,9 +635,9 @@
     - service: switch.turn_off
       data:
         entity_id: 
-          - switch.bedroom_sonos_night_sound
-          - switch.fitness_room_sonos_night_sound
-          - switch.surround_sound_sonos_night_sound
+          - switch.sonos_bedroom_night_sound
+          - switch.sonos_fitness_room_night_sound
+          - switch.sonos_surround_sound_night_sound
 
         ##########################################################
         ## Group All Sonos
@@ -1148,7 +1148,7 @@
 
   trigger:
     - platform: time
-      at: '23:30:00'
+      at: '22:00:00'
 
   condition:
     - condition: state
@@ -1168,7 +1168,7 @@
   action:
     - service: switch.turn_on
       entity_id:
-        - switch.bedroom_sonos_night_sound
+        - switch.sonos_bedroom_night_sound
 
         ##########################################################
         ## Turn off Living Room Lights When Playing Xbox

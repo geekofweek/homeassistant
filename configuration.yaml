@@ -15,11 +15,11 @@ http:
   ssl_key: !secret ssl_key
   ip_ban_enabled: true
   login_attempts_threshold: 10
-logger:
-  default: warn
-  logs:
-    pyatv: debug
-    custom_components.apple_tv: debug
+#logger:
+#  default: warn
+#  logs:
+#    pyatv: debug
+#    custom_components.apple_tv: debug
 
 #################################################################
 ## Components
@@ -81,18 +81,6 @@ route53:
   domain: !secret aws_domain_route53
   records:
     - home
-
-octoprint:
-  - host: 3d-printer-prusa-mini.network.REDACTED
-    api_key: !secret octoprint_prusa_mini_api
-    name: Prusa Mini
-    bed: true
-    number_of_tools: 1
-  - host: 3d-printer-prusa.network.REDACTED
-    api_key: !secret octoprint_prusa_api
-    name: Prusa
-    bed: true
-    number_of_tools: 1
 
 camera:
   - platform: mjpeg

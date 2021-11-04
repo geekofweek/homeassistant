@@ -853,94 +853,6 @@
     friendly_name: Ad Blocking
 
 #################################################################
-## 3D Printer
-#################################################################
-
-        ##########################################################
-        ## Prusa Mini Bed Temperature
-        ##########################################################
-
-  sensor.prusa_mini_actual_bed_temp:
-    friendly_name: Bed Temperature
-    unit_of_measurement: C
-
-        ##########################################################
-        ## Prusa Mini Bed Target Temperature
-        ##########################################################
-
-  sensor.prusa_mini_target_bed_temp:
-    friendly_name: Bed Target Temperature
-    unit_of_measurement: C
-
-        ##########################################################
-        ## Prusa Mini Nozzle Temperature
-        ##########################################################
-
-  sensor.prusa_mini_actual_tool0_temp:
-    friendly_name: Nozzle Temperature
-    unit_of_measurement: C
-
-        ##########################################################
-        ## Prusa Mini Nozzle Target Temperature
-        ##########################################################
-
-  sensor.prusa_mini_target_tool0_temp:
-    friendly_name: Nozzle Target Temperature
-    unit_of_measurement: C
-
-        ##########################################################
-        ## Prusa Mini Printing Error
-        ##########################################################
-
-  binary_sensor.prusa_mini_printing_error:
-    friendly_name: Print Error
-    icon: mdi:printer-3d-nozzle-alert
-
-        ##########################################################
-        ## Prusa Bed Temperature
-        ##########################################################
-
-  sensor.prusa_actual_bed_temp:
-    friendly_name: Bed Temperature
-    device_class: temperature
-    #unit_of_measurement: 'C'
-
-        ##########################################################
-        ## Prusa Bed Target Temperature
-        ##########################################################
-
-  sensor.prusa_target_bed_temp:
-    friendly_name: Bed Target Temperature
-    device_class: temperature
-    #unit_of_measurement: 'C'
-
-        ##########################################################
-        ## Prusa Nozzle Temperature
-        ##########################################################
-
-  sensor.prusa_actual_tool0_temp:
-    friendly_name: Nozzle Temperature
-    device_class: temperature
-    #unit_of_measurement: 'C'
-
-        ##########################################################
-        ## Prusa Nozzle Target Temperature
-        ##########################################################
-
-  sensor.prusa_target_tool0_temp:
-    friendly_name: Nozzle Target Temperature
-    device_class: temperature
-    #unit_of_measurement: 'C'
-
-        ##########################################################
-        ## Prusa Printing Error
-        ##########################################################
-
-  binary_sensor.prusa_printing_error:
-    friendly_name: Print Error
-    icon: mdi:printer-3d-nozzle-alert
-
-#################################################################
 ## Light Level Sensors
 #################################################################
 
@@ -967,3 +879,71 @@
   sensor.fitness_room_light_level:
     device_class: illuminance
     unit_of_measurement: 'Lux'
+
+#################################################################
+## 3D Printer
+#################################################################
+
+        ##########################################################
+        ## Prusa Mini Bed Temperature
+        ##########################################################
+
+  sensor.prusa_mini_actual_bed_temp_celcius:
+    icon: mdi:radiator
+    state_class: measurement
+
+        ##########################################################
+        ## Prusa Mini Bed Target Temperature
+        ##########################################################
+
+  sensor.prusa_mini_target_bed_temp_celcius:
+    icon: mdi:radiator
+    state_class: measurement
+
+        ##########################################################
+        ## Prusa Mini Nozzle Temperature
+        ##########################################################
+
+  sensor.prusa_mini_actual_tool0_temp_celcius:
+    icon: mdi:printer-3d-nozzle-heat
+    state_class: measurement
+
+        ##########################################################
+        ## Prusa Mini Nozzle Target Temperature
+        ##########################################################
+
+  sensor.prusa_mini_target_tool0_temp_celcius:
+    icon: mdi:printer-3d-nozzle-heat
+    state_class: measurement
+
+        ##########################################################
+        ## Prusa Bed Temperature
+        ##########################################################
+
+  sensor.prusa_actual_bed_temp_celcius:
+    icon: mdi:radiator
+    state_class: measurement
+
+        ##########################################################
+        ## Prusa Bed Target Temperature
+        ##########################################################
+
+  sensor.prusa_target_bed_temp_celcius:
+    icon: mdi:radiator
+    state_class: measurement
+
+        ##########################################################
+        ## Prusa Nozzle Temperature
+        ##########################################################
+
+  sensor.prusa_actual_tool0_temp_celcius:
+    icon: mdi:printer-3d-nozzle-heat
+    state_class: measurement
+
+        ##########################################################
+        ## Prusa Nozzle Target Temperature
+        ##########################################################
+
+  sensor.prusa_target_tool0_temp_celcius:
+    icon: mdi:printer-3d-nozzle-heat
+    state_class: measurement

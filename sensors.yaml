@@ -46,7 +46,7 @@
       ups_battery_runtime_mins:
         friendly_name: "UPS Battery Runtime"
         unit_of_measurement: 'minutes'
-        value_template: "{{ states('sensor.ups_battery_runtime')|float / 60 }}"
+        value_template: "{{ states('sensor.ups_battery_runtime')|float(0) / 60 }}"
 
         ##########################################################
         ## Washing Machine Time Remaining
@@ -187,42 +187,102 @@
             unknown
           {% endif %}
 
-        ##########################################################
-        ## Prusa Mini 3D Printer Fix Time Elapsed
-        ##########################################################
-
-  - platform: template
-    sensors:
-      prusa_mini_time_elapsed_format:
-       friendly_name: 'Printing Time Elapsed'
-       value_template: "{{ states('sensor.prusa_mini_time_elapsed') | int | timestamp_custom('%H:%M:%S', 0) }}"
+#################################################################
+## 3D Printer
+#################################################################
 
         ##########################################################
-        ## Prusa Mini 3D Printer Fix Time Remaining
+        ## Prusa Mini Bed Temperature
         ##########################################################
 
   - platform: template
     sensors:
-      prusa_mini_time_remaining_format:
-       friendly_name: 'Printing Time Remaining'
-       value_template: "{{ states('sensor.prusa_mini_time_remaining') | int | timestamp_custom('%H:%M:%S', 0) }}"
+      prusa_mini_actual_bed_temp_celcius:
+        friendly_name: "Bed Temperature"
+        unit_of_measurement: 'C'
+        device_class: temperature
+        value_template: "{{ (((states('sensor.prusa_mini_actual_bed_temp') | float(0)) - 32) * 0.5556) | round(1) }}"
 
-       ##########################################################
-        ## Prusa 3D Printer Fix Time Elapsed
+        ##########################################################
+        ## Prusa Mini Bed Target Temperature
         ##########################################################
 
   - platform: template
     sensors:
-      prusa_time_elapsed_format:
-       friendly_name: 'Printing Time Elapsed'
-       value_template: "{{ states('sensor.prusa_time_elapsed') | int | timestamp_custom('%H:%M:%S', 0) }}"
+      prusa_mini_target_bed_temp_celcius:
+        friendly_name: "Bed Temperature (Target)"
+        unit_of_measurement: 'C'
+        device_class: temperature
+        value_template: "{{ (((states('sensor.prusa_mini_target_bed_temp') | float(0)) - 32) * 0.5556) | round(1) }}"
 
         ##########################################################
-        ## Prusa 3D Printer Fix Time Remaining
+        ## Prusa Mini Nozzle Temperature
         ##########################################################
 
   - platform: template
     sensors:
-      prusa_time_remaining_format:
-       friendly_name: 'Printing Time Remaining'
-       value_template: "{{ states('sensor.prusa_time_remaining') | int | timestamp_custom('%H:%M:%S', 0) }}"
+      prusa_mini_actual_tool0_temp_celcius:
+        friendly_name: "Nozzle Temperature"
+        unit_of_measurement: 'C'
+        device_class: temperature
+        value_template: "{{ (((states('sensor.prusa_mini_actual_tool0_temp') | float(0)) - 32) * 0.5556) | round(1) }}"
+
+        ##########################################################
+        ## Prusa Mini Nozzle Target Temperature
+        ##########################################################
+
+  - platform: template
+    sensors:
+      prusa_mini_target_tool0_temp_celcius:
+        friendly_name: "Nozzle Temperature (Target)"
+        unit_of_measurement: 'C'
+        device_class: temperature
+        value_template: "{{ (((states('sensor.prusa_mini_target_tool0_temp') | float(0)) - 32) * 0.5556) | round(1) }}"
+
+        ##########################################################
+        ## Prusa Bed Temperature
+        ##########################################################
+
+  - platform: template
+    sensors:
+      prusa_actual_bed_temp_celcius:
+        friendly_name: "Bed Temperature"
+        unit_of_measurement: 'C'
+        device_class: temperature
+        value_template: "{{ (((states('sensor.prusa_actual_bed_temp') | float(0)) - 32) * 0.5556) | round(1) }}"
+
+        ##########################################################
+        ## Prusa Bed Target Temperature
+        ##########################################################
+
+  - platform: template
+    sensors:
+      prusa_target_bed_temp_celcius:
+        friendly_name: "Bed Temperature (Target)"
+        unit_of_measurement: 'C'
+        device_class: temperature
+        value_template: "{{ (((states('sensor.prusa_target_bed_temp') | float(0)) - 32) * 0.5556) | round(1) }}"
+
+        ##########################################################
+        ## Prusa Nozzle Temperature
+        ##########################################################
+
+  - platform: template
+    sensors:
+      prusa_actual_tool0_temp_celcius:
+        friendly_name: "Nozzle Temperature"
+        unit_of_measurement: 'C'
+        device_class: temperature
+        value_template: "{{ (((states('sensor.prusa_actual_tool0_temp') | float(0)) - 32) * 0.5556) | round(1) }}"
+
+        ##########################################################
+        ## Prusa Nozzle Target Temperature
+        ##########################################################
+
+  - platform: template
+    sensors:
+      prusa_target_tool0_temp_celcius:
+        friendly_name: "Nozzle Temperature (Target)"
+        unit_of_measurement: 'C'
+        device_class: temperature
+        value_template: "{{ (((states('sensor.prusa_target_tool0_temp') | float(0)) - 32) * 0.5556) | round(1) }}"
