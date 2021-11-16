@@ -357,27 +357,16 @@
       entity_id: cover.garage_door
 
         ##########################################################
-        ## Flash Light When Garage Door Closes
+        ## Flash Light When Garage Door Motor On
         ##########################################################
 
-- alias: Garage - Flash Light When Garage Door Closes
-  id: 'garage_flash_light_when_garage_door_closes'
+- alias: Garage - Flash Light When Garage Motor On
+  id: 'garage_flash_light_when_garage_motor_on'
 
   trigger:
-    - platform: event
-      event_type: call_service
-      event_data:
-        domain: cover
-        service_data:
-          entity_id: cover.garage_door
-
-  condition:
-    - condition: state
-      entity_id: cover.garage_door
-      state: 'open'
-    - condition: state
-      entity_id: light.garage_interior
-      state: 'on'
+    - platform: state
+      entity_id: input_boolean.garage_door_motor
+      to: 'on'
 
   action:
     - service: lifx.effect_pulse

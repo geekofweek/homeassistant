@@ -85,12 +85,14 @@ route53:
 camera:
   - platform: mjpeg
     name: Prusa Mini
-    still_image_url: http://3d-printer-prusa-mini.network.REDACTED/webcam/?action=snapshot
-    mjpeg_url: http://3d-printer-prusa-mini.network.REDACTED/webcam/?action=stream
+    verify_ssl: false
+    still_image_url: https://3d-printer-prusa-mini.network.REDACTED/webcam/?action=snapshot
+    mjpeg_url: https://3d-printer-prusa-mini.network.REDACTED/webcam/?action=stream
   - platform: mjpeg
     name: Prusa
-    still_image_url: http://3d-printer-prusa.network.REDACTED/webcam/?action=snapshot
-    mjpeg_url: http://3d-printer-prusa.network.REDACTED/webcam/?action=stream
+    verify_ssl: false
+    still_image_url: https://3d-printer-prusa.network.REDACTED/webcam/?action=snapshot
+    mjpeg_url: https://3d-printer-prusa.network.REDACTED/webcam/?action=stream
 
 #################################################################
 ## Notifications

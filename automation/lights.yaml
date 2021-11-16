@@ -103,13 +103,14 @@
       entity_id: cover.garage_door
       from: 'closed'
       to: 'open'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 14
 
   condition:
     - condition: state
       entity_id: input_boolean.disable_door_open_lights_on
-      state: 'off'
-    - condition: state
-      entity_id: light.garage_interior
       state: 'off'
 
   action:
@@ -118,7 +119,6 @@
         - light.garage_interior
       data:
        brightness_pct: 100
-       transition: 14
 
         ##########################################################
         ## Turn Off Exterior Garage Light After Midnight

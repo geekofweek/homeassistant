@@ -248,3 +248,53 @@
     - service: light.turn_off
       entity_id:
         - light.3d_printer_light
+
+        ##########################################################
+        ## 3D Printer Reload Prusa Integration After Connection
+        ##########################################################
+
+- alias: 3D-Printer - 3D Printer Reload Prusa Integration
+  id: '3d_printer_reload_prusa_integration'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_current_state
+      from: 'unavailable'
+      to: 'Operational'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+
+  action:
+    - service: homeassistant.reload_config_entry
+      entity_id:
+        - sensor.prusa_actual_bed_temp
+        - sensor.prusa_target_bed_temp
+        - sensor.prusa_actual_tool0_temp
+        - sensor.prusa_target_tool0_temp
+
+        ##########################################################
+        ## 3D Printer Reload Prusa Mini Integration After Connection
+        ##########################################################
+
+- alias: 3D-Printer - 3D Printer Reload Prusa Mini Integration
+  id: '3d_printer_reload_prusa__mini_integration'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mini_current_state
+      from: 'unavailable'
+      to: 'Operational'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+
+  action:
+    - service: homeassistant.reload_config_entry
+      entity_id:
+        - sensor.prusa_mini_actual_bed_temp
+        - sensor.prusa_mini_target_bed_temp
+        - sensor.prusa_mini_actual_tool0_temp
+        - sensor.prusa_mini_target_tool0_temp
