@@ -1179,9 +1179,11 @@
       entity_id:
         - fan.USER1s_office_fan
     - delay: '00:00:01'
-    - service: switch.turn_on
-      entity_id:
-        - switch.office_fan_auto_mode
+    - service: fan.set_preset_mode
+      target:
+        entity_id: fan.USER1s_office_fan
+      data:
+        preset_mode: Auto
     - delay: '00:00:01'
     - service: climate.set_temperature
       data:
@@ -1232,9 +1234,11 @@
       entity_id:
         - fan.USER1s_office_fan
     - delay: '00:00:01'
-    - service: switch.turn_on
-      entity_id:
-        - switch.office_fan_auto_mode
+    - service: fan.set_preset_mode
+      target:
+        entity_id: fan.USER1s_office_fan
+      data:
+        preset_mode: Auto
     - delay: '00:00:01'
     - service: climate.set_hvac_mode
       data:

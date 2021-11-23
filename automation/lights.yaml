@@ -1222,11 +1222,11 @@
         brightness_pct: 50
 
         ##########################################################
-        ## Office Lamp Random Color On
+        ## USER1's Office Random Color On
         ##########################################################
 
-- alias: Lights - Office Lamp Random Color On
-  id: 'lights_office_lamp_random_color_on'
+- alias: Lights - USER1 Office Random Color On
+  id: 'lights_USER1_office_random_color_on'
 
   trigger:
     - platform: state
@@ -1245,13 +1245,16 @@
         effect: colorloop
         transition: 30
         brightness_pct: 100
+    - service: scene.turn_on
+      target:
+        entity_id: scene.moon_globe_random_color
 
         ##########################################################
-        ## Office Lamp Random Color Off
+        ## USER1 Office Random Color Off
         ##########################################################
 
-- alias: Lights - Office Lamp Random Color Off
-  id: 'lights_office_lamp_random_color_off'
+- alias: Lights - USER1 Office Random Color Off
+  id: 'lights_USER1_office_random_color_off'
 
   trigger:
     - platform: state
@@ -1268,6 +1271,9 @@
     - condition: state
       entity_id: light.office_lamp
       state: 'on'
+    - condition: state
+      entity_id: light.moon_globe
+      state: 'on'
 
   action:
     - service: light.turn_on
@@ -1277,6 +1283,12 @@
         transition: 30
         color_temp: 447
         brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.moon_globe
+      data:
+        brightness_pct: 3
+        color_temp: 500
 
         ##########################################################
         ## Front Porch Lights Random Color On
