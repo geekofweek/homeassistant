@@ -1,6 +1,6 @@
 [![GitHub stars](https://img.shields.io/github/stars/geekofweek/homeassistant.svg?style=plasticr)](https://github.com/geekofweek/homeassistant/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/geekofweek/homeassistant.svg?style=plasticr)](https://github.com/geekofweek/homeassistant/commits/master)
-[![HA Version](https://img.shields.io/badge/Running%20Home%20Assistant-2021.11.3%20-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
+[![HA Version](https://img.shields.io/badge/Running%20Home%20Assistant-2021.11.5%20-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
 [![HA Version](https://img.shields.io/badge/Original%20Home%20Assistant-0.14%20-darkblue)](https://github.com/home-assistant/core/releases/0.14)
 [![HA Community](https://img.shields.io/badge/HA%20community-forum-orange)](https://community.home-assistant.io/u/geekoftheweek/summary)
 
@@ -41,7 +41,7 @@ Relevant hub configurations can be found within [configuration.yaml](https://git
 | [Lutron Caseta Pico Wireless Dimmer Switch](https://amzn.to/2Etw0HP) | 6 | Lutron Clear Connect | [Lutron Caseta Pro](https://github.com/upsert/lutron-caseta-pro) (Custom Component) | Decora wall mountable remote (that looks like a dimmer switch). Controls various lights |
 | [Lutron Aurora Smart Bulb Dimmer](https://amzn.to/2OyI0PI) | 4 | Hue Hub (Zigbee)| [Philips Hue Light](https://www.home-assistant.io/components/light.hue/) | Smart Dimmer that attaches to existing Toggle light Switch. |
 | [LIFX Mini White](https://amzn.to/2UFDvmh) | 1 | Wi-Fi| [LIFX](https://www.home-assistant.io/integrations/lifx/) | Non color changing Wi-Fi smart bulbs.  Used in places where Zigbee is not reliable (detached garage) |
-
+| [LUMIMAN LM530](https://amzn.to/3xhHg4m) | 1 | Wi-Fi| [Tuya](https://www.home-assistant.io/integrations/tuya/) | Color changing Wi-Fi smart bulbs. Used as a lamp for a 3D Printed Moon Globe |
 
 Many of my automations rely on some form of lighting but many examples can be found in [lights.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/lights.yaml) and [location.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml).
 
@@ -170,7 +170,7 @@ Smoke detectors, like the water sensors, have one real function to alert me of s
 | [Ubiquiti Unifi Protect G4 Pro](https://amzn.to/2CrW5cK) | 1 | Ethernet | [Unifi Protect](https://github.com/briis/unifiprotect)(Custom Component) | 4K POE Camera. |
 | [Ubiquiti Unifi G4 Bullet](https://amzn.to/2XRWtIv) | 1 | Ethernet | [Unifi Protect](https://github.com/briis/unifiprotect)(Custom Component) | 1440p POE Camera. |
 | [Ubiquiti UniFi Video G3 Flex](https://amzn.to/2PKrSqA) | 6 | Ethernet | [Unifi Protect](https://github.com/briis/unifiprotect)(Custom Component) | 1080p POE Camera. |
-| [Ubiquiti UniFi Cloud Key Gen2 Plus](https://amzn.to/2RUxtz1) | 1 | Ethernet | [Unifi Protect](https://github.com/briis/unifiprotect)(Custom Component) | Unifi Protect NVR. |
+| [Unifi Network Video Recorder (UNVR)](https://amzn.to/3l5xfSV) | 1 | Ethernet | [Unifi Protect](https://github.com/briis/unifiprotect)(Custom Component) | Unifi Protect NVR. |
 
 Nothing is currently automated around cameras, just a [UI](https://github.com/geekofweek/homeassistant/blob/master/images/camera-screenshot.jpg) element.  The Ring doorbell is used in a number of ways to trigger an action based on motion detection or someone ringing the doorbell.  Examples can be found in [doorbell.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/doorbell.yaml)
 
@@ -233,9 +233,9 @@ All laundry related automations can be found in [laundry.yaml]( https://github.c
 | [Ubiquiti Networks UniFi Switch PRO PoE - 24 Ports (USW-Pro-24-POE)](https://amzn.to/2YB8jHL) | 1 | Ethernet | [Ubiquiti Unifi WAP](https://www.home-assistant.io/components/device_tracker.unifi/)| Primary Network Switch. Presence detection for non household members and devices |
 | [Ubiquiti Networks UniFi Switch - 24 Ports (US-24-250W)](https://amzn.to/2LbWLlJ) | 1 | Ethernet | [Ubiquiti Unifi](https://www.home-assistant.io/components/device_tracker.unifi/)| Secondary Network Switch. Presence detection for non household members and devices |
 | [Ubiquiti Networks 8-Port UniFi Switch (US-8-150W)](https://amzn.to/2Iuoah9) | 2 | Ethernet | [Ubiquiti Unifi](https://www.home-assistant.io/components/device_tracker.unifi/)| Additional Network Switches. Presence detection for non household members and devices |
-| [Ubiquiti Networks UniFi nanoHD (UAP-NANOHD-US)](https://amzn.to/2wPS2no) | 2 | Ethernet | [Ubiquiti Unifi](https://www.home-assistant.io/components/device_tracker.unifi/)| Wireless Access Point for interior and exterior use. Presence detection for non household members and devices. |
+| [Ubiquiti Networks UniFi Access Point WiFi 6 Long-Range (U6-LR-US)](https://amzn.to/3cFM2yX) | 2 | Ethernet | [Ubiquiti Unifi](https://www.home-assistant.io/components/device_tracker.unifi/)| Wireless Access Point for interior and exterior use. Presence detection for non household members and devices. |
 | [Ubiquiti Networks Unifi AP PRO (UAP-AC-PRO-US)](https://amzn.to/2rP3BFJ) | 1 | Ethernet | [Ubiquiti Unifi](https://www.home-assistant.io/components/device_tracker.unifi/)| Wireless Access Point for interior and exterior use. Presence detection for non household members and devices. |
-| [Ubiquiti Networks Unifi AP Lite (UAP-AC-LITE)](https://amzn.to/2YS8woA) | 1 | Ethernet | [Ubiquiti Unifi](https://www.home-assistant.io/components/device_tracker.unifi/) | Wireless Access Point for interior use. Presence detection for non household members and devices. |
+| [Ubiquiti Networks Unifi Access Point WiFi 6 Lite (U6-Lite-US)](https://amzn.to/3l3Dman) | 2 | Ethernet | [Ubiquiti Unifi](https://www.home-assistant.io/components/device_tracker.unifi/) | Wireless Access Point for interior use. Presence detection for non household members and devices. |
 | [Ubiquiti Networks Unifi Mesh AP (UAP-AC-M-US)](https://amzn.to/31QrE6E) | 1 | Ethernet | [Ubiquiti Unifi](https://www.home-assistant.io/components/device_tracker.unifi/) | Wireless Mesh Access Point for exterior use. Used in detached garage to provide internet and network traffic for cameras and devices.  Presence detection for non household members and devices. |
 
 
@@ -298,6 +298,8 @@ More detailed information on the custom Home Assistant Managment Tools can be fo
 | [Lutron Smart Bridge 2](https://amzn.to/2GpRGEX)| 1 | Ethernet | [Lutron Caseta](https://www.home-assistant.io/components/lutron_caseta/)| Replaced with a Lutron Smart Bridge 2 Pro |
 | [Creality Ender 3 V2](https://amzn.to/3bROjXf) | 1 | Wi-Fi | [OctoPrint](https://www.home-assistant.io/integrations/octoprint/)| 3D Printer connected to Home Assitant via OctoPrint running on a Raspberry Pi 3 B+.  Got tired of messing around with it, I just want to print useless objects with ease |
 | [Yamaha RX-V483BL](https://amzn.to/2DhNh89) | 1 | Wi-Fi | [Yamaha Network Receivers](https://www.home-assistant.io/components/media_player.yamaha/) | Surround Sound Receiver. Works in conjunction with the Sonos Connect, Harmony Hub, Apple TV 4k and various other media devices.  Replaced with Sonos Arc System |
+| [Ubiquiti Networks UniFi nanoHD (UAP-NANOHD-US)](https://amzn.to/2wPS2no) | 2 | Ethernet | [Ubiquiti Unifi](https://www.home-assistant.io/components/device_tracker.unifi/)| Wireless Access Point for interior and exterior use. Presence detection for non household members and devices. Replaced by WiFi 6 Models |
+| [Ubiquiti Networks Unifi AP Lite (UAP-AC-LITE)](https://amzn.to/2YS8woA) | 1 | Ethernet | [Ubiquiti Unifi](https://www.home-assistant.io/components/device_tracker.unifi/) | Wireless Access Point for interior use. Presence detection for non household members and devices. Replaced by WiFi 6 Models |
 
 
 # <a name="screenshots">Screenshots</a>
