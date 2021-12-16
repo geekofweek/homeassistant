@@ -1,6 +1,6 @@
 [![GitHub stars](https://img.shields.io/github/stars/geekofweek/homeassistant.svg?style=plasticr)](https://github.com/geekofweek/homeassistant/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/geekofweek/homeassistant.svg?style=plasticr)](https://github.com/geekofweek/homeassistant/commits/master)
-[![HA Version](https://img.shields.io/badge/Running%20Home%20Assistant-2021.12.0%20-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
+[![HA Version](https://img.shields.io/badge/Running%20Home%20Assistant-2021.12.2%20-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
 [![HA Version](https://img.shields.io/badge/Original%20Home%20Assistant-0.14%20-darkblue)](https://github.com/home-assistant/core/releases/0.14)
 [![HA Community](https://img.shields.io/badge/HA%20community-forum-orange)](https://community.home-assistant.io/u/geekoftheweek/summary)
 
@@ -151,7 +151,7 @@ Harmony Hubs work via a combination of [input_selects]( https://github.com/geeko
 | [Nest Protect v2 Battery](https://amzn.to/2LJ0ACn) | 6 | Wi-Fi | [Nest](https://www.home-assistant.io/components/nest/) | Smoke Alarm and CO Alarm.  I realized most of my Smoke Alarms had long suprased the 10 year mark and it was time for some replacements. I usually avoid Google owned products for various reasons, but the Nest Protect line has high praise. |
 | [Dome Motion Detector - Light Sensor](https://amzn.to/2W9TMDS) | 8 | Z-Wave | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Motion and Light Level sensor used to automate around motion events and current room brightness. |
 | [GoControl PIR Motion Detector](https://amzn.to/2HCvyZJ) | 1 | Z-Wave | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Motion sensor used to automate around motion events. |
-| [ZOOZ 4-in-1 Sensor ZSE40](https://amzn.to/3aTqGhZ) | 4 | Z-Wave | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Motion,temperature, humidity, and light level sensor used to automate around motion events. |
+| [ZOOZ 4-in-1 Sensor ZSE40](https://amzn.to/3aTqGhZ) | 5 | Z-Wave | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Motion,temperature, humidity, and light level sensor used to automate around motion events. |
 | [Dome Home Automation Leak Sensor](https://amzn.to/2IA5XBj) | 8 | Z-Wave | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Water sensors used to detect the pressence of water as a preventive measure |
 | [Aeon Labs Water Sensor](https://amzn.to/2rM6KFE) | 2 | Z-Wave | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Water sensors used to detect the pressence of water as a preventive measure |
 | [Ecolink Door/Window Sensor](https://amzn.to/3cCjhUU) | 2 | Z-Wave | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Trial run on Window sensors to stop my blinds from closing when a Window is Open.  Starting small but we all know how that will end up.  ALL THE WINDOWS! |
