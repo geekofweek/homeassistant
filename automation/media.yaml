@@ -1171,6 +1171,56 @@
         - switch.sonos_bedroom_night_sound
 
         ##########################################################
+        ## Fix Bedroom TV Sound Output Power On
+        ##########################################################
+
+- alias: Media - Fix Bedroom TV Sound Output Power On
+  id: 'media_fix_bedroom_tv_sound_output_power_on'
+
+  trigger:
+    - platform: state
+      entity_id: media_player.bedroom_tv
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 15
+
+  action:
+    - service: webostv.select_sound_output
+      data:
+        entity_id: media_player.bedroom_tv
+        sound_output: external_arc
+
+        ##########################################################
+        ## Fix Bedroom TV Sound Output When Changed
+        ##########################################################
+
+- alias: Media - ix Bedroom TV Sound Output When Changed
+  id: 'media_fix_bedroom_tv_sound_output_when_changed'
+
+  trigger:
+    - platform: state
+      entity_id: media_player.bedroom_tv
+      attribute: sound_output
+      from: external_arc
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 15
+
+  condition:
+    - condition: state
+      entity_id: media_player.bedroom_tv
+      state: 'on'
+
+  action:
+    - service: webostv.select_sound_output
+      data:
+        entity_id: media_player.bedroom_tv
+        sound_output: external_arc
+
+        ##########################################################
         ## Turn off Living Room Lights When Playing Xbox
         ##########################################################
 

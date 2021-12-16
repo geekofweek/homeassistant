@@ -145,6 +145,9 @@
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
+    - condition: state
+      entity_id: switch.christmas_tree
+      state: 'on'
 
   action:
     - service: switch.turn_off
@@ -174,9 +177,6 @@
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
-    - condition: state
-      entity_id: switch.christmas_tree
-      state: 'off'
     - condition: or
       conditions:
       - condition: state
@@ -185,6 +185,9 @@
       - condition: state
         entity_id: input_boolean.USER2_away
         state: 'on'
+    - condition: state
+      entity_id: switch.christmas_tree
+      state: 'off'
 
   action:
     - service: switch.turn_on
@@ -209,6 +212,37 @@
     - condition: state
       entity_id: input_boolean.disable_interior_lights_sunset
       state: 'off'
+    - condition: state
+      entity_id: switch.christmas_tree
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.christmas_tree
+
+        ##########################################################
+        ## Turn on Christmas Tree when Sun Below Horizon
+        ##########################################################
+
+- alias: Christmas - Turn on Christmas Tree when Sun Below Horizon
+
+  trigger:
+    - platform: state
+      entity_id: sun.sun
+      from: 'above_horizon'
+      to: 'below_horizon'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_interior_lights_sunset
+      state: 'off'
+    - condition: state
+      entity_id: switch.christmas_tree
+      state: 'off'
 
   action:
     - service: switch.turn_on
@@ -229,6 +263,9 @@
     - condition: state
       entity_id: person.USER2
       state: 'home'
+    - condition: state
+      entity_id: switch.christmas_tree
+      state: 'off'
 
   action:
     - service: switch.turn_on
@@ -261,6 +298,9 @@
     - condition: state
       entity_id: person.USER1
       state: 'home'
+    - condition: state
+      entity_id: switch.christmas_tree
+      state: 'on'
 
   action:
     - service: switch.turn_off
@@ -289,13 +329,13 @@
       state: 'off'
     - condition: time
       after: '08:30'
-      before: '16:00'
-    - condition: state
-      entity_id: switch.christmas_tree
-      state: 'off'
+      before: '18:00'
     - condition: state
       entity_id: input_boolean.USER2_away
       state: 'on'
+    - condition: state
+      entity_id: switch.christmas_tree
+      state: 'off'
 
   action:
     - service: switch.turn_on
@@ -331,6 +371,9 @@
     - condition: state
       entity_id: input_boolean.disable_media_lights
       state: 'off'
+    - condition: state
+      entity_id: switch.christmas_tree
+      state: 'off'
 
   action:
     - service: switch.turn_on
@@ -359,6 +402,9 @@
     - condition: state
       entity_id: input_boolean.disable_media_lights
       state: 'off'
+    - condition: state
+      entity_id: switch.christmas_tree
+      state: 'on'
 
   action:
     - service: switch.turn_off
@@ -400,8 +446,11 @@
       entity_id: input_boolean.watching_plex
       state: 'off'
     - condition: state
-      entity_id: input_select.remote
-      state: 'Watch TV'
+      entity_id: switch.living_room_tv_watch_tv
+      state: 'on'
+    - condition: state
+      entity_id: switch.christmas_tree
+      state: 'off'
 
   action:
     - service: switch.turn_on
@@ -444,8 +493,11 @@
       entity_id: input_boolean.watching_plex
       state: 'off'
     - condition: state
-      entity_id: input_select.remote
-      state: 'Watch TV'
+      entity_id: switch.living_room_tv_watch_tv
+      state: 'on'
+    - condition: state
+      entity_id: switch.christmas_tree
+      state: 'off'
 
   action:
     - service: switch.turn_on
@@ -487,6 +539,9 @@
     - condition: state
       entity_id: input_boolean.watching_plex
       state: 'off'
+    - condition: state
+      entity_id: switch.christmas_tree
+      state: 'off'
 
   action:
     - service: switch.turn_on
@@ -522,8 +577,11 @@
       entity_id: input_boolean.watching_plex
       state: 'off'
     - condition: state
-      entity_id: input_select.remote
-      state: 'Watch TV'
+      entity_id: switch.living_room_tv_watch_tv
+      state: 'on'
+    - condition: state
+      entity_id: switch.christmas_tree
+      state: 'on'
 
   action:
     - service: switch.turn_off
@@ -558,8 +616,11 @@
       entity_id: input_boolean.watching_plex
       state: 'off'
     - condition: state
-      entity_id: input_select.remote
-      state: 'Watch TV'
+      entity_id: switch.living_room_tv_watch_tv
+      state: 'on'
+    - condition: state
+      entity_id: switch.christmas_tree
+      state: 'on'
 
   action:
     - service: switch.turn_off
@@ -580,6 +641,11 @@
         hours: 0
         minutes: 2
         seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: switch.christmas_tree
+      state: 'on'
 
   action:
     - service: switch.turn_off
@@ -616,12 +682,12 @@
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
-    - condition: state
-      entity_id: switch.christmas_tree
-      state: 'on'
     - condition: time
       after: '21:00:00'
       before: '05:00:00'
+    - condition: state
+      entity_id: switch.christmas_tree
+      state: 'on'
 
   action:
     - service: switch.turn_off
@@ -653,12 +719,12 @@
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
-    - condition: state
-      entity_id: switch.christmas_tree
-      state: 'off'
     - condition: time
       after: '21:00:00'
       before: '05:00:00'
+    - condition: state
+      entity_id: switch.christmas_tree
+      state: 'off'
 
   action:
     - service: switch.turn_on

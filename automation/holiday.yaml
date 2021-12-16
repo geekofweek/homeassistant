@@ -69,26 +69,26 @@
         color_name: red
 
         ##########################################################
-        ## Christmas Lighting Rotate on the Hour
+        ## Christmas Lighting Rotate Colors
         ##########################################################
 
-- alias: Holiday - Christmas Lighting Rotate on the Hour
-  id: 'holiday_christmas_lighting_rotate_on_the_hour'
+- alias: Holiday - Christmas Lighting Rotate Colors
+  id: 'holiday_christmas_lighting_rotate_colors'
 
   trigger:
     platform: time_pattern
-    minutes: 0
+    seconds: /10
 
   condition:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
-    - condition: time
-      after: '15:00:00'
-      before: '23:59:00'
     - condition: state
       entity_id: input_select.holiday
       state: 'Christmas'
+    - condition: state
+      entity_id: light.front_porch
+      state: 'on'
 
   action:
     - service: light.turn_on
@@ -96,121 +96,31 @@
       data:
         transition: 5
         brightness_pct: 100
-        color_name: red
+        color_name: '{{ states(''input_select.exterior_christmas_light_color_left'') }}'
     - service: light.turn_on
       entity_id: light.front_porch_right
       data:
         transition: 5
         brightness_pct: 100
-        color_name: green
-
-        ##########################################################
-        ## Christmas Lighting Rotate 15 mins after the Hour
-        ##########################################################
-
-- alias: Holiday - Christmas Lighting Rotate 15 mins after the Hour
-  id: 'holiday_christmas_lighting_rotate_15_mins_after_the_hour'
-
-  trigger:
-    platform: time_pattern
-    minutes: 15
-
-  condition:
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: time
-      after: '15:00:00'
-      before: '23:59:00'
-    - condition: state
-      entity_id: input_select.holiday
-      state: 'Christmas'
-
-  action:
-    - service: light.turn_on
-      entity_id: light.front_porch_left
+        color_name: '{{ states(''input_select.exterior_christmas_light_color_right'') }}'
+    - service: input_select.select_option
+      target:
+        entity_id: input_select.exterior_christmas_light_color_left
       data:
-        transition: 5
-        brightness_pct: 100
-        color_name: green
-    - service: light.turn_on
-      entity_id: light.front_porch_right
+        option: >
+          {{ state_attr('input_select.exterior_christmas_light_color_left', 'options')
+              | reject('eq', states('input_select.exterior_christmas_light_color_left'))
+              | reject('eq', states('input_select.exterior_christmas_light_color_right'))
+              | list | random }}
+    - service: input_select.select_option
+      target:
+        entity_id: input_select.exterior_christmas_light_color_right
       data:
-        transition: 5
-        brightness_pct: 100
-        color_name: red
-
-        ##########################################################
-        ## Christmas Lighting Rotate 30 Mins after the Hour
-        ##########################################################
-
-- alias: Holiday - Christmas Lighting Rotate 30 Mins after the Hour
-  id: 'holiday_christmas_lighting_rotate_30_mins_after_the_hour'
-
-  trigger:
-    platform: time_pattern
-    minutes: 30
-
-  condition:
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: time
-      after: '15:00:00'
-      before: '23:59:00'
-    - condition: state
-      entity_id: input_select.holiday
-      state: 'Christmas'
-
-  action:
-    - service: light.turn_on
-      entity_id: light.front_porch_left
-      data:
-        transition: 5
-        brightness_pct: 100
-        color_name: red
-    - service: light.turn_on
-      entity_id: light.front_porch_right
-      data:
-        transition: 5
-        brightness_pct: 100
-        color_name: green
-
-        ##########################################################
-        ## Christmas Lighting Rotate 45 Mins After the Hour
-        ##########################################################
-
-- alias: Holiday - Christmas Lighting Rotate 45 Mins After the Hour
-  id: 'holiday_christmas_lighting_rotate_45_mins_after_the_hour'
-
-  trigger:
-    platform: time_pattern
-    minutes: 45
-
-  condition:
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: time
-      after: '15:00:00'
-      before: '23:59:00'
-    - condition: state
-      entity_id: input_select.holiday
-      state: 'Christmas'
-
-  action:
-    - service: light.turn_on
-      entity_id: light.front_porch_left
-      data:
-        transition: 5
-        brightness_pct: 100
-        color_name: green
-    - service: light.turn_on
-      entity_id: light.front_porch_right
-      data:
-        transition: 5
-        brightness_pct: 100
-        color_name: red
+        option: >
+          {{ state_attr('input_select.exterior_christmas_light_color_right', 'options')
+              | reject('eq', states('input_select.exterior_christmas_light_color_right'))
+              | reject('eq', states('input_select.exterior_christmas_light_color_left'))
+              | list | random }}
 
         ##########################################################
         ## Enable New Years Eve Lighting
@@ -1468,7 +1378,7 @@
 
   trigger:
     - platform: time
-      at: '01:55:00'
+      at: '02:00:00'
 
   condition:
     condition: not
@@ -1480,8 +1390,9 @@
   action:
     - service: light.turn_off
       entity_id: light.front_porch
-      data:
-        transition: 300
+    - delay: '00:00:60'
+    - service: light.turn_off
+      entity_id: light.front_porch
 
         ##########################################################
         ## Reset Holiday Lighting at 4a

@@ -2552,7 +2552,10 @@
       entity_id: group.household
       state: 'home'
     - condition: state
-      entity_id: light.USER1_office_lights
+      entity_id: light.USER1_s_office_ceiling
+      state: 'off'
+    - condition: state
+      entity_id: light.office_lamp
       state: 'off'
     - condition: state
       entity_id: person.USER1
@@ -2604,7 +2607,10 @@
       entity_id: group.household
       state: 'home'
     - condition: state
-      entity_id: light.USER1_office_lights
+      entity_id: light.USER1_s_office_ceiling
+      state: 'off'
+    - condition: state
+      entity_id: light.office_lamp
       state: 'off'
     - condition: state
       entity_id: person.USER1
@@ -3108,3 +3114,149 @@
     - service: light.turn_off
       entity_id:
         - light.upstairs_bathroom_vanity
+
+        ##########################################################
+        ## Turn On Bedroom Closet Lights when Motion Detected Early Morning
+        ##########################################################
+
+- alias: Motion - Turn On Bedroom Closet Lights when Motion Detected Early Morning
+  id: 'motion_turn_on_bedroom_closet_lights_when_motion_detected_early_morning'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bedroom_closet_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: cover.bedroom_closet_blinds
+      state: 'closed'
+    - condition: time
+      after: '05:00:00'
+      before: '09:00:00'
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: light.bedroom_closet_lights
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id: 
+        - light.bedroom_closet_lights
+      data:
+        profile: nightlight
+
+        ##########################################################
+        ## Turn On Bedroom Closet Lights when Motion Detected Weekdays
+        ##########################################################
+
+- alias: Motion - Turn On Bedroom Closet Lights when Motion Detected Weekdays
+  id: 'motion_turn_on_bedroom_closet_lights_when_motion_detected_weekdays'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bedroom_closet_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: cover.bedroom_closet_blinds
+      state: 'closed'
+    - condition: time
+      after: '09:00:00'
+      before: '20:30:00'
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: light.bedroom_closet_lights
+      state: 'off'
+    - condition: time
+      weekday:
+        - sun
+        - mon
+        - tue
+        - wed
+        - thu
+
+  action:
+    - service: light.turn_on
+      entity_id: 
+        - light.bedroom_closet_lights
+      data:
+        profile: dimmed
+
+        ##########################################################
+        ## Turn On Bedroom Closet Lights when Motion Detected Weekends
+        ##########################################################
+
+- alias: Motion - Turn On Bedroom Closet Lights when Motion Detected Weekends
+  id: 'motion_turn_on_bedroom_closet_lights_when_motion_detected_weekends'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bedroom_closet_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: cover.bedroom_closet_blinds
+      state: 'closed'
+    - condition: time
+      after: '09:00:00'
+      before: '01:30:00'
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: light.bedroom_closet_lights
+      state: 'off'
+    - condition: time
+      weekday:
+        - fri
+        - sat
+
+  action:
+    - service: light.turn_on
+      entity_id: 
+        - light.bedroom_closet_lights
+      data:
+        profile: dimmed
+
+        ##########################################################
+        ## Turn Off Bedroom Closet Lights when No Motion Detected
+        ##########################################################
+
+- alias: Motion - Turn Off Bedroom Closet Lights when No Motion Detected
+  id: 'motion_turn_off_bedroom_closet_lights_when_no_motion_detected'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bedroom_closet_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.bedroom_closet_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.bedroom_closet_lights

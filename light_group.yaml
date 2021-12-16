@@ -36,6 +36,12 @@
       - light.bedroom_closet_ceiling_2
 
   - platform: group
+    name: Bedroom Closet Lights
+    entities:
+      - light.bedroom_closet_ceiling
+      - light.closet_lamp
+
+  - platform: group
     name: Bedroom Ceiling
     entities:
       - light.bedroom_ceiling_1
