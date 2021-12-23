@@ -1278,6 +1278,12 @@
       entity_id: switch.basement_heater
       state: 'off'
     - condition: state
+      entity_id: switch.3d_printer_prusa
+      state: 'off'
+    - condition: state
+      entity_id: switch.3d_printer_prusa_mini
+      state: 'off'
+    - condition: state
       entity_id: input_boolean.disable_climate
       state: 'off'
     - condition: numeric_state

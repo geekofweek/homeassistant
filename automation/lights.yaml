@@ -777,11 +777,14 @@
 
   action:
     - service: light.turn_on
-      entity_id:
-        - light.media_center_lighting
+      target:
+        entity_id: light.media_center_lighting
       data:
-        effect: random
         transition: 300
+        hs_color:
+          - '{{ (range(0, 360)|random) }}'
+          - '100'
+        brightness_pct: 100
 
         ##########################################################
         ## Set Globe Color Temp
@@ -1022,50 +1025,56 @@
   id: 'lights_living_room_lights_random_color_on'
 
   trigger:
-    - platform: state
-      entity_id: input_boolean.livingroom_rainbow
-      to: 'on'
+    - platform: time_pattern
+      seconds: '/10'
 
   condition:
     - condition: state
+      entity_id: input_boolean.livingroom_rainbow
+      state: 'on'
+    - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: input_boolean.bedtime
+      state: 'off'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.living_room_fan_lights
     - service: light.turn_on
-      entity_id:
-        - light.living_room_lamps
-        - light.media_center_lighting
-        - light.globe
+      target:
+        entity_id: light.living_room_lamp_1
       data:
-        effect: random
+        transition: 5
+        hs_color:
+          - '{{ (range(0, 360)|random) }}'
+          - '100'
         brightness_pct: 100
-    - delay: '00:00:05'
     - service: light.turn_on
-      entity_id: light.living_room_lamp_1
+      target:
+        entity_id: light.media_center_lighting
       data:
-        effect: colorloop
+        transition: 5
+        hs_color:
+          - '{{ (range(0, 360)|random) }}'
+          - '100'
         brightness_pct: 100
-    - delay: '00:00:17'
     - service: light.turn_on
-      entity_id: light.media_center_lighting
+      target:
+        entity_id: light.globe
       data:
-        effect: colorloop
+        transition: 5
+        hs_color:
+          - '{{ (range(0, 360)|random) }}'
+          - '100'
         brightness_pct: 100
-    - delay: '00:00:31'
     - service: light.turn_on
-      entity_id: light.globe
+      target:
+        entity_id: light.living_room_lamp_2
       data:
-        effect: colorloop
-        brightness_pct: 100
-    - delay: '00:00:43'
-    - service: light.turn_on
-      entity_id: light.living_room_lamp_2
-      data:
-        effect: colorloop
+        transition: 5
+        hs_color:
+          - '{{ (range(0, 360)|random) }}'
+          - '100'
         brightness_pct: 100
 
         ##########################################################
@@ -1095,14 +1104,11 @@
     - service: light.turn_on
       entity_id:
         - light.living_room_accent_lights
-      data:
-        effect: stop
     - delay: '00:00:05'
     - service: light.turn_on
       entity_id:
         - light.living_room_lamps
       data:
-        effect: stop
         transition: 30
         brightness_pct: 100
         color_temp: 447
@@ -1110,13 +1116,11 @@
       entity_id: light.media_center_lighting
       data:
         transition: 30
-        effect: random
         brightness_pct: 100
     - service: light.turn_on
       entity_id:
         - light.globe
       data:
-        effect: stop
         transition: 30
         brightness_pct: 20
         color_temp: 366
@@ -1129,45 +1133,47 @@
   id: 'lights_bedroom_lights_random_color_on'
 
   trigger:
-    - platform: state
-      entity_id: input_boolean.bedroom_rainbow
-      to: 'on'
+    - platform: time_pattern
+      seconds: '/10'
 
   condition:
     - condition: state
+      entity_id: input_boolean.bedroom_rainbow
+      state: 'on'
+    - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: input_boolean.bedtime
+      state: 'off'
 
   action:
     - service: light.turn_on
-      entity_id:
-        - light.USER1s_nightstand
-        - light.USER2s_nightstand
-        - light.bedroom_lamp
+      target:
+        entity_id: light.USER1s_nightstand
       data:
-        effect: random
+        transition: 5
+        hs_color:
+          - '{{ (range(0, 360)|random) }}'
+          - '100'
         brightness_pct: 100
-    - service: light.turn_off
-      entity_id:
-        - light.closet_lamp
-        - light.bedroom_closet_ceiling
-    - delay: '00:00:05'
     - service: light.turn_on
-      entity_id: light.USER1s_nightstand
+      target:
+        entity_id: light.USER2s_nightstand
       data:
-        effect: colorloop
+        transition: 5
+        hs_color:
+          - '{{ (range(0, 360)|random) }}'
+          - '100'
         brightness_pct: 100
-    - delay: '00:00:17'
     - service: light.turn_on
-      entity_id: light.bedroom_lamp
+      target:
+        entity_id: light.bedroom_lamp
       data:
-        effect: colorloop
-        brightness_pct: 100
-    - delay: '00:00:31'
-    - service: light.turn_on
-      entity_id: light.USER2s_nightstand
-      data:
-        effect: colorloop
+        transition: 5
+        hs_color:
+          - '{{ (range(0, 360)|random) }}'
+          - '100'
         brightness_pct: 100
 
         ##########################################################
@@ -1199,8 +1205,6 @@
         - light.USER1s_nightstand
         - light.USER2s_nightstand
         - light.bedroom_lamp
-      data:
-        effect: stop
     - delay: '00:00:05'
     - service: light.turn_on
       entity_id:
@@ -1208,7 +1212,6 @@
         - light.USER2s_nightstand
         - light.bedroom_lamp
       data:
-        effect: stop
         transition: 30
         color_temp: 447
         brightness_pct: 50
@@ -1217,16 +1220,15 @@
         - light.closet_lamp
         - light.bedroom_closet_ceiling
       data:
-        effect: stop
         transition: 30
         brightness_pct: 50
 
         ##########################################################
-        ## USER1's Office Random Color On
+        ## USER1's Office Moon Lamp Random Color On
         ##########################################################
 
-- alias: Lights - USER1 Office Random Color On
-  id: 'lights_USER1_office_random_color_on'
+- alias: Lights - USER1 Office Moon Lamp Random Color On
+  id: 'lights_USER1_office_moon_lamp_random_color_on'
 
   trigger:
     - platform: state
@@ -1237,17 +1239,50 @@
     - condition: state
       entity_id: input_boolean.office_rainbow
       state: 'on'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.bedtime
+      state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id: light.office_lamp
-      data:
-        effect: colorloop
-        transition: 30
-        brightness_pct: 100
     - service: scene.turn_on
       target:
         entity_id: scene.moon_globe_random_color
+
+        ##########################################################
+        ## USER1's Office Lamp Random Color
+        ##########################################################
+
+- alias: Lights - USER1's Office Lamp Random Color
+  id: 'lights_USER1_office_lamp_random_color'
+
+  trigger:
+    - platform: time_pattern
+      seconds: '/10'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.office_rainbow
+      state: 'on'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.bedtime
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      target:
+        entity_id: light.office_lamp
+      data:
+        transition: 5
+        hs_color:
+          - '{{ (range(0, 360)|random) }}'
+          - '100'
+        brightness_pct: 100
 
         ##########################################################
         ## USER1 Office Random Color Off
@@ -1279,8 +1314,7 @@
     - service: light.turn_on
       entity_id: light.office_lamp
       data:
-        effect: stop
-        transition: 30
+        transition: 5
         color_temp: 447
         brightness_pct: 100
     - service: light.turn_on
@@ -1298,37 +1332,38 @@
   id: 'lights_front_porch_lights_random_color_on'
 
   trigger:
-    - platform: state
-      entity_id: input_boolean.front_porch_rainbow
-      to: 'on'
+    - platform: time_pattern
+      seconds: '/10'
 
   condition:
+    - condition: state
+      entity_id: input_boolean.front_porch_rainbow
+      state: 'on'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
     - condition: state
       entity_id: input_boolean.bedtime
       state: 'off'
 
   action:
     - service: light.turn_on
-      entity_id:  light.front_porch_left
+      target:
+        entity_id: light.front_porch_left
       data:
-        effect: random
+        transition: 5
+        hs_color:
+          - '{{ (range(0, 360)|random) }}'
+          - '100'
         brightness_pct: 100
     - service: light.turn_on
-      entity_id: light.front_porch_right
+      target:
+        entity_id: light.front_porch_right
       data:
-        effect: random
-        brightness_pct: 100
-    - delay: '00:00:05'
-    - service: light.turn_on
-      entity_id: light.front_porch_left
-      data:
-        effect: colorloop
-        brightness_pct: 100
-    - delay: '00:00:23'
-    - service: light.turn_on
-      entity_id: light.front_porch_right
-      data:
-        effect: colorloop
+        transition: 5
+        hs_color:
+          - '{{ (range(0, 360)|random) }}'
+          - '100'
         brightness_pct: 100
 
         ##########################################################
@@ -1351,14 +1386,11 @@
   action:
     - service: light.turn_on
       entity_id: light.front_porch
-      data:
-        effect: stop
     - delay: '00:00:01'
     - service: light.turn_on
       entity_id: light.front_porch
       data:
-        effect: stop
-        transition: 60
+        transition: 30
         brightness_pct: 50
         color_temp: 447
 

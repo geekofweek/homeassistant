@@ -172,28 +172,8 @@
       state: "New Year's Eve"
 
   action:
-    - service: light.turn_on
-      entity_id:  light.front_porch_left
-      data:
-        effect: random
-        brightness_pct: 100
-    - service: light.turn_on
-      entity_id: light.front_porch_right
-      data:
-        effect: random
-        brightness_pct: 100
-    - delay: '00:00:15'
-    - service: light.turn_on
-      entity_id: light.front_porch_left
-      data:
-        effect: colorloop
-        brightness_pct: 100
-    - delay: '00:00:30'
-    - service: light.turn_on
-      entity_id: light.front_porch_right
-      data:
-        effect: colorloop
-        brightness_pct: 100
+    - service: homeassistant.turn_on
+      entity_id:  input_boolean.front_porch_rainbow
 
         ##########################################################
         ## Enable Halloween Lighting
@@ -1378,7 +1358,7 @@
 
   trigger:
     - platform: time
-      at: '02:00:00'
+      at: '01:59:00'
 
   condition:
     condition: not
@@ -1388,6 +1368,9 @@
         state: 'None'
 
   action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.front_porch_rainbow
+    - delay: '00:00:60'
     - service: light.turn_off
       entity_id: light.front_porch
     - delay: '00:00:60'
