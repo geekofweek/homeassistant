@@ -2517,7 +2517,7 @@
     - condition: not
       conditions:
       - condition: state
-        entity_id: input_select.USER1_s_office_tv_remote
+        entity_id: select.USER1_s_office_tv_activities
         state: 'PowerOff'
     - condition: not
       conditions:
@@ -2526,9 +2526,9 @@
         state: 'playing'
 
   action:
-    - service: input_select.select_option
+    - service: select.select_option
       data:
-        entity_id: input_select.USER1_s_office_tv_remote
+        entity_id: select.USER1_s_office_tv_activities
         option: "PowerOff"
 
         ##########################################################
@@ -2564,7 +2564,7 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: state
-      entity_id: input_select.USER1_s_office_tv_remote
+      entity_id: select.USER1_s_office_tv_activities
       state: 'PowerOff'
 
   action:

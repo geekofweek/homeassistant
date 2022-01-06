@@ -787,6 +787,46 @@
         brightness_pct: 100
 
         ##########################################################
+        ## Media Center Lighting Turn on Scene when Light On
+        ##########################################################
+
+- alias: Lights - Media Center Lighting Turn on Scene when Light On
+  id: 'lights_media_center_lighting_turn_on_scene_when_light_on'
+
+  trigger:
+    - platform: state
+      entity_id: light.media_center_lighting
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: light.media_center_lighting
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.livingroom_rainbow
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.interior_holiday
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: scene.turn_on
+      data:
+        transition: 90
+        entity_id: >
+          {{ ["scene.media_center_hue_tokyo", "scene.media_center_hue_fairfax",
+          "scene.media_center_hue_osaka", "scene.media_center_hue_soho", 
+          "scene.media_center_hue_color_burst"] | random }}
+        
+        ##########################################################
         ## Set Globe Color Temp
         ##########################################################
 

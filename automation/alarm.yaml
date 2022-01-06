@@ -696,15 +696,19 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.living_room_motion
+      entity_id: binary_sensor.bathroom_motion
       from: 'off'
       to: 'on'
     - platform: state
-      entity_id: binary_sensor.kitchen_motion
+      entity_id: binary_sensor.dining_room_motion
       from: 'off'
       to: 'on'
     - platform: state
-      entity_id: binary_sensor.basement_motion
+      entity_id: binary_sensor.stairs_motion
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.bedroom_closet_motion
       from: 'off'
       to: 'on'
 

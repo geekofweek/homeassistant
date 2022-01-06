@@ -58,17 +58,17 @@
         - input_boolean.electronic_music
         - input_boolean.classical_music
         - input_boolean.group_all_sonos
-    - service: input_select.select_option
+    - service: select.select_option
       data:
-        entity_id: input_select.living_room_tv_remote
+        entity_id: select.living_room_tv_activities
         option: "PowerOff"
-    - service: input_select.select_option
+    - service: select.select_option
       data:
-        entity_id: input_select.bedroom_tv_remote
+        entity_id: select.bedroom_tv_activities
         option: "PowerOff"
-    - service: input_select.select_option
+    - service: select.select_option
       data:
-        entity_id: input_select.USER1_s_office_tv_remote
+        entity_id: select.USER1_s_office_tv_activities
         option: "PowerOff"
     - service: input_select.select_option
       data:
@@ -791,9 +791,9 @@
     - service: cover.close_cover
       entity_id:
         - cover.USER1_s_office_blinds
-    - service: input_select.select_option
+    - service: select.select_option
       data:
-        entity_id: input_select.USER1_s_office_tv_remote
+        entity_id: select.USER1_s_office_tv_activities
         option: "PowerOff"
 
         ##########################################################

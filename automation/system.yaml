@@ -305,19 +305,3 @@
         data:
           tag: bond
           group: system
-
-        ##########################################################
-        ## Reload Tuya Integration Every 30 Mins
-        ##########################################################
-
-- alias: System - Reload Tuya Integration Every 30 Mins
-  id: 'system_reload_tuya_integration_every_30_mins'
-
-  trigger:
-    - platform: time_pattern
-      minutes: '/30'
-
-  action:
-    - service: homeassistant.reload_config_entry
-      entity_id:
-        - light.moon_globe

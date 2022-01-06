@@ -3,55 +3,6 @@
 #################################################################
 
         ##########################################################
-        ## Harmony Remote
-        ##########################################################
-
-input_select_harmony:
-  alias: "Start Remote activity from input select"
-  sequence:
-      service: remote.turn_on
-      data_template:
-        entity_id: remote.living_room_tv
-        activity: >
-          {% if is_state("input_select.living_room_tv_remote", "PowerOff") %}
-              -1
-          {% elif is_state("input_select.living_room_tv_remote", "Watch TV") %}
-              22106204
-          {% elif is_state("input_select.living_room_tv_remote", "Play Xbox") %}
-              22107236
-          {% elif is_state("input_select.living_room_tv_remote", "Play Nintendo Switch") %}
-              23666878
-          {% endif %}
-
-input_select_bedroom_harmony:
-  alias: "Start Bedroom Remote activity from input select"
-  sequence:
-      service: remote.turn_on
-      data_template:
-        entity_id: remote.bedroom_tv
-        activity: >
-          {% if is_state("input_select.bedroom_tv_remote", "PowerOff") %}
-              -1
-          {% elif is_state("input_select.bedroom_tv_remote", "Watch TV") %}
-              31071991
-          {% endif %}
-
-input_select_office_harmony:
-  alias: "Start Office Remote activity from input select"
-  sequence:
-      service: remote.turn_on
-      data_template:
-        entity_id: remote.USER1_s_office_tv
-        activity: >
-          {% if is_state("input_select.USER1_s_office_tv_remote", "PowerOff") %}
-              -1
-          {% elif is_state("input_select.USER1_s_office_tv_remote", "Watch TV") %}
-              33663475
-          {% elif is_state("input_select.USER1_s_office_tv_remote", "Play Xbox One") %}
-              36216391
-          {% endif %}
-
-        ##########################################################
         ## Sonos Text to Speech
         ##########################################################
 
@@ -109,3 +60,63 @@ living_room_fan_light_dimmer:
     - service: switch.turn_off
       entity_id:
         - switch.living_room_west_fan_dimmer
+
+#################################################################
+## Apple TV App Launch Scripts
+#################################################################
+
+        ##########################################################
+        ## Living Room Netflix
+        ##########################################################
+
+living_room_launch_netflix:
+  alias: Living Room Launch Netflix
+  icon: mdi:netflix
+  sequence:
+    - service: media_player.select_source
+      target:
+        entity_id: media_player.living_room_appletv
+      data:
+        source: "Netflix"
+
+        ##########################################################
+        ## Living Room Plex
+        ##########################################################
+
+living_room_launch_plex:
+  alias: Living Room Launch Plex
+  icon: mdi:plex
+  sequence:
+    - service: media_player.select_source
+      target:
+        entity_id: media_player.living_room_appletv
+      data:
+        source: "Plex"
+
+        ##########################################################
+        ## Living Room Disney+
+        ##########################################################
+
+living_room_launch_disney:
+  alias: "Living Room Launch Disney+"
+  icon: mdi:caREDACTEDe
+  sequence:
+    - service: media_player.select_source
+      target:
+        entity_id: media_player.living_room_appletv
+      data:
+        source: "Disney+"
+
+        ##########################################################
+        ## Living Room Hulu
+        ##########################################################
+
+living_room_launch_hulu:
+  alias: "Living Room Launch Hulu"
+  icon: mdi:hulu
+  sequence:
+    - service: media_player.select_source
+      target:
+        entity_id: media_player.living_room_appletv
+      data:
+        source: "Hulu"

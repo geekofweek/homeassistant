@@ -428,35 +428,6 @@
         - light.bathroom_lights
         - light.hallway_light
 
-      #################################################################
-      ## Living Room / Media Center Remote
-      #################################################################
-
-- alias: Media - Remote external update Media Center
-  id: 'media_remote_external_update_media_center'
-
-  trigger:
-    - platform: state
-      entity_id: remote.living_room_tv
-
-  action:
-    - delay: '00:00:10'
-    - service: input_select.select_option
-      data_template:
-        entity_id: input_select.living_room_tv_remote
-        option: >
-          {{ states.remote.living_room_tv.attributes.current_activity }}
-
-- alias: Media - Remote start activity from input select media center
-
-  trigger:
-    - platform: state
-      entity_id: input_select.living_room_tv_remote
-
-  action:
-    - service: script.turn_on
-      entity_id: script.input_select_harmony
-
         ##########################################################
         ## Living Room TV Turn Off Harmony Activity if TV Off
         ##########################################################
@@ -477,43 +448,14 @@
     - condition: not
       conditions:
       - condition: state
-        entity_id: input_select.living_room_tv_remote
+        entity_id: select.living_room_tv_activities
         state: 'PowerOff'
 
   action:
-    - service: input_select.select_option
+    - service: select.select_option
       data:
-        entity_id: input_select.living_room_tv_remote
+        entity_id: select.living_room_tv_activities
         option: "PowerOff"      
-
-      #################################################################
-      ## Bedroom Remote
-      #################################################################
-
-- alias: Media - Remote external update Bedroom TV
-  id: 'media_remote_external_update_bedroom_tv'
-
-  trigger:
-    - platform: state
-      entity_id: remote.bedroom_tv
-
-  action:
-    - delay: '00:00:10'
-    - service: input_select.select_option
-      data_template:
-        entity_id: input_select.bedroom_tv_remote
-        option: >
-          {{ states.remote.bedroom_tv.attributes.current_activity }}
-
-- alias: Media - Remote start activity from input select Bedroom TV
-
-  trigger:
-    - platform: state
-      entity_id: input_select.bedroom_tv_remote
-
-  action:
-    - service: script.turn_on
-      entity_id: script.input_select_bedroom_harmony
 
         ##########################################################
         ## Bedroom TV Turn Off Harmony Activity if TV Off
@@ -535,44 +477,14 @@
     - condition: not
       conditions:
       - condition: state
-        entity_id: input_select.bedroom_tv_remote
+        entity_id: select.bedroom_tv_activities
         state: 'PowerOff'
 
   action:
-    - service: input_select.select_option
+    - service: select.select_option
       data:
-        entity_id: input_select.bedroom_tv_remote
+        entity_id: select.bedroom_tv_activities
         option: "PowerOff"
-
-      #################################################################
-      ## Office Remote
-      #################################################################
-
-- alias: Media - Remote external update Office TV
-  id: 'media_remote_external_update_office_tv'
-
-  trigger:
-    - platform: state
-      entity_id: remote.USER1_s_office_tv
-
-  action:
-    - delay: '00:00:10'
-    - service: input_select.select_option
-      data_template:
-        entity_id: input_select.USER1_s_office_tv_remote
-        option: >
-          {{ states.remote.USER1_s_office_tv.attributes.current_activity }}
-
-- alias: Media - Remote start activity from input select Office TV
-  id: 'media_remote_start_activity_from_input_select_office_tv'
-
-  trigger:
-    - platform: state
-      entity_id: input_select.USER1_s_office_tv_remote
-
-  action:
-    - service: script.turn_on
-      entity_id: script.input_select_office_harmony
 
       #################################################################
       ## Reset Sonos Every Morning
@@ -1266,7 +1178,7 @@
         ## Turn on Living Room Lights When Done Playing Xbox
         ##########################################################
 
-- alias: Christmas - Turn on Living Room Lights When Done Playing Xbox
+- alias: Media - Turn on Living Room Lights When Done Playing Xbox
   id: 'media_turn_on_living_room_lights_when_done_playing_xbox'
 
   trigger:
