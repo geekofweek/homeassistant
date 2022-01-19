@@ -25,6 +25,9 @@
     - condition: state
       entity_id: light.globe
       state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_rainy_day
+      state: 'off'
 
   action:
     - service: light.turn_on
@@ -54,6 +57,9 @@
     - condition: state
       entity_id: light.globe
       state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_rainy_day
+      state: 'off'
 
   action:
     - service: light.turn_on
@@ -116,6 +122,9 @@
       - condition: state
         entity_id: binary_sensor.washing_machine_water_sensor
         state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_rainy_day
+      state: 'off'
 
   action:
     - service: light.turn_on

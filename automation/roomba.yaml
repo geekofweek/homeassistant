@@ -292,7 +292,7 @@
       for:
         hours: 0
         minutes: 0
-        seconds: 45
+        seconds: 90
 
   condition:
     - condition: state
@@ -362,65 +362,6 @@
         - vacuum.upstairs_roomba
 
         ##########################################################
-        ## Run Upstairs Roomba Weekdays Evenings
-        ##########################################################
-
-- alias: Roomba - Run Upstairs Roomba Weekdays Evenings
-  id: 'roomba_run_upstairs_roomba_weekdays_evenings'
-
-  trigger:
-   - platform: time
-     at: '18:00:00'
-   - platform: time
-     at: '18:30:00'
-   - platform: time
-     at: '19:00:00'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_roomba
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.upstairs_roomba_ran
-      state: 'off'
-    - condition: time
-      weekday:
-        - mon
-        - wed
-        - fri
-    - condition: state
-      entity_id: vacuum.upstairs_roomba
-      state: 'docked'
-    - condition: numeric_state
-      entity_id: sensor.upstairs_roomba_battery_level
-      above: 99
-    - condition: state
-      entity_id: binary_sensor.USER1s_office_motion
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.USER2s_office_motion
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.stairs_motion
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.upstairs_bathroom_motion
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.USER2_office_occupancy
-      state: 'off'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
-
-  action:
-    - service: vacuum.start
-      entity_id:
-        - vacuum.upstairs_roomba
-
-        ##########################################################
         ## Run Basement Roomba Weekdays
         ##########################################################
 
@@ -468,11 +409,6 @@
       - condition: state
         entity_id: sensor.dryer
         state: 'on'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: person.USER2
-        state: 'home'
     - condition: not
       conditions:
       - condition: state
@@ -542,7 +478,7 @@
         - vacuum.main_floor_roomba
 
         ##########################################################
-        ## Turn Off Roomba when USER2 Home
+        ## Turn Off Roombas when USER2 Home
         ##########################################################
 
 - alias: Roomba - Turn Off Roomba when USER2 Home
@@ -556,7 +492,7 @@
       for:
         hours: 0
         minutes: 0
-        seconds: 45
+        seconds: 90
 
   condition:
     - condition: state
@@ -565,30 +501,23 @@
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
-    - condition: time
-      after: '10:01:00'
-      before: '18:30:00'
-    - condition: state
-      entity_id: vacuum.main_floor_roomba
-      state: 'cleaning'
-    - condition: state
-      entity_id: input_boolean.USER1_away
-      state: 'off'
     - condition: state
       entity_id: input_boolean.USER2_away
       state: 'on'
-    - condition: time
-      weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'cleaning'
 
   action:
     - service: vacuum.return_to_base
       entity_id:
         - vacuum.main_floor_roomba
+        - vacuum.upstairs_roomba
 
         ##########################################################
         ## Turn Off Roomba when Friends and Family Arrive
@@ -1051,6 +980,12 @@
     - condition: state
       entity_id: binary_sensor.basement_motion
       state: 'off'
+    - condition: state
+      entity_id: binary_sensor.craft_room_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.fitness_room_motion
+      state: 'off'
 
   action:
     - service: light.turn_off
@@ -1125,8 +1060,8 @@
       entity_id: vacuum.basement_roomba
       to: 'cleaning'
       for:
-        hours: 1
-        minutes: 0
+        hours: 0
+        minutes: 45
         seconds: 0
 
   condition:
