@@ -25,6 +25,8 @@
       - fan
       - select
       - input_select
+    exclude_entities:
+      - switch.christmas_tree
     include_entities:
       - alarm_control_panel.alarm
       - cover.garage_door
@@ -107,8 +109,6 @@
       - sensor.bathroom_humidity
       - sensor.craft_room_humidity
       - sensor.fitness_room_humidity
-    exclude_entities:
-      - switch.christmas_tree
 
   entity_config:
       camera.front_porch:

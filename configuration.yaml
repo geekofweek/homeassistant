@@ -13,8 +13,8 @@ stream:
 http:
   ssl_certificate: !secret ssl_certificate
   ssl_key: !secret ssl_key
-  ip_ban_enabled: true
-  login_attempts_threshold: 10
+#  ip_ban_enabled: true
+#  login_attempts_threshold: 10
 #logger:
 #  default: warn
 #  logs:
@@ -40,10 +40,6 @@ wemo:
     - REDACTED.223
     - REDACTED.225
     - REDACTED.226
-
-webostv:
-  host: 'bedroom-tv.network.REDACTED'
-  name: Bedroom TV
 
 google:
   client_id: !secret google_client_id
