@@ -42,13 +42,12 @@
       data:
        transition: 5
        color_temp: 447
-       brightness_pct: 65
+       brightness_pct: 100
     - service: light.turn_on
       entity_id: light.media_center_lighting
       data:
        transition: 5
-       effect: random
-       brightness_pct: 75
+       brightness_pct: 100
     - service: light.turn_on
       entity_id: 
         - light.hallway_light
@@ -71,7 +70,7 @@
       data:
        transition: 15
        color_temp: 366
-       brightness_pct: 20
+       brightness_pct: 65
 
         ##########################################################
         ## Plex Lights Off
@@ -198,13 +197,12 @@
       data:
        transition: 5
        color_temp: 447
-       brightness_pct: 50
+       brightness_pct: 100
     - service: light.turn_on
       entity_id: light.media_center_lighting
       data:
        transition: 5
-       effect: random
-       brightness_pct: 75
+       brightness_pct: 100
     - service: light.turn_on
       entity_id: light.hallway_light
       data:
@@ -227,7 +225,7 @@
       data:
        transition: 5
        color_temp: 366
-       brightness_pct: 20
+       brightness_pct: 65
 
         ##########################################################
         ## Late Night TV Watching after Midnight Lights On
@@ -278,13 +276,12 @@
       data:
        transition: 5
        color_temp: 447
-       brightness_pct: 50
+       brightness_pct: 100
     - service: light.turn_on
       entity_id: light.media_center_lighting
       data:
        transition: 5
-       effect: random
-       brightness_pct: 75
+       brightness_pct: 100
     - service: light.turn_on
       entity_id: light.hallway_light
       data:
@@ -307,7 +304,7 @@
       data:
        transition: 5
        color_temp: 366
-       brightness_pct: 20
+       brightness_pct: 65
 
         ##########################################################
         ## Late Night TV Watching after Midnight Lights Off

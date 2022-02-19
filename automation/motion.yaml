@@ -74,7 +74,7 @@
       entity_id:
         - light.globe
       data:
-       brightness_pct: 20
+        brightness_pct: 65
 
         ##########################################################
         ## Turn On Living Room Lights when Motion Detected at Night Weekends
@@ -146,13 +146,12 @@
         - light.media_center_lighting
       data:
        transition: 5
-       effect: random
        brightness_pct: 100
     - service: light.turn_on
       entity_id:
         - light.globe
       data:
-        brightness_pct: 20
+        brightness_pct: 65
 
         ##########################################################
         ## Turn On Living Room Lights when Motion Detected Daytime
@@ -234,7 +233,7 @@
       entity_id:
         - light.globe
       data:
-        brightness_pct: 25
+        brightness_pct: 65
 
         ##########################################################
         ## Turn Off Living Room Lights when No Motion Detected

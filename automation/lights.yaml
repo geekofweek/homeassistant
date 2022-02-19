@@ -1162,7 +1162,7 @@
         - light.globe
       data:
         transition: 30
-        brightness_pct: 20
+        brightness_pct: 65
         color_temp: 366
 
         ##########################################################
@@ -1453,9 +1453,20 @@
   action:
     - service: light.turn_on
       entity_id:
-        - light.living_room_accent_lights
+        - light.living_room_lamps
       data:
         brightness_pct: 100
+        color_temp: 447
+    - service: light.turn_on
+      entity_id: 
+        - light.media_center_lighting
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.globe
+      data:
+        brightness_pct: 65
     - delay:
         seconds: 1
 

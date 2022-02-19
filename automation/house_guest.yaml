@@ -87,13 +87,12 @@
         - light.dining_room_table
       data:
        color_temp: 447
-       brightness_pct: 50
+       brightness_pct: 100
     - service: light.turn_on
       entity_id: light.media_center_lighting
       data:
        transition: 5
-       effect: random
-       brightness_pct: 75
+       brightness_pct: 100
     - service: light.turn_on
       entity_id: light.kitchen_cabinets
       data:
@@ -118,7 +117,7 @@
         - light.globe
       data:
        color_temp: 366
-       brightness_pct: 20
+       brightness_pct: 65
 
         ##########################################################
         ## House Guest Home Reset Front Porch Lights Brightness

@@ -320,13 +320,12 @@
         - light.dining_room_table
       data:
        color_temp: 447
-       brightness_pct: 60
+       brightness_pct: 100
     - service: light.turn_on
       entity_id:
         - light.media_center_lighting
       data:
-       effect: random
-       brightness_pct: 75
+       brightness_pct: 100
     - service: light.turn_on
       entity_id:
         - light.kitchen_cabinets
@@ -349,62 +348,7 @@
         - light.globe
       data:
        color_temp: 366
-       brightness_pct: 20
-
-        ##########################################################
-        ## USER1 Home Turn On Lights during Rain
-        ##########################################################
-
-- alias: Location - USER1 Home Turn On Lights during Rain
-  id: 'location_USER1_home_turn_on_lights_during_rain'
-
-  trigger:
-    - platform: state
-      entity_id: person.USER1
-      from: 'not_home'
-      to: 'home'
-
-  condition:
-    - condition: state
-      entity_id: sun.sun
-      state: 'above_horizon'
-    - condition: state
-      entity_id: input_boolean.disable_home_away
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.USER1_away
-      state: 'on'
-    - condition: state
-      entity_id: sensor.dark_sky_precip
-      state: 'rain'
-
-  action:
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_lamps
-      data:
-       color_temp: 447
-       brightness_pct: 25
-    - service: light.turn_on
-      entity_id:
-        - light.media_center_lighting
-      data:
-       effect: random
-       brightness_pct: 75
-    - service: light.turn_on
-      entity_id:
-        - light.kitchen_cabinets
-        - light.kitchen_sink
-        - light.dining_room_table
-        - light.hallway_light
-      data:
-       brightness_pct: 2
-    - service: light.turn_on
-      entity_id:
-        - light.globe
-      data:
-       color_temp: 366
-       brightness_pct: 20
+       brightness_pct: 65
 
         ##########################################################
         ## USER1 Home Reset Front Porch Lights Brightness
@@ -531,13 +475,12 @@
         - light.dining_room_table
       data:
        color_temp: 447
-       brightness_pct: 60
+       brightness_pct: 100
     - service: light.turn_on
       entity_id:
         - light.media_center_lighting
       data:
-       effect: random
-       brightness_pct: 75
+       brightness_pct: 100
     - service: light.turn_on
       entity_id:
         - light.kitchen_cabinets
@@ -560,7 +503,7 @@
         - light.globe
       data:
        color_temp: 366
-       brightness_pct: 20
+       brightness_pct: 65
 
         ##########################################################
         ## USER2 Home from Work Lights Turn On Lights
@@ -611,61 +554,6 @@
       data:
        transition: 90
        brightness_pct: 50
-
-        ##########################################################
-        ## USER2 Home Turn On Lights during Rain
-        ##########################################################
-
-- alias: Location - USER2 Home Turn On Lights during Rain
-  id: 'location_USER2_home_turn_on_lights_during_rain'
-
-  trigger:
-    - platform: state
-      entity_id: person.USER2
-      from: 'not_home'
-      to: 'home'
-
-  condition:
-    - condition: state
-      entity_id: sun.sun
-      state: 'above_horizon'
-    - condition: state
-      entity_id: input_boolean.disable_home_away
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.USER2_away
-      state: 'on'
-    - condition: state
-      entity_id: sensor.dark_sky_precip
-      state: 'rain'
-
-  action:
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_lamps
-      data:
-       color_temp: 447
-       brightness_pct: 25
-    - service: light.turn_on
-      entity_id:
-        - light.media_center_lighting
-      data:
-       effect: random
-       brightness_pct: 75
-    - service: light.turn_on
-      entity_id:
-        - light.kitchen_cabinets
-        - light.kitchen_sink
-        - light.dining_room_table
-        - light.hallway_light
-      data:
-       brightness_pct: 2
-    - service: light.turn_on
-      entity_id:
-        - light.globe
-      data:
-       color_temp: 366
-       brightness_pct: 20
 
         ##########################################################
         ## USER2 Home Reset Front Porch Lights Brightness
