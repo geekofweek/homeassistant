@@ -61,6 +61,21 @@ living_room_fan_light_dimmer:
       entity_id:
         - switch.living_room_west_fan_dimmer
 
+        ##########################################################
+        ## Living Room West Fan Light Dimmers
+        ##########################################################
+
+living_room_west_fan_light_dimmer:
+  alias: Living Room West Fan Lights Dimmer Sequence
+  sequence:
+    - service: switch.turn_on
+      entity_id:
+        - switch.living_room_west_fan_dimmer
+    - delay: '00:00:07'
+    - service: switch.turn_off
+      entity_id:
+        - switch.living_room_west_fan_dimmer
+
 #################################################################
 ## Apple TV App Launch Scripts
 #################################################################

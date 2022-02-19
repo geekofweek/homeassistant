@@ -1132,6 +1132,54 @@
     - delay:
         seconds: 30
 
+  #################################################################
+  ## Fireplace On Living Room West Pico Remote
+  #################################################################
+
+- alias: Climate - Fireplace On Living Room West Pico Remote
+  id: 'climate_fireplace_on_living_room_west_pico_remote'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_west_remote
+      to: '2'
+
+  condition:
+    - condition: state
+      entity_id: switch.fireplace
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.fireplace
+    - delay:
+        seconds: 30
+
+  #################################################################
+  ## Fireplace Off Living Room West Pico Remote
+  #################################################################
+
+- alias: Climate - Fireplace Off Living Room West Pico Remote
+  id: 'climate_fireplace_off_living_room_west_pico_remote'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_west_remote
+      to: '2'
+
+  condition:
+    - condition: state
+      entity_id: switch.fireplace
+      state: 'on'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.fireplace
+    - delay:
+        seconds: 30
+
 #################################################################
 ## Office Fan / Heater / Air Purifier
 #################################################################

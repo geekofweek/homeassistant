@@ -11,10 +11,12 @@
   - platform: group
     name: Living Room Lights
     entities:
-      - light.living_room_lamps
+      - light.living_room_lamp_1
+      - light.living_room_lamp_2
       - light.media_center_lighting
       - light.globe
-      - light.living_room_fan_lights
+      - light.living_room_ceiling_east
+      - light.living_room_ceiling_west
 
   - platform: group
     name: Living Room Fan Lights
@@ -25,7 +27,8 @@
   - platform: group
     name: Living Room Accent Lights
     entities:
-      - light.living_room_lamps
+      - light.living_room_lamp_1
+      - light.living_room_lamp_2
       - light.media_center_lighting
       - light.globe
 
@@ -38,7 +41,8 @@
   - platform: group
     name: Bedroom Closet Lights
     entities:
-      - light.bedroom_closet_ceiling
+      - light.bedroom_closet_ceiling_1
+      - light.bedroom_closet_ceiling_2
       - light.closet_lamp
 
   - platform: group
@@ -55,8 +59,12 @@
       - light.USER2s_nightstand
       - light.bedroom_lamp
       - light.closet_lamp
-      - light.bedroom_closet_ceiling
-      - light.bedroom_ceiling
+      - light.bedroom_closet_ceiling_1
+      - light.bedroom_closet_ceiling_2
+      - light.bedroom_ceiling_1
+      - light.bedroom_ceiling_2
+      - light.bedroom_ceiling_3
+
 
   - platform: group
     name: Bedroom Lamps
@@ -120,7 +128,10 @@
     name: Basement Lighting
     entities:
       - light.basement_stairs
-      - light.basement_lights
+      - light.basement_light_1
+      - light.basement_light_2
+      - light.basement_light_3
+      - light.basement_light_4
       - light.work_bench_light
       - light.craft_room_ceiling
       - light.laundry_room_light
