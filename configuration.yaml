@@ -10,6 +10,7 @@ discovery:
   ignore:
     - harmony
 stream:
+  ll_hls: true
 http:
   ssl_certificate: !secret ssl_certificate
   ssl_key: !secret ssl_key
@@ -77,18 +78,6 @@ route53:
   domain: !secret aws_domain_route53
   records:
     - home
-
-camera:
-  - platform: mjpeg
-    name: Prusa Mini
-    verify_ssl: false
-    still_image_url: https://3d-printer-prusa-mini.network.REDACTED/webcam/?action=snapshot
-    mjpeg_url: https://3d-printer-prusa-mini.network.REDACTED/webcam/?action=stream
-  - platform: mjpeg
-    name: Prusa
-    verify_ssl: false
-    still_image_url: https://3d-printer-prusa.network.REDACTED/webcam/?action=snapshot
-    mjpeg_url: https://3d-printer-prusa.network.REDACTED/webcam/?action=stream
 
 #################################################################
 ## Notifications

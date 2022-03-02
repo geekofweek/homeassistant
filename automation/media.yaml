@@ -16,14 +16,14 @@
       for:
         hours: 0
         minutes: 0
-        seconds: 3
+        seconds: 10
     - platform: state
       entity_id: media_player.plex_living_room_appletv
       to: 'paused'
       for:
         hours: 0
         minutes: 0
-        seconds: 3
+        seconds: 10
 
   condition:
     - condition: state
@@ -68,8 +68,7 @@
       entity_id:
         - light.globe
       data:
-       transition: 15
-       color_temp: 366
+       transition: 5
        brightness_pct: 65
 
         ##########################################################
@@ -99,7 +98,7 @@
       entity_id:
         - light.living_room_lights
       data:
-       transition: 15
+       transition: 10
     - service: light.turn_off
       entity_id:
         - light.dining_room_lights
@@ -224,7 +223,6 @@
         - light.globe
       data:
        transition: 5
-       color_temp: 366
        brightness_pct: 65
 
         ##########################################################
@@ -303,7 +301,6 @@
         - light.globe
       data:
        transition: 5
-       color_temp: 366
        brightness_pct: 65
 
         ##########################################################
@@ -676,7 +673,7 @@
         - media_player.sonos_kitchen
         - media_player.sonos_bathroom
       data:
-        volume_level: 0.4
+        volume_level: 0.04
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
@@ -730,7 +727,7 @@
         - media_player.sonos_kitchen
         - media_player.sonos_bathroom
       data:
-        volume_level: 0.4
+        volume_level: 0.04
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
@@ -784,7 +781,7 @@
         - media_player.sonos_kitchen
         - media_player.sonos_bathroom
       data:
-        volume_level: 0.4
+        volume_level: 0.04
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
@@ -838,7 +835,7 @@
         - media_player.sonos_kitchen
         - media_player.sonos_bathroom
       data:
-        volume_level: 0.4
+        volume_level: 0.04
     - delay: '00:00:01'
     - service: media_player.select_source
       data:

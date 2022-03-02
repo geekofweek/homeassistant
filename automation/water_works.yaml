@@ -708,3 +708,41 @@
           where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen, media_player.sonos_bathroom, media_player.sonos_bedroom, media_player.sonos_bedroom_closet, media_player.sonos_USER1s_office, media_player.sonos_USER2s_office, media_player.sonos_move, media_player.sonos_craft_room, media_player.sonos_fitness_room'
           volume: '.5'
           what: 'Water Detected by Washing Machine! Shutting Off Water Supply'
+
+        ##########################################################
+        ## Water Sensor Low Battery Notification
+        ##########################################################
+
+- alias: Water Works - Low Battery Notification
+  id: 'water_works_low_battery_notification'
+
+  trigger:
+    - platform: numeric_state
+      entity_id: 
+        - sensor.basement_drain_water_sensor_batt
+        - sensor.sump_pump_water_sensor_batt
+        - sensor.kitchen_sink_water_sensor_batt
+        - sensor.bathroom_sink_water_sensor_batt
+        - sensor.upstairs_bathroom_water_sensor_batt
+        - sensor.utility_sink_water_sensor_batt
+        - sensor.washing_machine_water_sensor_batt
+        - sensor.coal_room_water_sensor_batt
+        - sensor.basement_door_water_sensor_batt
+      below: 30
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.USER1_devices
+      data:
+        message: Water Sensor {{ trigger.to_state.attributes.friendly_name }} Low Battery
+        data:
+          tag: battery
+          group: battery

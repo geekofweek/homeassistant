@@ -68,13 +68,13 @@
         - light.media_center_lighting
       data:
        transition: 5
-       effect: random
        brightness_pct: 100
     - service: light.turn_on
       entity_id:
         - light.globe
       data:
-        brightness_pct: 65
+       transition: 5
+       brightness_pct: 65
 
         ##########################################################
         ## Turn On Living Room Lights when Motion Detected at Night Weekends
@@ -151,7 +151,8 @@
       entity_id:
         - light.globe
       data:
-        brightness_pct: 65
+       transition: 5
+       brightness_pct: 65
 
         ##########################################################
         ## Turn On Living Room Lights when Motion Detected Daytime
@@ -219,21 +220,21 @@
       entity_id:
         - light.living_room_lamps
       data:
-        transition: 30
+        transition: 5
         brightness_pct: 100
         color_temp: 447
     - service: light.turn_on
       entity_id: 
         - light.media_center_lighting
       data:
-       transition: 30
-       effect: random
+       transition: 5
        brightness_pct: 100
     - service: light.turn_on
       entity_id:
         - light.globe
       data:
-        brightness_pct: 65
+       transition: 5
+       brightness_pct: 65
 
         ##########################################################
         ## Turn Off Living Room Lights when No Motion Detected
@@ -3282,3 +3283,48 @@
     - service: light.turn_off
       entity_id:
         - light.bedroom_closet_lights
+
+#################################################################
+## Notifications
+#################################################################
+
+        ##########################################################
+        ## Motion Sensor Low Battery Notification
+        ##########################################################
+
+- alias: Motion - Low Battery Notification
+  id: 'motion_low_battery_notification'
+
+  trigger:
+    - platform: numeric_state
+      entity_id: 
+        - sensor.living_room_motion_batt
+        - sensor.dining_room_motion_batt
+        - sensor.kitchen_motion_batt
+        - sensor.bathroom_motion_batt
+        - sensor.USER1s_office_motion_batt
+        - sensor.USER2s_office_motion_batt
+        - sensor.stairs_motion_batt
+        - sensor.upstairs_bath_motion_batt
+        - sensor.basement_motion_batt
+        - sensor.craft_room_motion_batt
+        - sensor.fitness_room_motion_batt
+        - sensor.USER2s_closet_motion_batt
+      below: 30
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.USER1_devices
+      data:
+        message: Motion Sensor {{ trigger.to_state.attributes.friendly_name }} Low Battery
+        data:
+          tag: battery
+          group: battery
