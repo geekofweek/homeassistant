@@ -391,9 +391,6 @@
     - condition: numeric_state
       entity_id: sensor.basement_roomba_battery_level
       above: 99
-    - condition: state
-      entity_id: input_boolean.vacation_mode
-      state: 'off'
     - condition: not
       conditions:
       - condition: state

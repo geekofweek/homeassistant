@@ -255,8 +255,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.updater
-      from: 'off'
+      entity_id: binary_sensor.docker_hub_update_available
       to: 'on'
       for:
         hours: 0

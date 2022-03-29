@@ -5,19 +5,15 @@
 homeassistant:
   customize: !include customize.yaml
 default_config:
-updater:
-discovery:
-  ignore:
-    - harmony
 stream:
-  ll_hls: true
+  ll_hls: false
 http:
   ssl_certificate: !secret ssl_certificate
   ssl_key: !secret ssl_key
   ip_ban_enabled: true
 #  login_attempts_threshold: 10
-#logger:
-#  default: warn
+logger:
+#  default: warning
 #  logs:
 #    pyatv: debug
 #    custom_components.apple_tv: debug
@@ -89,7 +85,7 @@ notify:
     services:
       - service: mobile_app_REDACTEDs_iphone
       - service: mobile_app_REDACTED_s_ipad
-      - service: mobile_app_REDACTEDs_imac
+      - service: mobile_app_REDACTEDs_macbook_pro
 
   - platform: group
     name: USER2_devices

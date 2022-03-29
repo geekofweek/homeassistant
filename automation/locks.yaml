@@ -163,7 +163,7 @@
   action:
     - service: notify.USER1_devices
       data:
-        message: Lock {{ trigger.to_state.attributes.friendly_name }} Low Battery
+        message: "{{ trigger.to_state.attributes.friendly_name }} Low"
         data:
           tag: battery
           group: battery
