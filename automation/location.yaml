@@ -28,7 +28,7 @@
        - lock.basement_door
     - service: light.turn_off
       entity_id:
-        - group.interior_lights
+        - light.interior_lights
         - light.backyard_patio
         - light.backyard_deck
     - service: switch.turn_off
@@ -872,7 +872,7 @@
   action:
     - service: light.turn_off
       entity_id:
-        - group.interior_lights
+        - light.interior_lights
         - light.back_door
         - light.garage_light
     - delay: '00:02:00'
@@ -1321,7 +1321,7 @@
 
   trigger:
     - platform: state
-      entity_id: group.doors
+      entity_id: binary_sensor.doors
       from: 'off'
       to: 'on'
 
@@ -1373,7 +1373,7 @@
 
   trigger:
     - platform: state
-      entity_id: group.doors
+      entity_id: binary_sensor.doors
       from: 'off'
       to: 'on'
 
@@ -1423,7 +1423,7 @@
 
   trigger:
     - platform: state
-      entity_id: group.doors
+      entity_id: binary_sensor.doors
       from: 'off'
       to: 'on'
 
@@ -1475,7 +1475,7 @@
 
   trigger:
     - platform: state
-      entity_id: group.doors
+      entity_id: binary_sensor.doors
       from: 'off'
       to: 'on'
 
@@ -1530,7 +1530,7 @@
 
   trigger:
     - platform: state
-      entity_id: group.doors
+      entity_id: binary_sensor.doors
       from: 'off'
       to: 'on'
 

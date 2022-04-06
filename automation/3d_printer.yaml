@@ -83,10 +83,10 @@
 
   condition:
     - condition: numeric_state
-      entity_id: sensor.prusa_mini_actual_tool0_temp_celcius
+      entity_id: sensor.prusa_mini_actual_tool0_temp
       below: 25
     - condition: numeric_state
-      entity_id: sensor.prusa_mini_actual_bed_temp_celcius
+      entity_id: sensor.prusa_mini_actual_bed_temp
       below: 30
     - condition: state
       entity_id: binary_sensor.prusa_mini_printing_error
@@ -128,10 +128,10 @@
 
   condition:
     - condition: numeric_state
-      entity_id: sensor.prusa_actual_tool0_temp_celcius
+      entity_id: sensor.prusa_actual_tool0_temp
       below: 25
     - condition: numeric_state
-      entity_id: sensor.prusa_actual_bed_temp_celcius
+      entity_id: sensor.prusa_actual_bed_temp
       below: 30
     - condition: state
       entity_id: binary_sensor.prusa_printing_error

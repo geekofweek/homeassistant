@@ -1926,6 +1926,9 @@
       - condition: state
         entity_id: light.laundry_room_light
         state: 'off'
+      - condition: state
+        entity_id: light.basement_lamp
+        state: 'off'
     - condition: or
       conditions:
       - condition: state
@@ -1942,6 +1945,7 @@
         - light.basement_lights
         - light.work_bench_light
         - light.laundry_room_light
+        - light.basement_lamp
       data:
         brightness_pct: 100
 
@@ -1994,6 +1998,7 @@
         - light.basement_lights
         - light.work_bench_light
         - light.laundry_room_light
+        - light.basement_lamp
 
         ##########################################################
         ## Turn Off Basement Lights when No Motion Detected Night
@@ -2041,6 +2046,7 @@
         - light.basement_lights
         - light.work_bench_light
         - light.laundry_room_light
+        - light.basement_lamp
 
         ##########################################################
         ## Turn On Craft Room Lights when Motion Detected

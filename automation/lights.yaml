@@ -595,7 +595,7 @@
 
   condition:
     - condition: state
-      entity_id: group.motion
+      entity_id: binary_sensor.motion
       state: 'off'
     - condition: not
       conditions:
@@ -611,7 +611,7 @@
   action:
     - service: light.turn_off
       entity_id:
-        - group.interior_lights
+        - light.interior_lights
 
         ##########################################################
         ## Turn Off Exterior Lights at Sunrise
@@ -628,7 +628,7 @@
   action:
     - service: light.turn_off
       entity_id:
-        - group.exterior_lights
+        - light.exterior_lights
     - service: switch.turn_off
       entity_id:
         - switch.lower_backyard_lighting
@@ -948,6 +948,7 @@
         - light.basement_lights
         - light.laundry_room_light
         - light.basement_stairs
+        - light.basement_lamp
       data:
        brightness_pct: 100
 
@@ -969,6 +970,7 @@
       entity_id:
         - light.basement_lights
         - light.basement_stairs
+        - light.basement_lamp
       data:
        brightness_pct: 100
     - service: light.turn_on
@@ -1004,6 +1006,7 @@
         - light.basement_stairs
         - light.basement_lights
         - light.work_bench_light
+        - light.basement_lamp
 
         ##########################################################
         ## Turn Off Basement Lights when Work Bench Switch Used
@@ -1032,6 +1035,7 @@
         - light.basement_stairs
         - light.basement_lights
         - light.laundry_room_light
+        - light.basement_lamp
 
     #################################################################
     ## Turn On Right Front Porch Light if not On
@@ -1796,6 +1800,7 @@
         - light.basement_lights
         - light.work_bench_light
         - light.laundry_room_light
+        - light.basement_lamp
       data:
         brightness_pct: 100
     - delay:
@@ -1911,6 +1916,7 @@
         - light.basement_lights
         - light.work_bench_light
         - light.laundry_room_light
+        - light.basement_lamp
     - delay:
         seconds: 1
 

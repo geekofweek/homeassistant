@@ -42,7 +42,7 @@
         - input_boolean.disable_roomba
     - service: homeassistant.turn_on
       entity_id:
-        - group.pihole
+        - switch.pihole
 
         ##########################################################
         ## Disable Erroneous Startup Notifications

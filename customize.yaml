@@ -348,14 +348,6 @@
 #################################################################
 
         ##########################################################
-        ## Backyard Lighting Switch
-        ##########################################################
-
-  switch.backyard_lighting:
-    icon: mdi:flower
-    friendly_name: Backyard Landscape Lighting
-
-        ##########################################################
         ## Living Room Random Color Switch
         ##########################################################
 
@@ -458,182 +450,6 @@
   switch.surround_sound_sonos_night_sound:
     icon: mdi:weather-night
     friendly_name: Surround Sound Sonos Night Sound
-
-#################################################################
-## Lights
-#################################################################
-
-        ##########################################################
-        ## Bedroom Closet Ceiling Light
-        ##########################################################
-
-  light.bedroom_closet_ceiling:
-    icon: mdi:ceiling-light
-    friendly_name: Bedroom Closet Ceiling
-
-        ##########################################################
-        ## Bedroom Celing Light
-        ##########################################################
-
-  light.bedroom_ceiling:
-    icon: mdi:ceiling-light
-    Friendly Name: Bedroom Ceiling Light
-
-        ##########################################################
-        ## Living Room Lights
-        ##########################################################
-
-  light.living_room_lights:
-    icon: mdi:sofa
-    friendly_name: Living Room
-
-        ##########################################################
-        ## Dining Room Lights
-        ##########################################################
-
-  light.dining_room_lights:
-    icon: mdi:silverware-variant
-    friendly_name: Dining Room
-
-        ##########################################################
-        ## Bedroom Lights
-        ##########################################################
-
-  light.bedroom_lights:
-    icon: mdi:bed
-    friendly_name: Bedroom
-
-        ##########################################################
-        ## Kitchen Lights
-        ##########################################################
-
-  light.kitchen_lights:
-    icon: mdi:fridge
-    friendly_name: Kitchen
-
-        ##########################################################
-        ## Bathroom Lights
-        ##########################################################
-
-  light.bathroom_lights:
-    icon: mdi:shower
-    friendly_name: Bathroom
-
-        ##########################################################
-        ## Upstairs Bathroom Lights
-        ##########################################################
-
-  light.upstairs_bathroom_lights:
-    icon: mdi:shower
-    friendly_name: Upstairs Bathroom
-
-        ##########################################################
-        ## USER1's Office Lights
-        ##########################################################
-
-  light.USER1_office_lights:
-    icon: mdi:desk
-    friendly_name: USER1's Office
-
-        ##########################################################
-        ## Guest Bedroom Lights
-        ##########################################################
-
-  light.guest_bedroom_lights:
-    icon: mdi:bed
-    friendly_name: Guest Bedroom
-
-        ##########################################################
-        ## Basement Lights
-        ##########################################################
-
-  light.basement_lighting:
-    icon: mdi:stairs-down
-    friendly_name: Basement
-
-        ##########################################################
-        ## Front Porch Lights
-        ##########################################################
-
-  light.front_porch:
-    icon: mdi:coach-lamp
-    friendly_name: Front Porch
-
-        ##########################################################
-        ## Back Door Lights
-        ##########################################################
-
-  light.back_door:
-    icon: mdi:ceiling-light
-    friendly_name: Back Door
-
-        ##########################################################
-        ## Backyard Deck Lights
-        ##########################################################
-
-  light.backyard_deck:
-    icon: mdi:track-light
-    friendly_name: Backyard Deck
-
-        ##########################################################
-        ## Living Room Lamps
-        ##########################################################
-
-  light.living_room_lamps:
-    icon: mdi:floor-lamp
-    friendly_name: Living Room Lamps
-
-        ##########################################################
-        ## USER2's Office Lights
-        ##########################################################
-
-  light.USER2_office_lights:
-    icon: mdi:desk
-    friendly_name: USER2's Office
-
-        ##########################################################
-        ## Basement Lights
-        ##########################################################
-
-  light.basement_lights:
-    icon: mdi:ceiling-light
-    friendly_name: Basement Lights
-
-        ##########################################################
-        ## Laundry Room Light
-        ##########################################################
-
-  light.laundry_room_light:
-    icon: mdi:wall-sconce-flat
-    friendly_name: Laundry Room Light
-
-        ##########################################################
-        ## Living Room Fan Lights
-        ##########################################################
-
-  light.living_room_fan_lights:
-    icon: mdi:ceiling-light
-    friendly_name: Living Room Fan Lights
-
-        ##########################################################
-        ## Living Room Accent Lights
-        ##########################################################
-
-  light.living_room_accent_lights:
-    icon: mdi:floor-lamp
-    friendly_name: Living Room Accent Lights
-
-#################################################################
-## Receiver
-#################################################################
-
-        ##########################################################
-        ## Surround Sound Receiver
-        ##########################################################
-
-  media_player.surround_sound_receiver:
-    icon: mdi:speaker
-    friendly_name: Surround Sound Receiver
 
 #################################################################
 ## NAS
@@ -808,15 +624,6 @@
     assumed_state: false
 
         ##########################################################
-        ## Living Room Fans Group
-        ##########################################################
-
-  group.living_room_fans:
-    icon: mdi:fan
-    friendly_name: Living Room Fans
-    assumed_state: false
-
-        ##########################################################
         ## Living Room Fans Switch
         ##########################################################
 
@@ -839,18 +646,6 @@
   switch.living_room_west_fan_dimmer:
     icon: mdi:lightbulb-on
     friendly_name: Living Room Ceiling West Dimmer
-
-#################################################################
-## Pi-hole
-#################################################################
-
-        ##########################################################
-        ## REDACTED Pi-hole Group
-        ##########################################################
-
-  group.pihole:
-    icon: mdi:pi-hole
-    friendly_name: Ad Blocking
 
 #################################################################
 ## Light Level Sensors
@@ -879,71 +674,3 @@
   sensor.fitness_room_light_level:
     device_class: illuminance
     unit_of_measurement: 'Lux'
-
-#################################################################
-## 3D Printer
-#################################################################
-
-        ##########################################################
-        ## Prusa Mini Bed Temperature
-        ##########################################################
-
-  sensor.prusa_mini_actual_bed_temp_celcius:
-    icon: mdi:radiator
-    state_class: measurement
-
-        ##########################################################
-        ## Prusa Mini Bed Target Temperature
-        ##########################################################
-
-  sensor.prusa_mini_target_bed_temp_celcius:
-    icon: mdi:radiator
-    state_class: measurement
-
-        ##########################################################
-        ## Prusa Mini Nozzle Temperature
-        ##########################################################
-
-  sensor.prusa_mini_actual_tool0_temp_celcius:
-    icon: mdi:printer-3d-nozzle-heat
-    state_class: measurement
-
-        ##########################################################
-        ## Prusa Mini Nozzle Target Temperature
-        ##########################################################
-
-  sensor.prusa_mini_target_tool0_temp_celcius:
-    icon: mdi:printer-3d-nozzle-heat
-    state_class: measurement
-
-        ##########################################################
-        ## Prusa Bed Temperature
-        ##########################################################
-
-  sensor.prusa_actual_bed_temp_celcius:
-    icon: mdi:radiator
-    state_class: measurement
-
-        ##########################################################
-        ## Prusa Bed Target Temperature
-        ##########################################################
-
-  sensor.prusa_target_bed_temp_celcius:
-    icon: mdi:radiator
-    state_class: measurement
-
-        ##########################################################
-        ## Prusa Nozzle Temperature
-        ##########################################################
-
-  sensor.prusa_actual_tool0_temp_celcius:
-    icon: mdi:printer-3d-nozzle-heat
-    state_class: measurement
-
-        ##########################################################
-        ## Prusa Nozzle Target Temperature
-        ##########################################################
-
-  sensor.prusa_target_tool0_temp_celcius:
-    icon: mdi:printer-3d-nozzle-heat
-    state_class: measurement

@@ -122,7 +122,7 @@
       entity_id: input_boolean.disable_lock_unlock_doors
       state: 'off'
     - condition: state
-      entity_id: group.doors
+      entity_id: binary_sensor.doors
       state: 'off'
 
   action:

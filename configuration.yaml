@@ -12,7 +12,7 @@ http:
   ssl_key: !secret ssl_key
   ip_ban_enabled: true
 #  login_attempts_threshold: 10
-logger:
+#logger:
 #  default: warning
 #  logs:
 #    pyatv: debug
@@ -107,9 +107,7 @@ binary_sensor: !include binary_sensor.yaml
 input_boolean: !include input_boolean.yaml
 input_select: !include input_select.yaml
 script: !include scripts.yaml
-light: !include light_group.yaml
 homekit: !include homekit.yaml
 switch: !include switch.yaml
 emulated_hue: !include emulated_hue.yaml
-cover: !include cover_group.yaml
 cloud: !include cloud.yaml

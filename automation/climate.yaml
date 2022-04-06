@@ -507,7 +507,7 @@
 
   trigger:
     - platform: state
-      entity_id: group.doors
+      entity_id: binary_sensor.doors
       from: 'off'
       to: 'on'
       for:

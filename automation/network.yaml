@@ -2,63 +2,6 @@
 ## Network
 #################################################################
 
-    #################################################################
-    ## WAN Down Notification
-    #################################################################
-
-- alias: Network - WAN Down Notification
-  id: 'network_wan_down_notification'
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.wan
-      to: 'off'
-      for:
-        hours: 0
-        minutes: 1
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  action:
-    - service: persistent_notification.create
-      data:
-        message: "Internet Down"
-        title: "WAN"
-        notification_id: "1"
-
-    #################################################################
-    ## WAN Up Notification
-    #################################################################
-
-- alias: Network - WAN Up Notification
-  id: 'network_wan_up_notification'
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.wan
-      from: 'off'
-      to: 'on'
-      for:
-        hours: 0
-        minutes: 1
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  action:
-    - service: persistent_notification.create
-      data:
-        message: "Internet Up"
-        title: "WAN"
-        notification_id: "1"
-
         ##########################################################
         ## WAN Down Power On at&t Router
         ##########################################################
@@ -103,43 +46,44 @@
         minutes: 20
         seconds: 0
 
+  condition:
+    - condition: state
+      entity_id: binary_sensor.wan
+      state: 'off'
+    - condition: state
+      entity_id: switch.att_router
+      state: 'off'
+
   action:
     - service: switch.turn_on
       entity_id:
         - switch.att_router
-    - service: notify.USER1_devices
-      data:
-        message: Internet is Down, Turning On at&t Router
-        data:
-          tag: internet
-          group: network
 
         ##########################################################
-        ## WAN Up Power Off at&t Router
+        ## Turn on att Router when Off
         ##########################################################
 
-- alias: Network - WAN Up Power Off att Router
-  id: 'network_wan_up_power_off_att_router'
+- alias: Network - Turn on att Router when Off
+  id: 'network_turn_on_att_router_when_off'
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.wan
-      to: 'on'
+      entity_id: switch.att_router
+      to: 'off'
       for:
         hours: 0
-        minutes: 30
+        minutes: 1
         seconds: 0
 
+  condition:
+    - condition: state
+      entity_id: switch.att_router
+      state: 'off'
+
   action:
-    - service: switch.turn_off
+    - service: switch.turn_on
       entity_id:
         - switch.att_router
-    - service: notify.USER1_devices
-      data:
-        message: Internet is Up, Shutting Off at&t Router
-        data:
-          tag: internet
-          group: network
 
         #################################################################
         ## WAN Down On Startup Turn On at&t Router
@@ -155,6 +99,9 @@
   condition:
     - condition: state
       entity_id: binary_sensor.wan
+      state: 'off'
+    - condition: state
+      entity_id: switch.att_router
       state: 'off'
 
   action:
@@ -186,30 +133,12 @@
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
-
-  action:
-    - service: switch.turn_on
-      entity_id: switch.att_router
-
-        ##########################################################
-        ## Turn Off at&t Router after Vacation Mode
-        ##########################################################
-
-- alias: network - Turn Off att Router after Vacation Mode
-  id: 'network_turn_off_att_router_after_vacation_mode'
-
-  trigger:
-    - platform: state
-      entity_id: input_boolean.vacation_mode
-      to: 'off'
-
-  condition:
     - condition: state
-      entity_id: input_boolean.disable_home_away
+      entity_id: switch.att_router
       state: 'off'
 
   action:
-    - service: switch.turn_off
+    - service: switch.turn_on
       entity_id: switch.att_router
 
         ##########################################################
@@ -229,32 +158,12 @@
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
-
-  action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.att_router
-
-        ##########################################################
-        ## Turn Off at&t Router when Home
-        ##########################################################
-
-- alias: network - Turn Off att Router when Home
-  id: 'network_turn_off_att_router_when_home'
-
-  trigger:
-    - platform: state
-      entity_id: group.household
-      from: 'not_home'
-      to: 'home'
-
-  condition:
     - condition: state
-      entity_id: input_boolean.disable_home_away
+      entity_id: switch.att_router
       state: 'off'
 
   action:
-    - service: switch.turn_off
+    - service: switch.turn_on
       entity_id:
         - switch.att_router
 
@@ -323,7 +232,7 @@
 
   trigger:
     - platform: state
-      entity_id: group.pihole
+      entity_id: switch.pihole
       from: 'on'
       to: 'off'
       for:
@@ -333,14 +242,73 @@
 
   condition:
     - condition: state
-      entity_id: group.pihole
+      entity_id: switch.pihole
       state: 'off'
 
   action:
     - service: homeassistant.turn_on
       entity_id:
-        - group.pihole
+        - switch.pihole
 
 #################################################################
 ## Notifications
 #################################################################
+
+    #################################################################
+    ## WAN Down Notification
+    #################################################################
+
+- alias: Network - WAN Down Notification
+  id: 'network_wan_down_notification'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.wan
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.mobile_app_USER1s_iphone
+      data:
+        message: Internet is Down!
+        data:
+          tag: network
+          group: network
+
+    #################################################################
+    ## WAN Up Notification
+    #################################################################
+
+- alias: Network - WAN Up Notification
+  id: 'network_wan_up_notification'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.wan
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.mobile_app_USER1s_iphone
+      data:
+        message: Internet is Up
+        data:
+          tag: network
+          group: network

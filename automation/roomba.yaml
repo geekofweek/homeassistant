@@ -640,7 +640,7 @@
       entity_id: input_boolean.disable_roomba
       state: 'off'
     - condition: state
-      entity_id: group.interior_lights
+      entity_id: light.interior_lights
       state: 'on'
     - condition: not
       conditions:
@@ -759,7 +759,7 @@
       entity_id: input_boolean.disable_roomba
       state: 'off'
     - condition: state
-      entity_id: group.interior_lights
+      entity_id: light.interior_lights
       state: 'on'
     - condition: time
       after: '09:59:00'
