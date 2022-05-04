@@ -253,7 +253,7 @@ Since I don’t use the network equipment as my primary presence detection metho
 | [Prusa i3 MK3S+](https://shop.prusa3d.com/en/3d-printers/180-original-prusa-i3-mk3s-kit.html) | 1 | Wi-Fi | [OctoPrint](https://www.home-assistant.io/integrations/octoprint/)| 3D Printer connected to Home Assitant via OctoPrint running on a Raspberry Pi 4 B.  Sometimes I make neat objects to help with Home Automation, but mostly useless stuff for fun. |
 | [Prusa Mini+](https://shop.prusa3d.com/en/3d-printers/994-original-prusa-mini.html) | 1 | Wi-Fi | [OctoPrint](https://www.home-assistant.io/integrations/octoprint/)| 3D Printer connected to Home Assitant via OctoPrint running on a Raspberry Pi 4 B.  Because if you're going to make useless non-sense, might as well double down. |
 | [HP OfficeJet Pro 8025](https://amzn.to/3bRP3vv) | 1 | Wi-Fi | [Internet Printing Protocol (IPP)](https://www.home-assistant.io/integrations/ipp/)| Regualr inkjet printer that works whenever it feels like because it's a printer. |
-| [APC 1500VA Back-Up UPS](https://amzn.to/2LopbsD) | 1 | USB / Ethernet | [NUT Sensor](https://www.home-assistant.io/components/sensor.nut/)| Primary Uninterruptible Power Supply (UPS). Connected via the NUT component utlizing the QNAP NAS native UPS server component |
+| [APC 1500VA Back-Up UPS](https://amzn.to/2LopbsD) | 2 | USB / Ethernet | [NUT Sensor](https://www.home-assistant.io/components/sensor.nut/)| Primary Uninterruptible Power Supply (UPS). Connected via the NUT component utlizing to a Linux NUT server |
 
 ## <a name="software">Software</a>
 
