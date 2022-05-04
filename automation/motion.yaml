@@ -410,7 +410,7 @@
       entity_id: vacuum.main_floor_roomba
       state: 'docked'
     - condition: state
-      entity_id: group.living_room_fans
+      entity_id: fan.living_room_fans
       state: 'off'
     - condition: not
       conditions:
@@ -442,7 +442,7 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
     - condition: state
-      entity_id: group.living_room_fans
+      entity_id: fan.living_room_fans
       state: 'off'
     - condition: state
       entity_id: person.USER1
@@ -488,7 +488,7 @@
       entity_id: group.household
       state: 'home'
     - condition: state
-      entity_id: group.living_room_fans
+      entity_id: fan.living_room_fans
       state: 'on'
 
   action:

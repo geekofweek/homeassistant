@@ -3,20 +3,38 @@
 #################################################################
 
         ##########################################################
-        ## WAN Down Power On at&t Router
+        ## Retart att Router Daily
         ##########################################################
 
-- alias: Network - WAN Down Power On att Router
-  id: 'network_wan_down_power_on_att_router'
+- alias: Network - Retart att Router Daily
+  id: 'network_restart_att_router_daily'
 
   trigger:
-    - platform: state
-      entity_id: binary_sensor.wan
-      to: 'off'
-      for:
-        hours: 0
-        minutes: 1
-        seconds: 0
+    - platform: time
+      at: '00:00:00'
+
+  condition:
+    - condition: state
+      entity_id: switch.att_router
+      state: 'on'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.att_router
+    - delay: '00:00:15'
+    - service: switch.turn_on
+      entity_id:
+        - switch.att_router
+
+        ##########################################################
+        ## WAN Down Restart at&t Router
+        ##########################################################
+
+- alias: Network - WAN Down Restart att Router
+  id: 'network_wan_down_restart_att_router'
+
+  trigger:
     - platform: state
       entity_id: binary_sensor.wan
       to: 'off'
@@ -29,21 +47,14 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 10
+        minutes: 30
         seconds: 0
     - platform: state
       entity_id: binary_sensor.wan
       to: 'off'
       for:
         hours: 0
-        minutes: 15
-        seconds: 0
-    - platform: state
-      entity_id: binary_sensor.wan
-      to: 'off'
-      for:
-        hours: 0
-        minutes: 20
+        minutes: 60
         seconds: 0
 
   condition:
@@ -52,9 +63,13 @@
       state: 'off'
     - condition: state
       entity_id: switch.att_router
-      state: 'off'
+      state: 'on'
 
   action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.att_router
+    - delay: '00:00:15'
     - service: switch.turn_on
       entity_id:
         - switch.att_router
@@ -72,7 +87,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 1
+        minutes: 2
         seconds: 0
 
   condition:

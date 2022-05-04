@@ -11,6 +11,7 @@
       - type: processor_use
       - type: memory_use_percent
       - type: last_boot
+      - type: disk_use_percent
 
         ##########################################################
         ## NAS
@@ -32,15 +33,26 @@
       - volume_percentage_used
 
         ##########################################################
-        ## UPS
+        ## UPS - A
         ##########################################################
 
   - platform: template
     sensors:
-      ups_battery_runtime_mins:
-        friendly_name: "UPS Battery Runtime"
-        unit_of_measurement: 'minutes'
-        value_template: "{{ states('sensor.ups_battery_runtime')|float(0) / 60 }}"
+      ups_a_battery_runtime_mins:
+        friendly_name: "UPS-A Battery Runtime"
+        unit_of_measurement: 'Minutes'
+        value_template: “{{ ( states('sensor.ups_a_battery_runtime') | int / 60 ) | round(0) }}”
+
+        ##########################################################
+        ## UPS - B
+        ##########################################################
+
+  - platform: template
+    sensors:
+      ups_b_battery_runtime_mins:
+        friendly_name: "UPS-B Battery Runtime"
+        unit_of_measurement: 'Minutes'
+        value_template: “{{ ( states('sensor.ups_b_battery_runtime') | int / 60 ) | round(0) }}”
 
         ##########################################################
         ## Washing Machine Time Remaining
