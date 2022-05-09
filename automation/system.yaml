@@ -3,6 +3,20 @@
 #################################################################
 
         ##########################################################
+        ## Backup Home Assistant Nightly
+        ##########################################################
+
+- alias: System - Backup Home Assistant Nightly
+  id: 'system_backup_home_assistant_nightly'
+
+  trigger:
+   - platform: time
+     at: '04:00:00'
+
+  action:
+    - service: backup.create
+
+        ##########################################################
         ## Reset Overrides at 7a
         ##########################################################
 

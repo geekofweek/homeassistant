@@ -1295,6 +1295,9 @@
       state: 'off'
 
   action:
+    - service: light.turn_on
+      entity_id:
+        - light.moon_globe
     - service: scene.turn_on
       target:
         entity_id: scene.moon_globe_random_color

@@ -2757,6 +2757,38 @@
         - light.USER1_office_lights
 
         ##########################################################
+        ## Turn Off USER1 Office Music when No Motion Detected
+        ##########################################################
+
+- alias: Motion - Turn Off USER1 Office Music when No Motion Detected
+  id: 'motion_turn_off_USER1_office_music_when_no_motion_detected'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER1s_office_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 20
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: 
+        - input_boolean.USER1_s_office_music
+    - delay: '00:00:15'
+    - service: media_player.media_stop
+      entity_id:
+        - media_player.sonos_USER1s_office
+        - media_player.sonos_USER1s_office_move
+
+        ##########################################################
         ## Turn On Dining Room Lights Lights When USER2 Working
         ##########################################################
 

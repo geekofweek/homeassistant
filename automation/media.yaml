@@ -853,6 +853,63 @@
         option: "Chill Music"
 
         ##########################################################
+        ## Play Music USER1's Office
+        ##########################################################
+
+- alias: Media - Play Music USER1's Office
+  id: 'media_play__music_USER1_office'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_s_office_music
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+
+  action:
+    - service: sonos.join
+      data:
+        master: media_player.sonos_USER1s_office
+      entity_id:
+        - media_player.sonos_USER1s_office
+        - media_player.sonos_USER1s_office_move
+    - delay: '00:00:02'
+    - service: media_player.volume_set
+      entity_id:
+        - media_player.sonos_USER1s_office
+        - media_player.sonos_USER1s_office_move
+      data:
+        volume_level: 0.02
+    - delay: '00:00:01'
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.sonos_USER1s_office
+        source: 'Chill'
+
+        ##########################################################
+        ## Stop Playing Music USER1's Office
+        ##########################################################
+
+- alias: Media - Stop Playing Music USER1's Office
+  id: 'media_stop_playing_music_USER1_office'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_s_office_music
+      from: 'on'
+      to: 'off'
+
+  action:
+    - service: media_player.media_stop
+      entity_id:
+        - media_player.sonos_USER1s_office
+        - media_player.sonos_USER1s_office_move
+
+        ##########################################################
         ## Sonos start activity from input select Pop Music
         ##########################################################
 
