@@ -745,6 +745,16 @@
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: climate.portable_air_conditioner
+        state: 'cool'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: climate.portable_air_conditioner
+        state: 'auto'
 
   action:
     - service: climate.set_preset_mode
@@ -795,6 +805,16 @@
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: climate.portable_air_conditioner
+        state: 'cool'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: climate.portable_air_conditioner
+        state: 'auto'
 
   action:
     - service: climate.set_preset_mode
@@ -1397,6 +1417,45 @@
   action:
     - service: switch.turn_off
       entity_id: switch.basement_heater
+
+#################################################################
+## Portable AC
+#################################################################
+
+        ##########################################################
+        ## Turn Off Portable AC when Water Bin Full
+        ##########################################################
+
+- alias: Climate - Turn Off Portable AC when Water Bin Full
+  id: 'climate_turn_off_portable_ac_when_water_bin_full'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.portable_ac_water_sensor
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: climate.portable_air_conditioner
+        state: 'unavailable'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: climate.portable_air_conditioner
+        state: 'off'
+
+  action:
+    - service: climate.turn_off
+      entity_id: climate.portable_air_conditioner
+    - service: notify.USER1_devices
+      data:
+        message: Empty Portable AC Water Bin
+        data:
+          tag: climate
+          group: climate
 
 #################################################################
 ## Input Booleans, Input Selects, and UI

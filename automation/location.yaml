@@ -41,7 +41,6 @@
         - switch.bug_zapper
     - service: cover.close_cover
       entity_id:
-        - cover.USER1_s_office_blinds
         - cover.USER2_s_office_blinds
         - cover.stairs_blinds
         - cover.bedroom_closet_blinds
@@ -683,6 +682,69 @@
       data:
         entity_id: select.USER1_s_office_tv_activities
         option: "PowerOff"
+
+        ##########################################################
+        ## USER1 Away Close Blinds
+        ##########################################################
+
+- alias: Location - USER1 Away Close Blinds
+  id: 'location_USER1_away_close_blinds'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_away
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.USER1s_office_window_right
+      state: 'off'
+
+  action:
+    - service: cover.close_cover
+      entity_id:
+        - cover.USER1_s_office_blinds
+
+        ##########################################################
+        ## USER1 Away Close Blinds Window Open
+        ##########################################################
+
+- alias: Location - USER1 Away Close Blinds Window Open
+  id: 'location_USER1_away_shut_off_office_window_open'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_away
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.USER1s_office_window_right
+      state: 'on'
+
+  action:
+    - service: cover.close_cover
+      entity_id:
+        - cover.USER1s_office_blinds_left
+        - cover.USER1s_office_blinds_center
+    - service: cover.set_cover_position
+      data:
+        entity_id: cover.USER1s_office_blinds_right
+        position: 45
+    - service: notify.USER1_devices
+      data:
+        message: Office Window Open!
+        data:
+          tag: USER1-location
+          group: location
 
         ##########################################################
         ## USER2 Away Shut Off Office
@@ -1623,7 +1685,7 @@
           - media_player.sonos_USER1s_office
           - media_player.sonos_USER1s_office_move
     - delay: '00:00:03'
-    - service: sonos.unjoin
+    - service: media_player.unjoin
       entity_id:
         - media_player.sonos_living_room
         - media_player.sonos_dining_room
@@ -1632,7 +1694,7 @@
         - media_player.sonos_USER1s_office
         - media_player.sonos_USER1s_office_move
     - delay: '00:00:01'
-    - service: sonos.join
+    - service: media_player.join
       data:
         master: media_player.sonos_USER1s_office
       entity_id:

@@ -61,7 +61,6 @@
         - switch.basement_heater
     - service: cover.close_cover
       entity_id:
-        - cover.USER1_s_office_blinds
         - cover.USER2_s_office_blinds
         - cover.stairs_blinds
     - service: homeassistant.turn_off
@@ -143,7 +142,6 @@
         - switch.basement_heater
     - service: cover.close_cover
       entity_id:
-        - cover.USER1_s_office_blinds
         - cover.USER2_s_office_blinds
         - cover.stairs_blinds
     - service: homeassistant.turn_off
@@ -353,6 +351,68 @@
     - delay: '00:00:15'
     - service: cover.close_cover
       entity_id: cover.garage_door
+
+        ##########################################################
+        ## Bedtime Turn Off Portable AC
+        ##########################################################
+
+- alias: Bedtime - Turn Off Portable AC
+  id: 'bedtime_turn_off_portable_ac'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: climate.portable_air_conditioner
+        state: 'unavailable'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: climate.portable_air_conditioner
+        state: 'off'
+
+  action:
+    - service: climate.turn_off
+      entity_id:
+        - climate.portable_air_conditioner
+
+        ##########################################################
+        ## Bedtime - USER1's Office Blinds
+        ##########################################################
+
+- alias: Bedtime USER1's Office Blinds
+  id: 'bedtime_USER1_office_blinds'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: binary_sensor.USER1s_office_window_right
+      state: 'off'
+
+  action:
+    - service: cover.close_cover
+      entity_id:
+        - cover.USER1_s_office_blinds
 
         ##########################################################
         ## Reset Bedtime Switch

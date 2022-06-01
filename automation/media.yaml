@@ -492,7 +492,7 @@
       at: '05:00:00'
 
   action:
-    - service: sonos.unjoin
+    - service: media_player.unjoin
       entity_id:
         - media_player.sonos_surround_sound
         - media_player.sonos_living_room
@@ -564,7 +564,7 @@
       state: 'home'
 
   action:
-    - service: sonos.join
+    - service: media_player.join
       data:
         master: media_player.sonos_living_room
       entity_id:
@@ -601,7 +601,7 @@
       state: 'home'
 
   action:
-    - service: sonos.join
+    - service: media_player.join
       data:
         master: media_player.sonos_living_room
       entity_id:
@@ -655,7 +655,7 @@
       state: 'home'
 
   action:
-    - service: sonos.join
+    - service: media_player.join
       data:
         master: media_player.sonos_living_room
       entity_id:
@@ -709,7 +709,7 @@
       state: 'home'
 
   action:
-    - service: sonos.join
+    - service: media_player.join
       data:
         master: media_player.sonos_living_room
       entity_id:
@@ -763,7 +763,7 @@
       state: 'home'
 
   action:
-    - service: sonos.join
+    - service: media_player.join
       data:
         master: media_player.sonos_living_room
       entity_id:
@@ -817,7 +817,7 @@
       state: 'home'
 
   action:
-    - service: sonos.join
+    - service: media_player.join
       data:
         master: media_player.sonos_living_room
       entity_id:
@@ -871,7 +871,7 @@
       state: 'home'
 
   action:
-    - service: sonos.join
+    - service: media_player.join
       data:
         master: media_player.sonos_USER1s_office
       entity_id:
@@ -883,7 +883,7 @@
         - media_player.sonos_USER1s_office
         - media_player.sonos_USER1s_office_move
       data:
-        volume_level: 0.02
+        volume_level: 0.07
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
