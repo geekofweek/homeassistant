@@ -87,51 +87,6 @@
 #################################################################
 
         ##########################################################
-        ## Hot Tub Modes
-        ##########################################################
-
-  - platform: template
-    sensors:
-      hot_tub_mode:
-        friendly_name: "Hot Tub Mode"
-        value_template: >-
-          {% if states('sensor.hot_tub_watts') | float > 10300 %}
-            'CircPump-Blower-Pump1-Pump2-Heat'
-          {% elif states('sensor.hot_tub_watts') | float > 9700 %}
-            'CircPump-Pump1-Pump2-Heat'
-          {% elif states('sensor.hot_tub_watts') | float > 8110 %}
-            'CircPump-Blower-Pump1-Heat'
-          {% elif states('sensor.hot_tub_watts') | float > 7990 %}
-            'CircPump-Blower-Pump2-Heat'
-          {% elif states('sensor.hot_tub_watts') | float > 7600 %}
-            'CircPump-Pump1-Heat'
-          {% elif states('sensor.hot_tub_watts') | float > 7500 %}
-            'CircPump-Pump2-Heat'
-          {% elif states('sensor.hot_tub_watts') | float > 5650 %}
-            'CircPump-Blower-Heat'
-          {% elif states('sensor.hot_tub_watts') | float > 5300 %}
-            'CircPump-Heat'
-          {% elif states('sensor.hot_tub_watts') | float > 5210 %}
-            'CircPump-Blower-Pump1-Pump2'
-          {% elif states('sensor.hot_tub_watts') | float > 4750 %}
-            'CircPump-Pump1-Pump2'
-          {% elif states('sensor.hot_tub_watts') | float > 2930 %}
-            'CircPump-Blower-Pump1'
-          {% elif states('sensor.hot_tub_watts') | float > 2630 %}
-            'CircPump-Blower-Pump2'
-          {% elif states('sensor.hot_tub_watts') | float > 2500 %}
-            'CircPump-Pump1'
-          {% elif states('sensor.hot_tub_watts') | float > 2380 %}
-            'CircPump-Pump2'
-          {% elif states('sensor.hot_tub_watts') | float > 500 %}
-            'CircPump-Blower'
-          {% elif states('sensor.hot_tub_watts') | float > 150 %}
-            'CircPump'
-          {% else %}
-            Off
-          {% endif %}
-
-        ##########################################################
         ## Circulation Pump
         ##########################################################
 
