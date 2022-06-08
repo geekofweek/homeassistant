@@ -1,6 +1,6 @@
 [![GitHub stars](https://img.shields.io/github/stars/geekofweek/homeassistant.svg?style=plasticr)](https://github.com/geekofweek/homeassistant/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/geekofweek/homeassistant.svg?style=plasticr)](https://github.com/geekofweek/homeassistant/commits/master)
-[![HA Version](https://img.shields.io/badge/Running%20Home%20Assistant-2022.6.0%20-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
+[![HA Version](https://img.shields.io/badge/Running%20Home%20Assistant-2022.6.4%20-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
 [![HA Version](https://img.shields.io/badge/Original%20Home%20Assistant-0.14%20-darkblue)](https://github.com/home-assistant/core/releases/0.14)
 [![HA Community](https://img.shields.io/badge/HA%20community-forum-orange)](https://community.home-assistant.io/u/geekoftheweek/summary)
 
@@ -9,7 +9,7 @@
 My personal [Home Assistant Container](https://home-assistant.io) configurations with 300+ automations.  These are my active automations and configurations that I use every day.  Updated frequently as I add more devices and come up with more and more complicated ways to do simple tasks.
 
 # <a name="menu">Menu</a>
- | [Hubs](#hubs) | [Lighting](#lighting) | [Climate](#climate)| [Outlets & Switches](#outlets)|  [Locks](#locks) | [Security](#security) | [Voice Assistant](#voice) | [Media](#media) | [Sensors](#sensors) | [Cameras](#cameras) | [Garage](#garage) | [Vacuum](#vacuum) | [Blinds](#blinds) | [Appliances](#appliances) | [Network](#network) | [Other Hardware](#other)| [Software](#software) | [Retired Devices](#retired)  | [Screenshots](#screenshots) |
+ | [Hubs](#hubs) | [Lighting](#lighting) | [Climate](#climate)| [Outlets & Switches](#outlets)|  [Locks](#locks) | [Security](#security) | [Voice Assistant](#voice) | [Media](#media) | [Sensors](#sensors) | [Cameras](#cameras) | [Garage](#garage) | [Vacuum](#vacuum) | [Blinds](#blinds) | [Energy](#energy) | [Appliances](#appliances) | [Network](#network) | [Other Hardware](#other)| [Software](#software) | [Retired Devices](#retired)  | [Screenshots](#screenshots) |
 
 ## <a name="hubs">Hubs</a>
 
@@ -212,6 +212,19 @@ All Roomba related automations can be found in [roomba.yaml]( https://github.com
 
 All Blinds related automations can be found in [blinds.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/blinds.yaml)
 
+## <a name="energy">Energy</a>
+
+| [Go to Menu](#menu) | [Home Screenshot](images/home-screenshot.jpg?raw=true "Home Page") |
+
+| Device  | Quantity | Connection | Home Assistant | Notes |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| [IoTaWatt](https://iotawatt.com) | 1 | Wi-Fi | [IoTaWatt](https://www.home-assistant.io/integrations/iotawatt/)| Electric power meter that monitors via CT clamps on Mains power and circuit breakers |
+| [AccuCT 200A x 25mm split-core](https://stuff.iotawatt.com/product/accuct-200a-x-24mm-split-core/?v=7516fd43adaa) | 2 | IoTaWatt | [IoTaWatt](https://www.home-assistant.io/integrations/iotawatt/)| 200 Amp CT Clamps for Mains power monitoring |
+| [AccuCT 100A x 16mm split-core](https://stuff.iotawatt.com/product/accuct-100a-x-16mm-split-core/?v=7516fd43adaa) | 2 | IoTaWatt | [IoTaWatt](https://www.home-assistant.io/integrations/iotawatt/)| 100 Amp CT Clamps for Hot Tub and Air Conditioner power monitoring |
+| [AccuCT 100A x 16mm split-core](https://stuff.iotawatt.com/product/accuct-50a-x-10mm-split-core/?v=7516fd43adaa) | 3 | IoTaWatt | [IoTaWatt](https://www.home-assistant.io/integrations/iotawatt/)| 50 Amp CT Clamps for various circuits power monitoring such as Furnace and refrigerator |
+
+Utilzing Home Assitant Energy dashboard plus creating sensors and automations for things such as my Hot Tub and Air Conditoner / HVAC system.
+
 ## <a name="appliances">Appliances</a>
 
 | [Go to Menu](#menu) | [Basement Screenshot](images/basement-screenshot.jpg?raw=true "Home Page") |
@@ -262,7 +275,6 @@ Since I don’t use the network equipment as my primary presence detection metho
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [iOS App](https://itunes.apple.com/us/app/home-assistant-open-source-home-automation/id1099568401?mt=8) | 2 | NA | [iOS](https://www.home-assistant.io/docs/ecosystem/ios/)| Used as Home Assistant interface on mobile devices and primary method of presence detection. |
-| [Locative iOS App](https://itunes.apple.com/us/app/locative/id725198453?mt=8) | 2 | NA | [Locative](https://www.home-assistant.io/components/device_tracker.locative/) | Brought out of retirement and used in conjunction with native iOS app via [person integration](https://www.home-assistant.io/integrations/person/) |
 | [Docker](https://www.docker.com) | 1 | Ethernet | [Installation on Docker](https://www.home-assistant.io/docs/installation/docker/) | Home Assistant install runs as a Docker Container |
 | [Pi-hole](https://pi-hole.net) | 2 | Ethernet / Wi-Fi | [Pi-Hole Sensor](https://www.home-assistant.io/components/sensor.pi_hole/) | Ad blocking. Primary instance runs within a Docker container and the secondary runs on a [Raspberry-pi Zero W](https://amzn.to/2Kwcz1S) |
 | [Home Assistant Management Tool](https://github.com/geekofweek/homeassistant/blob/master/tools/ha-mgmt-docker.sh) | 1 | Ethernet | NA | Custom Shell script for managing Home Assistant |
@@ -303,6 +315,7 @@ More detailed information on the custom Home Assistant Managment Tools can be fo
 | [Ubiquiti Networks Unifi AP Lite (UAP-AC-LITE)](https://amzn.to/2YS8woA) | 1 | Ethernet | [Ubiquiti Unifi](https://www.home-assistant.io/components/device_tracker.unifi/) | Wireless Access Point for interior use. Presence detection for non household members and devices. Replaced by WiFi 6 Models |
 | [iRobot Roomba 980](https://amzn.to/2L9q1tm) | 1 | Wi-Fi | [iRobot Roomba](https://www.home-assistant.io/components/vacuum.roomba/)| Automated to run at specific times based on presence detection |
 | [Ubiquiti Networks Unifi Security Gateway (USG)](https://amzn.to/2wM62hk) | 1 | Ethernet | [Ubiquiti Unifi](https://www.home-assistant.io/components/device_tracker.unifi/)| Primary Router. Presence detection for non household members and devices. Replaced by UXG Pro |
+| [Locative iOS App](https://itunes.apple.com/us/app/locative/id725198453?mt=8) | 2 | NA | [Locative](https://www.home-assistant.io/components/device_tracker.locative/) | Put back in retirement since the native iOS app works so well |
 
 
 # <a name="screenshots">Screenshots</a>
