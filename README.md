@@ -9,7 +9,7 @@
 My personal [Home Assistant Container](https://home-assistant.io) configurations with 300+ automations.  These are my active automations and configurations that I use every day.  Updated frequently as I add more devices and come up with more and more complicated ways to do simple tasks.
 
 # <a name="menu">Menu</a>
- | [Hubs](#hubs) | [Lighting](#lighting) | [Climate](#climate)| [Outlets & Switches](#outlets)|  [Locks](#locks) | [Security](#security) | [Voice Assistant](#voice) | [Media](#media) | [Sensors](#sensors) | [Cameras](#cameras) | [Garage](#garage) | [Vacuum](#vacuum) | [Blinds](#blinds) | [Appliances](#appliances) | [Network](#network) | [Other Hardware](#other)| [Software](#software) | [Retired Devices](#retired)  | [Screenshots](#screenshots) |
+ | [Hubs](#hubs) | [Lighting](#lighting) | [Climate](#climate)| [Outlets & Switches](#outlets)|  [Locks](#locks) | [Security](#security) | [Voice Assistant](#voice) | [Media](#media) | [Sensors](#sensors) | [Cameras](#cameras) | [Garage](#garage) | [Vacuum](#vacuum) | [Blinds](#blinds) | [Energy](#energy) | [Appliances](#appliances) | [Network](#network) | [Other Hardware](#other)| [Software](#software) | [Retired Devices](#retired)  | [Screenshots](#screenshots) |
 
 ## <a name="hubs">Hubs</a>
 
@@ -221,7 +221,7 @@ All Blinds related automations can be found in [blinds.yaml]( https://github.com
 | [IoTaWatt](https://iotawatt.com) | 1 | Wi-Fi | [IoTaWatt](https://www.home-assistant.io/integrations/iotawatt/)| Electric power meter that monitors via CT clamps on Mains power and circuit breakers |
 | [AccuCT 200A x 25mm split-core](https://stuff.iotawatt.com/product/accuct-200a-x-24mm-split-core/?v=7516fd43adaa) | 2 | IoTaWatt | [IoTaWatt](https://www.home-assistant.io/integrations/iotawatt/)| 200 Amp CT Clamps for Mains power monitoring |
 | [AccuCT 100A x 16mm split-core](https://stuff.iotawatt.com/product/accuct-100a-x-16mm-split-core/?v=7516fd43adaa) | 2 | IoTaWatt | [IoTaWatt](https://www.home-assistant.io/integrations/iotawatt/)| 100 Amp CT Clamps for Hot Tub and Air Conditioner power monitoring |
-| [AccuCT 100A x 16mm split-core](AccuCT 50A x 10mm split-core) | 3 | IoTaWatt | [IoTaWatt](https://www.home-assistant.io/integrations/iotawatt/)| 50 Amp CT Clamps for various circuits power monitoring such as Furnace and refrigerator |
+| [AccuCT 100A x 16mm split-core](https://stuff.iotawatt.com/product/accuct-50a-x-10mm-split-core/?v=7516fd43adaa) | 3 | IoTaWatt | [IoTaWatt](https://www.home-assistant.io/integrations/iotawatt/)| 50 Amp CT Clamps for various circuits power monitoring such as Furnace and refrigerator |
 
 Utilzing Home Assitant Energy dashboard plus creating sensors and automations for things such as my Hot Tub and Air Conditoner / HVAC system.
 
