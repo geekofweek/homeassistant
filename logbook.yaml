@@ -5,6 +5,7 @@
   exclude:
     domains:
       - updater
+      - sensor
     entities:
       - light.back_door_left
       - light.back_door_right
@@ -25,50 +26,6 @@
       - binary_sensor.doors
       - light.exterior_lights
       - light.interior_lights
-      - sensor.ring_front_door_battery
-      - sensor.downstairs_roomba_batt
-      - sensor.upstairs_roomba_batt
-      - sensor.living_room_nest_protect_battery_health
-      - sensor.bedroom_nest_protect_battery_health
-      - sensor.hallway_nest_protect_battery_health
-      - sensor.kitchen_nest_protect_battery_health
-      - sensor.upstairs_nest_protect_battery_health
-      - sensor.basement_nest_protect_battery_health
-      - sensor.front_door_lock_batt
-      - sensor.back_door_lock_batt
-      - sensor.basement_door_lock_batt
-      - sensor.siren_batt
-      - sensor.living_room_motion_batt
-      - sensor.dining_room_motion_batt
-      - sensor.kitchen_motion_batt
-      - sensor.USER1s_office_motion_batt
-      - sensor.USER2s_office_motion_batt
-      - sensor.stairs_motion_batt
-      - sensor.upstairs_bath_motion_batt
-      - sensor.basement_motion_batt
-      - sensor.USER2s_closet_motion_batt
-      - sensor.basement_drain_water_sensor_batt
-      - sensor.sump_pump_water_sensor_batt
-      - sensor.kitchen_sink_water_sensor_batt
-      - sensor.bathroom_sink_water_sensor_batt
-      - sensor.upstairs_bathroom_water_sensor_batt
-      - sensor.utility_sink_water_sensor_batt
-      - sensor.washing_machine_water_sensor_batt
-      - sensor.water_heater_water_sensor_batt
-      - sensor.basement_door_water_sensor_batt
-      - sensor.living_room_temperature
-      - sensor.main_floor_temperature
-      - sensor.kitchen_temperature
-      - sensor.bedroom_temperature
-      - sensor.bathroom_temperature
-      - sensor.office_temperature
-      - sensor.USER2_office_temperature
-      - sensor.guest_bedroom_temperature
-      - sensor.basement_temperature
-      - sensor.laundry_room_temperature
-      - sensor.main_floor_humidity
-      - sensor.office_fan_humidity
-      - sensor.REDACTED_humidity
       - binary_sensor.motion_front_porch
       - binary_sensor.motion_driveway
       - binary_sensor.motion_garage
@@ -80,3 +37,8 @@
       - automation.lights_bedroom_lights_random_color_on
       - automation.lights_front_porch_lights_random_color_on
       - automation.lights_living_room_lights_random_color_on
+      - binary_sensor.USER1s_macbook_pro_active
+      - binary_sensor.USER1s_macbook_pro_audio_input_in_use
+      - binary_sensor.USER1s_macbook_pro_audio_output_in_use
+      - binary_sensor.USER1s_macbook_pro_camera_in_use
+      - binary_sensor.USER1s_macbook_pro_focus

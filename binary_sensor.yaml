@@ -81,3 +81,183 @@
         friendly_name: "Washer Tub Clean"
         device_class: problem
         value_template: "{{ states('sensor.washer_tub_clean')|float > 29 }}"
+
+#################################################################
+## Hot Tub
+#################################################################
+
+        ##########################################################
+        ## Hot Tub Modes
+        ##########################################################
+
+  - platform: template
+    sensors:
+      hot_tub_mode:
+        friendly_name: "Hot Tub Mode"
+        value_template: >-
+          {% if states('sensor.hot_tub_watts') | float > 10300 %}
+            'CircPump-Blower-Pump1-Pump2-Heat'
+          {% elif states('sensor.hot_tub_watts') | float > 9700 %}
+            'CircPump-Pump1-Pump2-Heat'
+          {% elif states('sensor.hot_tub_watts') | float > 8110 %}
+            'CircPump-Blower-Pump1-Heat'
+          {% elif states('sensor.hot_tub_watts') | float > 7990 %}
+            'CircPump-Blower-Pump2-Heat'
+          {% elif states('sensor.hot_tub_watts') | float > 7600 %}
+            'CircPump-Pump1-Heat'
+          {% elif states('sensor.hot_tub_watts') | float > 7500 %}
+            'CircPump-Pump2-Heat'
+          {% elif states('sensor.hot_tub_watts') | float > 5650 %}
+            'CircPump-Blower-Heat'
+          {% elif states('sensor.hot_tub_watts') | float > 5300 %}
+            'CircPump-Heat'
+          {% elif states('sensor.hot_tub_watts') | float > 5210 %}
+            'CircPump-Blower-Pump1-Pump2'
+          {% elif states('sensor.hot_tub_watts') | float > 4750 %}
+            'CircPump-Pump1-Pump2'
+          {% elif states('sensor.hot_tub_watts') | float > 2930 %}
+            'CircPump-Blower-Pump1'
+          {% elif states('sensor.hot_tub_watts') | float > 2630 %}
+            'CircPump-Blower-Pump2'
+          {% elif states('sensor.hot_tub_watts') | float > 2500 %}
+            'CircPump-Pump1'
+          {% elif states('sensor.hot_tub_watts') | float > 2380 %}
+            'CircPump-Pump2'
+          {% elif states('sensor.hot_tub_watts') | float > 500 %}
+            'CircPump-Blower'
+          {% elif states('sensor.hot_tub_watts') | float > 150 %}
+            'CircPump'
+          {% else %}
+            Off
+          {% endif %}
+
+        ##########################################################
+        ## Circulation Pump
+        ##########################################################
+
+  - platform: template
+    sensors:
+      hot_tub_circ_pump:
+        friendly_name: "Circulation Pump"
+        value_template: >-
+          {% if is_state('sensor.hot_tub_mode', 'Off') %}
+            Off
+          {% else %}
+            On
+          {% endif %}
+
+        ##########################################################
+        ## Pump 1
+        ##########################################################
+
+  - platform: template
+    sensors:
+      hot_tub_pump_1:
+        friendly_name: "Pump 1"
+        value_template: >-
+          {% if is_state('sensor.hot_tub_mode', 'CircPump-Blower-Pump1-Pump2-Heat') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Pump1-Pump2-Heat') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Blower-Pump1-Heat') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Pump1-Heat') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Blower-Pump1-Pump2') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Pump1-Pump2') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Blower-Pump1') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Pump1') %}
+            On
+          {% else %}
+            Off
+          {% endif %}
+
+        ##########################################################
+        ## Pump 2
+        ##########################################################
+
+  - platform: template
+    sensors:
+      hot_tub_pump_2:
+        friendly_name: "Pump 2"
+        value_template: >-
+          {% if is_state('sensor.hot_tub_mode', 'CircPump-Blower-Pump1-Pump2-Heat') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Pump1-Pump2-Heat') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Blower-Pump2-Heat') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Pump2-Heat') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Blower-Pump1-Pump2') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Pump1-Pump2') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Blower-Pump2') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Pump2') %}
+            On
+          {% else %}
+            Off
+          {% endif %}
+
+        ##########################################################
+        ## Air Blower
+        ##########################################################
+
+  - platform: template
+    sensors:
+      hot_tub_air_blower:
+        friendly_name: "Air Blower"
+        value_template: >-
+          {% if is_state('sensor.hot_tub_mode', 'CircPump-Blower-Pump1-Pump2-Heat') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Blower-Pump1-Heat') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Blower-Pump2-Heat') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Blower-Heat') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Blower-Pump1-Pump2') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Blower-Pump1') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Blower-Pump2') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Blower') %}
+            On
+          {% else %}
+            Off
+          {% endif %}
+
+        ##########################################################
+        ## Heater
+        ##########################################################
+
+  - platform: template
+    sensors:
+      hot_tub_heater:
+        friendly_name: "Heater"
+        value_template: >-
+          {% if is_state('sensor.hot_tub_mode', 'CircPump-Blower-Pump1-Pump2-Heat') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Pump1-Pump2-Heat') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Blower-Pump1-Heat') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Blower-Pump2-Heatt') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Pump1-Heat') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Pump2-Heat') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Blower-Heat') %}
+            On
+          {% elif is_state('sensor.hot_tub_mode', 'CircPump-Heat') %}
+            On
+          {% else %}
+            Off
+          {% endif %}
