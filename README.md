@@ -212,6 +212,19 @@ All Roomba related automations can be found in [roomba.yaml]( https://github.com
 
 All Blinds related automations can be found in [blinds.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/blinds.yaml)
 
+## <a name="energy">Energy</a>
+
+| [Go to Menu](#menu) | [Home Screenshot](images/home-screenshot.jpg?raw=true "Home Page") |
+
+| Device  | Quantity | Connection | Home Assistant | Notes |
+| ------------- | :---: | ------------- | ------------- | ------------- |
+| [IoTaWatt](https://iotawatt.com) | 1 | Wi-Fi | [IoTaWatt](https://www.home-assistant.io/integrations/iotawatt/)| Electric power meter that monitors via CT clamps on Mains power and circuit breakers |
+| [AccuCT 200A x 25mm split-core](https://stuff.iotawatt.com/product/accuct-200a-x-24mm-split-core/?v=7516fd43adaa) | 2 | IoTaWatt | [IoTaWatt](https://www.home-assistant.io/integrations/iotawatt/)| 200 Amp CT Clamps for Mains power monitoring |
+| [AccuCT 100A x 16mm split-core](https://stuff.iotawatt.com/product/accuct-100a-x-16mm-split-core/?v=7516fd43adaa) | 2 | IoTaWatt | [IoTaWatt](https://www.home-assistant.io/integrations/iotawatt/)| 100 Amp CT Clamps for Hot Tub and Air Conditioner power monitoring |
+| [AccuCT 100A x 16mm split-core](AccuCT 50A x 10mm split-core) | 3 | IoTaWatt | [IoTaWatt](https://www.home-assistant.io/integrations/iotawatt/)| 50 Amp CT Clamps for various circuits power monitoring such as Furnace and refrigerator |
+
+Utilzing Home Assitant Energy dashboard plus creating sensors and automations for things such as my Hot Tub and Air Conditoner / HVAC system.
+
 ## <a name="appliances">Appliances</a>
 
 | [Go to Menu](#menu) | [Basement Screenshot](images/basement-screenshot.jpg?raw=true "Home Page") |
