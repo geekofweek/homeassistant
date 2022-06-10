@@ -7,20 +7,6 @@
 #################################################################
 
         ##########################################################
-        ## Climate Mode
-        ##########################################################
-
-  sensor.thermostat_climate_mode:
-    icon: mdi:thermostat-box
-
-        ##########################################################
-        ## Outdoor Weather
-        ##########################################################
-
-  sensor.REDACTED_temperature:
-    friendly_name: 'Outdoor Temperature'
-
-        ##########################################################
         ## Craft Room Temperature
         ##########################################################
 
@@ -52,27 +38,8 @@
         ## Bathroom Temperature
         ##########################################################
 
-  sensor.bathroom_temperature_vera:
-    device_class: temperature
-
-        ##########################################################
-        ## Bathroom Temperature
-        ##########################################################
-
   sensor.bathroom_humidity:
     device_class: humidity        
-
-#################################################################
-## Calendars
-#################################################################
-
-        ##########################################################
-        ## Holiday Calendar
-        ##########################################################
-
-  sensor.holidays_calendar:
-    icon: mdi:calendar
-    friendly_name: Upcoming Holiday
 
 #################################################################
 ## Network Sensors
@@ -298,95 +265,6 @@
 
   sensor.nas_memory_usage:
     friendly_name: Memory Usage
-
-#################################################################
-## UPS
-#################################################################
-
-        ##########################################################
-        ## UPS - A Runtime Remaining
-        ##########################################################
-
-  sensor.ups_a_battery_runtime_mins:
-    icon: mdi:timer-outline
-
-        ##########################################################
-        ## UPS - B Runtime Remaining
-        ##########################################################
-
-  sensor.ups_b_battery_runtime_mins:
-    icon: mdi:timer-outline
-
-        ##########################################################
-        ## UPS - C Runtime Remaining
-        ##########################################################
-
-  sensor.ups_c_battery_runtime_mins:
-    icon: mdi:timer-outline
-
-#################################################################
-## Laundry
-#################################################################
-
-        ##########################################################
-        ## Washing Machine Time Remaining
-        ##########################################################
-
-  sensor.washing_machine_time_remaining:
-    icon: mdi:timer-outline
-    friendly_name: Washer Time Remaining
-
-        ##########################################################
-        ## Washing Machine Error Message
-        ##########################################################
-
-  sensor.washer_error:
-    icon: mdi:washing-machine-alert
-    friendly_name: Washer Error
-
-        ##########################################################
-        ## Dryer Time Remaining
-        ##########################################################
-
-  sensor.dryer_time_remaining:
-    icon: mdi:timer-outline
-    friendly_name: Dryer Time Remaining
-
-        ##########################################################
-        ## Dryer Error Message
-        ##########################################################
-
-  sensor.dryer_error:
-    icon: mdi:tumble-dryer-alert
-    friendly_name: Dryer Error
-
-        ##########################################################
-        ## Washer Tub Clean
-        ##########################################################
-
-  binary_sensor.washer_tub_clean_on:
-    icon: mdi:washing-machine-alert
-    friendly_name: Washer Tub Clean Required
-
-#################################################################
-## Sump Pump
-#################################################################
-
-        ##########################################################
-        ## Sump Pump Status Sensor
-        ##########################################################
-
-  binary_sensor.sump_pump_status:
-    icon: mdi:water-pump
-    friendly_name: Sump Pump
-
-        ##########################################################
-        ## Sump Pump Current Power Sensor
-        ##########################################################
-
-  sensor.sump_pump_current_power:
-    icon: mdi:power-plug
-    friendly_name: Sump Pump Wattage
 
 #################################################################
 ## Fans
