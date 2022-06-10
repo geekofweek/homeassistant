@@ -33,37 +33,37 @@
       name: Hot Tub Mode
       state: >
         {% if states('sensor.hot_tub_watts') | float > 10300 %}
-          'CircPump-Blower-Pump1-Pump2-Heat'
+          CircPump-Blower-Pump1-Pump2-Heat
         {% elif states('sensor.hot_tub_watts') | float > 9700 %}
-          'CircPump-Pump1-Pump2-Heat'
+          CircPump-Pump1-Pump2-Heat
         {% elif states('sensor.hot_tub_watts') | float > 8110 %}
-          'CircPump-Blower-Pump1-Heat'
+          CircPump-Blower-Pump1-Heat
         {% elif states('sensor.hot_tub_watts') | float > 7990 %}
-          'CircPump-Blower-Pump2-Heat'
+          CircPump-Blower-Pump2-Heat
         {% elif states('sensor.hot_tub_watts') | float > 7600 %}
-          'CircPump-Pump1-Heat'
+          CircPump-Pump1-Heat
         {% elif states('sensor.hot_tub_watts') | float > 7500 %}
-          'CircPump-Pump2-Heat'
+          CircPump-Pump2-Heat
         {% elif states('sensor.hot_tub_watts') | float > 5650 %}
-          'CircPump-Blower-Heat'
+          CircPump-Blower-Heat
         {% elif states('sensor.hot_tub_watts') | float > 5300 %}
-          'CircPump-Heat'
+          CircPump-Heat
         {% elif states('sensor.hot_tub_watts') | float > 5170 %}
-          'CircPump-Blower-Pump1-Pump2'
+          CircPump-Blower-Pump1-Pump2
         {% elif states('sensor.hot_tub_watts') | float > 4750 %}
-          'CircPump-Pump1-Pump2'
+          CircPump-Pump1-Pump2
         {% elif states('sensor.hot_tub_watts') | float > 2930 %}
-          'CircPump-Blower-Pump1'
+          CircPump-Blower-Pump1
         {% elif states('sensor.hot_tub_watts') | float > 2630 %}
-          'CircPump-Blower-Pump2'
+          CircPump-Blower-Pump2
         {% elif states('sensor.hot_tub_watts') | float > 2500 %}
-          'CircPump-Pump1'
+          CircPump-Pump1
         {% elif states('sensor.hot_tub_watts') | float > 2380 %}
-          'CircPump-Pump2'
+          CircPump-Pump2
         {% elif states('sensor.hot_tub_watts') | float > 500 %}
-          'CircPump-Blower'
+          CircPump-Blower
         {% elif states('sensor.hot_tub_watts') | float > 150 %}
-          'CircPump'
+          CircPump
         {% else %}
           Off
         {% endif %}
