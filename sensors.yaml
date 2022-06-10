@@ -139,25 +139,6 @@
         unit_of_measurement: '°F'
 
         ##########################################################
-        ## Electricity Rate
-        ##########################################################
-
-  - platform: template
-    sensors:
-      current_electricity_rate:
-        friendly_name: "Current Electricity Rate"
-        unit_of_measurement: "USD/kWh"
-        device_class: monetary
-        value_template: >-
-          {% if is_state('select.monthly_electric', 'Summer Rate') %}
-            {{ 0.1296 }}
-          {% elif is_state('select.monthly_electric', 'Winter Rate First 750') %}
-            {{ 0.0REDACTED1 }}
-          {% elif is_state('select.monthly_electric', 'Winter Rate Over 750') %}
-            {{ 0.0591 }}
-          {% endif %}
-
-        ##########################################################
         ## Server Uptime
         ##########################################################
 
@@ -210,53 +191,4 @@
             {% endif %}
           {% else %}
             unknown
-          {% endif %}
-
-#################################################################
-## Hot Tub
-#################################################################
-
-        ##########################################################
-        ## Hot Tub Modes
-        ##########################################################
-
-  - platform: template
-    sensors:
-      hot_tub_mode:
-        friendly_name: "Hot Tub Mode"
-        value_template: >-
-          {% if states('sensor.hot_tub_watts') | float > 10300 %}
-            'CircPump-Blower-Pump1-Pump2-Heat'
-          {% elif states('sensor.hot_tub_watts') | float > 9700 %}
-            'CircPump-Pump1-Pump2-Heat'
-          {% elif states('sensor.hot_tub_watts') | float > 8110 %}
-            'CircPump-Blower-Pump1-Heat'
-          {% elif states('sensor.hot_tub_watts') | float > 7990 %}
-            'CircPump-Blower-Pump2-Heat'
-          {% elif states('sensor.hot_tub_watts') | float > 7600 %}
-            'CircPump-Pump1-Heat'
-          {% elif states('sensor.hot_tub_watts') | float > 7500 %}
-            'CircPump-Pump2-Heat'
-          {% elif states('sensor.hot_tub_watts') | float > 5650 %}
-            'CircPump-Blower-Heat'
-          {% elif states('sensor.hot_tub_watts') | float > 5300 %}
-            'CircPump-Heat'
-          {% elif states('sensor.hot_tub_watts') | float > 5210 %}
-            'CircPump-Blower-Pump1-Pump2'
-          {% elif states('sensor.hot_tub_watts') | float > 4750 %}
-            'CircPump-Pump1-Pump2'
-          {% elif states('sensor.hot_tub_watts') | float > 2930 %}
-            'CircPump-Blower-Pump1'
-          {% elif states('sensor.hot_tub_watts') | float > 2630 %}
-            'CircPump-Blower-Pump2'
-          {% elif states('sensor.hot_tub_watts') | float > 2500 %}
-            'CircPump-Pump1'
-          {% elif states('sensor.hot_tub_watts') | float > 2380 %}
-            'CircPump-Pump2'
-          {% elif states('sensor.hot_tub_watts') | float > 500 %}
-            'CircPump-Blower'
-          {% elif states('sensor.hot_tub_watts') | float > 150 %}
-            'CircPump'
-          {% else %}
-            Off
           {% endif %}
