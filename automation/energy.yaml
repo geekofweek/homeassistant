@@ -19,6 +19,11 @@
       value_template: "{{ now().month in [1,2,3,4,5,10,11,12] }}"
     - condition: template
       value_template: '{{ trigger.to_state.state | float(0) < 750000 }}'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: select.monthly_electric
+        state: "Winter Rate First 750"
 
   action:
     - service: select.select_option
@@ -43,6 +48,11 @@
       value_template: "{{ now().month in [1,2,3,4,5,10,11,12] }}"
     - condition: template
       value_template: '{{ trigger.to_state.state | float(0) > 749999 }}'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: select.monthly_electric
+        state: "Winter Rate Over 750"
 
   action:
     - service: select.select_option
@@ -65,9 +75,68 @@
   condition:
     - condition: template
       value_template: "{{ now().month in [6,7,8,9] }}"
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: select.monthly_electric
+        state: "Summer Rate"
 
   action:
     - service: select.select_option
       data:
         entity_id: select.monthly_electric
         option: "Summer Rate"
+
+        ##########################################################
+        ## Turn Off USER1 Electric Bike Chargers when Not Charging
+        ##########################################################
+
+- alias: Energy - Turn Off USER1 Electric Bike Chargers when Not Charging
+  id: 'energy_turn_off_USER1_ebike_chargers_when_not_charging'
+
+  trigger:
+    - platform: state
+      entity_id: 
+          - binary_sensor.USER1_bike_charger_state
+      to: 'off'
+      for:
+        hours: 2
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: switch.USER1s_bike_charger
+      state: 'on'
+
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.USER1s_bike_charger
+
+        ##########################################################
+        ## Turn Off USER2 Electric Bike Chargers when Not Charging
+        ##########################################################
+
+- alias: Energy - Turn Off USER2 Electric Bike Chargers when Not Charging
+  id: 'energy_turn_off_USER2_ebike_chargers_when_not_charging'
+
+  trigger:
+    - platform: state
+      entity_id: 
+          - binary_sensor.USER2_bike_charger_state
+      to: 'off'
+      for:
+        hours: 2
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: switch.USER2s_bike_charger
+      state: 'on'
+
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.USER2s_bike_charger

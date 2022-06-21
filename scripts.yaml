@@ -14,14 +14,14 @@ say:
         with_group: yes
         entity_id: "{{ where }}"
     - delay: '00:00:03'
-    - service: sonos.unjoin
+    - service: media_player.unjoin
       data_template:
         entity_id: "{{ where }}"
     - delay: '00:00:01'
-    - service: sonos.join
+    - service: media_player.join
       data_template:
-        master: "{{ master }}"
-        entity_id: "{{ where }}"
+        entity_id: "{{ master }}"
+        group_members: "{{ where }}"
     - delay: '00:00:01'
     - service: media_player.volume_set
       data_template:

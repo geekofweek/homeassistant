@@ -137,7 +137,7 @@
 #################################################################
 
         ##########################################################
-        ## Blinds Low Battery Notification
+        ## Locks Low Battery Notification
         ##########################################################
 
 - alias: Locks - Low Battery Notification
@@ -146,9 +146,9 @@
   trigger:
     - platform: numeric_state
       entity_id: 
-          - lock.front_door
-          - lock.back_door
-          - lock.basement_door
+          - sensor.front_door_lock_batt
+          - sensor.back_door_lock_batt
+          - sensor.basement_door_lock_batt
       below: 30
       for:
         hours: 1
