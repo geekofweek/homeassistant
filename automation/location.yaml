@@ -1408,7 +1408,7 @@
       data:
         variables:
           master: 'media_player.sonos_living_room'
-          where: 'media_player.sonos_dining_room, media_player.sonos_kitchen'
+          where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen'
           volume: 0.5
           what: 'Welcome home, USER1.'
     - delay: '00:02:00'
@@ -1496,7 +1496,7 @@
       data:
         variables:
           master: 'media_player.sonos_living_room'
-          where: 'media_player.sonos_dining_room, media_player.sonos_kitchen'
+          where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen'
           volume: 0.5
           what: 'Welcome home, USER2.'
     - delay: '00:02:00'
@@ -1546,7 +1546,7 @@
       data:
         variables:
           master: 'media_player.sonos_USER1s_office'
-          where: 'media_player.sonos_USER1s_office_move'
+          where: 'media_player.sonos_USER1s_office, media_player.sonos_USER1s_office_move'
           volume: 0.5
           what: 'USER2, is Home'
 
@@ -1590,7 +1590,7 @@
       data:
         variables:
           master: 'media_player.sonos_living_room'
-          where: 'media_player.sonos_dining_room, media_player.sonos_kitchen'
+          where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen'
           volume: 0.5
           what: 'Welcome Home, USER1 and USER2'
     - delay: '00:02:00'

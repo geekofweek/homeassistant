@@ -104,6 +104,24 @@
       entity_id:
         - switch.bond_home_hub
 
+        #################################################################
+        ## Clear Erroneous Failed Login Notifications
+        #################################################################
+
+- alias: System - Clear Erroneous Failed Login Notifications
+  id: 'system_clear_erroneous_failed_login_notifications'
+
+  trigger:
+    - platform: state
+      entity_id: persistent_notification.http_login
+      to: 'notifying'
+
+  action:
+    - delay: "00:00:01"
+    - service: persistent_notification.dismiss
+      data:
+        notification_id: http-login
+
 #################################################################
 ## Notifications
 #################################################################

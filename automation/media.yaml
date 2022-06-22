@@ -569,6 +569,7 @@
         entity_id:
           - media_player.sonos_living_room
         group_members:
+          - media_player.sonos_living_room
           - media_player.sonos_surround_sound
           - media_player.sonos_dining_room
           - media_player.sonos_kitchen
@@ -639,13 +640,15 @@
   action:
     - service: media_player.join
       data:
-        entity_id:
-          - media_player.sonos_living_room
         group_members:
+          - media_player.sonos_living_room
           - media_player.sonos_surround_sound
           - media_player.sonos_dining_room
           - media_player.sonos_kitchen
           - media_player.sonos_bathroom
+      target:
+        entity_id:
+          - media_player.sonos_living_room
     - delay: '00:00:02'
     - service: media_player.volume_set
       entity_id:
@@ -659,8 +662,10 @@
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
-        entity_id: media_player.sonos_living_room
         source: 'Pure Pop'
+      target:
+        entity_id: 
+          - media_player.sonos_living_room
     - service: homeassistant.turn_off
       entity_id:
         - input_boolean.classical_music
@@ -693,13 +698,15 @@
   action:
     - service: media_player.join
       data:
-        entity_id:
-          - media_player.sonos_living_room
         group_members:
+          - media_player.sonos_living_room
           - media_player.sonos_surround_sound
           - media_player.sonos_dining_room
           - media_player.sonos_kitchen
           - media_player.sonos_bathroom
+      target:
+        entity_id:
+          - media_player.sonos_living_room
     - delay: '00:00:02'
     - service: media_player.volume_set
       entity_id:
@@ -713,8 +720,10 @@
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
-        entity_id: media_player.sonos_living_room
         source: 'Smooth Jazz'
+      target:
+        entity_id: 
+          - media_player.sonos_living_room
     - service: homeassistant.turn_off
       entity_id:
         - input_boolean.classical_music
@@ -747,13 +756,15 @@
   action:
     - service: media_player.join
       data:
-        entity_id:
-          - media_player.sonos_living_room
         group_members:
+          - media_player.sonos_living_room
           - media_player.sonos_surround_sound
           - media_player.sonos_dining_room
           - media_player.sonos_kitchen
           - media_player.sonos_bathroom
+      target:
+        entity_id:
+          - media_player.sonos_living_room
     - delay: '00:00:02'
     - service: media_player.volume_set
       entity_id:
@@ -767,8 +778,10 @@
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
-        entity_id: media_player.sonos_living_room
         source: 'Classical'
+      target:
+        entity_id: 
+          - media_player.sonos_living_room
     - service: homeassistant.turn_off
       entity_id:
         - input_boolean.jazz_music
@@ -801,13 +814,15 @@
   action:
     - service: media_player.join
       data:
-        entity_id:
-          - media_player.sonos_living_room
         group_members:
+          - media_player.sonos_living_room
           - media_player.sonos_surround_sound
           - media_player.sonos_dining_room
           - media_player.sonos_kitchen
           - media_player.sonos_bathroom
+      target:
+        entity_id:
+          - media_player.sonos_living_room
     - delay: '00:00:02'
     - service: media_player.volume_set
       entity_id:
@@ -821,8 +836,10 @@
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
-        entity_id: media_player.sonos_living_room
         source: 'Atmospheric Electronic'
+      target:
+        entity_id: 
+          - media_player.sonos_living_room
     - service: homeassistant.turn_off
       entity_id:
         - input_boolean.jazz_music
@@ -855,13 +872,15 @@
   action:
     - service: media_player.join
       data:
-        entity_id:
-          - media_player.sonos_living_room
         group_members:
+          - media_player.sonos_living_room
           - media_player.sonos_surround_sound
           - media_player.sonos_dining_room
           - media_player.sonos_kitchen
           - media_player.sonos_bathroom
+      target:
+        entity_id:
+          - media_player.sonos_living_room
     - delay: '00:00:02'
     - service: media_player.volume_set
       entity_id:
@@ -875,8 +894,10 @@
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
-        entity_id: media_player.sonos_living_room
         source: 'Chill'
+      target:
+        entity_id: 
+          - media_player.sonos_living_room
     - service: homeassistant.turn_off
       entity_id:
         - input_boolean.jazz_music
@@ -909,10 +930,12 @@
   action:
     - service: media_player.join
       data:
+        group_members:
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+      target:
         entity_id:
           - media_player.sonos_USER1s_office
-        group_members:
-          - media_player.sonos_USER1s_office_move
     - delay: '00:00:02'
     - service: media_player.volume_set
       entity_id:
@@ -923,8 +946,10 @@
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
-        entity_id: media_player.sonos_USER1s_office
         source: 'Chill'
+      target:
+        entity_id: 
+          - media_player.sonos_USER1s_office
 
         ##########################################################
         ## Stop Playing Music USER1's Office
