@@ -42,7 +42,7 @@
     - condition: not
       conditions:
       - condition: state
-        entity_id: media_player.living_room_appletv
+        entity_id: media_player.living_room_apple_tv
         state: 'playing'
     - condition: not
       conditions:
@@ -120,7 +120,7 @@
     - condition: not
       conditions:
       - condition: state
-        entity_id: media_player.living_room_appletv
+        entity_id: media_player.living_room_apple_tv
         state: 'playing'
     - condition: not
       conditions:
@@ -202,7 +202,7 @@
     - condition: not
       conditions:
       - condition: state
-        entity_id: media_player.living_room_appletv
+        entity_id: media_player.living_room_apple_tv
         state: 'playing'
     - condition: not
       conditions:
@@ -2621,26 +2621,18 @@
     - condition: state
       entity_id: cover.USER1_s_office_blinds
       state: 'closed'
-    - condition: or
-      conditions:
-      - condition: numeric_state
-        entity_id: sensor.USER1s_office_light_level
-        below: 5
-      - condition: state
-        entity_id: sensor.USER1s_office_light_level
-        state: 'unknown'
 
   action:
     - service: light.turn_on
       entity_id: light.office_lamp
       data:
-        brightness_pct: 15
+        brightness_pct: 50
         color_temp: 447
     - service: light.turn_on
       entity_id:
         - light.USER1_s_office_ceiling
       data:
-        brightness_pct: 2
+        brightness_pct: 15
 
         ##########################################################
         ## Turn On USER1 Office Moon Globe when Motion Detected

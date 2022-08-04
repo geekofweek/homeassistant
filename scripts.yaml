@@ -3,42 +3,6 @@
 #################################################################
 
         ##########################################################
-        ## Sonos Text to Speech
-        ##########################################################
-
-say:
-  alias: Sonos TTS
-  sequence:
-    - service: sonos.snapshot
-      data_template:
-        with_group: yes
-        entity_id: "{{ where }}"
-    - delay: '00:00:03'
-    - service: sonos.unjoin
-      data_template:
-        entity_id: "{{ where }}"
-    - delay: '00:00:01'
-    - service: sonos.join
-      data_template:
-        master: "{{ master }}"
-        entity_id: "{{ where }}"
-    - delay: '00:00:01'
-    - service: media_player.volume_set
-      data_template:
-        entity_id: "{{ where }}"
-        volume_level: "{{ volume }}"
-    - delay: '00:00:02'
-    - service: tts.cloud_say
-      data_template:
-        entity_id: "{{ master }}"
-        message: "{{ what }}"
-    - delay: '00:00:25'
-    - service: sonos.restore
-      data_template:
-        with_group: yes
-        entity_id: "{{ where }}"
-
-        ##########################################################
         ## Living Room Fan Light Dimmers
         ##########################################################
 
@@ -90,7 +54,7 @@ living_room_launch_netflix:
   sequence:
     - service: media_player.select_source
       target:
-        entity_id: media_player.living_room_appletv
+        entity_id: media_player.living_room_apple_tv
       data:
         source: "Netflix"
 
@@ -104,7 +68,7 @@ living_room_launch_plex:
   sequence:
     - service: media_player.select_source
       target:
-        entity_id: media_player.living_room_appletv
+        entity_id: media_player.living_room_apple_tv
       data:
         source: "Plex"
 
@@ -118,7 +82,7 @@ living_room_launch_disney:
   sequence:
     - service: media_player.select_source
       target:
-        entity_id: media_player.living_room_appletv
+        entity_id: media_player.living_room_apple_tv
       data:
         source: "Disney+"
 
@@ -132,6 +96,6 @@ living_room_launch_hulu:
   sequence:
     - service: media_player.select_source
       target:
-        entity_id: media_player.living_room_appletv
+        entity_id: media_player.living_room_apple_tv
       data:
         source: "Hulu"

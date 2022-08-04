@@ -48,8 +48,8 @@
       from: 'home'
       to: 'not_home'
       for:
-        hours: 0
-        minutes: 30
+        hours: 1
+        minutes: 0
         seconds: 0
 
   condition:
@@ -73,7 +73,7 @@
   action:
     - service: notify.USER1_devices
       data:
-        message: House has been empty for 30 mins, shutting Off HVAC
+        message: House has been empty for an hour, shutting Off HVAC
         data:
           tag: climate
           group: climate
@@ -478,7 +478,7 @@
   trigger:
     - platform: state
       entity_id: person.USER2
-      from: 'REDACTED'
+      from: 'Work'
       to: 'not_home'
 
   condition:

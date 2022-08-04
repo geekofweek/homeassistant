@@ -324,15 +324,15 @@
           group: water
 
         ##########################################################
-        ## Basement Door Water Sensor iOS Notification
+        ## Attic Water Sensor iOS Notification
         ##########################################################
 
-- alias: Water Works - Basement Door Water Sensor iOS Notification
-  id: 'water_works_basement_door_water_sensor_ios_notification'
+- alias: Water Works - Attic Water Sensor iOS Notification
+  id: 'water_works_attic_water_sensor_ios_notification'
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.basement_door_water_sensor
+      entity_id: binary_sensor.attic_water_sensor
       from: 'off'
       to: 'on'
 
@@ -344,7 +344,7 @@
   action:
     - service: notify.USER1_devices
       data:
-        message: Water Detected by Basement Door!
+        message: Water Detected by Attic!
         data:
           tag: water-leak
           group: water
@@ -530,14 +530,94 @@
       state: 'off'
 
   action:
-    - service: script.turn_on
-      entity_id: script.say
+    - service: sonos.snapshot
       data:
-        variables:
-          master: 'media_player.sonos_living_room'
-          where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen, media_player.sonos_bathroom, media_player.sonos_bedroom, media_player.sonos_bedroom_closet, media_player.sonos_USER1s_office, media_player.sonos_USER2s_office, media_player.sonos_move, media_player.sonos_craft_room, media_player.sonos_fitness_room'
-          volume: .5
-          what: 'Water Detected in Basement Drain! Shutting Off Water Supply'
+        with_group: yes
+        entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+    - delay: '00:00:03'
+    - service: media_player.unjoin
+      entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+    - delay: '00:00:01'
+    - service: media_player.join
+      data:
+        entity_id:
+          - media_player.sonos_living_room
+        group_members:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+    - delay: '00:00:01'
+    - service: media_player.volume_set
+      entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+      data:
+        volume_level: 0.5
+    - delay: '00:00:02'
+    - service: tts.cloud_say
+      data_template:
+        entity_id: media_player.sonos_living_room
+        message: 'Water Detected in Basement Drain! Shutting Off Water Supply'
+    - delay: '00:00:25'
+    - service: sonos.restore
+      data:
+        with_group: yes
+        entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
 
         ##########################################################
         ## Kitchen Sink Water Sensor Audio Notification
@@ -564,14 +644,94 @@
       state: 'off'
 
   action:
-    - service: script.turn_on
-      entity_id: script.say
+    - service: sonos.snapshot
       data:
-        variables:
-          master: 'media_player.sonos_living_room'
-          where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen, media_player.sonos_bathroom, media_player.sonos_bedroom, media_player.sonos_bedroom_closet, media_player.sonos_USER1s_office, media_player.sonos_USER2s_office, media_player.sonos_move, media_player.sonos_craft_room, media_player.sonos_fitness_room'
-          volume: '.5'
-          what: 'Water Detected Under Kitchen Sink! Shutting Off Water Supply'
+        with_group: yes
+        entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+    - delay: '00:00:03'
+    - service: media_player.unjoin
+      entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+    - delay: '00:00:01'
+    - service: media_player.join
+      data:
+        entity_id:
+          - media_player.sonos_living_room
+        group_members:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+    - delay: '00:00:01'
+    - service: media_player.volume_set
+      entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+      data:
+        volume_level: 0.5
+    - delay: '00:00:02'
+    - service: tts.cloud_say
+      data_template:
+        entity_id: media_player.sonos_living_room
+        message: 'Water Detected Under Kitchen Sink! Shutting Off Water Supply'
+    - delay: '00:00:25'
+    - service: sonos.restore
+      data:
+        with_group: yes
+        entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
 
         ##########################################################
         ## Bathroom Sink Water Sensor Audio Notification
@@ -598,14 +758,94 @@
       state: 'off'
 
   action:
-    - service: script.turn_on
-      entity_id: script.say
+    - service: sonos.snapshot
       data:
-        variables:
-          master: 'media_player.sonos_living_room'
-          where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen, media_player.sonos_bathroom, media_player.sonos_bedroom, media_player.sonos_bedroom_closet, media_player.sonos_USER1s_office, media_player.sonos_USER2s_office, media_player.sonos_move, media_player.sonos_craft_room, media_player.sonos_fitness_room'
-          volume: .5
-          what: 'Water Detected Under Bathroom Sink! Shutting Off Water Supply'
+        with_group: yes
+        entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+    - delay: '00:00:03'
+    - service: media_player.unjoin
+      entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+    - delay: '00:00:01'
+    - service: media_player.join
+      data:
+        entity_id:
+          - media_player.sonos_living_room
+        group_members:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+    - delay: '00:00:01'
+    - service: media_player.volume_set
+      entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+      data:
+        volume_level: 0.5
+    - delay: '00:00:02'
+    - service: tts.cloud_say
+      data_template:
+        entity_id: media_player.sonos_living_room
+        message: 'Water Detected Under Bathroom Sink! Shutting Off Water Supply'
+    - delay: '00:00:25'
+    - service: sonos.restore
+      data:
+        with_group: yes
+        entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
 
         ##########################################################
         ## Upstairs Bathroom Sink Water Sensor Audio Notification
@@ -632,14 +872,94 @@
       state: 'off'
 
   action:
-    - service: script.turn_on
-      entity_id: script.say
+    - service: sonos.snapshot
       data:
-        variables:
-          master: 'media_player.sonos_living_room'
-          where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen, media_player.sonos_bathroom, media_player.sonos_bedroom, media_player.sonos_bedroom_closet, media_player.sonos_USER1s_office, media_player.sonos_USER2s_office, media_player.sonos_move, media_player.sonos_craft_room, media_player.sonos_fitness_room'
-          volume: '.5'
-          what: 'Water Detected In Upstairs Bathroom! Shutting Off Water Supply'
+        with_group: yes
+        entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+    - delay: '00:00:03'
+    - service: media_player.unjoin
+      entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+    - delay: '00:00:01'
+    - service: media_player.join
+      data:
+        entity_id:
+          - media_player.sonos_living_room
+        group_members:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+    - delay: '00:00:01'
+    - service: media_player.volume_set
+      entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+      data:
+        volume_level: 0.5
+    - delay: '00:00:02'
+    - service: tts.cloud_say
+      data_template:
+        entity_id: media_player.sonos_living_room
+        message: 'Water Detected In Upstairs Bathroom! Shutting Off Water Supply'
+    - delay: '00:00:25'
+    - service: sonos.restore
+      data:
+        with_group: yes
+        entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
 
         ##########################################################
         ## Utility Sink Water Sensor Audio Notification
@@ -666,14 +986,94 @@
       state: 'off'
 
   action:
-    - service: script.turn_on
-      entity_id: script.say
+    - service: sonos.snapshot
       data:
-        variables:
-          master: 'media_player.sonos_living_room'
-          where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen, media_player.sonos_bathroom, media_player.sonos_bedroom, media_player.sonos_bedroom_closet, media_player.sonos_USER1s_office, media_player.sonos_USER2s_office, media_player.sonos_move, media_player.sonos_craft_room, media_player.sonos_fitness_room'
-          volume: .5
-          what: 'Water Detected Under Utility Sink! Shutting Off Water Supply'
+        with_group: yes
+        entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+    - delay: '00:00:03'
+    - service: media_player.unjoin
+      entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+    - delay: '00:00:01'
+    - service: media_player.join
+      data:
+        entity_id:
+          - media_player.sonos_living_room
+        group_members:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+    - delay: '00:00:01'
+    - service: media_player.volume_set
+      entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+      data:
+        volume_level: 0.5
+    - delay: '00:00:02'
+    - service: tts.cloud_say
+      data_template:
+        entity_id: media_player.sonos_living_room
+        message: 'Water Detected Under Utility Sink! Shutting Off Water Supply'
+    - delay: '00:00:25'
+    - service: sonos.restore
+      data:
+        with_group: yes
+        entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
 
         ##########################################################
         ## Washing Machine Water Sensor Audio Notification
@@ -700,14 +1100,94 @@
       state: 'off'
 
   action:
-    - service: script.turn_on
-      entity_id: script.say
+    - service: sonos.snapshot
       data:
-        variables:
-          master: 'media_player.sonos_living_room'
-          where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen, media_player.sonos_bathroom, media_player.sonos_bedroom, media_player.sonos_bedroom_closet, media_player.sonos_USER1s_office, media_player.sonos_USER2s_office, media_player.sonos_move, media_player.sonos_craft_room, media_player.sonos_fitness_room'
-          volume: '.5'
-          what: 'Water Detected by Washing Machine! Shutting Off Water Supply'
+        with_group: yes
+        entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+    - delay: '00:00:03'
+    - service: media_player.unjoin
+      entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+    - delay: '00:00:01'
+    - service: media_player.join
+      data:
+        entity_id:
+          - media_player.sonos_living_room
+        group_members:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+    - delay: '00:00:01'
+    - service: media_player.volume_set
+      entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+      data:
+        volume_level: 0.5
+    - delay: '00:00:02'
+    - service: tts.cloud_say
+      data_template:
+        entity_id: media_player.sonos_living_room
+        message: 'Water Detected by Washing Machine! Shutting Off Water Supply'
+    - delay: '00:00:25'
+    - service: sonos.restore
+      data:
+        with_group: yes
+        entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
 
         ##########################################################
         ## Water Sensor Low Battery Notification
@@ -727,7 +1207,7 @@
         - sensor.utility_sink_water_sensor_batt
         - sensor.washing_machine_water_sensor_batt
         - sensor.coal_room_water_sensor_batt
-        - sensor.basement_door_water_sensor_batt
+        - sensor.attic_water_sensor_batt
       below: 30
       for:
         hours: 1

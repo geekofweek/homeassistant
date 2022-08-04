@@ -48,14 +48,94 @@
     - service: switch.turn_on
       entity_id:
         - switch.siren
-    - service: script.turn_on
-      entity_id: script.say
+    - service: sonos.snapshot
       data:
-        variables:
-          master: 'media_player.sonos_living_room'
-          where: 'media_player.sonos_living_room, media_player.sonos_dining_room, media_player.sonos_kitchen, media_player.sonos_bathroom, media_player.sonos_bedroom, media_player.sonos_bedroom_closet, media_player.sonos_USER1s_office, media_player.sonos_USER1s_office_move, media_player.sonos_USER2s_office, media_player.sonos_move, media_player.sonos_fitness_room, media_player.sonos_craft_room'
-          volume: 1.0
-          what: 'You are not Authorized to be Here. Law Enforcement Has Been Notified!'
+        with_group: yes
+        entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+    - delay: '00:00:03'
+    - service: media_player.unjoin
+      entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+    - delay: '00:00:01'
+    - service: media_player.join
+      data:
+        entity_id:
+          - media_player.sonos_living_room
+        group_members:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+    - delay: '00:00:01'
+    - service: media_player.volume_set
+      entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+      data:
+        volume_level: 0.8
+    - delay: '00:00:02'
+    - service: tts.cloud_say
+      data_template:
+        entity_id: media_player.sonos_living_room
+        message: 'You are not Authorized to be Here. Law Enforcement Has Been Notified!'
+    - delay: '00:00:25'
+    - service: sonos.restore
+      data:
+        with_group: yes
+        entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
     - service: notify.USER1_devices
       data:
         message: Alarm Triggered!
@@ -697,10 +777,6 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.bathroom_motion
-      from: 'off'
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.dining_room_motion
       from: 'off'
       to: 'on'
     - platform: state

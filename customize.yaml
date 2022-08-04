@@ -445,11 +445,12 @@
 #################################################################
 
         ##########################################################
-        ## Water Meter
+        ## Water Meter Year
         ##########################################################
 
-  sensor.water_meter:
+  sensor.water_meter_current_year:
     state_class: measurement
+    unit_of_measurement: 'gal'
 
         ##########################################################
         ## Water Meter Current

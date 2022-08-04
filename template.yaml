@@ -157,9 +157,9 @@
       unit_of_measurement: "Minutes"
       state: “{{ ( states('sensor.ups_a_battery_runtime') | int / 60 ) | round(0) }}”
 
-        ##########################################################
-        ## UPS - B
-        ##########################################################
+      ##########################################################
+      ## UPS - B
+      ##########################################################
 
   - sensor:
     - unique_id: ups_b_battery_runtime_mins
@@ -167,36 +167,36 @@
       unit_of_measurement: "Minutes"
       state: “{{ ( states('sensor.ups_b_battery_runtime') | int / 60 ) | round(0) }}”
 
-        ##########################################################
-        ## Washing Machine Time Remaining
-        ##########################################################
+      ##########################################################
+      ## Washing Machine Time Remaining
+      ##########################################################
 
   - sensor:
     - unique_id: washing_machine_time_remaining
       name: Washing Machine Time Remaining
       state: '{{ states.sensor.washer.attributes.remain_time }}'
 
-        ##########################################################
-        ## Washing Machine Error Message
-        ##########################################################
+      ##########################################################
+      ## Washing Machine Error Message
+      ##########################################################
 
   - sensor:
     - unique_id: washer_error
       name: Washer Error
       state: '{{ states.sensor.washer.attributes.error_message }}'
 
-        ##########################################################
-        ## Washing Machine Tub Clean Count
-        ##########################################################
+      ##########################################################
+      ## Washing Machine Tub Clean Count
+      ##########################################################
 
   - sensor:
     - unique_id: washer_tub_clean
       name: Washer Tub Clean
       state: '{{ states.sensor.washer.attributes.tubclean_count }}'
 
-        ##########################################################
-        ## Washer Tub Clean
-        ##########################################################
+      ##########################################################
+      ## Washer Tub Clean
+      ##########################################################
 
   - binary_sensor:
     - unique_id: washer_tub_clean_on
@@ -204,45 +204,45 @@
       device_class: problem
       state: "{{ states('sensor.washer_tub_clean')|float > 29 }}"
 
-        ##########################################################
-        ## Dryer Time Remaining
-        ##########################################################
+      ##########################################################
+      ## Dryer Time Remaining
+      ##########################################################
 
   - sensor:
     - unique_id: dryer_time_remaining
       name: Dryer Time Remaining
       state: '{{ states.sensor.dryer.attributes.remain_time }}'
 
-        ##########################################################
-        ## Dryer Error Message
-        ##########################################################
+      ##########################################################
+      ## Dryer Error Message
+      ##########################################################
 
   - sensor:
     - unique_id: dryer_error
       name: Dryer Error
       state: '{{ states.sensor.dryer.attributes.error_message }}'
 
-        ##########################################################
-        ## Calendars
-        ##########################################################
+      ##########################################################
+      ## Calendars
+      ##########################################################
 
   - sensor:
     - unique_id: holidays_calendar
       name: Holiday Calendar
       state: '{{ states.calendar.holidays_in_united_states.attributes.message }}'
 
-        ##########################################################
-        ## Thermostat
-        ##########################################################
+      ##########################################################
+      ## Thermostat
+      ##########################################################
 
   - sensor:
     - unique_id: thermostat_climate_mode
       name: Thermostat Climate Mode
       state: '{{ states.climate.main_floor.attributes.preset_mode }}'
 
-        ##########################################################
-        ## Outdoor Humidity
-        ##########################################################
+      ##########################################################
+      ## Outdoor Humidity
+      ##########################################################
 
   - sensor:
     - unique_id: REDACTED_humidity
@@ -251,9 +251,9 @@
       unit_of_measurement: '%'
       state: '{{ states.weather.REDACTED.attributes.humidity }}'
 
-        ##########################################################
-        ## Outdoor Temperature
-        ##########################################################
+      ##########################################################
+      ## Outdoor Temperature
+      ##########################################################
 
   - sensor:
     - unique_id: REDACTED_temperature
@@ -262,9 +262,9 @@
       unit_of_measurement: '°F'
       state: '{{ states.weather.REDACTED.attributes.temperature }}'
 
-        ##########################################################
-        ## Server Uptime
-        ##########################################################
+      ##########################################################
+      ## Server Uptime
+      ##########################################################
 
   - sensor:
     - unique_id: server_uptime
@@ -328,3 +328,13 @@
         seconds: 1
       state: >
         '{{ states('sensor.sump_pump_switch_electric_consumed_w')| int >= 1  }}'
+
+       ##########################################################
+       ## Water Flow
+       ##########################################################
+
+  - binary_sensor:
+    - unique_id: water_flow_status
+      name: "Water Flow Status"
+      state: >-
+        {{ states('sensor.water_meter_current') != "0" }}

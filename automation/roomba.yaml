@@ -385,9 +385,6 @@
     - condition: state
       entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
       state: 'off'
-    - condition: state
-      entity_id: binary_sensor.basement_door_water_sensor
-      state: 'off'
     - condition: numeric_state
       entity_id: sensor.basement_roomba_battery_level
       above: 99
