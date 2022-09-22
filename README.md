@@ -1,6 +1,6 @@
 [![GitHub stars](https://img.shields.io/github/stars/geekofweek/homeassistant.svg?style=plasticr)](https://github.com/geekofweek/homeassistant/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/geekofweek/homeassistant.svg?style=plasticr)](https://github.com/geekofweek/homeassistant/commits/master)
-[![HA Version](https://img.shields.io/badge/Running%20Home%20Assistant-2022.9.1%20-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
+[![HA Version](https://img.shields.io/badge/Running%20Home%20Assistant-2022.9.5%20-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
 [![HA Version](https://img.shields.io/badge/Original%20Home%20Assistant-0.14%20-darkblue)](https://github.com/home-assistant/core/releases/0.14)
 [![HA Community](https://img.shields.io/badge/HA%20community-forum-orange)](https://community.home-assistant.io/u/geekoftheweek/summary)
 
@@ -42,6 +42,7 @@ Relevant hub configurations can be found within [configuration.yaml](https://git
 | [Lutron Aurora Smart Bulb Dimmer](https://amzn.to/2OyI0PI) | 4 | Hue Hub (Zigbee)| [Philips Hue Light](https://www.home-assistant.io/components/light.hue/) | Smart Dimmer that attaches to existing Toggle light Switch. |
 | [LIFX Mini White](https://amzn.to/2UFDvmh) | 1 | Wi-Fi| [LIFX](https://www.home-assistant.io/integrations/lifx/) | Non color changing Wi-Fi smart bulbs.  Used in places where Zigbee is not reliable (detached garage) |
 | [LUMIMAN LM530](https://amzn.to/3xhHg4m) | 1 | Wi-Fi| [Tuya](https://www.home-assistant.io/integrations/tuya/) | Color changing Wi-Fi smart bulbs. Used as a lamp for a 3D Printed Moon Globe |
+| [Philips Color A19](https://amzn.to/3Sk1sfe) | 1 | Wi-Fi| [WiZ](https://www.home-assistant.io/integrations/wiz/) | Color changing Wi-Fi smart bulbs. Used as a lamp for a 3D Printed Desk Lamp |
 
 Many of my automations rely on some form of lighting but many examples can be found in [lights.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/lights.yaml) and [location.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml).
 
