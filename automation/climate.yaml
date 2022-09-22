@@ -1457,6 +1457,34 @@
           tag: climate
           group: climate
 
+        ##########################################################
+        ## Turn Off Portable AC if Water Bin Already Full
+        ##########################################################
+
+- alias: Climate - Turn Off Portable AC if Water Bin Already Full
+  id: 'climate_turn_off_portable_ac_if_water_bin_already_full'
+
+  trigger:
+    - platform: state
+      entity_id: climate.portable_air_conditioner
+      from: 'off'
+      to: 'cool'
+
+  condition:
+    - condition: state
+      entity_id: binary_sensor.portable_ac_water_sensor
+      state: 'on'
+
+  action:
+    - service: climate.turn_off
+      entity_id: climate.portable_air_conditioner
+    - service: notify.USER1_devices
+      data:
+        message: Empty Portable AC Water Bin
+        data:
+          tag: climate
+          group: climate
+
 #################################################################
 ## Input Booleans, Input Selects, and UI
 #################################################################

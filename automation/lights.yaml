@@ -1445,6 +1445,96 @@
         brightness_pct: 50
         color_temp: 447
 
+        ##########################################################
+        ## USER1's Office Desk Lamp Do Not Disturb On
+        ##########################################################
+
+- alias: Lights - USER1 Office Desk Lamp Do Not Disturb On
+  id: 'lights_USER1_office_desk_lamp_do_not_disturb_on'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.USER1_office_desk_lamp
+      data:
+        brightness_pct: 25
+        color_name: red
+
+        ##########################################################
+        ## USER1's Office Desk Lamp Do Not Disturb Off Daytime
+        ##########################################################
+
+- alias: Lights - USER1 Office Desk Lamp Do Not Disturb Off Daytime
+  id: 'lights_USER1_office_desk_lamp_do_not_disturb_off_daytime'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: state
+      entity_id: light.USER1_office_desk_lamp
+      state: 'on'
+    - condition: state
+      entity_id: cover.USER1_s_office_blinds
+      state: 'open'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.USER1_office_desk_lamp
+
+        ##########################################################
+        ## USER1's Office Desk Lamp Do Not Disturb Off Night
+        ##########################################################
+
+- alias: Lights - USER1 Office Desk Lamp Do Not Disturb Off Night
+  id: 'lights_USER1_office_desk_lamp_do_not_disturb_off_night'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: light.USER1_office_desk_lamp
+      state: 'on'
+    - condition: state
+      entity_id: cover.USER1_s_office_blinds
+      state: 'closed'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.USER1_office_desk_lamp
+      data:
+        brightness_pct: 25
+        color_temp: 454
+
 #################################################################
 ## Pico Remotes
 #################################################################

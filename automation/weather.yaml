@@ -135,3 +135,126 @@
         color_name: blue
         brightness_pct: 100
         transition: 15
+
+        ##########################################################
+        ## Turn USER1's Office Desk Lamp Blue when Raining
+        ##########################################################
+
+- alias: Weather - Turn USER1's Office Desk Lamp Blue when Raining
+  id: 'weather_turn_USER1_office_desk_lamp_blue_when_raining'
+
+  trigger:
+    - platform: state
+      entity_id: weather.REDACTED
+      to: 'rainy'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: light.USER1_office_desk_lamp
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_rainy_day
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.USER1_office_desk_lamp
+      data:
+        color_name: blue
+        brightness_pct: 25
+
+        ##########################################################
+        ## Reset USER1's Office Desk Lamp Color when Not Raining
+        ##########################################################
+
+- alias: Weather - Reset USER1's Office Desk Lamp Color when Not Raining
+  id: 'weather_reset_USER1_office_desk_lamp_color_when_not_raining'
+
+  trigger:
+    - platform: state
+      entity_id: weather.REDACTED
+      from: 'rainy'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: light.USER1_office_desk_lamp
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_rainy_day
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.USER1_office_desk_lamp
+      data:
+        brightness_pct: 25
+        color_temp: 454
+
+        ##########################################################
+        ## Set USER1's Office Desk Lamp Blue when On and Raining
+        ##########################################################
+
+- alias: Weather - Set USER1's Office Desk Lamp Blue when On and Raining
+  id: 'weather_set_USER1_office_desk_lamp_blue_when_on_and_raining'
+
+  trigger:
+    - platform: state
+      entity_id: light.USER1_office_desk_lamp
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: weather.REDACTED
+      state: 'rainy'
+    - condition: state
+      entity_id: input_boolean.office_rainbow
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_rainy_day
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.USER1_office_desk_lamp
+      data:
+        color_name: blue
+        brightness_pct: 25

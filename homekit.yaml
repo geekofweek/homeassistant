@@ -148,3 +148,9 @@
         video_codec: copy
         support_audio: True
         linked_motion_sensor: binary_sensor.motion_front_yard_camera
+      lock.front_door:
+        linked_battery_sensor: sensor.front_door_lock_batt
+      lock.back_door:
+        linked_battery_sensor: sensor.back_door_lock_batt
+      lock.basement_door:
+        linked_battery_sensor: sensor.basement_door_lock_batt

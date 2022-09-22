@@ -122,20 +122,131 @@
       data:
         notification_id: http-login
 
+        #################################################################
+        ## Ping Locks if they become Unavailable
+        #################################################################
+
+- alias: System - Ping Locks if they become Unavailable
+  id: 'system_ping_locks_if_they_become_unavailable'
+
+  trigger:
+    - platform: state
+      entity_id: lock.front_door
+      to: 'unavailable'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+    - platform: state
+      entity_id: lock.back_door
+      to: 'unavailable'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+    - platform: state
+      entity_id: lock.basement_door
+      to: 'unavailable'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  action:
+    - service: zwave_js.ping
+      target:
+        entity_id: 
+          - lock.front_door
+          - lock.back_door
+          - lock.basement_door
+
+        #################################################################
+        ## Turn On USER1 Office Do not Disturb when MacBook AV Input On
+        #################################################################
+
+- alias: System - Turn On USER1 Office Do not Disturb when MacBook AV Input On
+  id: 'system_turn_on_USER1_office_do_not_disturb_when_macbook_av_input_on'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER1s_macbook_pro_camera_in_use
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+    - platform: state
+      entity_id: binary_sensor.USER1s_macbook_pro_audio_input_in_use
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: binary_sensor.USER1s_macbook_pro_active
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      state: 'off'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+
+        #################################################################
+        ## Turn Off USER1 Office Do not Disturb when MacBook AV Input Off
+        #################################################################
+
+- alias: System - Turn Off USER1 Office Do not Disturb when MacBook AV Input Off
+  id: 'system_turn_off_USER1_office_do_not_disturb_when_macbook_av_input_off'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER1s_macbook_pro_camera_in_use
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+    - platform: state
+      entity_id: binary_sensor.USER1s_macbook_pro_audio_input_in_use
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      state: 'on'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+
 #################################################################
 ## Notifications
 #################################################################
 
         #################################################################
-        ## NAS Warning iOS Notification
+        ## NAS-01 Warning iOS Notification
         #################################################################
 
-- alias: System - NAS Warning iOS Notification
-  id: 'system_nas_warning_ios_notification'
+- alias: System - NAS-01 Warning iOS Notification
+  id: 'system_nas_01_warning_ios_notification'
 
   trigger:
     - platform: state
-      entity_id: sensor.nas_status
+      entity_id: sensor.nas_01_status
       to: 'warning'
 
   condition:
@@ -146,7 +257,32 @@
   action:
     - service: notify.USER1_devices
       data:
-        message: NAS RAID Failing
+        message: NAS-01 RAID Failing
+        data:
+          tag: nas
+          group: system
+
+        #################################################################
+        ## NAS Warning iOS Notification
+        #################################################################
+
+- alias: System - NAS-02 Warning iOS Notification
+  id: 'system_nas_02_warning_ios_notification'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.nas_02_status
+      to: 'warning'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.USER1_devices
+      data:
+        message: NAS-02 RAID Failing
         data:
           tag: nas
           group: system

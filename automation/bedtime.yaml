@@ -382,6 +382,11 @@
       - condition: state
         entity_id: climate.portable_air_conditioner
         state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.overnight_guests
+        state: 'home'
 
   action:
     - service: climate.turn_off
