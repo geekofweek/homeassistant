@@ -306,6 +306,38 @@
         - light.USER1_s_office_ceiling
         - light.office_lamp
 
+        ##########################################################
+        ## Turn Off USER1's Office Desk Lamp when Blinds are Open
+        ##########################################################
+
+- alias: Blinds - Turn Off USER1's Office Desk Lamp when Blinds are Open
+  id: 'blinds_turn_off_USER1_office_desk_lamp_when_blinds_are_open'
+
+  trigger:
+    - platform: state
+      entity_id: cover.USER1_s_office_blinds
+      from: 'closed'
+      to: 'open'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: light.USER1_office_desk_lamp
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.USER1_office_desk_lamp
+
 #################################################################
 ## Stairs
 #################################################################

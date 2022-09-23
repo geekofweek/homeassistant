@@ -182,6 +182,13 @@
         hours: 0
         minutes: 1
         seconds: 0
+    - platform: state
+      entity_id: binary_sensor.USER1s_macbook_pro_focus
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
 
   condition:
     - condition: state
@@ -211,14 +218,21 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 5
+        minutes: 15
         seconds: 0
     - platform: state
       entity_id: binary_sensor.USER1s_macbook_pro_audio_input_in_use
       to: 'off'
       for:
         hours: 0
-        minutes: 5
+        minutes: 15
+        seconds: 0
+    - platform: state
+      entity_id: binary_sensor.USER1s_macbook_pro_focus
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 15
         seconds: 0
 
   condition:
@@ -228,6 +242,9 @@
     - condition: state
       entity_id: input_boolean.USER1_s_office_do_not_disturb
       state: 'on'
+    - condition: state
+      entity_id: binary_sensor.USER1s_macbook_pro_camera_in_use
+      state: 'off'
 
   action:
     - service: homeassistant.turn_off

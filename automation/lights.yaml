@@ -1092,7 +1092,7 @@
       target:
         entity_id: light.living_room_lamp_1
       data:
-        transition: 5
+        transition: 1
         hs_color:
           - '{{ (range(0, 360)|random) }}'
           - '100'
@@ -1101,7 +1101,7 @@
       target:
         entity_id: light.media_center_lighting
       data:
-        transition: 5
+        transition: 1
         hs_color:
           - '{{ (range(0, 360)|random) }}'
           - '100'
@@ -1110,7 +1110,7 @@
       target:
         entity_id: light.globe
       data:
-        transition: 5
+        transition: 1
         hs_color:
           - '{{ (range(0, 360)|random) }}'
           - '100'
@@ -1119,7 +1119,7 @@
       target:
         entity_id: light.living_room_lamp_2
       data:
-        transition: 5
+        transition: 1
         hs_color:
           - '{{ (range(0, 360)|random) }}'
           - '100'
@@ -1200,7 +1200,7 @@
       target:
         entity_id: light.USER1s_nightstand
       data:
-        transition: 5
+        transition: 1
         hs_color:
           - '{{ (range(0, 360)|random) }}'
           - '100'
@@ -1209,7 +1209,7 @@
       target:
         entity_id: light.USER2s_nightstand
       data:
-        transition: 5
+        transition: 1
         hs_color:
           - '{{ (range(0, 360)|random) }}'
           - '100'
@@ -1218,7 +1218,7 @@
       target:
         entity_id: light.bedroom_lamp
       data:
-        transition: 5
+        transition: 1
         hs_color:
           - '{{ (range(0, 360)|random) }}'
           - '100'
@@ -1263,20 +1263,13 @@
         transition: 15
         color_temp: 447
         brightness_pct: 50
-    - service: light.turn_on
-      entity_id:
-        - light.closet_lamp
-        - light.bedroom_closet_ceiling
-      data:
-        transition: 15
-        brightness_pct: 50
 
         ##########################################################
-        ## USER1's Office Moon Lamp Random Color On
+        ## USER1's Office Lights Lamps Random Color On
         ##########################################################
 
-- alias: Lights - USER1 Office Moon Lamp Random Color On
-  id: 'lights_USER1_office_moon_lamp_random_color_on'
+- alias: Lights - USER1 Office Lights Random Color On
+  id: 'lights_USER1_office_lights_random_color_on'
 
   trigger:
     - platform: state
@@ -1301,6 +1294,14 @@
     - service: scene.turn_on
       target:
         entity_id: scene.moon_globe_random_color
+    - service: light.turn_on
+      data:
+        effect: Party
+      target:
+        entity_id: light.USER1_office_desk_lamp
+    - service: light.turn_off
+      entity_id:
+        - light.USER1_s_office_ceiling
 
         ##########################################################
         ## USER1's Office Lamp Random Color
@@ -1311,7 +1312,7 @@
 
   trigger:
     - platform: time_pattern
-      seconds: '/10'
+      seconds: '/5'
 
   condition:
     - condition: state
@@ -1329,7 +1330,7 @@
       target:
         entity_id: light.office_lamp
       data:
-        transition: 5
+        transition: 1
         hs_color:
           - '{{ (range(0, 360)|random) }}'
           - '100'
@@ -1374,6 +1375,12 @@
       data:
         brightness_pct: 3
         color_temp: 500
+    - service: light.turn_on
+      entity_id:
+        - light.USER1_office_desk_lamp
+      data:
+        brightness_pct: 25
+        color_temp: 454
 
         ##########################################################
         ## Front Porch Lights Random Color On
@@ -1497,6 +1504,13 @@
       state: 'open'
 
   action:
+    - service: light.turn_on
+      entity_id:
+        - light.USER1_office_desk_lamp
+      data:
+        brightness_pct: 25
+        color_temp: 454
+    - delay: '00:00:05'
     - service: light.turn_off
       entity_id:
         - light.USER1_office_desk_lamp
@@ -1523,9 +1537,6 @@
     - condition: state
       entity_id: light.USER1_office_desk_lamp
       state: 'on'
-    - condition: state
-      entity_id: cover.USER1_s_office_blinds
-      state: 'closed'
 
   action:
     - service: light.turn_on
