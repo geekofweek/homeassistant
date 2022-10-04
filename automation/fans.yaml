@@ -14,9 +14,12 @@
   id: 'fan_living_room_fans_on_pico_remote'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_fan_remote
-      to: '2'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 49229391
+        button_number: 3
+        action: press
 
   condition:
     - condition: state
@@ -39,9 +42,12 @@
   id: 'fan_living_room_fans_off_pico_remote'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_fan_remote
-      to: '2'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 49229391
+        button_number: 3
+        action: press
 
   condition:
     - condition: state
@@ -64,12 +70,18 @@
   id: 'fan_living_room_fans_off_to_on_pico_remote_raise_or_lower'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_fan_remote
-      to: '8'
-    - platform: state
-      entity_id: sensor.living_room_fan_remote
-      to: '16'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 49229391
+        button_number: 5
+        action: press
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 49229391
+        button_number: 6
+        action: press
 
   condition:
     - condition: state
@@ -92,9 +104,12 @@
   id: 'fan_living_room_fans_low_to_med_pico_remote_raise'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_fan_remote
-      to: '8'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 49229391
+        button_number: 5
+        action: press
 
   condition:
     - condition: state
@@ -121,9 +136,12 @@
   id: 'fan_living_room_fans_med_to_high_pico_remote_raise'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_fan_remote
-      to: '8'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 49229391
+        button_number: 5
+        action: press
 
   condition:
     - condition: state
@@ -150,9 +168,12 @@
   id: 'fan_living_room_fans_high_to_med_pico_remote_lower'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_fan_remote
-      to: '16'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 49229391
+        button_number: 6
+        action: press
 
   condition:
     - condition: state
@@ -179,9 +200,12 @@
   id: 'fan_living_room_fans_med_to_low_pico_remote_lower'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_fan_remote
-      to: '16'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 49229391
+        button_number: 6
+        action: press
 
   condition:
     - condition: state
@@ -208,9 +232,12 @@
   id: 'fan_living_room_fans_low_to_off_pico_remote_lower'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_fan_remote
-      to: '16'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 49229391
+        button_number: 6
+        action: press
 
   condition:
     - condition: state
@@ -228,34 +255,6 @@
         seconds: 1
 
   #################################################################
-  ## Living Room West Fans Off Pico Remote
-  #################################################################
-
-- alias: Fan - Living Room West Fan Off Pico Remote
-  id: 'fan_living_room_west_fan_off_pico_remote'
-
-  trigger:
-    - platform: state
-      entity_id: sensor.living_room_west_remote
-      to: '16'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 2
-
-  condition:
-    - condition: state
-      entity_id: fan.living_room_west
-      state: 'on'
-
-  action:
-    - service: fan.turn_off
-      entity_id:
-        - fan.living_room_west
-    - delay:
-        seconds: 1
-
-  #################################################################
   ## Living Room West Fan Off to On Pico Remote Raise or Lower
   #################################################################
 
@@ -263,12 +262,18 @@
   id: 'fan_living_room_west_fan_off_to_on_pico_remote_raise_or_lower'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_west_remote
-      to: '8'
-    - platform: state
-      entity_id: sensor.living_room_west_remote
-      to: '16'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 48491915
+        button_number: 5
+        action: press
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 48491915
+        button_number: 6
+        action: press
 
   condition:
     - condition: state
@@ -290,9 +295,12 @@
   id: 'fan_living_room_west_fan_low_to_med_pico_remote_raise'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_west_remote
-      to: '8'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 48491915
+        button_number: 5
+        action: press
 
   condition:
     - condition: state
@@ -318,9 +326,12 @@
   id: 'fan_living_room_west_fan_med_to_high_pico_remote_raise'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_west_remote
-      to: '8'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 48491915
+        button_number: 5
+        action: press
 
   condition:
     - condition: state
@@ -346,9 +357,12 @@
   id: 'fan_living_room_west_fan_high_to_med_pico_remote_lower'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_west_remote
-      to: '16'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 48491915
+        button_number: 6
+        action: press
 
   condition:
     - condition: state
@@ -374,9 +388,12 @@
   id: 'fan_living_room_west_fan_med_to_low_pico_remote_lower'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_west_remote
-      to: '16'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 48491915
+        button_number: 6
+        action: press
 
   condition:
     - condition: state
@@ -402,9 +419,12 @@
   id: 'fan_living_room_west_fan_low_to_off_pico_remote_lower'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_west_remote
-      to: '16'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 48491915
+        button_number: 6
+        action: press
 
   condition:
     - condition: state

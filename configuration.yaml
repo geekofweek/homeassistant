@@ -22,12 +22,6 @@ http:
 ## Components
 #################################################################
 
-lutron_caseta_pro:
-  bridges:
-    - host: lutron.network.REDACTED
-      mac: !secret lutron_caseta_pro_mac
-      switch: [ 17, 22 ]
-
 wemo:
   discovery: true
   static:

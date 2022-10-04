@@ -1558,9 +1558,12 @@
   id: 'lights_living_room_lights_on_pico_remote'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_light_remote
-      to: '1'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 43846935
+        button_number: 2
+        action: press
 
   action:
     - service: light.turn_on
@@ -1590,9 +1593,12 @@
   id: 'lights_living_room_lights_off_pico_remote'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_light_remote
-      to: '4'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 43846935
+        button_number: 4
+        action: press
 
   action:
     - service: light.turn_off
@@ -1609,9 +1615,12 @@
   id: 'lights_living_room_lights_increase_brightness_pico_remote'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_light_remote
-      to: '8'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 43846935
+        button_number: 5
+        action: press
 
   action:
     - service: light.turn_on
@@ -1630,9 +1639,12 @@
   id: 'lights_living_room_lights_decrease_brightness_pico_remote'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_light_remote
-      to: '16'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 43846935
+        button_number: 6
+        action: press
 
   condition:
     - condition: state
@@ -1647,34 +1659,6 @@
         brightness_step_pct: -10
     - delay:
         seconds: 1
-
-   #################################################################
-   ## Living Room Lights Default Color Pico Remote
-   #################################################################
-
-- alias: Lights - Living Room Lights Default Color Pico Remote
-  id: 'lights_living_room_lights_default_color_pico_remote'  
-
-  trigger:
-    - platform: state
-      entity_id: sensor.living_room_light_remote
-      to: '1'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 2
-
-  condition:
-    - condition: state
-      entity_id: light.living_room_accent_lights
-      state: 'on'
-
-  action:
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_accent_lights
-      data:
-        color_temp: 447 
         
   #################################################################
   ## Living Room Fan Lights On Pico Remote
@@ -1684,9 +1668,12 @@
   id: 'lights_living_room_fan_lights_on_pico_remote'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_fan_remote
-      to: '1'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 49229391
+        button_number: 2
+        action: press
 
   condition:
     - condition: state
@@ -1708,13 +1695,12 @@
   id: 'lights_living_room_fan_dimm)lights_pico_remote'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_fan_remote
-      to: '1'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 2
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 49229391
+        button_number: 2
+        action: press
 
   condition:
     - condition: state
@@ -1765,9 +1751,12 @@
   id: 'lights_living_room_fan_lights_off_pico_remote'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_fan_remote
-      to: '4'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 49229391
+        button_number: 4
+        action: press
 
   condition:
     - condition: state
@@ -1789,9 +1778,12 @@
   id: 'lights_living_room_west_fan_lights_on_pico_remote'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_west_remote
-      to: '1'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 48491915
+        button_number: 2
+        action: press
 
   condition:
     - condition: state
@@ -1813,13 +1805,12 @@
   id: 'lights_living_room_west_fan_dimm_lights_pico_remote'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_west_remote
-      to: '1'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 2
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 48491915
+        button_number: 2
+        action: press
 
   condition:
     - condition: state
@@ -1869,9 +1860,12 @@
   id: 'lights_living_room_west_fan_lights_off_pico_remote'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_west_remote
-      to: '4'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 48491915
+        button_number: 4
+        action: press
 
   condition:
     - condition: state
@@ -1893,9 +1887,12 @@
   id: 'lights_basement_lights_on_pico_remote'
 
   trigger:
-    - platform: state
-      entity_id: sensor.basement_stairs_light_switch
-      to: '1'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 42010030
+        button_number: 2
+        action: press
 
   action:
     - service: light.turn_on
@@ -1918,9 +1915,12 @@
   id: 'lights_basement_lights_off_pico_remote'
 
   trigger:
-    - platform: state
-      entity_id: sensor.basement_stairs_light_switch
-      to: '4'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 42010030
+        button_number: 4
+        action: press
 
   action:
     - service: light.turn_off
@@ -1937,9 +1937,12 @@
   id: 'lights_basement_lights_increase_brightness_pico_remote'
 
   trigger:
-    - platform: state
-      entity_id: sensor.basement_stairs_light_switch
-      to: '8'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 42010030
+        button_number: 5
+        action: press
 
   action:
     - service: light.turn_on
@@ -1960,9 +1963,12 @@
   id: 'lights_basement_lights_decrease_brightness_pico_remote'
 
   trigger:
-    - platform: state
-      entity_id: sensor.basement_stairs_light_switch
-      to: '16'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 42010030
+        button_number: 6
+        action: press
     
   condition:
     - condition: or
@@ -1996,9 +2002,12 @@
   id: 'lights_basement_lights_on_center_pico_button'
 
   trigger:
-    - platform: state
-      entity_id: sensor.basement_stairs_light_switch
-      to: '2'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 42010030
+        button_number: 3
+        action: press
 
   condition:
     - condition: or
@@ -2032,9 +2041,12 @@
   id: 'lights_basement_lights_off_center_pico_button'
 
   trigger:
-    - platform: state
-      entity_id: sensor.basement_stairs_light_switch
-      to: '2'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 42010030
+        button_number: 3
+        action: press
 
   condition:
     - condition: state

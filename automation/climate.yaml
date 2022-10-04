@@ -1112,9 +1112,12 @@
   id: 'climate_fireplace_on_pico_remote'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_light_remote
-      to: '2'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 43846935
+        button_number: 3
+        action: press
 
   condition:
     - condition: state
@@ -1136,9 +1139,12 @@
   id: 'climate_fireplace_off_pico_remote'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_light_remote
-      to: '2'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 43846935
+        button_number: 3
+        action: press
 
   condition:
     - condition: state
@@ -1160,9 +1166,12 @@
   id: 'climate_fireplace_on_living_room_west_pico_remote'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_west_remote
-      to: '2'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 48491915
+        button_number: 3
+        action: press
 
   condition:
     - condition: state
@@ -1184,9 +1193,12 @@
   id: 'climate_fireplace_off_living_room_west_pico_remote'
 
   trigger:
-    - platform: state
-      entity_id: sensor.living_room_west_remote
-      to: '2'
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 48491915
+        button_number: 3
+        action: press
 
   condition:
     - condition: state
