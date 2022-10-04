@@ -133,7 +133,7 @@ I go for native Echo integration wherever possible, but a few devices are not cu
 | [Sonos Beam](https://amzn.to/3mWzhCM) | 2 | Wi-Fi | [Sonos](https://www.home-assistant.io/components/media_player.sonos/) | TV Soundbar for Audio playback and Home Assistant TTS |
 | [Sonos Port](https://amzn.to/3bnJyn8) | 1 | Ethernet |  [Sonos](https://www.home-assistant.io/components/media_player.sonos/) | Audio playback and Home Assistant TTS. Connects Sonos to existing surround sound system |
 | [Sonos Connect:AMP](https://amzn.to/2rQ0XzM) | 1 | Wi-Fi |  [Sonos](https://www.home-assistant.io/components/media_player.sonos/) | Audio playback and Home Assistant TTS. Connects Sonos to outdoor speakers |
-| [Lutron Caseta Pico Remote Control for Audio](https://amzn.to/2QsBtnj) | 3 | Lutron Clear Connect | [Lutron Caseta Pro](https://github.com/upsert/lutron-caseta-pro) (Custom Component) | Decora wall mountable remote. Used to control Sonos |
+| [Lutron Caseta Pico Remote Control for Audio](https://amzn.to/2QsBtnj) | 3 | Lutron Clear Connect | [Lutron Caséta](https://www.home-assistant.io/integrations/lutron_caseta) | Decora wall mountable remote. Used to control Sonos |
 | [Logitech Harmony Hub](https://amzn.to/2IuEvlS) | 3 | Wi-Fi | [Harmony Hub Remote](https://www.home-assistant.io/components/remote.harmony/) | Controls various AV equipment and other devices that utilize infrared remotes |
 | [Samsung QN75Q80TA](https://amzn.to/3qzvOx7) | 1 | Wi-Fi | [Samsung Smart TV](https://www.home-assistant.io/integrations/samsungtv/) | 75" 4K QLED TV |
 | [LG OLED55BXPUA](https://amzn.to/36THinl) | 1 | Wi-Fi | [LG webOS Smart TV](https://www.home-assistant.io/integrations/webostv/) | 55" 4K OLED TV |
