@@ -41,8 +41,7 @@ Relevant hub configurations can be found within [configuration.yaml](https://git
 | [Lutron Caseta Pico Wireless Dimmer Switch](https://amzn.to/2Etw0HP) | 6 | Lutron Clear Connect | [Lutron Caséta](https://www.home-assistant.io/integrations/lutron_caseta) | Decora wall mountable remote (that looks like a dimmer switch). Controls various lights |
 | [Lutron Aurora Smart Bulb Dimmer](https://amzn.to/2OyI0PI) | 4 | Hue Hub (Zigbee)| [Philips Hue Light](https://www.home-assistant.io/components/light.hue/) | Smart Dimmer that attaches to existing Toggle light Switch. |
 | [LIFX Mini White](https://amzn.to/2UFDvmh) | 1 | Wi-Fi| [LIFX](https://www.home-assistant.io/integrations/lifx/) | Non color changing Wi-Fi smart bulbs.  Used in places where Zigbee is not reliable (detached garage) |
-| [LUMIMAN LM530](https://amzn.to/3xhHg4m) | 1 | Wi-Fi| [Tuya](https://www.home-assistant.io/integrations/tuya/) | Color changing Wi-Fi smart bulbs. Used as a lamp for a 3D Printed Moon Globe |
-| [Philips Color A19](https://amzn.to/3Sk1sfe) | 1 | Wi-Fi| [WiZ](https://www.home-assistant.io/integrations/wiz/) | Color changing Wi-Fi smart bulb. Used for a 3D Printed Desk Lamp |
+| [Philips Color A19](https://amzn.to/3Sk1sfe) | 2 | Wi-Fi| [WiZ](https://www.home-assistant.io/integrations/wiz/) | Color changing Wi-Fi smart bulb. Used for a 3D Printed Desk Lamp and Moon Globe.  Will most likely add a few more, very happy with these. |
 
 Many of my automations rely on some form of lighting but many examples can be found in [lights.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/lights.yaml) and [location.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml).
 
@@ -318,7 +317,7 @@ More detailed information on the custom Home Assistant Managment Tools can be fo
 | [iRobot Roomba 980](https://amzn.to/2L9q1tm) | 1 | Wi-Fi | [iRobot Roomba](https://www.home-assistant.io/components/vacuum.roomba/)| Automated to run at specific times based on presence detection |
 | [Ubiquiti Networks Unifi Security Gateway (USG)](https://amzn.to/2wM62hk) | 1 | Ethernet | [Ubiquiti Unifi](https://www.home-assistant.io/components/device_tracker.unifi/)| Primary Router. Presence detection for non household members and devices. Replaced by UXG Pro |
 | [Locative iOS App](https://itunes.apple.com/us/app/locative/id725198453?mt=8) | 2 | NA | [Locative](https://www.home-assistant.io/components/device_tracker.locative/) | Put back in retirement since the native iOS app works so well |
-
+| [LUMIMAN LM530](https://amzn.to/3xhHg4m) | 1 | Wi-Fi| [Tuya](https://www.home-assistant.io/integrations/tuya/) | Retired in favor of Philips Wiz line.  Tuya integration is hot garbage.  Routine issues and an account that expires after 6 monhts. |
 
 # <a name="screenshots">Screenshots</a>
 
