@@ -2440,9 +2440,14 @@
     - condition: state
       entity_id: switch.air_purifier
       state: 'off'
-    - condition: state
-      entity_id: vacuum.upstairs_roomba
-      state: 'docked'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'returning'
 
   action:
     - service: fan.turn_on
@@ -2564,6 +2569,9 @@
       entity_id: light.office_lamp
       state: 'off'
     - condition: state
+      entity_id: light.USER1_office_desk_lamp
+      state: 'off'
+    - condition: state
       entity_id: person.USER1
       state: 'home'
     - condition: state
@@ -2585,6 +2593,12 @@
         - light.USER1_s_office_ceiling
       data:
         brightness_pct: 15
+    - service: light.turn_on
+      entity_id:
+        - light.USER1_office_desk_lamp
+      data:
+        brightness_pct: 25
+        color_temp: 454
 
         ##########################################################
         ## Turn On USER1 Office Lights when Motion Detected Daytime
@@ -2613,6 +2627,9 @@
       entity_id: light.office_lamp
       state: 'off'
     - condition: state
+      entity_id: light.USER1_office_desk_lamp
+      state: 'off'
+    - condition: state
       entity_id: person.USER1
       state: 'home'
     - condition: state
@@ -2633,6 +2650,12 @@
         - light.USER1_s_office_ceiling
       data:
         brightness_pct: 15
+    - service: light.turn_on
+      entity_id:
+        - light.USER1_office_desk_lamp
+      data:
+        brightness_pct: 25
+        color_temp: 454
 
         ##########################################################
         ## Turn On USER1 Office Moon Globe when Motion Detected
@@ -2666,46 +2689,8 @@
       entity_id:
         - light.moon_globe
       data:
-        brightness_pct: 3
-        color_temp: 500
-
-        ##########################################################
-        ## Turn On USER1 Office Desk Lamp when Motion Detected
-        ##########################################################
-
-- alias: Motion - Turn On USER1 Office Desk Lamp when Motion Detected
-  id: 'motion_turn_on_USER1_office_desk_lamp_when_motion_detected'
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.USER1s_office_motion
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_motion
-      state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: light.USER1_office_desk_lamp
-      state: 'off'
-    - condition: state
-      entity_id: person.USER1
-      state: 'home'
-    - condition: state
-      entity_id: cover.USER1_s_office_blinds
-      state: 'closed'
-
-  action:
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_office_desk_lamp
-      data:
-        brightness_pct: 25
-        color_temp: 454
+        brightness_pct: 10
+        color_temp: 238
 
         ##########################################################
         ## Turn Off USER1 Office Lights with Light Level Daytime

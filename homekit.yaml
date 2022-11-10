@@ -2,155 +2,202 @@
 ## HomeKit
 #################################################################
 
-  filter:
-    exclude_domains:
-      - light
-      - device_tracker
-      - input_boolean
-      - remote
-      - script
-      - alarm_control_panel
-      - sensor
-      - automation
-      - media_player
-      - binary_sensor
-      - scene
-      - person
-      - switch
-      - climate
-      - lock
-      - vacuum
-      - camera
-      - cover
-      - fan
-      - select
-      - input_select
-      - button
-    exclude_entities:
-      - switch.christmas_tree
-    include_entities:
-      - alarm_control_panel.alarm
-      - cover.garage_door
-      - cover.USER1_s_office_blinds
-      - cover.USER2_s_office_blinds
-      - cover.stairs_blinds
-      - cover.bedroom_closet_blinds
-      - lock.front_door
-      - lock.back_door
-      - lock.basement_door
-      - light.hallway_light
-      - light.bathroom_lights
-      - light.garage_light
-      - light.garage_interior
-      - light.living_room_lights
-      - light.dining_room_lights
-      - light.bedroom_lights
-      - light.kitchen_lights
-      - light.stairs_light
-      - light.USER1_office_lights
-      - light.USER2_office_lights
-      - light.guest_bedroom_lights
-      - light.basement_lights
-      - light.basement_stairs
-      - light.work_bench_light
-      - light.laundry_room_light
-      - light.craft_room_ceiling
-      - light.fitness_room_ceiling
-      - light.front_porch
-      - light.back_door
-      - light.backyard_deck
-      - light.backyard_patio
-      - light.upstairs_bathroom_lights
-      - fan.USER1s_office_fan
-      - switch.air_purifier
-      - switch.bug_zapper
-      - climate.main_floor
-      - climate.office_fan
-      - switch.front_yard_lighting
-      - switch.backyard_lighting
-      - sensor.main_floor_humidity
-      - sensor.office_fan_humidity
-      - camera.front_porch
-      - camera.driveway
-      - camera.backyard_gate
-      - camera.side_yard
-      - camera.backyard
-      - camera.garage
-      - camera.front_yard
-      - fan.living_room_east
-      - fan.living_room_west
-      - binary_sensor.living_room_motion
-      - binary_sensor.dining_room_motion
-      - binary_sensor.kitchen_motion
-      - binary_sensor.bathroom_motion
-      - binary_sensor.USER1s_office_motion
-      - binary_sensor.USER2s_office_motion
-      - binary_sensor.stairs_motion
-      - binary_sensor.upstairs_bathroom_motion
-      - binary_sensor.basement_motion
-      - binary_sensor.craft_room_motion
-      - binary_sensor.fitness_room_motion
-      - binary_sensor.front_door_opened
-      - binary_sensor.back_door_opened
-      - binary_sensor.basement_door_opened
-      - sensor.living_room_temperature
-      - sensor.main_floor_temperature
-      - sensor.kitchen_temperature
-      - sensor.bedroom_temperature
-      - sensor.bathroom_temperature
-      - sensor.office_temperature
-      - sensor.USER2_office_temperature
-      - sensor.guest_bedroom_temperature
-      - sensor.basement_temperature
-      - sensor.laundry_room_temperature
-      - sensor.garage_temperature
-      - sensor.office_fan_humidity
-      - sensor.craft_room_temperature
-      - sensor.fitness_room_temperature
-      - sensor.bathroom_humidity
-      - sensor.craft_room_humidity
-      - sensor.fitness_room_humidity
+  - filter:
+      include_entities:
+        - alarm_control_panel.alarm
+        - cover.garage_door
+        - cover.USER1_s_office_blinds
+        - cover.USER2_s_office_blinds
+        - cover.stairs_blinds
+        - cover.bedroom_closet_blinds
+        - light.hallway_light
+        - light.bathroom_lights
+        - light.garage_light
+        - light.garage_interior
+        - light.living_room_lights
+        - light.dining_room_lights
+        - light.bedroom_lights
+        - light.kitchen_lights
+        - light.stairs_light
+        - light.USER1_office_lights
+        - light.USER2_office_lights
+        - light.guest_bedroom_lights
+        - light.basement_lights
+        - light.basement_stairs
+        - light.work_bench_light
+        - light.laundry_room_light
+        - light.craft_room_ceiling
+        - light.fitness_room_ceiling
+        - light.front_porch
+        - light.back_door
+        - light.backyard_deck
+        - light.backyard_patio
+        - light.upstairs_bathroom_lights
+        - fan.USER1s_office_fan
+        - switch.air_purifier
+        - switch.bug_zapper
+        - climate.main_floor
+        - climate.office_fan
+        - switch.front_yard_lighting
+        - switch.backyard_lighting
+        - sensor.main_floor_humidity
+        - sensor.office_fan_humidity
+        - fan.living_room_east
+        - fan.living_room_west
+        - binary_sensor.living_room_motion
+        - binary_sensor.dining_room_motion
+        - binary_sensor.kitchen_motion
+        - binary_sensor.bathroom_motion
+        - binary_sensor.USER1s_office_motion
+        - binary_sensor.USER2s_office_motion
+        - binary_sensor.stairs_motion
+        - binary_sensor.upstairs_bathroom_motion
+        - binary_sensor.basement_motion
+        - binary_sensor.craft_room_motion
+        - binary_sensor.fitness_room_motion
+        - binary_sensor.front_door_opened
+        - binary_sensor.back_door_opened
+        - binary_sensor.basement_door_opened
+        - sensor.living_room_temperature
+        - sensor.main_floor_temperature
+        - sensor.kitchen_temperature
+        - sensor.bedroom_temperature
+        - sensor.bathroom_temperature
+        - sensor.office_temperature
+        - sensor.USER2_office_temperature
+        - sensor.guest_bedroom_temperature
+        - sensor.basement_temperature
+        - sensor.laundry_room_temperature
+        - sensor.garage_temperature
+        - sensor.office_fan_humidity
+        - sensor.craft_room_temperature
+        - sensor.fitness_room_temperature
+        - sensor.bathroom_humidity
+        - sensor.craft_room_humidity
+        - sensor.fitness_room_humidity
 
-  entity_config:
-      camera.front_porch:
-        stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
-        video_codec: copy
-        support_audio: True
-        linked_motion_sensor: binary_sensor.motion_front_porch_camera
-        linked_doorbell_sensor: binary_sensor.ring_front_door_ding
-      camera.driveway:
-        stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
-        video_codec: copy
-        support_audio: True
-        linked_motion_sensor: binary_sensor.motion_driveway_camera
-      camera.backyard_gate:
-        stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
-        video_codec: copy
-        support_audio: True
-        linked_motion_sensor: binary_sensor.motion_backyard_gate_camera
-      camera.backyard:
-        stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
-        video_codec: copy
-        support_audio: True
-        linked_motion_sensor: binary_sensor.motion_backyard_camera
-      camera.side_yard:
-        stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
-        video_codec: copy
-        support_audio: True
-        linked_motion_sensor: binary_sensor.motion_side_yard_camera
-      camera.garage:
-        stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
-        video_codec: copy
-        support_audio: True
-        linked_motion_sensor: binary_sensor.motion_garage_camera
-      camera.front_yard:
-        stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
-        video_codec: copy
-        support_audio: True
-        linked_motion_sensor: binary_sensor.motion_front_yard_camera
+#################################################################
+## HomeKit Accessory Mode
+#################################################################
+
+  - name: Front Porch Camera
+    mode: accessory
+    port: 21064
+    filter:
+      include_entities:
+        - camera.front_porch
+    entity_config:
+        camera.front_porch:
+          stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
+          video_codec: copy
+          support_audio: True
+          linked_motion_sensor: binary_sensor.motion_front_porch_camera
+          linked_doorbell_sensor: binary_sensor.ring_front_door_ding
+
+  - name: Driveway Camera
+    mode: accessory
+    port: 21065
+    filter:
+      include_entities:
+        - camera.driveway
+    entity_config:
+        camera.driveway:
+          stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
+          video_codec: copy
+          support_audio: True
+          linked_motion_sensor: binary_sensor.motion_driveway_camera
+
+  - name: Backyard Gate Camera
+    mode: accessory
+    port: 21066
+    filter:
+      include_entities:
+        - camera.backyard_gate
+    entity_config:
+        camera.backyard_gate:
+          stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
+          video_codec: copy
+          support_audio: True
+          linked_motion_sensor: binary_sensor.motion_backyard_gate_camera
+
+  - name: Backyard Camera
+    mode: accessory
+    port: 21067
+    filter:
+      include_entities:
+        - camera.backyard
+    entity_config:
+        camera.backyard:
+          stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
+          video_codec: copy
+          support_audio: True
+          linked_motion_sensor: binary_sensor.motion_backyard_camera
+
+  - name: Side Yard Camera
+    mode: accessory
+    port: 21068
+    filter:
+      include_entities:
+        - camera.side_yard
+    entity_config:
+        camera.side_yard:
+          stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
+          video_codec: copy
+          support_audio: True
+          linked_motion_sensor: binary_sensor.motion_side_yard_camera
+
+  - name: Garage Camera
+    mode: accessory
+    port: 21069
+    filter:
+      include_entities:
+        - camera.garage
+    entity_config:
+        camera.garage:
+          stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
+          video_codec: copy
+          support_audio: True
+          linked_motion_sensor: binary_sensor.motion_garage_camera
+
+  - name: Front Yard Camera
+    mode: accessory
+    port: 21070
+    filter:
+      include_entities:
+        - camera.front_yard
+    entity_config:
+        camera.front_yard:
+          stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
+          video_codec: copy
+          support_audio: True
+          linked_motion_sensor: binary_sensor.motion_front_yard_camera
+
+  - name: Front Door Lock
+    mode: accessory
+    port: 21071
+    filter:
+      include_entities:
+        - lock.front_door
+    entity_config:
       lock.front_door:
         linked_battery_sensor: sensor.front_door_lock_batt
+
+  - name: Back Door Lock
+    mode: accessory
+    port: 21072
+    filter:
+      include_entities:
+        - lock.back_door
+    entity_config:
       lock.back_door:
         linked_battery_sensor: sensor.back_door_lock_batt
+
+  - name: Basement Door Lock
+    mode: accessory
+    port: 21073
+    filter:
+      include_entities:
+        - lock.basement_door
+    entity_config:
       lock.basement_door:
         linked_battery_sensor: sensor.basement_door_lock_batt

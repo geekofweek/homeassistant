@@ -1289,16 +1289,13 @@
 
   action:
     - service: light.turn_on
-      entity_id:
-        - light.moon_globe
-    - service: scene.turn_on
-      target:
-        entity_id: scene.moon_globe_random_color
-    - service: light.turn_on
       data:
+        brightness_pct: 100
         effect: Party
       target:
-        entity_id: light.USER1_office_desk_lamp
+        entity_id: 
+          - light.USER1_office_desk_lamp
+          - light.moon_globe
     - service: light.turn_off
       entity_id:
         - light.USER1_s_office_ceiling
@@ -1373,8 +1370,8 @@
       entity_id:
         - light.moon_globe
       data:
-        brightness_pct: 3
-        color_temp: 500
+        brightness_pct: 10
+        color_temp: 238
     - service: light.turn_on
       entity_id:
         - light.USER1_office_desk_lamp

@@ -42,6 +42,11 @@
       - condition: state
         entity_id: group.friends_and_family
         state: 'home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: person.USER2
+        state: 'home'
 
   action:
     - service: vacuum.start
@@ -705,9 +710,8 @@
     - service: light.turn_on
       entity_id:
         - light.living_room_accent_lights
-        - light.bedroom_lights
       data:
-       brightness_pct: 100
+       brightness_pct: 50
        color_temp: 447
     - service: light.turn_on
       entity_id:
@@ -717,9 +721,6 @@
         - light.hallway_light
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_fan_lights
 
         ##########################################################
         ## Turn Off Lights Main Floor Roomba finished when Dark

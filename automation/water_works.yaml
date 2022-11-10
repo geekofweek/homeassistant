@@ -1226,3 +1226,33 @@
         data:
           tag: battery
           group: battery
+
+#################################################################
+## Water Meter Automations
+#################################################################
+
+        ##########################################################
+        ## Water Leak Detected iOS Notification
+        ##########################################################
+
+- alias: Water Works - Water Leak Detected iOS Notification
+  id: 'water_works_water_leak_detected_ios_notification'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.water_meter_leak_detected
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.USER1_devices
+      data:
+        message: Possible Water Leak Detected!
+        data:
+          tag: water-leak
+          group: water
