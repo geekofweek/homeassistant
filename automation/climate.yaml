@@ -86,6 +86,70 @@
         fan_min_on_time: '0'
 
         ##########################################################
+        ## Turn Off Humidifier When Water Main Shuts Off
+        ##########################################################
+
+- alias: Climate - Turn Off Humidifier When Water Main Shuts Off
+  id: 'climate_turn_off_humidifier_when_water_main_shuts_off'
+
+  trigger:
+    - platform: state
+      entity_id: switch.water_main
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+  
+  condition:
+    - condition: state
+      entity_id: humidifier.main_floor
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+
+  action:
+    - service: humidifier.set_mode
+      data:
+        mode: "off"
+      target:
+        entity_id: humidifier.main_floor
+
+        ##########################################################
+        ## Turn On Humidifier When Water Main Turns On
+        ##########################################################
+
+- alias: Climate - Turn On Humidifier When Water Main Turns On
+  id: 'climate_turn_on_humidifier_when_water_main_turns_on'
+
+  trigger:
+    - platform: state
+      entity_id: switch.water_main
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+  
+  condition:
+    - condition: state
+      entity_id: humidifier.main_floor
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+
+  action:
+    - service: humidifier.set_mode
+      data:
+        mode: "auto"
+      target:
+        entity_id: humidifier.main_floor
+
+        ##########################################################
         ## Thermostat On Demand Home
         ##########################################################
 

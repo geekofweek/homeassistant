@@ -2475,6 +2475,44 @@
         - switch.air_purifier
 
         ##########################################################
+        ## Turn On USER1 Office TV when Motion Detected
+        ##########################################################
+
+- alias: Motion - Turn On USER1 Office TV when Motion Detected
+  id: 'motion_turn_on_USER1_office_tv_when_motion_detected'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER1s_office_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: select.USER1_s_office_tv_activities
+      state: "PowerOff"
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'returning'
+
+  action:
+    - service: select.select_option
+      data:
+        entity_id: select.USER1_s_office_tv_activities
+        option: "Watch TV"
+
+        ##########################################################
         ## Turn Off USER1 Office Fan when No Motion Detected
         ##########################################################
 
@@ -2518,7 +2556,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 60
+        minutes: 20
         seconds: 0
 
   condition:
@@ -2529,7 +2567,7 @@
       conditions:
       - condition: state
         entity_id: select.USER1_s_office_tv_activities
-        state: 'PowerOff'
+        state: "PowerOff"
     - condition: not
       conditions:
       - condition: state
@@ -2577,9 +2615,17 @@
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
-    - condition: state
-      entity_id: select.USER1_s_office_tv_activities
-      state: 'PowerOff'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: select.USER1_s_office_tv_activities
+        state: "Play Xbox One"
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.USER1_s_office_apple_tv
+        state: 'playing'
+
 
   action:
     - service: light.turn_on

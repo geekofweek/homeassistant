@@ -2058,5 +2058,73 @@
         seconds: 1
 
 #################################################################
-## Notifications
+## Grow Light
 #################################################################
+
+        ##########################################################
+        ## Turn Off Grow Light After 8 Hours
+        ##########################################################
+
+- alias: Lights - Turn Off Grow Light After 8 Hours
+  id: 'lights_turn_off_grow_light_after_8_hours'
+
+  trigger:
+    - platform: state
+      entity_id: switch.grow_light
+      to: 'on'
+      for:
+        hours: 8
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: switch.grow_light
+      state: 'on'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.grow_light
+
+        ##########################################################
+        ## Turn On Grow Light at Night
+        ##########################################################
+
+- alias: Lights - Turn On Grow Light at Night
+  id: 'lights_turn_on_grow_light_at_night'
+
+  trigger:
+   - platform: time
+     at: '23:00:00'
+
+  condition:
+    - condition: state
+      entity_id: switch.grow_light
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.grow_light
+
+        ##########################################################
+        ## Turn Off Grow Light in the Morning
+        ##########################################################
+
+- alias: Lights - Turn Off Grow Light in the Morning
+  id: 'lights_turn_off_grow_light_in_the_morning'
+
+  trigger:
+   - platform: time
+     at: '07:01:00'
+
+  condition:
+    - condition: state
+      entity_id: switch.grow_light
+      state: 'on'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.grow_light

@@ -131,50 +131,6 @@
       entity_id: input_boolean.vacation_mode
 
         ##########################################################
-        ## Turn On Vacation Mode when at the Lake
-        ##########################################################
-
-- alias: Vacation - Turn On when at the Lake
-  id: 'vacation_turn_on_when_at_the_lake'
-
-  trigger:
-    - platform: state
-      entity_id: person.USER1
-      from: 'not_home'
-      to: 'Lake'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_home_away
-      state: 'off'
-
-  action:
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.vacation_mode
-
-        ##########################################################
-        ## Turn off Vacation Mode when leaving the Lake
-        ##########################################################
-
-- alias: Vacation - Turn off when leaving the Lake
-  id: 'vacation_turn_off_when_leaving_the_lake'
-
-  trigger:
-    - platform: state
-      entity_id: person.USER1
-      from: 'Lake'
-      to: 'not_home'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_home_away
-      state: 'off'
-
-  action:
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.vacation_mode
-
-        ##########################################################
         ## Vacation Lights On at Night
         ##########################################################
 
@@ -193,28 +149,40 @@
       state: 'on'
 
   action:
+    - delay:
+        minutes: '{{ range(2, 20) | random }}'
     - service: light.turn_on
       entity_id:
         - light.kitchen_sink
       data:
-        brightness_pct: 2
+        brightness_pct: 50
+    - delay:
+        minutes: '{{ range(2, 28) | random }}'
     - service: light.turn_on
       entity_id:
         - light.living_room_lamps
       data:
-        brightness_pct: 50
+        brightness_pct: 75
         transition: 120
+    - delay:
+        minutes: '{{ range(2, 59) | random }}'
+    - service: light.turn_on
+      entity_id:
+        - light.bedroom_ceiling
+      data:
+        brightness_pct: 25
+        transition: 60
 
         ##########################################################
-        ## Vacation Mode Lights off at Midnight
+        ## Vacation Mode Lights off at Night
         ##########################################################
 
-- alias: Vacation - Lights Off at Midnight
-  id: 'vacation_lights_off_at_midnight'
+- alias: Vacation - Lights Off at Night
+  id: 'vacation_lights_off_at_night'
 
   trigger:
     - platform: time
-      at: '23:16:32'
+      at: '21:30:00'
 
   condition:
     - condition: state
@@ -222,10 +190,18 @@
       state: 'on'
 
   action:
+    - delay:
+        minutes: '{{ range(2, 32) | random }}'
     - service: light.turn_off
       entity_id:
         - light.kitchen_sink
-    - delay: '00:37:04'
+    - delay:
+        minutes: '{{ range(2, 59) | random }}'
     - service: light.turn_off
       entity_id:
         - light.living_room_lamps
+    - delay:
+        minutes: '{{ range(2, 30) | random }}'
+    - service: light.turn_off
+      entity_id:
+        - light.bedroom_ceiling

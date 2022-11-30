@@ -178,7 +178,7 @@
       for:
         hours: 0
         minutes: 0
-        seconds: 30
+        seconds: 45
 
   condition:
     - condition: state
@@ -318,10 +318,10 @@
         - switch.christmas_tree
 
         ##########################################################
-        ## Turn on Christmas Tree when USER2 Home
+        ## Turn on Christmas Tree when USER2 Arrives Home
         ##########################################################
 
-- alias: Christmas - Turn on Christmas Tree when USER2 Home
+- alias: Christmas - Turn on Christmas Tree when USER2 Arrives Home
 
   trigger:
     - platform: state
@@ -429,14 +429,14 @@
 
   trigger:
     - platform: state
-      entity_id: media_player.living_room_appletv
+      entity_id: media_player.living_room_apple_tv
       to: 'paused'
       for:
         hours: 0
         minutes: 3
         seconds: 0
     - platform: state
-      entity_id: media_player.living_room_appletv
+      entity_id: media_player.living_room_apple_tv
       to: 'idle'
       for:
         hours: 0
@@ -475,14 +475,14 @@
 
   trigger:
     - platform: state
-      entity_id: media_player.living_room_appletv
+      entity_id: media_player.living_room_apple_tv
       to: 'paused'
       for:
         hours: 0
         minutes: 3
         seconds: 0
     - platform: state
-      entity_id: media_player.living_room_appletv
+      entity_id: media_player.living_room_apple_tv
       to: 'idle'
       for:
         hours: 0
@@ -522,14 +522,14 @@
 
   trigger:
     - platform: state
-      entity_id: media_player.living_room_appletv
+      entity_id: media_player.living_room_apple_tv
       to: 'paused'
       for:
         hours: 0
         minutes: 3
         seconds: 0
     - platform: state
-      entity_id: media_player.living_room_appletv
+      entity_id: media_player.living_room_apple_tv
       to: 'idle'
       for:
         hours: 0
@@ -566,7 +566,7 @@
 
   trigger:
     - platform: state
-      entity_id: media_player.living_room_appletv
+      entity_id: media_player.living_room_apple_tv
       to: 'playing'
       for:
         hours: 0
@@ -606,7 +606,7 @@
 
   trigger:
     - platform: state
-      entity_id: media_player.living_room_appletv
+      entity_id: media_player.living_room_apple_tv
       to: 'playing'
       for:
         hours: 0
@@ -670,7 +670,7 @@
 
   trigger:
     - platform: state
-      entity_id: input_select.living_room_tv_remote
+      entity_id: select.living_room_tv_activities
       to: 'Play Xbox'
       for:
         hours: 0
@@ -712,7 +712,7 @@
 
   trigger:
     - platform: state
-      entity_id: input_select.living_room_tv_remote
+      entity_id: select.living_room_tv_activities
       from: 'Play Xbox'
       for:
         hours: 0
