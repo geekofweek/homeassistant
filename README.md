@@ -32,13 +32,13 @@ Relevant hub configurations can be found within [configuration.yaml](https://git
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [Philips Hue White and Color Ambiance](https://amzn.to/2Ip8waU) | 9 | Zigbee | [ZHA](https://www.home-assistant.io/integrations/zha/) | Color changing smart bulbs|
-| [Philips Hue White and Color Ambiance LightStrip Plus Dimmable](https://amzn.to/2Kx27qF) | 1 | Hue Hub (Zigbee)| [ZHA](https://www.home-assistant.io/integrations/zha/) | Color changing smart led strip. Used as accent lighting|
+| [Philips Hue White and Color Ambiance LightStrip Plus Dimmable](https://amzn.to/2Kx27qF) | 1 | Zigbee | [ZHA](https://www.home-assistant.io/integrations/zha/) | Color changing smart led strip. Used as accent lighting|
 | [Philips Hue White](https://amzn.to/2LaUFTd) | 8 | Zigbee | [ZHA](https://www.home-assistant.io/integrations/zha/) | Non color changing smart bulbs|
 | [Cree Connected](https://amzn.to/2IpKAnZ) | 9 | Zigbee | [ZHA](https://www.home-assistant.io/integrations/zha/) | Non color changing smart bulbs|
 | [Lutron Caseta Wireless Dimmer](https://amzn.to/2KwDJWc) | 17 | Lutron Clear Connect | [Lutron Caséta](https://www.home-assistant.io/integrations/lutron_caseta) | Smart dimmer switches that do not require a neutral wire|
 | [Lutron Caseta Wireless Lighting Switch](https://amzn.to/2YvDWjg) | 2 | Lutron Clear Connect | [Lutron Caséta](https://www.home-assistant.io/integrations/lutron_caseta) | Smart on / off light switches |
 | [Lutron Caseta Pico Wireless Dimmer Switch](https://amzn.to/2Etw0HP) | 6 | Lutron Clear Connect | [Lutron Caséta](https://www.home-assistant.io/integrations/lutron_caseta) | Decora wall mountable remote (that looks like a dimmer switch). Controls various lights |
-| [Lutron Aurora Smart Bulb Dimmer](https://amzn.to/2OyI0PI) | 4 | [ZHA](https://www.home-assistant.io/integrations/zha/) | Smart Dimmer that attaches to existing Toggle light Switch. |
+| [Lutron Aurora Smart Bulb Dimmer](https://amzn.to/2OyI0PI) | 4 | Zigbee | [ZHA](https://www.home-assistant.io/integrations/zha/) | Smart Dimmer that attaches to existing Toggle light Switch. |
 | [LIFX Mini White](https://amzn.to/2UFDvmh) | 1 | Wi-Fi| [LIFX](https://www.home-assistant.io/integrations/lifx/) | Non color changing Wi-Fi smart bulbs.  Used in places where Zigbee is not reliable (detached garage) |
 | [Philips Color A19](https://amzn.to/3Sk1sfe) | 2 | Wi-Fi| [WiZ](https://www.home-assistant.io/integrations/wiz/) | Color changing Wi-Fi smart bulb. Used for a 3D Printed Desk Lamp and Moon Globe.  Will most likely add a few more, very happy with these. |
 
