@@ -83,7 +83,7 @@
       above: 99
     - condition: state
       entity_id: select.living_room_tv_activities
-      state: 'PowerOff'
+      state: 'power_off'
     - condition: state
       entity_id: binary_sensor.living_room_motion
       state: 'off'
@@ -683,7 +683,7 @@
       state: 'off'
     - condition: time
       after: '09:59:00'
-      before: '12:00:00'
+      before: '10:14:00'
     - condition: numeric_state
       entity_id: sensor.living_room_light_level
       below: 15
@@ -698,6 +698,11 @@
       - condition: state
         entity_id: group.friends_and_family
         state: 'home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: person.USER2
+        state: 'home'
     - condition: time
       weekday:
         - mon
@@ -709,16 +714,18 @@
   action:
     - service: light.turn_on
       entity_id:
-        - light.living_room_accent_lights
-      data:
-       brightness_pct: 50
-       color_temp: 447
-    - service: light.turn_on
-      entity_id:
+        - light.living_room_lights
         - light.dining_room_table
         - light.bathroom_lights
         - light.kitchen_lights
         - light.hallway_light
+      data:
+       brightness_pct: 100
+    - delay: '00:01:00'
+    - service: light.turn_on
+      entity_id:
+        - light.bedroom_lamps
+        - light.bedroom_closet_lights
       data:
        brightness_pct: 100
 
@@ -759,6 +766,11 @@
     - condition: state
       entity_id: light.interior_lights
       state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: person.USER2
+        state: 'home'
     - condition: time
       after: '09:59:00'
       before: '13:00:00'

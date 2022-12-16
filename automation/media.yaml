@@ -443,13 +443,13 @@
       conditions:
       - condition: state
         entity_id: select.living_room_tv_activities
-        state: 'PowerOff'
+        state: 'power_off'
 
   action:
     - service: select.select_option
       data:
         entity_id: select.living_room_tv_activities
-        option: "PowerOff"      
+        option: "power_off"      
 
         ##########################################################
         ## Bedroom TV Turn Off Harmony Activity if TV Off
@@ -472,13 +472,13 @@
       conditions:
       - condition: state
         entity_id: select.bedroom_tv_activities
-        state: 'PowerOff'
+        state: 'power_off'
 
   action:
     - service: select.select_option
       data:
         entity_id: select.bedroom_tv_activities
-        option: "PowerOff"
+        option: "power_off"
 
       #################################################################
       ## Reset Sonos Every Morning

@@ -46,13 +46,13 @@
   action:
     - service: light.turn_on
       entity_id:
-        - light.hue_lights
+        - light.smart_bulbs
       data:
        brightness_pct: 100
        color_name: "blue"
     - service: light.turn_on
       entity_id:
-        - light.hue_lights
+        - light.smart_bulbs
       data:
        flash: long
 

@@ -749,82 +749,6 @@
       entity_id:
         - light.backyard_patio
         - light.backyard_deck
-
-        ##########################################################
-        ## Media Center Lighting Random Color Every 30 mins
-        ##########################################################
-
-- alias: Lights - Media Center Lighting Random Color Every 30 Mins
-  id: 'lights_media_center_lighting_random_color_every_30_mins'
-
-  trigger:
-    - platform: time_pattern
-      minutes: '/30'
-
-  condition:
-    - condition: state
-      entity_id: light.media_center_lighting
-      state: 'on'
-    - condition: state
-      entity_id: input_boolean.livingroom_rainbow
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.interior_holiday
-      state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-
-  action:
-    - service: light.turn_on
-      target:
-        entity_id: light.media_center_lighting
-      data:
-        transition: 300
-        hs_color:
-          - '{{ (range(0, 360)|random) }}'
-          - '100'
-        brightness_pct: 100
-
-        ##########################################################
-        ## Media Center Lighting Turn on Scene when Light On
-        ##########################################################
-
-- alias: Lights - Media Center Lighting Turn on Scene when Light On
-  id: 'lights_media_center_lighting_turn_on_scene_when_light_on'
-
-  trigger:
-    - platform: state
-      entity_id: light.media_center_lighting
-      from: 'off'
-      to: 'on'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: light.media_center_lighting
-      state: 'on'
-    - condition: state
-      entity_id: input_boolean.livingroom_rainbow
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.interior_holiday
-      state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-
-  action:
-    - service: scene.turn_on
-      data:
-        transition: 90
-        entity_id: >
-          {{ ["scene.media_center_hue_tokyo", "scene.media_center_hue_fairfax",
-          "scene.media_center_hue_osaka", "scene.media_center_hue_soho", 
-          "scene.media_center_hue_color_burst"] | random }}
         
         ##########################################################
         ## Set Globe Color Temp
@@ -1066,6 +990,42 @@
 #################################################################
 
         ##########################################################
+        ## Media Center Lighting Random Color Every 30 mins
+        ##########################################################
+
+- alias: Lights - Media Center Lighting Random Color Every 30 Mins
+  id: 'lights_media_center_lighting_random_color_every_30_mins'
+
+  trigger:
+    - platform: time_pattern
+      minutes: '/30'
+
+  condition:
+    - condition: state
+      entity_id: light.media_center_lighting
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.livingroom_rainbow
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.interior_holiday
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: light.turn_on
+      target:
+        entity_id: light.media_center_lighting
+      data:
+        transition: 300
+        hs_color:
+          - '{{ (range(0, 360)|random) }}'
+          - '100'
+        brightness_pct: 100
+
+        ##########################################################
         ## Living Room Lights Random Color On
         ##########################################################
 
@@ -1074,7 +1034,7 @@
 
   trigger:
     - platform: time_pattern
-      seconds: '/10'
+      seconds: '/15'
 
   condition:
     - condition: state
@@ -1088,11 +1048,14 @@
       state: 'off'
 
   action:
+    - service: light.turn_off
+      entity_id:
+        - light.living_room_fan_lights
     - service: light.turn_on
       target:
         entity_id: light.living_room_lamp_1
       data:
-        transition: 1
+        transition: 5
         hs_color:
           - '{{ (range(0, 360)|random) }}'
           - '100'
@@ -1101,7 +1064,7 @@
       target:
         entity_id: light.media_center_lighting
       data:
-        transition: 1
+        transition: 5
         hs_color:
           - '{{ (range(0, 360)|random) }}'
           - '100'
@@ -1110,7 +1073,7 @@
       target:
         entity_id: light.globe
       data:
-        transition: 1
+        transition: 5
         hs_color:
           - '{{ (range(0, 360)|random) }}'
           - '100'
@@ -1119,7 +1082,7 @@
       target:
         entity_id: light.living_room_lamp_2
       data:
-        transition: 1
+        transition: 5
         hs_color:
           - '{{ (range(0, 360)|random) }}'
           - '100'
@@ -1182,7 +1145,7 @@
 
   trigger:
     - platform: time_pattern
-      seconds: '/10'
+      seconds: '/15'
 
   condition:
     - condition: state
@@ -1196,11 +1159,14 @@
       state: 'off'
 
   action:
+    - service: light.turn_off
+      entity_id:
+        - light.bedroom_closet_lights
     - service: light.turn_on
       target:
         entity_id: light.USER1s_nightstand
       data:
-        transition: 1
+        transition: 5
         hs_color:
           - '{{ (range(0, 360)|random) }}'
           - '100'
@@ -1209,7 +1175,7 @@
       target:
         entity_id: light.USER2s_nightstand
       data:
-        transition: 1
+        transition: 5
         hs_color:
           - '{{ (range(0, 360)|random) }}'
           - '100'
@@ -1218,7 +1184,7 @@
       target:
         entity_id: light.bedroom_lamp
       data:
-        transition: 1
+        transition: 5
         hs_color:
           - '{{ (range(0, 360)|random) }}'
           - '100'
@@ -1309,7 +1275,7 @@
 
   trigger:
     - platform: time_pattern
-      seconds: '/5'
+      seconds: '/15'
 
   condition:
     - condition: state
@@ -1327,7 +1293,7 @@
       target:
         entity_id: light.office_lamp
       data:
-        transition: 1
+        transition: 5
         hs_color:
           - '{{ (range(0, 360)|random) }}'
           - '100'
@@ -1388,7 +1354,7 @@
 
   trigger:
     - platform: time_pattern
-      seconds: '/10'
+      seconds: '/15'
 
   condition:
     - condition: state
@@ -1496,9 +1462,14 @@
     - condition: state
       entity_id: light.USER1_office_desk_lamp
       state: 'on'
-    - condition: state
-      entity_id: cover.USER1_s_office_blinds
-      state: 'open'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: cover.USER1_s_office_blinds
+        state: 'open'
+      - condition: state
+        entity_id: cover.USER1_s_office_blinds
+        state: 'opening'
 
   action:
     - service: light.turn_on

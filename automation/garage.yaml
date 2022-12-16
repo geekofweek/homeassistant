@@ -29,8 +29,10 @@
   action:
     - service: lifx.effect_pulse
       data:
-       entity_id: light.garage_interior
-       cycles: '5'
+        cycles: 5
+        brightness: 255
+      target:
+        entity_id: light.garage_interior
     - delay: '00:00:05'
     - service: cover.close_cover
       entity_id: cover.garage_door
@@ -99,8 +101,10 @@
   action:
     - service: lifx.effect_pulse
       data:
-       entity_id: light.garage_interior
-       cycles: '5'
+        cycles: 5
+        brightness: 255
+      target:
+        entity_id: light.garage_interior
     - delay: '00:00:05'
     - service: homeassistant.turn_on
       entity_id: input_boolean.garage_door_motor
@@ -175,8 +179,10 @@
   action:
     - service: lifx.effect_pulse
       data:
-       entity_id: light.garage_interior
-       cycles: '5'
+        cycles: 5
+        brightness: 255
+      target:
+        entity_id: light.garage_interior
     - delay: '00:00:05'
     - service: homeassistant.turn_on
       entity_id: input_boolean.garage_door_motor
@@ -215,6 +221,7 @@
       data:
        entity_id: light.garage_interior
        cycles: '5'
+       brightness: 255
     - delay: '00:00:05'
     - service: cover.close_cover
       entity_id: cover.garage_door
@@ -266,8 +273,10 @@
   action:
     - service: lifx.effect_pulse
       data:
-       entity_id: light.garage_interior
-       cycles: '5'
+        cycles: 5
+        brightness: 255
+      target:
+        entity_id: light.garage_interior
     - delay: '00:00:05'
     - service: cover.close_cover
       entity_id: cover.garage_door
@@ -375,8 +384,10 @@
   action:
     - service: lifx.effect_pulse
       data:
-       entity_id: light.garage_interior
-       cycles: '10'
+        cycles: 10
+        brightness: 255
+      target:
+        entity_id: light.garage_interior
 
         ##########################################################
         ## Garage Door Motor On

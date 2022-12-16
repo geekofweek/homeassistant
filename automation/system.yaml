@@ -179,6 +179,48 @@
     - service: homeassistant.turn_on
       entity_id: input_boolean.USER1_s_office_do_not_disturb
 
+        #################################################################
+        ## Turn Off USER1 Office Do not Disturb when MacBook AV Input Off
+        #################################################################
+
+- alias: System - Turn Off USER1 Office Do not Disturb when MacBook AV Input Off
+  id: 'system_turn_off_USER1_office_do_not_disturb_when_macbook_av_input_off'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER1s_macbook_pro_camera_in_use
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+    - platform: state
+      entity_id: binary_sensor.USER1s_macbook_pro_audio_input_in_use
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+    - platform: state
+      entity_id: binary_sensor.USER1s_macbook_pro_focus
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      state: 'on'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+
 #################################################################
 ## Notifications
 #################################################################
@@ -393,6 +435,35 @@
     - service: notify.USER1_devices
       data:
         message: Update Available for Home Assistant
+        data:
+          tag: homeassistant
+          group: system
+
+        ##########################################################
+        ## Server Memory Above 50 Percent
+        ##########################################################
+
+- alias: System - Server Memory Above 50 Percent
+  id: 'system_server_memory_above_50_percent'
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.memory_use_percent
+      above: 50
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.USER1_devices
+      data:
+        message: 'Server Memory Above 50%'
         data:
           tag: homeassistant
           group: system

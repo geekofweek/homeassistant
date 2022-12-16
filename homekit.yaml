@@ -9,6 +9,7 @@
         - cover.USER1_s_office_blinds
         - cover.USER2_s_office_blinds
         - cover.stairs_blinds
+        - cover.kitchen_blinds
         - cover.bedroom_closet_blinds
         - light.hallway_light
         - light.bathroom_lights
@@ -91,7 +92,7 @@
           stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
           video_codec: copy
           support_audio: True
-          linked_motion_sensor: binary_sensor.motion_front_porch_camera
+          linked_motion_sensor: binary_sensor.front_porch_person_detected
           linked_doorbell_sensor: binary_sensor.ring_front_door_ding
 
   - name: Driveway Camera

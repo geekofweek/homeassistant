@@ -8,12 +8,34 @@
 
   alexa:
     filter:
+      exclude_domains:
+        - alarm_control_panel
+        - button
+        - alert
+        - automation
+        - binary_sensor
+        - camera
+        - climate
+        - cover
+        - fan
+        - group
+        - input_boolean
+        - light
+        - lock
+        - media_player
+        - scene
+        - script
+        - sensor
+        - switch
+        - vacuum
+
       include_entities:
         - alarm_control_panel.alarm
         - cover.USER1_s_office_blinds
         - cover.USER2_s_office_blinds
         - cover.bedroom_closet_blinds
         - cover.stairs_blinds
+        - cover.kitchen_blinds
         - camera.backyard
         - camera.backyard_gate
         - camera.driveway
@@ -43,29 +65,41 @@
         - switch.basement_heater
         - switch.fireplace
         - switch.bug_zapper
-        - light.living_room_fan_lights
         - switch.bedroom_tv_watch_tv
         - switch.USER1_s_office_tv_watch_tv
         - switch.USER1_s_office_tv_play_xbox_one
         - switch.christmas_tree
-
-      exclude_domains:
-        - alarm_control_panel
-        - automation
-        - binary_sensor
-        - camera
-        - climate
-        - cover
-        - fan
-        - group
-        - input_boolean
-        - light
-        - lock
-        - media_player
-        - script
-        - sensor
-        - switch
-        - vacuum
+        - light.living_room_lamps
+        - light.media_center_lighting
+        - light.globe
+        - light.living_room_fan_lights
+        - light.dining_room_lights
+        - light.kitchen_lights
+        - light.hallway_light
+        - light.bathroom_lights
+        - light.USER1s_nightstand
+        - light.USER2s_nightstand
+        - light.bedroom_ceiling
+        - light.bedroom_lamp
+        - light.bedroom_closet_ceiling
+        - light.closet_lamp
+        - light.basement_lights
+        - light.basement_stairs
+        - light.craft_room_ceiling
+        - light.fitness_room_ceiling
+        - light.work_bench_light
+        - light.stairs_light
+        - light.upstairs_bathroom_lights
+        - light.USER2_office_lights
+        - light.USER1_office_desk_lamp
+        - light.moon_globe
+        - light.USER1_s_office_ceiling
+        - light.office_lamp
+        - light.guest_bedroom_lights
+        - light.front_porch
+        - light.back_door
+        - light.backyard_deck
+        - light.backyard_patio
 
         ##########################################################
         ## Alarm
@@ -95,6 +129,10 @@
       cover.stairs_blinds:
         name: Stair Blinds
         description: Stair Blinds
+        display_categories: INTERIOR_BLIND
+      cover.kitchen_blinds:
+        name: Kitchen Blinds
+        description: Kitchen Blinds
         display_categories: INTERIOR_BLIND
 
         ##########################################################

@@ -29,20 +29,20 @@
   action:
     - service: light.turn_on
       entity_id:
-        - light.hue_lights
+        - light.smart_bulbs
       data:
        brightness_pct: 100
        color_name: "red"
     - service: light.turn_on
       entity_id:
-        - light.hue_lights_exterior
+        - light.smart_bulbs_exterior
         - light.lutron_lights
         - light.lutron_lights_exterior
       data:
        brightness_pct: 100
     - service: light.turn_on
       entity_id:
-        - light.hue_lights
+        - light.smart_bulbs
       data:
        flash: long
     - service: switch.turn_on
@@ -199,20 +199,20 @@
   action:
     - service: light.turn_on
       entity_id:
-        - light.hue_lights
+        - light.smart_bulbs
       data:
        brightness_pct: 100
        color_name: "red"
     - service: light.turn_on
       entity_id:
-        - light.hue_lights_exterior
+        - light.smart_bulbs_exterior
         - light.lutron_lights
         - light.lutron_lights_exterior
       data:
        brightness_pct: 100
     - service: light.turn_on
       entity_id:
-        - light.hue_lights
+        - light.smart_bulbs
       data:
        flash: long
     - service: switch.turn_on
@@ -276,20 +276,20 @@
   action:
     - service: light.turn_on
       entity_id:
-        - light.hue_lights
+        - light.smart_bulbs
       data:
        brightness_pct: 100
        color_name: "red"
     - service: light.turn_on
       entity_id:
-        - light.hue_lights_exterior
+        - light.smart_bulbs_exterior
         - light.lutron_lights
         - light.lutron_lights_exterior
       data:
        brightness_pct: 100
     - service: light.turn_on
       entity_id:
-        - light.hue_lights
+        - light.smart_bulbs
       data:
        flash: long
     - service: switch.turn_on

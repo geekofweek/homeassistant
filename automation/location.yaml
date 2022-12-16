@@ -44,6 +44,7 @@
         - cover.USER2_s_office_blinds
         - cover.stairs_blinds
         - cover.bedroom_closet_blinds
+        - cover.kitchen_blinds
     - service: homeassistant.turn_off
       entity_id:
         - input_boolean.guest_mode
@@ -60,15 +61,15 @@
     - service: select.select_option
       data:
         entity_id: select.living_room_tv_activities
-        option: "PowerOff"
+        option: "power_off"
     - service: select.select_option
       data:
         entity_id: select.bedroom_tv_activities
-        option: "PowerOff"
+        option: "power_off"
     - service: select.select_option
       data:
         entity_id: select.USER1_s_office_tv_activities
-        option: "PowerOff"
+        option: "power_off"
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
@@ -681,7 +682,7 @@
     - service: select.select_option
       data:
         entity_id: select.USER1_s_office_tv_activities
-        option: "PowerOff"
+        option: "power_off"
 
         ##########################################################
         ## USER1 Away Close Blinds

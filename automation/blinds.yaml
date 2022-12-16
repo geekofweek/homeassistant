@@ -26,6 +26,7 @@
         - cover.USER2_s_office_blinds
         - cover.bedroom_closet_blinds
         - cover.stairs_blinds
+        - cover.kitchen_blinds
 
 #################################################################
 ## USER1's Office
@@ -52,9 +53,6 @@
       entity_id: person.USER1
       state: 'home'
     - condition: state
-      entity_id: cover.USER1_s_office_blinds
-      state: 'closed'
-    - condition: state
       entity_id: sun.sun
       state: 'above_horizon'
     - condition: time
@@ -62,6 +60,9 @@
     - condition: numeric_state
       entity_id: sensor.REDACTED_temperature
       below: 86
+    - condition: state
+      entity_id: cover.USER1_s_office_blinds
+      state: 'closed'
     - condition: not
       conditions:
       - condition: state
@@ -98,11 +99,11 @@
       entity_id: input_boolean.disable_blinds
       state: 'off'
     - condition: state
-      entity_id: cover.USER1_s_office_blinds
-      state: 'open'
-    - condition: state
       entity_id: binary_sensor.USER1s_office_window_right
       state: 'off'
+    - condition: state
+      entity_id: cover.USER1_s_office_blinds
+      state: 'open'
 
   action:
     - service: cover.close_cover
@@ -130,11 +131,11 @@
       entity_id: input_boolean.disable_blinds
       state: 'off'
     - condition: state
-      entity_id: cover.USER1_s_office_blinds
-      state: 'open'
-    - condition: state
       entity_id: binary_sensor.USER1s_office_window_right
       state: 'off'
+    - condition: state
+      entity_id: cover.USER1_s_office_blinds
+      state: 'open'
 
   action:
     - service: cover.close_cover
@@ -184,11 +185,11 @@
       entity_id: input_boolean.disable_blinds
       state: 'off'
     - condition: state
-      entity_id: cover.USER1_s_office_blinds
-      state: 'open'
-    - condition: state
       entity_id: binary_sensor.USER1s_office_window_right
       state: 'off'
+    - condition: state
+      entity_id: cover.USER1_s_office_blinds
+      state: 'open'
 
   action:
     - service: cover.set_cover_position
@@ -213,11 +214,11 @@
       entity_id: input_boolean.disable_blinds
       state: 'off'
     - condition: state
-      entity_id: cover.USER1_s_office_blinds
-      state: 'open'
-    - condition: state
       entity_id: binary_sensor.USER1s_office_window_right
       state: 'on'
+    - condition: state
+      entity_id: cover.USER1_s_office_blinds
+      state: 'open'
 
   action:
     - service: cover.set_cover_position
@@ -295,7 +296,7 @@
     - platform: state
       entity_id: cover.USER1_s_office_blinds
       from: 'closed'
-      to: 'open'
+      to: 'opening'
 
   condition:
     - condition: state
@@ -322,7 +323,7 @@
     - platform: state
       entity_id: cover.USER1_s_office_blinds
       from: 'closed'
-      to: 'open'
+      to: 'opening'
 
   condition:
     - condition: state
@@ -389,15 +390,6 @@
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
-    - condition: state
-      entity_id: cover.USER1s_office_blinds_center
-      state: 'open'
-    - condition: state
-      entity_id: cover.USER1s_office_blinds_left
-      state: 'closed'
-    - condition: state
-      entity_id: cover.USER1s_office_blinds_right
-      state: 'closed'
     - condition: not
       conditions:
       - condition: state
@@ -434,14 +426,14 @@
       entity_id: group.household
       state: 'home'
     - condition: state
-      entity_id: cover.stairs_blinds
-      state: 'closed'
-    - condition: state
       entity_id: sun.sun
       state: 'above_horizon'
     - condition: numeric_state
       entity_id: sensor.REDACTED_temperature
       below: 86
+    - condition: state
+      entity_id: cover.stairs_blinds
+      state: 'closed'
     - condition: not
       conditions:
       - condition: state
@@ -478,9 +470,6 @@
       entity_id: input_boolean.disable_blinds
       state: 'off'
     - condition: state
-      entity_id: cover.stairs_blinds
-      state: 'open'
-    - condition: state
       entity_id: binary_sensor.USER1s_office_motion
       state: 'off'
     - condition: state
@@ -492,6 +481,9 @@
     - condition: state
       entity_id: binary_sensor.stairs_motion
       state: 'off'
+    - condition: state
+      entity_id: cover.stairs_blinds
+      state: 'open'
 
   action:
     - service: cover.close_cover
@@ -538,7 +530,7 @@
     - platform: state
       entity_id: cover.stairs_blinds
       from: 'closed'
-      to: 'open'
+      to: 'opening'
 
   condition:
     - condition: state
@@ -578,14 +570,14 @@
       entity_id: person.USER2
       state: 'home'
     - condition: state
-      entity_id: cover.USER2_s_office_blinds
-      state: 'closed'
-    - condition: state
       entity_id: sun.sun
       state: 'above_horizon'
     - condition: numeric_state
       entity_id: sensor.REDACTED_temperature
       below: 86
+    - condition: state
+      entity_id: cover.USER2_s_office_blinds
+      state: 'closed'
     - condition: not
       conditions:
       - condition: state
@@ -680,7 +672,10 @@
       state: 'off'
     - condition: state
       entity_id: group.household
-      state: 'home'     
+      state: 'home'
+    - condition: state
+      entity_id: cover.bedroom_closet_blinds
+      state: 'closed'
     - condition: time
       weekday:
         - mon
@@ -730,7 +725,7 @@
     - platform: state
       entity_id: cover.bedroom_closet_blinds
       from: 'closed'
-      to: 'open'
+      to: 'opening'
 
   condition:
     - condition: state
@@ -799,15 +794,6 @@
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
-    - condition: state
-      entity_id: cover.bedroom_closet_blinds_center
-      state: 'open'
-    - condition: state
-      entity_id: cover.bedroom_closet_blinds_left
-      state: 'closed'
-    - condition: state
-      entity_id: cover.bedroom_closet_blinds_right
-      state: 'closed'
     - condition: not
       conditions:
       - condition: state
@@ -818,6 +804,517 @@
     - service: cover.close_cover
       entity_id:
         - cover.bedroom_closet_blinds_center
+
+#################################################################
+## Kitchen
+#################################################################
+
+        ##########################################################
+        ## Open Kitchen South Blind at Sunrise
+        ##########################################################
+
+- alias: Blinds - Open Kitchen South Blind at Sunrise
+  id: 'blinds_open_kitcen_south_blind_at_sunrise'
+
+  trigger:
+    - platform: sun
+      event: 'sunrise'
+      offset: '+00:45:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: cover.kitchen_blinds_south
+      state: 'closed'
+
+  action:
+    - service: cover.open_cover
+      entity_id:
+        - cover.kitchen_blinds_south
+
+        ##########################################################
+        ## Open Kitchen Blinds when Home
+        ##########################################################
+
+- alias: Blinds - Open Kitchen Blinds when Home
+  id: 'blinds_open_kitcen_blinds_when_home'
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'not_home'
+      to: 'home'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: sun
+      before: sunset
+      before_offset: "-01:00:00"
+    - condition: state
+      entity_id: cover.kitchen_blinds
+      state: 'closed'
+
+  action:
+    - service: cover.open_cover
+      entity_id:
+        - cover.kitchen_blinds_south
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.kitchen_blinds_west
+        position: 20
+
+        ##########################################################
+        ## Open Kitchen West Blind at 9a
+        ##########################################################
+
+- alias: Blinds - Open Kitchen West Blind at 9a
+  id: 'blinds_open_kitchen_west_blind_at_9a'
+
+  trigger:
+   - platform: time
+     at: '09:00:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: state
+      entity_id: cover.kitchen_blinds_west
+      state: 'closed'
+
+  action:
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.kitchen_blinds_west
+        position: 20
+
+        ##########################################################
+        ## Close Kitchen West Blind Before Sunset
+        ##########################################################
+
+- alias: Blinds - Close Kitchen West Blind Before Sunset
+  id: 'blinds_close_kitchen_west_blind_before_sunset'
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+      offset: '-01:30:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.kitchen_blinds_west
+      state: 'open'
+
+  action:
+    - service: cover.close_cover
+      entity_id:
+        - cover.kitchen_blinds_west
+
+        ##########################################################
+        ## Close Kitchen South Blind Before Sunset
+        ##########################################################
+
+- alias: Blinds - Close Kitchen South Blind Before Sunset
+  id: 'blinds_close_kitchen_south_blind_before_sunset'
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:30:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.kitchen_blinds_south
+      state: 'open'
+
+  action:
+    - service: cover.close_cover
+      entity_id:
+        - cover.kitchen_blinds_south
+
+#################################################################
+## Pico Remotes
+#################################################################
+
+  #################################################################
+  ## Kitchen Blinds Open Pico Remote
+  #################################################################
+
+- alias: Blinds - Kitchen Blinds Open Pico Remote
+  id: 'blinds_kitchen_blinds_open_pico_remote'
+
+  trigger:
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 91735138
+        button_number: 2
+        action: press
+
+  action:
+    - service: cover.open_cover
+      entity_id:
+        - cover.kitchen_blinds
+
+  #################################################################
+  ## Kitchen Blinds Close Pico Remote
+  #################################################################
+
+- alias: Blinds - Kitchen Blinds Close Pico Remote
+  id: 'blinds_kitchen_blinds_close_pico_remote'
+
+  trigger:
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 91735138
+        button_number: 4
+        action: press
+
+  action:
+    - service: cover.close_cover
+      entity_id:
+        - cover.kitchen_blinds
+
+  #################################################################
+  ## Kitchen Raise Blinds Pico Remote Press
+  #################################################################
+
+- alias: Blinds - Kitchen Raise Blinds Pico Remote Press
+  id: 'blinds_kitchen_blinds_raise_pico_remote_press'
+
+  trigger:
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 91735138
+        button_number: 5
+        action: press
+
+  action:
+    - service: cover.open_cover
+      entity_id:
+        - cover.kitchen_blinds
+
+  #################################################################
+  ## Kitchen Raise Blinds Pico Remote Release
+  #################################################################
+
+- alias: Blinds - Kitchen Raise Blinds Pico Remote Release
+  id: 'blinds_kitchen_blinds_raise_pico_remote_release'
+
+  trigger:
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 91735138
+        button_number: 5
+        action: release
+
+  action:
+    - service: cover.stop_cover
+      entity_id:
+        - cover.kitchen_blinds
+
+  #################################################################
+  ## Kitchen Lower Blinds Pico Remote Press
+  #################################################################
+
+- alias: Blinds - Kitchen Lower Blinds Pico Remote Press
+  id: 'blinds_kitchen_blinds_lower_pico_remote_press'
+
+  trigger:
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 91735138
+        button_number: 6
+        action: press
+
+  action:
+    - service: cover.close_cover
+      entity_id:
+        - cover.kitchen_blinds
+
+  #################################################################
+  ## Kitchen Lower Blinds Pico Remote Release
+  #################################################################
+
+- alias: Blinds - Kitchen Lower Blinds Pico Remote Release
+  id: 'blinds_kitchen_blinds_lower_pico_remote_release'
+
+  trigger:
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 91735138
+        button_number: 6
+        action: release
+
+  action:
+    - service: cover.stop_cover
+      entity_id:
+        - cover.kitchen_blinds
+
+  #################################################################
+  ## Kitchen Blinds Reset Pico Remote
+  #################################################################
+
+- alias: Blinds - Kitchen Blinds Reset Pico Remote
+  id: 'blinds_kitchen_blinds_reset_pico_remote'
+
+  trigger:
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 91735138
+        button_number: 3
+        action: press
+
+  action:
+    - service: cover.open_cover
+      entity_id:
+        - cover.kitchen_blinds_south
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.kitchen_blinds_west
+        position: 20
+
+#################################################################
+## Ikea Remotes
+#################################################################
+
+  #################################################################
+  ## USER2's Office Blinds Open Ikea Remote
+  #################################################################
+
+- alias: Blinds - USER2's Office Blinds Open Ikea Remote
+  id: 'blinds_USER2_office_blinds_open_ikea_remote'
+
+  trigger:
+    - platform: event
+      event_type: zha_event
+      event_data:
+        device_id: 9ae29503679a9c6e15e014e1a273429c
+        command: up_open
+
+  action:
+    - service: cover.open_cover
+      entity_id:
+        - cover.USER2_s_office_blinds
+
+  #################################################################
+  ## USER2's Office Blinds Stop Ikea Remote
+  #################################################################
+
+- alias: Blinds - USER2's Office Blinds Stop Ikea Remote
+  id: 'blinds_USER2_office_blinds_stop_ikea_remote'
+
+  trigger:
+    - platform: event
+      event_type: zha_event
+      event_data:
+        device_id: 9ae29503679a9c6e15e014e1a273429c
+        command: up_open
+    - platform: event
+      event_type: zha_event
+      event_data:
+        device_id: 9ae29503679a9c6e15e014e1a273429c
+        command: down_close
+  
+  condition:
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: cover.USER2_s_office_blinds
+        state: 'opening'
+      - condition: state
+        entity_id: cover.USER2_s_office_blinds
+        state: 'closing'
+
+  action:
+    - service: cover.stop_cover
+      entity_id:
+        - cover.USER2_s_office_blinds
+
+  #################################################################
+  ## USER2's Office Blinds Close Ikea Remote
+  #################################################################
+
+- alias: Blinds - USER2's Office Blinds Close Ikea Remote
+  id: 'blinds_USER2_office_blinds_close_ikea_remote'
+
+  trigger:
+    - platform: event
+      event_type: zha_event
+      event_data:
+        device_id: 9ae29503679a9c6e15e014e1a273429c
+        command: down_close
+
+  action:
+    - service: cover.close_cover
+      entity_id:
+        - cover.USER2_s_office_blinds
+
+  #################################################################
+  ## Bedroom Closet Blinds Open Ikea Remote
+  #################################################################
+
+- alias: Blinds - Bedroom Closet Blinds Open Ikea Remote
+  id: 'blinds_bedroom_closet_blinds_open_ikea_remote'
+
+  trigger:
+    - platform: event
+      event_type: zha_event
+      event_data:
+        device_id: 28f7be352ca018506be0bb7d76d78103
+        command: up_open
+
+  action:
+    - service: cover.open_cover
+      entity_id:
+        - cover.bedroom_closet_blinds
+
+  #################################################################
+  ## Bedroom Closet Blinds Stop Ikea Remote
+  #################################################################
+
+- alias: Blinds - Bedroom Closet Blinds Stop Ikea Remote
+  id: 'blinds_bedroom_closet_blinds_stop_ikea_remote'
+
+  trigger:
+    - platform: event
+      event_type: zha_event
+      event_data:
+        device_id: 28f7be352ca018506be0bb7d76d78103
+        command: up_open
+    - platform: event
+      event_type: zha_event
+      event_data:
+        device_id: 28f7be352ca018506be0bb7d76d78103
+        command: down_close
+  
+  condition:
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: cover.bedroom_closet_blinds
+        state: 'opening'
+      - condition: state
+        entity_id: cover.bedroom_closet_blinds
+        state: 'closing'
+
+  action:
+    - service: cover.stop_cover
+      entity_id:
+        - cover.bedroom_closet_blinds
+
+  #################################################################
+  ## Bedroom Closet Blinds Close Ikea Remote
+  #################################################################
+
+- alias: Blinds - Bedroom Closet Blinds Close Ikea Remote
+  id: 'blinds_bedroom_closet_blinds_close_ikea_remote'
+
+  trigger:
+    - platform: event
+      event_type: zha_event
+      event_data:
+        device_id: 28f7be352ca018506be0bb7d76d78103
+        command: down_close
+
+  action:
+    - service: cover.close_cover
+      entity_id:
+        - cover.bedroom_closet_blinds
+
+#################################################################
+## Bugs
+#################################################################
+
+        ##########################################################
+        ## Fix Blinds Stuck in Opening State
+        ##########################################################
+
+- alias: Blinds - Fix Stuck in Opening State
+  id: 'blinds_fix_stuck_in_opening_state'
+
+  trigger:
+    - platform: state
+      entity_id:
+        - cover.kitchen_blinds
+        - cover.bedroom_closet_blinds
+        - cover.USER1_s_office_blinds
+        - cover.USER2_s_office_blinds
+        - cover.stairs_blinds
+      to: 'opening'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 30
+
+  action:
+    - service: cover.stop_cover
+      target:
+        entity_id: "{{ trigger.entity_id }}"
+
+        ##########################################################
+        ## Fix Blinds Stuck in Closing State
+        ##########################################################
+
+- alias: Blinds - Fix Stuck in Closing State
+  id: 'blinds_fix_stuck_in_closing_state'
+
+  trigger:
+    - platform: state
+      entity_id:
+        - cover.kitchen_blinds
+        - cover.bedroom_closet_blinds
+        - cover.USER1_s_office_blinds
+        - cover.USER2_s_office_blinds
+        - cover.stairs_blinds
+      to: 'closing'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 30
+
+  action:
+    - service: cover.stop_cover
+      target:
+        entity_id: "{{ trigger.entity_id }}"
 
 #################################################################
 ## Notifications
@@ -843,6 +1340,10 @@
           - sensor.USER2s_office_blinds_right
           - sensor.stairs_blinds_left
           - sensor.stairs_blinds_right
+          - sensor.kitchen_blinds_south
+          - sensor.kitchen_blinds_west
+          - sensor.USER2s_office_blinds_remote
+          - sensor.bedroom_closet_blinds_remote
       below: 21
       for:
         hours: 1

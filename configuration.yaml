@@ -22,6 +22,18 @@ http:
 ## Components
 #################################################################
 
+zha:
+  zigpy_config:
+    network:
+      channel: 25
+      channels: [15, 20, 25]
+    ota:
+      ikea_provider: true
+      ledvance_provider: true
+      salus_provider: true
+      inovelli_provider: true
+      #otau_directory: /data/containers/homeassistant/config/zigbee-ota
+
 weather:
   - platform: darksky
     api_key: !secret darksky_api_key
