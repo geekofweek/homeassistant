@@ -1,6 +1,6 @@
 [![GitHub stars](https://img.shields.io/github/stars/geekofweek/homeassistant.svg?style=plasticr)](https://github.com/geekofweek/homeassistant/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/geekofweek/homeassistant.svg?style=plasticr)](https://github.com/geekofweek/homeassistant/commits/master)
-[![HA Version](https://img.shields.io/badge/Running%20Home%20Assistant-2022.11.5%20-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
+[![HA Version](https://img.shields.io/badge/Running%20Home%20Assistant-2022.12.6%20-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
 [![HA Version](https://img.shields.io/badge/Original%20Home%20Assistant-0.14%20-darkblue)](https://github.com/home-assistant/core/releases/0.14)
 [![HA Community](https://img.shields.io/badge/HA%20community-forum-orange)](https://community.home-assistant.io/u/geekoftheweek/summary)
 
@@ -18,9 +18,8 @@ My personal [Home Assistant Container](https://home-assistant.io) configurations
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [Aeotec Z-Stick 7](https://amzn.to/3xQXuA4)| 1 | USB | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Used to control all Z-Wave Devices.  Integrated via zwavejs2mqtt container |
-| [Hue Hub v2](https://amzn.to/2IpNA3G)| 1 | Ethernet | [Philips Hue](https://www.home-assistant.io/components/hue/) | Used to control all Zigbee smart bulbs |
+| [SONOFF Zigbee 3.0 USB Dongle v2 (Plus-E) ](https://amzn.to/3FsEjCk)| 1 | USB | [ZHA](https://www.home-assistant.io/integrations/zha/) | Used to control all Zigbee smart bulbs and Blinds |
 | [Lutron Smart Bridge 2 Pro](https://amzn.to/2WLpKEF)| 1 | Ethernet | [Lutron Caséta](https://www.home-assistant.io/integrations/lutron_caseta) | Controls Lutron Caseta light switches, dimmers, and Pico remotes |
-| [IKEA TRÅDFRI](https://www.ikea.com/us/en/p/tradfri-gateway-white-00337813/)| 1 | Ethernet | [IKEA TRÅDFRI](https://www.home-assistant.io/integrations/tradfri/) | Currently only used to support the IKEA line of blinds |
 | [Bond Home](https://amzn.to/3i7dLds)| 1 | Wi-Fi | [Bond Home](https://www.home-assistant.io/integrations/bond/) | Controls ceiling fans and lights via RF remote control commands.  Existing fans are each wired to a single switch that controls both power and light with fan and light controls done via a physical remote.  The Bond Home Hub allowed for sending of those RF remote commands via the hub and the local API makes it possible to send said commands from Home Assistant. |
 
 
@@ -32,14 +31,14 @@ Relevant hub configurations can be found within [configuration.yaml](https://git
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
-| [Philips Hue White and Color Ambiance](https://amzn.to/2Ip8waU) | 9 | Ethernet | [Philips Hue Light](https://www.home-assistant.io/components/light.hue/) | Color changing smart bulbs|
-| [Philips Hue White and Color Ambiance LightStrip Plus Dimmable](https://amzn.to/2Kx27qF) | 1 | Hue Hub (Zigbee)| [Philips Hue Light](https://www.home-assistant.io/components/light.hue/) | Color changing smart led strip. Used as accent lighting|
-| [Philips Hue White](https://amzn.to/2LaUFTd) | 8 | Hue Hub (Zigbee)| [Philips Hue Light](https://www.home-assistant.io/components/light.hue/) | Non color changing smart bulbs|
-| [Cree Connected](https://amzn.to/2IpKAnZ) | 9 | Hue Hub (Zigbee)| [Philips Hue Light](https://www.home-assistant.io/components/light.hue/) | Non color changing smart bulbs|
+| [Philips Hue White and Color Ambiance](https://amzn.to/2Ip8waU) | 9 | Zigbee | [ZHA](https://www.home-assistant.io/integrations/zha/) | Color changing smart bulbs|
+| [Philips Hue White and Color Ambiance LightStrip Plus Dimmable](https://amzn.to/2Kx27qF) | 1 | Zigbee | [ZHA](https://www.home-assistant.io/integrations/zha/) | Color changing smart led strip. Used as accent lighting|
+| [Philips Hue White](https://amzn.to/2LaUFTd) | 8 | Zigbee | [ZHA](https://www.home-assistant.io/integrations/zha/) | Non color changing smart bulbs|
+| [Cree Connected](https://amzn.to/2IpKAnZ) | 9 | Zigbee | [ZHA](https://www.home-assistant.io/integrations/zha/) | Non color changing smart bulbs|
 | [Lutron Caseta Wireless Dimmer](https://amzn.to/2KwDJWc) | 17 | Lutron Clear Connect | [Lutron Caséta](https://www.home-assistant.io/integrations/lutron_caseta) | Smart dimmer switches that do not require a neutral wire|
 | [Lutron Caseta Wireless Lighting Switch](https://amzn.to/2YvDWjg) | 2 | Lutron Clear Connect | [Lutron Caséta](https://www.home-assistant.io/integrations/lutron_caseta) | Smart on / off light switches |
 | [Lutron Caseta Pico Wireless Dimmer Switch](https://amzn.to/2Etw0HP) | 6 | Lutron Clear Connect | [Lutron Caséta](https://www.home-assistant.io/integrations/lutron_caseta) | Decora wall mountable remote (that looks like a dimmer switch). Controls various lights |
-| [Lutron Aurora Smart Bulb Dimmer](https://amzn.to/2OyI0PI) | 4 | Hue Hub (Zigbee)| [Philips Hue Light](https://www.home-assistant.io/components/light.hue/) | Smart Dimmer that attaches to existing Toggle light Switch. |
+| [Lutron Aurora Smart Bulb Dimmer](https://amzn.to/2OyI0PI) | 4 | Zigbee | [ZHA](https://www.home-assistant.io/integrations/zha/) | Smart Dimmer that attaches to existing Toggle light Switch. |
 | [LIFX Mini White](https://amzn.to/2UFDvmh) | 1 | Wi-Fi| [LIFX](https://www.home-assistant.io/integrations/lifx/) | Non color changing Wi-Fi smart bulbs.  Used in places where Zigbee is not reliable (detached garage) |
 | [Philips Color A19](https://amzn.to/3Sk1sfe) | 2 | Wi-Fi| [WiZ](https://www.home-assistant.io/integrations/wiz/) | Color changing Wi-Fi smart bulb. Used for a 3D Printed Desk Lamp and Moon Globe.  Will most likely add a few more, very happy with these. |
 
@@ -121,8 +120,7 @@ I go for native Echo integration wherever possible, but a few devices are not cu
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
-| [Apple TV 4k](https://www.amazon.com/Apple-MQD22LL-A-TV-4K/dp/B075NCMLYL/ref=sr_1_2?ie=UTF8&qid=1526581374&sr=8-2&keywords=Apple+TV) | 4 | Wi-Fi | [Apple TV](https://www.home-assistant.io/components/apple_tv/) | Used for media playback on 4k TVs |
-| [Apple TV 4](https://www.amazon.com/Apple-TV-32GB-4th-Generation/dp/B075NFX24M/ref=sr_1_1?s=electronics&ie=UTF8&qid=1526581435&sr=1-1&keywords=Apple+TV) | 2 | Wi-Fi | [Apple TV](https://www.home-assistant.io/components/apple_tv/) | Used for media playback on TVs |
+| [Apple TV 4k](https://amzn.to/3FugTN4) | 6 | Wi-Fi | [Apple TV](https://www.home-assistant.io/components/apple_tv/) | Used for media playback on 4k TVs |
 | [Sonos Arc](https://amzn.to/3xb9JY1) | 1 | Ethernet |  [Sonos](https://www.home-assistant.io/components/media_player.sonos/) | TV Soundbar for audio playback and Home Assistant TTS. |
 | [Sonos Sub](https://amzn.to/3lgO5iB) | 1 | Ethernet | [Sonos](https://www.home-assistant.io/components/media_player.sonos/) | Audio playback and Home Assistant TTS |
 | [Sonos Play:1](https://amzn.to/2IrsIor) | 10 | Wi-Fi | [Sonos](https://www.home-assistant.io/components/media_player.sonos/) | Audio playback and Home Assistant TTS |
@@ -209,7 +207,8 @@ All Roomba related automations can be found in [roomba.yaml]( https://github.com
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
-| [Ikea FYRTUR](https://www.ikea.com/us/en/cat/electric-blinds-44531/) | 10 | Zigbee | [IKEA TRÅDFRI](https://www.home-assistant.io/integrations/tradfri/)| Automated to open and close blinds based on motion, location, and sun elevation |
+| [Ikea FYRTUR](https://www.ikea.com/us/en/cat/electric-blinds-44531/) | 10 | Zigbee | [ZHA](https://www.home-assistant.io/integrations/zha/) | Automated to open and close blinds based on motion, location, and sun elevation |
+| [Ikea PRAKTLYSING](https://www.ikea.com/us/en/p/praktlysing-cellular-blind-smart-wireless-battery-operated-white-00514274/) | 2 | Zigbee | [ZHA](https://www.home-assistant.io/integrations/zha/) | Automated to open and close blinds based on motion, location, and sun elevation |
 
 All Blinds related automations can be found in [blinds.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/blinds.yaml)
 
@@ -290,6 +289,8 @@ More detailed information on the custom Home Assistant Managment Tools can be fo
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
+| [Hue Hub v2](https://amzn.to/2IpNA3G)| 1 | Ethernet | [Philips Hue](https://www.home-assistant.io/components/hue/) | Used to control all Zigbee smart bulbs. Replaced by Home Assistant ZHA |
+| [IKEA TRÅDFRI](https://www.ikea.com/us/en/p/tradfri-gateway-white-00337813/)| 1 | Ethernet | [IKEA TRÅDFRI](https://www.home-assistant.io/integrations/tradfri/) | Currently only used to support the IKEA line of blinds. Replaced by Home Assistant ZHA |
 | [Vera Plus](https://amzn.to/2IJGx4M)| 1 | Ethernet | [Vera](https://www.home-assistant.io/components/vera/) | Used as a dumb hub to connect Z-Wave devices. Replaced by a Z-Wave Stick |
 | [Wink Hub v1](https://amzn.to/2wMUjis)| 1 | Wi-Fi | [Wink](https://www.home-assistant.io/components/wink/) | ~~Semi retired, using it as a z-wave repeater for Vera.~~ Once upon a time I really loved Wink, but when you don't stock hardware for almost a year and your buisness model is selling hardware... time for that slow ride to the Cloud API in the sky. Not to mention the massive outages when staff clock out and don't fix until morning (forget to renew an expired certificate anyone). It was a fun ride Wink, hopefully your death will not be to slow and painful, but i.am+ wants to watch the world burn... probably.|
 | [Quirky + GE Aros Smart Window Air Conditioner](https://amzn.to/2ImtdEi) | 1 | Wi-Fi | [Wink Climate](https://www.home-assistant.io/components/climate.wink/) | No longer used after new HVAC system installed.  Cooling effieceny had dropped and was more of an energy hog than actually making a difference in temprature comfort. |
@@ -318,6 +319,8 @@ More detailed information on the custom Home Assistant Managment Tools can be fo
 | [Ubiquiti Networks Unifi Security Gateway (USG)](https://amzn.to/2wM62hk) | 1 | Ethernet | [Ubiquiti Unifi](https://www.home-assistant.io/components/device_tracker.unifi/)| Primary Router. Presence detection for non household members and devices. Replaced by UXG Pro |
 | [Locative iOS App](https://itunes.apple.com/us/app/locative/id725198453?mt=8) | 2 | NA | [Locative](https://www.home-assistant.io/components/device_tracker.locative/) | Put back in retirement since the native iOS app works so well |
 | [LUMIMAN LM530](https://amzn.to/3xhHg4m) | 1 | Wi-Fi| [Tuya](https://www.home-assistant.io/integrations/tuya/) | Retired in favor of Philips Wiz line.  Tuya integration is hot garbage.  Routine issues and an account that expires after 6 monhts. |
+| [Apple TV 4](https://www.amazon.com/Apple-TV-32GB-4th-Generation/dp/B075NFX24M/ref=sr_1_1?s=electronics&ie=UTF8&qid=1526581435&sr=1-1&keywords=Apple+TV) | 2 | Wi-Fi | [Apple TV](https://www.home-assistant.io/components/apple_tv/) | Used for media playback on TVs. Replaced by newer Apple TVs |
+
 
 # <a name="screenshots">Screenshots</a>
 
