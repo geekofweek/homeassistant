@@ -1270,7 +1270,8 @@
 
 - alias: Blinds - Fix Stuck in Opening State
   id: 'blinds_fix_stuck_in_opening_state'
-
+  
+  mode: parallel
   trigger:
     - platform: state
       entity_id:
@@ -1296,7 +1297,8 @@
 
 - alias: Blinds - Fix Stuck in Closing State
   id: 'blinds_fix_stuck_in_closing_state'
-
+  
+  mode: parallel
   trigger:
     - platform: state
       entity_id:
@@ -1316,6 +1318,7 @@
       target:
         entity_id: "{{ trigger.entity_id }}"
 
+
 #################################################################
 ## Notifications
 #################################################################
@@ -1327,6 +1330,7 @@
 - alias: Blinds - Low Battery Notification
   id: 'blinds_low_battery_notification'
 
+  mode: parallel
   trigger:
     - platform: numeric_state
       entity_id: 

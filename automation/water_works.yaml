@@ -1196,6 +1196,7 @@
 - alias: Water Works - Low Battery Notification
   id: 'water_works_low_battery_notification'
 
+  mode: parallel
   trigger:
     - platform: numeric_state
       entity_id: 
