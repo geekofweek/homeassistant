@@ -161,14 +161,24 @@
     - service: light.turn_on
       entity_id:
         - light.living_room_lamps
-        - light.office_lamp
-        - light.closet_lamp
-        - light.kitchen_sink
-        - light.back_door
-        - light.garage_light
       data:
         brightness_pct: 100
         color_temp: 447
+    - service: light.turn_on
+      entity_id:
+        - light.kitchen_sink
+      data:
+        brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.back_door
+      data:
+        brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.garage_light
+      data:
+        brightness_pct: 100
 
         ##########################################################
         ## Turn Off Lights After Doorbell Rings and Away
@@ -204,8 +214,6 @@
     - service: light.turn_off
       entity_id:
         - light.living_room_lights
-        - light.office_lamp
-        - light.closet_lamp
       data:
         transition: 900
     - service: light.turn_off
@@ -214,6 +222,10 @@
     - service: light.turn_on
       entity_id:
         - light.back_door
+      data:
+        brightness_pct: 1
+    - service: light.turn_on
+      entity_id:
         - light.garage_light
       data:
         brightness_pct: 1
@@ -248,14 +260,24 @@
     - service: light.turn_on
       entity_id:
         - light.living_room_lamps
-        - light.office_lamp
-        - light.closet_lamp
-        - light.kitchen_sink
-        - light.back_door
-        - light.garage_light
       data:
         brightness_pct: 100
         color_temp: 447
+    - service: light.turn_on
+      entity_id:
+        - light.kitchen_sink
+      data:
+        brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.back_door
+      data:
+        brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.garage_light
+      data:
+        brightness_pct: 100
 
         ##########################################################
         ## Turn Off Lights After Motion Detected and Away
@@ -291,8 +313,6 @@
     - service: light.turn_off
       entity_id:
         - light.living_room_lights
-        - light.office_lamp
-        - light.closet_lamp
       data:
         transition: 900
     - service: light.turn_off
@@ -301,6 +321,10 @@
     - service: light.turn_on
       entity_id:
         - light.back_door
+      data:
+        brightness_pct: 1
+    - service: light.turn_on
+      entity_id:
         - light.garage_light
       data:
         brightness_pct: 1

@@ -495,7 +495,7 @@
    - service: light.turn_off
      entity_id:
        - light.back_door
-   - delay: '00:00:90'
+   - delay: '00:00:30'
    - service: light.turn_off
      entity_id:
        - light.back_door
@@ -532,7 +532,7 @@
    - service: light.turn_off
      entity_id:
        - light.back_door
-   - delay: '00:00:90'
+   - delay: '00:00:30'
    - service: light.turn_off
      entity_id:
        - light.back_door
@@ -574,7 +574,11 @@
     - service: light.turn_off
       entity_id:
         - light.back_door
+    - service: light.turn_off
+      entity_id:
         - light.backyard_deck
+    - service: light.turn_off
+      entity_id:
         - light.backyard_patio
     - service: switch.turn_off
       entity_id:
@@ -637,7 +641,16 @@
     - delay: '00:02:00'
     - service: light.turn_off
       entity_id:
+        - light.front_porch
+    - service: light.turn_off
+      entity_id:
         - light.back_door
+    - service: light.turn_off
+      entity_id:
+        - light.backyard_deck
+    - service: light.turn_off
+      entity_id:
+        - light.backyard_patio
 
         ##########################################################
         ## Turn On Backyard Lighting at Sunset
@@ -670,6 +683,10 @@
     - service: light.turn_on
       entity_id:
         - light.backyard_patio
+      data:
+        brightness_pct: 2
+    - service: light.turn_on
+      entity_id:
         - light.backyard_deck
       data:
         brightness_pct: 2
@@ -703,11 +720,15 @@
     - service: light.turn_off
       entity_id:
         - light.backyard_patio
+    - service: light.turn_off
+      entity_id:
         - light.backyard_deck
-    - delay: '00:00:90'
+    - delay: '00:00:30'
     - service: light.turn_off
       entity_id:
         - light.backyard_patio
+    - service: light.turn_off
+      entity_id:
         - light.backyard_deck
 
         ##########################################################
@@ -743,11 +764,15 @@
     - service: light.turn_off
       entity_id:
         - light.backyard_patio
+    - service: light.turn_off
+      entity_id:
         - light.backyard_deck
-    - delay: '00:00:90'
+    - delay: '00:00:30'
     - service: light.turn_off
       entity_id:
         - light.backyard_patio
+    - service: light.turn_off
+      entity_id:
         - light.backyard_deck
         
         ##########################################################
@@ -870,8 +895,18 @@
     - service: light.turn_on
       entity_id:
         - light.basement_lights
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.laundry_room_light
+    - service: light.turn_on
+      entity_id:
         - light.basement_stairs
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.basement_lamp
       data:
        brightness_pct: 100
@@ -893,7 +928,15 @@
     - service: light.turn_on
       entity_id:
         - light.basement_lights
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.basement_stairs
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.basement_lamp
       data:
        brightness_pct: 100
@@ -928,9 +971,15 @@
     - service: light.turn_off
       entity_id:
         - light.basement_stairs
+    - service: light.turn_off
+      entity_id:
         - light.basement_lights
-        - light.work_bench_light
+    - service: light.turn_off
+      entity_id:
         - light.basement_lamp
+    - service: light.turn_off
+      entity_id:
+        - light.work_bench_light
 
         ##########################################################
         ## Turn Off Basement Lights when Work Bench Switch Used
@@ -957,33 +1006,15 @@
     - service: light.turn_off
       entity_id:
         - light.basement_stairs
-        - light.basement_lights
-        - light.laundry_room_light
-        - light.basement_lamp
-
-    #################################################################
-    ## Turn On Right Front Porch Light if not On
-    #################################################################
-
-- alias: Lights - Turn On Right Front Porch Light if not On
-  id: 'lights_turn_on_right_front_porch_light_if_not_on'
-
-  trigger:
-    - platform: state
-      entity_id: light.front_porch_left
-      to: 'on'
-      for:
-        seconds: 60
-
-  condition:
-    - condition: state
-      entity_id: light.front_porch_right
-      state: 'off'
-
-  action:
-    - service: light.turn_on
+    - service: light.turn_off
       entity_id:
-        - light.front_porch_right
+        - light.basement_lights
+    - service: light.turn_off
+      entity_id:
+        - light.laundry_room_light
+    - service: light.turn_off
+      entity_id:
+        - light.basement_lamp
 
 #################################################################
 ## Color Modes
@@ -1866,9 +1897,23 @@
     - service: light.turn_on
       entity_id:
         - light.basement_stairs
+      data:
+        brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.basement_lights
+      data:
+        brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.work_bench_light
+      data:
+        brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.laundry_room_light
+    - service: light.turn_on
+      entity_id:
         - light.basement_lamp
       data:
         brightness_pct: 100
@@ -1916,7 +1961,15 @@
     - service: light.turn_on
       entity_id:
         - light.basement_stairs
+      data:
+        brightness_step_pct: 10
+    - service: light.turn_on
+      entity_id:
         - light.basement_lights
+      data:
+        brightness_step_pct: 10
+    - service: light.turn_on
+      entity_id:
         - light.work_bench_light
       data:
         brightness_step_pct: 10
@@ -1955,7 +2008,15 @@
     - service: light.turn_on
       entity_id:
         - light.basement_stairs
+      data:
+        brightness_step_pct: -10
+    - service: light.turn_on
+      entity_id:
         - light.basement_lights
+      data:
+        brightness_step_pct: -10
+    - service: light.turn_on
+      entity_id:
         - light.work_bench_light
       data:
         brightness_step_pct: -10
@@ -1994,9 +2055,17 @@
     - service: light.turn_on
       entity_id:
         - light.basement_stairs
+    - service: light.turn_on
+      entity_id:
         - light.basement_lights
+    - service: light.turn_on
+      entity_id:
         - light.work_bench_light
+    - service: light.turn_on
+      entity_id:
         - light.laundry_room_light
+    - service: light.turn_on
+      entity_id:
         - light.basement_lamp
     - delay:
         seconds: 1

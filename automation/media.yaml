@@ -56,7 +56,15 @@
     - service: light.turn_on
       entity_id:
         - light.dining_room_table
+      data:
+       brightness_pct: 40
+    - service: light.turn_on
+      entity_id:
         - light.bathroom_vanity
+      data:
+       brightness_pct: 40
+    - service: light.turn_on
+      entity_id:
         - light.kitchen_sink
       data:
        brightness_pct: 40
@@ -102,16 +110,30 @@
     - service: light.turn_off
       entity_id:
         - light.dining_room_lights
+    - service: light.turn_off
+      entity_id:
         - light.kitchen_lights
+    - service: light.turn_off
+      entity_id:
         - light.bathroom_lights
+    - service: light.turn_off
+      entity_id:
         - light.hallway_light
-    - delay: '00:00:30' 
+    - delay: '00:00:15' 
     - service: light.turn_off
       entity_id:
         - light.living_room_lights
+    - service: light.turn_off
+      entity_id:
         - light.dining_room_lights
+    - service: light.turn_off
+      entity_id:
         - light.kitchen_lights
+    - service: light.turn_off
+      entity_id:
         - light.bathroom_lights
+    - service: light.turn_off
+      entity_id:
         - light.hallway_light
 
         ##########################################################
@@ -209,7 +231,15 @@
     - service: light.turn_on
       entity_id:
         - light.dining_room_table
+      data:
+       brightness_pct: 2
+    - service: light.turn_on
+      entity_id:
         - light.kitchen_sink
+      data:
+       brightness_pct: 2
+    - service: light.turn_on
+      entity_id:
         - light.kitchen_cabinets
       data:
        brightness_pct: 2
@@ -287,7 +317,15 @@
     - service: light.turn_on
       entity_id:
         - light.dining_room_table
+      data:
+       brightness_pct: 2
+    - service: light.turn_on
+      entity_id:
         - light.kitchen_sink
+      data:
+       brightness_pct: 2
+    - service: light.turn_on
+      entity_id:
         - light.kitchen_cabinets
       data:
        brightness_pct: 2
@@ -351,16 +389,30 @@
     - service: light.turn_off
       entity_id:
         - light.dining_room_lights
+    - service: light.turn_off
+      entity_id:
         - light.kitchen_lights
+    - service: light.turn_off
+      entity_id:
         - light.bathroom_lights
+    - service: light.turn_off
+      entity_id:
         - light.hallway_light
-    - delay: '00:00:20' 
+    - delay: '00:00:15' 
     - service: light.turn_off
       entity_id:
         - light.living_room_lights
+    - service: light.turn_off
+      entity_id:
         - light.dining_room_lights
+    - service: light.turn_off
+      entity_id:
         - light.kitchen_lights
+    - service: light.turn_off
+      entity_id:
         - light.bathroom_lights
+    - service: light.turn_off
+      entity_id:
         - light.hallway_light
 
         ##########################################################
@@ -410,16 +462,30 @@
     - service: light.turn_off
       entity_id:
         - light.dining_room_lights
+    - service: light.turn_off
+      entity_id:
         - light.kitchen_lights
+    - service: light.turn_off
+      entity_id:
         - light.bathroom_lights
+    - service: light.turn_off
+      entity_id:
         - light.hallway_light
-    - delay: '00:00:20' 
+    - delay: '00:00:15' 
     - service: light.turn_off
       entity_id:
         - light.living_room_lights
+    - service: light.turn_off
+      entity_id:
         - light.dining_room_lights
+    - service: light.turn_off
+      entity_id:
         - light.kitchen_lights
+    - service: light.turn_off
+      entity_id:
         - light.bathroom_lights
+    - service: light.turn_off
+      entity_id:
         - light.hallway_light
 
         ##########################################################
@@ -1283,7 +1349,11 @@
     - service: light.turn_off
       entity_id:
         - light.living_room_lamps
+    - service: light.turn_off
+      entity_id:
         - light.living_room_ceiling_east
+    - service: light.turn_off
+      entity_id:
         - light.living_room_ceiling_west
 
         ##########################################################

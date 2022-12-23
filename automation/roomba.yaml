@@ -591,6 +591,11 @@
     - service: light.turn_on
       entity_id:
         - light.living_room_accent_lights
+      data:
+       brightness_pct: 100
+       color_temp: 447
+    - service: light.turn_on
+      entity_id:
         - light.bedroom_lights
       data:
        brightness_pct: 100
@@ -598,8 +603,20 @@
     - service: light.turn_on
       entity_id:
         - light.dining_room_table
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.bathroom_lights
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.kitchen_lights
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.hallway_light
       data:
        brightness_pct: 100
@@ -641,9 +658,6 @@
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
-    - condition: state
-      entity_id: light.interior_lights
-      state: 'on'
     - condition: not
       conditions:
       - condition: state
@@ -659,10 +673,20 @@
     - service: light.turn_off
       entity_id:
         - light.living_room_lights
+    - service: light.turn_off
+      entity_id:
         - light.dining_room_lights
+    - service: light.turn_off
+      entity_id:
         - light.hallway_light
+    - service: light.turn_off
+      entity_id:
         - light.bathroom_lights
+    - service: light.turn_off
+      entity_id:
         - light.bedroom_lights
+    - service: light.turn_off
+      entity_id:
         - light.kitchen_lights
 
         ##########################################################
@@ -715,9 +739,25 @@
     - service: light.turn_on
       entity_id:
         - light.living_room_lights
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.dining_room_table
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.bathroom_lights
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.kitchen_lights
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.hallway_light
       data:
        brightness_pct: 100
@@ -725,6 +765,10 @@
     - service: light.turn_on
       entity_id:
         - light.bedroom_lamps
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.bedroom_closet_lights
       data:
        brightness_pct: 100
@@ -763,9 +807,6 @@
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
-    - condition: state
-      entity_id: light.interior_lights
-      state: 'on'
     - condition: not
       conditions:
       - condition: state
@@ -786,10 +827,20 @@
     - service: light.turn_off
       entity_id:
         - light.living_room_lights
+    - service: light.turn_off
+      entity_id:
         - light.dining_room_lights
+    - service: light.turn_off
+      entity_id:
         - light.hallway_light
+    - service: light.turn_off
+      entity_id:
         - light.bathroom_lights
+    - service: light.turn_off
+      entity_id:
         - light.bedroom_lights
+    - service: light.turn_off
+      entity_id:
         - light.kitchen_lights
 
         ##########################################################
@@ -813,10 +864,21 @@
     - service: light.turn_on
       entity_id:
         - light.USER1_s_office_ceiling
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.USER2_s_office_ceiling
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.guest_bedroom_ceiling
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.stairs_light
-        - light.upstairs_bathroom_vanity
       data:
        brightness_pct: 100
 
@@ -874,10 +936,15 @@
     - service: light.turn_off
       entity_id:
         - light.USER1_office_lights
+    - service: light.turn_off
+      entity_id:
         - light.USER2_office_lights
+    - service: light.turn_off
+      entity_id:
         - light.guest_bedroom_lights
+    - service: light.turn_off
+      entity_id:
         - light.stairs_light
-        - light.upstairs_bathroom_lights
 
         ##########################################################
         ## Turn Off lights when Upstairs Roomba finished not Home
@@ -923,10 +990,15 @@
     - service: light.turn_off
       entity_id:
         - light.USER1_s_office_ceiling
+    - service: light.turn_off
+      entity_id:
         - light.USER2_s_office_ceiling
+    - service: light.turn_off
+      entity_id:
         - light.guest_bedroom_ceiling
+    - service: light.turn_off
+      entity_id:
         - light.stairs_light
-        - light.upstairs_bathroom_vanity
 
         ##########################################################
         ## Turn On lights for Basement Roomba

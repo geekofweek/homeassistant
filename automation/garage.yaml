@@ -126,7 +126,7 @@
       for:
         hours: 0
         minutes: 0
-        seconds: 1
+        seconds: 2
 
   condition:
     - condition: state
@@ -164,6 +164,10 @@
       entity_id: input_boolean.USER2_away
       from: 'on'
       to: 'off'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 2
 
   condition:
     - condition: state

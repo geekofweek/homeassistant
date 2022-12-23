@@ -1159,6 +1159,8 @@
     - service: light.turn_off
       entity_id:
         - light.dining_room_lights
+    - service: light.turn_off
+      entity_id:
         - light.hallway_light
 
         ##########################################################
@@ -1258,6 +1260,8 @@
     - service: light.turn_off
       entity_id:
         - light.dining_room_lights
+    - service: light.turn_off
+      entity_id:
         - light.hallway_light
 
         ##########################################################
@@ -1303,6 +1307,8 @@
     - service: light.turn_off
       entity_id:
         - light.dining_room_lights
+    - service: light.turn_off
+      entity_id:
         - light.hallway_light
 
         ##########################################################
@@ -1942,9 +1948,23 @@
     - service: light.turn_on
       entity_id:
         - light.basement_stairs
+      data:
+        brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.basement_lights
+      data:
+        brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.work_bench_light
+      data:
+        brightness_pct: 25
+    - service: light.turn_on
+      entity_id:
         - light.laundry_room_light
+    - service: light.turn_on
+      entity_id:
         - light.basement_lamp
       data:
         brightness_pct: 100
@@ -1995,9 +2015,17 @@
     - service: light.turn_off
       entity_id:
         - light.basement_stairs
+    - service: light.turn_off
+      entity_id:
         - light.basement_lights
+    - service: light.turn_off
+      entity_id:
         - light.work_bench_light
+    - service: light.turn_off
+      entity_id:
         - light.laundry_room_light
+    - service: light.turn_off
+      entity_id:
         - light.basement_lamp
 
         ##########################################################
@@ -2043,9 +2071,17 @@
     - service: light.turn_off
       entity_id:
         - light.basement_stairs
+    - service: light.turn_off
+      entity_id:
         - light.basement_lights
+    - service: light.turn_off
+      entity_id:
         - light.work_bench_light
+    - service: light.turn_off
+      entity_id:
         - light.laundry_room_light
+    - service: light.turn_off
+      entity_id:
         - light.basement_lamp
 
         ##########################################################
@@ -2681,14 +2717,9 @@
     - condition: state
       entity_id: sun.sun
       state: 'above_horizon'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: cover.USER1_s_office_blinds
-        state: 'closed'
-      - condition: state
-        entity_id: cover.USER1_s_office_blinds
-        state: 'closing'
+    - condition: state
+      entity_id: cover.USER1_s_office_blinds
+      state: 'closed'
 
   action:
     - service: light.turn_on
@@ -2782,6 +2813,8 @@
     - service: light.turn_off
       entity_id: 
         - light.USER1_s_office_ceiling
+    - service: light.turn_off
+      entity_id: 
         - light.office_lamp
 
         ##########################################################
@@ -3294,14 +3327,9 @@
     - condition: state
       entity_id: light.bedroom_closet_lights
       state: 'off'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: cover.bedroom_closet_blinds
-        state: 'closed'
-      - condition: state
-        entity_id: cover.bedroom_closet_blinds
-        state: 'closing'
+    - condition: state
+      entity_id: cover.bedroom_closet_blinds
+      state: 'closed'
 
   action:
     - service: light.turn_on
@@ -3333,14 +3361,9 @@
     - condition: state
       entity_id: light.bedroom_closet_lights
       state: 'off'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: cover.bedroom_closet_blinds
-        state: 'closed'
-      - condition: state
-        entity_id: cover.bedroom_closet_blinds
-        state: 'closing'
+    - condition: state
+      entity_id: cover.bedroom_closet_blinds
+      state: 'closed'
     - condition: time
       weekday:
         - sun
@@ -3379,14 +3402,9 @@
     - condition: state
       entity_id: light.bedroom_closet_lights
       state: 'off'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: cover.bedroom_closet_blinds
-        state: 'closed'
-      - condition: state
-        entity_id: cover.bedroom_closet_blinds
-        state: 'closing'
+    - condition: state
+      entity_id: cover.bedroom_closet_blinds
+      state: 'closed'
     - condition: time
       weekday:
         - fri

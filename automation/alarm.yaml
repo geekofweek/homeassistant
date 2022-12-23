@@ -36,7 +36,15 @@
     - service: light.turn_on
       entity_id:
         - light.smart_bulbs_exterior
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.lutron_lights
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.lutron_lights_exterior
       data:
        brightness_pct: 100
@@ -206,7 +214,15 @@
     - service: light.turn_on
       entity_id:
         - light.smart_bulbs_exterior
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.lutron_lights
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.lutron_lights_exterior
       data:
        brightness_pct: 100
@@ -283,7 +299,15 @@
     - service: light.turn_on
       entity_id:
         - light.smart_bulbs_exterior
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.lutron_lights
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.lutron_lights_exterior
       data:
        brightness_pct: 100

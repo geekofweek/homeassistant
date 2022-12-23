@@ -268,8 +268,18 @@
     - service: light.turn_on
       entity_id:
         - light.basement_lights
+      data:
+        brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.basement_stairs
+      data:
+        brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
         - light.laundry_room_light
+    - service: light.turn_on
+      entity_id:
         - light.basement_lamp
       data:
         brightness_pct: 100
