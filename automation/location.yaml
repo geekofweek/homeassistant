@@ -208,6 +208,16 @@
     - service: light.turn_off
       entity_id:
         - light.garage_interior
+    - delay: '00:00:60'
+    - service: light.turn_off
+      entity_id:
+        - light.interior_lights
+    - service: light.turn_off
+      entity_id:
+        - light.backyard_deck
+    - service: light.turn_off
+      entity_id:
+        - light.backyard_patio
 
         ##########################################################
         ## Household Away Mode Blinds

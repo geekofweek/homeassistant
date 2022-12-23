@@ -259,6 +259,19 @@
     - service: light.turn_off
       entity_id:
         - light.garage_interior
+    - delay: '00:00:15'
+    - service: light.turn_off
+      entity_id:
+        - light.interior_lights
+    - service: light.turn_off
+      entity_id:
+        - light.backyard_deck
+    - service: light.turn_off
+      entity_id:
+        - light.backyard_patio
+    - service: light.turn_off
+      entity_id:
+        - light.garage_interior
 
         ##########################################################
         ## Bedtime Guest Mode
@@ -308,7 +321,28 @@
         - light.bathroom_lights
     - service: light.turn_off
       entity_id:
-        - light.basement_lighting
+        - light.basement_lights
+    - service: light.turn_off
+      entity_id:
+        - light.basement_stairs
+    - service: light.turn_off
+      entity_id:
+        - light.work_bench_light
+    - service: light.turn_off
+      entity_id:
+        - light.laundry_room_light
+    - service: light.turn_off
+      entity_id:
+        - light.basement_stairs
+    - service: light.turn_off
+      entity_id:
+        - light.craft_room_ceiling
+    - service: light.turn_off
+      entity_id:
+        - light.fitness_room_ceiling
+    - service: light.turn_off
+      entity_id:
+        - light.basement_lamp
     - service: light.turn_off
       entity_id:
         - light.USER1_office_lights
