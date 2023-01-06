@@ -45,7 +45,6 @@ Relevant hub configurations can be found within [configuration.yaml](https://git
 
 Many of my automations rely on some form of lighting but many examples can be found in [lights.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/lights.yaml) and [location.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml).
 
-Lights are grouped via [light_group.yaml](https://github.com/geekofweek/homeassistant/blob/master/light_group.yaml)
 
 ## <a name="climate">Climate</a>
 
