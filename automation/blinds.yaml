@@ -3,11 +3,11 @@
 #################################################################
 
         ##########################################################
-        ## Close Blinds when Sun Below Horizon
+        ## Close USER2's Office Blinds when Sun Below Horizon
         ##########################################################
 
-- alias: Blinds - Close Blinds when Sun Below Horizon
-  id: 'blinds_close_blinds_when_sun_below_horizon'
+- alias: Blinds - Close USER2's Office Blinds when Sun Below Horizon
+  id: 'blinds_close_USER2_office_blinds_when_sun_below_horizon'
 
   trigger:
     - platform: state
@@ -19,13 +19,91 @@
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
+    - condition: state
+      entity_id: cover.USER2_s_office_blinds
+      state: 'open'
 
   action:
     - service: cover.close_cover
       entity_id:
         - cover.USER2_s_office_blinds
+
+        ##########################################################
+        ## Close Bedroom Closet Blinds when Sun Below Horizon
+        ##########################################################
+
+- alias: Blinds - Close Bedroom Closet Blinds when Sun Below Horizon
+  id: 'blinds_close_bedroom_closet_blinds_when_sun_below_horizon'
+
+  trigger:
+    - platform: state
+      entity_id: sun.sun
+      from: 'above_horizon'
+      to: 'below_horizon'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.bedroom_closet_blinds
+      state: 'open'
+
+  action:
+    - service: cover.close_cover
+      entity_id:
         - cover.bedroom_closet_blinds
+
+        ##########################################################
+        ## Close Upstairs Blinds when Sun Below Horizon
+        ##########################################################
+
+- alias: Blinds - Close Upstairs Blinds when Sun Below Horizon
+  id: 'blinds_close_upstairs_blinds_when_sun_below_horizon'
+
+  trigger:
+    - platform: state
+      entity_id: sun.sun
+      from: 'above_horizon'
+      to: 'below_horizon'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.stairs_blinds
+      state: 'open'
+
+  action:
+    - service: cover.close_cover
+      entity_id:
         - cover.stairs_blinds
+
+        ##########################################################
+        ## Close Kitchen Blinds when Sun Below Horizon
+        ##########################################################
+
+- alias: Blinds - Close Kitchen Blinds when Sun Below Horizon
+  id: 'blinds_close_kitchen_blinds_when_sun_below_horizon'
+
+  trigger:
+    - platform: state
+      entity_id: sun.sun
+      from: 'above_horizon'
+      to: 'below_horizon'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.kitchen_blinds
+      state: 'open'
+
+  action:
+    - service: cover.close_cover
+      entity_id:
         - cover.kitchen_blinds
 
 #################################################################
@@ -152,7 +230,7 @@
   trigger:
     - platform: sun
       event: 'sunset'
-      offset: '-00:45:00'
+      offset: '-00:50:00'
 
   condition:
     - condition: state
@@ -178,7 +256,7 @@
   trigger:
     - platform: sun
       event: 'sunset'
-      offset: '-00:17:00'
+      offset: '-00:20:00'
 
   condition:
     - condition: state
@@ -207,7 +285,7 @@
   trigger:
     - platform: sun
       event: 'sunset'
-      offset: '-00:17:00'
+      offset: '-00:20:00'
 
   condition:
     - condition: state
