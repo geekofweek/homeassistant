@@ -31,14 +31,9 @@
     - condition: time
       after: '07:00:00'
       before: '02:00:00'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
     - condition: not
       conditions:
       - condition: state
@@ -109,14 +104,9 @@
       weekday:
         - fri
         - sat
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
     - condition: not
       conditions:
       - condition: state
@@ -191,14 +181,9 @@
       - condition: state
         entity_id: sensor.living_room_light_level
         state: 'unknown'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
     - condition: not
       conditions:
       - condition: state
@@ -307,11 +292,9 @@
     - condition: state
       entity_id: sun.sun
       state: 'above_horizon'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
     - condition: not
       conditions:
       - condition: state
@@ -364,11 +347,9 @@
       - condition: state
         entity_id: person.USER2
         state: 'home'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
     - condition: not
       conditions:
       - condition: state
@@ -523,14 +504,9 @@
     - condition: time
       after: '07:00:00'
       before: '22:00:00'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
     - service: light.turn_on
@@ -574,14 +550,9 @@
     - condition: time
       after: '22:00:00'
       before: '07:00:00'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
     - service: light.turn_on
@@ -626,14 +597,9 @@
       - condition: state
         entity_id: sensor.kitchen_light_level
         state: 'unknown'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
     - service: light.turn_on
@@ -881,11 +847,9 @@
       - condition: state
         entity_id: person.USER2
         state: 'home'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
     - condition: not
       conditions:
       - condition: state
@@ -926,14 +890,9 @@
     - condition: time
       after: '07:00:00'
       before: '21:00:00'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
     - service: light.turn_on
@@ -981,14 +940,9 @@
         - tue
         - wed
         - thu
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
     - service: light.turn_on
@@ -1033,14 +987,9 @@
         - fri
         - sat
         - sun
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
     - service: light.turn_on
@@ -1085,14 +1034,9 @@
       - condition: state
         entity_id: sensor.dining_room_light_level
         state: 'unknown'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
     - service: light.turn_on
@@ -1349,11 +1293,9 @@
       - condition: state
         entity_id: person.USER2
         state: 'home'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
     - condition: not
       conditions:
       - condition: state
@@ -1388,14 +1330,9 @@
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
     - condition: state
       entity_id: light.bathroom_lights
       state: 'off'
@@ -1432,14 +1369,9 @@
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
     - condition: state
       entity_id: light.bathroom_lights
       state: 'off'
@@ -1479,14 +1411,9 @@
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
     - condition: state
       entity_id: light.bathroom_lights
       state: 'off'
@@ -1521,14 +1448,9 @@
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
     - condition: state
       entity_id: light.bathroom_lights
       state: 'off'
@@ -1660,14 +1582,9 @@
     - condition: time
       after: '07:00:00'
       before: '22:00:00'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
     - service: light.turn_on
@@ -1702,14 +1619,9 @@
     - condition: time
       after: '22:00:00'
       before: '07:00:00'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
     - service: light.turn_on
@@ -1749,14 +1661,9 @@
       - condition: state
         entity_id: sensor.stairs_light_level
         state: 'unknown'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
     - service: light.turn_on
@@ -1937,14 +1844,9 @@
       - condition: state
         entity_id: light.basement_lamp
         state: 'off'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
     - service: light.turn_on
@@ -2106,19 +2008,9 @@
     - condition: state
       entity_id: light.craft_room_ceiling
       state: 'off'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: person.REDACTED
-        state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
     - service: light.turn_on
@@ -2232,14 +2124,9 @@
     - condition: state
       entity_id: light.fitness_room_ceiling
       state: 'off'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
     - service: light.turn_on
@@ -2363,14 +2250,9 @@
         - tue
         - wed
         - thu
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
     - service: light.turn_on
@@ -2403,14 +2285,9 @@
       weekday:
         - fri
         - sat
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
     - service: light.turn_on

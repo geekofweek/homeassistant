@@ -20,11 +20,9 @@
       - condition: state
         entity_id: group.household
         state: 'home'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
 
   action:
     - service: light.turn_on
@@ -411,11 +409,9 @@
       - condition: state
         entity_id: group.household
         state: 'home'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
     - condition: state
       entity_id: alarm_control_panel.alarm
       state: 'armed_away'
@@ -558,11 +554,9 @@
       - condition: state
         entity_id: group.household
         state: 'home'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
     - condition: state
       entity_id: vacuum.main_floor_roomba
       state: 'docked'
@@ -652,11 +646,9 @@
       - condition: state
         entity_id: group.household
         state: 'home'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
     - condition: state
       entity_id: alarm_control_panel.alarm
       state: 'armed_away'
@@ -710,10 +702,6 @@
       entity_id: person.USER2
       from: 'not_home'
       to: 'home'
-    - platform: state
-      entity_id: group.friends_and_family
-      from: 'not_home'
-      to: 'home'
 
   condition:
     - condition: not
@@ -749,11 +737,9 @@
       - condition: state
         entity_id: group.household
         state: 'home'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
     - condition: state
       entity_id: alarm_control_panel.alarm
       state: 'disarmed'

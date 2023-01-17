@@ -37,11 +37,9 @@
     - condition: numeric_state
       entity_id: sensor.main_floor_roomba_battery_level
       above: 99
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
     - condition: not
       conditions:
       - condition: state
@@ -93,11 +91,9 @@
     - condition: state
       entity_id: binary_sensor.kitchen_motion
       state: 'off'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
     - condition: not
       conditions:
       - condition: state
@@ -219,11 +215,9 @@
     - condition: numeric_state
       entity_id: sensor.main_floor_roomba_battery_level
       above: 99
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
 
   action:
     - service: vacuum.start
@@ -266,11 +260,9 @@
     - condition: numeric_state
       entity_id: sensor.upstairs_roomba_battery_level
       above: 99
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
 
   action:
     - service: vacuum.start
@@ -350,11 +342,9 @@
       - condition: state
         entity_id: group.household
         state: 'home'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
 
   action:
     - service: vacuum.start
@@ -403,11 +393,9 @@
       - condition: state
         entity_id: sensor.dryer
         state: 'on'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
 
   action:
     - service: vacuum.start
@@ -460,11 +448,9 @@
         - wed
         - thu
         - fri
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
 
   action:
     - service: vacuum.start
@@ -522,9 +508,9 @@
 
   trigger:
     - platform: state
-      entity_id: group.friends_and_family
-      from: 'not_home'
-      to: 'home'
+      entity_id: input_boolean.guest_mode
+      from: 'off'
+      to: 'on'
       for:
         hours: 0
         minutes: 0
@@ -581,11 +567,9 @@
       - condition: state
         entity_id: group.household
         state: 'home'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
 
   action:
     - service: light.turn_on
@@ -663,11 +647,9 @@
       - condition: state
         entity_id: group.household
         state: 'home'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
 
   action:
     - service: light.turn_off
@@ -717,11 +699,9 @@
     - condition: numeric_state
       entity_id: sensor.dining_room_light_level
       below: 10
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
     - condition: not
       conditions:
       - condition: state

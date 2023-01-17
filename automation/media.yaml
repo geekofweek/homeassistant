@@ -1333,11 +1333,9 @@
     - condition: state
       entity_id: person.USER1
       state: 'home'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -1379,11 +1377,9 @@
     - condition: state
       entity_id: person.USER1
       state: 'home'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.friends_and_family
-        state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'

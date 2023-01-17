@@ -135,6 +135,81 @@
           - lock.basement_door
 
         #################################################################
+        ## Turn On Guest Mode if Overnight Guest Mode Turned On
+        #################################################################
+
+- alias: System - Turn On Guest Mode if Overnight Guest Mode Turned On
+  id: 'system_turn_on_guest_mode_if_overnight_guest_mode_turned_on'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.overnight_guest_mode
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+
+  action:
+    - service: homeassistant.turn_on
+      target:
+        entity_id: 
+          - input_boolean.guest_mode
+
+        #################################################################
+        ## Turn Off Guest Mode if Overnight Guest Mode Turned Off
+        #################################################################
+
+- alias: System - Turn Off Guest Mode if Overnight Guest Mode Turned Off
+  id: 'system_turn_off_guest_mode_if_overnight_guest_mode_turned_off'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.overnight_guest_mode
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'on'
+
+  action:
+    - service: homeassistant.turn_off
+      target:
+        entity_id: 
+          - input_boolean.guest_mode
+
+        ##########################################################
+        ## Reset Guest Mode at 7a
+        ##########################################################
+
+- alias: System - Reset Guest Mode at 7a
+  id: 'system_reset_guest_mode_at_7a'
+
+  trigger:
+   - platform: time
+     at: '07:00:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.overnight_guest_mode
+      state: 'off'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.guest_mode
+
+        #################################################################
         ## Turn On USER1 Office Do not Disturb when MacBook AV Input On
         #################################################################
 
@@ -464,6 +539,35 @@
     - service: notify.USER1_devices
       data:
         message: 'Server Memory Above 50%'
+        data:
+          tag: homeassistant
+          group: system
+
+        ##########################################################
+        ## Guest Mode is Still On
+        ##########################################################
+
+- alias: System - Guest Mode is Still On
+  id: 'system_guest_mode_is_still_on'
+
+  trigger:
+   - platform: time
+     at: '09:00:00'
+
+  condition:
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: input_boolean.overnight_guest_mode
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'on'
+
+  action:
+    - service: notify.USER1_devices
+      data:
+        message: 'Guest Mode is Still On'
         data:
           tag: homeassistant
           group: system
