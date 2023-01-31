@@ -114,6 +114,8 @@ Door sensors, motion sensors, and the alarm siren are used in many different way
 
 I go for native Echo integration wherever possible, but a few devices are not currently supported where I've had to implement some work arounds via Home Assistant Cloud (previously Emulated Hue).  Most of these are just exposed via an [input_boolean]( https://github.com/geekofweek/homeassistant/blob/master/input_boolean.yaml) and [customize.yaml]( https://github.com/geekofweek/homeassistant/blob/master/customize.yaml).  This allows the ability to have echo turn on or off an [input_boolean]( https://github.com/geekofweek/homeassistant/blob/master/input_boolean.yaml)  in turn triggering an automation.
 
+I also utilized the [Amazon Alexa Media Player Custom Component](https://github.com/custom-components/alexa_media_player), mostly to pick up the timers into Home Assistant
+
 ## <a name="media">Media</a>
 
 | [Go to Menu](#menu) | [Media Screenshot](images/media-screenshot.jpg?raw=true "Media") |
