@@ -338,3 +338,113 @@
       name: "Water Flow Status"
       state: >-
         {{ states('sensor.water_meter_current') != "0" }}
+
+       ##########################################################
+       ## USER1's Office Echo Timer
+       ##########################################################
+
+  - binary_sensor:
+    - unique_id: USER1_office_echo_timer
+      name: "USER1's Office Timer"
+      state: >-
+        {{ states('sensor.USER1_s_office_echo_show_next_timer') != "unknown" }}
+
+       ##########################################################
+       ## Basement Echo Timer
+       ##########################################################
+
+  - binary_sensor:
+    - unique_id: basement_echo_timer
+      name: "Basement Timer"
+      state: >-
+        {{ states('sensor.basement_echo_next_timer') != "unknown" }}
+
+       ##########################################################
+       ## Bathroom Echo Timer
+       ##########################################################
+
+  - binary_sensor:
+    - unique_id: bathroom_echo_timer
+      name: "Bathroom Timer"
+      state: >-
+        {{ states('sensor.bathroom_echo_next_timer') != "unknown" }}
+
+       ##########################################################
+       ## Bathroom Echo Timer
+       ##########################################################
+
+  - binary_sensor:
+    - unique_id: bedroom_echo_timer
+      name: "Bedroom Timer"
+      state: >-
+        {{ states('sensor.bedroom_echo_spot_next_timer') != "unknown" }}
+
+       ##########################################################
+       ## Bathroom Echo Timer
+       ##########################################################
+
+  - binary_sensor:
+    - unique_id: craft_room_echo_timer
+      name: "Craft Room Timer"
+      state: >-
+        {{ states('sensor.craft_room_echo_next_timer') != "unknown" }}
+
+       ##########################################################
+       ## Dining Room Echo Timer
+       ##########################################################
+
+  - binary_sensor:
+    - unique_id: dining_room_echo_timer
+      name: "Dining Room Timer"
+      state: >-
+        {{ states('sensor.dining_room_echo_next_timer') != "unknown" }}
+
+       ##########################################################
+       ## Fitness Room Echo Timer
+       ##########################################################
+
+  - binary_sensor:
+    - unique_id: fitness_room_echo_timer
+      name: "Fitness Room Timer"
+      state: >-
+        {{ states('sensor.fitness_room_echo_next_timer') != "unknown" }}
+
+       ##########################################################
+       ## Guest Bedroom Echo Timer
+       ##########################################################
+
+  - binary_sensor:
+    - unique_id: guest_bedroom_echo_timer
+      name: "Guest Bedroom Timer"
+      state: >-
+        {{ states('sensor.guest_bedroom_echo_dot_next_timer') != "unknown" }}
+
+       ##########################################################
+       ## Kitchen Echo Timer
+       ##########################################################
+
+  - binary_sensor:
+    - unique_id: kitchen_echo_timer
+      name: "Kitchen Timer"
+      state: >-
+        {{ states('sensor.kitchen_echo_show_next_timer') != "unknown" }}
+
+       ##########################################################
+       ## Living Room Echo Timer
+       ##########################################################
+
+  - binary_sensor:
+    - unique_id: living_room_echo_timer
+      name: "Living Room Timer"
+      state: >-
+        {{ states('sensor.living_room_echo_next_timer') != "unknown" }}
+
+       ##########################################################
+       ## USER2's Office Echo Timer
+       ##########################################################
+
+  - binary_sensor:
+    - unique_id: USER2_office_echo_timer
+      name: "USER2's Office Timer"
+      state: >-
+        {{ states('sensor.USER2_s_office_echo_next_timer') != "unknown" }}

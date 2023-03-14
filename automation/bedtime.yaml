@@ -224,6 +224,8 @@
         - switch.backyard_patio_lighting
         - switch.fireplace
         - switch.basement_heater
+        - switch.fountain
+        - switch.fountain_lights
 
         ##########################################################
         ## Bedtime Lights
@@ -261,11 +263,11 @@
         - light.backyard_deck
     - service: light.turn_off
       entity_id:
-        - light.backyard_patio
+        - light.garage_interior
     - service: light.turn_off
       entity_id:
-        - light.garage_interior
-    - delay: '00:00:30'
+        - light.backyard_patio
+    - delay: '00:00:60'
     - service: light.turn_off
       entity_id:
         - light.interior_lights
@@ -274,10 +276,10 @@
         - light.backyard_deck
     - service: light.turn_off
       entity_id:
-        - light.backyard_patio
+        - light.garage_interior
     - service: light.turn_off
       entity_id:
-        - light.garage_interior
+        - light.backyard_patio
 
         ##########################################################
         ## Bedtime Guest Mode
@@ -438,18 +440,14 @@
         - light.garage_light
     - service: light.turn_off
       entity_id:
-        - light.backyard_patio
-    - service: light.turn_off
-      entity_id:
         - light.backyard_deck
     - service: light.turn_off
       entity_id:
         - light.garage_interior
-    - service: switch.turn_off
+    - service: light.turn_off
       entity_id:
-        - switch.lower_backyard_lighting
-        - switch.backyard_patio_lighting
-    - delay: '00:00:30'
+        - light.backyard_patio
+    - delay: '00:00:60'
     - service: light.turn_off
       entity_id:
         - light.front_porch
@@ -461,13 +459,19 @@
         - light.garage_light
     - service: light.turn_off
       entity_id:
-        - light.backyard_patio
-    - service: light.turn_off
-      entity_id:
         - light.backyard_deck
     - service: light.turn_off
       entity_id:
         - light.garage_interior
+    - service: light.turn_off
+      entity_id:
+        - light.backyard_patio
+    - service: switch.turn_off
+      entity_id:
+        - switch.lower_backyard_lighting
+        - switch.backyard_patio_lighting
+        - switch.fountain
+        - switch.fountain_lights
 
         ##########################################################
         ## Bedtime Exterior Lights Holiday
@@ -524,13 +528,13 @@
         - light.garage_light
     - service: light.turn_off
       entity_id:
-        - light.backyard_patio
-    - service: light.turn_off
-      entity_id:
         - light.backyard_deck
     - service: light.turn_off
       entity_id:
         - light.garage_interior
+    - service: light.turn_off
+      entity_id:
+        - light.backyard_patio
 
         ##########################################################
         ## Bedtime Garage Door

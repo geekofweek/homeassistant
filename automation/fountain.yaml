@@ -1,0 +1,379 @@
+#################################################################
+## Fountain Automations
+#################################################################
+
+        ##########################################################
+        ## Fountain Off When Away
+        ##########################################################
+
+- alias: Fountain - Fountain Off When Away
+  id: 'fountain_off_when_away'
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 3
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_fountain
+      state: 'off'
+    - condition: state
+      entity_id: switch.fountain
+      state: 'on'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.fountain
+        - switch.fountain_lights
+
+        ##########################################################
+        ## Fountain On When Home
+        ##########################################################
+
+- alias: Fountain - Fountain On When Home
+  id: 'fountain_on_when_home'
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'not_home'
+      to: 'home'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_fountain
+      state: 'off'
+    - condition: time
+      after: '12:00:00'
+      before: '23:59:00'
+    - condition: state
+      entity_id: switch.fountain
+      state: 'off'
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      above: 39
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: weather.REDACTED
+        state: 'rainy'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.season
+        state: 'winter'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.fountain
+
+        ##########################################################
+        ## Fountain Lights On When Home Before Sunset
+        ##########################################################
+
+- alias: Fountain - Lights On When Home Before Sunset
+  id: 'fountain_lights_on_when_home_before_sunset'
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_fountain
+      state: 'off'
+    - condition: state
+      entity_id: switch.fountain
+      state: 'on'
+    - condition: state
+      entity_id: switch.fountain_lights
+      state: 'off'
+    - condition: sun
+      after: sunset
+      after_offset: "-00:15:00"
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.fountain_lights
+
+        ##########################################################
+        ## Turn on Fountain Lights at Sunset
+        ##########################################################
+
+- alias: Fountain - Turn on Lights at Sunset
+  id: 'fountain_turn_on_lights_at_sunset'
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:15:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_fountain
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: switch.fountain
+      state: 'on'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.fountain_lights
+
+        ##########################################################
+        ## Turn on Fountain Lights when Fountain on at Night
+        ##########################################################
+
+- alias: Fountain - Turn on Lights when Fountain on at Night
+  id: 'fountain_turn_on_lights_when_fountain_on_at_night'
+
+  trigger:
+    - platform: state
+      entity_id: switch.fountain
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_fountain
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: switch.fountain_lights
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.fountain_lights
+
+        ##########################################################
+        ## Turn off Fountain Lights when Fountain turns off
+        ##########################################################
+
+- alias: Fountain - Turn off Lights when Fountain turns off
+  id: 'fountain_turn_off_lights_when_fountain_turns_off'
+
+  trigger:
+    - platform: state
+      entity_id: switch.fountain
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_fountain
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: switch.fountain_lights
+      state: 'on'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.fountain_lights
+
+        ##########################################################
+        ## Turn On Fountain at Noon
+        ##########################################################
+
+- alias: Fountain - Turn On at Noon
+  id: 'fountain_turn_on_at_noon'
+
+  trigger:
+   - platform: time
+     at: '12:00:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_fountain
+      state: 'off'
+    - condition: state
+      entity_id: switch.fountain
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      above: 39
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: weather.REDACTED
+        state: 'rainy'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.season
+        state: 'winter'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.fountain
+
+        ##########################################################
+        ## Turn Off Fountain at Midnight
+        ##########################################################
+
+- alias: Fountain - Turn Off at Midnight
+  id: 'fountain_turn_off_at_midnight'
+
+  trigger:
+   - platform: time
+     at: '23:59:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_fountain
+      state: 'off'
+    - condition: state
+      entity_id: switch.fountain
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.fountain
+        - switch.fountain_lights
+
+        ##########################################################
+        ## Turn Off Fountain When Raining
+        ##########################################################
+
+- alias: Fountain - Turn Off When Raining
+  id: 'fountain_turn_off_when_raining'
+
+  trigger:
+    - platform: state
+      entity_id: weather.REDACTED
+      to: 'rainy'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_fountain
+      state: 'off'
+    - condition: state
+      entity_id: switch.fountain
+      state: 'on'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.fountain
+
+        ##########################################################
+        ## Turn On Fountain When Done Raining
+        ##########################################################
+
+- alias: Fountain - Turn On When Done Raining
+  id: 'fountain_turn_on_when_done_raining'
+
+  trigger:
+    - platform: state
+      entity_id: weather.REDACTED_sc
+      from: 'rainy'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_fountain
+      state: 'off'
+    - condition: state
+      entity_id: switch.fountain
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: time
+      after: '12:00:00'
+      before: '23:59:00'
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      above: 39
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: weather.REDACTED
+        state: 'rainy'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.season
+        state: 'winter'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.fountain
+
+        ##########################################################
+        ## Turn Off Fountain When Cold
+        ##########################################################
+
+- alias: Fountain - Turn Off When Cold
+  id: 'fountain_turn_off_when_cold'
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      below: 38
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: switch.fountain
+      state: 'on'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.fountain
+    - service: notify.USER1_devices
+      data:
+        message: Cold Outside Shutting Off Fountain
+        data:
+          tag: fountain
+          group: fountain

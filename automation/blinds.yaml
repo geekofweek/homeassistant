@@ -247,11 +247,11 @@
         position: 50
 
         ##########################################################
-        ## Close USER1's Office Blinds to 25 Before Sunset Window Closed
+        ## Close USER1's Office Blinds to 1 Before Sunset Window Closed
         ##########################################################
 
-- alias: Blinds - Close USER1's Office Blinds to 25 Before Sunset Window Closed
-  id: 'blinds_close_USER1_office_blinds_to_25_before_sunset_window_closed'
+- alias: Blinds - Close USER1's Office Blinds to 1 Before Sunset Window Closed
+  id: 'blinds_close_USER1_office_blinds_to_1_before_sunset_window_closed'
 
   trigger:
     - platform: sun
@@ -273,14 +273,14 @@
     - service: cover.set_cover_position
       data:
         entity_id: cover.USER1_s_office_blinds
-        position: 25
+        position: 1
 
         ##########################################################
-        ## Close USER1's Office Blinds to 25 Before Sunset Window Open
+        ## Close USER1's Office Blinds to 1 Before Sunset Window Open
         ##########################################################
 
-- alias: Blinds - Close USER1's Office Blinds to 25 Before Sunset Window Open
-  id: 'blinds_close_USER1_office_blinds_to_25_before_sunset_window_open'
+- alias: Blinds - Close USER1's Office Blinds to 1 Before Sunset Window Open
+  id: 'blinds_close_USER1_office_blinds_to_1_before_sunset_window_open'
 
   trigger:
     - platform: sun
@@ -304,7 +304,7 @@
         entity_id:
           - cover.USER1s_office_blinds_left
           - cover.USER1s_office_blinds_center
-        position: 25
+        position: 1
 
         ##########################################################
         ## Close USER1's Office Blinds when Sun Below Horizon and Window Closed
@@ -318,6 +318,10 @@
       entity_id: sun.sun
       from: 'above_horizon'
       to: 'below_horizon'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
 
   condition:
     - condition: state
@@ -344,6 +348,10 @@
       entity_id: sun.sun
       from: 'above_horizon'
       to: 'below_horizon'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
 
   condition:
     - condition: state
@@ -410,9 +418,6 @@
       entity_id: input_boolean.disable_blinds
       state: 'off'
     - condition: state
-      entity_id: light.USER1_office_desk_lamp
-      state: 'on'
-    - condition: state
       entity_id: input_boolean.USER1_s_office_do_not_disturb
       state: 'off'
     - condition: state
@@ -420,6 +425,10 @@
       state: 'above_horizon'
 
   action:
+    - service: light.turn_off
+      entity_id:
+        - light.USER1_office_desk_lamp
+    - delay: '00:00:30'
     - service: light.turn_off
       entity_id:
         - light.USER1_office_desk_lamp
@@ -658,6 +667,165 @@
     - condition: state
       entity_id: cover.USER2_s_office_blinds
       state: 'closed'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.season
+        state: 'winter'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'returning'
+
+  action:
+    - service: cover.open_cover
+      entity_id:
+        - cover.USER2_s_office_blinds
+
+        ##########################################################
+        ## Open USER2's Office Blinds When Motion Detected Winter Sunny
+        ##########################################################
+
+- alias: Blinds - Open USER2's Office Blinds When Motion Detected Winter Sunny
+  id: 'blinds_USER2_office_blinds_when_motion_detected_winter__sunny'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER2s_office_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: person.USER2
+      state: 'home'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      below: 86
+    - condition: state
+      entity_id: cover.USER2_s_office_blinds
+      state: 'closed'
+    - condition: state
+      entity_id: sensor.season
+      state: 'winter'
+    - condition: state
+      entity_id: weather.REDACTED
+      state: 'sunny'
+    - condition: time
+      before: '11:30:00'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'returning'
+
+  action:
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER2_s_office_blinds
+        position: 40
+
+        ##########################################################
+        ## Open USER2's Office Blinds When Motion Detected Winter Early
+        ##########################################################
+
+- alias: Blinds - Open USER2's Office Blinds When Motion Detected Winter Early
+  id: 'blinds_USER2_office_blinds_when_motion_detected_winter__early'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER2s_office_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: person.USER2
+      state: 'home'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      below: 86
+    - condition: state
+      entity_id: cover.USER2_s_office_blinds
+      state: 'closed'
+    - condition: state
+      entity_id: sensor.season
+      state: 'winter'
+    - condition: time
+      before: '11:30:00'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: weather.REDACTED
+        state: 'sunny'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'returning'
+
+  action:
+    - service: cover.open_cover
+      entity_id:
+        - cover.USER2_s_office_blinds
+
+        ##########################################################
+        ## Open USER2's Office Blinds When Motion Detected Winter
+        ##########################################################
+
+- alias: Blinds - Open USER2's Office Blinds When Motion Detected Winter
+  id: 'blinds_USER2_office_blinds_when_motion_detected_winter'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER2s_office_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: person.USER2
+      state: 'home'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      below: 86
+    - condition: state
+      entity_id: cover.USER2_s_office_blinds
+      state: 'closed'
+    - condition: state
+      entity_id: sensor.season
+      state: 'winter'
+    - condition: time
+      after: '11:31:00'
     - condition: not
       conditions:
       - condition: state
