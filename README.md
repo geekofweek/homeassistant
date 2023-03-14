@@ -330,21 +330,33 @@ More detailed information on the custom Home Assistant Managment Tools can be fo
 | [Menu](#menu) |
 
 ![UI](images/home-screenshot.jpg?raw=true "Home Page")
+| [Menu](#menu) |
 ![UI](images/living-room-screenshot.jpg?raw=true "Living Room")
+| [Menu](#menu) |
 ![UI](images/dining-screenshot.jpg?raw=true "Dining and Kitchen")
+| [Menu](#menu) |
 ![UI](images/bedrooms-screenshot.jpg?raw=true "Bedrooms")
+| [Menu](#menu) |
 ![UI](images/bath-screenshot.jpg?raw=true "Bathrooms")
+| [Menu](#menu) |
 ![UI](images/offices-screenshot.jpg?raw=true "Offices")
+| [Menu](#menu) |
 ![UI](images/basement-screenshot.jpg?raw=true "Basement")
+| [Menu](#menu) |
 ![UI](images/upstairs-screenshot.jpg?raw=true "Upstairs")
+| [Menu](#menu) |
 ![UI](images/outdoor-screenshot.jpg?raw=true "Outdoors")
+| [Menu](#menu) |
 ![UI](images/weather-screenshot.jpg?raw=true "Weather")
+| [Menu](#menu) |
 ![UI](images/alarm-screenshot.jpg?raw=true "Alarm")
+| [Menu](#menu) |
 ![UI](images/system-screenshot.jpg?raw=true "System")
+| [Menu](#menu) |
 ![UI](images/power-screenshot.jpg?raw=true "Power")
+| [Menu](#menu) |
 ![UI](images/water-screenshot.jpg?raw=true "Water")
-
-| [Go to Menu](#menu) |
+| [Menu](#menu) |
 
 
 
