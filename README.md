@@ -1,6 +1,6 @@
 [![GitHub stars](https://img.shields.io/github/stars/geekofweek/homeassistant.svg?style=plasticr)](https://github.com/geekofweek/homeassistant/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/geekofweek/homeassistant.svg?style=plasticr)](https://github.com/geekofweek/homeassistant/commits/master)
-[![HA Version](https://img.shields.io/badge/Running%20Home%20Assistant-2023.1.0%20-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
+[![HA Version](https://img.shields.io/badge/Running%20Home%20Assistant-2023.3.4%20-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
 [![HA Version](https://img.shields.io/badge/Original%20Home%20Assistant-0.14%20-darkblue)](https://github.com/home-assistant/core/releases/0.14)
 [![HA Community](https://img.shields.io/badge/HA%20community-forum-orange)](https://community.home-assistant.io/u/geekoftheweek/summary)
 
@@ -13,7 +13,7 @@ My personal [Home Assistant Container](https://home-assistant.io) configurations
 
 ## <a name="hubs">Hubs</a>
 
-| [Go to Menu](#menu) |
+| [Menu](#menu) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -28,7 +28,7 @@ Relevant hub configurations can be found within [configuration.yaml](https://git
 
 ## <a name="lighting">Lighting</a>
 
-| [Go to Menu](#menu) | [Home Screenshot](images/home-screenshot.jpg?raw=true "Home Page") |
+| [Menu](#menu) | [Screenshots](#screenshots) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -48,7 +48,7 @@ Many of my automations rely on some form of lighting but many examples can be fo
 
 ## <a name="climate">Climate</a>
 
-| [Go to Menu](#menu) | [Weather Screenshot](images/weather-screenshot.jpg?raw=true "Weather") |
+| [Menu](#menu) | [Screenshots](#screenshots) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -63,7 +63,7 @@ More detailed information on the ESPhome configuration can be found in [here](ht
 
 ## <a name="outlets">Outlets & Switches</a>
 
-| [Go to Menu](#menu) | [Home Screenshot](images/home-screenshot.jpg?raw=true "Home Page") |
+| [Menu](#menu) | [Screenshots](#screenshots) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -73,15 +73,14 @@ More detailed information on the ESPhome configuration can be found in [here](ht
 | [GE Z-Wave Wireless Smart Lighting Control Outdoor Module](https://amzn.to/2KuFRxN) | 4 | Z-Wave| [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Used to control low voltage outdoor lighting transformers, bug zapper, and Christmas lights (Holiday time only) |
 | [Remotec Zwave Dry Contact Fixture Module](https://amzn.to/2rOmcBW) | 1 | Z-Wave| [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Used to control gas fireplace |
 | [Dome Home Automation Water Shut-Off Valve](https://amzn.to/2IzJR1J) | 1 | Z-Wave| [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Used to shut off Water Main Supply to House in the event of water leak detected or while on Vacation |
+| [Kasa Outdoor Smart Plug](https://amzn.to/3JFdn5W) | 1 | Wi-Fi | [TP-Link Kasa Smart](https://www.home-assistant.io/integrations/tplink/) | Used to control outdoor devices, fountain pump, etc. |
 
+Switches and outlets are used in various capacities, some are for lighting and some are for fans type devices.  [lights.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/lights.yaml) should have some good examples.
 
-Switches and outlets are used in various capacities, some are for lighting and some are for fans type devices.  [lights.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/lights.yaml) and [occupancy.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/occupancy.yaml) should have some good examples.
-
-Washing machine is automated around the Wemo Insight Plug.  This outlet can monitor power consumption, I created a [sensor](https://github.com/geekofweek/homeassistant/blob/master/sensors.yaml) based on the power reading that shows a simple status of running or not running thus [automating](https://github.com/geekofweek/homeassistant/blob/master/automation/laundry.yaml) around that sensor.
 
 ## <a name="locks">Locks</a>
 
-| [Go to Menu](#menu) | [Alarm Screenshot](images/alarm-screenshot.jpg?raw=true "Alarm") |
+| [Menu](#menu) | [Screenshots](#screenshots) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -91,7 +90,7 @@ Locks are used mostly as a way to lock / unlock doors based on locations, see [l
 
 ## <a name="security">Security</a>
 
-| [Go to Menu](#menu) | [Alarm Screenshot](images/alarm-screenshot.jpg?raw=true "Alarm") |
+| [Menu](#menu) | [Screenshots](#screenshots) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -102,7 +101,7 @@ Door sensors, motion sensors, and the alarm siren are used in many different way
 
 ## <a name="voice">Voice Assistant</a>
 
-| [Go to Menu](#menu) |
+| [Menu](#menu) | [Screenshots](#screenshots) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -114,9 +113,11 @@ Door sensors, motion sensors, and the alarm siren are used in many different way
 
 I go for native Echo integration wherever possible, but a few devices are not currently supported where I've had to implement some work arounds via Home Assistant Cloud (previously Emulated Hue).  Most of these are just exposed via an [input_boolean]( https://github.com/geekofweek/homeassistant/blob/master/input_boolean.yaml) and [customize.yaml]( https://github.com/geekofweek/homeassistant/blob/master/customize.yaml).  This allows the ability to have echo turn on or off an [input_boolean]( https://github.com/geekofweek/homeassistant/blob/master/input_boolean.yaml)  in turn triggering an automation.
 
+I also utilized the [Amazon Alexa Media Player Custom Component](https://github.com/custom-components/alexa_media_player), mostly to pick up the timers into Home Assistant
+
 ## <a name="media">Media</a>
 
-| [Go to Menu](#menu) | [Media Screenshot](images/media-screenshot.jpg?raw=true "Media") |
+| [Menu](#menu) | [Screenshots](#screenshots) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -142,7 +143,7 @@ Harmony Hubs work via a combination of [input_selects]( https://github.com/geeko
 
 ## <a name="sensors">Sensors</a>
 
-| [Go to Menu](#menu) | [System Screenshot](images/system-screenshot.jpg?raw=true "System") |
+| [Menu](#menu) | [Screenshots](#screenshots) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -161,7 +162,7 @@ Smoke detectors, like the water sensors, have one real function to alert me of s
 
 ## <a name="cameras">Cameras</a>
 
-| [Go to Menu](#menu) | [Cameras Screenshot](images/camera-screenshot.jpg?raw=true "Cameras") |
+| [Menu](#menu) | [Screenshots](#screenshots) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -177,7 +178,7 @@ I also send camera feeds as a payload on a few iOS notifications, those can most
 
 ## <a name="garage">Garage</a>
 
-| [Go to Menu](#menu) | [Garage Screenshot](images/garage-screenshot.jpg?raw=true "Location") |
+| [Menu](#menu) | [Screenshots](#screenshots) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -190,7 +191,7 @@ More detailed information on the ESPhome configuration can be found in [here](ht
 
 ## <a name="vacuum">Vacuum</a>
 
-| [Go to Menu](#menu) | [Home Screenshot](images/home-screenshot.jpg?raw=true "Home Page") |
+| [Menu](#menu) | [Screenshots](#screenshots) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -203,7 +204,7 @@ All Roomba related automations can be found in [roomba.yaml]( https://github.com
 
 ## <a name="blinds">Blinds</a>
 
-| [Go to Menu](#menu) | [Home Screenshot](images/home-screenshot.jpg?raw=true "Home Page") |
+| [Menu](#menu) | [Screenshots](#screenshots) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -214,7 +215,7 @@ All Blinds related automations can be found in [blinds.yaml]( https://github.com
 
 ## <a name="energy">Energy</a>
 
-| [Go to Menu](#menu) | [Home Screenshot](images/home-screenshot.jpg?raw=true "Home Page") |
+| [Menu](#menu) | [Screenshots](#screenshots) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -227,7 +228,7 @@ Utilzing Home Assitant Energy dashboard plus creating sensors and automations fo
 
 ## <a name="appliances">Appliances</a>
 
-| [Go to Menu](#menu) | [Basement Screenshot](images/basement-screenshot.jpg?raw=true "Home Page") |
+| [Menu](#menu) | [Screenshots](#screenshots) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -238,7 +239,7 @@ All laundry related automations can be found in [laundry.yaml]( https://github.c
 
 ## <a name="network">Network</a>
 
-| [Go to Menu](#menu) | [System Screenshot](images/system-screenshot.jpg?raw=true "System") |
+| [Menu](#menu) | [Screenshots](#screenshots) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -257,7 +258,7 @@ Since I don’t use the network equipment as my primary presence detection metho
 
 ## <a name="other">Other Hardware</a>
 
-| [Go to Menu](#menu) | [System Screenshot](images/system-screenshot.jpg?raw=true "System") |
+| [Menu](#menu) | [Screenshots](#screenshots) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -270,7 +271,7 @@ Since I don’t use the network equipment as my primary presence detection metho
 
 ## <a name="software">Software</a>
 
-| [Go to Menu](#menu) |
+| [Menu](#menu) | [Screenshots](#screenshots) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -285,7 +286,7 @@ More detailed information on the custom Home Assistant Managment Tools can be fo
 
 ## <a name="retired">Retired</a>
 
-| [Go to Menu](#menu) |
+| [Menu](#menu) | [Screenshots](#screenshots) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -325,7 +326,7 @@ More detailed information on the custom Home Assistant Managment Tools can be fo
 
 # <a name="screenshots">Screenshots</a>
 
-| [Go to Menu](#menu) |
+| [Menu](#menu) |
 
 ![UI](images/home-screenshot.jpg?raw=true "Home Page")
 ![UI](images/living-room-screenshot.jpg?raw=true "Living Room")
