@@ -13,7 +13,7 @@ My personal [Home Assistant Container](https://home-assistant.io) configurations
 
 ## <a name="hubs">Hubs</a>
 
-| [Go to Menu](#menu) |
+| [Menu](#menu) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -327,7 +327,7 @@ More detailed information on the custom Home Assistant Managment Tools can be fo
 
 # <a name="screenshots">Screenshots</a>
 
-| [Go to Menu](#menu) |
+| [Menu](#menu) |
 
 ![UI](images/home-screenshot.jpg?raw=true "Home Page")
 ![UI](images/living-room-screenshot.jpg?raw=true "Living Room")
