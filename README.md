@@ -13,7 +13,7 @@ My personal [Home Assistant Container](https://home-assistant.io) configurations
 
 ## <a name="hubs">Hubs</a>
 
-| [Menu](#menu) |
+| [Menu](#menu) | [Screenshots](#screenshots) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
