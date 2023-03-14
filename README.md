@@ -338,15 +338,11 @@ More detailed information on the custom Home Assistant Managment Tools can be fo
 ![UI](images/basement-screenshot.jpg?raw=true "Basement")
 ![UI](images/upstairs-screenshot.jpg?raw=true "Upstairs")
 ![UI](images/outdoor-screenshot.jpg?raw=true "Outdoors")
-![UI](images/garage-screenshot.jpg?raw=true "Garage")
 ![UI](images/weather-screenshot.jpg?raw=true "Weather")
-![UI](images/media-screenshot.jpg?raw=true "Media")
-![UI](images/camera-screenshot.jpg?raw=true "Cameras")
-![UI](images/location-screenshot.jpg?raw=true "Location")
-![UI](images/3d-printer-screenshot.jpg?raw=true "3D Printer")
 ![UI](images/alarm-screenshot.jpg?raw=true "Alarm")
 ![UI](images/system-screenshot.jpg?raw=true "System")
-![UI](images/battery-screenshot.jpg?raw=true "Battery")
+![UI](images/power-screenshot.jpg?raw=true "Power")
+![UI](images/water-screenshot.jpg?raw=true "Water")
 
 | [Go to Menu](#menu) |
 
