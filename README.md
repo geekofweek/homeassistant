@@ -9,11 +9,11 @@
 My personal [Home Assistant Container](https://home-assistant.io) configurations with 300+ automations.  These are my active automations and configurations that I use every day.  Updated frequently as I add more devices and come up with more and more complicated ways to do simple tasks.
 
 # <a name="menu">Menu</a>
- | [Hubs](#hubs) | [Lighting](#lighting) | [Climate](#climate)| [Outlets & Switches](#outlets)|  [Locks](#locks) | [Security](#security) | [Voice Assistant](#voice) | [Media](#media) | [Sensors](#sensors) | [Cameras](#cameras) | [Garage](#garage) | [Vacuum](#vacuum) | [Blinds](#blinds) | [Energy](#energy) | [Appliances](#appliances) | [Network](#network) | [Other Hardware](#other)| [Software](#software) | [Retired Devices](#retired)  | [Screenshots](#screenshots) |
+ | [Hubs](#hubs) | [Lighting](#lighting) | [Climate](#climate)| [Outlets & Switches](#outlets)|  [Locks](#locks) | [Security](#security) | [Voice Assistant](#voice) | [Media](#media) | [Sensors](#sensors) | [Cameras](#cameras) | [Garage](#garage) | [Vacuum](#vacuum) | [Blinds](#blinds) | [Energy](#energy) | [Appliances](#appliances) | [Network](#network) | [Other Hardware](#other) | [Software](#software) | [Retired Devices](#retired)  | [Screenshots](#screenshots) |
 
 ## <a name="hubs">Hubs</a>
 
-| [Menu](#menu) |
+| [Menu](#menu) | [Screenshots](#screenshots) |
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
@@ -263,7 +263,8 @@ Since I don’t use the network equipment as my primary presence detection metho
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [Intel NUC NUC8i5BEH](https://amzn.to/2GxgStD) | 1 | Ethernet | NA | Primary Linux server. Docker Containers and Plex media server run off this device. |
-| [QNAP TS-453 Pro](https://amzn.to/2wRmtJh) | 1 | Ethernet | [QNAP Sensor](https://www.home-assistant.io/components/sensor.qnap/)| Main storage array. Configured with 4x [WD Red Pro 4TB NAS Hard Disk Drives](https://amzn.to/2IvE7DO) |
+| [QNAP TS-453D](https://amzn.to/3TcxgEx) | 1 | Ethernet | [QNAP Sensor](https://www.home-assistant.io/components/sensor.qnap/)| Primary storage array. Configured with 4x [Ultrastar 14TB Data Center Hard Disk Drives](https://amzn.to/42epr56) |
+| [QNAP TS-453 Pro](https://amzn.to/2wRmtJh) | 1 | Ethernet | [QNAP Sensor](https://www.home-assistant.io/components/sensor.qnap/)| Secondary storage array. Configured with 4x [WD Red Pro 4TB NAS Hard Disk Drives](https://amzn.to/2IvE7DO) |
 | [Prusa i3 MK3S+](https://shop.prusa3d.com/en/3d-printers/180-original-prusa-i3-mk3s-kit.html) | 1 | Wi-Fi | [OctoPrint](https://www.home-assistant.io/integrations/octoprint/)| 3D Printer connected to Home Assitant via OctoPrint running on a Raspberry Pi 4 B.  Sometimes I make neat objects to help with Home Automation, but mostly useless stuff for fun. |
 | [Prusa Mini+](https://shop.prusa3d.com/en/3d-printers/994-original-prusa-mini.html) | 1 | Wi-Fi | [OctoPrint](https://www.home-assistant.io/integrations/octoprint/)| 3D Printer connected to Home Assitant via OctoPrint running on a Raspberry Pi 4 B.  Because if you're going to make useless non-sense, might as well double down. |
 | [HP OfficeJet Pro 8025](https://amzn.to/3bRP3vv) | 1 | Wi-Fi | [Internet Printing Protocol (IPP)](https://www.home-assistant.io/integrations/ipp/)| Regualr inkjet printer that works whenever it feels like because it's a printer. |
@@ -329,25 +330,60 @@ More detailed information on the custom Home Assistant Managment Tools can be fo
 | [Menu](#menu) |
 
 ![UI](images/home-screenshot.jpg?raw=true "Home Page")
-![UI](images/living-room-screenshot.jpg?raw=true "Living Room")
-![UI](images/dining-screenshot.jpg?raw=true "Dining and Kitchen")
-![UI](images/bedrooms-screenshot.jpg?raw=true "Bedrooms")
-![UI](images/bath-screenshot.jpg?raw=true "Bathrooms")
-![UI](images/offices-screenshot.jpg?raw=true "Offices")
-![UI](images/basement-screenshot.jpg?raw=true "Basement")
-![UI](images/upstairs-screenshot.jpg?raw=true "Upstairs")
-![UI](images/outdoor-screenshot.jpg?raw=true "Outdoors")
-![UI](images/garage-screenshot.jpg?raw=true "Garage")
-![UI](images/weather-screenshot.jpg?raw=true "Weather")
-![UI](images/media-screenshot.jpg?raw=true "Media")
-![UI](images/camera-screenshot.jpg?raw=true "Cameras")
-![UI](images/location-screenshot.jpg?raw=true "Location")
-![UI](images/3d-printer-screenshot.jpg?raw=true "3D Printer")
-![UI](images/alarm-screenshot.jpg?raw=true "Alarm")
-![UI](images/system-screenshot.jpg?raw=true "System")
-![UI](images/battery-screenshot.jpg?raw=true "Battery")
 
-| [Go to Menu](#menu) |
+| [Menu](#menu) |
+
+![UI](images/living-room-screenshot.jpg?raw=true "Living Room")
+
+| [Menu](#menu) |
+
+![UI](images/dining-screenshot.jpg?raw=true "Dining and Kitchen")
+
+| [Menu](#menu) |
+
+![UI](images/bedrooms-screenshot.jpg?raw=true "Bedrooms")
+
+| [Menu](#menu) |
+
+![UI](images/bath-screenshot.jpg?raw=true "Bathrooms")
+
+| [Menu](#menu) |
+
+![UI](images/offices-screenshot.jpg?raw=true "Offices")
+
+| [Menu](#menu) |
+
+![UI](images/basement-screenshot.jpg?raw=true "Basement")
+
+| [Menu](#menu) |
+
+![UI](images/upstairs-screenshot.jpg?raw=true "Upstairs")
+
+| [Menu](#menu) |
+
+![UI](images/outdoor-screenshot.jpg?raw=true "Outdoors")
+
+| [Menu](#menu) |
+
+![UI](images/weather-screenshot.jpg?raw=true "Weather")
+
+| [Menu](#menu) |
+
+![UI](images/alarm-screenshot.jpg?raw=true "Alarm")
+
+| [Menu](#menu) |
+
+![UI](images/system-screenshot.jpg?raw=true "System")
+
+| [Menu](#menu) |
+
+![UI](images/power-screenshot.jpg?raw=true "Power")
+
+| [Menu](#menu) |
+
+![UI](images/water-screenshot.jpg?raw=true "Water")
+
+| [Menu](#menu) |
 
 
 
