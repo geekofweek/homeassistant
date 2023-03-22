@@ -33,12 +33,6 @@ zha:
       inovelli_provider: true
       #otau_directory: /data/containers/homeassistant/config/zigbee-ota
 
-weather:
-  - platform: darksky
-    api_key: !secret darksky_api_key
-    mode: daily
-    name: "REDACTED, MO"
-
 alarm_control_panel:
   - platform: manual
     name: Alarm
