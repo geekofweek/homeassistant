@@ -256,21 +256,29 @@
         state: 'open'
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.USER2_s_office_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER2_s_office_blinds
+        position: 0
     - delay: '00:00:15'
-    - service: cover.close_cover
-      entity_id:
-        - cover.stairs_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.stairs_blinds
+        position: 0
     - delay: '00:00:15'
-    - service: cover.close_cover
-      entity_id:
-        - cover.bedroom_closet_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.bedroom_closet_blinds
+        position: 0
     - delay: '00:00:15'
-    - service: cover.close_cover
-      entity_id:
-        - cover.kitchen_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.kitchen_blinds
+        position: 0
 
         ##########################################################
         ## USER1 Home from Walking Unlock Doors Turn On Garage Light
@@ -927,9 +935,11 @@
       state: 'off'
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.USER1_s_office_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER1_s_office_blinds
+        position: 0
 
         ##########################################################
         ## USER1 Away Close Blinds Window Open
@@ -953,10 +963,12 @@
       state: 'on'
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.USER1s_office_blinds_left
-        - cover.USER1s_office_blinds_center
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER1s_office_blinds_left
+          - cover.USER1s_office_blinds_center
+        position: 0
     - service: cover.set_cover_position
       data:
         entity_id: cover.USER1s_office_blinds_right
@@ -990,9 +1002,11 @@
     - service: light.turn_off
       entity_id:
         - light.USER2_s_office_ceiling
-    - service: cover.close_cover
-      entity_id:
-        - cover.USER2_s_office_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER2_s_office_blinds
+        position: 0
 
         ##########################################################
         ## Close Garage Door when USER1 Leaves

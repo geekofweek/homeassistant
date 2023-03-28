@@ -24,9 +24,11 @@
       state: 'open'
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.USER2_s_office_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER2_s_office_blinds
+        position: 0
 
         ##########################################################
         ## Close Bedroom Closet Blinds when Sun Below Horizon
@@ -50,9 +52,11 @@
       state: 'open'
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.bedroom_closet_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.bedroom_closet_blinds
+        position: 0
 
         ##########################################################
         ## Close Upstairs Blinds when Sun Below Horizon
@@ -76,9 +80,11 @@
       state: 'open'
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.stairs_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.stairs_blinds
+        position: 0
 
         ##########################################################
         ## Close Kitchen Blinds when Sun Below Horizon
@@ -102,9 +108,11 @@
       state: 'open'
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.kitchen_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.kitchen_blinds
+        position: 0
 
 #################################################################
 ## USER1's Office
@@ -151,9 +159,11 @@
         state: 'returning'
 
   action:
-    - service: cover.open_cover
-      entity_id:
-        - cover.USER1_s_office_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER1_s_office_blinds
+        position: 100
 
         ##########################################################
         ## Close USER1's Office Blinds When No Motion Detected
@@ -184,9 +194,11 @@
       state: 'open'
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.USER1_s_office_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER1_s_office_blinds
+        position: 0
 
         ##########################################################
         ## Close USER1's Office Blinds When Hot Outside
@@ -216,9 +228,11 @@
       state: 'open'
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.USER1_s_office_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER1_s_office_blinds
+        position: 0
 
         ##########################################################
         ## Close USER1's Office Blinds Halfway Before Sunset
@@ -243,7 +257,8 @@
   action:
     - service: cover.set_cover_position
       data:
-        entity_id: cover.USER1_s_office_blinds
+        entity_id: 
+          - cover.USER1_s_office_blinds
         position: 50
 
         ##########################################################
@@ -272,7 +287,8 @@
   action:
     - service: cover.set_cover_position
       data:
-        entity_id: cover.USER1_s_office_blinds
+        entity_id: 
+          - cover.USER1_s_office_blinds
         position: 1
 
         ##########################################################
@@ -332,9 +348,11 @@
       state: 'off'
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.USER1_s_office_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER1_s_office_blinds
+        position: 0
 
         ##########################################################
         ## Close USER1's Office Blinds Partially when Sun Below Horizon and Window Open
@@ -362,13 +380,16 @@
       state: 'on'
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.USER1s_office_blinds_left
-        - cover.USER1s_office_blinds_center
     - service: cover.set_cover_position
       data:
-        entity_id: cover.USER1s_office_blinds_right
+        entity_id: 
+          - cover.USER1s_office_blinds_left
+          - cover.USER1s_office_blinds_center
+        position: 0
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER1s_office_blinds_right
         position: 45
 
         ##########################################################
@@ -486,9 +507,11 @@
         state: 'home'
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.USER1s_office_blinds_center
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER1s_office_blinds_center
+        position: 0
 
 #################################################################
 ## Stairs
@@ -533,9 +556,11 @@
         state: 'returning'
 
   action:
-    - service: cover.open_cover
-      entity_id:
-        - cover.stairs_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.stairs_blinds
+        position: 100
 
         ##########################################################
         ## Close Stairs Blinds When No Motion Detected
@@ -575,9 +600,11 @@
       state: 'open'
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.stairs_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.stairs_blinds
+        position: 0
 
         ##########################################################
         ## Close Stairs Blinds When Hot Outside
@@ -604,9 +631,11 @@
       state: 'open'
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.stairs_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.stairs_blinds
+        position: 0
 
         ##########################################################
         ## Turn Off Stair Lights when Blinds are Open
@@ -682,9 +711,11 @@
         state: 'returning'
 
   action:
-    - service: cover.open_cover
-      entity_id:
-        - cover.USER2_s_office_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER2_s_office_blinds
+        position: 100
 
         ##########################################################
         ## Open USER2's Office Blinds When Motion Detected Winter Sunny
@@ -788,9 +819,11 @@
         state: 'returning'
 
   action:
-    - service: cover.open_cover
-      entity_id:
-        - cover.USER2_s_office_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER2_s_office_blinds
+        position: 100
 
         ##########################################################
         ## Open USER2's Office Blinds When Motion Detected Winter
@@ -836,9 +869,11 @@
         state: 'returning'
 
   action:
-    - service: cover.open_cover
-      entity_id:
-        - cover.USER2_s_office_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER2_s_office_blinds
+        position: 100
 
         ##########################################################
         ## Close USER2's Office Blinds When No Motion Detected
@@ -866,9 +901,11 @@
       state: 'open'
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.USER2_s_office_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER2_s_office_blinds
+        position: 0
 
         ##########################################################
         ## Close USER2's Office Blinds When Hot Outside
@@ -895,9 +932,11 @@
       state: 'open'
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.USER2_s_office_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER2_s_office_blinds
+        position: 0
 
 #################################################################
 ## Bedroom
@@ -933,9 +972,11 @@
         - fri
 
   action:
-    - service: cover.open_cover
-      entity_id:
-        - cover.bedroom_closet_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.bedroom_closet_blinds
+        position: 100
 
         ##########################################################
         ## Close Bedroom Blinds Before Sunset
@@ -958,9 +999,11 @@
       state: 'open'
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.bedroom_closet_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.bedroom_closet_blinds
+        position: 0
 
         ##########################################################
         ## Turn Off Bedroom Lights when Blinds are Open
@@ -1049,9 +1092,11 @@
         state: 'home'
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.bedroom_closet_blinds_center
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.bedroom_closet_blinds_center
+        position: 0
 
 #################################################################
 ## Kitchen
@@ -1081,9 +1126,11 @@
       state: 'closed'
 
   action:
-    - service: cover.open_cover
-      entity_id:
-        - cover.kitchen_blinds_south
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.kitchen_blinds_south
+        position: 100
 
         ##########################################################
         ## Open Kitchen Blinds when Home
@@ -1120,9 +1167,11 @@
       state: 'closed'
 
   action:
-    - service: cover.open_cover
-      entity_id:
-        - cover.kitchen_blinds_south
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.kitchen_blinds_south
+        position: 100
     - service: cover.set_cover_position
       data:
         entity_id: 
@@ -1182,9 +1231,11 @@
       state: 'open'
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.kitchen_blinds_west
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.kitchen_blinds_west
+        position: 0
 
         ##########################################################
         ## Close Kitchen South Blind Before Sunset
@@ -1207,9 +1258,11 @@
       state: 'open'
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.kitchen_blinds_south
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.kitchen_blinds_south
+        position: 0
 
 #################################################################
 ## Pico Remotes
@@ -1231,9 +1284,11 @@
         action: press
 
   action:
-    - service: cover.open_cover
-      entity_id:
-        - cover.kitchen_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.kitchen_blinds
+        position: 100
 
   #################################################################
   ## Kitchen Blinds Close Pico Remote
@@ -1251,9 +1306,11 @@
         action: press
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.kitchen_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.kitchen_blinds
+        position: 0
 
   #################################################################
   ## Kitchen Raise Blinds Pico Remote Press
@@ -1351,9 +1408,11 @@
         action: press
 
   action:
-    - service: cover.open_cover
-      entity_id:
-        - cover.kitchen_blinds_south
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.kitchen_blinds_south
+        position: 100
     - service: cover.set_cover_position
       data:
         entity_id: 
@@ -1379,9 +1438,11 @@
         command: up_open
 
   action:
-    - service: cover.open_cover
-      entity_id:
-        - cover.USER2_s_office_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER2_s_office_blinds
+        position: 100
 
   #################################################################
   ## USER2's Office Blinds Stop Ikea Remote
@@ -1432,9 +1493,11 @@
         command: down_close
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.USER2_s_office_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER2_s_office_blinds
+        position: 0
 
   #################################################################
   ## Bedroom Closet Blinds Open Ikea Remote
@@ -1451,9 +1514,11 @@
         command: up_open
 
   action:
-    - service: cover.open_cover
-      entity_id:
-        - cover.bedroom_closet_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.bedroom_closet_blinds
+        position: 100
 
   #################################################################
   ## Bedroom Closet Blinds Stop Ikea Remote
@@ -1504,9 +1569,11 @@
         command: down_close
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.bedroom_closet_blinds
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.bedroom_closet_blinds
+        position: 0
 
 #################################################################
 ## Bugs
@@ -1531,8 +1598,8 @@
       to: 'opening'
       for:
         hours: 0
-        minutes: 1
-        seconds: 30
+        minutes: 2
+        seconds: 0
 
   action:
     - service: cover.stop_cover
@@ -1558,8 +1625,8 @@
       to: 'closing'
       for:
         hours: 0
-        minutes: 1
-        seconds: 30
+        minutes: 2
+        seconds: 0
 
   action:
     - service: cover.stop_cover
