@@ -50,3 +50,47 @@
       - cpu_usage
       - drive_smart_status
       - volume_percentage_used
+
+#################################################################
+## RESTful Sensors
+#################################################################
+
+        ##########################################################
+        ## Prusa MK3 Status
+        ##########################################################
+
+  - platform: rest
+    resource: http://prusa-mk3.network.REDACTED/api/job
+    name: Prusa MK3 Job Status
+    username: !secret prusalink_mk3_user
+    password: !secret prusalink_mk3_pass
+    authentication: digest
+    method: GET
+    scan_interval: 3
+    headers:
+      Content-Type: application/json
+    value_template: "{{ value_json.state }}"
+    json_attributes:
+        - "job"
+        - "progress"
+        - "state"
+
+        ##########################################################
+        ## Prusa MK3 Telemetry
+        ##########################################################
+
+  - platform: rest
+    resource: http://prusa-mk3.network.REDACTED/api/printer
+    name: Prusa MK3 Telemetry
+    username: !secret prusalink_mk3_user
+    password: !secret prusalink_mk3_pass
+    authentication: digest
+    method: GET
+    scan_interval: 3
+    headers:
+      Content-Type: application/json
+    value_template: "OK"
+    json_attributes:
+          - "telemetry"
+          - "temperature"
+          - "state"

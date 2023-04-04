@@ -11,9 +11,8 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.prusa_mini_printing
-      from: 'on'
-      to: 'off'
+      entity_id: sensor.prusamini
+      from: 'printing'
       for:
         hours: 0
         minutes: 1
@@ -34,17 +33,16 @@
           entity_id: camera.prusa_mini
 
         ##########################################################
-        ## Prusa 3D Print Finished
+        ## Prusa MK3 3D Print Finished
         ##########################################################
 
-- alias: 3D-Printer - Prusa Print Finished
-  id: '3d_printer_prusa_print_finished'
+- alias: 3D-Printer - Prusa MK3 Print Finished
+  id: '3d_printer_prusa_mk3_print_finished'
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.prusa_printing
-      from: 'on'
-      to: 'off'
+      entity_id: sensor.prusa_mk3_status
+      from: 'Printing'
       for:
         hours: 0
         minutes: 1
@@ -62,7 +60,7 @@
         data:
           tag: prusa_finished
           group: 3d_printer
-          entity_id: camera.prusa
+          entity_id: camera.prusa_mk3
 
         ##########################################################
         ## 3D Printer On Turn On Light
@@ -73,15 +71,15 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.prusa_mini_printing
-      to: 'on'
+      entity_id: sensor.prusamini
+      to: 'printing'
       for:
         hours: 0
         minutes: 0
         seconds: 10
     - platform: state
-      entity_id: binary_sensor.prusa_printing
-      to: 'on'
+      entity_id: sensor.prusa_mk3_status
+      to: 'Printing'
       for:
         hours: 0
         minutes: 0
@@ -106,9 +104,8 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.prusa_mini_printing
-      from: 'on'
-      to: 'off'
+      entity_id: sensor.prusamini
+      from: 'printing'
       for:
         hours: 0
         minutes: 1
@@ -118,8 +115,8 @@
     - condition: not
       conditions:
       - condition: state
-        entity_id: binary_sensor.prusa_printing
-        state: 'on'
+        entity_id: sensor.prusa_mk3_status
+        state: 'Printing'
     - condition: state
       entity_id: light.3d_printer_light
       state: 'on'
@@ -130,17 +127,16 @@
         - light.3d_printer_light
 
         ##########################################################
-        ## 3D Printer Off Turn Off Light Prusa
+        ## 3D Printer Off Turn Off Light Prusa MK3
         ##########################################################
 
-- alias: 3D-Printer - Printer Off Turn Off Light Prusa
-  id: '3d_printer_off_turn_off_light_prusa'
+- alias: 3D-Printer - Printer Off Turn Off Light Prusa MK3
+  id: '3d_printer_off_turn_off_light_prusa_mk3'
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.prusa_printing
-      from: 'on'
-      to: 'off'
+      entity_id: sensor.prusa_mk3_status
+      from: 'Printing'
       for:
         hours: 0
         minutes: 1
@@ -150,8 +146,8 @@
     - condition: not
       conditions:
       - condition: state
-        entity_id: binary_sensor.prusa_mini_printing
-        state: 'on'
+        entity_id: sensor.prusamini
+        state: 'printing'
     - condition: state
       entity_id: light.3d_printer_light
       state: 'on'
@@ -162,51 +158,117 @@
         - light.3d_printer_light
 
         ##########################################################
-        ## 3D Printer Reload Prusa Integration After Connection
+        ## 3D Printer Turn On Camera Recording Prusa MK3
         ##########################################################
 
-- alias: 3D-Printer - 3D Printer Reload Prusa Integration
-  id: '3d_printer_reload_prusa_integration'
+- alias: 3D-Printer - Turn On Camera Recording Prusa MK3
+  id: '3d_printer_turn_on_camera_recording_prusa_mk3'
 
   trigger:
     - platform: state
-      entity_id: sensor.prusa_current_state
-      from: 'unavailable'
-      to: 'Operational'
+      entity_id: sensor.prusa_mk3_status
+      to: 'Printing'
       for:
         hours: 0
-        minutes: 2
-        seconds: 0
+        minutes: 0
+        seconds: 30
+
+  condition:
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: select.prusa_mk3_recording_mode
+        state: 'Always'
 
   action:
-    - service: homeassistant.reload_config_entry
-      entity_id:
-        - sensor.prusa_actual_bed_temp
-        - sensor.prusa_target_bed_temp
-        - sensor.prusa_actual_tool0_temp
-        - sensor.prusa_target_tool0_temp
+    - service: select.select_option
+      data:
+        entity_id: select.prusa_mk3_recording_mode
+        option: "Always"
 
         ##########################################################
-        ## 3D Printer Reload Prusa Mini Integration After Connection
+        ## 3D Printer Turn Off Camera Recording Prusa MK3
         ##########################################################
 
-- alias: 3D-Printer - 3D Printer Reload Prusa Mini Integration
-  id: '3d_printer_reload_prusa__mini_integration'
+- alias: 3D-Printer - Turn Off Camera Recording Prusa MK3
+  id: '3d_printer_turn_off_camera_recording_prusa_mk3'
 
   trigger:
     - platform: state
-      entity_id: sensor.prusa_mini_current_state
-      from: 'unavailable'
-      to: 'Operational'
+      entity_id: sensor.prusa_mk3_status
+      from: 'Printing'
       for:
         hours: 0
-        minutes: 2
+        minutes: 3
         seconds: 0
 
+  condition:
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: select.prusa_mk3_recording_mode
+        state: 'Never'
+
   action:
-    - service: homeassistant.reload_config_entry
-      entity_id:
-        - sensor.prusa_mini_actual_bed_temp
-        - sensor.prusa_mini_target_bed_temp
-        - sensor.prusa_mini_actual_tool0_temp
-        - sensor.prusa_mini_target_tool0_temp
+    - service: select.select_option
+      data:
+        entity_id: select.prusa_mk3_recording_mode
+        option: "Never"
+
+        ##########################################################
+        ## 3D Printer Turn On Camera Recording Prusa Mini
+        ##########################################################
+
+- alias: 3D-Printer - Turn On Camera Recording Prusa Mini
+  id: '3d_printer_turn_on_camera_recording_prusa_mini'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusamini
+      to: 'printing'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+
+  condition:
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: select.prusa_mini_recording_mode
+        state: 'Always'
+
+  action:
+    - service: select.select_option
+      data:
+        entity_id: select.prusa_mini_recording_mode
+        option: "Always"
+
+        ##########################################################
+        ## 3D Printer Turn Off Camera Recording Prusa Mini
+        ##########################################################
+
+- alias: 3D-Printer - Turn Off Camera Recording Prusa Mini
+  id: '3d_printer_turn_off_camera_recording_prusa_mini'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusamini
+      from: 'printing'
+      for:
+        hours: 0
+        minutes: 3
+        seconds: 0
+
+  condition:
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: select.prusa_mini_recording_mode
+        state: 'Never'
+
+  action:
+    - service: select.select_option
+      data:
+        entity_id: select.prusa_mini_recording_mode
+        option: "Never"
