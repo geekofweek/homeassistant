@@ -32,7 +32,16 @@
       state: "{{ state_attr('sensor.prusa_mk3_telemetry', 'telemetry')['temp-bed'] if is_state('sensor.prusa_mk3_telemetry', 'OK') else None }}"
 
       ##########################################################
-      ## Prusa MK3 Progress Raw
+      ## Prusa MK3 Print File
+      ##########################################################
+
+  - sensor: 
+    - unique_id: prusa_mk3_print_file
+      name: Prusa MK3 Print File
+      state: "{{ state_attr('sensor.prusa_mk3_job_status', 'job')['file']['name'] if is_state('sensor.prusa_mk3_job_status', 'Printing') else None }}"
+
+      ##########################################################
+      ## Prusa MK3 Progress
       ##########################################################
 
   - sensor: 
