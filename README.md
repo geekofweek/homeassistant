@@ -1,6 +1,6 @@
 [![GitHub stars](https://img.shields.io/github/stars/geekofweek/homeassistant.svg?style=plasticr)](https://github.com/geekofweek/homeassistant/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/geekofweek/homeassistant.svg?style=plasticr)](https://github.com/geekofweek/homeassistant/commits/master)
-[![HA Version](https://img.shields.io/badge/Running%20Home%20Assistant-2023.3.6%20-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
+[![HA Version](https://img.shields.io/badge/Running%20Home%20Assistant-2023.4.6%20-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
 [![HA Version](https://img.shields.io/badge/Original%20Home%20Assistant-0.14%20-darkblue)](https://github.com/home-assistant/core/releases/0.14)
 [![HA Community](https://img.shields.io/badge/HA%20community-forum-orange)](https://community.home-assistant.io/u/geekoftheweek/summary)
 
@@ -19,7 +19,6 @@ My personal [Home Assistant Container](https://home-assistant.io) configurations
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [Home Assistant SkyConnect](https://www.home-assistant.io/skyconnect/) | 1 | USB | [ZHA](https://www.home-assistant.io/integrations/zha/) | Used to control all Zigbee smart bulbs and Blinds |
 | [Aeotec Z-Stick 7](https://amzn.to/3xQXuA4)| 1 | USB | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Used to control all Z-Wave Devices.  Integrated via zwavejs2mqtt container |
-| [SONOFF Zigbee 3.0 USB Dongle v2 (Plus-E) ](https://amzn.to/3FsEjCk)| 1 | USB | [ZHA](https://www.home-assistant.io/integrations/zha/) | Used to control all Zigbee smart bulbs and Blinds |
 | [Lutron Smart Bridge 2 Pro](https://amzn.to/2WLpKEF)| 1 | Ethernet | [Lutron Caséta](https://www.home-assistant.io/integrations/lutron_caseta) | Controls Lutron Caseta light switches, dimmers, and Pico remotes |
 | [Bond Home](https://amzn.to/3i7dLds)| 1 | Wi-Fi | [Bond Home](https://www.home-assistant.io/integrations/bond/) | Controls ceiling fans and lights via RF remote control commands.  Existing fans are each wired to a single switch that controls both power and light with fan and light controls done via a physical remote.  The Bond Home Hub allowed for sending of those RF remote commands via the hub and the local API makes it possible to send said commands from Home Assistant. |
 
@@ -269,6 +268,7 @@ Since I don’t use the network equipment as my primary presence detection metho
 | [Prusa Mini+](https://shop.prusa3d.com/en/3d-printers/994-original-prusa-mini.html) | 1 | Ethernet | [PrusaLink](https://www.home-assistant.io/integrations/prusalink/)| 3D Printer connected to Home Assitant via PrusaLink.  Because if you're going to make useless non-sense, might as well double down. |
 | [HP OfficeJet Pro 8025](https://amzn.to/3bRP3vv) | 1 | Wi-Fi | [Internet Printing Protocol (IPP)](https://www.home-assistant.io/integrations/ipp/)| Regualr inkjet printer that works whenever it feels like because it's a printer. |
 | [APC 1500VA Back-Up UPS](https://amzn.to/2LopbsD) | 2 | USB / Ethernet | [NUT Sensor](https://www.home-assistant.io/components/sensor.nut/)| Primary Uninterruptible Power Supply (UPS). Connected via the NUT component utlizing to a Linux NUT server |
+| [Ulanzi Awtrix Smart Pixel Clock](https://www.amazon.com/dp/B0BS8Q9749/ref=cm_sw_r_as_gl_api_gl_i_ZK74G02XHDKXS01RH3VE?linkCode=ml1&tag=homeassistant-20) | 1 | Wi-Fi | [ESPHome](https://www.home-assistant.io/integrations/esphome/)| 8x32 RGB LED panel used to display time and various notifications / status.  Using the [EspHoMaTriX](https://github.com/lubeda/EsphoMaTrix) project to integrate with ESPHome and Home Assistant.  It also looks super cool. |
 
 ## <a name="software">Software</a>
 
