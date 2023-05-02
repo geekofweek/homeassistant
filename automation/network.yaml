@@ -25,6 +25,10 @@
       state: 'off'
 
   action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.secondary_switch_basement_camera_poe
+    - delay: '00:02:00'
     - service: switch.turn_off
       entity_id:
         - switch.basement_camera_privacy_mode
@@ -59,6 +63,10 @@
         - switch.basement_camera_privacy_mode
         - switch.living_room_camera_privacy_mode
         - switch.kitchen_camera_privacy_mode
+    - delay: '00:05:00'
+    - service: switch.turn_off
+      entity_id:
+        - switch.secondary_switch_basement_camera_poe
 
         ##########################################################
         ## Re-Enable Pi-hole After 15 Mins

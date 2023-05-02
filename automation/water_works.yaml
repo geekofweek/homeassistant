@@ -220,32 +220,6 @@
           group: water
 
         ##########################################################
-        ## Sump Pump Power Off iOS Notification
-        ##########################################################
-
-- alias: Water Works - Sump Pump Power Off iOS Notification
-  id: 'water_works_sump_pump_power_off_ios_notification'
-
-  trigger:
-    - platform: state
-      entity_id: switch.sump_pump_switch
-      from: 'on'
-      to: 'off'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  action:
-    - service: notify.USER1_devices
-      data:
-        message: Sump Pump Switch Turned Off!
-        data:
-          tag: sump-pump
-          group: water
-
-        ##########################################################
         ## Basement Drain Water Sensor iOS Notification
         ##########################################################
 
@@ -477,32 +451,6 @@
         message: Water Detected in Sump Pump!
         data:
           tag: water-leak
-          group: water
-
-        ##########################################################
-        ## Sump Pump On iOS Notification
-        ##########################################################
-
-- alias: Water Works - Sump Pump On iOS Notification
-  id: 'water_works_sump_pump_on_ios_notification'
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.sump_pump_status
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  action:
-    - service: notify.USER1_devices
-      data:
-        message: Sump Pump has Turned On!
-        data:
-          tag: sump-pump
           group: water
 
         ##########################################################

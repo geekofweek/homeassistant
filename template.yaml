@@ -394,20 +394,6 @@
           {% endif %}
 
        ##########################################################
-       ## Sump Pump Status
-       ##########################################################
-
-  - binary_sensor:
-    - unique_id: sump_pump_status
-      name: Sump Pump Status
-      delay_on:
-        seconds: 1
-      delay_off:
-        seconds: 1
-      state: >
-        '{{ states('sensor.sump_pump_switch_electric_consumed_w')| int >= 1  }}'
-
-       ##########################################################
        ## Water Flow
        ##########################################################
 

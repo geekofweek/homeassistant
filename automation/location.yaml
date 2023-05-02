@@ -85,7 +85,6 @@
         - switch.lower_backyard_lighting
         - switch.backyard_patio_lighting
         - switch.fireplace
-        - switch.basement_heater
         - switch.bug_zapper
 
         ##########################################################
@@ -1734,7 +1733,7 @@
       before: '22:00:00'
 
   action:
-    - delay: '00:00:60'
+    - delay: '00:00:30'
     - service: sonos.snapshot
       data:
         with_group: yes
@@ -1880,7 +1879,7 @@
       before: '22:00:00'
 
   action:
-    - delay: '00:00:60'
+    - delay: '00:00:30'
     - service: sonos.snapshot
       data:
         with_group: yes

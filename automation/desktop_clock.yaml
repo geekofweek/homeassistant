@@ -1,0 +1,637 @@
+#################################################################
+## Desktop Clock Automations
+#################################################################
+
+  ##########################################################
+  ## USER1's Office
+  ##########################################################
+
+        ##########################################################
+        ## Turn On USER1 Office Desktop Clock when Motion Detected
+        ##########################################################
+
+- alias: Desktop Clock - Turn On USER1's Office when Motion Detected
+  id: 'desktop_clock_turn_on_USER1_office_when_motion_detected'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER1s_office_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: switch.USER1s_office_desktop_clock_display
+      state: 'off'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.USER1s_office_desktop_clock_display
+
+        ##########################################################
+        ## Turn Off USER1 Office Desktop Clock when No Motion Detected
+        ##########################################################
+
+- alias: Desktop Clock - Turn Off USER1's Office when No Motion Detected
+  id: 'desktop_clock_turn_off_USER1_office_when_no_motion_detected'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER1s_office_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 20
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: switch.USER1s_office_desktop_clock_display
+      state: 'on'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.USER1s_office_desktop_clock_display
+
+        ##########################################################
+        ## MK3 3D Print Progress USER1's Office Dekstop Clock
+        ##########################################################
+
+- alias: Desktop Clock - MK3 3D Print Progress USER1's Office
+  id: 'desktop_clock_mk3_3dprint_progress_USER1_office'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk3_progress
+  
+  condition:
+    - condition: state
+      entity_id: switch.USER1s_office_desktop_clock_display
+      state: 'on'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: sensor.prusa_mk3_status
+      state: 'Printing'
+
+  action:
+    - service: esphome.USER1_office_desktop_clock_del_screen
+      data:
+        icon_name: mk3print3dprogress
+    - service: esphome.USER1_office_desktop_clock_add_screen
+      data:
+        icon_name: mk3print3dprogress
+        lifetime: 1
+        screen_time: 1
+        alarm: false
+        text: >-
+          MK3 {{ states("sensor.prusa_mk3_progress") }}% Complete
+    - service: esphome.USER1_office_desktop_clock_set_screen_color
+      data:
+        icon_name: mk3print3dprogress
+        r: 255
+        g: 165
+        b: 0
+    - delay:
+        minutes: 5
+
+        ##########################################################
+        ## MK3 3D Print Time Remaining USER1's Office Dekstop Clock
+        ##########################################################
+
+- alias: Desktop Clock - MK3 3D Print Time Remaining USER1's Office
+  id: 'desktop_clock_mk3_3dprint_print_time_remain_USER1_office'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk3_print_finish
+  
+  condition:
+    - condition: state
+      entity_id: switch.USER1s_office_desktop_clock_display
+      state: 'on'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: sensor.prusa_mk3_status
+      state: 'Printing'
+
+  action:
+    - service: esphome.USER1_office_desktop_clock_del_screen
+      data:
+        icon_name: mk3print3dcomplete
+    - service: esphome.USER1_office_desktop_clock_add_screen
+      data:
+        icon_name: mk3print3dcomplete
+        lifetime: 1
+        screen_time: 1
+        alarm: false
+        text: >-
+          MK3 {{ states("sensor.prusa_mk3_print_finish") }} Remaining
+    - service: esphome.USER1_office_desktop_clock_set_screen_color
+      data:
+        icon_name: mk3print3dcomplete
+        r: 255
+        g: 165
+        b: 0
+    - delay:
+        minutes: 5
+
+        ##########################################################
+        ## Mini 3D Print Progress USER1's Office Dekstop Clock
+        ##########################################################
+
+- alias: Desktop Clock - Mini 3D Progress Status USER1's Office
+  id: 'desktop_clock_mini_3dprint_progress_USER1_office'
+  
+  mode: queued
+  max: 10
+  trigger:
+    - platform: state
+      entity_id: sensor.prusamini
+  
+  condition:
+    - condition: state
+      entity_id: switch.USER1s_office_desktop_clock_display
+      state: 'on'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: sensor.prusamini
+      state: 'printing'
+
+  action:
+    - service: esphome.USER1_office_desktop_clock_del_screen
+      data:
+        icon_name: miniprint3dprogress
+    - service: esphome.USER1_office_desktop_clock_add_screen
+      data:
+        icon_name: miniprint3dprogress
+        lifetime: 1
+        screen_time: 1
+        alarm: false
+        text: >-
+          MINI Print {{ states("sensor.prusamini_progress") }}% Complete
+    - service: esphome.USER1_office_desktop_clock_set_screen_color
+      data:
+        icon_name: miniprint3dprogress
+        r: 255
+        g: 165
+        b: 0
+    - delay:
+        minutes: 5
+
+        ##########################################################
+        ## Mini 3D Print Time Remaining USER1's Office Dekstop Clock
+        ##########################################################
+
+- alias: Desktop Clock - Mini 3D Print Time Remaining USER1's Office
+  id: 'desktop_clock_mini_3dprint_time_remain_USER1_office'
+  
+  mode: queued
+  max: 10
+  trigger:
+    - platform: state
+      entity_id: sensor.prusamini
+  
+  condition:
+    - condition: state
+      entity_id: switch.USER1s_office_desktop_clock_display
+      state: 'on'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: sensor.prusamini
+      state: 'printing'
+
+  action:
+    - service: esphome.USER1_office_desktop_clock_del_screen
+      data:
+        icon_name: miniprint3dcomplete
+    - service: esphome.USER1_office_desktop_clock_add_screen
+      data:
+        icon_name: miniprint3dcomplete
+        lifetime: 1
+        screen_time: 1
+        alarm: false
+        text: >-
+          MINI Print Time Remaining{{ states("sensor.prusamini_print_finish") }}
+    - service: esphome.USER1_office_desktop_clock_set_screen_color
+      data:
+        icon_name: miniprint3dcomplete
+        r: 255
+        g: 165
+        b: 0
+    - delay:
+        minutes: 5
+
+        ##########################################################
+        ## MK3 3D Print Complete USER1's Office Desktop Clock
+        ##########################################################
+
+- alias: Desktop Clock - MK3 3D Print Complete USER1's Office
+  id: 'desktop_clock_mk3_3d_print_complete_USER1_office'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk3_status
+      from: 'Printing'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: switch.USER1s_office_desktop_clock_display
+      state: 'on'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+
+  action:
+    - service: esphome.USER1_office_desktop_clock_add_screen
+      data:
+        icon_name: mk3print3ddone
+        lifetime: 2
+        screen_time: 1
+        alarm: false
+        text: 3D Print Complete
+    - service: esphome.USER1_office_desktop_clock_set_screen_color
+      data:
+        icon_name: mk3print3ddone
+        r: 255
+        g: 165
+        b: 0
+    - service: esphome.USER1_office_desktop_clock_del_screen
+      data:
+        icon_name: mk3print3dprogress
+    - service: esphome.USER1_office_desktop_clock_del_screen
+      data:
+        icon_name: mk3print3dcomplete
+
+        ##########################################################
+        ## Mini 3D Print Complete USER1's Office Desktop Clock
+        ##########################################################
+
+- alias: Desktop Clock - Mini 3D Print Complete USER1's Office
+  id: 'desktop_clock_mini_3d_print_complete_USER1_office'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusamini
+      from: 'printing'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: switch.USER1s_office_desktop_clock_display
+      state: 'on'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+
+  action:
+    - service: esphome.USER1_office_desktop_clock_add_screen
+      data:
+        icon_name: miniprint3ddone
+        lifetime: 2
+        screen_time: 1
+        alarm: false
+        text: 3D Print Complete
+    - service: esphome.USER1_office_desktop_clock_set_screen_color
+      data:
+        icon_name: miniprint3ddone
+        r: 255
+        g: 165
+        b: 0
+    - service: esphome.USER1_office_desktop_clock_del_screen
+      data:
+        icon_name: miniprint3dprogress
+    - service: esphome.USER1_office_desktop_clock_del_screen
+      data:
+        icon_name: miniprint3dcomplete
+
+        ##########################################################
+        ## Doorbell USER1's Office Desktop Clock
+        ##########################################################
+
+- alias: Desktop Clock - Doorbell USER1's Office
+  id: 'desktop_clock_doorbell_USER1_office'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: switch.USER1s_office_desktop_clock_display
+      state: 'on'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+
+  action:
+    - service: esphome.USER1_office_desktop_clock_add_screen
+      data:
+        icon_name: doorbell
+        lifetime: 1
+        screen_time: 1
+        alarm: false
+        text: Someone is at the Front Door
+
+        ##########################################################
+        ## Set USER1's Office Desktop Clock Weather Status
+        ##########################################################
+
+- alias: Desktop Clock - Weather Status Update USER1's Office
+  id: 'desktop_clock_weather_status_update_USER1_office'
+
+  trigger:
+    - platform: state
+      entity_id: weather.REDACTED
+
+  condition:
+    - condition: state
+      entity_id: switch.USER1s_office_desktop_clock_display
+      state: 'on'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+
+  action:
+    - service: esphome.USER1_office_desktop_clock_del_screen
+      data:
+        icon_name: weather_*
+    - service: esphome.USER1_office_desktop_clock_add_screen
+      data:
+        icon_name: weather_{{ trigger.to_state.state }}
+        lifetime: 1
+        screen_time: 1
+        alarm: false
+        text: >-
+          {{ states("sensor.REDACTED_temperature") }}°F
+
+        ##########################################################
+        ## Set USER1's Office Desktop Clock Weather Every 15 Mins
+        ##########################################################
+
+- alias: Desktop Clock - Weather Status Every 15 Mins
+  id: 'desktop_clock_weather_status_every_15_mins'
+
+  trigger:
+    - platform: time_pattern
+      minutes: '/15'
+
+  condition:
+    - condition: state
+      entity_id: switch.USER1s_office_desktop_clock_display
+      state: 'on'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+
+  action:
+    - service: esphome.USER1_office_desktop_clock_del_screen
+      data:
+        icon_name: weather_*
+    - service: esphome.USER1_office_desktop_clock_add_screen
+      data:
+        icon_name: weather_{{ trigger.to_state.state }}
+        lifetime: 1
+        screen_time: 1
+        alarm: false
+        text: >-
+          {{ states("sensor.REDACTED_temperature") }}°F
+
+        ##########################################################
+        ## Do Not Disturb On USER1's Office Desktop Clock
+        ##########################################################
+
+- alias: Desktop Clock - USER1 Office Do Not Disturb On
+  id: 'desktop_clock_USER1_office_do_not_disturb_on'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: switch.USER1s_office_desktop_clock_display
+      state: 'on'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+
+  action:
+    - service: esphome.USER1_office_desktop_clock_add_screen
+      data:
+        icon_name: donotdisturb
+        lifetime: 480
+        screen_time: 1
+        alarm: false
+        text: Do Not Disturb
+    - service: esphome.USER1_office_desktop_clock_set_screen_color
+      data:
+        icon_name: donotdisturb
+        r: 0
+        g: 255
+        b: 0
+
+        ##########################################################
+        ## Do Not Disturb Off USER1's Office Desktop Clock
+        ##########################################################
+
+- alias: Desktop Clock - USER1 Office Do Not Disturb Off
+  id: 'desktop_clock_USER1_office_do_not_disturb_off'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: switch.USER1s_office_desktop_clock_display
+      state: 'on'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+
+  action:
+    - service: esphome.USER1_office_desktop_clock_del_screen
+      data:
+        icon_name: donotdisturb
+
+        ##########################################################
+        ## USER2 is Home USER1's Office Desktop Clock
+        ##########################################################
+
+- alias: Desktop Clock - USER1's Office USER2 is Home
+  id: 'desktop_clock_USER2_is_home'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.doors
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: person.USER2
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.USER1_greeting
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER2_greeting
+      state: 'on'
+    - condition: state
+      entity_id: switch.USER1s_office_desktop_clock_display
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - delay: '00:00:30'
+    - service: esphome.USER1_office_desktop_clock_add_screen
+      data:
+        icon_name: house
+        lifetime: 2
+        screen_time: 1
+        alarm: false
+        text: USER2 Home
+
+        #################################################################
+        ## USER2 Left Work USER1's Office Desktop Clock
+        #################################################################
+
+- alias: Desktop Clock - USER1's Office USER2 Left
+  id: 'desktop_clock_USER1_office_USER2_left_work'
+
+  trigger:
+    - platform: state
+      entity_id: person.USER2
+      from: 'Work'
+      to: 'not_home'
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: switch.USER1s_office_desktop_clock_display
+      state: 'on'
+
+  action:
+    - service: esphome.USER1_office_desktop_clock_add_screen
+      data:
+        icon_name: cars
+        lifetime: 12
+        screen_time: 1
+        alarm: false
+        text: >-
+          USER2 has left work, ETA: {{states('sensor.USER2_to_home')}} mins
+
+        ##########################################################
+        ## Washing Machine Done USER1's Office Desktop Clock
+        ##########################################################
+
+- alias: Desktop Clock - USER1's Office Washing Machine Done
+  id: 'laundry_washing_machine_done_USER1_ios_notification'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.washer_wash_completed
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: switch.USER1s_office_desktop_clock_display
+      state: 'on'
+
+  action:
+    - service: esphome.USER1_office_desktop_clock_add_screen
+      data:
+        icon_name: washerdone
+        lifetime: 2
+        screen_time: 1
+        alarm: false
+        text: Washer Finished
+
+        ##########################################################
+        ## Dryer Done USER1's Office Desktop Clock
+        ##########################################################
+
+- alias: Desktop Clock - USER1's Office Dryer Done
+  id: 'laundry_dryer_done_USER1_ios_notification'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.dryer_dry_completed
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: switch.USER1s_office_desktop_clock_display
+      state: 'on'
+
+  action:
+    - service: esphome.USER1_office_desktop_clock_add_screen
+      data:
+        icon_name: dryerdone
+        lifetime: 2
+        screen_time: 1
+        alarm: false
+        text: Dryer Finished
