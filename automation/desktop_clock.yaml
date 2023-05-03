@@ -107,7 +107,7 @@
         screen_time: 1
         alarm: false
         text: >-
-          MK3 {{ states("sensor.prusa_mk3_progress") }}% Complete
+          MK3 Print {{ states("sensor.prusa_mk3_progress") }}% Complete
     - service: esphome.USER1_office_desktop_clock_set_screen_color
       data:
         icon_name: mk3print3dprogress
@@ -150,7 +150,7 @@
         screen_time: 1
         alarm: false
         text: >-
-          MK3 {{ states("sensor.prusa_mk3_print_finish") }} Remaining
+          MK3 Print {{ states("sensor.prusa_mk3_print_finish") }} Remaining
     - service: esphome.USER1_office_desktop_clock_set_screen_color
       data:
         icon_name: mk3print3dcomplete
@@ -240,7 +240,7 @@
         screen_time: 1
         alarm: false
         text: >-
-          MINI Print Time Remaining{{ states("sensor.prusamini_print_finish") }}
+          MINI Print {{ states("sensor.prusamini_print_finish") }} Remaining
     - service: esphome.USER1_office_desktop_clock_set_screen_color
       data:
         icon_name: miniprint3dcomplete
@@ -281,7 +281,7 @@
         lifetime: 2
         screen_time: 1
         alarm: false
-        text: 3D Print Complete
+        text: MK3 Print Complete
     - service: esphome.USER1_office_desktop_clock_set_screen_color
       data:
         icon_name: mk3print3ddone
@@ -326,7 +326,7 @@
         lifetime: 2
         screen_time: 1
         alarm: false
-        text: 3D Print Complete
+        text: Mini Print Complete
     - service: esphome.USER1_office_desktop_clock_set_screen_color
       data:
         icon_name: miniprint3ddone
@@ -395,7 +395,7 @@
         icon_name: weather_*
     - service: esphome.USER1_office_desktop_clock_add_screen
       data:
-        icon_name: weather_{{ trigger.to_state.state }}
+        icon_name: weather_{{ (trigger.to_state.state) |regex_replace(find='-', replace='_', ignorecase=False) }} 
         lifetime: 1
         screen_time: 1
         alarm: false
@@ -403,15 +403,15 @@
           {{ states("sensor.REDACTED_temperature") }}°F
 
         ##########################################################
-        ## Set USER1's Office Desktop Clock Weather Every 15 Mins
+        ## Set USER1's Office Desktop Clock Weather Every 10 Mins
         ##########################################################
 
-- alias: Desktop Clock - Weather Status Every 15 Mins
-  id: 'desktop_clock_weather_status_every_15_mins'
+- alias: Desktop Clock - Weather Status Every 10 Mins
+  id: 'desktop_clock_weather_status_every_10_mins'
 
   trigger:
     - platform: time_pattern
-      minutes: '/15'
+      minutes: '/10'
 
   condition:
     - condition: state
@@ -427,7 +427,7 @@
         icon_name: weather_*
     - service: esphome.USER1_office_desktop_clock_add_screen
       data:
-        icon_name: weather_{{ trigger.to_state.state }}
+        icon_name: weather_{{ states("weather.REDACTED") |regex_replace(find='-', replace='_', ignorecase=False) }}
         lifetime: 1
         screen_time: 1
         alarm: false
@@ -523,9 +523,6 @@
     - condition: state
       entity_id: switch.USER1s_office_desktop_clock_display
       state: 'on'
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
 
   action:
     - delay: '00:00:30'
@@ -573,7 +570,7 @@
         ##########################################################
 
 - alias: Desktop Clock - USER1's Office Washing Machine Done
-  id: 'laundry_washing_machine_done_USER1_ios_notification'
+  id: 'desktop_clock_USER1_office_washing_machine_done'
 
   trigger:
     - platform: state
@@ -601,13 +598,19 @@
         screen_time: 1
         alarm: false
         text: Washer Finished
+    - service: esphome.USER1_office_desktop_clock_set_screen_color
+      data:
+        icon_name: washerdone
+        r: 0
+        g: 0
+        b: 255
 
         ##########################################################
         ## Dryer Done USER1's Office Desktop Clock
         ##########################################################
 
 - alias: Desktop Clock - USER1's Office Dryer Done
-  id: 'laundry_dryer_done_USER1_ios_notification'
+  id: 'desktop_clock_USER1_office_dryer_done'
 
   trigger:
     - platform: state
@@ -635,3 +638,9 @@
         screen_time: 1
         alarm: false
         text: Dryer Finished
+    - service: esphome.USER1_office_desktop_clock_set_screen_color
+      data:
+        icon_name: dryerdone
+        r: 255
+        g: 0
+        b: 0
