@@ -167,11 +167,9 @@
 - alias: Desktop Clock - Mini 3D Progress Status USER1's Office
   id: 'desktop_clock_mini_3dprint_progress_USER1_office'
   
-  mode: queued
-  max: 10
   trigger:
     - platform: state
-      entity_id: sensor.prusamini
+      entity_id: sensor.prusamini_progress
   
   condition:
     - condition: state
@@ -212,11 +210,9 @@
 - alias: Desktop Clock - Mini 3D Print Time Remaining USER1's Office
   id: 'desktop_clock_mini_3dprint_time_remain_USER1_office'
   
-  mode: queued
-  max: 10
   trigger:
     - platform: state
-      entity_id: sensor.prusamini
+      entity_id: sensor.prusamini_progress
   
   condition:
     - condition: state
@@ -240,7 +236,7 @@
         screen_time: 1
         alarm: false
         text: >-
-          MINI Print {{ states("sensor.prusamini_print_finish") }} Remaining
+          MINI Print {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusamini_print_finish')) - as_timestamp(now()))) }} Remaining
     - service: esphome.USER1_office_desktop_clock_set_screen_color
       data:
         icon_name: miniprint3dcomplete
@@ -368,7 +364,7 @@
         lifetime: 1
         screen_time: 1
         alarm: false
-        text: Someone is at the Front Door
+        text: Someone is at the Door
 
         ##########################################################
         ## Set USER1's Office Desktop Clock Weather Status
@@ -400,7 +396,7 @@
         screen_time: 1
         alarm: false
         text: >-
-          {{ states("sensor.REDACTED_temperature") }}°F
+          {{ states("sensor.REDACTED_temperature") }}ºf
 
         ##########################################################
         ## Set USER1's Office Desktop Clock Weather Every 10 Mins
@@ -432,7 +428,7 @@
         screen_time: 1
         alarm: false
         text: >-
-          {{ states("sensor.REDACTED_temperature") }}°F
+          {{ states("sensor.REDACTED_temperature") }}ºf
 
         ##########################################################
         ## Do Not Disturb On USER1's Office Desktop Clock
@@ -602,7 +598,7 @@
       data:
         icon_name: washerdone
         r: 0
-        g: 0
+        g: 174
         b: 255
 
         ##########################################################
@@ -643,4 +639,4 @@
         icon_name: dryerdone
         r: 255
         g: 0
-        b: 0
+        b: 25
