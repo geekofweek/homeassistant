@@ -682,6 +682,11 @@
         - light.backyard_deck
       data:
         brightness_pct: 2
+    - service: light.turn_on
+      entity_id:
+        - light.backyard_patio
+      data:
+        brightness_pct: 2
 
         ##########################################################
         ## Turn Off Backyard Lighting at Midnight
@@ -1364,7 +1369,7 @@
         - light.USER1_office_desk_lamp
       data:
         brightness_pct: 25
-        color_temp: 454
+        color_temp: 370
 
         ##########################################################
         ## Front Porch Lights Random Color On
@@ -1458,7 +1463,7 @@
       entity_id:
         - light.USER1_office_desk_lamp
       data:
-        brightness_pct: 25
+        brightness_pct: 50
         color_name: red
 
         ##########################################################
@@ -1498,7 +1503,7 @@
         - light.USER1_office_desk_lamp
       data:
         brightness_pct: 25
-        color_temp: 454
+        color_temp: 370
     - delay: '00:00:05'
     - service: light.turn_off
       entity_id:
@@ -1533,7 +1538,7 @@
         - light.USER1_office_desk_lamp
       data:
         brightness_pct: 25
-        color_temp: 454
+        color_temp: 370
 
 #################################################################
 ## Pico Remotes
@@ -2084,6 +2089,104 @@
     - service: light.turn_off
       entity_id:
         - light.basement_lighting
+    - delay:
+        seconds: 1
+
+  #################################################################
+  ## Bedroom Closet Lights On Pico Remote
+  #################################################################
+
+- alias: Lights - Bedroom Closet Lights On Pico Remote
+  id: 'lights_bedroom_closet_lights_on_pico_remote'
+
+  trigger:
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 92034753
+        button_number: 2
+        action: press
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.bedroom_closet_lights
+      data:
+        brightness_pct: 100
+        color_temp: 370
+
+  #################################################################
+  ## Bedroom Closet Lights Off Pico Remote
+  #################################################################
+
+- alias: Lights - Bedroom Closet Lights Off Pico Remote
+  id: 'lights_bedroom_closet_lights_off_pico_remote'
+
+  trigger:
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 92034753
+        button_number: 4
+        action: press
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.bedroom_closet_lights
+    - delay:
+        seconds: 1
+
+  #################################################################
+  ## Bedroom Closet Lights Increase Brightness Pico Remote
+  #################################################################
+
+- alias: Lights - Bedroom Closet Lights Increase Brightness Pico Remote
+  id: 'lights_bedroom_closet_lights_increase_brightness_pico_remote'
+
+  trigger:
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 92034753
+        button_number: 5
+        action: press
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.bedroom_closet_lights
+      data:
+        brightness_step_pct: 20
+    - delay:
+        seconds: 1
+
+  #################################################################
+  ## Bedroom Closet Lights Decrease Brightness Pico Remote
+  #################################################################
+
+- alias: Lights - Bedroom Closet Lights Decrease Brightness Pico Remote
+  id: 'lights_bedroom_closet_lights_decrease_brightness_pico_remote'
+
+  trigger:
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 92034753
+        button_number: 6
+        action: press
+
+  condition:
+    - condition: state
+      entity_id: light.bedroom_closet_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.bedroom_closet_lights
+      data:
+        brightness_step_pct: -20
     - delay:
         seconds: 1
 

@@ -1419,6 +1419,60 @@
           - cover.kitchen_blinds_west
         position: 20
 
+  #################################################################
+  ## Bedroom Closet Open Blinds Pico Remote
+  #################################################################
+
+- alias: Blinds - Bedroom Closet Open Pico Remote
+  id: 'blinds_bedroom_closet_open_pico_remote'
+
+  trigger:
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 92034753
+        button_number: 3
+        action: press
+
+  condition:
+    - condition: state
+      entity_id: cover.bedroom_closet_blinds
+      state: 'closed'
+
+  action:
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.bedroom_closet_blinds
+        position: 100
+
+  #################################################################
+  ## Bedroom Closet Closet Blinds Pico Remote
+  #################################################################
+
+- alias: Blinds - Bedroom Closet Close Pico Remote
+  id: 'blinds_bedroom_closet_close_pico_remote'
+
+  trigger:
+    - platform: event
+      event_type: lutron_caseta_button_event
+      event_data:
+        serial: 92034753
+        button_number: 3
+        action: press
+  
+  condition:
+    - condition: state
+      entity_id: cover.bedroom_closet_blinds
+      state: 'open'
+
+  action:
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.bedroom_closet_blinds
+        position: 0
+
 #################################################################
 ## Ikea Remotes
 #################################################################

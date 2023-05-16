@@ -226,26 +226,6 @@
            or is_state('sensor.hot_tub_mode', 'CircPump-Heat') }}
 
       ##########################################################
-      ## UPS - A
-      ##########################################################
-
-  - sensor:
-    - unique_id: ups_a_battery_runtime_mins
-      name: UPS A Battery Runtime Mins
-      unit_of_measurement: "Minutes"
-      state: “{{ ( states('sensor.ups_a_battery_runtime') | int / 60 ) | round(0) }}”
-
-      ##########################################################
-      ## UPS - B
-      ##########################################################
-
-  - sensor:
-    - unique_id: ups_b_battery_runtime_mins
-      name: UPS B Battery Runtime Mins
-      unit_of_measurement: "Minutes"
-      state: “{{ ( states('sensor.ups_b_battery_runtime') | int / 60 ) | round(0) }}”
-
-      ##########################################################
       ## Washing Machine Time Remaining
       ##########################################################
 
@@ -411,7 +391,7 @@
     - unique_id: USER1_office_echo_timer
       name: "USER1's Office Timer"
       state: >-
-        {{ states('sensor.USER1_s_office_echo_show_next_timer') != "unknown" }}
+        {{ states('sensor.USER1_s_office_echo_next_timer') != "unknown" }}
 
        ##########################################################
        ## Basement Echo Timer

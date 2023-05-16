@@ -86,6 +86,7 @@
         - switch.backyard_patio_lighting
         - switch.fireplace
         - switch.bug_zapper
+        - switch.USER1s_office_desktop_clock_display
 
         ##########################################################
         ## Household Away Mode Fans
@@ -901,6 +902,7 @@
     - service: switch.turn_off
       entity_id:
         - switch.air_purifier
+        - switch.USER1s_office_desktop_clock_display
     - service: fan.turn_off
       entity_id:
         - fan.USER1s_office_fan
@@ -1222,6 +1224,11 @@
         - light.backyard_deck
       data:
         brightness_pct: 2
+    - service: light.turn_on
+      entity_id:
+        - light.backyard_patio
+      data:
+        brightness_pct: 2
 
         ##########################################################
         ## Turn On Backyard Lighting when Friends Visiting
@@ -1260,6 +1267,11 @@
     - service: light.turn_on
       entity_id:
         - light.backyard_deck
+      data:
+        brightness_pct: 2
+    - service: light.turn_on
+      entity_id:
+        - light.backyard_patio
       data:
         brightness_pct: 2
 
@@ -1679,10 +1691,18 @@
       data:
         volume_level: 0.5
     - delay: '00:00:02'
-    - service: tts.cloud_say
-      data_template:
-        entity_id: media_player.sonos_living_room
-        message: 'Welcome home, USER1.'
+    - service: media_player.play_media
+      target:
+        entity_id: 
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_move
+      data:
+        announce: false
+        media_content_id: >
+          media-source://tts/cloud?message="Welcome home, USER1."
+        media_content_type: "music"
     - delay: '00:00:25'
     - service: sonos.restore
       data:
@@ -1733,33 +1753,17 @@
       before: '22:00:00'
 
   action:
-    - delay: '00:00:30'
-    - service: sonos.snapshot
-      data:
-        with_group: yes
-        entity_id:
-          - media_player.sonos_USER2s_office
-    - delay: '00:00:03'
-    - service: media_player.unjoin
-      entity_id:
-          - media_player.sonos_USER2s_office
-    - delay: '00:00:01'
-    - service: media_player.volume_set
-      entity_id:
+    - service: media_player.play_media
+      target:
+        entity_id: 
           - media_player.sonos_USER2s_office
       data:
-        volume_level: 0.5
-    - delay: '00:00:02'
-    - service: tts.cloud_say
-      data_template:
-        entity_id: media_player.sonos_USER2s_office
-        message: 'USER1, is Home.'
-    - delay: '00:00:25'
-    - service: sonos.restore
-      data:
-        with_group: yes
-        entity_id:
-          - media_player.sonos_USER2s_office
+        announce: true
+        media_content_id: >
+          media-source://tts/cloud?message="USER1, is Home."
+        media_content_type: "music"
+        extra:
+          volume: 50
 
         ##########################################################
         ## Welcome Home USER2 Audio Greeting
@@ -1825,10 +1829,18 @@
       data:
         volume_level: 0.5
     - delay: '00:00:02'
-    - service: tts.cloud_say
-      data_template:
-        entity_id: media_player.sonos_living_room
-        message: 'Welcome home, USER2.'
+    - service: media_player.play_media
+      target:
+        entity_id: 
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_move
+      data:
+        announce: false
+        media_content_id: >
+          media-source://tts/cloud?message="Welcome home, USER2."
+        media_content_type: "music"
     - delay: '00:00:25'
     - service: sonos.restore
       data:
@@ -1879,7 +1891,7 @@
       before: '22:00:00'
 
   action:
-    - delay: '00:00:30'
+    - delay: '00:00:15'
     - service: sonos.snapshot
       data:
         with_group: yes
@@ -1907,11 +1919,17 @@
       data:
         volume_level: 0.5
     - delay: '00:00:02'
-    - service: tts.cloud_say
-      data_template:
-        entity_id: media_player.sonos_USER1s_office
-        message: 'USER2, is Home'
-    - delay: '00:00:25'
+    - service: media_player.play_media
+      target:
+        entity_id: 
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+      data:
+        announce: false
+        media_content_id: >
+          media-source://tts/cloud?message="USER2, is Home."
+        media_content_type: "music"
+    - delay: '00:00:15'
     - service: sonos.restore
       data:
         with_group: yes
@@ -1989,10 +2007,18 @@
       data:
         volume_level: 0.5
     - delay: '00:00:02'
-    - service: tts.cloud_say
-      data_template:
-        entity_id: media_player.sonos_living_room
-        message: 'Welcome Home, USER1 and USER2'
+    - service: media_player.play_media
+      target:
+        entity_id: 
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_move
+      data:
+        announce: false
+        media_content_id: >
+          media-source://tts/cloud?message="Welcome Home, USER1 and USER2"
+        media_content_type: "music"
     - delay: '00:00:25'
     - service: sonos.restore
       data:
@@ -2004,7 +2030,9 @@
           - media_player.sonos_move
     - delay: '00:02:00'
     - service: homeassistant.turn_off
-      entity_id: input_boolean.USER1_greeting, input_boolean.USER2_greeting
+      entity_id: 
+        - input_boolean.USER1_greeting
+        - input_boolean.USER2_greeting
 
         #################################################################
         ## USER2 Left Work Audio Notification
@@ -2086,12 +2114,24 @@
         - media_player.sonos_USER1s_office
         - media_player.sonos_USER1s_office_move
       data:
-        volume_level: 0.6
+        volume_level: 0.5
     - delay: '00:00:02'
-    - service: tts.cloud_say
-      data_template:
-        entity_id: media_player.sonos_USER1s_office
-        message: "USER2 has left work, and will arrive Home in about, {{states('sensor.USER2_to_home')}} minutes"
+    - service: media_player.play_media
+      target:
+        entity_id: 
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+      data:
+        announce: false
+        media_content_id: >
+          media-source://tts/cloud?message="USER2 has left work, and will arrive Home in about, {{states('sensor.USER2_to_home')}} minutes"
+        media_content_type: "music"
     - delay: '00:00:25'
     - service: sonos.restore
       data:

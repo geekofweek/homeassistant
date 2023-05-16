@@ -107,7 +107,7 @@
         screen_time: 1
         alarm: false
         text: >-
-          MK3 Print {{ states("sensor.prusa_mk3_progress") }}% Complete
+          MK3 Print {{ states("sensor.prusa_mk3_progress") }}%
     - service: esphome.USER1_office_desktop_clock_set_screen_color
       data:
         icon_name: mk3print3dprogress
@@ -158,7 +158,7 @@
         g: 165
         b: 0
     - delay:
-        minutes: 5
+        minutes: 6
 
         ##########################################################
         ## Mini 3D Print Progress USER1's Office Dekstop Clock
@@ -193,7 +193,7 @@
         screen_time: 1
         alarm: false
         text: >-
-          MINI Print {{ states("sensor.prusamini_progress") }}% Complete
+          MINI Print {{ states("sensor.prusamini_progress") }}%
     - service: esphome.USER1_office_desktop_clock_set_screen_color
       data:
         icon_name: miniprint3dprogress
@@ -244,7 +244,7 @@
         g: 165
         b: 0
     - delay:
-        minutes: 5
+        minutes: 6
 
         ##########################################################
         ## MK3 3D Print Complete USER1's Office Desktop Clock
@@ -555,11 +555,11 @@
     - service: esphome.USER1_office_desktop_clock_add_screen
       data:
         icon_name: cars
-        lifetime: 12
+        lifetime: 2
         screen_time: 1
         alarm: false
         text: >-
-          USER2 has left work, ETA: {{states('sensor.USER2_to_home')}} mins
+          USER2 ETA: {{states('sensor.USER2_to_home')}} mins
 
         ##########################################################
         ## Washing Machine Done USER1's Office Desktop Clock
@@ -640,3 +640,80 @@
         r: 255
         g: 0
         b: 25
+
+        ##########################################################
+        ## Echo Timer Done USER1's Office Desktop Clock
+        ##########################################################
+
+- alias: Desktop Clock - USER1's Office Echo Timer Done
+  id: 'desktop_clock_USER1_office_echo_timer_done'
+
+  mode: parallel
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER1_s_office_echo_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.basement_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.bathroom_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.bedroom_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.craft_room_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.dining_room_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.fitness_room_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.guest_bedroom_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.kitchen_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.living_room_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.USER2_s_office_timer
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: switch.USER1s_office_desktop_clock_display
+      state: 'on'
+
+  action:
+    - service: esphome.USER1_office_desktop_clock_add_screen
+      data:
+        icon_name: echotimerdone
+        lifetime: 1
+        screen_time: 1
+        alarm: false
+        text: Timer Finished
+    - service: esphome.USER1_office_desktop_clock_set_screen_color
+      data:
+        icon_name: echotimerdone
+        r: 0
+        g: 153
+        b: 204

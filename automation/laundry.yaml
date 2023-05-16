@@ -238,11 +238,25 @@
       data:
         volume_level: 0.5
     - delay: '00:00:02'
-    - service: tts.cloud_say
-      data_template:
-        entity_id: media_player.sonos_living_room
-        message: 'Washing Machine Has Finished'
-    - delay: '00:00:25'
+    - service: media_player.play_media
+      target:
+        entity_id: 
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+      data:
+        announce: false
+        media_content_id: >
+          media-source://tts/cloud?message="Washing Machine Has Finished"
+        media_content_type: "music"
+    - delay: '00:00:15'
     - service: sonos.restore
       data:
         with_group: yes
@@ -346,11 +360,25 @@
       data:
         volume_level: 0.5
     - delay: '00:00:02'
-    - service: tts.cloud_say
-      data_template:
-        entity_id: media_player.sonos_living_room
-        message: 'Dryer Has Finished'
-    - delay: '00:00:25'
+    - service: media_player.play_media
+      target:
+        entity_id: 
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+      data:
+        announce: false
+        media_content_id: >
+          media-source://tts/cloud?message="Dryer Has Finished"
+        media_content_type: "music"
+    - delay: '00:00:15'
     - service: sonos.restore
       data:
         with_group: yes

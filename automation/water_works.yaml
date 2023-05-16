@@ -545,11 +545,27 @@
       data:
         volume_level: 0.5
     - delay: '00:00:02'
-    - service: tts.cloud_say
-      data_template:
-        entity_id: media_player.sonos_living_room
-        message: 'Water Detected in Basement Drain! Shutting Off Water Supply'
-    - delay: '00:00:25'
+    - service: media_player.play_media
+      target:
+        entity_id: 
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+      data:
+        announce: false
+        media_content_id: >
+          media-source://tts/cloud?message="Water Detected in Basement Drain! Shutting Off Water Supply"
+        media_content_type: "music"
+    - delay: '00:00:60'
     - service: sonos.restore
       data:
         with_group: yes
@@ -566,7 +582,7 @@
           - media_player.sonos_move
           - media_player.sonos_fitness_room
           - media_player.sonos_craft_room
-
+ 
         ##########################################################
         ## Kitchen Sink Water Sensor Audio Notification
         ##########################################################
@@ -659,11 +675,27 @@
       data:
         volume_level: 0.5
     - delay: '00:00:02'
-    - service: tts.cloud_say
-      data_template:
-        entity_id: media_player.sonos_living_room
-        message: 'Water Detected Under Kitchen Sink! Shutting Off Water Supply'
-    - delay: '00:00:25'
+    - service: media_player.play_media
+      target:
+        entity_id: 
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+      data:
+        announce: false
+        media_content_id: >
+          media-source://tts/cloud?message="Water Detected Under Kitchen Sink! Shutting Off Water Supply"
+        media_content_type: "music"
+    - delay: '00:00:60'
     - service: sonos.restore
       data:
         with_group: yes
@@ -773,11 +805,27 @@
       data:
         volume_level: 0.5
     - delay: '00:00:02'
-    - service: tts.cloud_say
-      data_template:
-        entity_id: media_player.sonos_living_room
-        message: 'Water Detected Under Bathroom Sink! Shutting Off Water Supply'
-    - delay: '00:00:25'
+    - service: media_player.play_media
+      target:
+        entity_id: 
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+      data:
+        announce: false
+        media_content_id: >
+          media-source://tts/cloud?message="Water Detected Under Bathroom Sink! Shutting Off Water Supply"
+        media_content_type: "music"
+    - delay: '00:00:60'
     - service: sonos.restore
       data:
         with_group: yes
@@ -887,11 +935,27 @@
       data:
         volume_level: 0.5
     - delay: '00:00:02'
-    - service: tts.cloud_say
-      data_template:
-        entity_id: media_player.sonos_living_room
-        message: 'Water Detected In Upstairs Bathroom! Shutting Off Water Supply'
-    - delay: '00:00:25'
+    - service: media_player.play_media
+      target:
+        entity_id: 
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+      data:
+        announce: false
+        media_content_id: >
+          media-source://tts/cloud?message="Water Detected In Upstairs Bathroom! Shutting Off Water Supply"
+        media_content_type: "music"
+    - delay: '00:00:60'
     - service: sonos.restore
       data:
         with_group: yes
@@ -1001,11 +1065,27 @@
       data:
         volume_level: 0.5
     - delay: '00:00:02'
-    - service: tts.cloud_say
-      data_template:
-        entity_id: media_player.sonos_living_room
-        message: 'Water Detected Under Utility Sink! Shutting Off Water Supply'
-    - delay: '00:00:25'
+    - service: media_player.play_media
+      target:
+        entity_id: 
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+      data:
+        announce: false
+        media_content_id: >
+          media-source://tts/cloud?message="Water Detected Under Utility Sink! Shutting Off Water Supply"
+        media_content_type: "music"
+    - delay: '00:00:60'
     - service: sonos.restore
       data:
         with_group: yes
@@ -1115,11 +1195,27 @@
       data:
         volume_level: 0.5
     - delay: '00:00:02'
-    - service: tts.cloud_say
-      data_template:
-        entity_id: media_player.sonos_living_room
-        message: 'Water Detected by Washing Machine! Shutting Off Water Supply'
-    - delay: '00:00:25'
+    - service: media_player.play_media
+      target:
+        entity_id: 
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_fitness_room
+          - media_player.sonos_craft_room
+      data:
+        announce: false
+        media_content_id: >
+          media-source://tts/cloud?message="Water Detected by Washing Machine! Shutting Off Water Supply"
+        media_content_type: "music"
+    - delay: '00:00:60'
     - service: sonos.restore
       data:
         with_group: yes
