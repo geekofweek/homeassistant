@@ -621,6 +621,11 @@
     - condition: state
       entity_id: input_boolean.overnight_guest_mode
       state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: climate.portable_air_conditioner
+        state: 'cool'
 
   action:
     - service: climate.set_preset_mode
@@ -650,6 +655,11 @@
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: climate.portable_air_conditioner
+        state: 'cool'
 
   action:
     - service: climate.set_preset_mode
@@ -1395,30 +1405,25 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.portable_ac_water_sensor
-      from: 'off'
       to: 'on'
 
-  condition:
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: climate.portable_air_conditioner
-        state: 'unavailable'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: climate.portable_air_conditioner
-        state: 'off'
+#  condition:
+#    - condition: not
+#      conditions:
+#      - condition: state
+#        entity_id: climate.portable_air_conditioner
+#        state: 'unavailable'
+#    - condition: not
+#      conditions:
+#      - condition: state
+#        entity_id: climate.portable_air_conditioner
+#        state: 'off'
 
   action:
+    - service: switch.turn_off
+      entity_id: switch.portable_ac
     - service: climate.turn_off
       entity_id: climate.portable_air_conditioner
-    - service: notify.USER1_devices
-      data:
-        message: Empty Portable AC Water Bin
-        data:
-          tag: climate
-          group: climate
 
         ##########################################################
         ## Turn Off Portable AC if Water Bin Already Full
@@ -1439,8 +1444,30 @@
       state: 'on'
 
   action:
+    - service: switch.turn_off
+      entity_id: switch.portable_ac
     - service: climate.turn_off
       entity_id: climate.portable_air_conditioner
+    - service: notify.USER1_devices
+      data:
+        message: Empty Portable AC Water Bin
+        data:
+          tag: climate
+          group: climate
+
+        ##########################################################
+        ## Turn Off Portable AC when Water Bin Full - iOS Notification
+        ##########################################################
+
+- alias: Climate - Turn Off Portable AC when Water Bin Full iOS Notification
+  id: 'climate_turn_off_portable_ac_when_water_bin_full_ios_notification'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.portable_ac_water_sensor
+      to: 'on'
+
+  action:
     - service: notify.USER1_devices
       data:
         message: Empty Portable AC Water Bin

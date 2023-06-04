@@ -95,13 +95,12 @@
   id: 'energy_turn_off_USER1_ebike_chargers_when_not_charging'
 
   trigger:
-    - platform: state
-      entity_id: 
-          - binary_sensor.USER1_bike_charger_state
-      to: 'off'
+    - platform: numeric_state
+      entity_id: sensor.USER1s_bike_charger_current_consumption
+      below: 1
       for:
-        hours: 2
-        minutes: 0
+        hours: 0
+        minutes: 30
         seconds: 0
 
   condition:
@@ -122,13 +121,12 @@
   id: 'energy_turn_off_USER2_ebike_chargers_when_not_charging'
 
   trigger:
-    - platform: state
-      entity_id: 
-          - binary_sensor.USER2_bike_charger_state
-      to: 'off'
+    - platform: numeric_state
+      entity_id: sensor.USER2s_bike_charger_current_consumption
+      below: 1
       for:
-        hours: 2
-        minutes: 0
+        hours: 0
+        minutes: 30
         seconds: 0
 
   condition:

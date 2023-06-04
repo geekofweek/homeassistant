@@ -2018,6 +2018,13 @@
         - light.craft_room_ceiling
       data:
         brightness_pct: 100
+    - service: light.turn_on
+      data:
+        brightness_pct: 100
+        effect: Club
+      target:
+        entity_id: 
+          - light.jupitier_globe
 
         ##########################################################
         ## Turn Off Craft Room Lights when No Motion Detected
@@ -2059,6 +2066,7 @@
     - service: light.turn_off
       entity_id:
         - light.craft_room_ceiling
+        - light.jupitier_globe
 
         ##########################################################
         ## Turn Off Craft Room Lights when No Motion Detected Night
@@ -2103,6 +2111,7 @@
     - service: light.turn_off
       entity_id:
         - light.craft_room_ceiling
+        - light.jupitier_globe
 
         ##########################################################
         ## Turn On Fitness Room Lights when Motion Detected
