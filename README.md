@@ -72,6 +72,8 @@ More detailed information on the ESPhome configuration can be found in [here](ht
 | [Remotec Zwave Dry Contact Fixture Module](https://amzn.to/2rOmcBW) | 1 | Z-Wave| [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Used to control gas fireplace |
 | [Dome Home Automation Water Shut-Off Valve](https://amzn.to/2IzJR1J) | 1 | Z-Wave| [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Used to shut off Water Main Supply to House in the event of water leak detected or while on Vacation |
 | [Kasa Outdoor Smart Plug](https://amzn.to/3JFdn5W) | 1 | Wi-Fi | [TP-Link Kasa Smart](https://www.home-assistant.io/integrations/tplink/) | Used to control outdoor devices, fountain pump, etc. |
+| [Kasa Smart Plug Mini with Energy Monitoring](https://amzn.to/3quAo48) | 2 | Wi-Fi | [TP-Link Kasa Smart](https://www.home-assistant.io/integrations/tplink/) | Used to control charging and power monitoring of electric bikes |
+| [Kasa Smart Plug Mini](https://www.amazon.com/dp/B091FXLMS8/ref=cm_sw_r_as_gl_api_gl_i_XTMKH4J7T66JNP11Z60N?linkCode=ml1&tag=homeassistant-20) | 4 | Wi-Fi | [TP-Link Kasa Smart](https://www.home-assistant.io/integrations/tplink/) | Used to control various devices, slowing phasing out Wemo in favor of these |
 
 Switches and outlets are used in various capacities, some are for lighting and some are for fans type devices.  [lights.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/lights.yaml) should have some good examples.
 
