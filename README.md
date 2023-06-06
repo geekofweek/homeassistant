@@ -31,9 +31,9 @@ Relevant hub configurations can be found within [configuration.yaml](https://git
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
-| [Philips Hue White and Color Ambiance](https://amzn.to/2Ip8waU) | 9 | Zigbee | [Zigbee2MQTT](https://www.home-assistant.io/integrations/mqtt/) | Color changing smart bulbs|
+| [Philips Hue White and Color Ambiance](https://amzn.to/2Ip8waU) | 7 | Zigbee | [Zigbee2MQTT](https://www.home-assistant.io/integrations/mqtt/) | Color changing smart bulbs|
 | [Philips Hue White and Color Ambiance LightStrip Plus Dimmable](https://amzn.to/2Kx27qF) | 1 | Zigbee | [Zigbee2MQTT](https://www.home-assistant.io/integrations/mqtt/) | Color changing smart led strip. Used as accent lighting|
-| [Philips Hue White](https://amzn.to/2LaUFTd) | 8 | Zigbee | [Zigbee2MQTT](https://www.home-assistant.io/integrations/mqtt/) | Non color changing smart bulbs|
+| [Philips Hue White](https://amzn.to/2LaUFTd) | 9 | Zigbee | [Zigbee2MQTT](https://www.home-assistant.io/integrations/mqtt/) | Non color changing smart bulbs|
 | [Cree Connected](https://amzn.to/2IpKAnZ) | 9 | Zigbee | [Zigbee2MQTT](https://www.home-assistant.io/integrations/mqtt/) | Non color changing smart bulbs|
 | [Lutron Caseta Wireless Dimmer](https://amzn.to/2KwDJWc) | 17 | Lutron Clear Connect | [Lutron Caséta](https://www.home-assistant.io/integrations/lutron_caseta) | Smart dimmer switches that do not require a neutral wire|
 | [Lutron Caseta Wireless Lighting Switch](https://amzn.to/2YvDWjg) | 2 | Lutron Clear Connect | [Lutron Caséta](https://www.home-assistant.io/integrations/lutron_caseta) | Smart on / off light switches |
