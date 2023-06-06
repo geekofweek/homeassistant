@@ -40,7 +40,7 @@ Relevant hub configurations can be found within [configuration.yaml](https://git
 | [Lutron Caseta Pico Wireless Dimmer Switch](https://amzn.to/2Etw0HP) | 6 | Lutron Clear Connect | [Lutron Caséta](https://www.home-assistant.io/integrations/lutron_caseta) | Decora wall mountable remote (that looks like a dimmer switch). Controls various lights |
 | [Lutron Aurora Smart Bulb Dimmer](https://amzn.to/2OyI0PI) | 4 | Zigbee | [Zigbee2MQTT](https://www.home-assistant.io/integrations/mqtt/) | Smart Dimmer that attaches to existing Toggle light Switch. |
 | [LIFX Mini White](https://amzn.to/2UFDvmh) | 1 | Wi-Fi| [LIFX](https://www.home-assistant.io/integrations/lifx/) | Non color changing Wi-Fi smart bulbs.  Used in places where Zigbee is not reliable (detached garage) |
-| [Philips Color A19](https://amzn.to/3Sk1sfe) | 7 | Wi-Fi| [WiZ](https://www.home-assistant.io/integrations/wiz/) | Color changing Wi-Fi smart bulb. Used for a 3D Printed Desk Lamp and Moon Globe.  Will most likely add a few more, very happy with these. |
+| [Philips Color A19](https://amzn.to/3Sk1sfe) | 7 | Wi-Fi| [WiZ](https://www.home-assistant.io/integrations/wiz/) | Color changing Wi-Fi smart bulb. Used for various lights in place of Zigbee, which has not been the most reliable protocol for me. |
 
 Many of my automations rely on some form of lighting but many examples can be found in [lights.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/lights.yaml) and [location.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml).
 
