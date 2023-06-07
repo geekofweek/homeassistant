@@ -258,7 +258,7 @@
       data:
         transition: 900
         brightness_pct: 50
-        color_temp: 447
+        color_temp: 370
 
         ##########################################################
         ## Turn Off Front Porch Lights at Midnight
@@ -676,15 +676,11 @@
       entity_id:
         - light.backyard_patio
       data:
-        brightness_pct: 2
+        brightness_pct: 10
+        color_temp: 370
     - service: light.turn_on
       entity_id:
         - light.backyard_deck
-      data:
-        brightness_pct: 2
-    - service: light.turn_on
-      entity_id:
-        - light.backyard_patio
       data:
         brightness_pct: 2
 
@@ -719,9 +715,6 @@
       entity_id:
         - light.backyard_deck
     - delay: '00:00:30'
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_patio
     - service: light.turn_off
       entity_id:
         - light.backyard_deck
@@ -765,66 +758,8 @@
     - delay: '00:00:30'
     - service: light.turn_off
       entity_id:
-        - light.backyard_patio
-    - service: light.turn_off
-      entity_id:
         - light.backyard_deck
-        
-        ##########################################################
-        ## Set Globe Color Temp
-        ##########################################################
-
-- alias: Lights - Set Globe Color Temp
-  id: 'lights_set_globe_color_temp'
-
-  trigger:
-    - platform: state
-      entity_id: light.globe
-      from: 'off'
-      to: 'on'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 6
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.livingroom_rainbow
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.interior_holiday
-      state: 'off'
-    - condition: state
-      entity_id: alarm_control_panel.alarm
-      state: 'disarmed'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
-        state: 'off'
-      - condition: state
-        entity_id: binary_sensor.kitchen_sink_water_sensor
-        state: 'off'
-      - condition: state
-        entity_id: binary_sensor.bathroom_sink_water_sensor
-        state: 'off'
-      - condition: state
-        entity_id: binary_sensor.upstairs_bathrooom_water_sensor
-        state: 'off'
-      - condition: state
-        entity_id: binary_sensor.utility_sink_water_sensor
-        state: 'off'
-      - condition: state
-        entity_id: binary_sensor.washing_machine_water_sensor
-        state: 'off'
-
-  action:
-    - service: light.turn_on
-      entity_id:
-        - light.globe
-      data:
-       color_temp: 366
-
+   
         ##########################################################
         ## Turn On Guest Bedroom Lamp when Ceiling is On
         ##########################################################
@@ -1148,7 +1083,7 @@
       data:
         transition: 15
         brightness_pct: 100
-        color_temp: 447
+        color_temp: 370
     - service: light.turn_on
       entity_id: light.media_center_lighting
       data:
@@ -1187,25 +1122,16 @@
   action:
     - service: light.turn_off
       entity_id:
-        - light.bedroom_closet_lights
+        - light.bedroom_closet_ceiling
     - service: light.turn_on
-      target:
-        entity_id: light.USER1s_nightstand
       data:
-        transition: 5
-        hs_color:
-          - '{{ (range(0, 360)|random) }}'
-          - '100'
         brightness_pct: 100
-    - service: light.turn_on
+        effect: Party
       target:
-        entity_id: light.USER2s_nightstand
-      data:
-        transition: 5
-        hs_color:
-          - '{{ (range(0, 360)|random) }}'
-          - '100'
-        brightness_pct: 100
+        entity_id: 
+          - light.USER1s_nightstand
+          - light.USER2s_nightstand
+          - light.closet_lamp
     - service: light.turn_on
       target:
         entity_id: light.bedroom_lamp
@@ -1251,9 +1177,10 @@
         - light.USER1s_nightstand
         - light.USER2s_nightstand
         - light.bedroom_lamp
+        - light.closet_lamp
       data:
         transition: 15
-        color_temp: 447
+        color_temp: 370
         brightness_pct: 50
 
         ##########################################################
@@ -1356,7 +1283,7 @@
       entity_id: light.office_lamp
       data:
         transition: 5
-        color_temp: 447
+        color_temp: 370
         brightness_pct: 100
     - service: light.turn_on
       entity_id:
@@ -1439,7 +1366,7 @@
       data:
         transition: 15
         brightness_pct: 50
-        color_temp: 447
+        color_temp: 370
 
         ##########################################################
         ## USER1's Office Desk Lamp Do Not Disturb On
@@ -1467,11 +1394,11 @@
         color_name: red
 
         ##########################################################
-        ## USER1's Office Desk Lamp Do Not Disturb Off Daytime
+        ## USER1's Office Desk Lamp Do Not Disturb Off Daytime Blinds Open
         ##########################################################
 
-- alias: Lights - USER1 Office Desk Lamp Do Not Disturb Off Daytime
-  id: 'lights_USER1_office_desk_lamp_do_not_disturb_off_daytime'
+- alias: Lights - USER1 Office Desk Lamp Do Not Disturb Off Daytime Blinds Open
+  id: 'lights_USER1_office_desk_lamp_do_not_disturb_off_daytime_blinds_open'
 
   trigger:
     - platform: state
@@ -1510,6 +1437,45 @@
         - light.USER1_office_desk_lamp
 
         ##########################################################
+        ## USER1's Office Desk Lamp Do Not Disturb Off Daytime Blinds Closed
+        ##########################################################
+
+- alias: Lights - USER1 Office Desk Lamp Do Not Disturb Off Daytime Blinds Closed
+  id: 'lights_USER1_office_desk_lamp_do_not_disturb_off_daytime_blinds_closed'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: state
+      entity_id: light.USER1_office_desk_lamp
+      state: 'on'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: cover.USER1_s_office_blinds
+        state: 'closed'
+      - condition: state
+        entity_id: cover.USER1_s_office_blinds
+        state: 'closing'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.USER1_office_desk_lamp
+      data:
+        brightness_pct: 25
+        color_temp: 370
+
+        ##########################################################
         ## USER1's Office Desk Lamp Do Not Disturb Off Night
         ##########################################################
 
@@ -1541,6 +1507,157 @@
         color_temp: 370
 
 #################################################################
+## Default Colors Temps
+#################################################################
+
+        ##########################################################
+        ## Set Default Color Temp 370
+        ##########################################################
+
+- alias: Lights - Set Default Color Temp 370
+  id: 'lights_set_default_color_temp_370'
+  
+  mode: parallel
+  trigger:
+    - platform: state
+      entity_id:
+        - light.globe
+        - light.USER1s_nightstand
+        - light.USER2s_nightstand
+        - light.bedroom_lamp
+        - light.closet_lamp
+        - light.office_lamp
+        - light.USER1_office_desk_lamp
+        - light.living_room_lamps
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 6
+
+  condition:
+    - condition: state
+      entity_id: alarm_control_panel.alarm
+      state: 'disarmed'
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: input_boolean.livingroom_rainbow
+          state: 'off'
+        - condition: state
+          entity_id: input_boolean.bedroom_rainbow
+          state: 'off'
+        - condition: state
+          entity_id: input_boolean.office_rainbow
+          state: 'off'
+        - condition: state
+          entity_id: input_boolean.interior_holiday
+          state: 'off'
+        - condition: state
+          entity_id: input_boolean.USER1_s_office_do_not_disturb
+          state: 'off'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.kitchen_sink_water_sensor
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.bathroom_sink_water_sensor
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.upstairs_bathrooom_water_sensor
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.utility_sink_water_sensor
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.washing_machine_water_sensor
+        state: 'off'
+
+  action:
+    - service: light.turn_on
+      target:
+        entity_id: "{{ trigger.entity_id }}"
+      data:
+        color_temp: 370
+
+#################################################################
+## Grow Light
+#################################################################
+
+        ##########################################################
+        ## Turn Off Grow Light After 8 Hours
+        ##########################################################
+
+- alias: Lights - Turn Off Grow Light After 8 Hours
+  id: 'lights_turn_off_grow_light_after_8_hours'
+
+  trigger:
+    - platform: state
+      entity_id: switch.grow_light
+      to: 'on'
+      for:
+        hours: 8
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: switch.grow_light
+      state: 'on'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.grow_light
+
+        ##########################################################
+        ## Turn On Grow Light at Night
+        ##########################################################
+
+- alias: Lights - Turn On Grow Light at Night
+  id: 'lights_turn_on_grow_light_at_night'
+
+  trigger:
+   - platform: time
+     at: '23:00:00'
+
+  condition:
+    - condition: state
+      entity_id: switch.grow_light
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.grow_light
+
+        ##########################################################
+        ## Turn Off Grow Light in the Morning
+        ##########################################################
+
+- alias: Lights - Turn Off Grow Light in the Morning
+  id: 'lights_turn_off_grow_light_in_the_morning'
+
+  trigger:
+   - platform: time
+     at: '07:01:00'
+
+  condition:
+    - condition: state
+      entity_id: switch.grow_light
+      state: 'on'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.grow_light
+
+#################################################################
 ## Pico Remotes
 #################################################################
 
@@ -1565,7 +1682,7 @@
         - light.living_room_lamps
       data:
         brightness_pct: 100
-        color_temp: 447
+        color_temp: 370
     - service: light.turn_on
       entity_id: 
         - light.media_center_lighting
@@ -2191,73 +2308,57 @@
         seconds: 1
 
 #################################################################
-## Grow Light
+## Aurora Dimmers
 #################################################################
 
-        ##########################################################
-        ## Turn Off Grow Light After 8 Hours
-        ##########################################################
+  #################################################################
+  ## Bedroom Lamps Dimmer
+  #################################################################
 
-- alias: Lights - Turn Off Grow Light After 8 Hours
-  id: 'lights_turn_off_grow_light_after_8_hours'
+  mode: queued
+  max_exceeded: silent
+- alias: Lights - Bedroom Lamps Dimmer
+  id: 'lights_bedroom_lamps_dimmer'
 
   trigger:
+    - platform: event
+      event_type: state_changed
+      event_data:
+        entity_id: sensor.bedroom_lamps_dimmer_brightness
     - platform: state
-      entity_id: switch.grow_light
-      to: 'on'
-      for:
-        hours: 8
-        minutes: 0
-        seconds: 0
+      entity_id: sensor.bedroom_lamps_dimmer_brightness
 
-  condition:
-    - condition: state
-      entity_id: switch.grow_light
-      state: 'on'
 
   action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.grow_light
+    - service: light.turn_on
+      target:
+        entity_id: light.bedroom_lamps
+      data:
+        transition: "{{ 0.7 }}"
+        brightness: "{{ trigger.to_state.state }}"
 
-        ##########################################################
-        ## Turn On Grow Light at Night
-        ##########################################################
+  #################################################################
+  ## Bedroom Ceiling Dimmer
+  #################################################################
 
-- alias: Lights - Turn On Grow Light at Night
-  id: 'lights_turn_on_grow_light_at_night'
+  mode: queued
+  max_exceeded: silent
+- alias: Lights - Bedroom Ceiling Dimmer
+  id: 'lights_bedroom_ceiling_dimmer'
 
   trigger:
-   - platform: time
-     at: '23:00:00'
+    - platform: event
+      event_type: state_changed
+      event_data:
+        entity_id: sensor.bedroom_ceiling_dimmer_brightness
+    - platform: state
+      entity_id: sensor.bedroom_ceiling_dimmer_brightness
 
-  condition:
-    - condition: state
-      entity_id: switch.grow_light
-      state: 'off'
-
-  action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.grow_light
-
-        ##########################################################
-        ## Turn Off Grow Light in the Morning
-        ##########################################################
-
-- alias: Lights - Turn Off Grow Light in the Morning
-  id: 'lights_turn_off_grow_light_in_the_morning'
-
-  trigger:
-   - platform: time
-     at: '07:01:00'
-
-  condition:
-    - condition: state
-      entity_id: switch.grow_light
-      state: 'on'
 
   action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.grow_light
+    - service: light.turn_on
+      target:
+        entity_id: light.bedroom_ceiling
+      data:
+        transition: "{{ 0.7 }}"
+        brightness: "{{ trigger.to_state.state }}"

@@ -81,9 +81,9 @@ notify:
 ## Includes
 #################################################################
 
-automation: !include_dir_merge_list automation
+automation manual: !include_dir_merge_list automation/
+automation ui: !include automations.yaml
 recorder: !include recorder.yaml
-logbook: !include logbook.yaml
 group: !include groups.yaml
 sensor: !include sensors.yaml
 binary_sensor: !include binary_sensor.yaml
@@ -91,5 +91,4 @@ script: !include scripts.yaml
 homekit: !include homekit.yaml
 switch: !include switch.yaml
 emulated_hue: !include emulated_hue.yaml
-cloud: !include cloud.yaml
 template: !include template.yaml

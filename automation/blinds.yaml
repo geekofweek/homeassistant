@@ -433,6 +433,9 @@
       entity_id: cover.USER1_s_office_blinds
       from: 'closed'
       to: 'opening'
+    - platform: state
+      entity_id: cover.USER1_s_office_blinds
+      to: 'open'
 
   condition:
     - condition: state
@@ -649,6 +652,9 @@
       entity_id: cover.stairs_blinds
       from: 'closed'
       to: 'opening'
+    - platform: state
+      entity_id: cover.stairs_blinds
+      to: 'open'
 
   condition:
     - condition: state
@@ -1017,6 +1023,9 @@
       entity_id: cover.bedroom_closet_blinds
       from: 'closed'
       to: 'opening'
+    - platform: state
+      entity_id: cover.bedroom_closet_blinds
+      to: 'open'
 
   condition:
     - condition: state
@@ -1474,162 +1483,6 @@
         position: 0
 
 #################################################################
-## Ikea Remotes
-#################################################################
-
-  #################################################################
-  ## USER2's Office Blinds Open Ikea Remote
-  #################################################################
-
-- alias: Blinds - USER2's Office Blinds Open Ikea Remote
-  id: 'blinds_USER2_office_blinds_open_ikea_remote'
-
-  trigger:
-    - platform: event
-      event_type: zha_event
-      event_data:
-        device_id: 9ae29503679a9c6e15e014e1a273429c
-        command: up_open
-
-  action:
-    - service: cover.set_cover_position
-      data:
-        entity_id: 
-          - cover.USER2_s_office_blinds
-        position: 100
-
-  #################################################################
-  ## USER2's Office Blinds Stop Ikea Remote
-  #################################################################
-
-- alias: Blinds - USER2's Office Blinds Stop Ikea Remote
-  id: 'blinds_USER2_office_blinds_stop_ikea_remote'
-
-  trigger:
-    - platform: event
-      event_type: zha_event
-      event_data:
-        device_id: 9ae29503679a9c6e15e014e1a273429c
-        command: up_open
-    - platform: event
-      event_type: zha_event
-      event_data:
-        device_id: 9ae29503679a9c6e15e014e1a273429c
-        command: down_close
-  
-  condition:
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: cover.USER2_s_office_blinds
-        state: 'opening'
-      - condition: state
-        entity_id: cover.USER2_s_office_blinds
-        state: 'closing'
-
-  action:
-    - service: cover.stop_cover
-      entity_id:
-        - cover.USER2_s_office_blinds
-
-  #################################################################
-  ## USER2's Office Blinds Close Ikea Remote
-  #################################################################
-
-- alias: Blinds - USER2's Office Blinds Close Ikea Remote
-  id: 'blinds_USER2_office_blinds_close_ikea_remote'
-
-  trigger:
-    - platform: event
-      event_type: zha_event
-      event_data:
-        device_id: 9ae29503679a9c6e15e014e1a273429c
-        command: down_close
-
-  action:
-    - service: cover.set_cover_position
-      data:
-        entity_id: 
-          - cover.USER2_s_office_blinds
-        position: 0
-
-  #################################################################
-  ## Bedroom Closet Blinds Open Ikea Remote
-  #################################################################
-
-- alias: Blinds - Bedroom Closet Blinds Open Ikea Remote
-  id: 'blinds_bedroom_closet_blinds_open_ikea_remote'
-
-  trigger:
-    - platform: event
-      event_type: zha_event
-      event_data:
-        device_id: 28f7be352ca018506be0bb7d76d78103
-        command: up_open
-
-  action:
-    - service: cover.set_cover_position
-      data:
-        entity_id: 
-          - cover.bedroom_closet_blinds
-        position: 100
-
-  #################################################################
-  ## Bedroom Closet Blinds Stop Ikea Remote
-  #################################################################
-
-- alias: Blinds - Bedroom Closet Blinds Stop Ikea Remote
-  id: 'blinds_bedroom_closet_blinds_stop_ikea_remote'
-
-  trigger:
-    - platform: event
-      event_type: zha_event
-      event_data:
-        device_id: 28f7be352ca018506be0bb7d76d78103
-        command: up_open
-    - platform: event
-      event_type: zha_event
-      event_data:
-        device_id: 28f7be352ca018506be0bb7d76d78103
-        command: down_close
-  
-  condition:
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: cover.bedroom_closet_blinds
-        state: 'opening'
-      - condition: state
-        entity_id: cover.bedroom_closet_blinds
-        state: 'closing'
-
-  action:
-    - service: cover.stop_cover
-      entity_id:
-        - cover.bedroom_closet_blinds
-
-  #################################################################
-  ## Bedroom Closet Blinds Close Ikea Remote
-  #################################################################
-
-- alias: Blinds - Bedroom Closet Blinds Close Ikea Remote
-  id: 'blinds_bedroom_closet_blinds_close_ikea_remote'
-
-  trigger:
-    - platform: event
-      event_type: zha_event
-      event_data:
-        device_id: 28f7be352ca018506be0bb7d76d78103
-        command: down_close
-
-  action:
-    - service: cover.set_cover_position
-      data:
-        entity_id: 
-          - cover.bedroom_closet_blinds
-        position: 0
-
-#################################################################
 ## Bugs
 #################################################################
 
@@ -1652,7 +1505,7 @@
       to: 'opening'
       for:
         hours: 0
-        minutes: 2
+        minutes: 5
         seconds: 0
 
   action:
@@ -1679,7 +1532,7 @@
       to: 'closing'
       for:
         hours: 0
-        minutes: 2
+        minutes: 5
         seconds: 0
 
   action:
@@ -1714,8 +1567,6 @@
           - sensor.stairs_blinds_right
           - sensor.kitchen_blinds_south
           - sensor.kitchen_blinds_west
-          - sensor.USER2s_office_blinds_remote
-          - sensor.bedroom_closet_blinds_remote
       below: 21
       for:
         hours: 1
