@@ -17,7 +17,7 @@ My personal [Home Assistant Container](https://home-assistant.io) configurations
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
-| [Home Assistant SkyConnect](https://www.home-assistant.io/skyconnect/) | 1 | USB | [ZHA](https://www.home-assistant.io/integrations/zha/) | Used to control all Zigbee smart bulbs and Blinds |
+| [SONOFF Zigbee 3.0 USB Dongle Plus-E](https://amzn.to/3oLXD9z) | 1 | USB | [Zigbee2MQTT](https://www.home-assistant.io/integrations/mqtt/) | Used to control all Zigbee smart bulbs and Blinds.  ZHA was becoming un-reliable for me so switched to Zigbee2MQTT |
 | [Aeotec Z-Stick 7](https://amzn.to/3xQXuA4)| 1 | USB | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Used to control all Z-Wave Devices.  Integrated via zwavejs2mqtt container |
 | [Lutron Smart Bridge 2 Pro](https://amzn.to/2WLpKEF)| 1 | Ethernet | [Lutron Caséta](https://www.home-assistant.io/integrations/lutron_caseta) | Controls Lutron Caseta light switches, dimmers, and Pico remotes |
 | [Bond Home](https://amzn.to/3i7dLds)| 1 | Wi-Fi | [Bond Home](https://www.home-assistant.io/integrations/bond/) | Controls ceiling fans and lights via RF remote control commands.  Existing fans are each wired to a single switch that controls both power and light with fan and light controls done via a physical remote.  The Bond Home Hub allowed for sending of those RF remote commands via the hub and the local API makes it possible to send said commands from Home Assistant. |
@@ -31,16 +31,16 @@ Relevant hub configurations can be found within [configuration.yaml](https://git
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
-| [Philips Hue White and Color Ambiance](https://amzn.to/2Ip8waU) | 9 | Zigbee | [ZHA](https://www.home-assistant.io/integrations/zha/) | Color changing smart bulbs|
-| [Philips Hue White and Color Ambiance LightStrip Plus Dimmable](https://amzn.to/2Kx27qF) | 1 | Zigbee | [ZHA](https://www.home-assistant.io/integrations/zha/) | Color changing smart led strip. Used as accent lighting|
-| [Philips Hue White](https://amzn.to/2LaUFTd) | 8 | Zigbee | [ZHA](https://www.home-assistant.io/integrations/zha/) | Non color changing smart bulbs|
-| [Cree Connected](https://amzn.to/2IpKAnZ) | 9 | Zigbee | [ZHA](https://www.home-assistant.io/integrations/zha/) | Non color changing smart bulbs|
+| [Philips Hue White and Color Ambiance](https://amzn.to/2Ip8waU) | 7 | Zigbee | [Zigbee2MQTT](https://www.home-assistant.io/integrations/mqtt/) | Color changing smart bulbs|
+| [Philips Hue White and Color Ambiance LightStrip Plus Dimmable](https://amzn.to/2Kx27qF) | 1 | Zigbee | [Zigbee2MQTT](https://www.home-assistant.io/integrations/mqtt/) | Color changing smart led strip. Used as accent lighting|
+| [Philips Hue White](https://amzn.to/2LaUFTd) | 9 | Zigbee | [Zigbee2MQTT](https://www.home-assistant.io/integrations/mqtt/) | Non color changing smart bulbs|
+| [Cree Connected](https://amzn.to/2IpKAnZ) | 9 | Zigbee | [Zigbee2MQTT](https://www.home-assistant.io/integrations/mqtt/) | Non color changing smart bulbs|
 | [Lutron Caseta Wireless Dimmer](https://amzn.to/2KwDJWc) | 17 | Lutron Clear Connect | [Lutron Caséta](https://www.home-assistant.io/integrations/lutron_caseta) | Smart dimmer switches that do not require a neutral wire|
 | [Lutron Caseta Wireless Lighting Switch](https://amzn.to/2YvDWjg) | 2 | Lutron Clear Connect | [Lutron Caséta](https://www.home-assistant.io/integrations/lutron_caseta) | Smart on / off light switches |
 | [Lutron Caseta Pico Wireless Dimmer Switch](https://amzn.to/2Etw0HP) | 6 | Lutron Clear Connect | [Lutron Caséta](https://www.home-assistant.io/integrations/lutron_caseta) | Decora wall mountable remote (that looks like a dimmer switch). Controls various lights |
-| [Lutron Aurora Smart Bulb Dimmer](https://amzn.to/2OyI0PI) | 4 | Zigbee | [ZHA](https://www.home-assistant.io/integrations/zha/) | Smart Dimmer that attaches to existing Toggle light Switch. |
+| [Lutron Aurora Smart Bulb Dimmer](https://amzn.to/2OyI0PI) | 4 | Zigbee | [Zigbee2MQTT](https://www.home-assistant.io/integrations/mqtt/) | Smart Dimmer that attaches to existing Toggle light Switch. |
 | [LIFX Mini White](https://amzn.to/2UFDvmh) | 1 | Wi-Fi| [LIFX](https://www.home-assistant.io/integrations/lifx/) | Non color changing Wi-Fi smart bulbs.  Used in places where Zigbee is not reliable (detached garage) |
-| [Philips Color A19](https://amzn.to/3Sk1sfe) | 2 | Wi-Fi| [WiZ](https://www.home-assistant.io/integrations/wiz/) | Color changing Wi-Fi smart bulb. Used for a 3D Printed Desk Lamp and Moon Globe.  Will most likely add a few more, very happy with these. |
+| [Philips Color A19](https://amzn.to/3Sk1sfe) | 7 | Wi-Fi| [WiZ](https://www.home-assistant.io/integrations/wiz/) | Color changing Wi-Fi smart bulb. Used for various lights in place of Zigbee, which has not been the most reliable protocol for me. |
 
 Many of my automations rely on some form of lighting but many examples can be found in [lights.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/lights.yaml) and [location.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml).
 
@@ -66,7 +66,7 @@ More detailed information on the ESPhome configuration can be found in [here](ht
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
-| [Wemo Mini Smart Plug](https://amzn.to/2wQ05jE) | 3 | Wi-Fi | [Belkin WeMo](https://www.home-assistant.io/components/wemo/) | Smart outlets utilized to control various devices via powering the outlet on/off (fans, Christmas Tree, etc) |
+| [Wemo Mini Smart Plug](https://amzn.to/2wQ05jE) | 3 | Wi-Fi | [Belkin WeMo](https://www.home-assistant.io/components/wemo/) | Smart outlets utilized to control various devices via powering the outlet on/off (fans, Christmas Tree, etc).  These are slowly being phased out |
 | [Zooz Power Switch ZEN15](https://amzn.to/2WRPeiv) | 2 | Z-Wave | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Smart outlet utilized to monitor power to sump pump |
 | [GE Z-Wave Wireless Smart Lighting Control Outdoor Module](https://amzn.to/2KuFRxN) | 4 | Z-Wave| [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Used to control low voltage outdoor lighting transformers, bug zapper, and Christmas lights (Holiday time only) |
 | [Remotec Zwave Dry Contact Fixture Module](https://amzn.to/2rOmcBW) | 1 | Z-Wave| [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Used to control gas fireplace |
