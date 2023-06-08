@@ -1,0 +1,23 @@
+#################################################################
+##  Command Line
+#################################################################
+
+        ##########################################################
+        ## Living Room East Fan Dimmer
+        ##########################################################
+
+  - switch:
+      name: Living Room East Fan Dimmer
+      unique_id: living_room_east_fan_dimmer
+      command_on: 'curl -H "BOND-Token: REDACTED" -i http://bond.network.REDACTED/v2/devices/REDACTED/actions/StartDimmer -X PUT -d "{}"'
+      command_off: 'curl -H "BOND-Token: REDACTED" -i http://bond.network.REDACTED/v2/devices/REDACTED/actions/Stop -X PUT -d "{}"'
+
+        ##########################################################
+        ## Living Room West Fan Dimmer
+        ##########################################################
+
+  - switch:
+      name: Living Room West Fan Dimmer
+      unique_id: living_room_west_fan_dimmer
+      command_on: 'curl -H "BOND-Token: REDACTED" -i http://bond.network.REDACTED/v2/devices/REDACTED/actions/StartDimmer -X PUT -d "{}"'
+      command_off: 'curl -H "BOND-Token: REDACTED" -i http://bond.network.REDACTED/v2/devices/REDACTED/actions/Stop -X PUT -d "{}"'

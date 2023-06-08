@@ -404,6 +404,9 @@
       entity_id: cover.USER1_s_office_blinds
       from: 'closed'
       to: 'opening'
+    - platform: state
+      entity_id: cover.USER1_s_office_blinds
+      to: 'open'
 
   condition:
     - condition: state

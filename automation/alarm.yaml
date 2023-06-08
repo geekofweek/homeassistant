@@ -774,6 +774,7 @@
       state: 'armed_home'
     - condition: time
       after: '05:00:00'
+      before: '21:00:00'
 
   action:
     - service: alarm_control_panel.alarm_disarm
