@@ -1540,23 +1540,21 @@
     - condition: state
       entity_id: alarm_control_panel.alarm
       state: 'disarmed'
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: input_boolean.livingroom_rainbow
-          state: 'off'
-        - condition: state
-          entity_id: input_boolean.bedroom_rainbow
-          state: 'off'
-        - condition: state
-          entity_id: input_boolean.office_rainbow
-          state: 'off'
-        - condition: state
-          entity_id: input_boolean.interior_holiday
-          state: 'off'
-        - condition: state
-          entity_id: input_boolean.USER1_s_office_do_not_disturb
-          state: 'off'
+    - condition: state
+      entity_id: input_boolean.livingroom_rainbow
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.bedroom_rainbow
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.office_rainbow
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.interior_holiday
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      state: 'off'
     - condition: or
       conditions:
       - condition: state

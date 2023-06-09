@@ -106,7 +106,7 @@
         default_font: true
         icon_name: mk3print3dprogress
         lifetime: 1
-        screen_time: 30
+        screen_time: 60
         text: >-
           MK3 Print {{ states("sensor.prusa_mk3_progress") }}%
         r: 255
@@ -147,7 +147,7 @@
         default_font: true
         icon_name: mk3print3dcomplete
         lifetime: 1
-        screen_time: 30
+        screen_time: 60
         text: >-
           MK3 Print {{ states("sensor.prusa_mk3_print_finish") }} Remaining
         r: 255
@@ -188,7 +188,7 @@
         default_font: true
         icon_name: miniprint3dprogress
         lifetime: 1
-        screen_time: 30
+        screen_time: 60
         text: >-
           MINI Print {{ states("sensor.prusamini_progress") }}%
         r: 255
@@ -229,7 +229,7 @@
         default_font: true
         icon_name: miniprint3dcomplete
         lifetime: 1
-        screen_time: 30
+        screen_time: 60
         text: >-
           MINI Print {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusamini_print_finish')) - as_timestamp(now()))) }} Remaining
         r: 255
@@ -268,7 +268,7 @@
         default_font: true
         icon_name: mk3print3ddone
         lifetime: 2
-        screen_time: 30
+        screen_time: 60
         alarm: false
         text: MK3 Print Complete
     - service: esphome.USER1_office_desktop_clock_del_screen
@@ -310,7 +310,7 @@
         default_font: true
         icon_name: miniprint3ddone
         lifetime: 2
-        screen_time: 30
+        screen_time: 60
         text: Mini Print Complete
     - service: esphome.USER1_office_desktop_clock_del_screen
       data:
@@ -348,58 +348,22 @@
         default_font: true
         icon_name: doorbell
         lifetime: 1
-        screen_time: 30
+        screen_time: 60
         text: Someone is at the Door
         r: 255
         g: 255
         b: 255
 
         ##########################################################
-        ## Set USER1's Office Desktop Clock Weather Status
+        ## Set USER1's Office Desktop Clock Weather Every 5 Mins
         ##########################################################
 
-- alias: Desktop Clock - Weather Status Update USER1's Office
-  id: 'desktop_clock_weather_status_update_USER1_office'
-
-  trigger:
-    - platform: state
-      entity_id: weather.REDACTED
-
-  condition:
-    - condition: state
-      entity_id: switch.USER1s_office_desktop_clock_display
-      state: 'on'
-    - condition: state
-      entity_id: person.USER1
-      state: 'home'
-
-  action:
-    - service: esphome.USER1_office_desktop_clock_del_screen
-      data:
-        icon_name: weather_*
-        mode: 5
-    - service: esphome.USER1_office_desktop_clock_icon_screen
-      data:
-        default_font: true
-        icon_name: weather_{{ (trigger.to_state.state) |regex_replace(find='-', replace='_', ignorecase=False) }} 
-        lifetime: 1
-        screen_time: 30
-        text: >-
-          {{ states("sensor.REDACTED_temperature") }}°f
-        r: 255
-        g: 255
-        b: 255
-
-        ##########################################################
-        ## Set USER1's Office Desktop Clock Weather Every 10 Mins
-        ##########################################################
-
-- alias: Desktop Clock - Weather Status Every 10 Mins
-  id: 'desktop_clock_weather_status_every_10_mins'
+- alias: Desktop Clock - Weather Status Every 5 Mins
+  id: 'desktop_clock_weather_status_every_5_mins'
 
   trigger:
     - platform: time_pattern
-      minutes: '/10'
+      minutes: '/5'
 
   condition:
     - condition: state
@@ -419,9 +383,9 @@
         default_font: true
         icon_name: weather_{{ states("weather.REDACTED") |regex_replace(find='-', replace='_', ignorecase=False) }}
         lifetime: 1
-        screen_time: 30
+        screen_time: 60
         text: >-
-          {{ states("sensor.REDACTED_temperature") }}°f
+          {{ states("sensor.REDACTED_temperature") }}°
         r: 255
         g: 255
         b: 255
@@ -452,7 +416,7 @@
         default_font: true
         icon_name: donotdisturb
         lifetime: 480
-        screen_time: 30
+        screen_time: 60
         text: Do Not Disturb
         r: 0
         g: 255
@@ -521,7 +485,7 @@
         default_font: true
         icon_name: house
         lifetime: 2
-        screen_time: 30
+        screen_time: 60
         text: USER2 Home
 
         #################################################################
@@ -551,7 +515,7 @@
         default_font: true
         icon_name: cars
         lifetime: 2
-        screen_time: 30
+        screen_time: 60
         text: >-
           USER2 ETA: {{states('sensor.USER2_to_home')}} mins
         r: 255
@@ -589,7 +553,7 @@
         default_font: true
         icon_name: washerdone
         lifetime: 2
-        screen_time: 30
+        screen_time: 60
         text: Washer Finished
         r: 0
         g: 174
@@ -626,7 +590,7 @@
         default_font: true
         icon_name: dryerdone
         lifetime: 2
-        screen_time: 30
+        screen_time: 60
         text: Dryer Finished
         r: 255
         g: 0
@@ -700,8 +664,123 @@
         default_font: true
         icon_name: echotimerdone
         lifetime: 1
-        screen_time: 30
+        screen_time: 60
         text: Timer Finished
         r: 0
         g: 153
         b: 204
+
+        ##########################################################
+        ## Door Open USER1's Desktop Clock
+        ##########################################################
+
+- alias: Desktop Clock - USER1's Office Door Open
+  id: 'desktop_clock_USER1_office_door_open'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_opened
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.back_door_opened
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.basement_door_opened
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: switch.USER1s_office_desktop_clock_display
+      state: 'on'
+
+  action:
+    - service: esphome.USER1_office_desktop_clock_icon_screen
+      data:
+        default_font: true
+        icon_name: door
+        lifetime: 1
+        screen_time: 60
+        text: "{{ trigger.to_state.attributes.friendly_name }} Opened"
+        r: 0
+        g: 0
+        b: 255
+
+        ##########################################################
+        ## Garage Door Open USER1's Desktop Clock
+        ##########################################################
+
+- alias: Desktop Clock - USER1's Office Garage Door Open
+  id: 'desktop_clock_USER1_office_garage_door_open'
+
+  trigger:
+    - platform: state
+      entity_id: cover.garage_door
+      from: 'closed'
+      to: 'open'
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: switch.USER1s_office_desktop_clock_display
+      state: 'on'
+
+  action:
+    - service: esphome.USER1_office_desktop_clock_del_screen
+      data:
+        icon_name: garage*
+        mode: 5
+    - service: esphome.USER1_office_desktop_clock_icon_screen
+      data:
+        default_font: true
+        icon_name: garageopen
+        lifetime: 1
+        screen_time: 60
+        text: "Garage Open"
+        r: 255
+        g: 0
+        b: 0
+
+        ##########################################################
+        ## Garage Door Closed USER1's Desktop Clock
+        ##########################################################
+
+- alias: Desktop Clock - USER1's Office Garage Door Closed
+  id: 'desktop_clock_USER1_office_garage_door_closed'
+
+  trigger:
+    - platform: state
+      entity_id: cover.garage_door
+      from: 'closed'
+      to: 'open'
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: switch.USER1s_office_desktop_clock_display
+      state: 'on'
+
+  action:
+    - service: esphome.USER1_office_desktop_clock_del_screen
+      data:
+        icon_name: garage*
+        mode: 5
+    - service: esphome.USER1_office_desktop_clock_icon_screen
+      data:
+        default_font: true
+        icon_name: garageclose
+        lifetime: 1
+        screen_time: 60
+        text: "Garage Closed"
+        r: 0
+        g: 255
+        b: 0

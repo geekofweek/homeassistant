@@ -90,16 +90,16 @@ esp32:
   board: esp32dev
 
 font:
-  - file: desktop_clock/fonts/EHMTXv2.ttf
-    size: 16
+  - file: desktop_clock/fonts/MatrixClock-Light8.bdf
     id: default_font
+    #size: 16
     glyphs:  |
-      !?"%()+*=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnÖÄÜöäüopqrstuvwxyz@<>ß§$€/
-  - file: desktop_clock/fonts/DMDSmall.ttf
-    size: 17
+      ! "#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz°
+  - file: desktop_clock/fonts/MatrixClock-Chunky6.bdf
     id: special_font
+    #size: 17
     glyphs:  |
-      !?"%()+*=,-_.:°º0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnÖÄÜöäüopqrstuvwxyz@<>ß§€$/
+      ! "#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz°
 
 binary_sensor:
   - platform: status
@@ -257,10 +257,10 @@ ehmtxv2:
   id: rgb8x32                         #(required, ID): Manually specify the ID used for code generation and in service definitions.
   date_format: "%m.%d"                #(optional, string): formats the date display with strftime syntax, defaults "%d.%m." (use "%m.%d." for the US)
   show_seconds: false                 #(optional, boolean): toggle an indicator for seconds while the clock is displayed (default: false)
-  time_format: "%I:%M"                #(optional, string): formats the date display with strftime syntax, defaults "%H:%M" (use "%I:%M%p" for the US)
-  default_font_yoffset: 6             #(optional, pixel): yoffset the text is aligned BASELINE_LEFT, the baseline defaults to 6
+  time_format: "%I:%M"             #(optional, string): formats the date display with strftime syntax, defaults "%H:%M" (use "%I:%M%p" for the US)
+  default_font_yoffset: 8             #(optional, pixel): yoffset the text is aligned BASELINE_LEFT, the baseline defaults to 6
   default_font_xoffset: 1             #(optional, pixel): xoffset the text is aligned BASELINE_LEFT, the left defaults to 1
-  special_font_yoffset: 8             #(optional, pixel): yoffset the text is aligned BASELINE_LEFT, the baseline defaults to 6
+  special_font_yoffset: 7             #(optional, pixel): yoffset the text is aligned BASELINE_LEFT, the baseline defaults to 6
   special_font_xoffset: 1             #(optional, pixel): xoffset the text is aligned BASELINE_LEFT, the left defaults to 1
   rtl: false                          #(optional, boolean): if true write text (but only the scroll direction, the words and numbers aren't changed!) from right to left (Arabic, Hebrew etc.). Default is false
   matrix_component: ehmtx_display     #(required, ID): ID of the addressable display
@@ -270,7 +270,7 @@ ehmtxv2:
   default_font_id: default_font       #(required, ID): ID of the default font
   special_font_id: special_font       #(required, ID): ID of the special font, you can reuse your default font, but occasionally, it's nice to have a special font to minimize scrolling
   week_start_monday: false            #(optional, bool): default Monday is first day of week, false => Sunday
-  default_clock_font: true            #(optional, boolean): If true, use the default font for clock and date otherwise use the special font. (default = true)
+  default_clock_font: false           #(optional, boolean): If true, use the default font for clock and date otherwise use the special font. (default = true)
   scroll_interval: 80                 #(optional, ms): the interval in ms to scroll the text (default=80), should be a multiple of the update_interval of the display
   clock_interval: 90                  #(optional, s): the interval in seconds to force the clock display. By default, the clock screen, if any, will be displayed according to the position in the queue. If you set the clock_interval close to the screen_time of the clock, you will only see the clock! (default=0)
   icons2html: true                    #(optional, boolean): If true, generate the HTML-file (filename.html) to show all included icons.  (default = false)
@@ -315,6 +315,12 @@ ehmtxv2:
       file: desktop_clock/icons/echotimer.gif
     - id: echotimerdone
       file: desktop_clock/icons/echotimerdone.gif
+    - id: door
+      file: desktop_clock/icons/door.gif
+    - id: garageopen
+      file: desktop_clock/icons/garageopen.gif
+    - id: garageclose
+      file: desktop_clock/icons/garageclose.gif
     - id: weather_clear_night
       lameid: 13345
     - id: weather_cloudy
