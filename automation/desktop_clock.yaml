@@ -6,9 +6,9 @@
   ## USER1's Office
   ##########################################################
 
-        ##########################################################
-        ## Turn On USER1 Office Desktop Clock when Motion Detected
-        ##########################################################
+      ##########################################################
+      ## Turn On USER1 Office Desktop Clock when Motion Detected
+      ##########################################################
 
 - alias: Desktop Clock - Turn On USER1's Office when Motion Detected
   id: 'desktop_clock_turn_on_USER1_office_when_motion_detected'
@@ -27,20 +27,20 @@
       entity_id: group.household
       state: 'home'
     - condition: state
-      entity_id: switch.USER1s_office_desktop_clock_display
+      entity_id: light.USER1s_office_desktop_clock
       state: 'off'
     - condition: state
       entity_id: person.USER1
       state: 'home'
 
   action:
-    - service: switch.turn_on
+    - service: light.turn_on
       entity_id:
-        - switch.USER1s_office_desktop_clock_display
+        - light.USER1s_office_desktop_clock
 
-        ##########################################################
-        ## Turn Off USER1 Office Desktop Clock when No Motion Detected
-        ##########################################################
+      ##########################################################
+      ## Turn Off USER1 Office Desktop Clock when No Motion Detected
+      ##########################################################
 
 - alias: Desktop Clock - Turn Off USER1's Office when No Motion Detected
   id: 'desktop_clock_turn_off_USER1_office_when_no_motion_detected'
@@ -63,23 +63,83 @@
       entity_id: group.household
       state: 'home'
     - condition: state
-      entity_id: switch.USER1s_office_desktop_clock_display
+      entity_id: light.USER1s_office_desktop_clock
       state: 'on'
     - condition: state
       entity_id: person.USER1
       state: 'home'
 
   action:
-    - service: switch.turn_off
+    - service: light.turn_off
       entity_id:
-        - switch.USER1s_office_desktop_clock_display
+        - light.USER1s_office_desktop_clock
 
-        ##########################################################
-        ## MK3 3D Print Progress USER1's Office Dekstop Clock
-        ##########################################################
+      ##########################################################
+      ## USER1's Office Desktop Clock Weather
+      ##########################################################
 
-- alias: Desktop Clock - MK3 3D Print Progress USER1's Office
-  id: 'desktop_clock_mk3_3dprint_progress_USER1_office'
+- alias: Desktop Clock - USER1's Office Desktop Clock Weather
+  id: 'desktop_clock_USER1_office_weather'
+
+  trigger:
+    - platform: time_pattern
+      minutes: '/15'
+
+  condition:
+    - condition: state
+      entity_id: light.USER1s_office_desktop_clock
+      state: 'on'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/weather
+        payload: >-
+          { 
+          "icon": "weather_{{ states("weather.REDACTED") |regex_replace(find='-', replace='_', ignorecase=False) }}",
+          "pushIcon": 2,
+          "text": "{{ states("weather.REDACTED") }}"
+          }
+
+      ##########################################################
+      ## USER1's Office Desktop Clock Temperature
+      ##########################################################
+
+- alias: Desktop Clock - USER1's Office Temperature
+  id: 'desktop_clock_USER1_office_temperature'
+
+  trigger:
+    - platform: time_pattern
+      minutes: '/15'
+
+  condition:
+    - condition: state
+      entity_id: light.USER1s_office_desktop_clock
+      state: 'on'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/temperature
+        payload: >-
+          { 
+          "icon": "temp",
+          "pushIcon": 0,
+          "text": "{{ states("sensor.REDACTED_temperature") }}°F"
+          }
+
+      ##########################################################
+      ## MK3 3D Print Progress USER1's Office Dekstop Clock
+      ##########################################################
+
+- alias: Desktop Clock - USER1's Office MK3 3D Print Progress
+  id: 'desktop_clock_USER1_office_mk3_3dprint_progress'
 
   trigger:
     - platform: state
@@ -87,7 +147,7 @@
   
   condition:
     - condition: state
-      entity_id: switch.USER1s_office_desktop_clock_display
+      entity_id: light.USER1s_office_desktop_clock
       state: 'on'
     - condition: state
       entity_id: person.USER1
@@ -97,30 +157,23 @@
       state: 'Printing'
 
   action:
-    - service: esphome.USER1_office_desktop_clock_del_screen
+    - service: mqtt.publish
       data:
-        icon_name: mk3print3dprogress
-        mode: 5
-    - service: esphome.USER1_office_desktop_clock_icon_screen
-      data:
-        default_font: true
-        icon_name: mk3print3dprogress
-        lifetime: 1
-        screen_time: 60
-        text: >-
-          MK3 Print {{ states("sensor.prusa_mk3_progress") }}%
-        r: 255
-        g: 165
-        b: 0
-    - delay:
-        minutes: 5
+        topic: USER1_office_clock/custom/mk3_progress
+        payload: >-
+          { 
+          "icon": "3d_print",
+          "pushIcon": 2,
+          "color": [255,165,0],
+          "text": "MK3 Print {{ states("sensor.prusa_mk3_progress") }}% Complete"
+          }
 
-        ##########################################################
-        ## MK3 3D Print Time Remaining USER1's Office Dekstop Clock
-        ##########################################################
+      ##########################################################
+      ## MK3 3D Print Time Remaining USER1's Office Dekstop Clock
+      ##########################################################
 
-- alias: Desktop Clock - MK3 3D Print Time Remaining USER1's Office
-  id: 'desktop_clock_mk3_3dprint_print_time_remain_USER1_office'
+- alias: Desktop Clock - USER1's Office MK3 3D Print Time Remaining
+  id: 'desktop_clock_USER1_office_mk3_3dprint_print_time_remain'
 
   trigger:
     - platform: state
@@ -128,7 +181,7 @@
   
   condition:
     - condition: state
-      entity_id: switch.USER1s_office_desktop_clock_display
+      entity_id: light.USER1s_office_desktop_clock
       state: 'on'
     - condition: state
       entity_id: person.USER1
@@ -138,30 +191,23 @@
       state: 'Printing'
 
   action:
-    - service: esphome.USER1_office_desktop_clock_del_screen
+    - service: mqtt.publish
       data:
-        icon_name: mk3print3dcomplete
-        mode: 5
-    - service: esphome.USER1_office_desktop_clock_icon_screen
-      data:
-        default_font: true
-        icon_name: mk3print3dcomplete
-        lifetime: 1
-        screen_time: 60
-        text: >-
-          MK3 Print {{ states("sensor.prusa_mk3_print_finish") }} Remaining
-        r: 255
-        g: 165
-        b: 0
-    - delay:
-        minutes: 15
+        topic: USER1_office_clock/custom/mk3_time_remaining
+        payload: >-
+          { 
+          "icon": "clock",
+          "pushIcon": 2,
+          "color": [255,165,0],
+          "text": "MK3 Print {{ states("sensor.prusa_mk3_print_finish") }} Remaining"
+          }
 
-        ##########################################################
-        ## Mini 3D Print Progress USER1's Office Dekstop Clock
-        ##########################################################
+       ##########################################################
+       ## Mini 3D Print Progress USER1's Office Dekstop Clock
+       ##########################################################
 
-- alias: Desktop Clock - Mini 3D Progress Status USER1's Office
-  id: 'desktop_clock_mini_3dprint_progress_USER1_office'
+- alias: Desktop Clock - USER1's Office Mini 3D Progress Status
+  id: 'desktop_clock_USER1_office_mini_3dprint_progress'
   
   trigger:
     - platform: state
@@ -169,7 +215,7 @@
   
   condition:
     - condition: state
-      entity_id: switch.USER1s_office_desktop_clock_display
+      entity_id: light.USER1s_office_desktop_clock
       state: 'on'
     - condition: state
       entity_id: person.USER1
@@ -179,30 +225,23 @@
       state: 'printing'
 
   action:
-    - service: esphome.USER1_office_desktop_clock_del_screen
+    - service: mqtt.publish
       data:
-        icon_name: miniprint3dprogress
-        mode: 5
-    - service: esphome.USER1_office_desktop_clock_icon_screen
-      data:
-        default_font: true
-        icon_name: miniprint3dprogress
-        lifetime: 1
-        screen_time: 60
-        text: >-
-          MINI Print {{ states("sensor.prusamini_progress") }}%
-        r: 255
-        g: 165
-        b: 0
-    - delay:
-        minutes: 10
+        topic: USER1_office_clock/custom/mini_progress
+        payload: >-
+          { 
+          "icon": "3d_print",
+          "pushIcon": 2,
+          "color": [255,165,0],
+          "text": "MINI Print {{ states("sensor.prusamini_progress") }}% Complete"
+          }
 
-        ##########################################################
-        ## Mini 3D Print Time Remaining USER1's Office Dekstop Clock
-        ##########################################################
+      ##########################################################
+      ## Mini 3D Print Time Remaining USER1's Office Dekstop Clock
+      ##########################################################
 
-- alias: Desktop Clock - Mini 3D Print Time Remaining USER1's Office
-  id: 'desktop_clock_mini_3dprint_time_remain_USER1_office'
+- alias: Desktop Clock - USER1's Office Mini 3D Print Time Remaining
+  id: 'desktop_clock_USER1s_office_mini_3dprint_time_remain_USER1_office'
   
   trigger:
     - platform: state
@@ -210,7 +249,7 @@
   
   condition:
     - condition: state
-      entity_id: switch.USER1s_office_desktop_clock_display
+      entity_id: light.USER1s_office_desktop_clock
       state: 'on'
     - condition: state
       entity_id: person.USER1
@@ -220,30 +259,23 @@
       state: 'printing'
 
   action:
-    - service: esphome.USER1_office_desktop_clock_del_screen
+    - service: mqtt.publish
       data:
-        icon_name: miniprint3dcomplete
-        mode: 5
-    - service: esphome.USER1_office_desktop_clock_icon_screen
-      data:
-        default_font: true
-        icon_name: miniprint3dcomplete
-        lifetime: 1
-        screen_time: 60
-        text: >-
-          MINI Print {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusamini_print_finish')) - as_timestamp(now()))) }} Remaining
-        r: 255
-        g: 165
-        b: 0
-    - delay:
-        minutes: 6
+        topic: USER1_office_clock/custom/mini_progress
+        payload: >-
+          { 
+          "icon": "clock",
+          "pushIcon": 2,
+          "color": [255,165,0],
+          "text": "MINI Print {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusamini_print_finish')) - as_timestamp(now()))) }} Remaining"
+          }
 
-        ##########################################################
-        ## MK3 3D Print Complete USER1's Office Desktop Clock
-        ##########################################################
+      ##########################################################
+      ## MK3 3D Print Complete USER1's Office Desktop Clock
+      ##########################################################
 
-- alias: Desktop Clock - MK3 3D Print Complete USER1's Office
-  id: 'desktop_clock_mk3_3d_print_complete_USER1_office'
+- alias: Desktop Clock - USER1's Office MK3 3D Print Complete
+  id: 'desktop_clock_USER1_office_mk3_3d_print_complete'
 
   trigger:
     - platform: state
@@ -256,36 +288,30 @@
 
   condition:
     - condition: state
-      entity_id: switch.USER1s_office_desktop_clock_display
+      entity_id: light.USER1s_office_desktop_clock
       state: 'on'
     - condition: state
       entity_id: person.USER1
       state: 'home'
 
   action:
-    - service: esphome.USER1_office_desktop_clock_rainbow_icon_screen
+    - service: mqtt.publish
       data:
-        default_font: true
-        icon_name: mk3print3ddone
-        lifetime: 2
-        screen_time: 60
-        alarm: false
-        text: MK3 Print Complete
-    - service: esphome.USER1_office_desktop_clock_del_screen
-      data:
-        icon_name: mk3print3dprogress
-        mode: 5
-    - service: esphome.USER1_office_desktop_clock_del_screen
-      data:
-        icon_name: mk3print3dcomplete
-        mode: 5
+        topic: USER1_office_clock/custom/mk3_complete
+        payload: >-
+          { 
+          "icon": "3d_print_complete",
+          "pushIcon": 2,
+          "rainbow": true,
+          "text": "MK3 Print Complete"
+          }
 
-        ##########################################################
-        ## Mini 3D Print Complete USER1's Office Desktop Clock
-        ##########################################################
+      ##########################################################
+      ## Mini 3D Print Complete USER1's Office Desktop Clock
+      ##########################################################
 
-- alias: Desktop Clock - Mini 3D Print Complete USER1's Office
-  id: 'desktop_clock_mini_3d_print_complete_USER1_office'
+- alias: Desktop Clock - USER1's Office Mini 3D Print Complete
+  id: 'desktop_clock_USER1_office_mini_3d_print_complete'
 
   trigger:
     - platform: state
@@ -298,32 +324,28 @@
 
   condition:
     - condition: state
-      entity_id: switch.USER1s_office_desktop_clock_display
+      entity_id: light.USER1s_office_desktop_clock
       state: 'on'
     - condition: state
       entity_id: person.USER1
       state: 'home'
 
   action:
-    - service: esphome.USER1_office_desktop_clock_rainbow_icon_screen
+    - service: mqtt.publish
       data:
-        default_font: true
-        icon_name: miniprint3ddone
-        lifetime: 2
-        screen_time: 60
-        text: Mini Print Complete
-    - service: esphome.USER1_office_desktop_clock_del_screen
-      data:
-        icon_name: miniprint3dprogress
-        mode: 5
-    - service: esphome.USER1_office_desktop_clock_del_screen
-      data:
-        icon_name: miniprint3dcomplete
-        mode: 5
+        topic: USER1_office_clock/custom/mini_complete
+        payload: >-
+          { 
+          "icon": "3d_print_complete",
+          "pushIcon": 2,
+          "rainbow": true,
+          "text": "MINI Print Complete"
+          }
 
-        ##########################################################
-        ## Doorbell USER1's Office Desktop Clock
-        ##########################################################
+
+      ##########################################################
+      ## Doorbell USER1's Office Desktop Clock
+      ##########################################################
 
 - alias: Desktop Clock - Doorbell USER1's Office
   id: 'desktop_clock_doorbell_USER1_office'
@@ -336,63 +358,28 @@
 
   condition:
     - condition: state
-      entity_id: switch.USER1s_office_desktop_clock_display
+      entity_id: light.USER1s_office_desktop_clock
       state: 'on'
     - condition: state
       entity_id: person.USER1
       state: 'home'
 
   action:
-    - service: esphome.USER1_office_desktop_clock_icon_screen
+    - service: mqtt.publish
       data:
-        default_font: true
-        icon_name: doorbell
-        lifetime: 1
-        screen_time: 60
-        text: Someone is at the Door
-        r: 255
-        g: 255
-        b: 255
+        topic: USER1_office_clock/notify
+        payload: >-
+          { 
+          "icon": "doorbell",
+          "pushIcon": 0,
+          "duration": 30,
+          "textCase": 0,
+          "text": "Doorbell"
+          }
 
-        ##########################################################
-        ## Set USER1's Office Desktop Clock Weather Every 5 Mins
-        ##########################################################
-
-- alias: Desktop Clock - Weather Status Every 5 Mins
-  id: 'desktop_clock_weather_status_every_5_mins'
-
-  trigger:
-    - platform: time_pattern
-      minutes: '/5'
-
-  condition:
-    - condition: state
-      entity_id: switch.USER1s_office_desktop_clock_display
-      state: 'on'
-    - condition: state
-      entity_id: person.USER1
-      state: 'home'
-
-  action:
-    - service: esphome.USER1_office_desktop_clock_del_screen
-      data:
-        icon_name: weather_*
-        mode: 5
-    - service: esphome.USER1_office_desktop_clock_icon_screen
-      data:
-        default_font: true
-        icon_name: weather_{{ states("weather.REDACTED") |regex_replace(find='-', replace='_', ignorecase=False) }}
-        lifetime: 1
-        screen_time: 60
-        text: >-
-          {{ states("sensor.REDACTED_temperature") }}°
-        r: 255
-        g: 255
-        b: 255
-
-        ##########################################################
-        ## Do Not Disturb On USER1's Office Desktop Clock
-        ##########################################################
+      ##########################################################
+      ## Do Not Disturb On USER1's Office Desktop Clock
+      ##########################################################
 
 - alias: Desktop Clock - USER1 Office Do Not Disturb On
   id: 'desktop_clock_USER1_office_do_not_disturb_on'
@@ -404,27 +391,30 @@
 
   condition:
     - condition: state
-      entity_id: switch.USER1s_office_desktop_clock_display
+      entity_id: light.USER1s_office_desktop_clock
       state: 'on'
     - condition: state
       entity_id: person.USER1
       state: 'home'
 
   action:
-    - service: esphome.USER1_office_desktop_clock_icon_screen
+    - service: mqtt.publish
       data:
-        default_font: true
-        icon_name: donotdisturb
-        lifetime: 480
-        screen_time: 60
-        text: Do Not Disturb
-        r: 0
-        g: 255
-        b: 0
+        topic: USER1_office_clock/custom/do_not_disturb
+        payload: >-
+          { 
+          "icon": "exclamation",
+          "pushIcon": 0,
+          "background": [255,0,0],
+          "color": [255,255,255],
+          "duration": 60,
+          "stack": false,
+          "text": "Do Not Disturb"
+          }
 
-        ##########################################################
-        ## Do Not Disturb Off USER1's Office Desktop Clock
-        ##########################################################
+      ##########################################################
+      ## Do Not Disturb Off USER1's Office Desktop Clock
+      ##########################################################
 
 - alias: Desktop Clock - USER1 Office Do Not Disturb Off
   id: 'desktop_clock_USER1_office_do_not_disturb_off'
@@ -436,24 +426,57 @@
 
   condition:
     - condition: state
-      entity_id: switch.USER1s_office_desktop_clock_display
+      entity_id: light.USER1s_office_desktop_clock
       state: 'on'
     - condition: state
       entity_id: person.USER1
       state: 'home'
 
   action:
-    - service: esphome.USER1_office_desktop_clock_del_screen
+    - service: mqtt.publish
       data:
-        icon_name: donotdisturb
-        mode: 5
+        topic: USER1_office_clock/custom/do_not_disturb
 
-        ##########################################################
-        ## USER2 is Home USER1's Office Desktop Clock
-        ##########################################################
+        #################################################################
+        ## USER2 Left Work USER1's Office Desktop Clock
+        #################################################################
+
+- alias: Desktop Clock - USER1's Office USER2 Left
+  id: 'desktop_clock_USER1_office_USER2_left_work'
+
+  trigger:
+    - platform: state
+      entity_id: person.USER2
+      from: 'Work'
+      to: 'not_home'
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: light.USER1s_office_desktop_clock
+      state: 'on'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/notify
+        payload: >-
+          { 
+          "icon": "cars",
+          "pushIcon": 0,
+          "duration": 60,
+          "textCase": 0,
+          "text": "USER2 ETA: {{states('sensor.USER2_to_home')}} mins"
+          }
+
+      ##########################################################
+      ## USER2 is Home USER1's Office Desktop Clock
+      ##########################################################
 
 - alias: Desktop Clock - USER1's Office USER2 is Home
-  id: 'desktop_clock_USER2_is_home'
+  id: 'desktop_clock_USER1_office_USER2_is_home'
 
   trigger:
     - platform: state
@@ -475,56 +498,27 @@
       entity_id: input_boolean.USER2_greeting
       state: 'on'
     - condition: state
-      entity_id: switch.USER1s_office_desktop_clock_display
+      entity_id: light.USER1s_office_desktop_clock
       state: 'on'
 
   action:
     - delay: '00:00:30'
-    - service: esphome.USER1_office_desktop_clock_rainbow_icon_screen
+    - service: mqtt.publish
       data:
-        default_font: true
-        icon_name: house
-        lifetime: 2
-        screen_time: 60
-        text: USER2 Home
+        topic: USER1_office_clock/notify
+        payload: >-
+          { 
+          "icon": "house",
+          "pushIcon": 0,
+          "duration": 30,
+          "textCase": 0,
+          "rainbow": true,
+          "text": "USER2 Home"
+          }
 
-        #################################################################
-        ## USER2 Left Work USER1's Office Desktop Clock
-        #################################################################
-
-- alias: Desktop Clock - USER1's Office USER2 Left
-  id: 'desktop_clock_USER1_office_USER2_left_work'
-
-  trigger:
-    - platform: state
-      entity_id: person.USER2
-      from: 'Work'
-      to: 'not_home'
-
-  condition:
-    - condition: state
-      entity_id: person.USER1
-      state: 'home'
-    - condition: state
-      entity_id: switch.USER1s_office_desktop_clock_display
-      state: 'on'
-
-  action:
-    - service: esphome.USER1_office_desktop_clock_icon_screen
-      data:
-        default_font: true
-        icon_name: cars
-        lifetime: 2
-        screen_time: 60
-        text: >-
-          USER2 ETA: {{states('sensor.USER2_to_home')}} mins
-        r: 255
-        g: 255
-        b: 255
-
-        ##########################################################
-        ## Washing Machine Done USER1's Office Desktop Clock
-        ##########################################################
+      ##########################################################
+      ## Washing Machine Done USER1's Office Desktop Clock
+      ##########################################################
 
 - alias: Desktop Clock - USER1's Office Washing Machine Done
   id: 'desktop_clock_USER1_office_washing_machine_done'
@@ -544,24 +538,26 @@
       entity_id: person.USER1
       state: 'home'
     - condition: state
-      entity_id: switch.USER1s_office_desktop_clock_display
+      entity_id: light.USER1s_office_desktop_clock
       state: 'on'
 
   action:
-    - service: esphome.USER1_office_desktop_clock_icon_screen
+    - service: mqtt.publish
       data:
-        default_font: true
-        icon_name: washerdone
-        lifetime: 2
-        screen_time: 60
-        text: Washer Finished
-        r: 0
-        g: 174
-        b: 255
+        topic: USER1_office_clock/notify
+        payload: >-
+          { 
+          "icon": "washer",
+          "pushIcon": 0,
+          "duration": 60,
+          "textCase": 0,
+          "color": [0,174,255],
+          "text": "Washer Finished"
+          }
 
-        ##########################################################
-        ## Dryer Done USER1's Office Desktop Clock
-        ##########################################################
+      ##########################################################
+      ## Dryer Done USER1's Office Desktop Clock
+      ##########################################################
 
 - alias: Desktop Clock - USER1's Office Dryer Done
   id: 'desktop_clock_USER1_office_dryer_done'
@@ -581,24 +577,26 @@
       entity_id: person.USER1
       state: 'home'
     - condition: state
-      entity_id: switch.USER1s_office_desktop_clock_display
+      entity_id: light.USER1s_office_desktop_clock
       state: 'on'
 
   action:
-    - service: esphome.USER1_office_desktop_clock_icon_screen
+    - service: mqtt.publish
       data:
-        default_font: true
-        icon_name: dryerdone
-        lifetime: 2
-        screen_time: 60
-        text: Dryer Finished
-        r: 255
-        g: 0
-        b: 25
+        topic: USER1_office_clock/notify
+        payload: >-
+          { 
+          "icon": "dryer",
+          "pushIcon": 0,
+          "duration": 60,
+          "textCase": 0,
+          "color": [255,0,0],
+          "text": "Dryer Finished"
+          }
 
-        ##########################################################
-        ## Echo Timer Done USER1's Office Desktop Clock
-        ##########################################################
+      ##########################################################
+      ## Echo Timer Done USER1's Office Desktop Clock
+      ##########################################################
 
 - alias: Desktop Clock - USER1's Office Echo Timer Done
   id: 'desktop_clock_USER1_office_echo_timer_done'
@@ -655,24 +653,26 @@
       entity_id: person.USER1
       state: 'home'
     - condition: state
-      entity_id: switch.USER1s_office_desktop_clock_display
+      entity_id: light.USER1s_office_desktop_clock
       state: 'on'
 
   action:
-    - service: esphome.USER1_office_desktop_clock_icon_screen
+    - service: mqtt.publish
       data:
-        default_font: true
-        icon_name: echotimerdone
-        lifetime: 1
-        screen_time: 60
-        text: Timer Finished
-        r: 0
-        g: 153
-        b: 204
+        topic: USER1_office_clock/notify
+        payload: >-
+          { 
+          "icon": "timer",
+          "pushIcon": 0,
+          "duration": 60,
+          "textCase": 0,
+          "rainbow": true,
+          "text": "Echo Timer Finished"
+          }
 
-        ##########################################################
-        ## Door Open USER1's Desktop Clock
-        ##########################################################
+      ##########################################################
+      ## Door Open USER1's Desktop Clock
+      ##########################################################
 
 - alias: Desktop Clock - USER1's Office Door Open
   id: 'desktop_clock_USER1_office_door_open'
@@ -696,24 +696,26 @@
       entity_id: person.USER1
       state: 'home'
     - condition: state
-      entity_id: switch.USER1s_office_desktop_clock_display
+      entity_id: light.USER1s_office_desktop_clock
       state: 'on'
 
   action:
-    - service: esphome.USER1_office_desktop_clock_icon_screen
+    - service: mqtt.publish
       data:
-        default_font: true
-        icon_name: door
-        lifetime: 1
-        screen_time: 60
-        text: "{{ trigger.to_state.attributes.friendly_name }} Opened"
-        r: 0
-        g: 0
-        b: 255
+        topic: USER1_office_clock/notify
+        payload: >-
+          { 
+          "icon": "door",
+          "pushIcon": 0,
+          "duration": 15,
+          "textCase": 0,
+          "color": [255,0,0],
+          "text": "{{ trigger.to_state.attributes.friendly_name }} Opened"
+          }
 
-        ##########################################################
-        ## Garage Door Open USER1's Desktop Clock
-        ##########################################################
+      ##########################################################
+      ## Garage Door Open USER1's Desktop Clock
+      ##########################################################
 
 - alias: Desktop Clock - USER1's Office Garage Door Open
   id: 'desktop_clock_USER1_office_garage_door_open'
@@ -729,28 +731,26 @@
       entity_id: person.USER1
       state: 'home'
     - condition: state
-      entity_id: switch.USER1s_office_desktop_clock_display
+      entity_id: light.USER1s_office_desktop_clock
       state: 'on'
 
   action:
-    - service: esphome.USER1_office_desktop_clock_del_screen
+    - service: mqtt.publish
       data:
-        icon_name: garage*
-        mode: 5
-    - service: esphome.USER1_office_desktop_clock_icon_screen
-      data:
-        default_font: true
-        icon_name: garageopen
-        lifetime: 1
-        screen_time: 60
-        text: "Garage Open"
-        r: 255
-        g: 0
-        b: 0
+        topic: USER1_office_clock/notify
+        payload: >-
+          { 
+          "icon": "garage_open",
+          "pushIcon": 0,
+          "duration": 30,
+          "textCase": 0,
+          "color": [255,0,0],
+          "text": "Garage Open"
+          }
 
-        ##########################################################
-        ## Garage Door Closed USER1's Desktop Clock
-        ##########################################################
+      ##########################################################
+      ## Garage Door Closed USER1's Desktop Clock
+      ##########################################################
 
 - alias: Desktop Clock - USER1's Office Garage Door Closed
   id: 'desktop_clock_USER1_office_garage_door_closed'
@@ -758,29 +758,27 @@
   trigger:
     - platform: state
       entity_id: cover.garage_door
-      from: 'closed'
-      to: 'open'
+      from: 'open'
+      to: 'closed'
 
   condition:
     - condition: state
       entity_id: person.USER1
       state: 'home'
     - condition: state
-      entity_id: switch.USER1s_office_desktop_clock_display
+      entity_id: light.USER1s_office_desktop_clock
       state: 'on'
 
   action:
-    - service: esphome.USER1_office_desktop_clock_del_screen
+    - service: mqtt.publish
       data:
-        icon_name: garage*
-        mode: 5
-    - service: esphome.USER1_office_desktop_clock_icon_screen
-      data:
-        default_font: true
-        icon_name: garageclose
-        lifetime: 1
-        screen_time: 60
-        text: "Garage Closed"
-        r: 0
-        g: 255
-        b: 0
+        topic: USER1_office_clock/notify
+        payload: >-
+          { 
+          "icon": "garage_close",
+          "pushIcon": 0,
+          "duration": 30,
+          "textCase": 0,
+          "color": [0,255,0],
+          "text": "Garage Closed"
+          }
