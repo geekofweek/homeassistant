@@ -1,6 +1,6 @@
 [![GitHub stars](https://img.shields.io/github/stars/geekofweek/homeassistant.svg?style=plasticr)](https://github.com/geekofweek/homeassistant/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/geekofweek/homeassistant.svg?style=plasticr)](https://github.com/geekofweek/homeassistant/commits/master)
-[![HA Version](https://img.shields.io/badge/Running%20Home%20Assistant-2023.6.0%20-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
+[![HA Version](https://img.shields.io/badge/Running%20Home%20Assistant-2023.6.1%20-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
 [![HA Version](https://img.shields.io/badge/Original%20Home%20Assistant-0.14%20-darkblue)](https://github.com/home-assistant/core/releases/0.14)
 [![HA Community](https://img.shields.io/badge/HA%20community-forum-orange)](https://community.home-assistant.io/u/geekoftheweek/summary)
 
@@ -269,7 +269,7 @@ Since I don’t use the network equipment as my primary presence detection metho
 | [Prusa Mini+](https://shop.prusa3d.com/en/3d-printers/994-original-prusa-mini.html) | 1 | Ethernet | [PrusaLink](https://www.home-assistant.io/integrations/prusalink/)| 3D Printer connected to Home Assitant via PrusaLink.  Because if you're going to make useless non-sense, might as well double down. |
 | [HP OfficeJet Pro 8025](https://amzn.to/3bRP3vv) | 1 | Wi-Fi | [Internet Printing Protocol (IPP)](https://www.home-assistant.io/integrations/ipp/)| Regualr inkjet printer that works whenever it feels like because it's a printer. |
 | [APC 1500VA Back-Up UPS](https://amzn.to/2LopbsD) | 2 | USB / Ethernet | [NUT Sensor](https://www.home-assistant.io/components/sensor.nut/)| Primary Uninterruptible Power Supply (UPS). Connected via the NUT component utlizing to a Linux NUT server |
-| [Ulanzi Awtrix Smart Pixel Clock](https://www.amazon.com/dp/B0BS8Q9749/ref=cm_sw_r_as_gl_api_gl_i_ZK74G02XHDKXS01RH3VE?linkCode=ml1&tag=homeassistant-20) | 1 | Wi-Fi | [ESPHome](https://www.home-assistant.io/integrations/esphome/)| 8x32 RGB LED panel used to display time and various notifications / status.  Using the [EspHoMaTriX](https://github.com/lubeda/EsphoMaTrix) project to integrate with ESPHome and Home Assistant.  It also looks super cool. |
+| [Ulanzi Awtrix Smart Pixel Clock](https://www.amazon.com/dp/B0BS8Q9749/ref=cm_sw_r_as_gl_api_gl_i_ZK74G02XHDKXS01RH3VE?linkCode=ml1&tag=homeassistant-20) | 3 | Wi-Fi | [ESPHome](https://www.home-assistant.io/integrations/esphome/)| 8x32 RGB LED panel used to display time and various notifications / status.  Using the [EspHoMaTriXv2](https://github.com/lubeda/EspHoMaTriXv2) project to integrate with ESPHome and Home Assistant.  It also looks super cool. [ESPHome config can be found here](https://github.com/geekofweek/homeassistant/blob/master/esphome/EHMTXv2/desktop_clock.yaml)|
 
 ## <a name="software">Software</a>
 
