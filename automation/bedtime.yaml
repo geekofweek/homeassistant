@@ -257,6 +257,8 @@
     - service: light.turn_off
       entity_id:
         - light.interior_lights
+        - light.USER1s_office_desktop_clock
+        - light.living_room_clock
     - service: light.turn_off
       entity_id:
         - light.backyard_deck
@@ -369,6 +371,10 @@
       data:
         entity_id: climate.main_floor
         preset_mode: 'smart3'
+    - service: light.turn_off
+      entity_id:
+        - light.USER1s_office_desktop_clock
+        - light.living_room_clock
 
         ##########################################################
         ## Bedtime Thermostat

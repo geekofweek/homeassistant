@@ -474,16 +474,6 @@
         {{ states('sensor.kitchen_echo_show_next_timer') != "unknown" }}
 
        ##########################################################
-       ## Living Room Echo Timer
-       ##########################################################
-
-  - binary_sensor:
-    - unique_id: living_room_echo_timer
-      name: "Living Room Timer"
-      state: >-
-        {{ states('sensor.living_room_echo_next_timer') != "unknown" }}
-
-       ##########################################################
        ## USER2's Office Echo Timer
        ##########################################################
 
