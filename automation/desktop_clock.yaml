@@ -3,6 +3,155 @@
 #################################################################
 
   ##########################################################
+  ## General
+  ##########################################################
+
+        ##########################################################
+        ## Bedtime 
+        ##########################################################
+
+- alias: Desktop Clock - Bedtime
+  id: 'desktop_clock_bedtime'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.USER1s_office_desktop_clock
+        - light.living_room_clock
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/weather
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/temperature
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mk3_progress
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mk3_time_remaining
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mini_progress
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mini_time_remaining
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/party_time
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/weather
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/temperature
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/custom/music_song
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/custom/music_album
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/washer
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/dryer
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/party_time
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/tv_state
+
+        ##########################################################
+        ## Household Away Mode Desktop Clock
+        ##########################################################
+
+- alias: Desktop Clock - Household Away Mode
+  id: 'desktop_clock_household_away_mode'
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.USER1s_office_desktop_clock
+        - light.living_room_clock
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/weather
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/temperature
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mk3_progress
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mk3_time_remaining
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mini_progress
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mini_time_remaining
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/party_time
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/weather
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/temperature
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/custom/music_song
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/custom/music_album
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/washer
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/dryer
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/party_time
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/tv_state
+
+  ##########################################################
   ## USER1's Office
   ##########################################################
 
@@ -105,6 +254,8 @@
   trigger:
     - platform: time_pattern
       minutes: '/15'
+    - platform: state
+      entity_id: weather.REDACTED
 
   condition:
     - condition: state
@@ -135,6 +286,8 @@
   trigger:
     - platform: time_pattern
       minutes: '/15'
+    - platform: state
+      entity_id: sensor.REDACTED_temperature
 
   condition:
     - condition: state
@@ -817,7 +970,7 @@
       ##########################################################
 
 - alias: Desktop Clock - USER1's Office Media Title
-  id: 'desktop_clock_living_room_media_title'
+  id: 'desktop_clock_USER1_office_media_title'
 
   trigger:
     - platform: state
@@ -1178,7 +1331,7 @@
               "t": "Christmas",
               "c": "00FF00"
             }
-          ],
+          ]
           }
 
       ##########################################################
@@ -1219,7 +1372,7 @@
               "t": "Halloween",
               "c": "A020F0"
             }
-          ],
+          ]
           }
 
       ##########################################################
@@ -1264,7 +1417,7 @@
               "t": "Day",
               "c": "0000FF"
             }
-          ],
+          ]
           }
 
       ##########################################################
@@ -1545,6 +1698,8 @@
   trigger:
     - platform: time_pattern
       minutes: '/15'
+    - platform: state
+      entity_id: weather.REDACTED
 
   condition:
     - condition: state
@@ -1575,6 +1730,8 @@
   trigger:
     - platform: time_pattern
       minutes: '/15'
+    - platform: state
+      entity_id: sensor.REDACTED_temperature
 
   condition:
     - condition: state
@@ -2220,7 +2377,7 @@
   trigger:
     - platform: state
       entity_id: select.living_room_tv_activities
-      to: 'Play Nintendo Switch'
+      to: "Play Nintendo Switch"
 
   condition:
     - condition: state
@@ -2240,7 +2397,6 @@
           "pushIcon": 0,
           "duration": 30,
           "textCase": 0,
-          "color": [255,0,0],
           "stack": false,
           "text": [
             {
@@ -2251,7 +2407,7 @@
               "t": "Switch",
               "c": "FFFFFF"
             }
-          ],
+          ]
           }
     - service: mqtt.publish
       data:
@@ -2262,7 +2418,6 @@
           "pushIcon": 0,
           "duration": 15,
           "textCase": 0,
-          "color": [255,0,0],
           "text": [
             {
               "t": "Nintendo ",
@@ -2272,7 +2427,7 @@
               "t": "Switch",
               "c": "FFFFFF"
             }
-          ],
+          ]
           }
 
       ##########################################################
@@ -2779,7 +2934,7 @@
               "t": "Christmas",
               "c": "00FF00"
             }
-          ],
+          ]
           }
 
       ##########################################################
@@ -2820,7 +2975,7 @@
               "t": "Halloween",
               "c": "A020F0"
             }
-          ],
+          ]
           }
 
       ##########################################################
@@ -2865,7 +3020,7 @@
               "t": "Day",
               "c": "0000FF"
             }
-          ],
+          ]
           }
 
       ##########################################################
