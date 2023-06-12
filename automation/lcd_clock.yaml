@@ -1,0 +1,2602 @@
+#################################################################
+## LCD Clock Automations
+#################################################################
+
+  ##########################################################
+  ## Universal Device Control
+  ##########################################################
+
+        ##########################################################
+        ## Bedtime 
+        ##########################################################
+
+- alias: LCD Clock - Bedtime
+  id: 'lcd_clock_bedtime'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 6
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.USER1s_office_desktop_clock
+        - light.living_room_clock
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/party_time
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/custom/music_song
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/custom/music_album
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/custom/music_song
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/custom/music_album
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/party_time
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/tv_state
+
+        ##########################################################
+        ## Household Away Mode LCD Clock
+        ##########################################################
+
+- alias: LCD Clock - Household Away Mode
+  id: 'lcd_clock_household_away_mode'
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 6
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.USER1s_office_desktop_clock
+        - light.living_room_clock
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/party_time
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/custom/music_song
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/custom/music_album
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/custom/music_song
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/custom/music_album
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/party_time
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/tv_state
+
+  ##########################################################
+  ## Universal Apps
+  ##########################################################
+
+      ##########################################################
+      ## Weather App
+      ##########################################################
+
+- alias: LCD Clock - Weather App
+  id: 'lcd_clock_weather_app'
+
+  trigger:
+    - platform: time_pattern
+      minutes: '/30'
+    - platform: state
+      entity_id: weather.REDACTED
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/weather
+        payload: >-
+          { 
+          "icon": "weather_{{ states("weather.REDACTED") |regex_replace(find='-', replace='_', ignorecase=False) }}",
+          "pushIcon": 2,
+          "text": "{{ states("weather.REDACTED") }}"
+          }
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/weather
+        payload: >-
+          { 
+          "icon": "weather_{{ states("weather.REDACTED") |regex_replace(find='-', replace='_', ignorecase=False) }}",
+          "pushIcon": 2,
+          "text": "{{ states("weather.REDACTED") }}"
+          }
+
+      ##########################################################
+      ## Temperature App
+      ##########################################################
+
+- alias: LCD Clock - Temperature App
+  id: 'lcd_clock_temperature_app'
+
+  trigger:
+    - platform: time_pattern
+      minutes: '/30'
+    - platform: state
+      entity_id: sensor.REDACTED_temperature
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/temperature
+        payload: >-
+          { 
+          "icon": "temp",
+          "pushIcon": 0,
+          "text": "{{ states("sensor.REDACTED_temperature") }}°F"
+          }
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/temperature
+        payload: >-
+          { 
+          "icon": "temp",
+          "pushIcon": 0,
+          "text": "{{ states("sensor.REDACTED_temperature") }}°F"
+          }
+
+      ##########################################################
+      ## Humidity App
+      ##########################################################
+
+- alias: LCD Clock - Humidity App
+  id: 'lcd_clock_humidity_app'
+
+  trigger:
+    - platform: time_pattern
+      minutes: '/30'
+    - platform: state
+      entity_id: sensor.REDACTED_humidity
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/humidity
+        payload: >-
+          { 
+          "icon": "humid",
+          "pushIcon": 0,
+          "text": "{{ states("sensor.REDACTED_humidity") }}%"
+          }
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/humidity
+        payload: >-
+          { 
+          "icon": "humid",
+          "pushIcon": 0,
+          "text": "{{ states("sensor.REDACTED_humidity") }}%"
+          }
+
+      ##########################################################
+      ## MK3 Print Progress App
+      ##########################################################
+
+- alias: LCD Clock - MK3 Print Progress App
+  id: 'lcd_clock_mk3_print_progress_app'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk3_progress
+  
+  condition:
+    - condition: state
+      entity_id: sensor.prusa_mk3_status
+      state: 'Printing'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mk3_progress
+        payload: >-
+          { 
+          "icon": "3d_print",
+          "pushIcon": 2,
+          "color": [255,165,0],
+          "repeat": 2,
+          "text": "MK3 Print {{ states("sensor.prusa_mk3_progress") }}% Complete"
+          }
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/mk3_progress
+        payload: >-
+          { 
+          "icon": "3d_print",
+          "pushIcon": 2,
+          "color": [255,165,0],
+          "repeat": 2,
+          "text": "MK3 Print {{ states("sensor.prusa_mk3_progress") }}% Complete"
+          }
+
+      ##########################################################
+      ## MK3 3D Print Time Remaining App
+      ##########################################################
+
+- alias: LCD Clock - MK3 Print Time Remaining App
+  id: 'lcd_clock_mk3_print_time_remaining_app'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk3_print_finish
+  
+  condition:
+    - condition: state
+      entity_id: sensor.prusa_mk3_status
+      state: 'Printing'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mk3_time_remaining
+        payload: >-
+          { 
+          "icon": "clock",
+          "pushIcon": 2,
+          "color": [255,165,0],
+          "repeat": 2,
+          "text": "MK3 Print {{ states("sensor.prusa_mk3_print_finish") }} Remaining"
+          }
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/mk3_time_remaining
+        payload: >-
+          { 
+          "icon": "clock",
+          "pushIcon": 2,
+          "color": [255,165,0],
+          "repeat": 2,
+          "text": "MK3 Print {{ states("sensor.prusa_mk3_print_finish") }} Remaining"
+          }
+
+       ##########################################################
+       ## MINI 3D Print Progress App
+       ##########################################################
+
+- alias: LCD Clock - MINI 3D Print Progress App
+  id: 'lcd_clock_mini_3d_print_progress_app'
+  
+  trigger:
+    - platform: state
+      entity_id: sensor.prusamini_progress
+  
+  condition:
+    - condition: state
+      entity_id: sensor.prusamini
+      state: 'printing'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mini_progress
+        payload: >-
+          { 
+          "icon": "3d_print",
+          "pushIcon": 2,
+          "color": [255,165,0],
+          "repeat": 2,
+          "text": "MINI Print {{ states("sensor.prusamini_progress") }}% Complete"
+          }
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/mini_progress
+        payload: >-
+          { 
+          "icon": "3d_print",
+          "pushIcon": 2,
+          "color": [255,165,0],
+          "repeat": 2,
+          "text": "MINI Print {{ states("sensor.prusamini_progress") }}% Complete"
+          }
+
+      ##########################################################
+      ## MINI 3D Print Time Remaining App
+      ##########################################################
+
+- alias: LCD Clock - MINI 3D Print Time Remaining App
+  id: 'lcd_clock_mini_3d_print_time_remaining_app'
+  
+  trigger:
+    - platform: state
+      entity_id: sensor.prusamini_progress
+  
+  condition:
+    - condition: state
+      entity_id: sensor.prusamini
+      state: 'printing'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mini_progress
+        payload: >-
+          { 
+          "icon": "clock",
+          "pushIcon": 2,
+          "color": [255,165,0],
+          "repeat": 2,
+          "text": "MINI Print {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusamini_print_finish')) - as_timestamp(now()))) }} Remaining"
+          }
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/mini_progress
+        payload: >-
+          { 
+          "icon": "clock",
+          "pushIcon": 2,
+          "color": [255,165,0],
+          "repeat": 2,
+          "text": "MINI Print {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusamini_print_finish')) - as_timestamp(now()))) }} Remaining"
+          }
+
+      ##########################################################
+      ## MK3 3D Print Complete App
+      ##########################################################
+
+- alias: LCD Clock - MK3 3D Print Complete App
+  id: 'lcd_clock_mk3_3d_print_complete_app'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk3_status
+      from: 'Printing'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mk3_progress
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mk3_time_remaining
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/notify
+        payload: >-
+          { 
+          "icon": "3d_print_complete",
+          "pushIcon": 2,
+          "rainbow": true,
+          "duration": 90,
+          "repeat": 2,
+          "text": "MK3 Print Complete"
+          }
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/mk3_progress
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/mk3_time_remaining
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/notify
+        payload: >-
+          { 
+          "icon": "3d_print_complete",
+          "pushIcon": 2,
+          "rainbow": true,
+          "duration": 90,
+          "repeat": 2,
+          "text": "MK3 Print Complete"
+          }
+
+      ##########################################################
+      ## MINI 3D Print Complete App
+      ##########################################################
+
+- alias: LCD Clock - MINI 3D Print Complete App
+  id: 'lcd_clock_mini_3d_print_complete_app'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusamini
+      from: 'printing'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mini_progress
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mini_time_remaining
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/notify
+        payload: >-
+          { 
+          "icon": "3d_print_complete",
+          "pushIcon": 2,
+          "rainbow": true,
+          "duration": 90,
+          "text": "MINI Print Complete"
+          }
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/mini_progress
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/mini_time_remaining
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/notify
+        payload: >-
+          { 
+          "icon": "3d_print_complete",
+          "pushIcon": 2,
+          "rainbow": true,
+          "duration": 90,
+          "text": "MINI Print Complete"
+          }
+
+      ##########################################################
+      ## Washing Machine Status App
+      ##########################################################
+
+- alias: LCD Clock - Washing Machine Status App
+  id: 'lcd_clock_washing_machine_status_app'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.washing_machine_time_remaining
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/washer
+        payload: >-
+          { 
+          "icon": "washer",
+          "pushIcon": 2,
+          "duration": 30,
+          "repeat": 2,
+          "color": [255,165,0],
+          "text": "Washer {{ states("sensor.washing_machine_time_remaining") }} Remaining"
+          }
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/washer
+        payload: >-
+          { 
+          "icon": "washer",
+          "pushIcon": 2,
+          "duration": 30,
+          "repeat": 2,
+          "color": [255,165,0],
+          "text": "Washer {{ states("sensor.washing_machine_time_remaining") }} Remaining"
+          }
+
+      ##########################################################
+      ## Washing Machine Done App
+      ##########################################################
+
+- alias: LCD Clock - Washing Machine Done App
+  id: 'lcd_clock_washing_machine_done_app'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.washer_wash_completed
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/washer
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/notify
+        payload: >-
+          { 
+          "icon": "washer",
+          "pushIcon": 2,
+          "duration": 60,
+          "repeat": 2,
+          "color": [0,174,255],
+          "text": "Washer Finished"
+          }
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/washer
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/notify
+        payload: >-
+          { 
+          "icon": "washer",
+          "pushIcon": 2,
+          "duration": 60,
+          "repeat": 2,
+          "color": [0,174,255],
+          "text": "Washer Finished"
+          }
+
+      ##########################################################
+      ## Dryer Status App
+      ##########################################################
+
+- alias: LCD Clock - Dryer Status App
+  id: 'lcd_clock_dryer_status_app'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.dryer_time_remaining
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/dryer
+        payload: >-
+          { 
+          "icon": "dryer",
+          "pushIcon": 2,
+          "duration": 30,
+          "repeat": 2,
+          "color": [255,165,0],
+          "text": "Dryer {{ states("sensor.dryer_time_remaining") }} Remaining"
+          }
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/dryer
+        payload: >-
+          { 
+          "icon": "dryer",
+          "pushIcon": 2,
+          "duration": 30,
+          "repeat": 2,
+          "color": [255,165,0],
+          "text": "Dryer {{ states("sensor.dryer_time_remaining") }} Remaining"
+          }
+
+      ##########################################################
+      ## Dryer Done App
+      ##########################################################
+
+- alias: LCD Clock - Dryer Done App
+  id: 'lcd_clock_dryer_done_app'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.dryer_dry_completed
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/dryer
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/notify
+        payload: >-
+          { 
+          "icon": "dryer",
+          "pushIcon": 0,
+          "duration": 60,
+          "repeat": 2,
+          "color": [255,0,0],
+          "text": "Dryer Finished"
+          }
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/dryer
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/notify
+        payload: >-
+          { 
+          "icon": "dryer",
+          "pushIcon": 0,
+          "duration": 60,
+          "repeat": 2,
+          "color": [255,0,0],
+          "text": "Dryer Finished"
+          }
+
+  ##########################################################
+  ## Universal Holiday Apps
+  ##########################################################
+
+      ##########################################################
+      ## Holiday Reset App
+      ##########################################################
+
+- alias: LCD Clock - Holiday Reset App
+  id: 'lcd_clock_holiday_reset_app'
+
+  trigger:
+   - platform: time
+     at: '04:30:00'
+
+  condition:
+    - condition: state
+      entity_id: input_select.holiday
+      state: 'None'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/holiday
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/holiday
+
+      ##########################################################
+      ## Christmas App
+      ##########################################################
+
+- alias: LCD Clock - Christmas App
+  id: 'lcd_clock_christmas_app'
+
+  trigger:
+   - platform: time
+     at: '05:00:00'
+
+  condition:
+    - condition: state
+      entity_id: input_select.holiday
+      state: 'Christmas'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/holiday
+        payload: >-
+          { 
+          "icon": "christmas_tree",
+          "pushIcon": 0,
+          "duration": 20,
+          "repeat": 2,
+          "text": [
+            {
+              "t": "Merry ",
+              "c": "FF0000"
+            },
+            {
+              "t": "Christmas",
+              "c": "00FF00"
+            }
+          ]
+          }
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/holiday
+        payload: >-
+          { 
+          "icon": "christmas_tree",
+          "pushIcon": 0,
+          "duration": 20,
+          "repeat": 2,
+          "text": [
+            {
+              "t": "Merry ",
+              "c": "FF0000"
+            },
+            {
+              "t": "Christmas",
+              "c": "00FF00"
+            }
+          ]
+          }
+
+      ##########################################################
+      ## Halloween App
+      ##########################################################
+
+- alias: LCD Clock - Halloween App
+  id: 'lcd_clock_halloween_app'
+
+  trigger:
+   - platform: time
+     at: '05:00:00'
+
+  condition:
+    - condition: state
+      entity_id: input_select.holiday
+      state: 'Halloween'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/holiday
+        payload: >-
+          { 
+          "icon": "pumpkin",
+          "pushIcon": 0,
+          "duration": 20,
+          "repeat": 2,
+          "text": [
+            {
+              "t": "Happy ",
+              "c": "FFA500"
+            },
+            {
+              "t": "Halloween",
+              "c": "A020F0"
+            }
+          ]
+          }
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/holiday
+        payload: >-
+          { 
+          "icon": "pumpkin",
+          "pushIcon": 0,
+          "duration": 20,
+          "repeat": 2,
+          "text": [
+            {
+              "t": "Happy ",
+              "c": "FFA500"
+            },
+            {
+              "t": "Halloween",
+              "c": "A020F0"
+            }
+          ]
+          }
+
+      ##########################################################
+      ## 4th of July App
+      ##########################################################
+
+- alias: LCD Clock - 4th of July App
+  id: 'lcd_clock_4th_of_july_app'
+
+  trigger:
+   - platform: time
+     at: '05:00:00'
+
+  condition:
+    - condition: state
+      entity_id: input_select.holiday
+      state: "Independence Day"
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/holiday
+        payload: >-
+          { 
+          "icon": "fireworks",
+          "pushIcon": 0,
+          "duration": 20,
+          "repeat": 2,
+          "text": [
+            {
+              "t": "Happy ",
+              "c": "FF0000"
+            },
+            {
+              "t": "Independence",
+              "c": "FFFFFF"
+            }
+            {
+              "t": "Day",
+              "c": "0000FF"
+            }
+          ]
+          }
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/holiday
+        payload: >-
+          { 
+          "icon": "fireworks",
+          "pushIcon": 0,
+          "duration": 20,
+          "repeat": 2,
+          "text": [
+            {
+              "t": "Happy ",
+              "c": "FF0000"
+            },
+            {
+              "t": "Independence",
+              "c": "FFFFFF"
+            }
+            {
+              "t": "Day",
+              "c": "0000FF"
+            }
+          ]
+          }
+
+      ##########################################################
+      ## Valentines Day App
+      ##########################################################
+
+- alias: LCD Clock - Valentines Day App
+  id: 'lcd_clock_valentines_day_app'
+
+  trigger:
+   - platform: time
+     at: '05:00:00'
+
+  condition:
+    - condition: state
+      entity_id: input_select.holiday
+      state: "Valentine's Day"
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/holiday
+        payload: >-
+          { 
+          "icon": "heart",
+          "pushIcon": 0,
+          "duration": 20,
+          "repeat": 2,
+          "color": [255,192,203],
+          "text": "Happy Valentines Day"
+          }
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/holiday
+        payload: >-
+          { 
+          "icon": "heart",
+          "pushIcon": 0,
+          "duration": 20,
+          "repeat": 2,
+          "color": [255,192,203],
+          "text": "Happy Valentines Day"
+          }
+
+      ##########################################################
+      ## New Years App
+      ##########################################################
+
+- alias: LCD Clock - New Years App
+  id: 'lcd_clock_new_years_app'
+
+  trigger:
+   - platform: time
+     at: '05:00:00'
+
+  condition:
+    - condition: state
+      entity_id: input_select.holiday
+      state: "New Year's Eve"
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/holiday
+        payload: >-
+          { 
+          "icon": "fireworks",
+          "pushIcon": 0,
+          "duration": 20,
+          "repeat": 2,
+          "rainbow": true,
+          "text": "Happy New Years!"
+          }
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/holiday
+        payload: >-
+          { 
+          "icon": "fireworks",
+          "pushIcon": 0,
+          "duration": 20,
+          "repeat": 2,
+          "rainbow": true,
+          "text": "Happy New Years!"
+          }
+
+  ##########################################################
+  ## USER1's Office Device Control
+  ##########################################################
+
+      ##########################################################
+      ## Turn On USER1 Office LCD Clock when Motion Detected
+      ##########################################################
+
+- alias: LCD Clock - Turn On USER1's Office when Motion Detected
+  id: 'lcd_clock_turn_on_USER1_office_when_motion_detected'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER1s_office_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.USER1s_office_desktop_clock
+      state: 'off'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.USER1s_office_desktop_clock
+
+      ##########################################################
+      ## Turn Off USER1 Office LCD Clock when No Motion Detected
+      ##########################################################
+
+- alias: LCD Clock - Turn Off USER1's Office when No Motion Detected
+  id: 'lcd_clock_turn_off_USER1_office_when_no_motion_detected'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER1s_office_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 20
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: light.USER1s_office_desktop_clock
+      state: 'on'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.USER1s_office_desktop_clock
+
+  ##########################################################
+  ## USER1's Office Apps
+  ##########################################################
+
+      ##########################################################
+      ## Do Not Disturb On USER1's Office LCD Clock
+      ##########################################################
+
+- alias: LCD Clock - USER1 Office Do Not Disturb On
+  id: 'lcd_clock_USER1_office_do_not_disturb_on'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: light.USER1s_office_desktop_clock
+      state: 'on'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/do_not_disturb
+        payload: >-
+          { 
+          "icon": "exclamation",
+          "pushIcon": 0,
+          "background": [255,0,0],
+          "color": [255,255,255],
+          "duration": 90,
+          "repeat": 2,
+          "text": "Do Not Disturb"
+          }
+
+      ##########################################################
+      ## Do Not Disturb Off USER1's Office LCD Clock
+      ##########################################################
+
+- alias: LCD Clock - USER1 Office Do Not Disturb Off
+  id: 'lcd_clock_USER1_office_do_not_disturb_off'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: light.USER1s_office_desktop_clock
+      state: 'on'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/do_not_disturb
+
+      ##########################################################
+      ## Music Title Sonos USER1's Office Clock
+      ##########################################################
+
+- alias: LCD Clock - USER1's Office Music Title Sonos
+  id: 'lcd_clock_living_room_music_title_sonos_living_room'
+
+  trigger:
+    - platform: state
+      entity_id: media_player.sonos_USER1s_office
+      attribute: media_title
+
+
+  condition:
+    - condition: state
+      entity_id: media_player.sonos_USER1s_office
+      state: 'playing'
+    - condition: state
+      entity_id: media_player.sonos_USER1s_office
+      attribute: media_content_type
+      state: 'music'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/music_song
+        payload: >-
+          { 
+          "icon": "music",
+          "pushIcon": 0,
+          "duration": 30,
+          "repeat": 2,
+          "rainbow": true,
+          "text": "Song: {{ state_attr('media_player.sonos_USER1s_office', 'media_title') }}"
+          }
+
+      ##########################################################
+      ## Music Title Sonos Move USER1's Office Clock
+      ##########################################################
+
+- alias: LCD Clock - USER1's Office Music Title Sonos Move
+  id: 'lcd_clock_living_room_music_title_sonos_sonos_move'
+
+  trigger:
+    - platform: state
+      entity_id: media_player.sonos_USER1s_office_move
+      attribute: media_title
+
+
+  condition:
+    - condition: state
+      entity_id: media_player.sonos_USER1s_office_move
+      state: 'playing'
+    - condition: state
+      entity_id: media_player.sonos_USER1s_office_move
+      attribute: media_content_type
+      state: 'music'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/music_song
+        payload: >-
+          { 
+          "icon": "music",
+          "pushIcon": 0,
+          "duration": 30,
+          "repeat": 2,
+          "rainbow": true,
+          "text": "Song: {{ state_attr('media_player.sonos_USER1s_office_move', 'media_title') }}"
+          }
+
+      ##########################################################
+      ## Album Title Sonos USER1's Office USER1's Office Clock
+      ##########################################################
+
+- alias: LCD Clock - USER1's Office Album Title Sonos USER1's Office
+  id: 'lcd_clock_living_room_album_title_sonos_living_room'
+
+  trigger:
+    - platform: state
+      entity_id: media_player.sonos_USER1s_office
+      attribute: media_title
+
+
+  condition:
+    - condition: state
+      entity_id: media_player.sonos_USER1s_office
+      state: 'playing'
+    - condition: state
+      entity_id: media_player.sonos_USER1s_office
+      attribute: media_content_type
+      state: 'music'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/music_album
+        payload: >-
+          { 
+          "icon": "album",
+          "pushIcon": 2,
+          "duration": 30,
+          "repeat": 2,
+          "rainbow": true,
+          "text": "Artist: {{ state_attr('media_player.sonos_USER1s_office', 'media_artist') }} - Album: {{ state_attr('media_player.sonos_USER1s_office', 'media_album_name') }}"
+          }
+
+      ##########################################################
+      ## Music Title Sonos Move USER1's Office Clock
+      ##########################################################
+
+- alias: LCD Clock - USER1's Office Music Title Sonos Move
+  id: 'lcd_clock_living_room_music_title_sonos_sonos_move'
+
+  trigger:
+    - platform: state
+      entity_id: media_player.sonos_USER1s_office_move
+      attribute: media_title
+
+
+  condition:
+    - condition: state
+      entity_id: media_player.sonos_USER1s_office_move
+      state: 'playing'
+    - condition: state
+      entity_id: media_player.sonos_USER1s_office_move
+      attribute: media_content_type
+      state: 'music'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/music_album
+        payload: >-
+          { 
+          "icon": "album",
+          "pushIcon": 2,
+          "duration": 30,
+          "repeat": 2,
+          "rainbow": true,
+          "text": "Artist: {{ state_attr('media_player.sonos_USER1s_office_move', 'media_artist') }} - Album: {{ state_attr('media_player.sonos_USER1s_office_move', 'media_album_name') }}"
+          }
+
+      ##########################################################
+      ## Music Remove USER1's Office Clock
+      ##########################################################
+
+- alias: LCD Clock - USER1's Office Music  Remove
+  id: 'lcd_clock_living_room_music_remove'
+
+  trigger:
+    - platform: state
+      entity_id: media_player.sonos_USER1s_office
+      from: 'playing'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 15
+    - platform: state
+      entity_id: media_player.sonos_USER1s_office_move
+      from: 'playing'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 15
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/music_song
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/music_album
+
+      ##########################################################
+      ## Party Time USER1's Office Clock
+      ##########################################################
+
+- alias: LCD Clock - USER1's Office Party Time
+  id: 'lcd_clock_living_room_party_time'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.office_rainbow
+      to: 'on'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/party_time
+        payload: >-
+          { 
+          "icon": "party",
+          "pushIcon": 2,
+          "duration": 20,
+          "repeat": 2,
+          "rainbow": true,
+          "text": "Party Time!"
+          }
+
+      ##########################################################
+      ## Party Time Off Living Room Clock
+      ##########################################################
+
+- alias: LCD Clock - Living Room Party Time Off
+  id: 'lcd_clock_living_room_party_time_off'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.office_rainbow
+      to: 'off'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/party_time
+
+  ##########################################################
+  ## USER1's Office Notifications
+  ##########################################################
+
+      ##########################################################
+      ## Media Title USER1's Office Clock
+      ##########################################################
+
+- alias: LCD Clock - USER1's Office Media Title
+  id: 'lcd_clock_USER1_office_media_title'
+
+  trigger:
+    - platform: state
+      entity_id: media_player.USER1_s_office_apple_tv
+      attribute: media_title
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: light.USER1s_office_desktop_clock
+      state: 'on'
+    - condition: state
+      entity_id: media_player.USER1_s_office_apple_tv
+      state: 'playing'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/notify
+        payload: >-
+          { 
+          "icon": "movie",
+          "pushIcon": 2,
+          "duration": 60,
+          "repeat": 2,
+          "rainbow": true,
+          "stack": false,
+          "text": "{{ state_attr('media_player.USER1_s_office_apple_tv', 'media_title') }}"
+          }
+
+      ##########################################################
+      ## Doorbell USER1's Office LCD Clock
+      ##########################################################
+
+- alias: LCD Clock - Doorbell USER1's Office
+  id: 'lcd_clock_doorbell_USER1_office'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: light.USER1s_office_desktop_clock
+      state: 'on'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/notify
+        payload: >-
+          { 
+          "icon": "doorbell",
+          "pushIcon": 0,
+          "duration": 30,
+          "textCase": 0,
+          "text": "Doorbell"
+          }
+
+        #################################################################
+        ## USER2 Left Work USER1's Office LCD Clock
+        #################################################################
+
+- alias: LCD Clock - USER1's Office USER2 Left
+  id: 'lcd_clock_USER1_office_USER2_left_work'
+
+  trigger:
+    - platform: state
+      entity_id: person.USER2
+      from: 'Work'
+      to: 'not_home'
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: light.USER1s_office_desktop_clock
+      state: 'on'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/notify
+        payload: >-
+          { 
+          "icon": "cars",
+          "pushIcon": 0,
+          "duration": 60,
+          "repeat": 2,
+          "text": "USER2 ETA: {{states('sensor.USER2_to_home')}} mins"
+          }
+
+      ##########################################################
+      ## USER2 is Home USER1's Office LCD Clock
+      ##########################################################
+
+- alias: LCD Clock - USER1's Office USER2 is Home
+  id: 'lcd_clock_USER1_office_USER2_is_home'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.doors
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: person.USER2
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.USER1_greeting
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER2_greeting
+      state: 'on'
+    - condition: state
+      entity_id: light.USER1s_office_desktop_clock
+      state: 'on'
+
+  action:
+    - delay: '00:00:30'
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/notify
+        payload: >-
+          { 
+          "icon": "house",
+          "pushIcon": 0,
+          "duration": 30,
+          "repeat": 2,
+          "rainbow": true,
+          "text": "USER2 Home"
+          }
+
+      ##########################################################
+      ## Echo Timer Done USER1's Office LCD Clock
+      ##########################################################
+
+- alias: LCD Clock - USER1's Office Echo Timer Done
+  id: 'lcd_clock_USER1_office_echo_timer_done'
+
+  mode: parallel
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER1_s_office_echo_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.basement_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.bathroom_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.bedroom_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.craft_room_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.dining_room_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.fitness_room_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.guest_bedroom_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.kitchen_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.USER2_s_office_timer
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: light.USER1s_office_desktop_clock
+      state: 'on'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/notify
+        payload: >-
+          { 
+          "icon": "timer",
+          "pushIcon": 0,
+          "duration": 60,
+          "repeat": 2,
+          "rainbow": true,
+          "text": "Echo Timer Finished"
+          }
+
+      ##########################################################
+      ## Door Open USER1's LCD Clock
+      ##########################################################
+
+- alias: LCD Clock - USER1's Office Door Open
+  id: 'lcd_clock_USER1_office_door_open'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_opened
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.back_door_opened
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.basement_door_opened
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: light.USER1s_office_desktop_clock
+      state: 'on'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/notify
+        payload: >-
+          { 
+          "icon": "door",
+          "pushIcon": 0,
+          "duration": 15,
+          "repeat": 2,
+          "color": [255,0,0],
+          "text": "{{ trigger.to_state.attributes.friendly_name }} Opened"
+          }
+
+      ##########################################################
+      ## Garage Door Open USER1's LCD Clock
+      ##########################################################
+
+- alias: LCD Clock - USER1's Office Garage Door Open
+  id: 'lcd_clock_USER1_office_garage_door_open'
+
+  trigger:
+    - platform: state
+      entity_id: cover.garage_door
+      from: 'closed'
+      to: 'open'
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: light.USER1s_office_desktop_clock
+      state: 'on'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/notify
+        payload: >-
+          { 
+          "icon": "garage_open",
+          "pushIcon": 0,
+          "duration": 30,
+          "repeat": 2,
+          "color": [255,0,0],
+          "text": "Garage Open"
+          }
+
+      ##########################################################
+      ## Garage Door Closed USER1's LCD Clock
+      ##########################################################
+
+- alias: LCD Clock - USER1's Office Garage Door Closed
+  id: 'lcd_clock_USER1_office_garage_door_closed'
+
+  trigger:
+    - platform: state
+      entity_id: cover.garage_door
+      from: 'open'
+      to: 'closed'
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: light.USER1s_office_desktop_clock
+      state: 'on'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/notify
+        payload: >-
+          { 
+          "icon": "garage_close",
+          "pushIcon": 0,
+          "duration": 30,
+          "repeat": 2,
+          "color": [0,255,0],
+          "text": "Garage Closed"
+          }
+
+  ##########################################################
+  ## Living Room Device Control
+  ##########################################################
+
+      ##########################################################
+      ## Turn On Living Room Clock when Motion Detected
+      ##########################################################
+
+- alias: LCD Clock - Turn On Living Room when Motion Detected
+  id: 'lcd_clock_turn_on_living_room_when_motion_detected'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.living_room_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.living_room_clock
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'returning'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.living_room_apple_tv
+        state: 'playing'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.living_room_clock
+
+      ##########################################################
+      ## Turn Off Living Room LCD Clock when No Motion Detected
+      ##########################################################
+
+- alias: LCD Clock - Turn Off Living Room when No Motion Detected
+  id: 'lcd_clock_turn_off_living_room_when_no_motion_detected'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER1s_office_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: light.living_room_clock
+      state: 'on'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.living_room_clock
+
+      ##########################################################
+      ## Turn Off Living Room LCD Clock when Watching TV
+      ##########################################################
+
+- alias: LCD Clock - urn Off Living Room LCD Clock when Watching TV
+  id: 'lcd_clock_turn_off_living_room_when_watching_tv'
+
+  trigger:
+    - platform: state
+      entity_id: media_player.living_room_apple_tv
+      to: 'playing'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_media_lights
+      state: 'off'
+    - condition: state
+      entity_id: light.living_room_clock
+      state: 'on'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.living_room_clock
+
+      ##########################################################
+      ## Turn On Living Room Clock when Done Watching TV
+      ##########################################################
+
+- alias: LCD Clock - urn Off Living Room Clock when Done Watching TV
+  id: 'lcd_clock_turn_off_living_room_when_done_watching_tv'
+
+  trigger:
+    - platform: state
+      entity_id: media_player.living_room_apple_tv
+      to: 'paused'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+    - platform: state
+      entity_id: media_player.living_room_apple_tv
+      to: 'idle'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+    - platform: state
+      entity_id: media_player.living_room_apple_tv
+      from: 'playing'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_media_lights
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.living_room_clock
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.living_room_clock
+
+  ##########################################################
+  ## Living Room Apps
+  ##########################################################
+
+      ##########################################################
+      ## TV Off Living Room Clock
+      ##########################################################
+
+- alias: LCD Clock - Living Room TV Off
+  id: 'lcd_clock_living_room_tv_off'
+
+  trigger:
+    - platform: state
+      entity_id: select.living_room_tv_activities
+      to: 'power_off'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/tv_state
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/notify
+        payload: >-
+          { 
+          "icon": "tv_off",
+          "pushIcon": 0,
+          "duration": 15,
+          "repeat": 2,
+          "color": [255,0,0],
+          "stack": false,
+          "text": "TV Off"
+          }
+
+      ##########################################################
+      ## Watch TV Living Room Clock
+      ##########################################################
+
+- alias: LCD Clock - Living Room Watch TV
+  id: 'lcd_clock_living_room_watch_tv'
+
+  trigger:
+    - platform: state
+      entity_id: select.living_room_tv_activities
+      to: 'Watch TV'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/notify
+        payload: >-
+          { 
+          "icon": "tv",
+          "pushIcon": 0,
+          "duration": 15,
+          "textCase": 0,
+          "rainbow": true,
+          "stack": false,
+          "text": "TV"
+          }
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/tv_state
+        payload: >-
+          { 
+          "icon": "tv",
+          "pushIcon": 0,
+          "duration": 15,
+          "repeat": 2,
+          "rainbow": true,
+          "text": "TV"
+          }
+
+      ##########################################################
+      ## Nintendo Switch Living Room Clock
+      ##########################################################
+
+- alias: LCD Clock - Living Room Nintendo Switch
+  id: 'lcd_clock_living_room_nintendo_switch'
+
+  trigger:
+    - platform: state
+      entity_id: select.living_room_tv_activities
+      to: "Play Nintendo Switch"
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/notify
+        payload: >-
+          { 
+          "icon": "mario",
+          "pushIcon": 0,
+          "duration": 15,
+          "repeat": 2,
+          "stack": false,
+          "text": [
+            {
+              "t": "Nintendo ",
+              "c": "FF0000"
+            },
+            {
+              "t": "Switch",
+              "c": "FFFFFF"
+            }
+          ]
+          }
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/tv_state
+        payload: >-
+          { 
+          "icon": "mario",
+          "pushIcon": 0,
+          "duration": 15,
+          "repeat": 2,
+          "text": [
+            {
+              "t": "Nintendo ",
+              "c": "FF0000"
+            },
+            {
+              "t": "Switch",
+              "c": "FFFFFF"
+            }
+          ]
+          }
+
+      ##########################################################
+      ## Xbox Living Room Clock
+      ##########################################################
+
+- alias: LCD Clock - Living Room Xbox
+  id: 'lcd_clock_living_room_xbox'
+
+  trigger:
+    - platform: state
+      entity_id: select.living_room_tv_activities
+      to: 'Play Xbox'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/notify
+        payload: >-
+          { 
+          "icon": "xbox",
+          "pushIcon": 0,
+          "duration": 15,
+          "repeat": 2,
+          "color": [0,255,0],
+          "stack": false,
+          "text": "Xbox"
+          }
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/tv_state
+        payload: >-
+          { 
+          "icon": "xbox",
+          "pushIcon": 0,
+          "duration": 15,
+          "repeat": 2,
+          "color": [0,255,0],
+          "text": "Xbox"
+          }
+
+      ##########################################################
+      ## Music Title Sonos Living Room Living Room Clock
+      ##########################################################
+
+- alias: LCD Clock - Living Room Music Title Sonos Living Room
+  id: 'lcd_clock_living_room_music_title_sonos_living_room'
+
+  trigger:
+    - platform: state
+      entity_id: media_player.sonos_living_room
+      attribute: media_title
+
+
+  condition:
+    - condition: state
+      entity_id: media_player.sonos_living_room
+      state: 'playing'
+    - condition: state
+      entity_id: media_player.sonos_living_room
+      attribute: media_content_type
+      state: 'music'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/music_song
+        payload: >-
+          { 
+          "icon": "music",
+          "pushIcon": 0,
+          "duration": 30,
+          "repeat": 2,
+          "rainbow": true,
+          "text": "Song: {{ state_attr('media_player.sonos_living_room', 'media_title') }}"
+          }
+
+      ##########################################################
+      ## Music Title Sonos Surround Sound Living Room Clock
+      ##########################################################
+
+- alias: LCD Clock - Living Room Music Title Sonos Surround Sound
+  id: 'lcd_clock_living_room_music_title_sonos_sonos_surround_sound'
+
+  trigger:
+    - platform: state
+      entity_id: media_player.sonos_surround_sound
+      attribute: media_title
+
+
+  condition:
+    - condition: state
+      entity_id: media_player.sonos_surround_sound
+      state: 'playing'
+    - condition: state
+      entity_id: media_player.sonos_surround_sound
+      attribute: media_content_type
+      state: 'music'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.sonos_surround_sound
+        attribute: source_list
+        state: "TV"
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.sonos_surround_sound
+        attribute: source
+        state: "TV"
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.sonos_surround_sound
+        attribute: media_title
+        state: "TV"
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/music_song
+        payload: >-
+          { 
+          "icon": "music",
+          "pushIcon": 0,
+          "duration": 30,
+          "repeat": 2,
+          "rainbow": true,
+          "text": "Song: {{ state_attr('media_player.sonos_surround_sound', 'media_title') }}"
+          }
+
+      ##########################################################
+      ## Album Title Sonos Living Room Living Room Clock
+      ##########################################################
+
+- alias: LCD Clock - Living Room Album Title Sonos Living Room
+  id: 'lcd_clock_living_room_album_title_sonos_living_room'
+
+  trigger:
+    - platform: state
+      entity_id: media_player.sonos_living_room
+      attribute: media_title
+
+
+  condition:
+    - condition: state
+      entity_id: media_player.sonos_living_room
+      state: 'playing'
+    - condition: state
+      entity_id: media_player.sonos_living_room
+      attribute: media_content_type
+      state: 'music'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/music_album
+        payload: >-
+          { 
+          "icon": "album",
+          "pushIcon": 2,
+          "duration": 30,
+          "repeat": 2,
+          "rainbow": true,
+          "text": "Artist: {{ state_attr('media_player.sonos_living_room', 'media_artist') }} - Album: {{ state_attr('media_player.sonos_living_room', 'media_album_name') }}"
+          }
+
+      ##########################################################
+      ## Music Title Sonos Surround Sound Living Room Clock
+      ##########################################################
+
+- alias: LCD Clock - Living Room Music Title Sonos Surround Sound
+  id: 'lcd_clock_living_room_music_title_sonos_sonos_surround_sound'
+
+  trigger:
+    - platform: state
+      entity_id: media_player.sonos_surround_sound
+      attribute: media_title
+
+
+  condition:
+    - condition: state
+      entity_id: media_player.sonos_surround_sound
+      state: 'playing'
+    - condition: state
+      entity_id: media_player.sonos_surround_sound
+      attribute: media_content_type
+      state: 'music'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/music_album
+        payload: >-
+          { 
+          "icon": "album",
+          "pushIcon": 2,
+          "duration": 30,
+          "repeat": 2,
+          "rainbow": true,
+          "text": "Artist: {{ state_attr('media_player.sonos_surround_sound', 'media_artist') }} - Album: {{ state_attr('media_player.sonos_surround_sound', 'media_album_name') }}"
+          }
+
+      ##########################################################
+      ## Music Remove Living Room Clock
+      ##########################################################
+
+- alias: LCD Clock - Living Room Music Remove
+  id: 'lcd_clock_living_room_music_remove'
+
+  trigger:
+    - platform: state
+      entity_id: media_player.sonos_living_room
+      from: 'playing'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 15
+    - platform: state
+      entity_id: media_player.sonos_surround_sound
+      from: 'playing'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 15
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/music_song
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/music_album
+
+      ##########################################################
+      ## Party Time Living Room Clock
+      ##########################################################
+
+- alias: LCD Clock - Living Room Party Time
+  id: 'lcd_clock_living_room_party_time'
+
+  trigger:
+    - platform: state
+      entity_id: switch.livingroom_rainbow
+      to: 'on'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/party_time
+        payload: >-
+          { 
+          "icon": "party",
+          "pushIcon": 2,
+          "duration": 20,
+          "repeat": 2,
+          "rainbow": true,
+          "text": "Party Time!"
+          }
+
+      ##########################################################
+      ## Party Time Off Living Room Clock
+      ##########################################################
+
+- alias: LCD Clock - Living Room Party Time Off
+  id: 'lcd_clock_living_room_party_time_off'
+
+  trigger:
+    - platform: state
+      entity_id: switch.livingroom_rainbow
+      to: 'off'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/party_time
+
+  ##########################################################
+  ## Living Room Notifications
+  ##########################################################
+
+      ##########################################################
+      ## Media Title Living Room Clock
+      ##########################################################
+
+- alias: LCD Clock - Living Room Media Title
+  id: 'lcd_clock_living_room_media_title'
+
+  trigger:
+    - platform: state
+      entity_id: media_player.living_room_apple_tv
+      attribute: media_title
+
+  condition:
+    - condition: state
+      entity_id: light.living_room_clock
+      state: 'on'
+    - condition: state
+      entity_id: media_player.living_room_apple_tv
+      state: 'playing'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/notify
+        payload: >-
+          { 
+          "icon": "movie",
+          "pushIcon": 2,
+          "duration": 30,
+          "repeat": 2,
+          "rainbow": false,
+          "stack": false,
+          "text": "{{ state_attr('media_player.living_room_apple_tv', 'media_title') }}"
+          }
+
+      ##########################################################
+      ## Doorbell Living Room Clock
+      ##########################################################
+
+- alias: LCD Clock - Doorbell Living Room
+  id: 'lcd_clock_doorbell_living_room'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: light.living_room_clock
+      state: 'on'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/notify
+        payload: >-
+          { 
+          "icon": "doorbell",
+          "pushIcon": 0,
+          "duration": 30,
+          "repeat": 2,
+          "stack": false,
+          "text": "Doorbell"
+          }
+
+        #################################################################
+        ## USER2 Left Work Living Room Clock
+        #################################################################
+
+- alias: LCD Clock - Living Room USER2 Left
+  id: 'lcd_clock_living_room_USER2_left_work'
+
+  trigger:
+    - platform: state
+      entity_id: person.USER2
+      from: 'Work'
+      to: 'not_home'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.living_room_clock
+      state: 'on'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/notify
+        payload: >-
+          { 
+          "icon": "cars",
+          "pushIcon": 0,
+          "duration": 60,
+          "repeat": 2,
+          "text": "USER2 ETA: {{states('sensor.USER2_to_home')}} mins"
+          }
+
+      ##########################################################
+      ## USER2 is Home Living Room Clock
+      ##########################################################
+
+- alias: LCD Clock - Living Room USER2 is Home
+  id: 'lcd_clock_living_room_USER2_is_home'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.doors
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: person.USER2
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.USER1_greeting
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER2_greeting
+      state: 'on'
+    - condition: state
+      entity_id: light.living_room_clock
+      state: 'on'
+
+  action:
+    - delay: '00:00:30'
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/notify
+        payload: >-
+          { 
+          "icon": "house",
+          "pushIcon": 0,
+          "duration": 30,
+          "repeat": 2,
+          "rainbow": true,
+          "text": "USER2 Home"
+          }
+
+      ##########################################################
+      ## USER1 is Home Living Room Clock
+      ##########################################################
+
+- alias: LCD Clock - Living Room USER1 is Home
+  id: 'lcd_clock_living_room_USER1_is_home'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.doors
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.USER1_greeting
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.USER2_greeting
+      state: 'off'
+    - condition: state
+      entity_id: light.living_room_clock
+      state: 'on'
+
+  action:
+    - delay: '00:00:30'
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/notify
+        payload: >-
+          { 
+          "icon": "house",
+          "pushIcon": 0,
+          "duration": 30,
+          "repeat": 2,
+          "rainbow": true,
+          "text": "USER1 Home"
+          }
+
+      ##########################################################
+      ## Echo Timer Done Living Room Clock
+      ##########################################################
+
+- alias: LCD Clock - Living Room Echo Timer Done
+  id: 'lcd_clock_living_room_echo_timer_done'
+
+  mode: parallel
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER1_s_office_echo_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.basement_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.bathroom_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.bedroom_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.craft_room_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.dining_room_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.fitness_room_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.guest_bedroom_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.kitchen_timer
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.USER2_s_office_timer
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.living_room_clock
+      state: 'on'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/notify
+        payload: >-
+          { 
+          "icon": "timer",
+          "pushIcon": 0,
+          "duration": 60,
+          "repeat": 2,
+          "rainbow": true,
+          "text": "Echo Timer Finished"
+          }
+
+      ##########################################################
+      ## Door Open Living Room Clock
+      ##########################################################
+
+- alias: LCD Clock - Living Room Door Open
+  id: 'lcd_clock_living_room_door_open'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_opened
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.back_door_opened
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.basement_door_opened
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.living_room_clock
+      state: 'on'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/notify
+        payload: >-
+          { 
+          "icon": "door",
+          "pushIcon": 0,
+          "duration": 15,
+          "repeat": 2,
+          "color": [255,0,0],
+          "stack": false,
+          "text": "{{ trigger.to_state.attributes.friendly_name }} Opened"
+          }
+
+      ##########################################################
+      ## Garage Door Open Living Room Clock
+      ##########################################################
+
+- alias: LCD Clock - Living Room Garage Door Open
+  id: 'lcd_clock_living_room_garage_door_open'
+
+  trigger:
+    - platform: state
+      entity_id: cover.garage_door
+      from: 'closed'
+      to: 'open'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.living_room_clock
+      state: 'on'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/notify
+        payload: >-
+          { 
+          "icon": "garage_open",
+          "pushIcon": 0,
+          "duration": 30,
+          "repeat": 2,
+          "color": [255,0,0],
+          "stack": false,
+          "text": "Garage Open"
+          }
+
+      ##########################################################
+      ## Garage Door Closed Living Room Clock
+      ##########################################################
+
+- alias: LCD Clock - Living Room Garage Door Closed
+  id: 'lcd_clock_living_room_garage_door_closed'
+
+  trigger:
+    - platform: state
+      entity_id: cover.garage_door
+      from: 'open'
+      to: 'closed'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.living_room_clock
+      state: 'on'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/notify
+        payload: >-
+          { 
+          "icon": "garage_close",
+          "pushIcon": 0,
+          "duration": 30,
+          "repeat": 2,
+          "color": [0,255,0],
+          "stack": false,
+          "text": "Garage Closed"
+          }
+
+      ##########################################################
+      ## Fireplace On Living Room Clock
+      ##########################################################
+
+- alias: LCD Clock - Living Room Fireplace On
+  id: 'lcd_clock_living_room_fireplace_on'
+
+  trigger:
+    - platform: state
+      entity_id: switch.fireplace
+      from: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.living_room_clock
+      state: 'on'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/notify
+        payload: >-
+          { 
+          "icon": "fire_2",
+          "pushIcon": 0,
+          "duration": 30,
+          "repeat": 2,
+          "color": [255,165,0],
+          "stack": false,
+          "text": "Fireplace On"
+          }
