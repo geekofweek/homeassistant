@@ -229,10 +229,10 @@
         payload: >-
           { 
           "icon": "3d_print",
-          "pushIcon": 2,
+          "pushIcon": 0,
           "color": [255,165,0],
           "repeat": 2,
-          "text": "MK3 Print {{ states("sensor.prusa_mk3_progress") }}% Complete"
+          "text": "MK3: {{ states("sensor.prusa_mk3_progress") }}%"
           }
     - service: mqtt.publish
       data:
@@ -240,10 +240,10 @@
         payload: >-
           { 
           "icon": "3d_print",
-          "pushIcon": 2,
+          "pushIcon": 0,
           "color": [255,165,0],
           "repeat": 2,
-          "text": "MK3 Print {{ states("sensor.prusa_mk3_progress") }}% Complete"
+          "text": "MK3: {{ states("sensor.prusa_mk3_progress") }}%"
           }
 
       ##########################################################
@@ -272,7 +272,7 @@
           "pushIcon": 2,
           "color": [255,165,0],
           "repeat": 2,
-          "text": "MK3 Print {{ states("sensor.prusa_mk3_print_finish") }} Remaining"
+          "text": "MK3: {{ states("sensor.prusa_mk3_print_finish") }}"
           }
     - service: mqtt.publish
       data:
@@ -283,7 +283,7 @@
           "pushIcon": 2,
           "color": [255,165,0],
           "repeat": 2,
-          "text": "MK3 Print {{ states("sensor.prusa_mk3_print_finish") }} Remaining"
+          "text": "MK3: {{ states("sensor.prusa_mk3_print_finish") }}"
           }
 
        ##########################################################
@@ -309,10 +309,10 @@
         payload: >-
           { 
           "icon": "3d_print",
-          "pushIcon": 2,
+          "pushIcon": 0,
           "color": [255,165,0],
           "repeat": 2,
-          "text": "MINI Print {{ states("sensor.prusamini_progress") }}% Complete"
+          "text": "MINI: {{ states("sensor.prusamini_progress") }}%"
           }
     - service: mqtt.publish
       data:
@@ -320,10 +320,10 @@
         payload: >-
           { 
           "icon": "3d_print",
-          "pushIcon": 2,
+          "pushIcon": 0,
           "color": [255,165,0],
           "repeat": 2,
-          "text": "MINI Print {{ states("sensor.prusamini_progress") }}% Complete"
+          "text": "MINI: {{ states("sensor.prusamini_progress") }}%"
           }
 
       ##########################################################
@@ -352,7 +352,7 @@
           "pushIcon": 2,
           "color": [255,165,0],
           "repeat": 2,
-          "text": "MINI Print {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusamini_print_finish')) - as_timestamp(now()))) }} Remaining"
+          "text": "MINI: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusamini_print_finish')) - as_timestamp(now()))) }}"
           }
     - service: mqtt.publish
       data:
@@ -363,7 +363,7 @@
           "pushIcon": 2,
           "color": [255,165,0],
           "repeat": 2,
-          "text": "MINI Print {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusamini_print_finish')) - as_timestamp(now()))) }} Remaining"
+          "text": "MINI: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusamini_print_finish')) - as_timestamp(now()))) }}"
           }
 
       ##########################################################
@@ -395,11 +395,11 @@
         payload: >-
           { 
           "icon": "3d_print_complete",
-          "pushIcon": 2,
+          "pushIcon": 0,
           "rainbow": true,
           "duration": 90,
           "repeat": 2,
-          "text": "MK3 Print Complete"
+          "text": "MK3: Finished"
           }
     - service: mqtt.publish
       data:
@@ -413,11 +413,11 @@
         payload: >-
           { 
           "icon": "3d_print_complete",
-          "pushIcon": 2,
+          "pushIcon": 0,
           "rainbow": true,
           "duration": 90,
           "repeat": 2,
-          "text": "MK3 Print Complete"
+          "text": "MK3: Finished"
           }
 
       ##########################################################
@@ -449,10 +449,11 @@
         payload: >-
           { 
           "icon": "3d_print_complete",
-          "pushIcon": 2,
+          "pushIcon": 0,
           "rainbow": true,
           "duration": 90,
-          "text": "MINI Print Complete"
+          "repeat": 2,
+          "text": "MINI: Finished"
           }
     - service: mqtt.publish
       data:
@@ -466,10 +467,11 @@
         payload: >-
           { 
           "icon": "3d_print_complete",
-          "pushIcon": 2,
+          "pushIcon": 0,
           "rainbow": true,
           "duration": 90,
-          "text": "MINI Print Complete"
+          "repeat": 2,
+          "text": "MINI: Finished"
           }
 
       ##########################################################
@@ -491,10 +493,9 @@
           { 
           "icon": "washer",
           "pushIcon": 2,
-          "duration": 30,
           "repeat": 2,
           "color": [255,165,0],
-          "text": "Washer {{ states("sensor.washing_machine_time_remaining") }} Remaining"
+          "text": "Washer: {{ states("sensor.washing_machine_time_remaining") }}"
           }
     - service: mqtt.publish
       data:
@@ -503,10 +504,9 @@
           { 
           "icon": "washer",
           "pushIcon": 2,
-          "duration": 30,
           "repeat": 2,
           "color": [255,165,0],
-          "text": "Washer {{ states("sensor.washing_machine_time_remaining") }} Remaining"
+          "text": "Washer: {{ states("sensor.washing_machine_time_remaining") }}"
           }
 
       ##########################################################
@@ -536,8 +536,8 @@
         payload: >-
           { 
           "icon": "washer",
-          "pushIcon": 2,
-          "duration": 60,
+          "pushIcon": 0,
+          "duration": 90,
           "repeat": 2,
           "color": [0,174,255],
           "text": "Washer Finished"
@@ -551,8 +551,8 @@
         payload: >-
           { 
           "icon": "washer",
-          "pushIcon": 2,
-          "duration": 60,
+          "pushIcon": 0,
+          "duration": 90,
           "repeat": 2,
           "color": [0,174,255],
           "text": "Washer Finished"
@@ -577,10 +577,9 @@
           { 
           "icon": "dryer",
           "pushIcon": 2,
-          "duration": 30,
           "repeat": 2,
           "color": [255,165,0],
-          "text": "Dryer {{ states("sensor.dryer_time_remaining") }} Remaining"
+          "text": "Dryer: {{ states("sensor.dryer_time_remaining") }}"
           }
     - service: mqtt.publish
       data:
@@ -589,10 +588,9 @@
           { 
           "icon": "dryer",
           "pushIcon": 2,
-          "duration": 30,
           "repeat": 2,
           "color": [255,165,0],
-          "text": "Dryer {{ states("sensor.dryer_time_remaining") }} Remaining"
+          "text": "Dryer: {{ states("sensor.dryer_time_remaining") }}"
           }
 
       ##########################################################
@@ -623,7 +621,7 @@
           { 
           "icon": "dryer",
           "pushIcon": 0,
-          "duration": 60,
+          "duration": 90,
           "repeat": 2,
           "color": [255,0,0],
           "text": "Dryer Finished"
@@ -638,7 +636,7 @@
           { 
           "icon": "dryer",
           "pushIcon": 0,
-          "duration": 60,
+          "duration": 90,
           "repeat": 2,
           "color": [255,0,0],
           "text": "Dryer Finished"
@@ -696,7 +694,6 @@
           { 
           "icon": "christmas_tree",
           "pushIcon": 0,
-          "duration": 20,
           "repeat": 2,
           "text": [
             {
@@ -716,7 +713,6 @@
           { 
           "icon": "christmas_tree",
           "pushIcon": 0,
-          "duration": 20,
           "repeat": 2,
           "text": [
             {
@@ -754,7 +750,6 @@
           { 
           "icon": "pumpkin",
           "pushIcon": 0,
-          "duration": 20,
           "repeat": 2,
           "text": [
             {
@@ -774,7 +769,6 @@
           { 
           "icon": "pumpkin",
           "pushIcon": 0,
-          "duration": 20,
           "repeat": 2,
           "text": [
             {
@@ -810,9 +804,8 @@
         topic: USER1_office_clock/custom/holiday
         payload: >-
           { 
-          "icon": "fireworks",
+          "icon": "usa",
           "pushIcon": 0,
-          "duration": 20,
           "repeat": 2,
           "text": [
             {
@@ -834,9 +827,8 @@
         topic: living_room_clock/custom/holiday
         payload: >-
           { 
-          "icon": "fireworks",
+          "icon": "usa",
           "pushIcon": 0,
-          "duration": 20,
           "repeat": 2,
           "text": [
             {
@@ -878,7 +870,6 @@
           { 
           "icon": "heart",
           "pushIcon": 0,
-          "duration": 20,
           "repeat": 2,
           "color": [255,192,203],
           "text": "Happy Valentines Day"
@@ -890,7 +881,6 @@
           { 
           "icon": "heart",
           "pushIcon": 0,
-          "duration": 20,
           "repeat": 2,
           "color": [255,192,203],
           "text": "Happy Valentines Day"
@@ -920,7 +910,6 @@
           { 
           "icon": "fireworks",
           "pushIcon": 0,
-          "duration": 20,
           "repeat": 2,
           "rainbow": true,
           "text": "Happy New Years!"
@@ -932,7 +921,6 @@
           { 
           "icon": "fireworks",
           "pushIcon": 0,
-          "duration": 20,
           "repeat": 2,
           "rainbow": true,
           "text": "Happy New Years!"
@@ -1098,7 +1086,6 @@
           { 
           "icon": "music",
           "pushIcon": 0,
-          "duration": 30,
           "repeat": 2,
           "rainbow": true,
           "text": "Song: {{ state_attr('media_player.sonos_USER1s_office', 'media_title') }}"
@@ -1134,7 +1121,6 @@
           { 
           "icon": "music",
           "pushIcon": 0,
-          "duration": 30,
           "repeat": 2,
           "rainbow": true,
           "text": "Song: {{ state_attr('media_player.sonos_USER1s_office_move', 'media_title') }}"
@@ -1170,7 +1156,6 @@
           { 
           "icon": "album",
           "pushIcon": 2,
-          "duration": 30,
           "repeat": 2,
           "rainbow": true,
           "text": "Artist: {{ state_attr('media_player.sonos_USER1s_office', 'media_artist') }} - Album: {{ state_attr('media_player.sonos_USER1s_office', 'media_album_name') }}"
@@ -1206,7 +1191,6 @@
           { 
           "icon": "album",
           "pushIcon": 2,
-          "duration": 30,
           "repeat": 2,
           "rainbow": true,
           "text": "Artist: {{ state_attr('media_player.sonos_USER1s_office_move', 'media_artist') }} - Album: {{ state_attr('media_player.sonos_USER1s_office_move', 'media_album_name') }}"
@@ -1263,7 +1247,6 @@
           { 
           "icon": "party",
           "pushIcon": 2,
-          "duration": 20,
           "repeat": 2,
           "rainbow": true,
           "text": "Party Time!"
@@ -1357,8 +1340,8 @@
           { 
           "icon": "doorbell",
           "pushIcon": 0,
-          "duration": 30,
-          "textCase": 0,
+          "duration": 60,
+          "repeat": 2,
           "text": "Doorbell"
           }
 
@@ -1435,7 +1418,7 @@
           { 
           "icon": "house",
           "pushIcon": 0,
-          "duration": 30,
+          "duration": 60,
           "repeat": 2,
           "rainbow": true,
           "text": "USER2 Home"
@@ -1550,7 +1533,6 @@
           { 
           "icon": "door",
           "pushIcon": 0,
-          "duration": 15,
           "repeat": 2,
           "color": [255,0,0],
           "text": "{{ trigger.to_state.attributes.friendly_name }} Opened"
@@ -1585,7 +1567,6 @@
           { 
           "icon": "garage_open",
           "pushIcon": 0,
-          "duration": 30,
           "repeat": 2,
           "color": [255,0,0],
           "text": "Garage Open"
@@ -1620,7 +1601,6 @@
           { 
           "icon": "garage_close",
           "pushIcon": 0,
-          "duration": 30,
           "repeat": 2,
           "color": [0,255,0],
           "text": "Garage Closed"
@@ -1804,7 +1784,6 @@
           { 
           "icon": "tv_off",
           "pushIcon": 0,
-          "duration": 15,
           "repeat": 2,
           "color": [255,0,0],
           "stack": false,
@@ -1831,8 +1810,7 @@
           { 
           "icon": "tv",
           "pushIcon": 0,
-          "duration": 15,
-          "textCase": 0,
+          "repeat": 2,
           "rainbow": true,
           "stack": false,
           "text": "TV"
@@ -1844,7 +1822,6 @@
           { 
           "icon": "tv",
           "pushIcon": 0,
-          "duration": 15,
           "repeat": 2,
           "rainbow": true,
           "text": "TV"
@@ -1870,7 +1847,6 @@
           { 
           "icon": "mario",
           "pushIcon": 0,
-          "duration": 15,
           "repeat": 2,
           "stack": false,
           "text": [
@@ -1891,7 +1867,6 @@
           { 
           "icon": "mario",
           "pushIcon": 0,
-          "duration": 15,
           "repeat": 2,
           "text": [
             {
@@ -1925,7 +1900,6 @@
           { 
           "icon": "xbox",
           "pushIcon": 0,
-          "duration": 15,
           "repeat": 2,
           "color": [0,255,0],
           "stack": false,
@@ -1938,7 +1912,6 @@
           { 
           "icon": "xbox",
           "pushIcon": 0,
-          "duration": 15,
           "repeat": 2,
           "color": [0,255,0],
           "text": "Xbox"
@@ -1974,7 +1947,6 @@
           { 
           "icon": "music",
           "pushIcon": 0,
-          "duration": 30,
           "repeat": 2,
           "rainbow": true,
           "text": "Song: {{ state_attr('media_player.sonos_living_room', 'media_title') }}"
@@ -2028,7 +2000,6 @@
           { 
           "icon": "music",
           "pushIcon": 0,
-          "duration": 30,
           "repeat": 2,
           "rainbow": true,
           "text": "Song: {{ state_attr('media_player.sonos_surround_sound', 'media_title') }}"
@@ -2064,7 +2035,6 @@
           { 
           "icon": "album",
           "pushIcon": 2,
-          "duration": 30,
           "repeat": 2,
           "rainbow": true,
           "text": "Artist: {{ state_attr('media_player.sonos_living_room', 'media_artist') }} - Album: {{ state_attr('media_player.sonos_living_room', 'media_album_name') }}"
@@ -2100,7 +2070,6 @@
           { 
           "icon": "album",
           "pushIcon": 2,
-          "duration": 30,
           "repeat": 2,
           "rainbow": true,
           "text": "Artist: {{ state_attr('media_player.sonos_surround_sound', 'media_artist') }} - Album: {{ state_attr('media_player.sonos_surround_sound', 'media_album_name') }}"
@@ -2157,7 +2126,6 @@
           { 
           "icon": "party",
           "pushIcon": 2,
-          "duration": 20,
           "repeat": 2,
           "rainbow": true,
           "text": "Party Time!"
@@ -2212,7 +2180,7 @@
           { 
           "icon": "movie",
           "pushIcon": 2,
-          "duration": 30,
+          "duration": 60,
           "repeat": 2,
           "rainbow": false,
           "stack": false,
@@ -2248,7 +2216,7 @@
           { 
           "icon": "doorbell",
           "pushIcon": 0,
-          "duration": 30,
+          "duration": 60,
           "repeat": 2,
           "stack": false,
           "text": "Doorbell"
@@ -2327,7 +2295,7 @@
           { 
           "icon": "house",
           "pushIcon": 0,
-          "duration": 30,
+          "duration": 60,
           "repeat": 2,
           "rainbow": true,
           "text": "USER2 Home"
@@ -2372,7 +2340,7 @@
           { 
           "icon": "house",
           "pushIcon": 0,
-          "duration": 30,
+          "duration": 60,
           "repeat": 2,
           "rainbow": true,
           "text": "USER1 Home"
@@ -2487,7 +2455,6 @@
           { 
           "icon": "door",
           "pushIcon": 0,
-          "duration": 15,
           "repeat": 2,
           "color": [255,0,0],
           "stack": false,
@@ -2523,7 +2490,6 @@
           { 
           "icon": "garage_open",
           "pushIcon": 0,
-          "duration": 30,
           "repeat": 2,
           "color": [255,0,0],
           "stack": false,
@@ -2559,7 +2525,6 @@
           { 
           "icon": "garage_close",
           "pushIcon": 0,
-          "duration": 30,
           "repeat": 2,
           "color": [0,255,0],
           "stack": false,
@@ -2594,7 +2559,6 @@
           { 
           "icon": "fire_2",
           "pushIcon": 0,
-          "duration": 30,
           "repeat": 2,
           "color": [255,165,0],
           "stack": false,
