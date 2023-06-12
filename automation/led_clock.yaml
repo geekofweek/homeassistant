@@ -1,5 +1,5 @@
 #################################################################
-## LCD Clock Automations
+## LED Clock Automations
 #################################################################
 
   ##########################################################
@@ -10,8 +10,8 @@
         ## Bedtime 
         ##########################################################
 
-- alias: LCD Clock - Bedtime
-  id: 'lcd_clock_bedtime'
+- alias: LED Clock - Bedtime
+  id: 'led_clock_bedtime'
 
   trigger:
     - platform: state
@@ -55,11 +55,11 @@
         topic: living_room_clock/custom/tv_state
 
         ##########################################################
-        ## Household Away Mode LCD Clock
+        ## Household Away Mode LED Clock
         ##########################################################
 
-- alias: LCD Clock - Household Away Mode
-  id: 'lcd_clock_household_away_mode'
+- alias: LED Clock - Household Away Mode
+  id: 'led_clock_household_away_mode'
 
   trigger:
     - platform: state
@@ -111,8 +111,8 @@
       ## Weather App
       ##########################################################
 
-- alias: LCD Clock - Weather App
-  id: 'lcd_clock_weather_app'
+- alias: LED Clock - Weather App
+  id: 'led_clock_weather_app'
 
   trigger:
     - platform: time_pattern
@@ -144,8 +144,8 @@
       ## Temperature App
       ##########################################################
 
-- alias: LCD Clock - Temperature App
-  id: 'lcd_clock_temperature_app'
+- alias: LED Clock - Temperature App
+  id: 'led_clock_temperature_app'
 
   trigger:
     - platform: time_pattern
@@ -177,8 +177,8 @@
       ## Humidity App
       ##########################################################
 
-- alias: LCD Clock - Humidity App
-  id: 'lcd_clock_humidity_app'
+- alias: LED Clock - Humidity App
+  id: 'led_clock_humidity_app'
 
   trigger:
     - platform: time_pattern
@@ -192,7 +192,7 @@
         topic: USER1_office_clock/custom/humidity
         payload: >-
           { 
-          "icon": "humid",
+          "icon": "humid_2",
           "pushIcon": 0,
           "text": "{{ states("sensor.REDACTED_humidity") }}%"
           }
@@ -201,7 +201,7 @@
         topic: living_room_clock/custom/humidity
         payload: >-
           { 
-          "icon": "humid",
+          "icon": "humid_2",
           "pushIcon": 0,
           "text": "{{ states("sensor.REDACTED_humidity") }}%"
           }
@@ -210,8 +210,8 @@
       ## MK3 Print Progress App
       ##########################################################
 
-- alias: LCD Clock - MK3 Print Progress App
-  id: 'lcd_clock_mk3_print_progress_app'
+- alias: LED Clock - MK3 Print Progress App
+  id: 'led_clock_mk3_print_progress_app'
 
   trigger:
     - platform: state
@@ -250,8 +250,8 @@
       ## MK3 3D Print Time Remaining App
       ##########################################################
 
-- alias: LCD Clock - MK3 Print Time Remaining App
-  id: 'lcd_clock_mk3_print_time_remaining_app'
+- alias: LED Clock - MK3 Print Time Remaining App
+  id: 'led_clock_mk3_print_time_remaining_app'
 
   trigger:
     - platform: state
@@ -290,8 +290,8 @@
        ## MINI 3D Print Progress App
        ##########################################################
 
-- alias: LCD Clock - MINI 3D Print Progress App
-  id: 'lcd_clock_mini_3d_print_progress_app'
+- alias: LED Clock - MINI 3D Print Progress App
+  id: 'led_clock_mini_3d_print_progress_app'
   
   trigger:
     - platform: state
@@ -330,8 +330,8 @@
       ## MINI 3D Print Time Remaining App
       ##########################################################
 
-- alias: LCD Clock - MINI 3D Print Time Remaining App
-  id: 'lcd_clock_mini_3d_print_time_remaining_app'
+- alias: LED Clock - MINI 3D Print Time Remaining App
+  id: 'led_clock_mini_3d_print_time_remaining_app'
   
   trigger:
     - platform: state
@@ -370,8 +370,8 @@
       ## MK3 3D Print Complete App
       ##########################################################
 
-- alias: LCD Clock - MK3 3D Print Complete App
-  id: 'lcd_clock_mk3_3d_print_complete_app'
+- alias: LED Clock - MK3 3D Print Complete App
+  id: 'led_clock_mk3_3d_print_complete_app'
 
   trigger:
     - platform: state
@@ -424,8 +424,8 @@
       ## MINI 3D Print Complete App
       ##########################################################
 
-- alias: LCD Clock - MINI 3D Print Complete App
-  id: 'lcd_clock_mini_3d_print_complete_app'
+- alias: LED Clock - MINI 3D Print Complete App
+  id: 'led_clock_mini_3d_print_complete_app'
 
   trigger:
     - platform: state
@@ -476,8 +476,8 @@
       ## Washing Machine Status App
       ##########################################################
 
-- alias: LCD Clock - Washing Machine Status App
-  id: 'lcd_clock_washing_machine_status_app'
+- alias: LED Clock - Washing Machine Status App
+  id: 'led_clock_washing_machine_status_app'
 
   trigger:
     - platform: state
@@ -513,8 +513,8 @@
       ## Washing Machine Done App
       ##########################################################
 
-- alias: LCD Clock - Washing Machine Done App
-  id: 'lcd_clock_washing_machine_done_app'
+- alias: LED Clock - Washing Machine Done App
+  id: 'led_clock_washing_machine_done_app'
 
   trigger:
     - platform: state
@@ -562,8 +562,8 @@
       ## Dryer Status App
       ##########################################################
 
-- alias: LCD Clock - Dryer Status App
-  id: 'lcd_clock_dryer_status_app'
+- alias: LED Clock - Dryer Status App
+  id: 'led_clock_dryer_status_app'
 
   trigger:
     - platform: state
@@ -599,8 +599,8 @@
       ## Dryer Done App
       ##########################################################
 
-- alias: LCD Clock - Dryer Done App
-  id: 'lcd_clock_dryer_done_app'
+- alias: LED Clock - Dryer Done App
+  id: 'led_clock_dryer_done_app'
 
   trigger:
     - platform: state
@@ -652,8 +652,8 @@
       ## Holiday Reset App
       ##########################################################
 
-- alias: LCD Clock - Holiday Reset App
-  id: 'lcd_clock_holiday_reset_app'
+- alias: LED Clock - Holiday Reset App
+  id: 'led_clock_holiday_reset_app'
 
   trigger:
    - platform: time
@@ -676,8 +676,8 @@
       ## Christmas App
       ##########################################################
 
-- alias: LCD Clock - Christmas App
-  id: 'lcd_clock_christmas_app'
+- alias: LED Clock - Christmas App
+  id: 'led_clock_christmas_app'
 
   trigger:
    - platform: time
@@ -734,8 +734,8 @@
       ## Halloween App
       ##########################################################
 
-- alias: LCD Clock - Halloween App
-  id: 'lcd_clock_halloween_app'
+- alias: LED Clock - Halloween App
+  id: 'led_clock_halloween_app'
 
   trigger:
    - platform: time
@@ -792,8 +792,8 @@
       ## 4th of July App
       ##########################################################
 
-- alias: LCD Clock - 4th of July App
-  id: 'lcd_clock_4th_of_july_app'
+- alias: LED Clock - 4th of July App
+  id: 'led_clock_4th_of_july_app'
 
   trigger:
    - platform: time
@@ -858,8 +858,8 @@
       ## Valentines Day App
       ##########################################################
 
-- alias: LCD Clock - Valentines Day App
-  id: 'lcd_clock_valentines_day_app'
+- alias: LED Clock - Valentines Day App
+  id: 'led_clock_valentines_day_app'
 
   trigger:
    - platform: time
@@ -900,8 +900,8 @@
       ## New Years App
       ##########################################################
 
-- alias: LCD Clock - New Years App
-  id: 'lcd_clock_new_years_app'
+- alias: LED Clock - New Years App
+  id: 'led_clock_new_years_app'
 
   trigger:
    - platform: time
@@ -943,11 +943,11 @@
   ##########################################################
 
       ##########################################################
-      ## Turn On USER1 Office LCD Clock when Motion Detected
+      ## Turn On USER1 Office LED Clock when Motion Detected
       ##########################################################
 
-- alias: LCD Clock - Turn On USER1's Office when Motion Detected
-  id: 'lcd_clock_turn_on_USER1_office_when_motion_detected'
+- alias: LED Clock - Turn On USER1's Office when Motion Detected
+  id: 'led_clock_turn_on_USER1_office_when_motion_detected'
 
   trigger:
     - platform: state
@@ -975,11 +975,11 @@
         - light.USER1s_office_desktop_clock
 
       ##########################################################
-      ## Turn Off USER1 Office LCD Clock when No Motion Detected
+      ## Turn Off USER1 Office LED Clock when No Motion Detected
       ##########################################################
 
-- alias: LCD Clock - Turn Off USER1's Office when No Motion Detected
-  id: 'lcd_clock_turn_off_USER1_office_when_no_motion_detected'
+- alias: LED Clock - Turn Off USER1's Office when No Motion Detected
+  id: 'led_clock_turn_off_USER1_office_when_no_motion_detected'
 
   trigger:
     - platform: state
@@ -1009,11 +1009,11 @@
   ##########################################################
 
       ##########################################################
-      ## Do Not Disturb On USER1's Office LCD Clock
+      ## Do Not Disturb On USER1's Office LED Clock
       ##########################################################
 
-- alias: LCD Clock - USER1 Office Do Not Disturb On
-  id: 'lcd_clock_USER1_office_do_not_disturb_on'
+- alias: LED Clock - USER1 Office Do Not Disturb On
+  id: 'led_clock_USER1_office_do_not_disturb_on'
 
   trigger:
     - platform: state
@@ -1044,11 +1044,11 @@
           }
 
       ##########################################################
-      ## Do Not Disturb Off USER1's Office LCD Clock
+      ## Do Not Disturb Off USER1's Office LED Clock
       ##########################################################
 
-- alias: LCD Clock - USER1 Office Do Not Disturb Off
-  id: 'lcd_clock_USER1_office_do_not_disturb_off'
+- alias: LED Clock - USER1 Office Do Not Disturb Off
+  id: 'led_clock_USER1_office_do_not_disturb_off'
 
   trigger:
     - platform: state
@@ -1072,8 +1072,8 @@
       ## Music Title Sonos USER1's Office Clock
       ##########################################################
 
-- alias: LCD Clock - USER1's Office Music Title Sonos
-  id: 'lcd_clock_living_room_music_title_sonos_living_room'
+- alias: LED Clock - USER1's Office Music Title Sonos
+  id: 'led_clock_living_room_music_title_sonos_living_room'
 
   trigger:
     - platform: state
@@ -1108,8 +1108,8 @@
       ## Music Title Sonos Move USER1's Office Clock
       ##########################################################
 
-- alias: LCD Clock - USER1's Office Music Title Sonos Move
-  id: 'lcd_clock_living_room_music_title_sonos_sonos_move'
+- alias: LED Clock - USER1's Office Music Title Sonos Move
+  id: 'led_clock_living_room_music_title_sonos_sonos_move'
 
   trigger:
     - platform: state
@@ -1144,8 +1144,8 @@
       ## Album Title Sonos USER1's Office USER1's Office Clock
       ##########################################################
 
-- alias: LCD Clock - USER1's Office Album Title Sonos USER1's Office
-  id: 'lcd_clock_living_room_album_title_sonos_living_room'
+- alias: LED Clock - USER1's Office Album Title Sonos USER1's Office
+  id: 'led_clock_living_room_album_title_sonos_living_room'
 
   trigger:
     - platform: state
@@ -1180,8 +1180,8 @@
       ## Music Title Sonos Move USER1's Office Clock
       ##########################################################
 
-- alias: LCD Clock - USER1's Office Music Title Sonos Move
-  id: 'lcd_clock_living_room_music_title_sonos_sonos_move'
+- alias: LED Clock - USER1's Office Music Title Sonos Move
+  id: 'led_clock_living_room_music_title_sonos_sonos_move'
 
   trigger:
     - platform: state
@@ -1216,8 +1216,8 @@
       ## Music Remove USER1's Office Clock
       ##########################################################
 
-- alias: LCD Clock - USER1's Office Music  Remove
-  id: 'lcd_clock_living_room_music_remove'
+- alias: LED Clock - USER1's Office Music  Remove
+  id: 'led_clock_living_room_music_remove'
 
   trigger:
     - platform: state
@@ -1247,8 +1247,8 @@
       ## Party Time USER1's Office Clock
       ##########################################################
 
-- alias: LCD Clock - USER1's Office Party Time
-  id: 'lcd_clock_living_room_party_time'
+- alias: LED Clock - USER1's Office Party Time
+  id: 'led_clock_living_room_party_time'
 
   trigger:
     - platform: state
@@ -1273,8 +1273,8 @@
       ## Party Time Off Living Room Clock
       ##########################################################
 
-- alias: LCD Clock - Living Room Party Time Off
-  id: 'lcd_clock_living_room_party_time_off'
+- alias: LED Clock - Living Room Party Time Off
+  id: 'led_clock_living_room_party_time_off'
 
   trigger:
     - platform: state
@@ -1294,8 +1294,8 @@
       ## Media Title USER1's Office Clock
       ##########################################################
 
-- alias: LCD Clock - USER1's Office Media Title
-  id: 'lcd_clock_USER1_office_media_title'
+- alias: LED Clock - USER1's Office Media Title
+  id: 'led_clock_USER1_office_media_title'
 
   trigger:
     - platform: state
@@ -1329,11 +1329,11 @@
           }
 
       ##########################################################
-      ## Doorbell USER1's Office LCD Clock
+      ## Doorbell USER1's Office LED Clock
       ##########################################################
 
-- alias: LCD Clock - Doorbell USER1's Office
-  id: 'lcd_clock_doorbell_USER1_office'
+- alias: LED Clock - Doorbell USER1's Office
+  id: 'led_clock_doorbell_USER1_office'
 
   trigger:
     - platform: state
@@ -1363,11 +1363,11 @@
           }
 
         #################################################################
-        ## USER2 Left Work USER1's Office LCD Clock
+        ## USER2 Left Work USER1's Office LED Clock
         #################################################################
 
-- alias: LCD Clock - USER1's Office USER2 Left
-  id: 'lcd_clock_USER1_office_USER2_left_work'
+- alias: LED Clock - USER1's Office USER2 Left
+  id: 'led_clock_USER1_office_USER2_left_work'
 
   trigger:
     - platform: state
@@ -1397,11 +1397,11 @@
           }
 
       ##########################################################
-      ## USER2 is Home USER1's Office LCD Clock
+      ## USER2 is Home USER1's Office LED Clock
       ##########################################################
 
-- alias: LCD Clock - USER1's Office USER2 is Home
-  id: 'lcd_clock_USER1_office_USER2_is_home'
+- alias: LED Clock - USER1's Office USER2 is Home
+  id: 'led_clock_USER1_office_USER2_is_home'
 
   trigger:
     - platform: state
@@ -1442,11 +1442,11 @@
           }
 
       ##########################################################
-      ## Echo Timer Done USER1's Office LCD Clock
+      ## Echo Timer Done USER1's Office LED Clock
       ##########################################################
 
-- alias: LCD Clock - USER1's Office Echo Timer Done
-  id: 'lcd_clock_USER1_office_echo_timer_done'
+- alias: LED Clock - USER1's Office Echo Timer Done
+  id: 'led_clock_USER1_office_echo_timer_done'
 
   mode: parallel
   trigger:
@@ -1514,11 +1514,11 @@
           }
 
       ##########################################################
-      ## Door Open USER1's LCD Clock
+      ## Door Open USER1's LED Clock
       ##########################################################
 
-- alias: LCD Clock - USER1's Office Door Open
-  id: 'lcd_clock_USER1_office_door_open'
+- alias: LED Clock - USER1's Office Door Open
+  id: 'led_clock_USER1_office_door_open'
 
   trigger:
     - platform: state
@@ -1557,11 +1557,11 @@
           }
 
       ##########################################################
-      ## Garage Door Open USER1's LCD Clock
+      ## Garage Door Open USER1's LED Clock
       ##########################################################
 
-- alias: LCD Clock - USER1's Office Garage Door Open
-  id: 'lcd_clock_USER1_office_garage_door_open'
+- alias: LED Clock - USER1's Office Garage Door Open
+  id: 'led_clock_USER1_office_garage_door_open'
 
   trigger:
     - platform: state
@@ -1592,11 +1592,11 @@
           }
 
       ##########################################################
-      ## Garage Door Closed USER1's LCD Clock
+      ## Garage Door Closed USER1's LED Clock
       ##########################################################
 
-- alias: LCD Clock - USER1's Office Garage Door Closed
-  id: 'lcd_clock_USER1_office_garage_door_closed'
+- alias: LED Clock - USER1's Office Garage Door Closed
+  id: 'led_clock_USER1_office_garage_door_closed'
 
   trigger:
     - platform: state
@@ -1634,8 +1634,8 @@
       ## Turn On Living Room Clock when Motion Detected
       ##########################################################
 
-- alias: LCD Clock - Turn On Living Room when Motion Detected
-  id: 'lcd_clock_turn_on_living_room_when_motion_detected'
+- alias: LED Clock - Turn On Living Room when Motion Detected
+  id: 'led_clock_turn_on_living_room_when_motion_detected'
 
   trigger:
     - platform: state
@@ -1673,11 +1673,11 @@
         - light.living_room_clock
 
       ##########################################################
-      ## Turn Off Living Room LCD Clock when No Motion Detected
+      ## Turn Off Living Room LED Clock when No Motion Detected
       ##########################################################
 
-- alias: LCD Clock - Turn Off Living Room when No Motion Detected
-  id: 'lcd_clock_turn_off_living_room_when_no_motion_detected'
+- alias: LED Clock - Turn Off Living Room when No Motion Detected
+  id: 'led_clock_turn_off_living_room_when_no_motion_detected'
 
   trigger:
     - platform: state
@@ -1703,11 +1703,11 @@
         - light.living_room_clock
 
       ##########################################################
-      ## Turn Off Living Room LCD Clock when Watching TV
+      ## Turn Off Living Room LED Clock when Watching TV
       ##########################################################
 
-- alias: LCD Clock - urn Off Living Room LCD Clock when Watching TV
-  id: 'lcd_clock_turn_off_living_room_when_watching_tv'
+- alias: LED Clock - urn Off Living Room LED Clock when Watching TV
+  id: 'led_clock_turn_off_living_room_when_watching_tv'
 
   trigger:
     - platform: state
@@ -1735,8 +1735,8 @@
       ## Turn On Living Room Clock when Done Watching TV
       ##########################################################
 
-- alias: LCD Clock - urn Off Living Room Clock when Done Watching TV
-  id: 'lcd_clock_turn_off_living_room_when_done_watching_tv'
+- alias: LED Clock - urn Off Living Room Clock when Done Watching TV
+  id: 'led_clock_turn_off_living_room_when_done_watching_tv'
 
   trigger:
     - platform: state
@@ -1785,8 +1785,8 @@
       ## TV Off Living Room Clock
       ##########################################################
 
-- alias: LCD Clock - Living Room TV Off
-  id: 'lcd_clock_living_room_tv_off'
+- alias: LED Clock - Living Room TV Off
+  id: 'led_clock_living_room_tv_off'
 
   trigger:
     - platform: state
@@ -1815,8 +1815,8 @@
       ## Watch TV Living Room Clock
       ##########################################################
 
-- alias: LCD Clock - Living Room Watch TV
-  id: 'lcd_clock_living_room_watch_tv'
+- alias: LED Clock - Living Room Watch TV
+  id: 'led_clock_living_room_watch_tv'
 
   trigger:
     - platform: state
@@ -1854,8 +1854,8 @@
       ## Nintendo Switch Living Room Clock
       ##########################################################
 
-- alias: LCD Clock - Living Room Nintendo Switch
-  id: 'lcd_clock_living_room_nintendo_switch'
+- alias: LED Clock - Living Room Nintendo Switch
+  id: 'led_clock_living_room_nintendo_switch'
 
   trigger:
     - platform: state
@@ -1909,8 +1909,8 @@
       ## Xbox Living Room Clock
       ##########################################################
 
-- alias: LCD Clock - Living Room Xbox
-  id: 'lcd_clock_living_room_xbox'
+- alias: LED Clock - Living Room Xbox
+  id: 'led_clock_living_room_xbox'
 
   trigger:
     - platform: state
@@ -1948,8 +1948,8 @@
       ## Music Title Sonos Living Room Living Room Clock
       ##########################################################
 
-- alias: LCD Clock - Living Room Music Title Sonos Living Room
-  id: 'lcd_clock_living_room_music_title_sonos_living_room'
+- alias: LED Clock - Living Room Music Title Sonos Living Room
+  id: 'led_clock_living_room_music_title_sonos_living_room'
 
   trigger:
     - platform: state
@@ -1984,8 +1984,8 @@
       ## Music Title Sonos Surround Sound Living Room Clock
       ##########################################################
 
-- alias: LCD Clock - Living Room Music Title Sonos Surround Sound
-  id: 'lcd_clock_living_room_music_title_sonos_sonos_surround_sound'
+- alias: LED Clock - Living Room Music Title Sonos Surround Sound
+  id: 'led_clock_living_room_music_title_sonos_sonos_surround_sound'
 
   trigger:
     - platform: state
@@ -2038,8 +2038,8 @@
       ## Album Title Sonos Living Room Living Room Clock
       ##########################################################
 
-- alias: LCD Clock - Living Room Album Title Sonos Living Room
-  id: 'lcd_clock_living_room_album_title_sonos_living_room'
+- alias: LED Clock - Living Room Album Title Sonos Living Room
+  id: 'led_clock_living_room_album_title_sonos_living_room'
 
   trigger:
     - platform: state
@@ -2074,8 +2074,8 @@
       ## Music Title Sonos Surround Sound Living Room Clock
       ##########################################################
 
-- alias: LCD Clock - Living Room Music Title Sonos Surround Sound
-  id: 'lcd_clock_living_room_music_title_sonos_sonos_surround_sound'
+- alias: LED Clock - Living Room Music Title Sonos Surround Sound
+  id: 'led_clock_living_room_music_title_sonos_sonos_surround_sound'
 
   trigger:
     - platform: state
@@ -2110,8 +2110,8 @@
       ## Music Remove Living Room Clock
       ##########################################################
 
-- alias: LCD Clock - Living Room Music Remove
-  id: 'lcd_clock_living_room_music_remove'
+- alias: LED Clock - Living Room Music Remove
+  id: 'led_clock_living_room_music_remove'
 
   trigger:
     - platform: state
@@ -2141,8 +2141,8 @@
       ## Party Time Living Room Clock
       ##########################################################
 
-- alias: LCD Clock - Living Room Party Time
-  id: 'lcd_clock_living_room_party_time'
+- alias: LED Clock - Living Room Party Time
+  id: 'led_clock_living_room_party_time'
 
   trigger:
     - platform: state
@@ -2167,8 +2167,8 @@
       ## Party Time Off Living Room Clock
       ##########################################################
 
-- alias: LCD Clock - Living Room Party Time Off
-  id: 'lcd_clock_living_room_party_time_off'
+- alias: LED Clock - Living Room Party Time Off
+  id: 'led_clock_living_room_party_time_off'
 
   trigger:
     - platform: state
@@ -2188,8 +2188,8 @@
       ## Media Title Living Room Clock
       ##########################################################
 
-- alias: LCD Clock - Living Room Media Title
-  id: 'lcd_clock_living_room_media_title'
+- alias: LED Clock - Living Room Media Title
+  id: 'led_clock_living_room_media_title'
 
   trigger:
     - platform: state
@@ -2223,8 +2223,8 @@
       ## Doorbell Living Room Clock
       ##########################################################
 
-- alias: LCD Clock - Doorbell Living Room
-  id: 'lcd_clock_doorbell_living_room'
+- alias: LED Clock - Doorbell Living Room
+  id: 'led_clock_doorbell_living_room'
 
   trigger:
     - platform: state
@@ -2258,8 +2258,8 @@
         ## USER2 Left Work Living Room Clock
         #################################################################
 
-- alias: LCD Clock - Living Room USER2 Left
-  id: 'lcd_clock_living_room_USER2_left_work'
+- alias: LED Clock - Living Room USER2 Left
+  id: 'led_clock_living_room_USER2_left_work'
 
   trigger:
     - platform: state
@@ -2292,8 +2292,8 @@
       ## USER2 is Home Living Room Clock
       ##########################################################
 
-- alias: LCD Clock - Living Room USER2 is Home
-  id: 'lcd_clock_living_room_USER2_is_home'
+- alias: LED Clock - Living Room USER2 is Home
+  id: 'led_clock_living_room_USER2_is_home'
 
   trigger:
     - platform: state
@@ -2337,8 +2337,8 @@
       ## USER1 is Home Living Room Clock
       ##########################################################
 
-- alias: LCD Clock - Living Room USER1 is Home
-  id: 'lcd_clock_living_room_USER1_is_home'
+- alias: LED Clock - Living Room USER1 is Home
+  id: 'led_clock_living_room_USER1_is_home'
 
   trigger:
     - platform: state
@@ -2382,8 +2382,8 @@
       ## Echo Timer Done Living Room Clock
       ##########################################################
 
-- alias: LCD Clock - Living Room Echo Timer Done
-  id: 'lcd_clock_living_room_echo_timer_done'
+- alias: LED Clock - Living Room Echo Timer Done
+  id: 'led_clock_living_room_echo_timer_done'
 
   mode: parallel
   trigger:
@@ -2454,8 +2454,8 @@
       ## Door Open Living Room Clock
       ##########################################################
 
-- alias: LCD Clock - Living Room Door Open
-  id: 'lcd_clock_living_room_door_open'
+- alias: LED Clock - Living Room Door Open
+  id: 'led_clock_living_room_door_open'
 
   trigger:
     - platform: state
@@ -2498,8 +2498,8 @@
       ## Garage Door Open Living Room Clock
       ##########################################################
 
-- alias: LCD Clock - Living Room Garage Door Open
-  id: 'lcd_clock_living_room_garage_door_open'
+- alias: LED Clock - Living Room Garage Door Open
+  id: 'led_clock_living_room_garage_door_open'
 
   trigger:
     - platform: state
@@ -2534,8 +2534,8 @@
       ## Garage Door Closed Living Room Clock
       ##########################################################
 
-- alias: LCD Clock - Living Room Garage Door Closed
-  id: 'lcd_clock_living_room_garage_door_closed'
+- alias: LED Clock - Living Room Garage Door Closed
+  id: 'led_clock_living_room_garage_door_closed'
 
   trigger:
     - platform: state
@@ -2570,8 +2570,8 @@
       ## Fireplace On Living Room Clock
       ##########################################################
 
-- alias: LCD Clock - Living Room Fireplace On
-  id: 'lcd_clock_living_room_fireplace_on'
+- alias: LED Clock - Living Room Fireplace On
+  id: 'led_clock_living_room_fireplace_on'
 
   trigger:
     - platform: state
