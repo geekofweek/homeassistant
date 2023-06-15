@@ -482,3 +482,21 @@
       name: "USER2's Office Timer"
       state: >-
         {{ states('sensor.USER2_s_office_echo_next_timer') != "unknown" }}
+
+      ##########################################################
+      ## Outdoor Temperature Ranges
+      ##########################################################
+
+  - sensor:
+    - unique_id: outdoor_temp_range
+      name: Outdoor Temp Range
+      state: >
+        {% if states('sensor.REDACTED_temperature') | int >= 80 %}
+          temp-hot
+        {% elif states('sensor.REDACTED_temperature') | int >= 55 %}
+          temp-norm
+        {% elif states('sensor.REDACTED_temperature') | int <= 54 %}
+          temp-cold
+        {% else %}
+          temp-norm
+        {% endif %}

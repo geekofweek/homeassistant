@@ -1031,8 +1031,11 @@
   action:
     - service: lifx.effect_pulse
       data:
-       entity_id: light.garage_interior
-       cycles: '5'
+        cycles: 5
+        power_on: true
+        brightness_pct: 100
+      target:
+        entity_id: light.garage_interior
     - delay: '00:00:05'
     - service: cover.close_cover
       entity_id: cover.garage_door
@@ -1061,8 +1064,11 @@
   action:
     - service: lifx.effect_pulse
       data:
-       entity_id: light.garage_interior
-       cycles: '5'
+        cycles: 5
+        power_on: true
+        brightness_pct: 100
+      target:
+        entity_id: light.garage_interior
     - delay: '00:00:05'
     - service: cover.close_cover
       entity_id: cover.garage_door

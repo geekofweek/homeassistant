@@ -34,9 +34,6 @@
         - light.living_room_clock
     - service: mqtt.publish
       data:
-        topic: USER1_office_clock/custom/party_time
-    - service: mqtt.publish
-      data:
         topic: living_room_clock/custom/custom/music_song
     - service: mqtt.publish
       data:
@@ -49,7 +46,16 @@
         topic: USER1_office_clock/custom/custom/music_album
     - service: mqtt.publish
       data:
+        topic: USER1_office_clock/custom/youtube
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/youtube
+    - service: mqtt.publish
+      data:
         topic: living_room_clock/custom/party_time
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/party_time
     - service: mqtt.publish
       data:
         topic: living_room_clock/custom/tv_state
@@ -83,9 +89,6 @@
         - light.living_room_clock
     - service: mqtt.publish
       data:
-        topic: USER1_office_clock/custom/party_time
-    - service: mqtt.publish
-      data:
         topic: living_room_clock/custom/custom/music_song
     - service: mqtt.publish
       data:
@@ -98,7 +101,16 @@
         topic: USER1_office_clock/custom/custom/music_album
     - service: mqtt.publish
       data:
+        topic: USER1_office_clock/custom/youtube
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/youtube
+    - service: mqtt.publish
+      data:
         topic: living_room_clock/custom/party_time
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/party_time
     - service: mqtt.publish
       data:
         topic: living_room_clock/custom/tv_state
@@ -159,7 +171,7 @@
         topic: USER1_office_clock/custom/temperature
         payload: >-
           { 
-          "icon": "temp",
+          "icon": "{{ states("sensor.outdoor_temp_range") }}",
           "pushIcon": 0,
           "text": "{{ states("sensor.REDACTED_temperature") }}°F"
           }
@@ -168,7 +180,7 @@
         topic: living_room_clock/custom/temperature
         payload: >-
           { 
-          "icon": "temp",
+          "icon": "{{ states("sensor.outdoor_temp_range") }}",
           "pushIcon": 0,
           "text": "{{ states("sensor.REDACTED_temperature") }}°F"
           }
@@ -231,7 +243,7 @@
           "icon": "3d_print",
           "pushIcon": 0,
           "color": [255,165,0],
-          "repeat": 2,
+          "repeat": 3,
           "text": "MK3: {{ states("sensor.prusa_mk3_progress") }}%"
           }
     - service: mqtt.publish
@@ -242,7 +254,7 @@
           "icon": "3d_print",
           "pushIcon": 0,
           "color": [255,165,0],
-          "repeat": 2,
+          "repeat": 3,
           "text": "MK3: {{ states("sensor.prusa_mk3_progress") }}%"
           }
 
@@ -271,7 +283,7 @@
           "icon": "clock",
           "pushIcon": 2,
           "color": [255,165,0],
-          "repeat": 2,
+          "repeat": 3,
           "text": "MK3: {{ states("sensor.prusa_mk3_print_finish") }}"
           }
     - service: mqtt.publish
@@ -282,7 +294,7 @@
           "icon": "clock",
           "pushIcon": 2,
           "color": [255,165,0],
-          "repeat": 2,
+          "repeat": 3,
           "text": "MK3: {{ states("sensor.prusa_mk3_print_finish") }}"
           }
 
@@ -311,7 +323,7 @@
           "icon": "3d_print",
           "pushIcon": 0,
           "color": [255,165,0],
-          "repeat": 2,
+          "repeat": 3,
           "text": "MINI: {{ states("sensor.prusamini_progress") }}%"
           }
     - service: mqtt.publish
@@ -322,7 +334,7 @@
           "icon": "3d_print",
           "pushIcon": 0,
           "color": [255,165,0],
-          "repeat": 2,
+          "repeat": 3,
           "text": "MINI: {{ states("sensor.prusamini_progress") }}%"
           }
 
@@ -351,7 +363,7 @@
           "icon": "clock",
           "pushIcon": 2,
           "color": [255,165,0],
-          "repeat": 2,
+          "repeat": 3,
           "text": "MINI: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusamini_print_finish')) - as_timestamp(now()))) }}"
           }
     - service: mqtt.publish
@@ -362,7 +374,7 @@
           "icon": "clock",
           "pushIcon": 2,
           "color": [255,165,0],
-          "repeat": 2,
+          "repeat": 3,
           "text": "MINI: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusamini_print_finish')) - as_timestamp(now()))) }}"
           }
 
@@ -397,8 +409,7 @@
           "icon": "3d_print_complete",
           "pushIcon": 0,
           "rainbow": true,
-          "duration": 90,
-          "repeat": 2,
+          "duration": 60,
           "text": "MK3: Finished"
           }
     - service: mqtt.publish
@@ -415,8 +426,7 @@
           "icon": "3d_print_complete",
           "pushIcon": 0,
           "rainbow": true,
-          "duration": 90,
-          "repeat": 2,
+          "duration": 60,
           "text": "MK3: Finished"
           }
 
@@ -451,8 +461,7 @@
           "icon": "3d_print_complete",
           "pushIcon": 0,
           "rainbow": true,
-          "duration": 90,
-          "repeat": 2,
+          "duration": 60,
           "text": "MINI: Finished"
           }
     - service: mqtt.publish
@@ -469,8 +478,7 @@
           "icon": "3d_print_complete",
           "pushIcon": 0,
           "rainbow": true,
-          "duration": 90,
-          "repeat": 2,
+          "duration": 60,
           "text": "MINI: Finished"
           }
 
@@ -485,6 +493,11 @@
     - platform: state
       entity_id: sensor.washing_machine_time_remaining
 
+  condition:
+    - condition: state
+      entity_id: sensor.washer
+      state: 'on'
+
   action:
     - service: mqtt.publish
       data:
@@ -493,8 +506,8 @@
           { 
           "icon": "washer",
           "pushIcon": 2,
-          "repeat": 2,
-          "color": [255,165,0],
+          "repeat": 3,
+          "color": [0,0,255],
           "text": "Washer: {{ states("sensor.washing_machine_time_remaining") }}"
           }
     - service: mqtt.publish
@@ -504,8 +517,8 @@
           { 
           "icon": "washer",
           "pushIcon": 2,
-          "repeat": 2,
-          "color": [255,165,0],
+          "repeat": 3,
+          "color": [0,0,255],
           "text": "Washer: {{ states("sensor.washing_machine_time_remaining") }}"
           }
 
@@ -537,9 +550,8 @@
           { 
           "icon": "washer",
           "pushIcon": 0,
-          "duration": 90,
-          "repeat": 2,
-          "color": [0,174,255],
+          "duration": 60,
+          "color": [0,0,255],
           "text": "Washer Finished"
           }
     - service: mqtt.publish
@@ -552,9 +564,8 @@
           { 
           "icon": "washer",
           "pushIcon": 0,
-          "duration": 90,
-          "repeat": 2,
-          "color": [0,174,255],
+          "duration": 60,
+          "color": [0,0,255],
           "text": "Washer Finished"
           }
 
@@ -569,6 +580,11 @@
     - platform: state
       entity_id: sensor.dryer_time_remaining
 
+  condition:
+    - condition: state
+      entity_id: sensor.dryer
+      state: 'on'
+
   action:
     - service: mqtt.publish
       data:
@@ -577,8 +593,8 @@
           { 
           "icon": "dryer",
           "pushIcon": 2,
-          "repeat": 2,
-          "color": [255,165,0],
+          "repeat": 3,
+          "color": [255,0,0],
           "text": "Dryer: {{ states("sensor.dryer_time_remaining") }}"
           }
     - service: mqtt.publish
@@ -588,8 +604,8 @@
           { 
           "icon": "dryer",
           "pushIcon": 2,
-          "repeat": 2,
-          "color": [255,165,0],
+          "repeat": 3,
+          "color": [255,0,0],
           "text": "Dryer: {{ states("sensor.dryer_time_remaining") }}"
           }
 
@@ -621,8 +637,7 @@
           { 
           "icon": "dryer",
           "pushIcon": 0,
-          "duration": 90,
-          "repeat": 2,
+          "duration": 60,
           "color": [255,0,0],
           "text": "Dryer Finished"
           }
@@ -636,8 +651,7 @@
           { 
           "icon": "dryer",
           "pushIcon": 0,
-          "duration": 90,
-          "repeat": 2,
+          "duration": 60,
           "color": [255,0,0],
           "text": "Dryer Finished"
           }
@@ -694,7 +708,7 @@
           { 
           "icon": "christmas_tree",
           "pushIcon": 0,
-          "repeat": 2,
+          "repeat": 3,
           "text": [
             {
               "t": "Merry ",
@@ -713,7 +727,7 @@
           { 
           "icon": "christmas_tree",
           "pushIcon": 0,
-          "repeat": 2,
+          "repeat": 3,
           "text": [
             {
               "t": "Merry ",
@@ -750,7 +764,7 @@
           { 
           "icon": "pumpkin",
           "pushIcon": 0,
-          "repeat": 2,
+          "repeat": 3,
           "text": [
             {
               "t": "Happy ",
@@ -769,7 +783,7 @@
           { 
           "icon": "pumpkin",
           "pushIcon": 0,
-          "repeat": 2,
+          "repeat": 3,
           "text": [
             {
               "t": "Happy ",
@@ -806,7 +820,7 @@
           { 
           "icon": "usa",
           "pushIcon": 0,
-          "repeat": 2,
+          "repeat": 3,
           "text": [
             {
               "t": "Happy ",
@@ -829,7 +843,7 @@
           { 
           "icon": "usa",
           "pushIcon": 0,
-          "repeat": 2,
+          "repeat": 3,
           "text": [
             {
               "t": "Happy ",
@@ -870,7 +884,7 @@
           { 
           "icon": "heart",
           "pushIcon": 0,
-          "repeat": 2,
+          "repeat": 3,
           "color": [255,192,203],
           "text": "Happy Valentines Day"
           }
@@ -881,7 +895,7 @@
           { 
           "icon": "heart",
           "pushIcon": 0,
-          "repeat": 2,
+          "repeat": 3,
           "color": [255,192,203],
           "text": "Happy Valentines Day"
           }
@@ -910,7 +924,7 @@
           { 
           "icon": "fireworks",
           "pushIcon": 0,
-          "repeat": 2,
+          "repeat": 3,
           "rainbow": true,
           "text": "Happy New Years!"
           }
@@ -921,7 +935,7 @@
           { 
           "icon": "fireworks",
           "pushIcon": 0,
-          "repeat": 2,
+          "repeat": 3,
           "rainbow": true,
           "text": "Happy New Years!"
           }
@@ -1026,8 +1040,7 @@
           "pushIcon": 0,
           "background": [255,0,0],
           "color": [255,255,255],
-          "duration": 90,
-          "repeat": 2,
+          "repeat": 30,
           "text": "Do Not Disturb"
           }
 
@@ -1057,17 +1070,63 @@
         topic: USER1_office_clock/custom/do_not_disturb
 
       ##########################################################
+      ## Music Title Apple TV USER1's Office Clock
+      ##########################################################
+
+- alias: LED Clock - USER1's Office Apple TV Music Title
+  id: 'led_clock_USER1_office_music_title_apple_tv'
+
+  trigger:
+    - platform: state
+      entity_id: media_player.USER1_s_office_apple_tv
+      attribute: media_title
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+
+  condition:
+    - condition: state
+      entity_id: media_player.USER1_s_office_apple_tv
+      state: 'playing'
+    - condition: state
+      entity_id: media_player.USER1_s_office_apple_tv
+      attribute: media_content_type
+      state: 'music'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: select.USER1_s_office_tv_activities
+        state: 'power_off'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/music_song
+        payload: >-
+          { 
+          "icon": "music",
+          "pushIcon": 0,
+          "repeat": 3,
+          "rainbow": true,
+          "text": "Song: {{ state_attr('media_player.USER1_s_office_apple_tv', 'media_title') }}"
+          }
+
+      ##########################################################
       ## Music Title Sonos USER1's Office Clock
       ##########################################################
 
 - alias: LED Clock - USER1's Office Music Title Sonos
-  id: 'led_clock_living_room_music_title_sonos_living_room'
+  id: 'led_clock_USER1_office_music_title_sonos'
 
   trigger:
     - platform: state
       entity_id: media_player.sonos_USER1s_office
       attribute: media_title
-
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
 
   condition:
     - condition: state
@@ -1086,7 +1145,7 @@
           { 
           "icon": "music",
           "pushIcon": 0,
-          "repeat": 2,
+          "repeat": 3,
           "rainbow": true,
           "text": "Song: {{ state_attr('media_player.sonos_USER1s_office', 'media_title') }}"
           }
@@ -1096,13 +1155,16 @@
       ##########################################################
 
 - alias: LED Clock - USER1's Office Music Title Sonos Move
-  id: 'led_clock_living_room_music_title_sonos_sonos_move'
+  id: 'led_clock_USER1_office_music_title_sonos_move'
 
   trigger:
     - platform: state
       entity_id: media_player.sonos_USER1s_office_move
       attribute: media_title
-
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
 
   condition:
     - condition: state
@@ -1121,23 +1183,69 @@
           { 
           "icon": "music",
           "pushIcon": 0,
-          "repeat": 2,
+          "repeat": 3,
           "rainbow": true,
           "text": "Song: {{ state_attr('media_player.sonos_USER1s_office_move', 'media_title') }}"
           }
 
       ##########################################################
-      ## Album Title Sonos USER1's Office USER1's Office Clock
+      ## Album Title Apple TV USER1's Office Clock
       ##########################################################
 
-- alias: LED Clock - USER1's Office Album Title Sonos USER1's Office
-  id: 'led_clock_living_room_album_title_sonos_living_room'
+- alias: LED Clock - USER1's Office Album Title Apple TV
+  id: 'led_clock_USER1_office_album_title_apple_tv'
+
+  trigger:
+    - platform: state
+      entity_id: media_player.USER1_s_office_apple_tv
+      attribute: media_title
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+
+  condition:
+    - condition: state
+      entity_id: media_player.USER1_s_office_apple_tv
+      state: 'playing'
+    - condition: state
+      entity_id: media_player.USER1_s_office_apple_tv
+      attribute: media_content_type
+      state: 'music'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: select.USER1_s_office_tv_activities
+        state: 'power_off'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/music_album
+        payload: >-
+          { 
+          "icon": "album",
+          "pushIcon": 2,
+          "repeat": 3,
+          "rainbow": true,
+          "text": "Artist: {{ state_attr('media_player.USER1_s_office_apple_tv', 'media_artist') }} - Album: {{ state_attr('media_player.USER1_s_office_apple_tv', 'media_album_name') }}"
+          }
+
+      ##########################################################
+      ## Album Title Sonos USER1's Office Clock
+      ##########################################################
+
+- alias: LED Clock - USER1's Office Album Title Sonos
+  id: 'led_clock_USER1_office_album_title_sonos'
 
   trigger:
     - platform: state
       entity_id: media_player.sonos_USER1s_office
       attribute: media_title
-
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
 
   condition:
     - condition: state
@@ -1156,23 +1264,26 @@
           { 
           "icon": "album",
           "pushIcon": 2,
-          "repeat": 2,
+          "repeat": 3,
           "rainbow": true,
           "text": "Artist: {{ state_attr('media_player.sonos_USER1s_office', 'media_artist') }} - Album: {{ state_attr('media_player.sonos_USER1s_office', 'media_album_name') }}"
           }
 
       ##########################################################
-      ## Music Title Sonos Move USER1's Office Clock
+      ## Album Title Sonos Move USER1's Office Clock
       ##########################################################
 
-- alias: LED Clock - USER1's Office Music Title Sonos Move
-  id: 'led_clock_living_room_music_title_sonos_sonos_move'
+- alias: LED Clock - USER1's Office Album Title Sonos Move
+  id: 'led_clock_USER1_office_album_title_sonos_move'
 
   trigger:
     - platform: state
       entity_id: media_player.sonos_USER1s_office_move
       attribute: media_title
-
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
 
   condition:
     - condition: state
@@ -1191,17 +1302,60 @@
           { 
           "icon": "album",
           "pushIcon": 2,
-          "repeat": 2,
+          "repeat": 3,
           "rainbow": true,
           "text": "Artist: {{ state_attr('media_player.sonos_USER1s_office_move', 'media_artist') }} - Album: {{ state_attr('media_player.sonos_USER1s_office_move', 'media_album_name') }}"
           }
 
       ##########################################################
-      ## Music Remove USER1's Office Clock
+      ## YouTube Title USER1's Office Clock
       ##########################################################
 
-- alias: LED Clock - USER1's Office Music  Remove
-  id: 'led_clock_living_room_music_remove'
+- alias: LED Clock - USER1's Office YouTube Title
+  id: 'led_clock_USER1_office_youtube_title'
+
+  trigger:
+    - platform: state
+      entity_id: media_player.USER1_s_office_apple_tv
+      attribute: media_title
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+
+  condition:
+    - condition: state
+      entity_id: media_player.USER1_s_office_apple_tv
+      state: 'playing'
+    - condition: state
+      entity_id: media_player.USER1_s_office_apple_tv
+      attribute: app_id
+      state: "com.google.ios.youtube"
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: select.USER1_s_office_tv_activities
+        state: 'power_off'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/youtube
+        payload: >-
+          { 
+          "icon": "youtube",
+          "pushIcon": 2,
+          "repeat": 6,
+          "rainbow": true,
+          "text": "{{ state_attr('media_player.USER1_s_office_apple_tv', 'media_artist') }} : {{ state_attr('media_player.USER1_s_office_apple_tv', 'media_title') }}"
+          }
+
+      ##########################################################
+      ## Media Remove USER1's Office Clock
+      ##########################################################
+
+- alias: LED Clock - USER1's Office Media Remove
+  id: 'led_clock_USER1_office_media_remove'
 
   trigger:
     - platform: state
@@ -1210,14 +1364,21 @@
       for:
         hours: 0
         minutes: 0
-        seconds: 15
+        seconds: 10
     - platform: state
       entity_id: media_player.sonos_USER1s_office_move
       from: 'playing'
       for:
         hours: 0
         minutes: 0
-        seconds: 15
+        seconds: 10
+    - platform: state
+      entity_id: media_player.USER1_s_office_apple_tv
+      from: 'playing'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 10
 
   action:
     - service: mqtt.publish
@@ -1226,13 +1387,16 @@
     - service: mqtt.publish
       data:
         topic: USER1_office_clock/custom/music_album
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/youtube
 
       ##########################################################
       ## Party Time USER1's Office Clock
       ##########################################################
 
 - alias: LED Clock - USER1's Office Party Time
-  id: 'led_clock_living_room_party_time'
+  id: 'led_clock_USER1_office_party_time'
 
   trigger:
     - platform: state
@@ -1247,17 +1411,17 @@
           { 
           "icon": "party",
           "pushIcon": 2,
-          "repeat": 2,
+          "repeat": 3,
           "rainbow": true,
           "text": "Party Time!"
           }
 
       ##########################################################
-      ## Party Time Off Living Room Clock
+      ## Party Time Off USER1's Office Clock
       ##########################################################
 
-- alias: LED Clock - Living Room Party Time Off
-  id: 'led_clock_living_room_party_time_off'
+- alias: LED Clock - USER1's Office Party Time Off
+  id: 'led_clock_USER1_office_party_time_off'
 
   trigger:
     - platform: state
@@ -1284,6 +1448,10 @@
     - platform: state
       entity_id: media_player.USER1_s_office_apple_tv
       attribute: media_title
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
 
   condition:
     - condition: state
@@ -1295,6 +1463,16 @@
     - condition: state
       entity_id: media_player.USER1_s_office_apple_tv
       state: 'playing'
+    - condition: state
+      entity_id: media_player.USER1_s_office_apple_tv
+      attribute: media_content_type
+      state: 'video'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.USER1_s_office_apple_tv
+        attribute: app_id
+        state: "com.google.ios.youtube"
 
   action:
     - service: mqtt.publish
@@ -1305,7 +1483,6 @@
           "icon": "movie",
           "pushIcon": 2,
           "duration": 60,
-          "repeat": 2,
           "rainbow": true,
           "stack": false,
           "text": "{{ state_attr('media_player.USER1_s_office_apple_tv', 'media_title') }}"
@@ -1341,7 +1518,6 @@
           "icon": "doorbell",
           "pushIcon": 0,
           "duration": 60,
-          "repeat": 2,
           "text": "Doorbell"
           }
 
@@ -1375,7 +1551,6 @@
           "icon": "cars",
           "pushIcon": 0,
           "duration": 60,
-          "repeat": 2,
           "text": "USER2 ETA: {{states('sensor.USER2_to_home')}} mins"
           }
 
@@ -1419,7 +1594,6 @@
           "icon": "house",
           "pushIcon": 0,
           "duration": 60,
-          "repeat": 2,
           "rainbow": true,
           "text": "USER2 Home"
           }
@@ -1491,7 +1665,6 @@
           "icon": "timer",
           "pushIcon": 0,
           "duration": 60,
-          "repeat": 2,
           "rainbow": true,
           "text": "Echo Timer Finished"
           }
@@ -1533,7 +1706,7 @@
           { 
           "icon": "door",
           "pushIcon": 0,
-          "repeat": 2,
+          "duration": 30,
           "color": [255,0,0],
           "text": "{{ trigger.to_state.attributes.friendly_name }} Opened"
           }
@@ -1567,7 +1740,7 @@
           { 
           "icon": "garage_open",
           "pushIcon": 0,
-          "repeat": 2,
+          "duration": 30,
           "color": [255,0,0],
           "text": "Garage Open"
           }
@@ -1601,7 +1774,7 @@
           { 
           "icon": "garage_close",
           "pushIcon": 0,
-          "repeat": 2,
+          "duration": 30,
           "color": [0,255,0],
           "text": "Garage Closed"
           }
@@ -1705,6 +1878,21 @@
     - condition: state
       entity_id: light.living_room_clock
       state: 'on'
+    - condition: state
+      entity_id: input_boolean.livingroom_rainbow
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.living_room_apple_tv
+        attribute: media_content_type
+        state: 'music'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.living_room_apple_tv
+        attribute: app_id
+        state: "com.google.ios.youtube"
 
   action:
     - service: light.turn_off
@@ -1784,7 +1972,7 @@
           { 
           "icon": "tv_off",
           "pushIcon": 0,
-          "repeat": 2,
+          "duration": 30,
           "color": [255,0,0],
           "stack": false,
           "text": "TV Off"
@@ -1810,7 +1998,7 @@
           { 
           "icon": "tv",
           "pushIcon": 0,
-          "repeat": 2,
+          "duration": 30,
           "rainbow": true,
           "stack": false,
           "text": "TV"
@@ -1822,7 +2010,7 @@
           { 
           "icon": "tv",
           "pushIcon": 0,
-          "repeat": 2,
+          "repeat": 3,
           "rainbow": true,
           "text": "TV"
           }
@@ -1847,7 +2035,7 @@
           { 
           "icon": "mario",
           "pushIcon": 0,
-          "repeat": 2,
+          "duration": 30,
           "stack": false,
           "text": [
             {
@@ -1867,7 +2055,7 @@
           { 
           "icon": "mario",
           "pushIcon": 0,
-          "repeat": 2,
+          "repeat": 3,
           "text": [
             {
               "t": "Nintendo ",
@@ -1900,7 +2088,7 @@
           { 
           "icon": "xbox",
           "pushIcon": 0,
-          "repeat": 2,
+          "duration": 30,
           "color": [0,255,0],
           "stack": false,
           "text": "Xbox"
@@ -1912,9 +2100,55 @@
           { 
           "icon": "xbox",
           "pushIcon": 0,
-          "repeat": 2,
+          "repeat": 3,
           "color": [0,255,0],
           "text": "Xbox"
+          }
+
+      ##########################################################
+      ## Music Title Apple TV Living Room Clock
+      ##########################################################
+
+- alias: LED Clock - Living Room Music Title Apple TV
+  id: 'led_clock_living_room_music_title_apple_tv'
+
+  trigger:
+    - platform: state
+      entity_id: media_player.living_room_apple_tv
+      attribute: media_title
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+
+  condition:
+    - condition: state
+      entity_id: light.living_room_clock
+      state: 'on'
+    - condition: state
+      entity_id: media_player.living_room_apple_tv
+      state: 'playing'
+    - condition: state
+      entity_id: media_player.living_room_apple_tv
+      attribute: media_content_type
+      state: 'music'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: select.living_room_tv_activities
+        state: 'power_off'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/music_song
+        payload: >-
+          { 
+          "icon": "music",
+          "pushIcon": 0,
+          "repeat": 3,
+          "rainbow": true,
+          "text": "Song: {{ state_attr('media_player.living_room_apple_tv', 'media_title') }}"
           }
 
       ##########################################################
@@ -1947,7 +2181,7 @@
           { 
           "icon": "music",
           "pushIcon": 0,
-          "repeat": 2,
+          "repeat": 3,
           "rainbow": true,
           "text": "Song: {{ state_attr('media_player.sonos_living_room', 'media_title') }}"
           }
@@ -1957,7 +2191,7 @@
       ##########################################################
 
 - alias: LED Clock - Living Room Music Title Sonos Surround Sound
-  id: 'led_clock_living_room_music_title_sonos_sonos_surround_sound'
+  id: 'led_clock_living_room_music_title_sonos_surround_sound'
 
   trigger:
     - platform: state
@@ -2000,9 +2234,52 @@
           { 
           "icon": "music",
           "pushIcon": 0,
-          "repeat": 2,
+          "repeat": 3,
           "rainbow": true,
           "text": "Song: {{ state_attr('media_player.sonos_surround_sound', 'media_title') }}"
+          }
+
+      ##########################################################
+      ## Album Title Apple TV Living Room Clock
+      ##########################################################
+
+- alias: LED Clock - Living Room Album Title Apple TV
+  id: 'led_clock_living_room_album_title_apple_tv'
+
+  trigger:
+    - platform: state
+      entity_id: media_player.living_room_apple_tv
+      attribute: media_title
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+
+  condition:
+    - condition: state
+      entity_id: media_player.living_room_apple_tv
+      state: 'playing'
+    - condition: state
+      entity_id: media_player.living_room_apple_tv
+      attribute: media_content_type
+      state: 'music'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: select.living_room_tv_activities
+        state: 'power_off'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/music_album
+        payload: >-
+          { 
+          "icon": "album",
+          "pushIcon": 2,
+          "repeat": 3,
+          "rainbow": true,
+          "text": "Artist: {{ state_attr('media_player.living_room_apple_tv', 'media_artist') }} - Album: {{ state_attr('media_player.living_room_apple_tv', 'media_album_name') }}"
           }
 
       ##########################################################
@@ -2016,7 +2293,10 @@
     - platform: state
       entity_id: media_player.sonos_living_room
       attribute: media_title
-
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
 
   condition:
     - condition: state
@@ -2035,23 +2315,26 @@
           { 
           "icon": "album",
           "pushIcon": 2,
-          "repeat": 2,
+          "repeat": 3,
           "rainbow": true,
           "text": "Artist: {{ state_attr('media_player.sonos_living_room', 'media_artist') }} - Album: {{ state_attr('media_player.sonos_living_room', 'media_album_name') }}"
           }
 
       ##########################################################
-      ## Music Title Sonos Surround Sound Living Room Clock
+      ## Album Title Sonos Surround Sound Living Room Clock
       ##########################################################
 
-- alias: LED Clock - Living Room Music Title Sonos Surround Sound
-  id: 'led_clock_living_room_music_title_sonos_sonos_surround_sound'
+- alias: LED Clock - Living Room Album Title Sonos Surround Sound
+  id: 'led_clock_living_room_album_title_sonos_surround_sound'
 
   trigger:
     - platform: state
       entity_id: media_player.sonos_surround_sound
       attribute: media_title
-
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
 
   condition:
     - condition: state
@@ -2061,6 +2344,24 @@
       entity_id: media_player.sonos_surround_sound
       attribute: media_content_type
       state: 'music'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.sonos_surround_sound
+        attribute: source_list
+        state: "TV"
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.sonos_surround_sound
+        attribute: source
+        state: "TV"
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.sonos_surround_sound
+        attribute: media_title
+        state: "TV"
 
   action:
     - service: mqtt.publish
@@ -2070,17 +2371,63 @@
           { 
           "icon": "album",
           "pushIcon": 2,
-          "repeat": 2,
+          "repeat": 3,
           "rainbow": true,
           "text": "Artist: {{ state_attr('media_player.sonos_surround_sound', 'media_artist') }} - Album: {{ state_attr('media_player.sonos_surround_sound', 'media_album_name') }}"
           }
 
       ##########################################################
-      ## Music Remove Living Room Clock
+      ## YouTube Title Living Room Clock
       ##########################################################
 
-- alias: LED Clock - Living Room Music Remove
-  id: 'led_clock_living_room_music_remove'
+- alias: LED Clock - Living Room YouTube Title
+  id: 'led_clock_living_room_youtube_title'
+
+  trigger:
+    - platform: state
+      entity_id: media_player.living_room_apple_tv
+      attribute: media_title
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: media_player.living_room_apple_tv
+      state: 'playing'
+    - condition: state
+      entity_id: media_player.living_room_apple_tv
+      attribute: app_id
+      state: "com.google.ios.youtube"
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: select.living_room_tv_activities
+        state: 'power_off'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/youtube
+        payload: >-
+          { 
+          "icon": "youtube",
+          "pushIcon": 2,
+          "repeat": 6,
+          "rainbow": true,
+          "text": "{{ state_attr('media_player.living_room_apple_tv', 'media_artist') }} : {{ state_attr('media_player.living_room_apple_tv', 'media_title') }}"
+          }
+
+      ##########################################################
+      ## Media Remove Living Room Clock
+      ##########################################################
+
+- alias: LED Clock - Living Room Media Remove
+  id: 'led_clock_living_room_media_remove'
 
   trigger:
     - platform: state
@@ -2089,14 +2436,21 @@
       for:
         hours: 0
         minutes: 0
-        seconds: 15
+        seconds: 10
     - platform: state
       entity_id: media_player.sonos_surround_sound
       from: 'playing'
       for:
         hours: 0
         minutes: 0
-        seconds: 15
+        seconds: 10
+    - platform: state
+      entity_id: media_player.living_room_apple_tv
+      from: 'playing'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 10
 
   action:
     - service: mqtt.publish
@@ -2105,6 +2459,9 @@
     - service: mqtt.publish
       data:
         topic: living_room_clock/custom/music_album
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/youtube
 
       ##########################################################
       ## Party Time Living Room Clock
@@ -2115,7 +2472,7 @@
 
   trigger:
     - platform: state
-      entity_id: switch.livingroom_rainbow
+      entity_id: input_boolean.livingroom_rainbow
       to: 'on'
 
   action:
@@ -2126,7 +2483,7 @@
           { 
           "icon": "party",
           "pushIcon": 2,
-          "repeat": 2,
+          "repeat": 3,
           "rainbow": true,
           "text": "Party Time!"
           }
@@ -2140,7 +2497,7 @@
 
   trigger:
     - platform: state
-      entity_id: switch.livingroom_rainbow
+      entity_id: input_boolean.livingroom_rainbow
       to: 'off'
 
   action:
@@ -2163,6 +2520,10 @@
     - platform: state
       entity_id: media_player.living_room_apple_tv
       attribute: media_title
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
 
   condition:
     - condition: state
@@ -2171,6 +2532,16 @@
     - condition: state
       entity_id: media_player.living_room_apple_tv
       state: 'playing'
+    - condition: state
+      entity_id: media_player.USER1_s_office_apple_tv
+      attribute: media_content_type
+      state: 'video'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.living_room_apple_tv
+        attribute: app_id
+        state: "com.google.ios.youtube"
 
   action:
     - service: mqtt.publish
@@ -2181,7 +2552,6 @@
           "icon": "movie",
           "pushIcon": 2,
           "duration": 60,
-          "repeat": 2,
           "rainbow": false,
           "stack": false,
           "text": "{{ state_attr('media_player.living_room_apple_tv', 'media_title') }}"
@@ -2217,7 +2587,6 @@
           "icon": "doorbell",
           "pushIcon": 0,
           "duration": 60,
-          "repeat": 2,
           "stack": false,
           "text": "Doorbell"
           }
@@ -2252,7 +2621,6 @@
           "icon": "cars",
           "pushIcon": 0,
           "duration": 60,
-          "repeat": 2,
           "text": "USER2 ETA: {{states('sensor.USER2_to_home')}} mins"
           }
 
@@ -2296,7 +2664,6 @@
           "icon": "house",
           "pushIcon": 0,
           "duration": 60,
-          "repeat": 2,
           "rainbow": true,
           "text": "USER2 Home"
           }
@@ -2341,7 +2708,6 @@
           "icon": "house",
           "pushIcon": 0,
           "duration": 60,
-          "repeat": 2,
           "rainbow": true,
           "text": "USER1 Home"
           }
@@ -2413,7 +2779,6 @@
           "icon": "timer",
           "pushIcon": 0,
           "duration": 60,
-          "repeat": 2,
           "rainbow": true,
           "text": "Echo Timer Finished"
           }
@@ -2455,7 +2820,7 @@
           { 
           "icon": "door",
           "pushIcon": 0,
-          "repeat": 2,
+          "duration": 30,
           "color": [255,0,0],
           "stack": false,
           "text": "{{ trigger.to_state.attributes.friendly_name }} Opened"
@@ -2490,7 +2855,7 @@
           { 
           "icon": "garage_open",
           "pushIcon": 0,
-          "repeat": 2,
+          "duration": 30,
           "color": [255,0,0],
           "stack": false,
           "text": "Garage Open"
@@ -2525,7 +2890,7 @@
           { 
           "icon": "garage_close",
           "pushIcon": 0,
-          "repeat": 2,
+          "duration": 30,
           "color": [0,255,0],
           "stack": false,
           "text": "Garage Closed"
@@ -2559,7 +2924,7 @@
           { 
           "icon": "fire_2",
           "pushIcon": 0,
-          "repeat": 2,
+          "duration": 30,
           "color": [255,165,0],
           "stack": false,
           "text": "Fireplace On"

@@ -30,7 +30,8 @@
     - service: lifx.effect_pulse
       data:
         cycles: 5
-        brightness: 255
+        power_on: true
+        brightness_pct: 100
       target:
         entity_id: light.garage_interior
     - delay: '00:00:05'
@@ -102,7 +103,8 @@
     - service: lifx.effect_pulse
       data:
         cycles: 5
-        brightness: 255
+        power_on: true
+        brightness_pct: 100
       target:
         entity_id: light.garage_interior
     - delay: '00:00:05'
@@ -184,7 +186,8 @@
     - service: lifx.effect_pulse
       data:
         cycles: 5
-        brightness: 255
+        power_on: true
+        brightness_pct: 100
       target:
         entity_id: light.garage_interior
     - delay: '00:00:05'
@@ -223,9 +226,11 @@
   action:
     - service: lifx.effect_pulse
       data:
-       entity_id: light.garage_interior
-       cycles: '5'
-       brightness: 255
+        cycles: 5
+        power_on: true
+        brightness_pct: 100
+      target:
+        entity_id: light.garage_interior
     - delay: '00:00:05'
     - service: cover.close_cover
       entity_id: cover.garage_door
@@ -278,7 +283,8 @@
     - service: lifx.effect_pulse
       data:
         cycles: 5
-        brightness: 255
+        power_on: true
+        brightness_pct: 100
       target:
         entity_id: light.garage_interior
     - delay: '00:00:05'
@@ -388,8 +394,9 @@
   action:
     - service: lifx.effect_pulse
       data:
-        cycles: 10
-        brightness: 255
+        cycles: 5
+        power_on: true
+        brightness_pct: 100
       target:
         entity_id: light.garage_interior
 
