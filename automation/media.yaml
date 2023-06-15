@@ -394,6 +394,18 @@
     - condition: state
       entity_id: input_boolean.guest_mode
       state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.USER1_s_office_apple_tv
+        attribute: app_id
+        state: "com.google.ios.youtube"
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.USER1_s_office_apple_tv
+        attribute: app_id
+        state: "com.apple.TVPhotos"
 
   action:
     - service: light.turn_off
@@ -470,6 +482,18 @@
     - condition: state
       entity_id: input_boolean.guest_mode
       state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.USER1_s_office_apple_tv
+        attribute: app_id
+        state: "com.google.ios.youtube"
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.USER1_s_office_apple_tv
+        attribute: app_id
+        state: "com.apple.TVPhotos"
 
   action:
     - service: light.turn_off

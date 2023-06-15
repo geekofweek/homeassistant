@@ -21,18 +21,6 @@ http:
 ## Components
 #################################################################
 
-zha:
-  zigpy_config:
-    network:
-      chREDACTEDl: 25
-      chREDACTEDls: [15, 20, 25]
-    ota:
-      ikea_provider: true
-      ledvance_provider: true
-      salus_provider: true
-      inovelli_provider: true
-      #otau_directory: /data/containers/homeassistant/config/zigbee-ota
-
 alarm_control_panel:
   - platform: manual
     name: Alarm
@@ -58,6 +46,20 @@ route53:
   domain: !secret aws_domain_route53
   records:
     - home
+
+weather:
+  - platform: template
+    name: "REDACTED, MO"
+    unique_id: weather_REDACTED
+    condition_template: "{{ states('sensor.weather_condition_REDACTED') }}"
+    temperature_template: "{{ state_attr('weather.REDACTED_ecobee', 'temperature') }}"
+    humidity_template: "{{ state_attr('weather.REDACTED_ecobee', 'humidity') }}"
+    forecast_template: "{{ state_attr('weather.REDACTED_ecobee', 'forecast') }}"
+    attribution_template: "{{ state_attr('weather.REDACTED_ecobee', 'attribution') }}"
+    pressure_template: "{{ state_attr('weather.REDACTED_ecobee', 'pressure') }}"
+    wind_speed_template: "{{ state_attr('weather.REDACTED_ecobee', 'wind_speed') }}"
+    wind_bearing_template: "{{ state_attr('weather.REDACTED_ecobee', 'wind_bearing') }}"
+    visibility_template: "{{ state_attr('weather.REDACTED_ecobee', 'visibility') }}"
 
 #################################################################
 ## Notifications

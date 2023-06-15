@@ -138,18 +138,18 @@
         topic: USER1_office_clock/custom/weather
         payload: >-
           { 
-          "icon": "weather_{{ states("weather.REDACTED") |regex_replace(find='-', replace='_', ignorecase=False) }}",
+          "icon": "weather_{{ states("sensor.weather_condition_lcd_clock_icon") |regex_replace(find='-', replace='_', ignorecase=False) }}",
           "pushIcon": 2,
-          "text": "{{ states("weather.REDACTED") }}"
+          "text": "{{ states("sensor.weather_condition_human_readable") }}"
           }
     - service: mqtt.publish
       data:
         topic: living_room_clock/custom/weather
         payload: >-
           { 
-          "icon": "weather_{{ states("weather.REDACTED") |regex_replace(find='-', replace='_', ignorecase=False) }}",
+          "icon": "weather_{{ states("sensor.weather_condition_lcd_clock_icon") |regex_replace(find='-', replace='_', ignorecase=False) }}",
           "pushIcon": 2,
-          "text": "{{ states("weather.REDACTED") }}"
+          "text": "{{ states("sensor.weather_condition_human_readable") }}"
           }
 
       ##########################################################
@@ -1011,65 +1011,6 @@
   ##########################################################
 
       ##########################################################
-      ## Do Not Disturb On USER1's Office LED Clock
-      ##########################################################
-
-- alias: LED Clock - USER1 Office Do Not Disturb On
-  id: 'led_clock_USER1_office_do_not_disturb_on'
-
-  trigger:
-    - platform: state
-      entity_id: input_boolean.USER1_s_office_do_not_disturb
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: light.USER1s_office_desktop_clock
-      state: 'on'
-    - condition: state
-      entity_id: person.USER1
-      state: 'home'
-
-  action:
-    - service: mqtt.publish
-      data:
-        topic: USER1_office_clock/custom/do_not_disturb
-        payload: >-
-          { 
-          "icon": "exclamation",
-          "pushIcon": 0,
-          "background": [255,0,0],
-          "color": [255,255,255],
-          "repeat": 30,
-          "text": "Do Not Disturb"
-          }
-
-      ##########################################################
-      ## Do Not Disturb Off USER1's Office LED Clock
-      ##########################################################
-
-- alias: LED Clock - USER1 Office Do Not Disturb Off
-  id: 'led_clock_USER1_office_do_not_disturb_off'
-
-  trigger:
-    - platform: state
-      entity_id: input_boolean.USER1_s_office_do_not_disturb
-      to: 'off'
-
-  condition:
-    - condition: state
-      entity_id: light.USER1s_office_desktop_clock
-      state: 'on'
-    - condition: state
-      entity_id: person.USER1
-      state: 'home'
-
-  action:
-    - service: mqtt.publish
-      data:
-        topic: USER1_office_clock/custom/do_not_disturb
-
-      ##########################################################
       ## Music Title Apple TV USER1's Office Clock
       ##########################################################
 
@@ -1436,6 +1377,66 @@
   ##########################################################
   ## USER1's Office Notifications
   ##########################################################
+
+      ##########################################################
+      ## Do Not Disturb On USER1's Office LED Clock
+      ##########################################################
+
+- alias: LED Clock - USER1 Office Do Not Disturb On
+  id: 'led_clock_USER1_office_do_not_disturb_on'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: light.USER1s_office_desktop_clock
+      state: 'on'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/notify
+        payload: >-
+          { 
+          "icon": "exclamation",
+          "pushIcon": 0,
+          "background": [255,0,0],
+          "color": [255,255,255],
+          "stack": false,
+          "hold": true,
+          "text": "Do Not Disturb"
+          }
+
+      ##########################################################
+      ## Do Not Disturb Off USER1's Office LED Clock
+      ##########################################################
+
+- alias: LED Clock - USER1 Office Do Not Disturb Off
+  id: 'led_clock_USER1_office_do_not_disturb_off'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: light.USER1s_office_desktop_clock
+      state: 'on'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+
+  action:
+    - service: button.press
+      target:
+        entity_id: button.USER1s_office_desktop_clock_dismiss_notification
 
       ##########################################################
       ## Media Title USER1's Office Clock
@@ -2533,7 +2534,7 @@
       entity_id: media_player.living_room_apple_tv
       state: 'playing'
     - condition: state
-      entity_id: media_player.USER1_s_office_apple_tv
+      entity_id: media_player.living_room_apple_tv
       attribute: media_content_type
       state: 'video'
     - condition: not

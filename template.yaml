@@ -290,37 +290,6 @@
       state: '{{ states.calendar.holidays_in_united_states.attributes.message }}'
 
       ##########################################################
-      ## Thermostat
-      ##########################################################
-
-  - sensor:
-    - unique_id: thermostat_climate_mode
-      name: Thermostat Climate Mode
-      state: '{{ states.climate.main_floor.attributes.preset_mode }}'
-
-      ##########################################################
-      ## Outdoor Humidity
-      ##########################################################
-
-  - sensor:
-    - unique_id: REDACTED_humidity
-      name: REDACTED Humidity
-      device_class: humidity
-      unit_of_measurement: '%'
-      state: '{{ states.weather.REDACTED.attributes.humidity }}'
-
-      ##########################################################
-      ## Outdoor Temperature
-      ##########################################################
-
-  - sensor:
-    - unique_id: REDACTED_temperature
-      name: REDACTED Temperature
-      device_class: temperature
-      unit_of_measurement: '°F'
-      state: '{{ states.weather.REDACTED.attributes.temperature }}'
-
-      ##########################################################
       ## Server Uptime
       ##########################################################
 
@@ -484,6 +453,37 @@
         {{ states('sensor.USER2_s_office_echo_next_timer') != "unknown" }}
 
       ##########################################################
+      ## Thermostat
+      ##########################################################
+
+  - sensor:
+    - unique_id: thermostat_climate_mode
+      name: Thermostat Climate Mode
+      state: '{{ states.climate.main_floor.attributes.preset_mode }}'
+
+      ##########################################################
+      ## Outdoor Humidity
+      ##########################################################
+
+  - sensor:
+    - unique_id: REDACTED_humidity
+      name: REDACTED Humidity
+      device_class: humidity
+      unit_of_measurement: '%'
+      state: '{{ states.weather.REDACTED.attributes.humidity }}'
+
+      ##########################################################
+      ## Outdoor Temperature
+      ##########################################################
+
+  - sensor:
+    - unique_id: REDACTED_temperature
+      name: REDACTED Temperature
+      device_class: temperature
+      unit_of_measurement: '°F'
+      state: '{{ states.weather.REDACTED.attributes.temperature }}'
+
+      ##########################################################
       ## Outdoor Temperature Ranges
       ##########################################################
 
@@ -493,10 +493,110 @@
       state: >
         {% if states('sensor.REDACTED_temperature') | int >= 80 %}
           temp-hot
-        {% elif states('sensor.REDACTED_temperature') | int >= 55 %}
+        {% elif states('sensor.REDACTED_temperature') | int >= 50 %}
           temp-norm
-        {% elif states('sensor.REDACTED_temperature') | int <= 54 %}
+        {% elif states('sensor.REDACTED_temperature') | int <= 49 %}
           temp-cold
         {% else %}
           temp-norm
+        {% endif %}
+
+      ##########################################################
+      ## Weather Condition Night Fix
+      ##########################################################
+
+  - sensor:
+    - unique_id: weather_condition_REDACTED
+      name: Weather Condition REDACTED MO
+      state: >
+        {% if is_state('weather.REDACTED_ecobee', 'sunny') and is_state('sun.sun', 'above_horizon') %}
+          sunny
+        {% elif is_state('weather.REDACTED_ecobee', 'sunny') and is_state('sun.sun', 'below_horizon') %}
+          clear-night
+        {% else %}
+          {{ states("weather.REDACTED_ecobee") }}
+        {% endif %}
+
+      ##########################################################
+      ## Weather Condition LCD Clock Icons
+      ##########################################################
+
+  - sensor:
+    - unique_id: weather_condition_lcd_clock_icon
+      name: Weather Condition LCD Clock Icon
+      state: >
+        {% if is_state('weather.REDACTED_ecobee', 'sunny') and is_state('sun.sun', 'above_horizon') %}
+          sunny
+        {% elif is_state('weather.REDACTED_ecobee', 'sunny') and is_state('sun.sun', 'below_horizon') %}
+          clear_night
+        {% elif is_state('weather.REDACTED_ecobee', 'partlycloudy') and is_state('sun.sun', 'above_horizon') %}
+          partlycloudy_day
+        {% elif is_state('weather.REDACTED_ecobee', 'partlycloudy') and is_state('sun.sun', 'below_horizon') %}
+          partlycloudy_night
+        {% elif is_state('weather.REDACTED_ecobee', 'cloudy') %}
+          cloudy
+        {% elif is_state('weather.REDACTED_ecobee', 'fog') %}
+          fog
+        {% elif is_state('weather.REDACTED_ecobee', 'lightning') %}
+          lightning
+        {% elif is_state('weather.REDACTED_ecobee', 'lightning-rainy') %}
+          lightning_rainy
+        {% elif is_state('weather.REDACTED_ecobee', 'pouring') %}
+          rainy
+        {% elif is_state('weather.REDACTED_ecobee', 'rainy') %}
+          rainy
+        {% elif is_state('weather.REDACTED_ecobee', 'snowy') %}
+          snowy
+        {% elif is_state('weather.REDACTED_ecobee', 'snowy-rainy') %}
+          snowy_rainy
+        {% elif is_state('weather.REDACTED_ecobee', 'windy') %}
+          windy
+        {% elif is_state('weather.REDACTED_ecobee', 'windy-variant') %}
+          windy
+        {% elif is_state('weather.REDACTED_ecobee', 'hail') %}
+          hail
+        {% else %}
+          {{ states("sensor.weather_condition_REDACTED") }}
+        {% endif %}
+
+      ##########################################################
+      ## Weather Condition Human Readable
+      ##########################################################
+
+  - sensor:
+    - unique_id: weather_condition_human_readable
+      name: Weather Condition Human Readable
+      state: >
+        {% if is_state('weather.REDACTED_ecobee', 'sunny') and is_state('sun.sun', 'above_horizon') %}
+          Sunny
+        {% elif is_state('weather.REDACTED_ecobee', 'sunny') and is_state('sun.sun', 'below_horizon') %}
+          Clear Night
+        {% elif is_state('weather.REDACTED_ecobee', 'partlycloudy') and is_state('sun.sun', 'above_horizon') %}
+          Partly Cloudy
+        {% elif is_state('weather.REDACTED_ecobee', 'partlycloudy') and is_state('sun.sun', 'below_horizon') %}
+          Partly Cloudy
+        {% elif is_state('weather.REDACTED_ecobee', 'cloudy') %}
+          Cloudy
+        {% elif is_state('weather.REDACTED_ecobee', 'fog') %}
+          Fog
+        {% elif is_state('weather.REDACTED_ecobee', 'lightning') %}
+          Lightning
+        {% elif is_state('weather.REDACTED_ecobee', 'lightning-rainy') %}
+          Thunderstorm
+        {% elif is_state('weather.REDACTED_ecobee', 'pouring') %}
+          Rain
+        {% elif is_state('weather.REDACTED_ecobee', 'rainy') %}
+          Rain
+        {% elif is_state('weather.REDACTED_ecobee', 'snowy') %}
+          Snow
+        {% elif is_state('weather.REDACTED_ecobee', 'snowy-rainy') %}
+          Sleet
+        {% elif is_state('weather.REDACTED_ecobee', 'windy') %}
+          Windy
+        {% elif is_state('weather.REDACTED_ecobee', 'windy-variant') %}
+          Windy
+        {% elif is_state('weather.REDACTED_ecobee', 'hail') %}
+          Hail
+        {% else %}
+          {{ states("sensor.weather_condition_REDACTED") }}
         {% endif %}
