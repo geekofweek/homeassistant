@@ -231,8 +231,8 @@
   
   condition:
     - condition: state
-      entity_id: sensor.prusa_mk3_status
-      state: 'Printing'
+      entity_id: sensor.prusa_mk3
+      state: 'printing'
 
   action:
     - service: mqtt.publish
@@ -271,8 +271,8 @@
   
   condition:
     - condition: state
-      entity_id: sensor.prusa_mk3_status
-      state: 'Printing'
+      entity_id: sensor.prusa_mk3
+      state: 'printing'
 
   action:
     - service: mqtt.publish
@@ -284,7 +284,7 @@
           "pushIcon": 2,
           "color": [255,165,0],
           "repeat": 3,
-          "text": "MK3: {{ states("sensor.prusa_mk3_print_finish") }}"
+          "text": "MK3: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusa_mk3_print_finish')) - as_timestamp(now()))) }}"
           }
     - service: mqtt.publish
       data:
@@ -295,87 +295,87 @@
           "pushIcon": 2,
           "color": [255,165,0],
           "repeat": 3,
-          "text": "MK3: {{ states("sensor.prusa_mk3_print_finish") }}"
+          "text": "MK3: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusa_mk3_print_finish')) - as_timestamp(now()))) }}"
           }
 
-       ##########################################################
-       ## MINI 3D Print Progress App
-       ##########################################################
+      ##########################################################
+      ## MK4 Print Progress App
+      ##########################################################
 
-- alias: LED Clock - MINI 3D Print Progress App
-  id: 'led_clock_mini_3d_print_progress_app'
-  
+- alias: LED Clock - MK4 Print Progress App
+  id: 'led_clock_mk4_print_progress_app'
+
   trigger:
     - platform: state
-      entity_id: sensor.prusamini_progress
+      entity_id: sensor.prusa_mk4_progress
   
   condition:
     - condition: state
-      entity_id: sensor.prusamini
+      entity_id: sensor.prusa_mk4
       state: 'printing'
 
   action:
     - service: mqtt.publish
       data:
-        topic: USER1_office_clock/custom/mini_progress
+        topic: USER1_office_clock/custom/mk4_progress
         payload: >-
           { 
           "icon": "3d_print",
           "pushIcon": 0,
           "color": [255,165,0],
           "repeat": 3,
-          "text": "MINI: {{ states("sensor.prusamini_progress") }}%"
+          "text": "MK4: {{ states("sensor.prusa_mk4_progress") }}%"
           }
     - service: mqtt.publish
       data:
-        topic: living_room_clock/custom/mini_progress
+        topic: living_room_clock/custom/mk4_progress
         payload: >-
           { 
           "icon": "3d_print",
           "pushIcon": 0,
           "color": [255,165,0],
           "repeat": 3,
-          "text": "MINI: {{ states("sensor.prusamini_progress") }}%"
+          "text": "MK4: {{ states("sensor.prusa_mk4_progress") }}%"
           }
 
       ##########################################################
-      ## MINI 3D Print Time Remaining App
+      ## MK4 3D Print Time Remaining App
       ##########################################################
 
-- alias: LED Clock - MINI 3D Print Time Remaining App
-  id: 'led_clock_mini_3d_print_time_remaining_app'
-  
+- alias: LED Clock - MK4 Print Time Remaining App
+  id: 'led_clock_mk4_print_time_remaining_app'
+
   trigger:
     - platform: state
-      entity_id: sensor.prusamini_progress
+      entity_id: sensor.prusa_mk4_print_finish
   
   condition:
     - condition: state
-      entity_id: sensor.prusamini
+      entity_id: sensor.prusa_mk4
       state: 'printing'
 
   action:
     - service: mqtt.publish
       data:
-        topic: USER1_office_clock/custom/mini_progress
+        topic: USER1_office_clock/custom/mk4_time_remaining
         payload: >-
           { 
           "icon": "clock",
           "pushIcon": 2,
           "color": [255,165,0],
           "repeat": 3,
-          "text": "MINI: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusamini_print_finish')) - as_timestamp(now()))) }}"
+          "text": "MK4: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusa_mk4_print_finish')) - as_timestamp(now()))) }}"
           }
     - service: mqtt.publish
       data:
-        topic: living_room_clock/custom/mini_progress
+        topic: living_room_clock/custom/mk4_time_remaining
         payload: >-
           { 
           "icon": "clock",
           "pushIcon": 2,
           "color": [255,165,0],
           "repeat": 3,
-          "text": "MINI: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusamini_print_finish')) - as_timestamp(now()))) }}"
+          "text": "MK4: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusa_mk4_print_finish')) - as_timestamp(now()))) }}"
           }
 
       ##########################################################
@@ -387,8 +387,8 @@
 
   trigger:
     - platform: state
-      entity_id: sensor.prusa_mk3_status
-      from: 'Printing'
+      entity_id: sensor.prusa_mk3
+      from: 'printing'
       for:
         hours: 0
         minutes: 1
@@ -431,15 +431,15 @@
           }
 
       ##########################################################
-      ## MINI 3D Print Complete App
+      ## MK4 3D Print Complete App
       ##########################################################
 
-- alias: LED Clock - MINI 3D Print Complete App
-  id: 'led_clock_mini_3d_print_complete_app'
+- alias: LED Clock - MK4 3D Print Complete App
+  id: 'led_clock_mk4_3d_print_complete_app'
 
   trigger:
     - platform: state
-      entity_id: sensor.prusamini
+      entity_id: sensor.prusa_mk4
       from: 'printing'
       for:
         hours: 0
@@ -449,10 +449,10 @@
   action:
     - service: mqtt.publish
       data:
-        topic: USER1_office_clock/custom/mini_progress
+        topic: USER1_office_clock/custom/mk4_progress
     - service: mqtt.publish
       data:
-        topic: USER1_office_clock/custom/mini_time_remaining
+        topic: USER1_office_clock/custom/mk4_time_remaining
     - service: mqtt.publish
       data:
         topic: USER1_office_clock/notify
@@ -462,14 +462,14 @@
           "pushIcon": 0,
           "rainbow": true,
           "duration": 60,
-          "text": "MINI: Finished"
+          "text": "MK4: Finished"
           }
     - service: mqtt.publish
       data:
-        topic: living_room_clock/custom/mini_progress
+        topic: living_room_clock/custom/mk4_progress
     - service: mqtt.publish
       data:
-        topic: living_room_clock/custom/mini_time_remaining
+        topic: living_room_clock/custom/mk4_time_remaining
     - service: mqtt.publish
       data:
         topic: living_room_clock/notify
@@ -479,7 +479,7 @@
           "pushIcon": 0,
           "rainbow": true,
           "duration": 60,
-          "text": "MINI: Finished"
+          "text": "MK4: Finished"
           }
 
       ##########################################################
@@ -507,7 +507,7 @@
           "icon": "washer",
           "pushIcon": 2,
           "repeat": 3,
-          "color": [0,0,255],
+          "color": [0,255,255],
           "text": "Washer: {{ states("sensor.washing_machine_time_remaining") }}"
           }
     - service: mqtt.publish
@@ -518,7 +518,7 @@
           "icon": "washer",
           "pushIcon": 2,
           "repeat": 3,
-          "color": [0,0,255],
+          "color": [0,255,255],
           "text": "Washer: {{ states("sensor.washing_machine_time_remaining") }}"
           }
 
@@ -551,7 +551,7 @@
           "icon": "washer",
           "pushIcon": 0,
           "duration": 60,
-          "color": [0,0,255],
+          "color": [0,255,255],
           "text": "Washer Finished"
           }
     - service: mqtt.publish
@@ -565,7 +565,7 @@
           "icon": "washer",
           "pushIcon": 0,
           "duration": 60,
-          "color": [0,0,255],
+          "color": [0,255,255],
           "text": "Washer Finished"
           }
 
@@ -1269,14 +1269,18 @@
       entity_id: media_player.USER1_s_office_apple_tv
       state: 'playing'
     - condition: state
-      entity_id: media_player.USER1_s_office_apple_tv
-      attribute: app_id
-      state: "com.google.ios.youtube"
-    - condition: not
+      entity_id: switch.USER1_s_office_tv_watch_tv
+      state: 'on'
+    - condition: or
       conditions:
       - condition: state
-        entity_id: select.USER1_s_office_tv_activities
-        state: 'power_off'
+        entity_id: media_player.USER1_s_office_apple_tv
+        attribute: app_id
+        state: "com.google.ios.youtube"
+      - condition: state
+        entity_id: media_player.USER1_s_office_apple_tv
+        attribute: app_name
+        state: "YouTube"
 
   action:
     - service: mqtt.publish
@@ -1464,10 +1468,12 @@
     - condition: state
       entity_id: media_player.USER1_s_office_apple_tv
       state: 'playing'
-    - condition: state
-      entity_id: media_player.USER1_s_office_apple_tv
-      attribute: media_content_type
-      state: 'video'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.USER1_s_office_apple_tv
+        attribute: media_content_type
+        state: 'music'
     - condition: not
       conditions:
       - condition: state
@@ -1894,6 +1900,12 @@
         entity_id: media_player.living_room_apple_tv
         attribute: app_id
         state: "com.google.ios.youtube"
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.living_room_apple_tv
+        attribute: app_name
+        state: "YouTube"
 
   action:
     - service: light.turn_off
@@ -2401,14 +2413,18 @@
       entity_id: media_player.living_room_apple_tv
       state: 'playing'
     - condition: state
-      entity_id: media_player.living_room_apple_tv
-      attribute: app_id
-      state: "com.google.ios.youtube"
-    - condition: not
+      entity_id: switch.living_room_tv_watch_tv
+      state: 'on'
+    - condition: or
       conditions:
       - condition: state
-        entity_id: select.living_room_tv_activities
-        state: 'power_off'
+        entity_id: media_player.living_room_apple_tv
+        attribute: app_id
+        state: "com.google.ios.youtube"
+      - condition: state
+        entity_id: media_player.living_room_apple_tv
+        attribute: app_name
+        state: "YouTube"
 
   action:
     - service: mqtt.publish
@@ -2533,10 +2549,12 @@
     - condition: state
       entity_id: media_player.living_room_apple_tv
       state: 'playing'
-    - condition: state
-      entity_id: media_player.living_room_apple_tv
-      attribute: media_content_type
-      state: 'video'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.living_room_apple_tv
+        attribute: media_content_type
+        state: 'music'
     - condition: not
       conditions:
       - condition: state

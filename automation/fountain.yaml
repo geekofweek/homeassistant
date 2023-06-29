@@ -281,6 +281,13 @@
         hours: 1
         minutes: 0
         seconds: 0
+    - platform: state
+      entity_id: weather.REDACTED
+      to: 'lightning-rainy'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
 
   condition:
     - condition: state
@@ -307,8 +314,15 @@
 
   trigger:
     - platform: state
-      entity_id: weather.REDACTED_sc
+      entity_id: weather.REDACTED
       from: 'rainy'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+    - platform: state
+      entity_id: weather.REDACTED
+      from: 'lightning-rainy'
       for:
         hours: 1
         minutes: 0

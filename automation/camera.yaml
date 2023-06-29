@@ -1,0 +1,325 @@
+#################################################################
+## Camera Automations
+#################################################################
+
+        ##########################################################
+        ## Household Away Turn Off Camera Privacy Mode
+        ##########################################################
+
+- alias: Camera - Household Away Turn Off Privacy Mode
+  id: 'camera_household_away_turn_off_privacy_mode'
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.secondary_switch_basement_camera_poe
+    - delay: '00:02:00'
+    - service: switch.turn_off
+      entity_id:
+        - switch.basement_camera_privacy_mode
+        - switch.living_room_camera_privacy_mode
+        - switch.kitchen_camera_privacy_mode
+
+        ##########################################################
+        ## Household Away Turn On Camera Privacy Mode
+        ##########################################################
+
+- alias: Camera - Household Away Turn On Privacy Mode
+  id: 'camera_household_home_turn_on_privacy_mode'
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'not_home'
+      to: 'home'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.basement_camera_privacy_mode
+        - switch.living_room_camera_privacy_mode
+        - switch.kitchen_camera_privacy_mode
+    - delay: '00:05:00'
+    - service: switch.turn_off
+      entity_id:
+        - switch.secondary_switch_basement_camera_poe
+
+
+        ##########################################################
+        ## Turn on Front Yard Camera Infrared after Sunset
+        ##########################################################
+
+- alias: Camera - Turn on Front Yard Infrared after Sunset
+  id: 'camera_turn_on_front_yard_infrared_after_sunset'
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+      offset: '00:17:00'
+
+  condition:
+    - condition: state
+      entity_id: binary_sensor.front_yard_camera_is_dark
+      state: 'off'
+    - condition: state
+      entity_id: select.front_yard_camera_infrared_mode
+      state: "Auto"
+
+  action:
+    - service: select.select_option
+      data:
+        entity_id: select.front_yard_camera_infrared_mode
+        option: "Always Enable"
+
+        ##########################################################
+        ## Reset Front Yard Infrared at 4a
+        ##########################################################
+
+- alias: Camera - Reset Front Yard Infrared at 4a
+  id: 'camera_reset_front_yard_infrared_at_4a'
+
+  trigger:
+   - platform: time
+     at: '04:00:00'
+
+  condition:
+    - condition: state
+      entity_id: select.front_yard_camera_infrared_mode
+      state: "Always Enable"
+
+  action:
+    - service: select.select_option
+      data:
+        entity_id: select.front_yard_camera_infrared_mode
+        option: "Auto"
+
+        ##########################################################
+        ## Turn on Front Porch Camera Infrared after Sunset
+        ##########################################################
+
+- alias: Camera - Turn on Front Porch Infrared after Sunset
+  id: 'camera_turn_on_front_porch_infrared_after_sunset'
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+      offset: '00:45:00'
+
+  condition:
+    - condition: state
+      entity_id: binary_sensor.front_porch_camera_is_dark
+      state: 'off'
+    - condition: state
+      entity_id: select.front_porch_camera_infrared_mode
+      state: "Auto"
+
+  action:
+    - service: select.select_option
+      data:
+        entity_id: select.front_porch_camera_infrared_mode
+        option: "Always Enable"
+
+        ##########################################################
+        ## Reset Front Porch Infrared at 4a
+        ##########################################################
+
+- alias: Camera - Reset Front Porch Infrared at 4a
+  id: 'camera_reset_front_porch_infrared_at_4a'
+
+  trigger:
+   - platform: time
+     at: '04:00:00'
+
+  condition:
+    - condition: state
+      entity_id: select.front_porch_camera_infrared_mode
+      state: "Always Enable"
+
+  action:
+    - service: select.select_option
+      data:
+        entity_id: select.front_porch_camera_infrared_mode
+        option: "Auto"
+
+#################################################################
+## Notifications
+#################################################################
+
+    #################################################################
+    ## Person Detected in Front Yard
+    #################################################################
+
+- alias: Camera - Person Detected in Front Yard
+  id: 'camera_person_detected_in_front_yard'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_yard_camera_person_detected
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+
+  action:
+    - service: notify.USER1_devices
+      data:
+        message: Person Detected in Front Yard!
+        data:
+          tag: camera
+          group: camera
+          entity_id: camera.front_yard
+
+    #################################################################
+    ## Person Detected in Backyard
+    #################################################################
+
+- alias: Camera - Person Detected in Backyard
+  id: 'camera_person_detected_in_backyard'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.backyard_camera_person_detected
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+
+  action:
+    - service: notify.USER1_devices
+      data:
+        message: Person Detected in Backyard!
+        data:
+          tag: camera
+          group: camera
+          entity_id: camera.backyard
+
+    #################################################################
+    ## Person Detected at Backyard Gate
+    #################################################################
+
+- alias: Camera - Person Detected at Backyard Gate
+  id: 'camera_person_detected_at_backyard_gate'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.backyard_gate_camera_person_detected
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+
+  action:
+    - service: notify.USER1_devices
+      data:
+        message: Person Detected at Backyard Gate!
+        data:
+          tag: camera
+          group: camera
+          entity_id: camera.backyard_gate
+
+    #################################################################
+    ## Person Detected in Side Yard
+    #################################################################
+
+- alias: Camera - Person Detected in Side Yard
+  id: 'camera_person_detected_in_side_yard'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.side_yard_camera_person_detected
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+
+  action:
+    - service: notify.USER1_devices
+      data:
+        message: Person Detected in Side Yard!
+        data:
+          tag: camera
+          group: camera
+          entity_id: camera.side_yard
+
+    #################################################################
+    ## Person Detected in Garage
+    #################################################################
+
+- alias: Camera - Person Detected in Garage
+  id: 'camera_person_detected_in_garage'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.garage_camera_person_detected
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+
+  action:
+    - service: notify.USER1_devices
+      data:
+        message: Person Detected in Garage!
+        data:
+          tag: camera
+          group: camera
+          entity_id: camera.garage

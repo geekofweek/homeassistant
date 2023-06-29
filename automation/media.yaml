@@ -397,13 +397,19 @@
     - condition: not
       conditions:
       - condition: state
-        entity_id: media_player.USER1_s_office_apple_tv
+        entity_id: media_player.living_room_apple_tv
         attribute: app_id
         state: "com.google.ios.youtube"
     - condition: not
       conditions:
       - condition: state
-        entity_id: media_player.USER1_s_office_apple_tv
+        entity_id: media_player.living_room_apple_tv
+        attribute: app_name
+        state: "YouTube"
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.living_room_apple_tv
         attribute: app_id
         state: "com.apple.TVPhotos"
 
@@ -485,13 +491,19 @@
     - condition: not
       conditions:
       - condition: state
-        entity_id: media_player.USER1_s_office_apple_tv
+        entity_id: media_player.living_room_apple_tv
         attribute: app_id
         state: "com.google.ios.youtube"
     - condition: not
       conditions:
       - condition: state
-        entity_id: media_player.USER1_s_office_apple_tv
+        entity_id: media_player.living_room_apple_tv
+        attribute: app_name
+        state: "YouTube"
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.living_room_apple_tv
         attribute: app_id
         state: "com.apple.TVPhotos"
 

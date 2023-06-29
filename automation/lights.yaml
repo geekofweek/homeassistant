@@ -2326,6 +2326,11 @@
     - platform: state
       entity_id: sensor.bedroom_lamps_dimmer_brightness
 
+  condition:
+    - condition: template
+      value_template: >-
+        {{ as_timestamp(now()) - as_timestamp(states.sensor.uptime.last_changed) |
+        int > 60 }}
 
   action:
     - service: light.turn_on
@@ -2352,6 +2357,11 @@
     - platform: state
       entity_id: sensor.bedroom_ceiling_dimmer_brightness
 
+  condition:
+    - condition: template
+      value_template: >-
+        {{ as_timestamp(now()) - as_timestamp(states.sensor.uptime.last_changed) |
+        int > 60 }}
 
   action:
     - service: light.turn_on

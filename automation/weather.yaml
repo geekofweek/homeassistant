@@ -17,6 +17,13 @@
         hours: 0
         minutes: 1
         seconds: 0
+    - platform: state
+      entity_id: weather.REDACTED
+      to: 'lightning-rainy'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
 
   condition:
     - condition: state
@@ -49,6 +56,9 @@
     - platform: state
       entity_id: weather.REDACTED
       from: 'rainy'
+    - platform: state
+      entity_id: weather.REDACTED
+      from: 'lightning-rainy'
 
   condition:
     - condition: state
@@ -92,9 +102,6 @@
       entity_id: group.household
       state: 'home'
     - condition: state
-      entity_id: weather.REDACTED
-      state: 'rainy'
-    - condition: state
       entity_id: input_boolean.livingroom_rainbow
       state: 'off'
     - condition: state
@@ -103,6 +110,14 @@
     - condition: state
       entity_id: alarm_control_panel.alarm
       state: 'disarmed'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: weather.REDACTED
+        state: 'rainy'
+      - condition: state
+        entity_id: weather.REDACTED
+        state: 'lightning-rainy'
     - condition: or
       conditions:
       - condition: state
@@ -151,6 +166,13 @@
         hours: 0
         minutes: 1
         seconds: 0
+    - platform: state
+      entity_id: weather.REDACTED
+      to: 'lightning-rainy'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
 
   condition:
     - condition: state
@@ -188,6 +210,9 @@
     - platform: state
       entity_id: weather.REDACTED
       from: 'rainy'
+    - platform: state
+      entity_id: weather.REDACTED
+      from: 'lightning-rainy'
 
   condition:
     - condition: state
@@ -239,9 +264,6 @@
       entity_id: person.USER1
       state: 'home'
     - condition: state
-      entity_id: weather.REDACTED
-      state: 'rainy'
-    - condition: state
       entity_id: input_boolean.office_rainbow
       state: 'off'
     - condition: state
@@ -250,6 +272,14 @@
     - condition: state
       entity_id: input_boolean.disable_rainy_day
       state: 'off'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: weather.REDACTED
+        state: 'rainy'
+      - condition: state
+        entity_id: weather.REDACTED
+        state: 'lightning-rainy'
 
   action:
     - service: light.turn_on
