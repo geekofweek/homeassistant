@@ -67,13 +67,14 @@ More detailed information on the ESPhome configuration can be found in [here](ht
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
 | [Wemo Mini Smart Plug](https://amzn.to/2wQ05jE) | 3 | Wi-Fi | [Belkin WeMo](https://www.home-assistant.io/components/wemo/) | Smart outlets utilized to control various devices via powering the outlet on/off (fans, Christmas Tree, etc).  These are slowly being phased out |
-| [Zooz Power Switch ZEN15](https://amzn.to/2WRPeiv) | 2 | Z-Wave | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Smart outlet utilized to monitor power to sump pump |
 | [GE Z-Wave Wireless Smart Lighting Control Outdoor Module](https://amzn.to/2KuFRxN) | 4 | Z-Wave| [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Used to control low voltage outdoor lighting transformers, bug zapper, and Christmas lights (Holiday time only) |
 | [Remotec Zwave Dry Contact Fixture Module](https://amzn.to/2rOmcBW) | 1 | Z-Wave| [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Used to control gas fireplace |
 | [Dome Home Automation Water Shut-Off Valve](https://amzn.to/2IzJR1J) | 1 | Z-Wave| [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Used to shut off Water Main Supply to House in the event of water leak detected or while on Vacation |
 | [Kasa Outdoor Smart Plug](https://amzn.to/3JFdn5W) | 1 | Wi-Fi | [TP-Link Kasa Smart](https://www.home-assistant.io/integrations/tplink/) | Used to control outdoor devices, fountain pump, etc. |
 | [Kasa Smart Plug Mini with Energy Monitoring](https://amzn.to/3quAo48) | 2 | Wi-Fi | [TP-Link Kasa Smart](https://www.home-assistant.io/integrations/tplink/) | Used to control charging and power monitoring of electric bikes |
 | [Kasa Smart Plug Mini](https://www.amazon.com/dp/B091FXLMS8/ref=cm_sw_r_as_gl_api_gl_i_XTMKH4J7T66JNP11Z60N?linkCode=ml1&tag=homeassistant-20) | 4 | Wi-Fi | [TP-Link Kasa Smart](https://www.home-assistant.io/integrations/tplink/) | Used to control various devices, slowing phasing out Wemo in favor of these |
+| [Kasa Smart Plug Power Strip](https://amzn.to/3rlYajd) | 3 | Wi-Fi | [TP-Link Kasa Smart](https://www.home-assistant.io/integrations/tplink/) | Used to control various devices with energy monitoring |
+
 
 Switches and outlets are used in various capacities, some are for lighting and some are for fans type devices.  [lights.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/lights.yaml) should have some good examples.
 
@@ -330,6 +331,8 @@ More detailed information on the custom Home Assistant Managment Tools can be fo
 | [Ubiquiti Networks Unifi Access Point WiFi 6 Lite (U6-Lite-US)](https://amzn.to/3l3Dman) | 2 | Ethernet | [Ubiquiti Unifi](https://www.home-assistant.io/components/device_tracker.unifi/) | Wireless Access Point for interior use. Presence detection for non household members and devices. |
 | [Ubiquiti Networks Unifi Mesh AP (UAP-AC-M-US)](https://amzn.to/31QrE6E) | 1 | Ethernet | [Ubiquiti Unifi](https://www.home-assistant.io/components/device_tracker.unifi/) | Wireless Mesh Access Point for exterior use. Used in detached garage to provide internet and network traffic for cameras and devices.  Presence detection for non household members and devices. |
 | [Ubiquiti Networks Unifi AP PRO (UAP-AC-PRO-US)](https://amzn.to/2rP3BFJ) | 1 | Ethernet | [Ubiquiti Unifi](https://www.home-assistant.io/components/device_tracker.unifi/)| Wireless Access Point for interior and exterior use. Presence detection for non household members and devices. |
+| [Zooz Power Switch ZEN15](https://amzn.to/2WRPeiv) | 2 | Z-Wave | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Realized these would flood the z-wave network with traffic and make it unstable, do not recommend |
+
 
 # <a name="screenshots">Screenshots</a>
 
