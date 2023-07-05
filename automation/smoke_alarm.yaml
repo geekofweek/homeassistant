@@ -139,41 +139,6 @@
       state: 'off'
 
   action:
-    - service: media_player.join
-      data:
-        entity_id:
-          - media_player.sonos_living_room
-        group_members:
-          - media_player.sonos_living_room
-          - media_player.sonos_dining_room
-          - media_player.sonos_kitchen
-          - media_player.sonos_bathroom
-          - media_player.sonos_bedroom
-          - media_player.sonos_bedroom_closet
-          - media_player.sonos_USER1s_office
-          - media_player.sonos_USER1s_office_move
-          - media_player.sonos_USER2s_office
-          - media_player.sonos_move
-          - media_player.sonos_fitness_room
-          - media_player.sonos_craft_room
-    - delay: '00:00:01'
-    - service: media_player.volume_set
-      entity_id:
-          - media_player.sonos_living_room
-          - media_player.sonos_dining_room
-          - media_player.sonos_kitchen
-          - media_player.sonos_bathroom
-          - media_player.sonos_bedroom
-          - media_player.sonos_bedroom_closet
-          - media_player.sonos_USER1s_office
-          - media_player.sonos_USER1s_office_move
-          - media_player.sonos_USER2s_office
-          - media_player.sonos_move
-          - media_player.sonos_fitness_room
-          - media_player.sonos_craft_room
-      data:
-        volume_level: 0.8
-    - delay: '00:00:02'
     - service: media_player.play_media
       target:
         entity_id: 
@@ -190,10 +155,12 @@
           - media_player.sonos_fitness_room
           - media_player.sonos_craft_room
       data:
-        announce: false
+        announce: true
         media_content_id: >
           media-source://tts/cloud?message="Smoke Has Been Detected!"
         media_content_type: "music"
+        extra:
+          volume: 80
 
         ##########################################################
         ## CO Alarm Text Notification
@@ -399,41 +366,6 @@
       state: 'off'
 
   action:
-    - service: media_player.join
-      data:
-        entity_id:
-          - media_player.sonos_living_room
-        group_members:
-          - media_player.sonos_living_room
-          - media_player.sonos_dining_room
-          - media_player.sonos_kitchen
-          - media_player.sonos_bathroom
-          - media_player.sonos_bedroom
-          - media_player.sonos_bedroom_closet
-          - media_player.sonos_USER1s_office
-          - media_player.sonos_USER1s_office_move
-          - media_player.sonos_USER2s_office
-          - media_player.sonos_move
-          - media_player.sonos_fitness_room
-          - media_player.sonos_craft_room
-    - delay: '00:00:01'
-    - service: media_player.volume_set
-      entity_id:
-          - media_player.sonos_living_room
-          - media_player.sonos_dining_room
-          - media_player.sonos_kitchen
-          - media_player.sonos_bathroom
-          - media_player.sonos_bedroom
-          - media_player.sonos_bedroom_closet
-          - media_player.sonos_USER1s_office
-          - media_player.sonos_USER1s_office_move
-          - media_player.sonos_USER2s_office
-          - media_player.sonos_move
-          - media_player.sonos_fitness_room
-          - media_player.sonos_craft_room
-      data:
-        volume_level: 0.8
-    - delay: '00:00:02'
     - service: media_player.play_media
       target:
         entity_id: 
@@ -450,10 +382,12 @@
           - media_player.sonos_fitness_room
           - media_player.sonos_craft_room
       data:
-        announce: false
+        announce: true
         media_content_id: >
           media-source://tts/cloud?message="Carbon monoxide Has Been Detected!"
         media_content_type: "music"
+        extra:
+          volume: 80
 
         ##########################################################
         ## Reset Disable Fire Alarm

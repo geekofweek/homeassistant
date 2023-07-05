@@ -13,44 +13,6 @@
       - type: last_boot
       - type: disk_use_percent
 
-        ##########################################################
-        ## NAS-01
-        ##########################################################
-
-  - platform: qnap
-    host: nas.network.REDACTED
-    port: 8527
-    username: !secret qnap_username
-    password: !secret qnap_password
-    ssl: true
-    verify_ssl: false
-    monitored_conditions:
-      - status
-      - memory_percent_used
-      - system_temp
-      - cpu_usage
-      - drive_smart_status
-      - volume_percentage_used
-
-        ##########################################################
-        ## NAS-02
-        ##########################################################
-
-  - platform: qnap
-    host: nas-02.network.REDACTED
-    port: 8527
-    username: !secret qnap_username
-    password: !secret qnap_password
-    ssl: true
-    verify_ssl: false
-    monitored_conditions:
-      - status
-      - memory_percent_used
-      - system_temp
-      - cpu_usage
-      - drive_smart_status
-      - volume_percentage_used
-
 #################################################################
 ## RESTful Sensors
 #################################################################

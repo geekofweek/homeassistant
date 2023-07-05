@@ -59,6 +59,12 @@
     - service: mqtt.publish
       data:
         topic: living_room_clock/custom/tv_state
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/temp
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/temp
 
         ##########################################################
         ## Household Away Mode LED Clock
@@ -244,7 +250,7 @@
           "pushIcon": 0,
           "color": [255,165,0],
           "repeat": 3,
-          "text": "MK3: {{ states("sensor.prusa_mk3_progress") }}%"
+          "text": "MK3: {{ states("sensor.prusa_mk3_progress") |round }}%"
           }
     - service: mqtt.publish
       data:
@@ -255,7 +261,7 @@
           "pushIcon": 0,
           "color": [255,165,0],
           "repeat": 3,
-          "text": "MK3: {{ states("sensor.prusa_mk3_progress") }}%"
+          "text": "MK3: {{ states("sensor.prusa_mk3_progress") |round }}%"
           }
 
       ##########################################################
@@ -267,7 +273,7 @@
 
   trigger:
     - platform: state
-      entity_id: sensor.prusa_mk3_print_finish
+      entity_id: sensor.prusa_mk3_progress
   
   condition:
     - condition: state
@@ -324,7 +330,7 @@
           "pushIcon": 0,
           "color": [255,165,0],
           "repeat": 3,
-          "text": "MK4: {{ states("sensor.prusa_mk4_progress") }}%"
+          "text": "MK4: {{ states("sensor.prusa_mk4_progress") |round }}%"
           }
     - service: mqtt.publish
       data:
@@ -335,7 +341,7 @@
           "pushIcon": 0,
           "color": [255,165,0],
           "repeat": 3,
-          "text": "MK4: {{ states("sensor.prusa_mk4_progress") }}%"
+          "text": "MK4: {{ states("sensor.prusa_mk4_progress") |round }}%"
           }
 
       ##########################################################
@@ -347,7 +353,7 @@
 
   trigger:
     - platform: state
-      entity_id: sensor.prusa_mk4_print_finish
+      entity_id: sensor.prusa_mk4_progress
   
   condition:
     - condition: state
@@ -2150,6 +2156,18 @@
       - condition: state
         entity_id: select.living_room_tv_activities
         state: 'power_off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.living_room_apple_tv
+        attribute: app_id
+        state: "com.google.ios.youtube"
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.living_room_apple_tv
+        attribute: app_name
+        state: "YouTube"
 
   action:
     - service: mqtt.publish

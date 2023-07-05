@@ -125,6 +125,27 @@
         hours: 0
         minutes: 5
         seconds: 0
+    - platform: state
+      entity_id: lock.front_door
+      to: 'unavailable'
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
+    - platform: state
+      entity_id: lock.back_door
+      to: 'unavailable'
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
+    - platform: state
+      entity_id: lock.basement_door
+      to: 'unavailable'
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
 
   action:
     - service: zwave_js.ping

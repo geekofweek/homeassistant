@@ -256,29 +256,25 @@
         state: 'open'
 
   action:
-    - service: cover.set_cover_position
+    - service: cover.close_cover
       data:
         entity_id: 
           - cover.USER2_s_office_blinds
-        position: 0
     - delay: '00:00:15'
-    - service: cover.set_cover_position
+    - service: cover.close_cover
       data:
         entity_id: 
           - cover.stairs_blinds
-        position: 0
     - delay: '00:00:15'
-    - service: cover.set_cover_position
+    - service: cover.close_cover
       data:
         entity_id: 
           - cover.bedroom_closet_blinds
-        position: 0
     - delay: '00:00:15'
-    - service: cover.set_cover_position
+    - service: cover.close_cover
       data:
         entity_id: 
           - cover.kitchen_blinds
-        position: 0
 
         ##########################################################
         ## USER1 Home from Walking Unlock Doors Turn On Garage Light
@@ -934,11 +930,10 @@
       state: 'off'
 
   action:
-    - service: cover.set_cover_position
+    - service: cover.close_cover
       data:
         entity_id: 
           - cover.USER1_s_office_blinds
-        position: 0
 
         ##########################################################
         ## USER1 Away Close Blinds Window Open
@@ -962,12 +957,11 @@
       state: 'on'
 
   action:
-    - service: cover.set_cover_position
+    - service: cover.close_cover
       data:
         entity_id: 
           - cover.USER1s_office_blinds_left
           - cover.USER1s_office_blinds_center
-        position: 0
     - service: cover.set_cover_position
       data:
         entity_id: cover.USER1s_office_blinds_right
@@ -1001,11 +995,10 @@
     - service: light.turn_off
       entity_id:
         - light.USER2_s_office_ceiling
-    - service: cover.set_cover_position
+    - service: cover.close_cover
       data:
         entity_id: 
           - cover.USER2_s_office_blinds
-        position: 0
 
         ##########################################################
         ## Close Garage Door when USER1 Leaves
@@ -1652,41 +1645,6 @@
 
   action:
     - delay: '00:00:04'
-    - service: sonos.snapshot
-      data:
-        with_group: yes
-        entity_id:
-          - media_player.sonos_living_room
-          - media_player.sonos_dining_room
-          - media_player.sonos_kitchen
-          - media_player.sonos_move
-    - delay: '00:00:03'
-    - service: media_player.unjoin
-      entity_id:
-          - media_player.sonos_living_room
-          - media_player.sonos_dining_room
-          - media_player.sonos_kitchen
-          - media_player.sonos_move
-    - delay: '00:00:01'
-    - service: media_player.join
-      data:
-        entity_id:
-          - media_player.sonos_living_room
-        group_members:
-          - media_player.sonos_living_room
-          - media_player.sonos_dining_room
-          - media_player.sonos_kitchen
-          - media_player.sonos_move
-    - delay: '00:00:01'
-    - service: media_player.volume_set
-      entity_id:
-          - media_player.sonos_living_room
-          - media_player.sonos_dining_room
-          - media_player.sonos_kitchen
-          - media_player.sonos_move
-      data:
-        volume_level: 0.5
-    - delay: '00:00:02'
     - service: media_player.play_media
       target:
         entity_id: 
@@ -1695,19 +1653,12 @@
           - media_player.sonos_kitchen
           - media_player.sonos_move
       data:
-        announce: false
+        announce: true
         media_content_id: >
           media-source://tts/cloud?message="Welcome home, USER1."
         media_content_type: "music"
-    - delay: '00:00:25'
-    - service: sonos.restore
-      data:
-        with_group: yes
-        entity_id:
-          - media_player.sonos_living_room
-          - media_player.sonos_dining_room
-          - media_player.sonos_kitchen
-          - media_player.sonos_move
+        extra:
+          volume: 50
     - delay: '00:02:00'
     - service: homeassistant.turn_off
       entity_id: input_boolean.USER1_greeting
@@ -1749,6 +1700,7 @@
       before: '22:00:00'
 
   action:
+    - delay: '00:00:10'
     - service: media_player.play_media
       target:
         entity_id: 
@@ -1790,41 +1742,6 @@
 
   action:
     - delay: '00:00:04'
-    - service: sonos.snapshot
-      data:
-        with_group: yes
-        entity_id:
-          - media_player.sonos_living_room
-          - media_player.sonos_dining_room
-          - media_player.sonos_kitchen
-          - media_player.sonos_move
-    - delay: '00:00:03'
-    - service: media_player.unjoin
-      entity_id:
-          - media_player.sonos_living_room
-          - media_player.sonos_dining_room
-          - media_player.sonos_kitchen
-          - media_player.sonos_move
-    - delay: '00:00:01'
-    - service: media_player.join
-      data:
-        entity_id:
-          - media_player.sonos_living_room
-        group_members:
-          - media_player.sonos_living_room
-          - media_player.sonos_dining_room
-          - media_player.sonos_kitchen
-          - media_player.sonos_move
-    - delay: '00:00:01'
-    - service: media_player.volume_set
-      entity_id:
-          - media_player.sonos_living_room
-          - media_player.sonos_dining_room
-          - media_player.sonos_kitchen
-          - media_player.sonos_move
-      data:
-        volume_level: 0.5
-    - delay: '00:00:02'
     - service: media_player.play_media
       target:
         entity_id: 
@@ -1833,19 +1750,12 @@
           - media_player.sonos_kitchen
           - media_player.sonos_move
       data:
-        announce: false
+        announce: true
         media_content_id: >
           media-source://tts/cloud?message="Welcome home, USER2."
         media_content_type: "music"
-    - delay: '00:00:25'
-    - service: sonos.restore
-      data:
-        with_group: yes
-        entity_id:
-          - media_player.sonos_living_room
-          - media_player.sonos_dining_room
-          - media_player.sonos_kitchen
-          - media_player.sonos_move
+        extra:
+          volume: 50
     - delay: '00:02:00'
     - service: homeassistant.turn_off
       entity_id: input_boolean.USER2_greeting
@@ -1882,56 +1792,26 @@
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      state: 'off'
     - condition: time
       after: '09:00:00'
       before: '22:00:00'
 
   action:
-    - delay: '00:00:15'
-    - service: sonos.snapshot
-      data:
-        with_group: yes
-        entity_id:
-          - media_player.sonos_USER1s_office
-          - media_player.sonos_USER1s_office_move
-    - delay: '00:00:03'
-    - service: media_player.unjoin
-      entity_id:
-          - media_player.sonos_USER1s_office
-          - media_player.sonos_USER1s_office_move
-    - delay: '00:00:01'
-    - service: media_player.join
-      data:
-        entity_id:
-          - media_player.sonos_USER1s_office
-        group_members:
-          - media_player.sonos_USER1s_office
-          - media_player.sonos_USER1s_office_move
-    - delay: '00:00:01'
-    - service: media_player.volume_set
-      entity_id:
-          - media_player.sonos_USER1s_office
-          - media_player.sonos_USER1s_office_move
-      data:
-        volume_level: 0.5
-    - delay: '00:00:02'
+    - delay: '00:00:10'
     - service: media_player.play_media
       target:
         entity_id: 
           - media_player.sonos_USER1s_office
-          - media_player.sonos_USER1s_office_move
       data:
-        announce: false
+        announce: true
         media_content_id: >
           media-source://tts/cloud?message="USER2, is Home."
         media_content_type: "music"
-    - delay: '00:00:15'
-    - service: sonos.restore
-      data:
-        with_group: yes
-        entity_id:
-          - media_player.sonos_USER1s_office
-          - media_player.sonos_USER1s_office_move
+        extra:
+          volume: 50
 
         ##########################################################
         ## Welcome Home USER1 and USER2 Audio Greeting
@@ -1967,42 +1847,7 @@
       before: '22:00:00'
 
   action:
-    - delay: '00:00:03'
-    - service: sonos.snapshot
-      data:
-        with_group: yes
-        entity_id:
-          - media_player.sonos_living_room
-          - media_player.sonos_dining_room
-          - media_player.sonos_kitchen
-          - media_player.sonos_move
-    - delay: '00:00:03'
-    - service: media_player.unjoin
-      entity_id:
-          - media_player.sonos_living_room
-          - media_player.sonos_dining_room
-          - media_player.sonos_kitchen
-          - media_player.sonos_move
-    - delay: '00:00:01'
-    - service: media_player.join
-      data:
-        entity_id:
-          - media_player.sonos_living_room
-        group_members:
-          - media_player.sonos_living_room
-          - media_player.sonos_dining_room
-          - media_player.sonos_kitchen
-          - media_player.sonos_move
-    - delay: '00:00:01'
-    - service: media_player.volume_set
-      entity_id:
-          - media_player.sonos_living_room
-          - media_player.sonos_dining_room
-          - media_player.sonos_kitchen
-          - media_player.sonos_move
-      data:
-        volume_level: 0.5
-    - delay: '00:00:02'
+    - delay: '00:00:04'
     - service: media_player.play_media
       target:
         entity_id: 
@@ -2011,19 +1856,12 @@
           - media_player.sonos_kitchen
           - media_player.sonos_move
       data:
-        announce: false
+        announce: true
         media_content_id: >
           media-source://tts/cloud?message="Welcome Home, USER1 and USER2"
         media_content_type: "music"
-    - delay: '00:00:25'
-    - service: sonos.restore
-      data:
-        with_group: yes
-        entity_id:
-          - media_player.sonos_living_room
-          - media_player.sonos_dining_room
-          - media_player.sonos_kitchen
-          - media_player.sonos_move
+        extra:
+          volume: 50
     - delay: '00:02:00'
     - service: homeassistant.turn_off
       entity_id: 
@@ -2056,62 +1894,14 @@
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      state: 'off'
     - condition: time
       after: '09:00:00'
       before: '19:00:00'
 
   action:
-    - service: sonos.snapshot
-      data:
-        with_group: yes
-        entity_id:
-          - media_player.sonos_living_room
-          - media_player.sonos_dining_room
-          - media_player.sonos_kitchen
-          - media_player.sonos_bathroom
-          - media_player.sonos_bedroom
-          - media_player.sonos_bedroom_closet
-          - media_player.sonos_USER1s_office
-          - media_player.sonos_USER1s_office_move
-    - delay: '00:00:03'
-    - service: media_player.unjoin
-      entity_id:
-          - media_player.sonos_living_room
-          - media_player.sonos_dining_room
-          - media_player.sonos_kitchen
-          - media_player.sonos_bathroom
-          - media_player.sonos_bedroom
-          - media_player.sonos_bedroom_closet
-          - media_player.sonos_USER1s_office
-          - media_player.sonos_USER1s_office_move
-    - delay: '00:00:01'
-    - service: media_player.join
-      data:
-        entity_id:
-          - media_player.sonos_USER1s_office
-        group_members:
-          - media_player.sonos_living_room
-          - media_player.sonos_dining_room
-          - media_player.sonos_kitchen
-          - media_player.sonos_bathroom
-          - media_player.sonos_bedroom
-          - media_player.sonos_bedroom_closet
-          - media_player.sonos_USER1s_office
-          - media_player.sonos_USER1s_office_move
-    - delay: '00:00:01'
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.sonos_living_room
-        - media_player.sonos_dining_room
-        - media_player.sonos_kitchen
-        - media_player.sonos_bathroom
-        - media_player.sonos_bedroom
-        - media_player.sonos_bedroom_closet
-        - media_player.sonos_USER1s_office
-        - media_player.sonos_USER1s_office_move
-      data:
-        volume_level: 0.5
-    - delay: '00:00:02'
     - service: media_player.play_media
       target:
         entity_id: 
@@ -2122,22 +1912,11 @@
           - media_player.sonos_bedroom
           - media_player.sonos_bedroom_closet
           - media_player.sonos_USER1s_office
-          - media_player.sonos_USER1s_office_move
+          - media_player.sonos_move
       data:
-        announce: false
+        announce: true
         media_content_id: >
           media-source://tts/cloud?message="USER2 has left work, and will arrive Home in about, {{states('sensor.USER2_to_home')}} minutes"
         media_content_type: "music"
-    - delay: '00:00:25'
-    - service: sonos.restore
-      data:
-        with_group: yes
-        entity_id:
-          - media_player.sonos_living_room
-          - media_player.sonos_dining_room
-          - media_player.sonos_kitchen
-          - media_player.sonos_bathroom
-          - media_player.sonos_bedroom
-          - media_player.sonos_bedroom_closet
-          - media_player.sonos_USER1s_office
-          - media_player.sonos_USER1s_office_move
+        extra:
+          volume: 50

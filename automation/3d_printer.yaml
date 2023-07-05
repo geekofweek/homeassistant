@@ -71,19 +71,11 @@
 
   trigger:
     - platform: state
-      entity_id: sensor.prusa_mk4
-      to: 'printing'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 10
+      entity_id: switch.prusa_mk3
+      to: 'on'
     - platform: state
-      entity_id: sensor.prusa_mk3
-      to: 'printing'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 10
+      entity_id: sensor.prusa_mk4
+      to: 'on'
 
   condition:
     - condition: state
@@ -95,23 +87,20 @@
       entity_id:
         - light.3d_printer_light
       data:
-        brightness_pct: 50
+        brightness_pct: 100
+        color_temp: 370
 
         ##########################################################
-        ## 3D Printer Off Turn Off Light Prusa MK4
+        ## 3D Printer MK4 Off Turn Off Light
         ##########################################################
 
-- alias: 3D-Printer - Printer Off Turn Off Light Prusa MK4
-  id: '3d_printer_off_turn_off_light_prusa_mini'
+- alias: 3D-Printer - MK4 Off Turn Off Light
+  id: '3d_printer_MK4_off_turn_off_light'
 
   trigger:
     - platform: state
-      entity_id: sensor.prusa_mk4
-      from: 'printing'
-      for:
-        hours: 0
-        minutes: 1
-        seconds: 0
+      entity_id: switch.prusa_mk4
+      to: 'off'
 
   condition:
     - condition: not
@@ -129,20 +118,16 @@
         - light.3d_printer_light
 
         ##########################################################
-        ## 3D Printer Off Turn Off Light Prusa MK3
+        ## 3D Printer MK3 Off Turn Off Light
         ##########################################################
 
-- alias: 3D-Printer - Printer Off Turn Off Light Prusa MK3
-  id: '3d_printer_off_turn_off_light_prusa_mk3'
+- alias: 3D-Printer - MK3 Off Turn Off Light
+  id: '3d_printer_MK3_off_turn_off_light'
 
   trigger:
     - platform: state
-      entity_id: sensor.prusa_mk3
-      from: 'printing'
-      for:
-        hours: 0
-        minutes: 1
-        seconds: 0
+      entity_id: switch.prusa_mk3
+      to: 'off'
 
   condition:
     - condition: not
@@ -158,6 +143,143 @@
     - service: light.turn_off
       entity_id:
         - light.3d_printer_light
+
+        ##########################################################
+        ## 3D Printer Light Print Start
+        ##########################################################
+
+- alias: 3D-Printer - Light Print Start
+  id: '3d_printer_print_start'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk4
+      to: 'printing'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 10
+    - platform: state
+      entity_id: sensor.prusa_mk3
+      to: 'printing'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 10
+
+  condition:
+    - condition: state
+      entity_id: light.3d_printer_light
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.3d_printer_light
+      data:
+        brightness_pct: 100
+        color_name: "blue"
+    - delay: '00:05:00'
+    - service: light.turn_on
+      entity_id:
+        - light.3d_printer_light
+      data:
+        brightness_pct: 100
+        color_temp: 370
+
+        ##########################################################
+        ## 3D Printer Light Print Finish
+        ##########################################################
+
+- alias: 3D-Printer - Light Print Finish
+  id: '3d_printer_light_print_finish'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk4
+      from: 'printing'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+    - platform: state
+      entity_id: sensor.prusa_mk3
+      from: 'printing'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: light.3d_printer_light
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.3d_printer_light
+      data:
+        brightness_pct: 100
+        color_name: "green"
+
+        ##########################################################
+        ## 3D Printer Light MK4 Print Finish Reset
+        ##########################################################
+
+- alias: 3D-Printer - Light MK4 Print Finish Reset
+  id: '3d_printer_light_mk4_print_finish_reset'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk4
+      from: 'printing'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: light.3d_printer_light
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.3d_printer_light
+      data:
+        brightness_pct: 100
+        color_temp: 370
+
+        ##########################################################
+        ## 3D Printer Light MK3 Print Finish Reset
+        ##########################################################
+
+- alias: 3D-Printer - Light MK3 Print Finish Reset
+  id: '3d_printer_light_mk3_print_finish_reset'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk3
+      from: 'printing'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: light.3d_printer_light
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.3d_printer_light
+      data:
+        brightness_pct: 100
+        color_temp: 370
 
         ##########################################################
         ## 3D Printer Turn On Camera Recording Prusa MK3
