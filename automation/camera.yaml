@@ -34,6 +34,7 @@
         - switch.basement_camera_privacy_mode
         - switch.living_room_camera_privacy_mode
         - switch.kitchen_camera_privacy_mode
+        - switch.USER1_office_camera_privacy_mode
 
         ##########################################################
         ## Household Away Turn On Camera Privacy Mode
@@ -63,11 +64,11 @@
         - switch.basement_camera_privacy_mode
         - switch.living_room_camera_privacy_mode
         - switch.kitchen_camera_privacy_mode
+        - switch.USER1_office_camera_privacy_mode
     - delay: '00:05:00'
     - service: switch.turn_off
       entity_id:
         - switch.secondary_switch_basement_camera_poe
-
 
         ##########################################################
         ## Turn on Front Yard Camera Infrared after Sunset
@@ -127,7 +128,7 @@
   trigger:
     - platform: sun
       event: 'sunset'
-      offset: '00:45:00'
+      offset: '00:17:00'
 
   condition:
     - condition: state
@@ -168,6 +169,37 @@
 #################################################################
 ## Notifications
 #################################################################
+
+    #################################################################
+    ## Person Detected on Front Porch
+    #################################################################
+
+- alias: Camera - Person Detected in Front Porch
+  id: 'camera_person_detected_in_front_porch'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_porch_person_detected
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+
+  action:
+    - service: notify.USER1_devices
+      data:
+        message: Person Detected on Front Porch!
+        data:
+          tag: camera
+          group: camera
+          entity_id: camera.front_porch
 
     #################################################################
     ## Person Detected in Front Yard

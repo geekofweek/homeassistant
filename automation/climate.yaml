@@ -67,6 +67,9 @@
       - condition: state
         entity_id: group.household
         state: 'home'
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_forecasted_temperature_high
+      below: 96
 
   action:
     - service: notify.USER1_devices
@@ -790,7 +793,7 @@
       entity_id: sensor.season
       state: 'summer'
     - condition: numeric_state
-      entity_id: sensor.REDACTED_temperature
+      entity_id: sensor.REDACTED_forecasted_temperature_high
       above: 79
     - condition: state
       entity_id: input_boolean.disable_climate
@@ -1420,10 +1423,11 @@
 #        state: 'off'
 
   action:
-    - service: switch.turn_off
-      entity_id: switch.portable_ac
     - service: climate.turn_off
       entity_id: climate.portable_air_conditioner
+    - delay: '00:02:00'
+    - service: switch.turn_off
+      entity_id: switch.portable_ac
 
         ##########################################################
         ## Turn Off Portable AC if Water Bin Already Full
@@ -1444,8 +1448,6 @@
       state: 'on'
 
   action:
-    - service: switch.turn_off
-      entity_id: switch.portable_ac
     - service: climate.turn_off
       entity_id: climate.portable_air_conditioner
     - service: notify.USER1_devices
@@ -1454,6 +1456,9 @@
         data:
           tag: climate
           group: climate
+    - delay: '00:02:00'
+    - service: switch.turn_off
+      entity_id: switch.portable_ac
 
         ##########################################################
         ## Turn Off Portable AC when Water Bin Full - iOS Notification

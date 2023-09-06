@@ -145,7 +145,7 @@
         payload: >-
           { 
           "icon": "weather_{{ states("sensor.weather_condition_lcd_clock_icon") |regex_replace(find='-', replace='_', ignorecase=False) }}",
-          "pushIcon": 2,
+          "pushIcon": 0,
           "text": "{{ states("sensor.weather_condition_human_readable") }}"
           }
     - service: mqtt.publish
@@ -154,7 +154,7 @@
         payload: >-
           { 
           "icon": "weather_{{ states("sensor.weather_condition_lcd_clock_icon") |regex_replace(find='-', replace='_', ignorecase=False) }}",
-          "pushIcon": 2,
+          "pushIcon": 0,
           "text": "{{ states("sensor.weather_condition_human_readable") }}"
           }
 
@@ -1360,11 +1360,11 @@
         topic: USER1_office_clock/custom/party_time
         payload: >-
           { 
-          "icon": "party",
-          "pushIcon": 2,
+          "effect": "Plasma",
           "repeat": 3,
-          "rainbow": true,
-          "text": "Party Time!"
+          "rainbow": false,
+          "text": "Party Time!",
+          "color": [255,255,255]
           }
 
       ##########################################################
@@ -2516,11 +2516,11 @@
         topic: living_room_clock/custom/party_time
         payload: >-
           { 
-          "icon": "party",
-          "pushIcon": 2,
+          "effect": "Plasma",
           "repeat": 3,
-          "rainbow": true,
-          "text": "Party Time!"
+          "rainbow": false,
+          "text": "Party Time!",
+          "color": [255,255,255]
           }
 
       ##########################################################

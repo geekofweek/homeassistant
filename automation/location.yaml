@@ -1644,12 +1644,11 @@
       before: '22:00:00'
 
   action:
-    - delay: '00:00:04'
+    - delay: '00:00:08'
     - service: media_player.play_media
       target:
         entity_id: 
           - media_player.sonos_living_room
-          - media_player.sonos_dining_room
           - media_player.sonos_kitchen
           - media_player.sonos_move
       data:
@@ -1659,7 +1658,7 @@
         media_content_type: "music"
         extra:
           volume: 50
-    - delay: '00:02:00'
+    - delay: '00:00:30'
     - service: homeassistant.turn_off
       entity_id: input_boolean.USER1_greeting
 
@@ -1746,7 +1745,6 @@
       target:
         entity_id: 
           - media_player.sonos_living_room
-          - media_player.sonos_dining_room
           - media_player.sonos_kitchen
           - media_player.sonos_move
       data:
@@ -1756,7 +1754,7 @@
         media_content_type: "music"
         extra:
           volume: 50
-    - delay: '00:02:00'
+    - delay: '00:00:30'
     - service: homeassistant.turn_off
       entity_id: input_boolean.USER2_greeting
 
@@ -1813,61 +1811,6 @@
         extra:
           volume: 50
 
-        ##########################################################
-        ## Welcome Home USER1 and USER2 Audio Greeting
-        ##########################################################
-
-- alias: Location - Welcome Home USER1 and USER2 Audio Greeting
-  id: 'location_welcome_home_USER1_and_USER2_audio_greeting'
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.doors
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: person.USER1
-      state: 'home'
-    - condition: state
-      entity_id: person.USER2
-      state: 'home'
-    - condition: state
-      entity_id: input_boolean.USER1_greeting
-      state: 'on'
-    - condition: state
-      entity_id: input_boolean.USER2_greeting
-      state: 'on'
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-    - condition: time
-      after: '09:00:00'
-      before: '22:00:00'
-
-  action:
-    - delay: '00:00:04'
-    - service: media_player.play_media
-      target:
-        entity_id: 
-          - media_player.sonos_living_room
-          - media_player.sonos_dining_room
-          - media_player.sonos_kitchen
-          - media_player.sonos_move
-      data:
-        announce: true
-        media_content_id: >
-          media-source://tts/cloud?message="Welcome Home, USER1 and USER2"
-        media_content_type: "music"
-        extra:
-          volume: 50
-    - delay: '00:02:00'
-    - service: homeassistant.turn_off
-      entity_id: 
-        - input_boolean.USER1_greeting
-        - input_boolean.USER2_greeting
-
         #################################################################
         ## USER2 Left Work Audio Notification
         #################################################################
@@ -1906,10 +1849,8 @@
       target:
         entity_id: 
           - media_player.sonos_living_room
-          - media_player.sonos_dining_room
           - media_player.sonos_kitchen
           - media_player.sonos_bathroom
-          - media_player.sonos_bedroom
           - media_player.sonos_bedroom_closet
           - media_player.sonos_USER1s_office
           - media_player.sonos_move

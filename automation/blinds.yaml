@@ -142,9 +142,15 @@
     - condition: numeric_state
       entity_id: sensor.REDACTED_temperature
       below: 86
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_forecasted_temperature_high
+      below: 96
     - condition: state
       entity_id: cover.USER1_s_office_blinds
       state: 'closed'
+    - condition: sun
+      before: sunset
+      before_offset: "-00:45:00"
     - condition: not
       conditions:
       - condition: state
@@ -481,9 +487,15 @@
     - condition: numeric_state
       entity_id: sensor.REDACTED_temperature
       below: 86
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_forecasted_temperature_high
+      below: 96
     - condition: state
       entity_id: cover.stairs_blinds
       state: 'closed'
+    - condition: sun
+      before: sunset
+      before_offset: "-00:45:00"
     - condition: not
       conditions:
       - condition: state
@@ -631,9 +643,15 @@
     - condition: numeric_state
       entity_id: sensor.REDACTED_temperature
       below: 86
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_forecasted_temperature_high
+      below: 96
     - condition: state
       entity_id: cover.USER2_s_office_blinds
       state: 'closed'
+    - condition: sun
+      before: sunset
+      before_offset: "-00:45:00"
     - condition: not
       conditions:
       - condition: state
@@ -680,6 +698,9 @@
     - condition: numeric_state
       entity_id: sensor.REDACTED_temperature
       below: 86
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_forecasted_temperature_high
+      below: 96
     - condition: state
       entity_id: cover.USER2_s_office_blinds
       state: 'closed'
@@ -691,6 +712,9 @@
       state: 'sunny'
     - condition: time
       before: '11:30:00'
+    - condition: sun
+      before: sunset
+      before_offset: "-00:45:00"
     - condition: not
       conditions:
       - condition: state
@@ -733,6 +757,9 @@
     - condition: numeric_state
       entity_id: sensor.REDACTED_temperature
       below: 86
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_forecasted_temperature_high
+      below: 96
     - condition: state
       entity_id: cover.USER2_s_office_blinds
       state: 'closed'
@@ -741,6 +768,9 @@
       state: 'winter'
     - condition: time
       before: '11:30:00'
+    - condition: sun
+      before: sunset
+      before_offset: "-00:45:00"
     - condition: not
       conditions:
       - condition: state
@@ -787,6 +817,9 @@
     - condition: numeric_state
       entity_id: sensor.REDACTED_temperature
       below: 86
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_forecasted_temperature_high
+      below: 96
     - condition: state
       entity_id: cover.USER2_s_office_blinds
       state: 'closed'
@@ -795,6 +828,9 @@
       state: 'winter'
     - condition: time
       after: '11:31:00'
+    - condition: sun
+      before: sunset
+      before_offset: "-00:45:00"
     - condition: not
       conditions:
       - condition: state
@@ -1093,7 +1129,7 @@
       state: 'above_horizon'
     - condition: sun
       before: sunset
-      before_offset: "-01:00:00"
+      before_offset: "-01:31:00"
     - condition: state
       entity_id: cover.kitchen_blinds
       state: 'closed'

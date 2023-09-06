@@ -74,7 +74,7 @@
       entity_id: switch.prusa_mk3
       to: 'on'
     - platform: state
-      entity_id: sensor.prusa_mk4
+      entity_id: switch.prusa_mk4
       to: 'on'
 
   condition:
@@ -103,6 +103,9 @@
       to: 'off'
 
   condition:
+    - condition: state
+      entity_id: switch.prusa_mk3
+      state: 'off'
     - condition: not
       conditions:
       - condition: state
@@ -130,6 +133,9 @@
       to: 'off'
 
   condition:
+    - condition: state
+      entity_id: switch.prusa_mk4
+      state: 'off'
     - condition: not
       conditions:
       - condition: state
@@ -179,7 +185,7 @@
       data:
         brightness_pct: 100
         color_name: "blue"
-    - delay: '00:05:00'
+    - delay: '00:15:00'
     - service: light.turn_on
       entity_id:
         - light.3d_printer_light
@@ -280,6 +286,250 @@
       data:
         brightness_pct: 100
         color_temp: 370
+
+        ##########################################################
+        ## Prusa MK4 Enclosure Fan On
+        ##########################################################
+
+- alias: 3D-Printer - Prusa MK4 Enclosure Fan On
+  id: '3d_printer_prusa_mk4_enclosure_fan_on'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk4
+      to: 'printing'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 10
+
+  condition:
+    - condition: state
+      entity_id: switch.prusa_mk4_enclosure_fan
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.prusa_mk4_enclosure_fan
+
+        ##########################################################
+        ## Prusa MK4 Enclosure Fan Off
+        ##########################################################
+
+- alias: 3D-Printer - Prusa MK4 Enclosure Fan Off
+  id: '3d_printer_prusa_mk4_enclosure_fan_off'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk4
+      from: 'printing'
+      for:
+        hours: 2
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: switch.prusa_mk4_enclosure_fan
+      state: 'on'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.prusa_mk4_enclosure_fan
+
+        ##########################################################
+        ## Prusa MK4 PSU Fan On
+        ##########################################################
+
+- alias: 3D-Printer - Prusa MK4 PSU Fan On
+  id: '3d_printer_prusa_mk4_psu_fan_on'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk4
+      to: 'printing'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 10
+
+  condition:
+    - condition: state
+      entity_id: switch.prusa_mk4_psu_fan
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.prusa_mk4_psu_fan
+
+        ##########################################################
+        ## Prusa MK4 PSU Fan Off
+        ##########################################################
+
+- alias: 3D-Printer - Prusa MK4 PSU Fan Off
+  id: '3d_printer_prusa_mk4_psu_fan_off'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk4
+      from: 'printing'
+      for:
+        hours: 2
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: switch.prusa_mk4_psu_fan
+      state: 'on'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.prusa_mk4_psu_fan
+
+        ##########################################################
+        ## Prusa MK3 Enclosure Fan On
+        ##########################################################
+
+- alias: 3D-Printer - Prusa MK3 Enclosure Fan On
+  id: '3d_printer_prusa_mk3_enclosure_fan_on'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk3
+      to: 'printing'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 10
+
+  condition:
+    - condition: state
+      entity_id: switch.prusa_mk3_enclosure_fan
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.prusa_mk3_enclosure_fan
+
+        ##########################################################
+        ## Prusa MK3 Enclosure Fan Off
+        ##########################################################
+
+- alias: 3D-Printer - Prusa MK3 Enclosure Fan Off
+  id: '3d_printer_prusa_mk3_enclosure_fan_off'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk3
+      from: 'printing'
+      for:
+        hours: 2
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: switch.prusa_mk3_enclosure_fan
+      state: 'on'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.prusa_mk3_enclosure_fan
+
+        ##########################################################
+        ## Prusa MK3 PSU Fan On
+        ##########################################################
+
+- alias: 3D-Printer - Prusa MK3 PSU Fan On
+  id: '3d_printer_prusa_mk3_psu_fan_on'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk3
+      to: 'printing'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 10
+
+  condition:
+    - condition: state
+      entity_id: switch.prusa_mk3_psu_fan
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.prusa_mk3_psu_fan
+
+        ##########################################################
+        ## Prusa MK3 PSU Fan Off
+        ##########################################################
+
+- alias: 3D-Printer - Prusa MK3 PSU Fan Off
+  id: '3d_printer_prusa_mk3_psu_fan_off'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk3
+      from: 'printing'
+      for:
+        hours: 2
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: switch.prusa_mk3_psu_fan
+      state: 'on'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.prusa_mk3_psu_fan
+
+        ##########################################################
+        ## 3D Printer MK4 Off Turn Off Fans
+        ##########################################################
+
+- alias: 3D-Printer - MK4 Off Turn Off Fans
+  id: '3d_printer_MK4_off_turn_off_fans'
+
+  trigger:
+    - platform: state
+      entity_id: switch.prusa_mk4
+      to: 'off'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.prusa_mk4_enclosure_fan
+        - switch.prusa_mk4_psu_fan
+
+        ##########################################################
+        ## 3D Printer MK3 Off Turn Off Fans
+        ##########################################################
+
+- alias: 3D-Printer - MK3 Off Turn Off Fans
+  id: '3d_printer_MK3_off_turn_off_fans'
+
+  trigger:
+    - platform: state
+      entity_id: switch.prusa_mk3
+      to: 'off'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.prusa_mk3_enclosure_fan
+        - switch.prusa_mk3_psu_fan
 
         ##########################################################
         ## 3D Printer Turn On Camera Recording Prusa MK3

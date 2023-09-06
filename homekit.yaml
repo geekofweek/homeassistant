@@ -106,7 +106,6 @@
           stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
           video_codec: copy
           support_audio: True
-          linked_motion_sensor: binary_sensor.motion_driveway_camera
 
   - name: Backyard Gate Camera
     mode: accessory
@@ -119,7 +118,6 @@
           stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
           video_codec: copy
           support_audio: True
-          linked_motion_sensor: binary_sensor.motion_backyard_gate_camera
 
   - name: Backyard Camera
     mode: accessory
@@ -132,7 +130,6 @@
           stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
           video_codec: copy
           support_audio: True
-          linked_motion_sensor: binary_sensor.motion_backyard_camera
 
   - name: Side Yard Camera
     mode: accessory
@@ -145,7 +142,6 @@
           stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
           video_codec: copy
           support_audio: True
-          linked_motion_sensor: binary_sensor.motion_side_yard_camera
 
   - name: Garage Camera
     mode: accessory
@@ -158,7 +154,6 @@
           stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
           video_codec: copy
           support_audio: True
-          linked_motion_sensor: binary_sensor.motion_garage_camera
 
   - name: Front Yard Camera
     mode: accessory
@@ -171,7 +166,6 @@
           stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
           video_codec: copy
           support_audio: True
-          linked_motion_sensor: binary_sensor.motion_front_yard_camera
 
   - name: Front Door Lock
     mode: accessory

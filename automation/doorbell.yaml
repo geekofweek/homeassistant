@@ -75,6 +75,10 @@
       entity_id: binary_sensor.ring_front_door_motion
       from: 'off'
       to: 'on'
+    - platform: state
+      entity_id: binary_sensor.front_porch_person_detected
+      from: 'off'
+      to: 'on'
 
   condition:
     - condition: state
@@ -101,6 +105,14 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.ring_front_door_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+    - platform: state
+      entity_id: binary_sensor.front_porch_person_detected
       from: 'on'
       to: 'off'
       for:
@@ -242,6 +254,10 @@
       entity_id: binary_sensor.ring_front_door_motion
       from: 'off'
       to: 'on'
+    - platform: state
+      entity_id: binary_sensor.front_porch_person_detected
+      from: 'off'
+      to: 'on'
 
   condition:
     - condition: state
@@ -289,6 +305,14 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.ring_front_door_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+    - platform: state
+      entity_id: binary_sensor.front_porch_person_detected
       from: 'on'
       to: 'off'
       for:
