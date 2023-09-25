@@ -288,21 +288,21 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 15
+        minutes: 5
         seconds: 0
-#    - platform: state
-#      entity_id: binary_sensor.USER1_s_macbook_pro_audio_input_in_use
-#      to: 'off'
-#      for:
-#        hours: 0
-#        minutes: 15
-#        seconds: 0
+    - platform: state
+      entity_id: binary_sensor.USER1_s_macbook_pro_audio_input_in_use
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
     - platform: state
       entity_id: binary_sensor.USER1_s_macbook_pro_focus
       to: 'off'
       for:
         hours: 0
-        minutes: 15
+        minutes: 5
         seconds: 0
 
   condition:

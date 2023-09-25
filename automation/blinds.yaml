@@ -261,16 +261,16 @@
         position: 50
 
         ##########################################################
-        ## Close USER1's Office Blinds to 1 Before Sunset Window Closed
+        ## Close USER1's Office Blinds Before Sunset Window Closed
         ##########################################################
 
-- alias: Blinds - Close USER1's Office Blinds to 1 Before Sunset Window Closed
-  id: 'blinds_close_USER1_office_blinds_to_1_before_sunset_window_closed'
+- alias: Blinds - Close USER1's Office Blinds Before Sunset Window Closed
+  id: 'blinds_close_USER1_office_blinds_before_sunset_window_closed'
 
   trigger:
     - platform: sun
       event: 'sunset'
-      offset: '-00:20:00'
+      offset: '-00:30:00'
 
   condition:
     - condition: state
@@ -284,23 +284,22 @@
       state: 'open'
 
   action:
-    - service: cover.set_cover_position
+    - service: cover.close_cover
       data:
         entity_id: 
           - cover.USER1_s_office_blinds
-        position: 1
 
         ##########################################################
-        ## Close USER1's Office Blinds to 1 Before Sunset Window Open
+        ## Close USER1's Office Blinds Before Sunset Window Open
         ##########################################################
 
-- alias: Blinds - Close USER1's Office Blinds to 1 Before Sunset Window Open
-  id: 'blinds_close_USER1_office_blinds_to_1_before_sunset_window_open'
+- alias: Blinds - Close USER1's Office Blinds Before Sunset Window Open
+  id: 'blinds_close_USER1_office_blinds_before_sunset_window_open'
 
   trigger:
     - platform: sun
       event: 'sunset'
-      offset: '-00:20:00'
+      offset: '-00:30:00'
 
   condition:
     - condition: state
@@ -314,12 +313,11 @@
       state: 'open'
 
   action:
-    - service: cover.set_cover_position
+    - service: cover.close_cover
       data:
         entity_id:
           - cover.USER1s_office_blinds_left
           - cover.USER1s_office_blinds_center
-        position: 1
 
         ##########################################################
         ## Close USER1's Office Blinds when Sun Below Horizon and Window Closed
@@ -613,6 +611,32 @@
       entity_id:
         - light.stairs_light
 
+        ##########################################################
+        ## Close Upstairs Blinds Before Sunset
+        ##########################################################
+
+- alias: Blinds - Close Upstairs Blinds Before Sunset
+  id: 'blinds_close_upstairs_blinds_before_sunset'
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:30:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.stairs_blinds
+      state: 'open'
+
+  action:
+    - service: cover.close_cover
+      data:
+        entity_id: 
+          - cover.stairs_blinds
+
 #################################################################
 ## USER2's Office
 #################################################################
@@ -892,6 +916,32 @@
         hours: 0
         minutes: 30
         seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.USER2_s_office_blinds
+      state: 'open'
+
+  action:
+    - service: cover.close_cover
+      data:
+        entity_id: 
+          - cover.USER2_s_office_blinds
+
+        ##########################################################
+        ## Close USER2's Office Blinds Before Sunset
+        ##########################################################
+
+- alias: Blinds - Close USER2's Office Blinds Before Sunset
+  id: 'blinds_close_USER2_office_blinds_before_sunset'
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:30:00'
 
   condition:
     - condition: state

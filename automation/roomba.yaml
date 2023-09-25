@@ -7,6 +7,49 @@
 #################################################################
 
         ##########################################################
+        ## Run Roombas Vacation Mode
+        ##########################################################
+
+- alias: Roomba - Run Roomba Vacation Mode
+  id: 'roomba_run_vacation_mode'
+
+  trigger:
+   - platform: time
+     at: '10:00:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.main_floor_roomba_ran
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'on'
+    - condition: time
+      weekday:
+        - mon
+        - wed
+        - fri
+        - sat
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+
+  action:
+    - service: vacuum.start
+      entity_id:
+        - vacuum.main_floor_roomba
+        - vacuum.basement_roomba
+        - vacuum.upstairs_roomba
+
+        ##########################################################
         ## Run Main Floor Roomba Weekdays
         ##########################################################
 
@@ -39,6 +82,9 @@
       above: 99
     - condition: state
       entity_id: input_boolean.guest_mode
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.vacation_mode
       state: 'off'
     - condition: not
       conditions:
@@ -93,6 +139,9 @@
       state: 'off'
     - condition: state
       entity_id: input_boolean.guest_mode
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.vacation_mode
       state: 'off'
     - condition: not
       conditions:
@@ -337,6 +386,9 @@
     - condition: numeric_state
       entity_id: sensor.upstairs_roomba_battery_level
       above: 99
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
     - condition: not
       conditions:
       - condition: state
@@ -383,6 +435,9 @@
     - condition: numeric_state
       entity_id: sensor.basement_roomba_battery_level
       above: 99
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
     - condition: not
       conditions:
       - condition: state

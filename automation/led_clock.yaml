@@ -248,7 +248,7 @@
           { 
           "icon": "3d_print",
           "pushIcon": 0,
-          "color": [255,165,0],
+          "color": [255,98,0],
           "repeat": 3,
           "text": "MK3: {{ states("sensor.prusa_mk3_progress") |round }}%"
           }
@@ -259,7 +259,7 @@
           { 
           "icon": "3d_print",
           "pushIcon": 0,
-          "color": [255,165,0],
+          "color": [255,98,0],
           "repeat": 3,
           "text": "MK3: {{ states("sensor.prusa_mk3_progress") |round }}%"
           }
@@ -288,7 +288,7 @@
           { 
           "icon": "clock",
           "pushIcon": 2,
-          "color": [255,165,0],
+          "color": [255,98,0],
           "repeat": 3,
           "text": "MK3: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusa_mk3_print_finish')) - as_timestamp(now()))) }}"
           }
@@ -299,7 +299,7 @@
           { 
           "icon": "clock",
           "pushIcon": 2,
-          "color": [255,165,0],
+          "color": [255,98,0],
           "repeat": 3,
           "text": "MK3: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusa_mk3_print_finish')) - as_timestamp(now()))) }}"
           }
@@ -328,7 +328,7 @@
           { 
           "icon": "3d_print",
           "pushIcon": 0,
-          "color": [255,165,0],
+          "color": [255,98,0],
           "repeat": 3,
           "text": "MK4: {{ states("sensor.prusa_mk4_progress") |round }}%"
           }
@@ -339,7 +339,7 @@
           { 
           "icon": "3d_print",
           "pushIcon": 0,
-          "color": [255,165,0],
+          "color": [255,98,0],
           "repeat": 3,
           "text": "MK4: {{ states("sensor.prusa_mk4_progress") |round }}%"
           }
@@ -368,7 +368,7 @@
           { 
           "icon": "clock",
           "pushIcon": 2,
-          "color": [255,165,0],
+          "color": [255,98,0],
           "repeat": 3,
           "text": "MK4: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusa_mk4_print_finish')) - as_timestamp(now()))) }}"
           }
@@ -379,7 +379,7 @@
           { 
           "icon": "clock",
           "pushIcon": 2,
-          "color": [255,165,0],
+          "color": [255,98,0],
           "repeat": 3,
           "text": "MK4: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusa_mk4_print_finish')) - as_timestamp(now()))) }}"
           }
@@ -2962,7 +2962,7 @@
           "icon": "fire_2",
           "pushIcon": 0,
           "duration": 30,
-          "color": [255,165,0],
+          "color": [255,98,0],
           "stack": false,
           "text": "Fireplace On"
           }

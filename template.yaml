@@ -3,6 +3,24 @@
 #################################################################
 
       ##########################################################
+      ## Prusa MK3 Error
+      ##########################################################
+
+#  - sensor: 
+#    - unique_id: prusa_mk3_error
+#      name: Prusa MK3 Error
+#      state: "{{ state_attr('sensor.prusa_mk3_telemetry', 'state')['flags']['error'] if is_state('sensor.prusa_mk3_telemetry', 'OK') else None }}"
+
+      ##########################################################
+      ## Prusa MK3 Pause
+      ##########################################################
+
+#  - sensor: 
+#    - unique_id: prusa_mk3_pause
+#      name: Prusa MK3 Pause
+#      state: "{{ state_attr('sensor.prusa_mk3_telemetry', 'state')['flags']['paused'] if is_state('sensor.prusa_mk3_telemetry', 'OK') else None }}"
+
+      ##########################################################
       ## Prusa MK3 State
       ##########################################################
 
