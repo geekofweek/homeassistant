@@ -1244,7 +1244,9 @@
   action:
     - service: light.turn_on
       target:
-        entity_id: light.office_lamp
+        entity_id: 
+          - light.office_lamp
+          - light.USER1_office_desk_accent
       data:
         transition: 5
         hs_color:
@@ -1296,6 +1298,12 @@
         - light.USER1_office_desk_lamp
       data:
         brightness_pct: 25
+        color_temp: 370
+    - service: light.turn_on
+      entity_id:
+        - light.USER1_office_desk_accent
+      data:
+        brightness_pct: 80
         color_temp: 370
 
         ##########################################################
@@ -1394,6 +1402,34 @@
         color_name: red
 
         ##########################################################
+        ## USER1's Office Accent Light Do Not Disturb On
+        ##########################################################
+
+- alias: Lights - USER1's Office Accent Light Do Not Disturb On
+  id: 'lights_USER1_office_accent_light_do_not_disturb_on'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: cover.USER1_s_office_blinds
+      state: 'closed'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.USER1_office_desk_accent
+      data:
+        brightness_pct: 100
+        color_name: red
+
+        ##########################################################
         ## USER1's Office Desk Lamp Do Not Disturb Off Daytime Blinds Open
         ##########################################################
 
@@ -1476,6 +1512,45 @@
         color_temp: 370
 
         ##########################################################
+        ## USER1's Office Accent Light Do Not Disturb Off Daytime Blinds Closed
+        ##########################################################
+
+- alias: Lights - USER1's Office Accent Light Do Not Disturb Off Daytime Blinds Closed
+  id: 'lights_USER1_office_accent_light_do_not_disturb_off_daytime_blinds_closed'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: state
+      entity_id: light.USER1_office_desk_accent
+      state: 'on'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: cover.USER1_s_office_blinds
+        state: 'closed'
+      - condition: state
+        entity_id: cover.USER1_s_office_blinds
+        state: 'closing'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.USER1_office_desk_accent
+      data:
+        brightness_pct: 80
+        color_temp: 370
+
+        ##########################################################
         ## USER1's Office Desk Lamp Do Not Disturb Off Night
         ##########################################################
 
@@ -1506,6 +1581,37 @@
         brightness_pct: 25
         color_temp: 370
 
+        ##########################################################
+        ## USER1's Office Accent Light Do Not Disturb Off Night
+        ##########################################################
+
+- alias: Lights - USER1's Office Accent Light Do Not Disturb Off Night
+  id: 'lights_USER1_office_accent_light_do_not_disturb_off_night'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: light.USER1_office_desk_accent
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.USER1_office_desk_accent
+      data:
+        brightness_pct: 80
+        color_temp: 370
+
 #################################################################
 ## Default Colors Temps
 #################################################################
@@ -1528,6 +1634,7 @@
         - light.closet_lamp
         - light.office_lamp
         - light.USER1_office_desk_lamp
+        - light.USER1_office_desk_accent
         - light.living_room_lamps
       from: 'off'
       to: 'on'
@@ -1588,18 +1695,18 @@
 #################################################################
 
         ##########################################################
-        ## Turn Off Grow Light After 8 Hours
+        ## Turn Off Grow Light After 16 Hours
         ##########################################################
 
-- alias: Lights - Turn Off Grow Light After 8 Hours
-  id: 'lights_turn_off_grow_light_after_8_hours'
+- alias: Lights - Turn Off Grow Light After 16 Hours
+  id: 'lights_turn_off_grow_light_after_16_hours'
 
   trigger:
     - platform: state
       entity_id: switch.grow_light
       to: 'on'
       for:
-        hours: 8
+        hours: 16
         minutes: 0
         seconds: 0
 
@@ -1614,15 +1721,15 @@
         - switch.grow_light
 
         ##########################################################
-        ## Turn On Grow Light at Night
+        ## Turn On Grow Light at Sunrise
         ##########################################################
 
-- alias: Lights - Turn On Grow Light at Night
-  id: 'lights_turn_on_grow_light_at_night'
+- alias: Lights - Turn On Grow Light at Sunrise
+  id: 'lights_turn_on_grow_light_at_sunrise'
 
   trigger:
-   - platform: time
-     at: '23:00:00'
+    - platform: sun
+      event: 'sunrise'
 
   condition:
     - condition: state

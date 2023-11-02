@@ -418,6 +418,9 @@
     - service: light.turn_off
       entity_id:
         - light.office_lamp
+    - service: light.turn_off
+      entity_id:
+        - light.USER1_office_desk_accent
 
         ##########################################################
         ## Turn Off USER1's Office Desk Lamp when Blinds are Open
@@ -442,9 +445,6 @@
     - condition: state
       entity_id: input_boolean.USER1_s_office_do_not_disturb
       state: 'off'
-    - condition: state
-      entity_id: sun.sun
-      state: 'above_horizon'
 
   action:
     - service: light.turn_off

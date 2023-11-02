@@ -96,6 +96,39 @@
           entity_id: camera.prusa_mk3
 
         ##########################################################
+        ## Prusa MK4 Print Error
+        ##########################################################
+
+- alias: 3D-Printer - Prusa MK4 Print Error
+  id: '3d_printer_prusa_mk4_print_error'
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.prusa_mk4_nozzle_temperature
+      below: 160
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+    - condition: state
+      entity_id: sensor.prusa_mk4
+      state: 'printing'
+
+  action:
+    - service: notify.USER1_devices
+      data:
+        message: Print Error (Prusa MK$)
+        data:
+          tag: prusa_error
+          group: 3d_printer
+          entity_id: camera.prusa_mk4
+
+        ##########################################################
         ## 3D Printer On Turn On Light
         ##########################################################
 

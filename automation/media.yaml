@@ -1445,3 +1445,33 @@
     - service: light.turn_on
       entity_id:
         - light.living_room_accent_lights
+
+        ##########################################################
+        ## Set Living Room Remote Input when Xbox On
+        ##########################################################
+
+- alias: Media - Set Living Room Remote Input when Xbox On
+  id: 'media_turn_set_living_room_remote_input_when_xbox_on'
+
+  trigger:
+    - platform: state
+      entity_id: media_player.living_room_xbox
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: media_player.living_room_tv
+      state: 'on'
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.sonos
+        option: "Play Xbox"

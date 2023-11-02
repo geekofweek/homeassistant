@@ -200,6 +200,58 @@
         brightness_pct: 25
 
         ##########################################################
+        ## Turn USER1's Office Accent Light Blue when Raining
+        ##########################################################
+
+- alias: Weather - Turn USER1's Office Accent Light Blue when Raining
+  id: 'weather_turn_USER1_office_accent_light_blue_when_raining'
+
+  trigger:
+    - platform: state
+      entity_id: weather.REDACTED
+      to: 'rainy'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+    - platform: state
+      entity_id: weather.REDACTED
+      to: 'lightning-rainy'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: light.USER1_office_desk_accent
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_rainy_day
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      state: 'off'
+    - condition: state
+      entity_id: cover.USER1_s_office_blinds
+      state: 'closed'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.USER1_office_desk_accent
+      data:
+        color_name: blue
+        brightness_pct: 100
+        transition: 15
+
+        ##########################################################
         ## Reset USER1's Office Desk Lamp Color when Not Raining
         ##########################################################
 
@@ -238,6 +290,47 @@
       data:
         brightness_pct: 25
         color_temp: 454
+
+        ##########################################################
+        ## Reset USER1's Office Accent Light Color when Not Raining
+        ##########################################################
+
+- alias: Weather - Reset USER1's Office Accent Light Color when Not Raining
+  id: 'weather_reset_USER1_office_accent_light_color_when_not_raining'
+
+  trigger:
+    - platform: state
+      entity_id: weather.REDACTED
+      from: 'rainy'
+    - platform: state
+      entity_id: weather.REDACTED
+      from: 'lightning-rainy'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: light.USER1_office_desk_accent
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_rainy_day
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.USER1_office_desk_accent
+      data:
+        brightness_pct: 80
+        color_temp: 370
+        transition: 15
 
         ##########################################################
         ## Set USER1's Office Desk Lamp Blue when On and Raining
@@ -288,3 +381,54 @@
       data:
         color_name: blue
         brightness_pct: 25
+
+        ##########################################################
+        ## Set USER1's Office Accent Light Blue when On and Raining
+        ##########################################################
+
+- alias: Weather - Set USER1's Office Accent Light Blue when On and Raining
+  id: 'weather_set_USER1_office_accent_light_blue_when_on_and_raining'
+
+  trigger:
+    - platform: state
+      entity_id: light.USER1_office_desk_accent
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.office_rainbow
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_rainy_day
+      state: 'off'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: weather.REDACTED
+        state: 'rainy'
+      - condition: state
+        entity_id: weather.REDACTED
+        state: 'lightning-rainy'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.USER1_office_desk_accent
+      data:
+        color_name: blue
+        brightness_pct: 100
+        transition: 15

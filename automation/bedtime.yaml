@@ -100,6 +100,9 @@
 
   condition:
     - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
       entity_id: group.household
       state: 'home'
     - condition: or
@@ -592,6 +595,9 @@
   condition:
     - condition: state
       entity_id: binary_sensor.USER1s_office_window_right
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_blinds
       state: 'off'
 
   action:

@@ -2534,6 +2534,9 @@
       entity_id: light.USER1_office_desk_lamp
       state: 'off'
     - condition: state
+      entity_id: light.USER1_office_desk_accent
+      state: 'off'
+    - condition: state
       entity_id: person.USER1
       state: 'home'
     - condition: state
@@ -2557,6 +2560,12 @@
       data:
         transition: 60
         brightness_pct: 100
+        color_temp: 370
+    - service: light.turn_on
+      entity_id: light.USER1_office_desk_accent
+      data:
+        transition: 60
+        brightness_pct: 80
         color_temp: 370
     - service: light.turn_on
       entity_id:
@@ -2613,7 +2622,13 @@
     - service: light.turn_on
       entity_id: light.office_lamp
       data:
-        brightness_pct: 50
+        brightness_pct: 100
+        color_temp: 370
+    - service: light.turn_on
+      entity_id: light.USER1_office_desk_accent
+      data:
+        transition: 15
+        brightness_pct: 80
         color_temp: 370
     - service: light.turn_on
       entity_id:

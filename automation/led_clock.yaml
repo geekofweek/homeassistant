@@ -34,16 +34,16 @@
         - light.living_room_clock
     - service: mqtt.publish
       data:
-        topic: living_room_clock/custom/custom/music_song
+        topic: living_room_clock/custom/music_song
     - service: mqtt.publish
       data:
-        topic: living_room_clock/custom/custom/music_album
+        topic: living_room_clock/custom/music_album
     - service: mqtt.publish
       data:
-        topic: USER1_office_clock/custom/custom/music_song
+        topic: USER1_office_clock/custom/music_song
     - service: mqtt.publish
       data:
-        topic: USER1_office_clock/custom/custom/music_album
+        topic: USER1_office_clock/custom/music_album
     - service: mqtt.publish
       data:
         topic: USER1_office_clock/custom/youtube
@@ -95,16 +95,16 @@
         - light.living_room_clock
     - service: mqtt.publish
       data:
-        topic: living_room_clock/custom/custom/music_song
+        topic: living_room_clock/custom/music_song
     - service: mqtt.publish
       data:
-        topic: living_room_clock/custom/custom/music_album
+        topic: living_room_clock/custom/music_album
     - service: mqtt.publish
       data:
-        topic: USER1_office_clock/custom/custom/music_song
+        topic: USER1_office_clock/custom/music_song
     - service: mqtt.publish
       data:
-        topic: USER1_office_clock/custom/custom/music_album
+        topic: USER1_office_clock/custom/music_album
     - service: mqtt.publish
       data:
         topic: USER1_office_clock/custom/youtube
@@ -675,7 +675,7 @@
 
   trigger:
    - platform: time
-     at: '04:30:00'
+     at: '05:00:00'
 
   condition:
     - condition: state
@@ -699,7 +699,10 @@
 
   trigger:
    - platform: time
-     at: '05:00:00'
+     at: '09:30:00'
+   - platform: state
+     entity_id: input_select.holiday
+     to: 'Christmas'
 
   condition:
     - condition: state
@@ -755,7 +758,10 @@
 
   trigger:
    - platform: time
-     at: '05:00:00'
+     at: '09:30:00'
+   - platform: state
+     entity_id: input_select.holiday
+     to: 'Halloween'
 
   condition:
     - condition: state
@@ -803,6 +809,65 @@
           }
 
       ##########################################################
+      ## Thanksgiving App
+      ##########################################################
+
+- alias: LED Clock - Thanksgiving App
+  id: 'led_clock_thanksgiving_app'
+
+  trigger:
+   - platform: time
+     at: '09:30:00'
+   - platform: state
+     entity_id: input_select.holiday
+     to: 'Thanksgiving'
+
+  condition:
+    - condition: state
+      entity_id: input_select.holiday
+      state: 'Thanksgiving'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/holiday
+        payload: >-
+          { 
+          "icon": "thanksgiving",
+          "pushIcon": 0,
+          "repeat": 3,
+          "text": [
+            {
+              "t": "Happy ",
+              "c": "FFD700"
+            },
+            {
+              "t": "Thanksgiving",
+              "c": "8B4513"
+            }
+          ]
+          }
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/holiday
+        payload: >-
+          { 
+          "icon": "thanksgiving",
+          "pushIcon": 0,
+          "repeat": 3,
+          "text": [
+            {
+              "t": "Happy ",
+              "c": "FFD700"
+            },
+            {
+              "t": "Thanksgiving",
+              "c": "8B4513"
+            }
+          ]
+          }
+
+      ##########################################################
       ## 4th of July App
       ##########################################################
 
@@ -811,7 +876,10 @@
 
   trigger:
    - platform: time
-     at: '05:00:00'
+     at: '09:30:00'
+   - platform: state
+     entity_id: input_select.holiday
+     to: "Independence Day"
 
   condition:
     - condition: state
@@ -875,7 +943,10 @@
 
   trigger:
    - platform: time
-     at: '05:00:00'
+     at: '09:30:00'
+   - platform: state
+     entity_id: input_select.holiday
+     to: "Valentine's Day"
 
   condition:
     - condition: state
@@ -907,6 +978,49 @@
           }
 
       ##########################################################
+      ## Easter App
+      ##########################################################
+
+- alias: LED Clock - Easter App
+  id: 'led_clock_easter_day_app'
+
+  trigger:
+   - platform: time
+     at: '09:30:00'
+   - platform: state
+     entity_id: input_select.holiday
+     to: "Easter"
+
+  condition:
+    - condition: state
+      entity_id: input_select.holiday
+      state: "Easter"
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/holiday
+        payload: >-
+          { 
+          "icon": "easter",
+          "pushIcon": 0,
+          "repeat": 3,
+          "color": [173,216,230],
+          "text": "Happy Easter"
+          }
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/holiday
+        payload: >-
+          { 
+          "icon": "easter",
+          "pushIcon": 0,
+          "repeat": 3,
+          "color": [173,216,230],
+          "text": "Happy Easter"
+          }
+
+      ##########################################################
       ## New Years App
       ##########################################################
 
@@ -915,7 +1029,10 @@
 
   trigger:
    - platform: time
-     at: '05:00:00'
+     at: '09:30:00'
+   - platform: state
+     entity_id: input_select.holiday
+     to: "New Year's Eve"
 
   condition:
     - condition: state
@@ -2022,6 +2139,7 @@
           "stack": false,
           "text": "TV"
           }
+    - delay: '00:00:20'
     - service: mqtt.publish
       data:
         topic: living_room_clock/custom/tv_state
@@ -2067,6 +2185,7 @@
             }
           ]
           }
+    - delay: '00:00:20'
     - service: mqtt.publish
       data:
         topic: living_room_clock/custom/tv_state
@@ -2112,6 +2231,7 @@
           "stack": false,
           "text": "Xbox"
           }
+    - delay: '00:00:20'
     - service: mqtt.publish
       data:
         topic: living_room_clock/custom/tv_state
