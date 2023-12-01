@@ -15,7 +15,7 @@
 
   trigger:
    - platform: time
-     at: '10:00:00'
+     at: '09:30:00'
 
   condition:
     - condition: state
@@ -58,6 +58,54 @@
 
   trigger:
    - platform: time
+     at: '09:30:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.main_floor_roomba_ran
+      state: 'off'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+    - condition: state
+      entity_id: vacuum.main_floor_roomba
+      state: 'docked'
+    - condition: numeric_state
+      entity_id: sensor.main_floor_roomba_battery
+      above: 99
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: person.USER2
+        state: 'home'
+
+  action:
+    - service: vacuum.start
+      entity_id:
+        - vacuum.main_floor_roomba
+
+        ##########################################################
+        ## Run Main Floor Roomba Weekdays Partial Clean
+        ##########################################################
+
+- alias: Roomba - Run Main Floor Roomba Weekdays Partial Clean
+  id: 'roomba_run_main_floor_roomba_weekdays_partial_clean'
+
+  trigger:
+   - platform: time
      at: '10:00:00'
 
   condition:
@@ -78,7 +126,7 @@
       entity_id: vacuum.main_floor_roomba
       state: 'docked'
     - condition: numeric_state
-      entity_id: sensor.main_floor_roomba_battery_level
+      entity_id: sensor.main_floor_roomba_battery
       above: 99
     - condition: state
       entity_id: input_boolean.guest_mode
@@ -86,16 +134,28 @@
     - condition: state
       entity_id: input_boolean.vacation_mode
       state: 'off'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: person.USER2
-        state: 'home'
+    - condition: state
+      entity_id: person.USER2
+      state: 'home'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
-    - service: vacuum.start
-      entity_id:
-        - vacuum.main_floor_roomba
+    - service: vacuum.send_command
+      data:
+          command: start
+          params:
+            pmap_id: REDACTED
+            regions:
+              - region_id: '9'
+                type: rid
+              - region_id: '2'
+                type: zid
+              - region_id: '1'
+                type: zid
+      target:
+        entity_id: vacuum.main_floor_roomba
 
         ##########################################################
         ## Run Main Floor Roomba Weekends
@@ -106,7 +166,7 @@
 
   trigger:
    - platform: time
-     at: '10:00:00'
+     at: '11:00:00'
 
   condition:
     - condition: state
@@ -123,7 +183,7 @@
       entity_id: vacuum.main_floor_roomba
       state: 'docked'
     - condition: numeric_state
-      entity_id: sensor.main_floor_roomba_battery_level
+      entity_id: sensor.main_floor_roomba_battery
       above: 99
     - condition: state
       entity_id: select.living_room_tv_activities
@@ -262,7 +322,7 @@
       entity_id: vacuum.main_floor_roomba
       state: 'docked'
     - condition: numeric_state
-      entity_id: sensor.main_floor_roomba_battery_level
+      entity_id: sensor.main_floor_roomba_battery
       above: 99
     - condition: state
       entity_id: input_boolean.guest_mode
@@ -272,6 +332,143 @@
     - service: vacuum.start
       entity_id:
         - vacuum.main_floor_roomba
+
+        ##########################################################
+        ## Run Upstairs Roomba in USER1's Office
+        ##########################################################
+
+- alias: Roomba - Run Upstairs Roomba in USER1's Office
+  id: 'roomba_run_upstairs_roomba_USER1_office'
+
+  trigger:
+   - platform: time
+     at: '18:00:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.upstairs_roomba_ran
+      state: 'off'
+    - condition: state
+      entity_id: vacuum.upstairs_roomba
+      state: 'docked'
+    - condition: numeric_state
+      entity_id: sensor.upstairs_roomba_battery_level
+      above: 99
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.USER1_s_office_do_not_disturb
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.USER1s_office_motion
+      state: 'off'
+      for:
+        minutes: 15
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+
+  action:
+    - service: vacuum.send_command
+      data:
+          command: start
+          params:
+            pmap_id: REDACTED
+            regions:
+              - region_id: '2'
+                type: rid
+      target:
+        entity_id: vacuum.upstairs_roomba
+    - service: light.turn_on
+      entity_id:
+        - light.USER1_s_office_ceiling
+      data:
+       brightness_pct: 100
+
+        ##########################################################
+        ## Run Upstairs Roomba when USER2 Away Partial Clean
+        ##########################################################
+
+- alias: Roomba - Run Upstairs Roomba when USER2 Away Partial Clean
+  id: 'roomba_run_upstairs_roomba_when_USER2_away_partial_clean'
+
+  trigger:
+   - platform: time
+     at: '10:00:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.upstairs_roomba_ran
+      state: 'off'
+    - condition: state
+      entity_id: vacuum.upstairs_roomba
+      state: 'docked'
+    - condition: numeric_state
+      entity_id: sensor.upstairs_roomba_battery_level
+      above: 99
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: person.USER2
+        state: 'home'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+
+  action:
+    - service: vacuum.send_command
+      data:
+          command: start
+          params:
+            pmap_id: REDACTED
+            regions:
+              - region_id: '7'
+                type: rid
+              - region_id: '1'
+                type: rid
+              - region_id: '8'
+                type: rid
+      target:
+        entity_id: vacuum.upstairs_roomba
+    - service: light.turn_on
+      entity_id:
+        - light.USER2_s_office_ceiling
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.guest_bedroom_ceiling
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.stairs_light
+      data:
+       brightness_pct: 100
 
         ##########################################################
         ## Run Upstairs Roomba when Away
@@ -370,7 +567,7 @@
 
   trigger:
    - platform: time
-     at: '10:00:00'
+     at: '09:30:00'
 
   condition:
     - condition: state
@@ -412,7 +609,7 @@
 
   trigger:
    - platform: time
-     at: '10:00:00'
+     at: '09:30:00'
 
   condition:
     - condition: state
@@ -458,6 +655,68 @@
         - vacuum.basement_roomba
 
         ##########################################################
+        ## Run Basement Roomba Partial Clean
+        ##########################################################
+
+- alias: Roomba - Run Basement Roomba Partial Clean
+  id: 'roomba_run_basement_roomba_partial_clean'
+
+  trigger:
+   - platform: time
+     at: '09:30:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.basement_roomba_ran
+      state: 'off'
+    - condition: time
+      weekday:
+        - tue
+        - thu
+    - condition: state
+      entity_id: vacuum.basement_roomba
+      state: 'docked'
+    - condition: state
+      entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
+      state: 'off'
+    - condition: numeric_state
+      entity_id: sensor.basement_roomba_battery_level
+      above: 99
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.washer
+        state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.dryer
+        state: 'on'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+
+  action:
+    - service: vacuum.send_command
+      data:
+          command: start
+          params:
+            pmap_id: REDACTED
+            regions:
+              - region_id: '7'
+                type: rid
+              - region_id: '8'
+                type: rid
+      target:
+        entity_id: vacuum.basement_roomba
+
+        ##########################################################
         ## Run Main Floor Roomba when USER2 Leaves
         ##########################################################
 
@@ -491,7 +750,7 @@
       entity_id: vacuum.main_floor_roomba
       state: 'docked'
     - condition: numeric_state
-      entity_id: sensor.main_floor_roomba_battery_level
+      entity_id: sensor.main_floor_roomba_battery
       above: 99
     - condition: state
       entity_id: input_boolean.USER1_away
@@ -743,8 +1002,8 @@
       entity_id: input_boolean.disable_roomba
       state: 'off'
     - condition: time
-      after: '09:59:00'
-      before: '10:14:00'
+      after: '09:00:00'
+      before: '10:00:00'
     - condition: numeric_state
       entity_id: sensor.living_room_light_level
       below: 15
@@ -848,7 +1107,7 @@
         entity_id: person.USER2
         state: 'home'
     - condition: time
-      after: '09:59:00'
+      after: '09:00:00'
       before: '13:00:00'
     - condition: time
       weekday:
@@ -879,11 +1138,11 @@
         - light.kitchen_lights
 
         ##########################################################
-        ## Turn On lights for Upstairs Roomba
+        ## Turn On lights for Upstairs Roomba Away
         ##########################################################
 
-- alias: Roomba - Turn On low lights for Upstairs Roomba
-  id: 'roomba_turn_on_lights_for_upstairs_roomba'
+- alias: Roomba - Turn On low lights for Upstairs Roomba Away
+  id: 'roomba_turn_on_lights_for_upstairs_roomba_away'
 
   trigger:
     - platform: state
@@ -894,6 +1153,11 @@
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
 
   action:
     - service: light.turn_on
@@ -918,11 +1182,11 @@
        brightness_pct: 100
 
         ##########################################################
-        ## Turn Off lights when Upstairs Roomba finished Home
+        ## Turn Off lights when Upstairs Roomba finished USER1's Office
         ##########################################################
 
-- alias: Roomba - Turn Off lights when Upstairs Roomba finished Home
-  id: 'roomba_turn_off_lighst_when_upstairs_roomba_finished_home'
+- alias: Roomba - Turn Off lights when Upstairs Roomba finished USER1's Office
+  id: 'roomba_turn_off_lighst_when_upstairs_roomba_finished_USER1_office'
 
   trigger:
     - platform: state
@@ -952,25 +1216,73 @@
       entity_id: input_boolean.disable_roomba
       state: 'off'
     - condition: state
-      entity_id: binary_sensor.USER1s_office_motion
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.USER2s_office_motion
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.upstairs_bathroom_motion
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.stairs_motion
-      state: 'off'
-    - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.USER1s_office_motion
+      state: 'off'
+    - condition: time
+      after: '18:00:00'
+      before: '18:30:00'
 
   action:
     - service: light.turn_off
       entity_id:
         - light.USER1_office_lights
+
+        ##########################################################
+        ## Turn Off lights when Upstairs Roomba finished Home Partial Clean
+        ##########################################################
+
+- alias: Roomba - Turn Off lights when Upstairs Roomba finished Home Partial Clean
+  id: 'roomba_turn_off_lighst_when_upstairs_roomba_finished_home_partial_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.upstairs_roomba
+      to: 'docked'
+      for:
+        hours: 0
+        minutes: 4
+        seconds: 0
+    - platform: state
+      entity_id: vacuum.upstairs_roomba
+      to: 'paused'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+    - platform: state
+      entity_id: vacuum.upstairs_roomba
+      to: 'stopped'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: person.USER2
+        state: 'home'
+    - condition: time
+      after: '10:00:00'
+      before: '11:30:00'
+
+  action:
     - service: light.turn_off
       entity_id:
         - light.USER2_office_lights
@@ -1118,7 +1430,7 @@
       to: 'cleaning'
       for:
         hours: 0
-        minutes: 35
+        minutes: 45
         seconds: 0
 
   condition:

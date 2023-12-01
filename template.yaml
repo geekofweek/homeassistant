@@ -677,3 +677,63 @@
         {% else %}
           {{ states("sensor.weather_condition_REDACTED") }}
         {% endif %}
+
+      ##########################################################
+      ## Front Door Lock Code
+      ##########################################################
+
+  - sensor:
+    - unique_id: front_door_lock_code
+      name: Front Door Lock Code
+      state: >
+        {% if is_state('sensor.front_door_lock_alarmlevel', '2') %}
+          USER2
+        {% elif is_state('sensor.front_door_lock_alarmlevel', '3') %}
+          USER1
+        {% elif is_state('sensor.front_door_lock_alarmlevel', '4') %}
+          guest
+        {% elif is_state('sensor.front_door_lock_alarmlevel', '5') %}
+          guest
+        {% else %}
+          none
+        {% endif %}
+
+      ##########################################################
+      ## Back Door Lock Code
+      ##########################################################
+
+  - sensor:
+    - unique_id: back_door_lock_code
+      name: Back Door Lock Code
+      state: >
+        {% if is_state('sensor.back_door_lock_alarmlevel', '2') %}
+          USER2
+        {% elif is_state('sensor.back_door_lock_alarmlevel', '3') %}
+          USER1
+        {% elif is_state('sensor.back_door_lock_alarmlevel', '4') %}
+          guest
+        {% elif is_state('sensor.back_door_lock_alarmlevel', '5') %}
+          guest
+        {% else %}
+          none
+        {% endif %}
+
+      ##########################################################
+      ## Basement Door Lock Code
+      ##########################################################
+
+  - sensor:
+    - unique_id: basement_door_lock_code
+      name: Basement Door Lock Code
+      state: >
+        {% if is_state('sensor.basement_door_lock_alarmlevel', '2') %}
+          USER2
+        {% elif is_state('sensor.basement_door_lock_alarmlevel', '3') %}
+          USER1
+        {% elif is_state('sensor.basement_door_lock_alarmlevel', '4') %}
+          guest
+        {% elif is_state('sensor.basement_door_lock_alarmlevel', '5') %}
+          guest
+        {% else %}
+          none
+        {% endif %}

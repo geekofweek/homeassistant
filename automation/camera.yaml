@@ -3,6 +3,608 @@
 #################################################################
 
         ##########################################################
+        ## Turn On Front Porch Lights when Doorbell Rings
+        ##########################################################
+
+- alias: Camera - Turn On Front Porch Lights when Rung
+  id: 'camera_turn_on_front_porch_lights_when_rung'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.front_porch
+      data:
+        brightness_pct: 100
+
+        ##########################################################
+        ## Reset Front Porch Lights Brightness After Doorbell Rings
+        ##########################################################
+
+- alias: Camera - Reset Front Porch Lights Brightness After Ring
+  id: 'camera_reset_front_porch_lights_brightness_after_ring'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.front_porch
+      data:
+        brightness_pct: 50
+        transition: 900
+
+        ##########################################################
+        ## Turn On Front Porch Lights when Motion Detected
+        ##########################################################
+
+- alias: Camera - Turn On Front Porch Lights when Motion Detected
+  id: 'camera_turn_on_front_porch_lights_when_motion_detected'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_motion
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.front_porch_person_detected
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.front_yard_camera_person_detected
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.front_porch
+      data:
+        brightness_pct: 100
+
+        ##########################################################
+        ## Reset Front Porch Lights Brightness After Motion Detected
+        ##########################################################
+
+- alias: Camera - Reset Front Porch Lights Brightness After Motion Detected
+  id: 'camera_reset_front_porch_lights_brightness_after_motion_detected'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+    - platform: state
+      entity_id: binary_sensor.front_porch_person_detected
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+    - platform: state
+      entity_id: binary_sensor.front_yard_camera_person_detected
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: state
+      entity_id: light.front_porch
+      state: 'on'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.front_porch
+      data:
+        brightness_pct: 50
+        transition: 900
+
+        ##########################################################
+        ## Turn On Lights when Doorbell Rings and Away
+        ##########################################################
+
+- alias: Camera - Turn On Lights when Ring and Away
+  id: 'camera_turn_on_lights_when_ring_and_away'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.living_room_lamps
+      data:
+        brightness_pct: 100
+        color_temp: 370
+    - service: light.turn_on
+      entity_id:
+        - light.kitchen_sink
+      data:
+        brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.back_door
+      data:
+        brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.garage_light
+      data:
+        brightness_pct: 100
+
+        ##########################################################
+        ## Turn Off Lights After Doorbell Rings and Away
+        ##########################################################
+
+- alias: Camera - Turn Off Lights After Ring and Away
+  id: 'camera_turn_off_lights_after_ring_and_away'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 16
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.living_room_lights
+      data:
+        transition: 900
+    - service: light.turn_off
+      entity_id:
+        - light.kitchen_sink
+    - service: light.turn_on
+      entity_id:
+        - light.back_door
+      data:
+        brightness_pct: 1
+    - service: light.turn_on
+      entity_id:
+        - light.garage_light
+      data:
+        brightness_pct: 1
+
+        ##########################################################
+        ## Turn On Lights when Motion Detected and Away
+        ##########################################################
+
+- alias: Camera - Turn On Lights when Motion Detected and Away
+  id: 'camera_turn_on_lights_when_motion_detected_and_away'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_motion
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.front_porch_person_detected
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.front_yard_camera_person_detected
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.living_room_lamps
+      data:
+        brightness_pct: 100
+        color_temp: 370
+    - service: light.turn_on
+      entity_id:
+        - light.kitchen_sink
+      data:
+        brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.back_door
+      data:
+        brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.garage_light
+      data:
+        brightness_pct: 100
+
+        ##########################################################
+        ## Turn Off Lights After Motion Detected and Away
+        ##########################################################
+
+- alias: Camera - Turn Off Lights After Motion Detected and Away
+  id: 'camera_turn_off_lights_after_motion_detected_and_away'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 16
+        seconds: 0
+    - platform: state
+      entity_id: binary_sensor.front_porch_person_detected
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 16
+        seconds: 0
+    - platform: state
+      entity_id: binary_sensor.front_yard_camera_person_detected
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 16
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.living_room_lights
+      data:
+        transition: 900
+    - service: light.turn_off
+      entity_id:
+        - light.kitchen_sink
+    - service: light.turn_on
+      entity_id:
+        - light.back_door
+      data:
+        brightness_pct: 1
+    - service: light.turn_on
+      entity_id:
+        - light.garage_light
+      data:
+        brightness_pct: 1
+
+        ##########################################################
+        ## Turn On Backyard Lights when Motion Detected and Away
+        ##########################################################
+
+- alias: Camera - Turn On Backyard Lights when Motion Detected and Away
+  id: 'camera_turn_on_backyard_lights_when_motion_detected_and_away'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.backyard_gate_camera_person_detected
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.backyard_camera_person_detected
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.side_yard_camera_person_detected
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: light.back_door
+        state: 'off'
+      - condition: state
+        entity_id: light.backyard_deck
+        state: 'off'
+      - condition: state
+        entity_id: light.backyard_patio
+        state: 'off'
+      - condition: state
+        entity_id: switch.backyard_lighting
+        state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.backyard_patio_lighting
+        - switch.lower_backyard_lighting
+    - service: light.turn_on
+      entity_id:
+        - light.backyard_patio
+      data:
+        brightness_pct: 100
+        color_temp: 370
+    - service: light.turn_on
+      entity_id:
+        - light.backyard_deck
+      data:
+        brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.back_door
+      data:
+        brightness_pct: 100
+
+        ##########################################################
+        ## Reset Backyard Lights After Motion Detected and Away
+        ##########################################################
+
+- alias: Camera - Reset Backyard Lights After Motion Detected and Away
+  id: 'camera_reset_backyard_lights_after_motion_detected_and_away'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.backyard_gate_camera_person_detected
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+    - platform: state
+      entity_id: binary_sensor.backyard_camera_person_detected
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+    - platform: state
+      entity_id: binary_sensor.side_yard_camera_person_detected
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: time
+      before: '23:59:00'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: light.back_door
+        state: 'on'
+      - condition: state
+        entity_id: light.backyard_deck
+        state: 'on'
+      - condition: state
+        entity_id: light.backyard_patio
+        state: 'on'
+      - condition: state
+        entity_id: switch.backyard_lighting
+        state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.backyard_patio_lighting
+        - switch.lower_backyard_lighting
+    - service: light.turn_off
+      entity_id:
+        - light.backyard_patio
+    - service: light.turn_off
+      entity_id:
+        - light.backyard_deck
+    - service: light.turn_on
+      entity_id:
+        - light.back_door
+      data:
+        brightness_pct: 2
+
+        ##########################################################
+        ## Turn Off Backyard Lights After Motion Detected and Away
+        ##########################################################
+
+- alias: Camera - Turn Off Backyard Lights After Motion Detected and Away
+  id: 'camera_turn_off_backyard_lights_after_motion_detected_and_away'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.backyard_gate_camera_person_detected
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+    - platform: state
+      entity_id: binary_sensor.backyard_camera_person_detected
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+    - platform: state
+      entity_id: binary_sensor.side_yard_camera_person_detected
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: time
+      after: '00:00:00'
+      before: '05:00:00'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: light.back_door
+        state: 'on'
+      - condition: state
+        entity_id: light.backyard_deck
+        state: 'on'
+      - condition: state
+        entity_id: light.backyard_patio
+        state: 'on'
+      - condition: state
+        entity_id: switch.backyard_lighting
+        state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.backyard_patio_lighting
+        - switch.lower_backyard_lighting
+    - service: light.turn_off
+      entity_id:
+        - light.backyard_patio
+    - service: light.turn_off
+      entity_id:
+        - light.backyard_deck
+    - service: light.turn_off
+      entity_id:
+        - light.back_door
+
+        ##########################################################
         ## Household Away Turn Off Camera Privacy Mode
         ##########################################################
 
@@ -355,3 +957,95 @@
           tag: camera
           group: camera
           entity_id: camera.garage
+
+        ##########################################################
+        ## Doorbell Ring iOS USER1 Notification
+        ##########################################################
+
+- alias: Camera - Ring iOS USER1 Notification
+  id: 'camera_ring_ios_USER1_notification'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+      
+  action:
+    - service: notify.USER1_devices
+      data:
+        message: Someone is at the Front Door
+        data:
+          tag: doorbell
+          group: doorbell
+          entity_id: camera.front_porch
+          actions:
+            - action: "unlock_front_door"
+              title: "Unlock Front Door"
+              destructive: true
+
+        ##########################################################
+        ## Doorbell Ring iOS USER2 Notification
+        ##########################################################
+
+- alias: Camera - Ring iOS USER2 Notification
+  id: 'camera_ring_ios_USER2_notification'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+      
+  action:
+    - service: notify.USER2_devices
+      data:
+        message: Someone is at the Front Door
+        data:
+          tag: doorbell
+          group: doorbell
+          entity_id: 
+           - camera.front_porch
+          actions:
+            - action: "unlock_front_door"
+              title: "Unlock Front Door"
+              destructive: true
+
+        ##########################################################
+        ## Ring Battery Low
+        ##########################################################
+
+- alias: Camera - Ring Battery Low
+  id: 'camera_ring_battery_low'
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.ring_front_door_battery
+      below: 31
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  action:
+    - service: notify.USER1_devices
+      data:
+        message: Ring Battery Low, Replace Battery Soon
+        data:
+          tag: doorbell-battery
+          group: doorbell

@@ -1702,13 +1702,9 @@
   id: 'lights_turn_off_grow_light_after_16_hours'
 
   trigger:
-    - platform: state
-      entity_id: switch.grow_light
-      to: 'on'
-      for:
-        hours: 16
-        minutes: 0
-        seconds: 0
+    - platform: sun
+      event: 'sunrise'
+      offset: '+16:00:00'
 
   condition:
     - condition: state
@@ -1738,27 +1734,6 @@
 
   action:
     - service: switch.turn_on
-      entity_id:
-        - switch.grow_light
-
-        ##########################################################
-        ## Turn Off Grow Light in the Morning
-        ##########################################################
-
-- alias: Lights - Turn Off Grow Light in the Morning
-  id: 'lights_turn_off_grow_light_in_the_morning'
-
-  trigger:
-   - platform: time
-     at: '07:01:00'
-
-  condition:
-    - condition: state
-      entity_id: switch.grow_light
-      state: 'on'
-
-  action:
-    - service: switch.turn_off
       entity_id:
         - switch.grow_light
 
