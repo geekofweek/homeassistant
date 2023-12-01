@@ -197,9 +197,9 @@ More detailed information on the ESPhome configuration can be found in [here](ht
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
+| [iRobot j9+ Combo](https://amzn.to/3RpkcfN) | 1 | Wi-Fi | [iRobot Roomba](https://www.home-assistant.io/components/vacuum.roomba/)| Automated to run at specific times based on presence detection |
 | [iRobot j7+](https://amzn.to/3qFjcXj) | 1 | Wi-Fi | [iRobot Roomba](https://www.home-assistant.io/components/vacuum.roomba/)| Automated to run at specific times based on presence detection |
 | [iRobot i7+](https://amzn.to/3f3rksO) | 1 | Wi-Fi | [iRobot Roomba](https://www.home-assistant.io/components/vacuum.roomba/)| Automated to run at specific times based on presence detection |
-| [iRobot Roomba 980](https://amzn.to/2L9q1tm) | 1 | Wi-Fi | [iRobot Roomba](https://www.home-assistant.io/components/vacuum.roomba/)| Automated to run at specific times based on presence detection |
 | [iRobot Braava jet 240](https://amzn.to/2FRJnEa) | 1 | Bluetooth | NA | Currently not integrated into Home Assistant. Unknown if this can ever be automated |
 
 All Roomba related automations can be found in [roomba.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/roomba.yaml)
@@ -332,7 +332,7 @@ More detailed information on the custom Home Assistant Managment Tools can be fo
 | [Ubiquiti Networks Unifi Mesh AP (UAP-AC-M-US)](https://amzn.to/31QrE6E) | 1 | Ethernet | [Ubiquiti Unifi](https://www.home-assistant.io/components/device_tracker.unifi/) | Wireless Mesh Access Point for exterior use. Used in detached garage to provide internet and network traffic for cameras and devices.  Presence detection for non household members and devices. |
 | [Ubiquiti Networks Unifi AP PRO (UAP-AC-PRO-US)](https://amzn.to/2rP3BFJ) | 1 | Ethernet | [Ubiquiti Unifi](https://www.home-assistant.io/components/device_tracker.unifi/)| Wireless Access Point for interior and exterior use. Presence detection for non household members and devices. |
 | [Zooz Power Switch ZEN15](https://amzn.to/2WRPeiv) | 2 | Z-Wave | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Realized these would flood the z-wave network with traffic and make it unstable, do not recommend |
-
+| [iRobot Roomba 980](https://amzn.to/2L9q1tm) | 1 | Wi-Fi | [iRobot Roomba](https://www.home-assistant.io/components/vacuum.roomba/)| Automated to run at specific times based on presence detection |
 
 # <a name="screenshots">Screenshots</a>
 
