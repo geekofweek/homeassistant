@@ -518,7 +518,7 @@
       - platform: time_pattern
         hours: '/2'
     action:
-      - service: weather.get_forecast
+      - service: weather.get_forecasts
         target:
           entity_id: weather.REDACTED_ecobee
         data:
@@ -539,7 +539,7 @@
       - platform: time_pattern
         hours: '/2'
     action:
-      - service: weather.get_forecast
+      - service: weather.get_forecasts
         target:
           entity_id: weather.REDACTED_ecobee
         data:

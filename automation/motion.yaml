@@ -42,13 +42,13 @@
     - condition: not
       conditions:
       - condition: state
-        entity_id: switch.living_room_tv_play_xbox
-        state: 'on'
+        entity_id: select.living_room_tv_activities
+        state: "Play Xbox"
     - condition: not
       conditions:
       - condition: state
-        entity_id: switch.living_room_tv_play_nintendo_switch
-        state: 'on'
+        entity_id: select.living_room_tv_activities
+        state: "Play Nintendo Switch"
 
   action:
     - service: light.turn_on
@@ -115,13 +115,13 @@
     - condition: not
       conditions:
       - condition: state
-        entity_id: switch.living_room_tv_play_xbox
-        state: 'on'
+        entity_id: select.living_room_tv_activities
+        state: "Play Xbox"
     - condition: not
       conditions:
       - condition: state
-        entity_id: switch.living_room_tv_play_nintendo_switch
-        state: 'on'
+        entity_id: select.living_room_tv_activities
+        state: "Play Nintendo Switch"
 
   action:
     - service: light.turn_on
@@ -192,13 +192,13 @@
     - condition: not
       conditions:
       - condition: state
-        entity_id: switch.living_room_tv_play_xbox
-        state: 'on'
+        entity_id: select.living_room_tv_activities
+        state: "Play Xbox"
     - condition: not
       conditions:
       - condition: state
-        entity_id: switch.living_room_tv_play_nintendo_switch
-        state: 'on'
+        entity_id: select.living_room_tv_activities
+        state: "Play Nintendo Switch"
 
   action:
     - service: light.turn_on

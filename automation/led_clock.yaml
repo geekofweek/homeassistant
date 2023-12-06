@@ -1392,8 +1392,8 @@
       entity_id: media_player.USER1_s_office_apple_tv
       state: 'playing'
     - condition: state
-      entity_id: switch.USER1_s_office_tv_watch_tv
-      state: 'on'
+      entity_id: select.USER1_s_office_tv_activities
+      state: "Watch TV"
     - condition: or
       conditions:
       - condition: state
@@ -2551,8 +2551,8 @@
       entity_id: media_player.living_room_apple_tv
       state: 'playing'
     - condition: state
-      entity_id: switch.living_room_tv_watch_tv
-      state: 'on'
+      entity_id: select.living_room_tv_activities
+      state: "Watch TV"
     - condition: or
       conditions:
       - condition: state

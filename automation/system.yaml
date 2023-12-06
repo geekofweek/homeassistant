@@ -259,6 +259,13 @@
         hours: 0
         minutes: 1
         seconds: 0
+    - platform: state
+      entity_id: sensor.USER1_s_macbook_pro_active_audio_input
+      from: 'Inactive'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
 
   condition:
     - condition: state
@@ -300,6 +307,13 @@
     - platform: state
       entity_id: binary_sensor.USER1_s_macbook_pro_focus
       to: 'off'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+    - platform: state
+      entity_id: sensor.USER1_s_macbook_pro_active_audio_input
+      to: 'Inactive'
       for:
         hours: 0
         minutes: 5

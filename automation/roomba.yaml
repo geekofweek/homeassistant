@@ -106,7 +106,7 @@
 
   trigger:
    - platform: time
-     at: '10:00:00'
+     at: '09:30:00'
 
   condition:
     - condition: state
@@ -712,6 +712,117 @@
               - region_id: '7'
                 type: rid
               - region_id: '8'
+                type: rid
+      target:
+        entity_id: vacuum.basement_roomba
+
+        ##########################################################
+        ## Run Basement Roomba Partial Clean Weekend
+        ##########################################################
+
+- alias: Roomba - Run Basement Roomba Partial Clean Weekend
+  id: 'roomba_run_basement_roomba_partial_clean_weekend'
+
+  trigger:
+   - platform: time
+     at: '14:00:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.basement_roomba_ran
+      state: 'off'
+    - condition: time
+      weekday:
+        - sat
+        - sun
+    - condition: state
+      entity_id: vacuum.basement_roomba
+      state: 'docked'
+    - condition: state
+      entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
+      state: 'off'
+    - condition: numeric_state
+      entity_id: sensor.basement_roomba_battery_level
+      above: 99
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.washer
+        state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.dryer
+        state: 'on'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+
+  action:
+    - service: vacuum.send_command
+      data:
+          command: start
+          params:
+            pmap_id: REDACTED
+            regions:
+              - region_id: '7'
+                type: rid
+              - region_id: '8'
+                type: rid
+      target:
+        entity_id: vacuum.basement_roomba
+
+        ##########################################################
+        ## Run Basement Roomba when Away
+        ##########################################################
+
+- alias: Roomba - Run Basement Roomba when Away
+  id: 'roomba_run_basement_roomba_when_away'
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
+    - condition: time
+      after: '08:00:00'
+      before: '23:59:00'
+    - condition: state
+      entity_id: vacuum.basement_roomba
+      state: 'docked'
+    - condition: numeric_state
+      entity_id: sensor.basement_roomba_battery_level
+      above: 99
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+
+  action:
+    - service: vacuum.send_command
+      data:
+          command: start
+          params:
+            pmap_id: REDACTED
+            regions:
+              - region_id: '7'
                 type: rid
       target:
         entity_id: vacuum.basement_roomba
@@ -1430,7 +1541,7 @@
       to: 'cleaning'
       for:
         hours: 0
-        minutes: 45
+        minutes: 39
         seconds: 0
 
   condition:

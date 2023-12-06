@@ -215,8 +215,8 @@
       entity_id: input_boolean.watching_plex
       state: 'off'
     - condition: state
-      entity_id: switch.living_room_tv_watch_tv
-      state: 'on'
+      entity_id: select.living_room_tv_activities
+      state: "Watch TV"
     - condition: state
       entity_id: input_boolean.guest_mode
       state: 'off'
@@ -304,8 +304,8 @@
       entity_id: input_boolean.watching_plex
       state: 'off'
     - condition: state
-      entity_id: switch.living_room_tv_watch_tv
-      state: 'on'
+      entity_id: select.living_room_tv_activities
+      state: "Watch TV"
     - condition: state
       entity_id: input_boolean.guest_mode
       state: 'off'
@@ -389,8 +389,8 @@
       entity_id: input_boolean.watching_plex
       state: 'off'
     - condition: state
-      entity_id: switch.living_room_tv_watch_tv
-      state: 'on'
+      entity_id: select.living_room_tv_activities
+      state: "Watch TV"
     - condition: state
       entity_id: input_boolean.guest_mode
       state: 'off'
@@ -483,8 +483,8 @@
       entity_id: input_boolean.watching_plex
       state: 'off'
     - condition: state
-      entity_id: switch.living_room_tv_watch_tv
-      state: 'on'
+      entity_id: select.living_room_tv_activities
+      state: "Watch TV"
     - condition: state
       entity_id: input_boolean.guest_mode
       state: 'off'
@@ -1373,8 +1373,8 @@
 
   trigger:
     - platform: state
-      entity_id: switch.living_room_tv_play_xbox
-      to: 'on'
+      entity_id: select.living_room_tv_activities
+      to: "Play Xbox"
       for:
         hours: 0
         minutes: 2
@@ -1417,8 +1417,8 @@
 
   trigger:
     - platform: state
-      entity_id: switch.living_room_tv_play_xbox
-      to: 'off'
+      entity_id: select.living_room_tv_activities
+      from: "Play Xbox"
       for:
         hours: 0
         minutes: 0
