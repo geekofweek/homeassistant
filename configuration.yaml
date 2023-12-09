@@ -3,6 +3,11 @@
 #################################################################
 
 homeassistant:
+  auth_providers:
+    - type: homeassistant
+    - type: trusted_networks
+      trusted_networks:
+        - REDACTED.0/24
   customize: !include customize.yaml
 default_config:
 stream:
@@ -94,3 +99,4 @@ switch: !include switch.yaml
 emulated_hue: !include emulated_hue.yaml
 template: !include template.yaml
 command_line: !include command_line.yaml
+python_script:

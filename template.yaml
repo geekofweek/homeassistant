@@ -527,7 +527,7 @@
     sensor:
       - name: REDACTED Forecasted Temperature (High)
         unique_id: REDACTED_forecasted_temperature_high
-        state: "{{ forecast.forecast[0].temperature }}"
+        state: "{{ forecast['weather.REDACTED_ecobee'].forecast[0].temperature }}"
         device_class: temperature
         unit_of_measurement: '°F'
 
@@ -548,7 +548,7 @@
     sensor:
       - name: REDACTED Forecasted Temperature (Low)
         unique_id: REDACTED_forecasted_temperature_low
-        state: "{{ forecast.forecast[0].templow }}"
+        state: "{{ forecast['weather.REDACTED_ecobee'].forecast[0].templow }}"
         device_class: temperature
         unit_of_measurement: '°F'
 

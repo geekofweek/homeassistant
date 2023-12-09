@@ -142,20 +142,19 @@
       state: 'home'
 
   action:
-    - service: vacuum.send_command
-      data:
-          command: start
-          params:
-            pmap_id: REDACTED
-            regions:
-              - region_id: '9'
-                type: rid
-              - region_id: '2'
-                type: zid
-              - region_id: '1'
-                type: zid
-      target:
-        entity_id: vacuum.main_floor_roomba
+    - service: homeassistant.turn_on
+      entity_id: 
+        - input_boolean.roomba_clean_kitchen
+    - delay: '00:00:02'
+    - service: homeassistant.turn_on
+      entity_id: 
+        - input_boolean.roomba_clean_dining_room_table
+    - delay: '00:00:02'
+    - service: homeassistant.turn_on
+      entity_id: 
+        - input_boolean.roomba_clean_front_door
+    - delay: '00:00:02'
+    - service: python_script.main_floor_roomba
 
         ##########################################################
         ## Run Main Floor Roomba Weekends
@@ -334,6 +333,57 @@
         - vacuum.main_floor_roomba
 
         ##########################################################
+        ## Run Main Floor Roomba when Away Already Ran
+        ##########################################################
+
+- alias: Roomba - Run Main Floor Roomba when Away Already Ran
+  id: 'roomba_run_main_floor_roomba_when_away_already_ran'
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.main_floor_roomba_ran
+      state: 'on'
+    - condition: time
+      after: '08:00:00'
+      before: '23:59:00'
+    - condition: state
+      entity_id: vacuum.main_floor_roomba
+      state: 'docked'
+    - condition: numeric_state
+      entity_id: sensor.main_floor_roomba_battery
+      above: 99
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: 
+        - input_boolean.roomba_clean_front_door
+    - delay: '00:00:02'
+    - service: homeassistant.turn_on
+      entity_id: 
+        - input_boolean.roomba_clean_back_door
+    - delay: '00:00:02'
+    - service: python_script.main_floor_roomba
+
+        ##########################################################
         ## Run Upstairs Roomba in USER1's Office
         ##########################################################
 
@@ -380,21 +430,16 @@
         - fri
 
   action:
-    - service: vacuum.send_command
-      data:
-          command: start
-          params:
-            pmap_id: REDACTED
-            regions:
-              - region_id: '2'
-                type: rid
-      target:
-        entity_id: vacuum.upstairs_roomba
+    - service: homeassistant.turn_on
+      entity_id: 
+        - input_boolean.roomba_clean_USER1_office
+    - delay: '00:00:02'
+    - service: python_script.upstairs_roomba
     - service: light.turn_on
       entity_id:
         - light.USER1_s_office_ceiling
       data:
-       brightness_pct: 100
+        brightness_pct: 100
 
         ##########################################################
         ## Run Upstairs Roomba when USER2 Away Partial Clean
@@ -440,32 +485,23 @@
         - fri
 
   action:
-    - service: vacuum.send_command
-      data:
-          command: start
-          params:
-            pmap_id: REDACTED
-            regions:
-              - region_id: '7'
-                type: rid
-              - region_id: '1'
-                type: rid
-              - region_id: '8'
-                type: rid
-      target:
-        entity_id: vacuum.upstairs_roomba
+    - service: homeassistant.turn_on
+      entity_id: 
+        - input_boolean.roomba_clean_USER2_office
+    - delay: '00:00:02'
+    - service: homeassistant.turn_on
+      entity_id: 
+        - input_boolean.roomba_clean_guest_bedroom
+    - delay: '00:00:02'
+    - service: homeassistant.turn_on
+      entity_id: 
+        - input_boolean.roomba_hallway
+    - delay: '00:00:02'
+    - service: python_script.upstairs_roomba
     - service: light.turn_on
       entity_id:
         - light.USER2_s_office_ceiling
-      data:
-       brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
         - light.guest_bedroom_ceiling
-      data:
-       brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
         - light.stairs_light
       data:
        brightness_pct: 100
@@ -703,18 +739,15 @@
       state: 'off'
 
   action:
-    - service: vacuum.send_command
-      data:
-          command: start
-          params:
-            pmap_id: REDACTED
-            regions:
-              - region_id: '7'
-                type: rid
-              - region_id: '8'
-                type: rid
-      target:
-        entity_id: vacuum.basement_roomba
+    - service: homeassistant.turn_on
+      entity_id: 
+        - input_boolean.roomba_clean_workbench
+    - delay: '00:00:02'
+    - service: homeassistant.turn_on
+      entity_id: 
+        - input_boolean.roomba_clean_laundry_room
+    - delay: '00:00:02'
+    - service: python_script.basement_roomba
 
         ##########################################################
         ## Run Basement Roomba Partial Clean Weekend
@@ -765,18 +798,15 @@
       state: 'off'
 
   action:
-    - service: vacuum.send_command
-      data:
-          command: start
-          params:
-            pmap_id: REDACTED
-            regions:
-              - region_id: '7'
-                type: rid
-              - region_id: '8'
-                type: rid
-      target:
-        entity_id: vacuum.basement_roomba
+    - service: homeassistant.turn_on
+      entity_id: 
+        - input_boolean.roomba_clean_workbench
+    - delay: '00:00:02'
+    - service: homeassistant.turn_on
+      entity_id: 
+        - input_boolean.roomba_clean_laundry_room
+    - delay: '00:00:02'
+    - service: python_script.basement_roomba
 
         ##########################################################
         ## Run Basement Roomba when Away
@@ -816,16 +846,11 @@
       state: 'off'
 
   action:
-    - service: vacuum.send_command
-      data:
-          command: start
-          params:
-            pmap_id: REDACTED
-            regions:
-              - region_id: '7'
-                type: rid
-      target:
-        entity_id: vacuum.basement_roomba
+    - service: homeassistant.turn_on
+      entity_id: 
+        - input_boolean.roomba_clean_workbench
+    - delay: '00:00:02'
+    - service: python_script.basement_roomba
 
         ##########################################################
         ## Run Main Floor Roomba when USER2 Leaves
