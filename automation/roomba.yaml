@@ -391,8 +391,13 @@
   id: 'roomba_run_upstairs_roomba_USER1_office'
 
   trigger:
-   - platform: time
-     at: '18:00:00'
+    - platform: state
+      entity_id: binary_sensor.USER1s_office_motion
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 26
+        seconds: 0
 
   condition:
     - condition: state
@@ -400,6 +405,9 @@
       state: 'off'
     - condition: state
       entity_id: input_boolean.upstairs_roomba_ran
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.upstairs_roomba_ran_USER1_office
       state: 'off'
     - condition: state
       entity_id: vacuum.upstairs_roomba
@@ -420,7 +428,18 @@
       entity_id: binary_sensor.USER1s_office_motion
       state: 'off'
       for:
-        minutes: 15
+        minutes: 10
+    - condition: state
+      entity_id: binary_sensor.USER1_s_macbook_pro_active
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: person.USER2
+        state: 'home'
+    - condition: time
+      after: '09:00:00'
+      before: '18:30:00'
     - condition: time
       weekday:
         - mon
@@ -433,13 +452,9 @@
     - service: homeassistant.turn_on
       entity_id: 
         - input_boolean.roomba_clean_USER1_office
+        - input_boolean.upstairs_roomba_ran_USER1_office
     - delay: '00:00:02'
     - service: python_script.upstairs_roomba
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_s_office_ceiling
-      data:
-        brightness_pct: 100
 
         ##########################################################
         ## Run Upstairs Roomba when USER2 Away Partial Clean
@@ -498,13 +513,6 @@
         - input_boolean.roomba_hallway
     - delay: '00:00:02'
     - service: python_script.upstairs_roomba
-    - service: light.turn_on
-      entity_id:
-        - light.USER2_s_office_ceiling
-        - light.guest_bedroom_ceiling
-        - light.stairs_light
-      data:
-       brightness_pct: 100
 
         ##########################################################
         ## Run Upstairs Roomba when Away
@@ -993,7 +1001,7 @@
         - vacuum.basement_roomba
 
 #################################################################
-## Lights
+## Whole House Lights
 #################################################################
 
         ##########################################################
@@ -1007,6 +1015,10 @@
     - platform: state
       entity_id: vacuum.main_floor_roomba
       to: 'cleaning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 15
 
   condition:
     - condition: state
@@ -1019,6 +1031,27 @@
         state: 'home'
     - condition: state
       entity_id: input_boolean.guest_mode
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_living_room_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_dining_room_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_kitchen_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_hallway_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_bathroom_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_bedroom_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_bedroom_closet_lights
       state: 'off'
 
   action:
@@ -1100,6 +1133,27 @@
     - condition: state
       entity_id: input_boolean.guest_mode
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_living_room_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_dining_room_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_kitchen_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_hallway_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_bathroom_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_bedroom_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_bedroom_closet_lights
+      state: 'off'
 
   action:
     - service: light.turn_off
@@ -1132,6 +1186,10 @@
     - platform: state
       entity_id: vacuum.main_floor_roomba
       to: 'cleaning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 15
 
   condition:
     - condition: state
@@ -1139,7 +1197,7 @@
       state: 'off'
     - condition: time
       after: '09:00:00'
-      before: '10:00:00'
+      before: '14:00:00'
     - condition: numeric_state
       entity_id: sensor.living_room_light_level
       below: 15
@@ -1164,6 +1222,27 @@
         - wed
         - thu
         - fri
+    - condition: state
+      entity_id: input_boolean.roomba_clean_living_room_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_dining_room_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_kitchen_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_hallway_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_bathroom_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_bedroom_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_bedroom_closet_lights
+      state: 'off'
 
   action:
     - service: light.turn_on
@@ -1244,7 +1323,7 @@
         state: 'home'
     - condition: time
       after: '09:00:00'
-      before: '13:00:00'
+      before: '15:00:00'
     - condition: time
       weekday:
         - mon
@@ -1252,6 +1331,27 @@
         - wed
         - thu
         - fri
+    - condition: state
+      entity_id: input_boolean.roomba_clean_living_room_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_dining_room_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_kitchen_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_hallway_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_bathroom_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_bedroom_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_bedroom_closet_lights
+      state: 'off'
 
   action:
     - service: light.turn_off
@@ -1284,6 +1384,10 @@
     - platform: state
       entity_id: vacuum.upstairs_roomba
       to: 'cleaning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 15
 
   condition:
     - condition: state
@@ -1294,35 +1398,138 @@
       - condition: state
         entity_id: group.household
         state: 'home'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_USER1_office_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_USER2_office_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_guest_bedroom_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_upstairs_hallway_lights
+      state: 'off'
 
   action:
     - service: light.turn_on
       entity_id:
-        - light.USER1_s_office_ceiling
-      data:
-       brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.USER2_s_office_ceiling
-      data:
-       brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.guest_bedroom_ceiling
-      data:
-       brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
+        - light.USER1_office_lights
+        - light.USER2_office_lights
+        - light.guest_bedroom_lights
         - light.stairs_light
       data:
        brightness_pct: 100
 
         ##########################################################
-        ## Turn Off lights when Upstairs Roomba finished USER1's Office
+        ## Turn Off lights when Upstairs Roomba finished Away
         ##########################################################
 
-- alias: Roomba - Turn Off lights when Upstairs Roomba finished USER1's Office
-  id: 'roomba_turn_off_lighst_when_upstairs_roomba_finished_USER1_office'
+- alias: Roomba - Turn Off lights when Upstairs Roomba finished Away
+  id: 'roomba_turn_off_lights_when_upstairs_roomba_finished_away'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.upstairs_roomba
+      to: 'docked'
+      for:
+        hours: 0
+        minutes: 4
+        seconds: 0
+    - platform: state
+      entity_id: vacuum.upstairs_roomba
+      to: 'paused'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+    - platform: state
+      entity_id: vacuum.upstairs_roomba
+      to: 'stopped'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_USER1_office_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_USER2_office_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_guest_bedroom_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_upstairs_hallway_lights
+      state: 'off'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.USER1_office_lights
+        - light.USER2_office_lights
+        - light.guest_bedroom_lights
+        - light.stairs_light
+
+        ##########################################################
+        ## Turn On lights for Upstairs Roomba
+        ##########################################################
+
+- alias: Roomba - Turn On low lights for Upstairs Roomba
+  id: 'roomba_turn_on_lights_for_upstairs_roomba'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.upstairs_roomba
+      to: 'cleaning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 15
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_USER1_office_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_USER2_office_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_guest_bedroom_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_upstairs_hallway_lights
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.USER1_office_lights
+        - light.USER2_office_lights
+        - light.guest_bedroom_lights
+        - light.stairs_light
+      data:
+       brightness_pct: 100
+
+        ##########################################################
+        ## Turn Off lights when Upstairs Roomba Finished
+        ##########################################################
+
+- alias: Roomba - Turn Off lights when Upstairs Roomba Finished
+  id: 'roomba_turn_off_lights_when_upstairs_roomba_finished'
 
   trigger:
     - platform: state
@@ -1352,135 +1559,36 @@
       entity_id: input_boolean.disable_roomba
       state: 'off'
     - condition: state
-      entity_id: group.household
-      state: 'home'
+      entity_id: input_boolean.roomba_clean_USER1_office_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_USER2_office_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_guest_bedroom_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_upstairs_hallway_lights
+      state: 'off'
     - condition: state
       entity_id: input_boolean.guest_mode
       state: 'off'
     - condition: state
       entity_id: binary_sensor.USER1s_office_motion
       state: 'off'
-    - condition: time
-      after: '18:00:00'
-      before: '18:30:00'
+    - condition: state
+      entity_id: binary_sensor.USER2s_office_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.stairs_motion
+      state: 'off'
 
   action:
     - service: light.turn_off
       entity_id:
         - light.USER1_office_lights
-
-        ##########################################################
-        ## Turn Off lights when Upstairs Roomba finished Home Partial Clean
-        ##########################################################
-
-- alias: Roomba - Turn Off lights when Upstairs Roomba finished Home Partial Clean
-  id: 'roomba_turn_off_lighst_when_upstairs_roomba_finished_home_partial_clean'
-
-  trigger:
-    - platform: state
-      entity_id: vacuum.upstairs_roomba
-      to: 'docked'
-      for:
-        hours: 0
-        minutes: 4
-        seconds: 0
-    - platform: state
-      entity_id: vacuum.upstairs_roomba
-      to: 'paused'
-      for:
-        hours: 0
-        minutes: 2
-        seconds: 0
-    - platform: state
-      entity_id: vacuum.upstairs_roomba
-      to: 'stopped'
-      for:
-        hours: 0
-        minutes: 2
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_roomba
-      state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: input_boolean.guest_mode
-      state: 'off'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: person.USER2
-        state: 'home'
-    - condition: time
-      after: '10:00:00'
-      before: '11:30:00'
-
-  action:
-    - service: light.turn_off
-      entity_id:
         - light.USER2_office_lights
-    - service: light.turn_off
-      entity_id:
         - light.guest_bedroom_lights
-    - service: light.turn_off
-      entity_id:
-        - light.stairs_light
-
-        ##########################################################
-        ## Turn Off lights when Upstairs Roomba finished not Home
-        ##########################################################
-
-- alias: Roomba - Turn Off lights when Upstairs Roomba finished not Home
-  id: 'roomba_turn_off_lights_when_upstairs_roomba_finished_not_home'
-
-  trigger:
-    - platform: state
-      entity_id: vacuum.upstairs_roomba
-      to: 'docked'
-      for:
-        hours: 0
-        minutes: 4
-        seconds: 0
-    - platform: state
-      entity_id: vacuum.upstairs_roomba
-      to: 'paused'
-      for:
-        hours: 0
-        minutes: 2
-        seconds: 0
-    - platform: state
-      entity_id: vacuum.upstairs_roomba
-      to: 'stopped'
-      for:
-        hours: 0
-        minutes: 2
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_roomba
-      state: 'off'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-
-  action:
-    - service: light.turn_off
-      entity_id:
-        - light.USER1_s_office_ceiling
-    - service: light.turn_off
-      entity_id:
-        - light.USER2_s_office_ceiling
-    - service: light.turn_off
-      entity_id:
-        - light.guest_bedroom_ceiling
-    - service: light.turn_off
-      entity_id:
         - light.stairs_light
 
         ##########################################################
@@ -1494,10 +1602,29 @@
     - platform: state
       entity_id: vacuum.basement_roomba
       to: 'cleaning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 15
 
   condition:
     - condition: state
       entity_id: input_boolean.disable_roomba
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_utility_area_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_fitness_room_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_craft_room_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_laundry_room_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_workbench_lights
       state: 'off'
 
   action:
@@ -1520,14 +1647,14 @@
       to: 'docked'
       for:
         hours: 0
-        minutes: 5
+        minutes: 4
         seconds: 0
     - platform: state
       entity_id: vacuum.basement_roomba
       to: 'paused'
       for:
         hours: 0
-        minutes: 5
+        minutes: 4
         seconds: 0
 
   condition:
@@ -1543,6 +1670,24 @@
     - condition: state
       entity_id: binary_sensor.fitness_room_motion
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_roomba
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_utility_area_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_fitness_room_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_craft_room_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_laundry_room_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_workbench_lights
+      state: 'off'
 
   action:
     - service: light.turn_off
@@ -1550,8 +1695,1575 @@
         - light.basement_lighting
 
 #################################################################
+## Individual Room Lights
+#################################################################
+
+        ##########################################################
+        ## Toggle Lights with Room Clean
+        ##########################################################
+
+- alias: Roomba - Toggle Lights with Room Clean
+  id: 'roomba_tooggle_lights_with_room_clean'
+
+  mode: parallel
+  trigger:
+    - platform: state
+      entity_id: 
+        - input_boolean.roomba_clean_living_room
+        - input_boolean.roomba_clean_front_door
+      to: 'on'
+      id: input_boolean.roomba_clean_living_room_lights
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+    - platform: state
+      entity_id: 
+        - input_boolean.roomba_clean_dining_room
+        - input_boolean.roomba_clean_dining_room_table
+      to: 'on'
+      id: input_boolean.roomba_clean_dining_room_lights
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+    - platform: state
+      entity_id: 
+        - input_boolean.roomba_clean_kitchen
+        - input_boolean.roomba_clean_back_door
+      to: 'on'
+      id: input_boolean.roomba_clean_kitchen_lights
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+    - platform: state
+      entity_id: 
+        - input_boolean.roomba_clean_hallway
+      to: 'on'
+      id: input_boolean.roomba_clean_hallway_lights
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+    - platform: state
+      entity_id: 
+        - input_boolean.roomba_clean_bathroom
+      to: 'on'
+      id: input_boolean.roomba_clean_bathroom_lights
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+    - platform: state
+      entity_id: 
+        - input_boolean.roomba_clean_bedroom
+      to: 'on'
+      id: input_boolean.roomba_clean_bedroom_lights
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+    - platform: state
+      entity_id: 
+        - input_boolean.roomba_clean_bedroom_closet
+      to: 'on'
+      id: input_boolean.roomba_clean_bedroom_closet_lights
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+    - platform: state
+      entity_id: 
+        - input_boolean.roomba_clean_front_door
+      to: 'on'
+      id: input_boolean.roomba_clean_living_room_lights
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+    - platform: state
+      entity_id: 
+        - input_boolean.roomba_clean_USER1_office
+      to: 'on'
+      id: input_boolean.roomba_clean_USER1_office_lights
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+    - platform: state
+      entity_id: 
+        - input_boolean.roomba_clean_USER2_office
+      to: 'on'
+      id: input_boolean.roomba_clean_USER2_office_lights
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+    - platform: state
+      entity_id: 
+        - input_boolean.roomba_clean_guest_bedroom
+      to: 'on'
+      id: input_boolean.roomba_clean_guest_bedroom_lights
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+    - platform: state
+      entity_id: 
+        - input_boolean.roomba_clean_upstairs_hallway
+      to: 'on'
+      id: input_boolean.roomba_clean_upstairs_hallway_lights
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+    - platform: state
+      entity_id: 
+        - input_boolean.roomba_clean_utility_area
+      to: 'on'
+      id: input_boolean.roomba_clean_utility_area_lights
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+    - platform: state
+      entity_id: 
+        - input_boolean.roomba_clean_fitness_room
+      to: 'on'
+      id: input_boolean.roomba_clean_fitness_room_lights
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+    - platform: state
+      entity_id: 
+        - input_boolean.roomba_clean_craft_room
+      to: 'on'
+      id: input_boolean.roomba_clean_craft_room_lights
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+    - platform: state
+      entity_id: 
+        - input_boolean.roomba_clean_laundry_room
+      to: 'on'
+      id: input_boolean.roomba_clean_laundry_room_lights
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+    - platform: state
+      entity_id: 
+        - input_boolean.roomba_clean_workbench
+      to: 'on'
+      id: iinput_boolean.roomba_clean_workbench_lights
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+
+  action:
+    - service: homeassistant.turn_on
+      target:
+        entity_id: '{{ trigger.id }}'
+
+        ##########################################################
+        ## Turn On Living Room Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn On Living Room Lights Room Clean
+  id: 'roomba_turn_on_living_room_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.main_floor_roomba
+      to: 'cleaning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 5
+
+  condition:
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: input_boolean.roomba_clean_living_room_lights
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.roomba_clean_front_door
+        state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.living_room_lights
+
+        ##########################################################
+        ## Turn Off Living Room Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn Off Living Room Lights Room Clean
+  id: 'roomba_turn_off_living_room_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.main_floor_roomba
+      to: 'docked'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: input_boolean.roomba_clean_living_room_lights
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.roomba_clean_front_door
+        state: 'on'
+    - condition: state
+      entity_id: light.living_room_lights
+      state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'returning'
+    - condition: state
+      entity_id: binary_sensor.living_room_motion
+      state: 'off'
+      for:
+        minutes: 6
+    - condition: time
+      after: '08:30:00'
+      before: '23:00:00'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.roomba_clean_living_room_lights
+        - input_boolean.roomba_clean_front_door
+    - service: light.turn_off
+      entity_id:
+        - light.living_room_lights
+
+        ##########################################################
+        ## Turn On Dining Room Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn On Dining Room Lights Room Clean
+  id: 'roomba_turn_on_dining_room_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.main_floor_roomba
+      to: 'cleaning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 5
+
+  condition:
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: input_boolean.roomba_clean_dining_room_lights
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.roomba_clean_dining_room_table
+        state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.dining_room_lights
+
+        ##########################################################
+        ## Turn Off Dining Room Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn Off Dining Room Lights Room Clean
+  id: 'roomba_turn_off_dining_room_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.main_floor_roomba
+      to: 'docked'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: input_boolean.roomba_clean_dining_room_lights
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.roomba_clean_dining_room_table
+        state: 'on'
+    - condition: state
+      entity_id: light.dining_room_lights
+      state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'returning'
+    - condition: state
+      entity_id: binary_sensor.dining_room_motion
+      state: 'off'
+      for:
+        minutes: 6
+    - condition: time
+      after: '08:30:00'
+      before: '23:00:00'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.roomba_clean_dining_room_lights
+        - input_boolean.roomba_clean_dining_room_table
+    - service: light.turn_off
+      entity_id:
+        - light.dining_room_lights
+
+        ##########################################################
+        ## Turn On Kitchen Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn On Kitchen Lights Room Clean
+  id: 'roomba_turn_on_kitchen_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.main_floor_roomba
+      to: 'cleaning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 5
+
+  condition:
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: input_boolean.roomba_clean_kitchen_lights
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.roomba_clean_back_door
+        state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.kitchen_lights
+
+        ##########################################################
+        ## Turn Off Kitchen Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn Off Kitchen Lights Room Clean
+  id: 'roomba_turn_off_kitchen_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.main_floor_roomba
+      to: 'docked'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: input_boolean.roomba_clean_kitchen_lights
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.roomba_clean_back_door
+        state: 'on'
+    - condition: state
+      entity_id: light.kitchen_lights
+      state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'returning'
+    - condition: state
+      entity_id: binary_sensor.kitchen_motion
+      state: 'off'
+      for:
+        minutes: 6
+    - condition: time
+      after: '08:30:00'
+      before: '23:00:00'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.roomba_clean_kitchen_lights
+        - input_boolean.roomba_clean_back_door
+    - service: light.turn_off
+      entity_id:
+        - light.kitchen_lights
+
+        ##########################################################
+        ## Turn On Hallway Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn On Hallway Lights Room Clean
+  id: 'roomba_turn_on_hallway_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.main_floor_roomba
+      to: 'cleaning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 5
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.roomba_clean_hallway_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.hallway_light
+
+        ##########################################################
+        ## Turn Off Hallway Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn Off Hallway Lights Room Clean
+  id: 'roomba_turn_off_hallway_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.main_floor_roomba
+      to: 'docked'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.roomba_clean_hallway_lights
+      state: 'on'
+    - condition: state
+      entity_id: light.hallway_light
+      state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'returning'
+    - condition: state
+      entity_id: binary_sensor.dining_room_motion
+      state: 'off'
+      for:
+        minutes: 6
+    - condition: time
+      after: '08:30:00'
+      before: '23:00:00'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.roomba_clean_hallway_lights
+    - service: light.turn_off
+      entity_id:
+        - light.hallway_light
+
+        ##########################################################
+        ## Turn On Bathroom Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn On Bathroom Lights Room Clean
+  id: 'roomba_turn_on_bathroom_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.main_floor_roomba
+      to: 'cleaning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 5
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.roomba_clean_bathroom_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.bathroom_lights
+
+        ##########################################################
+        ## Turn Off Bathroom Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn Off Bathroom Lights Room Clean
+  id: 'roomba_turn_off_bathroom_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.main_floor_roomba
+      to: 'docked'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.roomba_clean_bathroom_lights
+      state: 'on'
+    - condition: state
+      entity_id: light.bathroom_lights
+      state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'returning'
+    - condition: state
+      entity_id: binary_sensor.bathroom_motion
+      state: 'off'
+      for:
+        minutes: 6
+    - condition: time
+      after: '08:30:00'
+      before: '23:00:00'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.roomba_clean_bathroom_lights
+    - service: light.turn_off
+      entity_id:
+        - light.bathroom_lights
+
+        ##########################################################
+        ## Turn On Bedroom Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn On Bedroom Lights Room Clean
+  id: 'roomba_turn_on_bedroom_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.main_floor_roomba
+      to: 'cleaning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 5
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.roomba_clean_bedroom_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.bedroom_lamps
+        - light.bedroom_ceiling
+
+        ##########################################################
+        ## Turn Off Bedroom Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn Off Bedroom Lights Room Clean
+  id: 'roomba_turn_off_bedroom_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.main_floor_roomba
+      to: 'docked'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.roomba_clean_bedroom_lights
+      state: 'on'
+    - condition: state
+      entity_id: light.bedroom_lights
+      state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'returning'
+    - condition: time
+      after: '08:30:00'
+      before: '23:00:00'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.roomba_clean_bedroom_lights
+    - service: light.turn_off
+      entity_id:
+        - light.bedroom_lamps
+        - light.bedroom_ceiling
+
+        ##########################################################
+        ## Turn On Bedroom Closet Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn On Bedroom Closet Lights Room Clean
+  id: 'roomba_turn_on_bedroom_closet_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.main_floor_roomba
+      to: 'cleaning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 5
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.roomba_clean_bedroom_closet_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.bedroom_closet_lights
+
+        ##########################################################
+        ## Turn Off Bedroom Closet Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn Off Bedroom Closet Lights Room Clean
+  id: 'roomba_turn_off_bedroom_closet_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.main_floor_roomba
+      to: 'docked'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.roomba_clean_bedroom_closet_lights
+      state: 'on'
+    - condition: state
+      entity_id: light.bedroom_closet_lights
+      state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'returning'
+    - condition: state
+      entity_id: binary_sensor.bedroom_closet_motion
+      state: 'off'
+      for:
+        minutes: 6
+    - condition: time
+      after: '08:30:00'
+      before: '23:00:00'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.roomba_clean_bedroom_closet_lights
+    - service: light.turn_off
+      entity_id:
+        - light.bedroom_closet_lights
+
+        ##########################################################
+        ## Turn On USER1's Office Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn On USER1's Office Lights Room Clean
+  id: 'roomba_turn_on_USER1_office_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.upstairs_roomba
+      to: 'cleaning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 5
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.roomba_clean_USER1_office_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.USER1_office_lights
+
+        ##########################################################
+        ## Turn Off USER1's Office Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn Off USER1's Office Lights Room Clean
+  id: 'roomba_turn_off_USER1_office_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.upstairs_roomba
+      to: 'docked'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.roomba_clean_USER1_office_lights
+      state: 'on'
+    - condition: state
+      entity_id: light.USER1_office_lights
+      state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'returning'
+    - condition: state
+      entity_id: binary_sensor.USER1s_office_motion
+      state: 'off'
+      for:
+        minutes: 6
+    - condition: time
+      after: '08:30:00'
+      before: '23:00:00'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.roomba_clean_USER1_office_lights
+    - service: light.turn_off
+      entity_id:
+        - light.USER1_office_lights
+
+        ##########################################################
+        ## Turn On USER2's Office Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn On USER2's Office Lights Room Clean
+  id: 'roomba_turn_on_USER2_office_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.upstairs_roomba
+      to: 'cleaning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 5
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.roomba_clean_USER2_office_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.USER2_office_lights
+
+        ##########################################################
+        ## Turn Off USER2's Office Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn Off USER2's Office Lights Room Clean
+  id: 'roomba_turn_off_USER2_office_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.upstairs_roomba
+      to: 'docked'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.roomba_clean_USER2_office_lights
+      state: 'on'
+    - condition: state
+      entity_id: light.USER2_office_lights
+      state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'returning'
+    - condition: state
+      entity_id: binary_sensor.USER2s_office_motion
+      state: 'off'
+      for:
+        minutes: 6
+    - condition: time
+      after: '08:30:00'
+      before: '23:00:00'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.roomba_clean_USER2_office_lights
+    - service: light.turn_off
+      entity_id:
+        - light.USER2_office_lights
+
+        ##########################################################
+        ## Turn On Guest Bedroom Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn On Guest Bedroom Lights Room Clean
+  id: 'roomba_turn_on_guest_bedroom_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.upstairs_roomba
+      to: 'cleaning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 5
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.roomba_clean_guest_bedroom_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.guest_bedroom_lights
+
+        ##########################################################
+        ## Turn Off Guest Bedroom Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn Off Guest Bedroom Lights Room Clean
+  id: 'roomba_turn_off_guest_bedroom_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.upstairs_roomba
+      to: 'docked'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.roomba_clean_guest_bedroom_lights
+      state: 'on'
+    - condition: state
+      entity_id: light.guest_bedroom_lights
+      state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'returning'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+    - condition: time
+      after: '08:30:00'
+      before: '23:00:00'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.roomba_clean_guest_bedroom_lights
+    - service: light.turn_off
+      entity_id:
+        - light.guest_bedroom_lights
+
+        ##########################################################
+        ## Turn On Upstairs Hallway Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn On Upstairs Hallway Lights Room Clean
+  id: 'roomba_turn_on_upstairs_hallway_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.upstairs_roomba
+      to: 'cleaning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 5
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.roomba_clean_upstairs_hallway_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.stairs_light
+
+        ##########################################################
+        ## Turn Off Upstairs Hallway Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn Off Upstairs Hallway Lights Room Clean
+  id: 'roomba_turn_off_upstairs_hallway_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.upstairs_roomba
+      to: 'docked'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.roomba_clean_upstairs_hallway_lights
+      state: 'on'
+    - condition: state
+      entity_id: light.stairs_light
+      state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.upstairs_roomba
+        state: 'returning'
+    - condition: state
+      entity_id: binary_sensor.stairs_motion
+      state: 'off'
+      for:
+        minutes: 6
+    - condition: time
+      after: '08:30:00'
+      before: '23:00:00'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.roomba_clean_upstairs_hallway_lights
+    - service: light.turn_off
+      entity_id:
+        - light.stairs_light
+
+        ##########################################################
+        ## Turn On Utility Area Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn On Utility Area Lights Room Clean
+  id: 'roomba_turn_on_utility_area_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.basement_roomba
+      to: 'cleaning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 5
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.roomba_clean_utility_area_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.basement_lights
+        - light.basement_lamp
+        - light.work_bench_light
+        - light.laundry_room_light
+
+        ##########################################################
+        ## Turn Off Utility Area Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn Off Utility Area Lights Room Clean
+  id: 'roomba_turn_off_utility_area_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.basement_roomba
+      to: 'docked'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.roomba_clean_utility_area_lights
+      state: 'on'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: light.basement_lights
+        state: 'on'
+      - condition: state
+        entity_id: light.basement_lamp
+        state: 'on'
+      - condition: state
+        entity_id: light.work_bench_light
+        state: 'on'
+      - condition: state
+        entity_id: light.laundry_room_light
+        state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.basement_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.basement_roomba
+        state: 'returning'
+    - condition: state
+      entity_id: binary_sensor.basement_motion
+      state: 'off'
+      for:
+        minutes: 6
+    - condition: time
+      after: '08:30:00'
+      before: '23:00:00'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.roomba_clean_utility_area_lights
+    - service: light.turn_off
+      entity_id:
+        - light.basement_lights
+        - light.basement_lamp
+        - light.work_bench_light
+        - light.laundry_room_light
+
+        ##########################################################
+        ## Turn On Laundry Room Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn On Laundry Room Lights Room Clean
+  id: 'roomba_turn_on_laundry_room_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.basement_roomba
+      to: 'cleaning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 5
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.roomba_clean_laundry_room_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.basement_lights
+        - light.basement_lamp
+        - light.work_bench_light
+        - light.laundry_room_light
+
+        ##########################################################
+        ## Turn Off Laundry Room Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn Off Laundry Room Lights Room Clean
+  id: 'roomba_turn_off_laundry_room_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.basement_roomba
+      to: 'docked'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.roomba_clean_laundry_room_lights
+      state: 'on'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: light.basement_lights
+        state: 'on'
+      - condition: state
+        entity_id: light.basement_lamp
+        state: 'on'
+      - condition: state
+        entity_id: light.work_bench_light
+        state: 'on'
+      - condition: state
+        entity_id: light.laundry_room_light
+        state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.basement_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.basement_roomba
+        state: 'returning'
+    - condition: state
+      entity_id: binary_sensor.basement_motion
+      state: 'off'
+      for:
+        minutes: 6
+    - condition: time
+      after: '08:30:00'
+      before: '23:00:00'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.roomba_clean_laundry_room_lights
+    - service: light.turn_off
+      entity_id:
+        - light.basement_lights
+        - light.basement_lamp
+        - light.work_bench_light
+        - light.laundry_room_light
+
+        ##########################################################
+        ## Turn On Workbench Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn On Workbench Lights Room Clean
+  id: 'roomba_turn_on_workbench_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.basement_roomba
+      to: 'cleaning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 5
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.roomba_clean_workbench_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.basement_lights
+        - light.basement_lamp
+        - light.work_bench_light
+        - light.laundry_room_light
+
+        ##########################################################
+        ## Turn Off Workbench Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn Off Workbench Lights Room Clean
+  id: 'roomba_turn_off_workbench_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.basement_roomba
+      to: 'docked'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.roomba_clean_workbench_lights
+      state: 'on'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: light.basement_lights
+        state: 'on'
+      - condition: state
+        entity_id: light.basement_lamp
+        state: 'on'
+      - condition: state
+        entity_id: light.work_bench_light
+        state: 'on'
+      - condition: state
+        entity_id: light.laundry_room_light
+        state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.basement_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.basement_roomba
+        state: 'returning'
+    - condition: state
+      entity_id: binary_sensor.basement_motion
+      state: 'off'
+      for:
+        minutes: 6
+    - condition: time
+      after: '08:30:00'
+      before: '23:00:00'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.roomba_clean_workbench_lights
+    - service: light.turn_off
+      entity_id:
+        - light.basement_lights
+        - light.basement_lamp
+        - light.work_bench_light
+        - light.laundry_room_light
+
+        ##########################################################
+        ## Turn On Fitness Room Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn On Fitness Room Lights Room Clean
+  id: 'roomba_turn_on_fitness_room_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.basement_roomba
+      to: 'cleaning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 5
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.roomba_clean_fitness_room_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.fitness_room_ceiling
+
+        ##########################################################
+        ## Turn Off Fitness Room Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn Off Fitness Room Lights Room Clean
+  id: 'roomba_turn_off_fitness_room_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.basement_roomba
+      to: 'docked'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.roomba_clean_fitness_room_lights
+      state: 'on'
+    - condition: state
+      entity_id: light.fitness_room_ceiling
+      state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.basement_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.basement_roomba
+        state: 'returning'
+    - condition: state
+      entity_id: binary_sensor.fitness_room_motion
+      state: 'off'
+      for:
+        minutes: 6
+    - condition: time
+      after: '08:30:00'
+      before: '23:00:00'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.roomba_clean_fitness_room_lights
+    - service: light.turn_off
+      entity_id:
+        - light.fitness_room_ceiling
+
+        ##########################################################
+        ## Turn On Craft Room Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn On Craft Room Lights Room Clean
+  id: 'roomba_turn_on_craft_room_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.basement_roomba
+      to: 'cleaning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 5
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.roomba_clean_craft_room_lights
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.craft_room_ceiling
+
+        ##########################################################
+        ## Turn Off Craft Room Lights Room Clean
+        ##########################################################
+
+- alias: Roomba - Turn Off Craft Room Lights Room Clean
+  id: 'roomba_turn_off_craft_room_lights_room_clean'
+
+  trigger:
+    - platform: state
+      entity_id: vacuum.basement_roomba
+      to: 'docked'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.roomba_clean_craft_room_lights
+      state: 'on'
+    - condition: state
+      entity_id: light.craft_room_ceiling
+      state: 'on'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.basement_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.basement_roomba
+        state: 'returning'
+    - condition: state
+      entity_id: binary_sensor.craft_room_motion
+      state: 'off'
+      for:
+        minutes: 6
+    - condition: time
+      after: '08:30:00'
+      before: '23:00:00'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.roomba_clean_craft_room_lights
+    - service: light.turn_off
+      entity_id:
+        - light.craft_room_ceiling
+
+#################################################################
 ## Helper Automations
 #################################################################
+
+        ##########################################################
+        ## Disable Room Clean Boolean if Roomba Didn't Run Main Floor
+        ##########################################################
+
+- alias: Roomba - Disable Room Clean Boolean if Roomba Didn't Run Main Floor
+  id: 'roomba_disable_room_clean_boolean_if_roomba_didnt_run_main_floor'
+
+  mode: parallel
+  trigger:
+    - platform: state
+      entity_id: 
+        - input_boolean.roomba_clean_living_room
+        - input_boolean.roomba_clean_dining_room
+        - input_boolean.roomba_clean_kitchen
+        - input_boolean.roomba_clean_hallway
+        - input_boolean.roomba_clean_bathroom
+        - input_boolean.roomba_clean_bedroom
+        - input_boolean.roomba_clean_bedroom_closet
+        - input_boolean.roomba_clean_front_door
+        - input_boolean.roomba_clean_back_door
+        - input_boolean.roomba_clean_dining_room_table
+        - input_boolean.roomba_clean_living_room_lights
+        - input_boolean.roomba_clean_living_room_lights
+        - input_boolean.roomba_clean_dining_room_lights
+        - input_boolean.roomba_clean_kitchen_lights
+        - input_boolean.roomba_clean_hallway_lights
+        - input_boolean.roomba_clean_bathroom_lights
+        - input_boolean.roomba_clean_bedroom_lights
+        - input_boolean.roomba_clean_bedroom_closet_lights
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+  
+  condition:
+    - condition: state
+      entity_id: vacuum.main_floor_roomba
+      state: 'docked'
+      for:
+        hours: 0
+        minutes: 4
+        seconds: 0
+
+  action:
+    - service: homeassistant.turn_off
+      target:
+        entity_id: '{{ trigger.entity_id }}'
+
+        ##########################################################
+        ## Disable Room Clean Boolean if Roomba Didn't Run Upstairs
+        ##########################################################
+
+- alias: Roomba - Disable Room Clean Boolean if Roomba Didn't Run Upstairs
+  id: 'roomba_disable_room_clean_boolean_if_roomba_didnt_run_upstairs'
+
+  mode: parallel
+  trigger:
+    - platform: state
+      entity_id: 
+        - input_boolean.roomba_clean_USER1_office
+        - input_boolean.roomba_clean_USER2_office
+        - input_boolean.roomba_clean_guest_bedroom
+        - input_boolean.roomba_clean_upstairs_hallway
+        - input_boolean.roomba_clean_USER1_office_lights
+        - input_boolean.roomba_clean_USER2_office_lights
+        - input_boolean.roomba_clean_guest_bedroom_lights
+        - input_boolean.roomba_clean_upstairs_hallway_lights
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+  
+  condition:
+    - condition: state
+      entity_id: vacuum.upstairs_roomba
+      state: 'docked'
+      for:
+        hours: 0
+        minutes: 4
+        seconds: 0
+
+  action:
+    - service: homeassistant.turn_off
+      target:
+        entity_id: '{{ trigger.entity_id }}'
+
+        ##########################################################
+        ## Disable Room Clean Boolean if Roomba Didn't Run Basement
+        ##########################################################
+
+- alias: Roomba - Disable Room Clean Boolean if Roomba Didn't Run Basement
+  id: 'roomba_disable_room_clean_boolean_if_roomba_didnt_run_basement'
+
+  mode: parallel
+  trigger:
+    - platform: state
+      entity_id:
+        - input_boolean.roomba_clean_utility_area
+        - input_boolean.roomba_clean_fitness_room
+        - input_boolean.roomba_clean_craft_room
+        - input_boolean.roomba_clean_laundry_room
+        - input_boolean.roomba_clean_workbench
+        - input_boolean.roomba_clean_utility_area_lights
+        - input_boolean.roomba_clean_fitness_room_lights
+        - input_boolean.roomba_clean_craft_room_lights
+        - input_boolean.roomba_clean_laundry_room_lights
+        - input_boolean.roomba_clean_workbench_lights
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+  
+  condition:
+    - condition: state
+      entity_id: vacuum.upstairs_roomba
+      state: 'docked'
+      for:
+        hours: 0
+        minutes: 4
+        seconds: 0
+
+  action:
+    - service: homeassistant.turn_off
+      target:
+        entity_id: '{{ trigger.entity_id }}'
 
         ##########################################################
         ## Set Upstairs Roomba has Ran for the Day
@@ -1632,11 +3344,33 @@
         - input_boolean.basement_roomba_ran
 
         ##########################################################
-        ## Reset Roomba has ran for the day
+        ## Set Upstairs Roomba has Ran USER1's Office
         ##########################################################
 
-- alias: Roomba - Reset Roomba has ran for the day
-  id: 'roomba_reset_roomba_has_ran_for_the_day'
+- alias: Roomba - Set Upstairs Roomba has Ran USER1's Office
+  id: 'roomba_set_upstairs_roomba_has_ran_for_the_day_USER1_office'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.roomba_clean_USER1_office
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.upstairs_roomba_ran_USER1_office
+      state: 'off'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id:
+        - input_boolean.upstairs_roomba_ran_USER1_office
+
+        ##########################################################
+        ## Reset Roomba Helpers
+        ##########################################################
+
+- alias: Roomba - Reset Helpers
+  id: 'roomba_reset_helpers'
 
   trigger:
    - platform: time
@@ -1648,6 +3382,23 @@
         - input_boolean.main_floor_roomba_ran
         - input_boolean.upstairs_roomba_ran
         - input_boolean.basement_roomba_ran
+        - input_boolean.upstairs_roomba_ran_USER1_office
+        - input_boolean.roomba_clean_living_room_lights
+        - input_boolean.roomba_clean_dining_room_lights
+        - input_boolean.roomba_clean_kitchen_lights
+        - input_boolean.roomba_clean_hallway_lights
+        - input_boolean.roomba_clean_bathroom_lights
+        - input_boolean.roomba_clean_bedroom_lights
+        - input_boolean.roomba_clean_bedroom_closet_lights
+        - input_boolean.roomba_clean_utility_area_lights
+        - input_boolean.roomba_clean_fitness_room_lights
+        - input_boolean.roomba_clean_craft_room_lights
+        - input_boolean.roomba_clean_laundry_room_lights
+        - input_boolean.roomba_clean_workbench_lights
+        - input_boolean.roomba_clean_USER1_office_lights
+        - input_boolean.roomba_clean_USER2_office_lights
+        - input_boolean.roomba_clean_guest_bedroom_lights
+        - input_boolean.roomba_clean_upstairs_hallway_lights
 
 #################################################################
 ## Notifications
