@@ -159,8 +159,6 @@ Harmony Hubs work via a combination of [input_selects]( https://github.com/geeko
 
 Water sensors serve one major function, to alert me to the presence of water.  Almost all of those automations can be fond via [water_works.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/water_works.yaml)
 
-Smoke detectors, like the water sensors, have one real function to alert me of smoke or CO2.  Almost all of those automations can be fond via [smoke_alarm.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/smoke_alarm.yaml)
-
 ## <a name="cameras">Cameras</a>
 
 | [Menu](#menu) | [Screenshots](#screenshots) |
