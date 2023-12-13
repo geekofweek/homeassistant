@@ -254,7 +254,7 @@ All laundry related automations can be found in [laundry.yaml]( https://github.c
 | [Ubiquiti Networks UniFi Access Point WiFi 6 Long-Range (U6-LR-US)](https://amzn.to/3cFM2yX) | 2 | Ethernet | [Ubiquiti Unifi](https://www.home-assistant.io/components/device_tracker.unifi/)| Wireless Access Point for interior and exterior use. Presence detection for non household members and devices. |
 
 
-Since I don’t use the network equipment as my primary presence detection method most of the automation is around house guests via [house_guest.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/house_guest.yaml).  The main function of the network equipment is to be network equipment for my fiber internet service.
+Since I don’t use the network equipment as my primary presence detection method most of the automation is around house guests via [location.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/location.yaml).  The main function of the network equipment is to be network equipment for my fiber internet service.
 
 ## <a name="other">Other Hardware</a>
 
