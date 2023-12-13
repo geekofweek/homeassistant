@@ -98,7 +98,7 @@ Locks are used mostly as a way to lock / unlock doors based on locations, see [l
 | [GoControl Door/Window Sensor](https://amzn.to/2wOhLfn) | 3 | Z-Wave | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Door sensors to detect if exterior doors have been opened / closed |
 | [GoControl Siren and Strobe](https://amzn.to/2k4bK4U) | 1 | Z-Wave | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Alarm used for when alarm is triggered or when you want to get someone's attention|
 
-Door sensors, motion sensors, and the alarm siren are used in many different ways via [alarm.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/alarm.yaml).  I've also implemented some of the alarm functions as part of [water_sensors.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/water_sensors.yaml).
+Door sensors, motion sensors, and the alarm siren are used in many different ways via [alarm.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/alarm.yaml).  I've also implemented some of the alarm functions as part of [water_works.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/water_works.yaml).
 
 ## <a name="voice">Voice Assistant</a>
 
