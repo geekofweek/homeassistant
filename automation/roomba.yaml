@@ -3352,13 +3352,21 @@
 
   trigger:
     - platform: state
-      entity_id: input_boolean.roomba_clean_USER1_office
-      to: 'on'
-
+      entity_id: vacuum.upstairs_roomba
+      to: 'cleaning'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+  
   condition:
     - condition: state
       entity_id: input_boolean.upstairs_roomba_ran_USER1_office
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.roomba_clean_USER1_office
+      state: 'on'
+
 
   action:
     - service: homeassistant.turn_on
