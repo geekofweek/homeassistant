@@ -49,7 +49,7 @@
   - sensor: 
     - unique_id: prusa_mk3_filename
       name: Prusa MK3 Filename
-      state: "{{ state_attr('sensor.prusa_mk3_api_job', 'file')['name'] if is_state('sensor.prusa_mk3_api_job', 'printing') else none }}"
+      state: "{{ state_attr('sensor.prusa_mk3_api_job', 'file')['name'] if is_state('sensor.prusa_mk3', ['printing', 'attention', 'paused'] ) else None }}"
 
       ##########################################################
       ## Prusa MK3 Material
@@ -58,7 +58,7 @@
   - sensor: 
     - unique_id: prusa_mk3_material
       name: Prusa MK3 Material
-      state: "{{ state_attr('sensor.prusa_mk3_api_job', 'file')['meta']['filament_type'] if is_state('sensor.prusa_mk3_api_job', 'printing') else none }}"
+      state: "{{ state_attr('sensor.prusa_mk3_api_job', 'file')['meta']['filament_type'] if is_state('sensor.prusa_mk3', ['printing', 'attention', 'paused']) else None }}"
 
       ##########################################################
       ## Prusa MK3 Progress
@@ -68,7 +68,7 @@
     - unique_id: prusa_mk3_progress
       name: Prusa MK3 Progress
       unit_of_measurement: "%"
-      state: "{{ state_attr('sensor.prusa_mk3_api_job', 'progress') }}"
+      state: "{{ state_attr('sensor.prusa_mk3_api_job', 'progress') if is_state('sensor.prusa_mk3', ['printing', 'attention', 'paused']) else None }}"
 
       ##########################################################
       ## Prusa MK3 Print Start
@@ -78,7 +78,7 @@
     - unique_id: prusa_mk3_print_start
       name: Prusa MK3 Print Start
       device_class: timestamp
-      state: "{{ utcnow() - timedelta( seconds=state_attr('sensor.prusa_mk3_api_job', 'time_printing') ) }}"
+      state: "{{ utcnow() - timedelta( seconds=state_attr('sensor.prusa_mk3_api_job', 'time_printing') ) if is_state('sensor.prusa_mk3', ['printing', 'attention', 'paused']) else None }}"
 
       ##########################################################
       ## Prusa MK3 Print Finish
@@ -88,7 +88,7 @@
     - unique_id: prusa_mk3_print_finish
       name: Prusa MK3 Print Finish
       device_class: timestamp
-      state: "{{ utcnow() + timedelta( seconds=state_attr('sensor.prusa_mk3_api_job', 'time_remaining') ) }}"
+      state: "{{ utcnow() + timedelta( seconds=state_attr('sensor.prusa_mk3_api_job', 'time_remaining') ) if is_state('sensor.prusa_mk3', ['printing', 'attention', 'paused']) else None }}"
 
       ##########################################################
       ## Electricity Rate
