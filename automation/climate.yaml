@@ -95,9 +95,9 @@
 
   trigger:
     - platform: state
-      entity_id: switch.water_main
-      from: 'on'
-      to: 'off'
+      entity_id: valve.water_main
+      from: 'open'
+      to: 'closed'
       for:
         hours: 0
         minutes: 5
@@ -127,9 +127,9 @@
 
   trigger:
     - platform: state
-      entity_id: switch.water_main
-      from: 'off'
-      to: 'on'
+      entity_id: valve.water_main
+      from: 'closed'
+      to: 'open'
       for:
         hours: 0
         minutes: 15

@@ -2,28 +2,18 @@
 ## Sensors
 #################################################################
 
-        ##########################################################
-        ## Server
-        ##########################################################
-
-  - platform: systemmonitor
-    resources:
-      - type: processor_use
-      - type: memory_use_percent
-      - type: last_boot
-      - type: disk_use_percent
-
 #################################################################
 ## RESTful Sensors
 #################################################################
 
         ##########################################################
-        ## Prusa MK3 Status
+        ## Prusa MK3 API Version
         ##########################################################
 
   - platform: rest
-    resource: http://prusa-mk3.network.REDACTED/api/job
-    name: Prusa MK3 Job Status
+    resource: http://prusa-mk3.network.REDACTED/api/version
+    unique_id: prusa_mk3_api_version
+    name: Prusa MK3 API Version
     username: !secret prusalink_mk3_user
     password: !secret prusalink_mk3_pass
     authentication: digest
@@ -31,19 +21,43 @@
     scan_interval: 3
     headers:
       Content-Type: application/json
-    value_template: "{{ value_json.state }}"
+    value_template: "{{value_json['api'] | lower }}"
+    json_attributes:
+        - "api"
+        - "server"
+        - "firmware"
+        - "sdk"
+
+        ##########################################################
+        ## Prusa MK3 Legacy Job
+        ##########################################################
+
+  - platform: rest
+    resource: http://prusa-mk3.network.REDACTED/api/job
+    unique_id: prusa_mk3_api_legacy_job
+    name: Prusa MK3 API Legacy Job
+    username: !secret prusalink_mk3_user
+    password: !secret prusalink_mk3_pass
+    authentication: digest
+    method: GET
+    scan_interval: 3
+    headers:
+      Content-Type: application/json
+    value_template: "{{ value_json.state | lower }}"
     json_attributes:
         - "job"
         - "progress"
+        - "file"
         - "state"
 
         ##########################################################
-        ## Prusa MK3 Telemetry
+        ## Prusa MK3 Legacy Telemetry
         ##########################################################
 
   - platform: rest
     resource: http://prusa-mk3.network.REDACTED/api/printer
-    name: Prusa MK3 Telemetry
+    unique_id: prusa_mk3_api_legacy_telemetry
+    name: Prusa MK3 API Legacy Telemetry
     username: !secret prusalink_mk3_user
     password: !secret prusalink_mk3_pass
     authentication: digest
@@ -56,3 +70,67 @@
           - "telemetry"
           - "temperature"
           - "state"
+
+        ##########################################################
+        ## Prusa MK3 Job
+        ##########################################################
+
+  - platform: rest
+    resource: http://prusa-mk3.network.REDACTED/api/v1/job
+    unique_id: prusa_mk3_api_job
+    name: Prusa MK3 API Job
+    username: !secret prusalink_mk3_user
+    password: !secret prusalink_mk3_pass
+    authentication: digest
+    method: GET
+    scan_interval: 3
+    headers:
+      Content-Type: application/json
+    value_template: "{{ value_json.state | lower }}"
+    json_attributes:
+        - "state"
+        - "progress"
+        - "time_remaining"
+        - "time_printing"
+        - "file"
+
+        ##########################################################
+        ## Prusa MK3 Info
+        ##########################################################
+
+  - platform: rest
+    resource: http://prusa-mk3.network.REDACTED/api/v1/info
+    unique_id: prusa_mk3_api_info
+    name: Prusa MK3 API Info
+    username: !secret prusalink_mk3_user
+    password: !secret prusalink_mk3_pass
+    authentication: digest
+    method: GET
+    scan_interval: 3
+    headers:
+      Content-Type: application/json
+    value_template: "OK"
+    json_attributes:
+        - "name"
+        - "nozzle_diameter"
+        - "min_extrusion_temp"
+
+        ##########################################################
+        ## Prusa MK3 Status
+        ##########################################################
+
+  - platform: rest
+    resource: http://prusa-mk3.network.REDACTED/api/v1/status
+    unique_id: prusa_mk3_api_status
+    name: Prusa MK3 API Status
+    username: !secret prusalink_mk3_user
+    password: !secret prusalink_mk3_pass
+    authentication: digest
+    method: GET
+    scan_interval: 3
+    headers:
+      Content-Type: application/json
+    value_template: "{{value_json['printer'].state | lower }}"
+    json_attributes:
+        - "storage"
+        - "printer"

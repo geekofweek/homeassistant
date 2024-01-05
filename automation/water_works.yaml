@@ -94,13 +94,13 @@
       entity_id: input_boolean.disable_water_automations
       state: 'off'
     - condition: state
-      entity_id: switch.water_main
-      state: 'on'
+      entity_id: valve.water_main
+      state: 'open'
 
   action:
-    - service: switch.turn_off
+    - service: valve.close_valve
       entity_id:
-        - switch.water_main
+        - valve.water_main
 
         ##########################################################
         ## Shut Off Water Main When Vacation Mode On
@@ -123,13 +123,13 @@
       entity_id: input_boolean.disable_home_away
       state: 'off'
     - condition: state
-      entity_id: switch.water_main
-      state: 'on'
+      entity_id: valve.water_main
+      state: 'open'
 
   action:
-    - service: switch.turn_off
+    - service: valve.close_valve
       entity_id:
-        - switch.water_main
+        - valve.water_main
 
         ##########################################################
         ## Turn On Water Main When Vacation Mode Off
@@ -152,13 +152,13 @@
       entity_id: input_boolean.disable_home_away
       state: 'off'
     - condition: state
-      entity_id: switch.water_main
-      state: 'off'
+      entity_id: valve.water_main
+      state: 'closed'
 
   action:
-    - service: switch.turn_on
+    - service: valve.open_valve
       entity_id:
-        - switch.water_main
+        - valve.water_main
 
 #################################################################
 ## Notifications
@@ -173,9 +173,9 @@
 
   trigger:
     - platform: state
-      entity_id: switch.water_main
-      from: 'on'
-      to: 'off'
+      entity_id: valve.water_main
+      from: 'open'
+      to: 'closed'
 
   condition:
     - condition: state
@@ -199,9 +199,9 @@
 
   trigger:
     - platform: state
-      entity_id: switch.water_main
-      from: 'off'
-      to: 'on'
+      entity_id: valve.water_main
+      from: 'closed'
+      to: 'open'
 
   condition:
     - condition: state

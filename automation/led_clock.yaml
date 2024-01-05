@@ -395,6 +395,7 @@
     - platform: state
       entity_id: sensor.prusa_mk3
       from: 'printing'
+      to: 'finished'
       for:
         hours: 0
         minutes: 1
@@ -447,6 +448,7 @@
     - platform: state
       entity_id: sensor.prusa_mk4
       from: 'printing'
+      to: 'finished'
       for:
         hours: 0
         minutes: 1

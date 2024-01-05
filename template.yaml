@@ -3,109 +3,92 @@
 #################################################################
 
       ##########################################################
-      ## Prusa MK3 Error
+      ## Prusa MK3 Status
       ##########################################################
 
-#  - sensor: 
-#    - unique_id: prusa_mk3_error
-#      name: Prusa MK3 Error
-#      state: "{{ state_attr('sensor.prusa_mk3_telemetry', 'state')['flags']['error'] if is_state('sensor.prusa_mk3_telemetry', 'OK') else None }}"
+  - sensor:
+    - unique_id: prusa_mk3
+      name: Prusa MK3
+      state: "{{ states('sensor.prusa_mk3_api_status') }}"
 
       ##########################################################
-      ## Prusa MK3 Pause
+      ## Prusa MK3 Status UI
       ##########################################################
 
-#  - sensor: 
-#    - unique_id: prusa_mk3_pause
-#      name: Prusa MK3 Pause
-#      state: "{{ state_attr('sensor.prusa_mk3_telemetry', 'state')['flags']['paused'] if is_state('sensor.prusa_mk3_telemetry', 'OK') else None }}"
-
-      ##########################################################
-      ## Prusa MK3 State
-      ##########################################################
-
-#  - sensor: 
-#    - unique_id: prusa_mk3_status
-#      name: Prusa MK3 Status
-#      state: "{{ state_attr('sensor.prusa_mk3_telemetry', 'state')['text'] if is_state('sensor.prusa_mk3_telemetry', 'OK') else None }}"
+  - sensor:
+    - unique_id: prusa_mk3_ui
+      name: Prusa MK3
+      state: "{{ states('sensor.prusa_mk3_api_status') | capitalize }}"
 
       ##########################################################
       ## Prusa MK3 Nozzle Temperature
       ##########################################################
 
-#  - sensor: 
-#    - unique_id: prusa_mk3_nozzle_temp
-#      name: Prusa MK3 Nozzle Temperature
-#      device_class: temperature
-#      state: "{{ state_attr('sensor.prusa_mk3_telemetry', 'telemetry')['temp-nozzle'] if is_state('sensor.prusa_mk3_telemetry', 'OK') else None }}"
+  - sensor: 
+    - unique_id: prusa_mk3_nozzle_temp
+      name: Prusa MK3 Nozzle Temperature
+      device_class: temperature
+      unit_of_measurement: "°C"
+      state: "{{ state_attr('sensor.prusa_mk3_api_status', 'printer')['temp_nozzle'] }}"
 
       ##########################################################
       ## Prusa MK3 Bed Temperature
       ##########################################################
 
-#  - sensor: 
-#    - unique_id: prusa_mk3_bed_temp
-#      name: Prusa MK3 Heatbed Temperature
-#      device_class: temperature
-#      state: "{{ state_attr('sensor.prusa_mk3_telemetry', 'telemetry')['temp-bed'] if is_state('sensor.prusa_mk3_telemetry', 'OK') else None }}"
+  - sensor: 
+    - unique_id: prusa_mk3_bed_temp
+      name: Prusa MK3 Heatbed Temperature
+      device_class: temperature
+      unit_of_measurement: "°C"
+      state: "{{ state_attr('sensor.prusa_mk3_api_status', 'printer')['temp_bed'] }}"          
 
       ##########################################################
       ## Prusa MK3 Print File
       ##########################################################
 
-#  - sensor: 
-#    - unique_id: prusa_mk3_print_file
-#      name: Prusa MK3 Print File
-#      state: "{{ state_attr('sensor.prusa_mk3_job_status', 'job')['file']['name'] if is_state('sensor.prusa_mk3_job_status', 'Printing') else None }}"
+  - sensor: 
+    - unique_id: prusa_mk3_filename
+      name: Prusa MK3 Filename
+      state: "{{ state_attr('sensor.prusa_mk3_api_job', 'file')['name'] if is_state('sensor.prusa_mk3_api_job', 'printing') else none }}"
 
       ##########################################################
       ## Prusa MK3 Material
       ##########################################################
 
-#  - sensor: 
-#    - unique_id: prusa_mk3_material
-#      name: Prusa MK3 Material
-#      state: "{{ state_attr('sensor.prusa_mk3_job_status', 'job')['filament'] if is_state('sensor.prusa_mk3_job_status', 'Printing') else None }}"
+  - sensor: 
+    - unique_id: prusa_mk3_material
+      name: Prusa MK3 Material
+      state: "{{ state_attr('sensor.prusa_mk3_api_job', 'file')['meta']['filament_type'] if is_state('sensor.prusa_mk3_api_job', 'printing') else none }}"
 
       ##########################################################
       ## Prusa MK3 Progress
       ##########################################################
 
-#  - sensor: 
-#    - unique_id: prusa_mk3_progress
-#      name: Prusa MK3 Progress
-#      unit_of_measurement: "%"
-#      state: "{{ state_attr('sensor.prusa_mk3_job_status', 'progress')['completion'] | float * 100 if is_state('sensor.prusa_mk3_job_status', 'Printing') else 0 }}"
+  - sensor: 
+    - unique_id: prusa_mk3_progress
+      name: Prusa MK3 Progress
+      unit_of_measurement: "%"
+      state: "{{ state_attr('sensor.prusa_mk3_api_job', 'progress') }}"
 
       ##########################################################
       ## Prusa MK3 Print Start
       ##########################################################
 
-#  - sensor: 
-#    - unique_id: prusa_mk3_print_start
-#      name: Prusa MK3 Print Start
-#      state: >-
-#        {% set etime = state_attr('sensor.prusa_mk3_job_status', 'progress')['printTime'] | int %}
-#        {% set seconds = etime % 60 %}
-#        {% set minutes = ((etime % 3600) / 60) | int %}
-#        {% set hours = ((etime % 86400) / 3600) | int %}
-#        {% set days = (etime / 86400) | int %}
-#        {% if days > 0 %}{{ days }}d {% endif %}{% if hours > 0 %}{{ hours }}h {% endif %}{% if minutes > 0 %}{{ minutes }}m{% endif %}
+  - sensor: 
+    - unique_id: prusa_mk3_print_start
+      name: Prusa MK3 Print Start
+      device_class: timestamp
+      state: "{{ utcnow() - timedelta( seconds=state_attr('sensor.prusa_mk3_api_job', 'time_printing') ) }}"
 
       ##########################################################
       ## Prusa MK3 Print Finish
       ##########################################################
 
-#  - sensor: 
-#    - unique_id: prusa_mk3_print_finish
-#      name: Prusa MK3 Print Finish
-#      state: >-
-#        {% set etime = state_attr('sensor.prusa_mk3_job_status', 'progress')['printTimeLeft'] | int %}
-#        {% set seconds = etime % 60 %}
-#        {% set minutes = ((etime % 3600) / 60) | int %}
-#        {% set hours = ((etime % 86400) / 3600) | int %}
-#        {% set days = (etime / 86400) | int %}
-#        {% if days > 0 %}{{ days }}d {% endif %}{% if hours > 0 %}{{ hours }}h {% endif %}{% if minutes > 0 %}{{ minutes }}m{% endif %}
+  - sensor: 
+    - unique_id: prusa_mk3_print_finish
+      name: Prusa MK3 Print Finish
+      device_class: timestamp
+      state: "{{ utcnow() + timedelta( seconds=state_attr('sensor.prusa_mk3_api_job', 'time_remaining') ) }}"
 
       ##########################################################
       ## Electricity Rate
@@ -169,9 +152,9 @@
           Off
         {% endif %}
 
-    ##########################################################
-    ## Hot Tub Circulation Pump
-    ##########################################################
+     ##########################################################
+     ## Hot Tub Circulation Pump
+     ##########################################################
 
   - binary_sensor:
     - unique_id: hot_tub_circ_pump
@@ -314,7 +297,7 @@
   - sensor:
     - unique_id: holidays_calendar
       name: Holiday Calendar
-      state: '{{ states.calendar.holidays_in_united_states.attributes.message }}'
+      state: '{{ states.calendar.holiday.attributes.message }}'
 
       ##########################################################
       ## Server Uptime
