@@ -380,6 +380,10 @@ More detailed information on the custom Home Assistant Managment Tools can be fo
 
 | [Menu](#menu) |
 
+![UI](images/3d-print-screenshot.jpg?raw=true "3D Printer")
+
+| [Menu](#menu) |
+
 ![UI](images/system-screenshot.jpg?raw=true "System")
 
 | [Menu](#menu) |
