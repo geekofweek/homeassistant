@@ -10,9 +10,10 @@ homeassistant:
         - REDACTED.0/24
   customize: !include customize.yaml
 default_config:
-stream:
-  ll_hls: false
 http:
+  use_x_forREDACTEDed_for: true
+  trusted_proxies:
+    - REDACTED05.33
   ssl_certificate: !secret ssl_certificate
   ssl_key: !secret ssl_key
   ip_ban_enabled: false
@@ -90,7 +91,6 @@ notify:
 
 automation manual: !include_dir_merge_list automation/
 automation ui: !include automations.yaml
-recorder: !include recorder.yaml
 group: !include groups.yaml
 sensor: !include sensors.yaml
 script: !include scripts.yaml

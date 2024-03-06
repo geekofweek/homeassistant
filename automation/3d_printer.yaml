@@ -22,7 +22,7 @@
     - condition: not
       conditions:
       - condition: state
-        entity_id: sensor.prusa_mk3
+        entity_id: sensor.prusa_mk4
         state: 'printing'
 
   action:
@@ -137,6 +137,39 @@
     - service: notify.USER1_devices
       data:
         message: Print Paused (Prusa MK3)
+        data:
+          tag: prusa_error
+          group: 3d_printer
+          entity_id: camera.prusa_mk3
+
+        ##########################################################
+        ## Prusa MK3 MMU Print Error
+        ##########################################################
+
+- alias: 3D-Printer - Prusa MK3 MMU Print Error
+  id: '3d_printer_prusa_mk3_mmu_print_error'
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.prusa_mk3_nozzle_temperature
+      below: 165
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+    - condition: state
+      entity_id: sensor.prusa_mk3
+      state: 'printing'
+
+  action:
+    - service: notify.USER1_devices
+      data:
+        message: Print Error (Prusa MK3)
         data:
           tag: prusa_error
           group: 3d_printer
@@ -472,14 +505,14 @@
       for:
         hours: 0
         minutes: 0
-        seconds: 10
+        seconds: 5
     - platform: state
       entity_id: sensor.prusa_mk3
       to: 'printing'
       for:
         hours: 0
         minutes: 0
-        seconds: 10
+        seconds: 5
 
   condition:
     - condition: state
@@ -550,10 +583,6 @@
       entity_id: sensor.prusa_mk4
       from: 'finished'
       to: 'idle'
-      for:
-        hours: 0
-        minutes: 30
-        seconds: 0
 
   condition:
     - condition: state
@@ -699,6 +728,9 @@
     - condition: state
       entity_id: sensor.prusa_mk4
       state: 'printing'
+    - condition: state
+      entity_id: input_boolean.prusa_mk4_disable_fans
+      state: 'off'
 
   action:
     - service: switch.turn_on
@@ -734,6 +766,9 @@
     - condition: state
       entity_id: sensor.prusa_mk4
       state: 'printing'
+    - condition: state
+      entity_id: input_boolean.prusa_mk4_disable_fans
+      state: 'off'
 
   action:
     - service: switch.turn_off
@@ -777,6 +812,9 @@
     - condition: numeric_state
       entity_id: sensor.prusa_mk4_enclosure_temperature
       above: 22
+    - condition: state
+      entity_id: input_boolean.prusa_mk4_disable_fans
+      state: 'off'
 
   action:
     - service: switch.turn_on
@@ -820,6 +858,9 @@
     - condition: numeric_state
       entity_id: sensor.prusa_mk4_enclosure_temperature
       below: 22
+    - condition: state
+      entity_id: input_boolean.prusa_mk4_disable_fans
+      state: 'off'
 
   action:
     - service: switch.turn_off
@@ -858,6 +899,9 @@
       - condition: state
         entity_id: sensor.prusa_mk4
         state: 'printing'
+    - condition: state
+      entity_id: input_boolean.prusa_mk4_disable_fans
+      state: 'off'
 
   action:
     - service: switch.turn_on
@@ -902,6 +946,9 @@
       - condition: state
         entity_id: sensor.prusa_mk4
         state: 'printing'
+    - condition: state
+      entity_id: input_boolean.prusa_mk4_disable_fans
+      state: 'off'
 
   action:
     - service: switch.turn_off
@@ -937,6 +984,9 @@
     - condition: state
       entity_id: sensor.prusa_mk3
       state: 'printing'
+    - condition: state
+      entity_id: input_boolean.prusa_mk3_disable_fans
+      state: 'off'
 
   action:
     - service: switch.turn_on
@@ -972,6 +1022,9 @@
     - condition: state
       entity_id: sensor.prusa_mk3
       state: 'printing'
+    - condition: state
+      entity_id: input_boolean.prusa_mk3_disable_fans
+      state: 'off'
 
   action:
     - service: switch.turn_off
@@ -1007,6 +1060,9 @@
     - condition: numeric_state
       entity_id: sensor.prusa_mk3_enclosure_temperature
       above: 22
+    - condition: state
+      entity_id: input_boolean.prusa_mk3_disable_fans
+      state: 'off'
 
   action:
     - service: switch.turn_on
@@ -1042,6 +1098,9 @@
     - condition: numeric_state
       entity_id: sensor.prusa_mk3_enclosure_temperature
       below: 22
+    - condition: state
+      entity_id: input_boolean.prusa_mk3_disable_fans
+      state: 'off'
 
   action:
     - service: switch.turn_off
@@ -1083,6 +1142,9 @@
       - condition: state
         entity_id: sensor.prusa_mk3
         state: 'printing'
+    - condition: state
+      entity_id: input_boolean.prusa_mk3_disable_fans
+      state: 'off'
 
   action:
     - service: switch.turn_on
@@ -1128,6 +1190,9 @@
       - condition: state
         entity_id: sensor.prusa_mk3
         state: 'printing'
+    - condition: state
+      entity_id: input_boolean.prusa_mk3_disable_fans
+      state: 'off'
 
   action:
     - service: switch.turn_off

@@ -385,6 +385,36 @@
           }
 
       ##########################################################
+      ## MK3 3D Print Clear When Idle
+      ##########################################################
+
+- alias: LED Clock - MK3 3D Print Clear When Idle
+  id: 'led_clock_mk3_3d_print_clear_when_idle'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk3
+      to: 'idle'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mk3_progress
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mk3_time_remaining
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/mk3_progress
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/mk3_time_remaining
+
+      ##########################################################
       ## MK3 3D Print Complete App
       ##########################################################
 
@@ -396,10 +426,6 @@
       entity_id: sensor.prusa_mk3
       from: 'printing'
       to: 'finished'
-      for:
-        hours: 0
-        minutes: 1
-        seconds: 0
 
   action:
     - service: mqtt.publish
@@ -438,6 +464,36 @@
           }
 
       ##########################################################
+      ## MK4 3D Print Clear When Idle
+      ##########################################################
+
+- alias: LED Clock - MK4 3D Print Clear When Idle
+  id: 'led_clock_mk4_3d_print_clear_when_idle'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk4
+      to: 'idle'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mk4_progress
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mk4_time_remaining
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/mk4_progress
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/mk4_time_remaining
+
+      ##########################################################
       ## MK4 3D Print Complete App
       ##########################################################
 
@@ -449,10 +505,6 @@
       entity_id: sensor.prusa_mk4
       from: 'printing'
       to: 'finished'
-      for:
-        hours: 0
-        minutes: 1
-        seconds: 0
 
   action:
     - service: mqtt.publish
@@ -1966,7 +2018,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.USER1s_office_motion
+      entity_id: binary_sensor.living_room_motion
       from: 'on'
       to: 'off'
       for:
@@ -3065,7 +3117,7 @@
   trigger:
     - platform: state
       entity_id: switch.fireplace
-      from: 'on'
+      to: 'on'
 
   condition:
     - condition: state

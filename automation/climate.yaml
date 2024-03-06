@@ -70,6 +70,9 @@
     - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
       below: 96
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_forecasted_temperature_low
+      above: 15
 
   action:
     - service: notify.USER1_devices
@@ -1291,10 +1294,6 @@
     - platform: numeric_state
       entity_id: sensor.REDACTED_temperature
       below: 15
-      for:
-        hours: 0
-        minutes: 30
-        seconds: 0
 
   condition:
     - condition: state
@@ -1351,10 +1350,6 @@
     - platform: numeric_state
       entity_id: sensor.REDACTED_temperature
       above: 15
-      for:
-        hours: 0
-        minutes: 30
-        seconds: 0
 
   condition:
     - condition: state
@@ -1556,7 +1551,7 @@
     - service: climate.set_preset_mode
       data:
         entity_id: climate.main_floor
-        preset_mode: 'sleep'
+        preset_mode: 'Sleep'
     - service: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
 

@@ -143,8 +143,14 @@
       entity_id: sensor.REDACTED_temperature
       below: 86
     - condition: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      above: 20
+    - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
       below: 96
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_forecasted_temperature_high
+      above: 20
     - condition: state
       entity_id: cover.USER1_s_office_blinds
       state: 'closed'
@@ -203,16 +209,23 @@
           - cover.USER1_s_office_blinds
 
         ##########################################################
-        ## Close USER1's Office Blinds When Hot Outside
+        ## Close USER1's Office Blinds Outside Temperature
         ##########################################################
 
-- alias: Blinds - Close USER1's Office Blinds When Hot Outside
-  id: 'blinds_close_USER1_office_blinds_when_hot_outside'
+- alias: Blinds - Close USER1's Office Blinds Outside Temperature
+  id: 'blinds_close_USER1_office_blinds_outside_temperature'
 
   trigger:
     - platform: numeric_state
       entity_id: sensor.REDACTED_temperature
       above: 86
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+    - platform: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      below: 20
       for:
         hours: 0
         minutes: 30
@@ -272,7 +285,7 @@
   trigger:
     - platform: sun
       event: 'sunset'
-      offset: '-00:30:00'
+      offset: '-00:32:00'
 
   condition:
     - condition: state
@@ -301,7 +314,7 @@
   trigger:
     - platform: sun
       event: 'sunset'
-      offset: '-00:30:00'
+      offset: '-00:32:00'
 
   condition:
     - condition: state
@@ -488,8 +501,14 @@
       entity_id: sensor.REDACTED_temperature
       below: 86
     - condition: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      above: 20
+    - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
       below: 96
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_forecasted_temperature_high
+      above: 20
     - condition: state
       entity_id: cover.stairs_blinds
       state: 'closed'
@@ -557,16 +576,23 @@
           - cover.stairs_blinds
 
         ##########################################################
-        ## Close Stairs Blinds When Hot Outside
+        ## Close Stairs Blinds Outside Temperature
         ##########################################################
 
-- alias: Blinds - Close Stairs Blinds When Hot Outside
-  id: 'blinds_close_stairs_blinds_when_hot_outside'
+- alias: Blinds - Close Stairs Blinds Outside Temperature
+  id: 'blinds_close_stairs_blinds_outside_temperature'
 
   trigger:
     - platform: numeric_state
       entity_id: sensor.REDACTED_temperature
       above: 86
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+    - platform: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      below: 20
       for:
         hours: 0
         minutes: 30
@@ -672,8 +698,14 @@
       entity_id: sensor.REDACTED_temperature
       below: 86
     - condition: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      above: 20
+    - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
       below: 96
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_forecasted_temperature_high
+      above: 20
     - condition: state
       entity_id: cover.USER2_s_office_blinds
       state: 'closed'
@@ -734,8 +766,14 @@
       entity_id: sensor.REDACTED_temperature
       below: 86
     - condition: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      above: 20
+    - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
       below: 96
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_forecasted_temperature_high
+      above: 20
     - condition: state
       entity_id: cover.USER2_s_office_blinds
       state: 'closed'
@@ -800,8 +838,14 @@
       entity_id: sensor.REDACTED_temperature
       below: 86
     - condition: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      above: 20
+    - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
       below: 96
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_forecasted_temperature_high
+      above: 20
     - condition: state
       entity_id: cover.USER2_s_office_blinds
       state: 'closed'
@@ -867,8 +911,14 @@
       entity_id: sensor.REDACTED_temperature
       below: 86
     - condition: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      above: 20
+    - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
       below: 96
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_forecasted_temperature_high
+      above: 20
     - condition: or
       conditions:
       - condition: state
@@ -940,16 +990,23 @@
           - cover.USER2_s_office_blinds
 
         ##########################################################
-        ## Close USER2's Office Blinds When Hot Outside
+        ## Close USER2's Office Blinds Outside Temperature
         ##########################################################
 
-- alias: Blinds - Close USER2's Office Blinds When Hot Outside
-  id: 'blinds_close_USER2_office_blinds_when_hot_outside'
+- alias: Blinds - Close USER2's Office Blinds Outside Temperature
+  id: 'blinds_close_USER2_office_blinds_outside_temperature'
 
   trigger:
     - platform: numeric_state
       entity_id: sensor.REDACTED_temperature
       above: 86
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+    - platform: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      below: 20
       for:
         hours: 0
         minutes: 30
@@ -1020,6 +1077,18 @@
     - condition: state
       entity_id: cover.bedroom_closet_blinds
       state: 'closed'
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      below: 90
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      above: 20
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_forecasted_temperature_high
+      below: 96
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_forecasted_temperature_high
+      above: 20
     - condition: time
       weekday:
         - mon
@@ -1181,6 +1250,18 @@
     - condition: state
       entity_id: cover.kitchen_blinds_south
       state: 'closed'
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      below: 90
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      above: 20
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_forecasted_temperature_high
+      below: 96
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_forecasted_temperature_high
+      above: 20
 
   action:
     - service: cover.open_cover
@@ -1221,6 +1302,21 @@
     - condition: state
       entity_id: cover.kitchen_blinds
       state: 'closed'
+    - condition: state
+      entity_id: cover.kitchen_blinds_south
+      state: 'closed'
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      below: 90
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      above: 20
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_forecasted_temperature_high
+      below: 96
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_forecasted_temperature_high
+      above: 20
 
   action:
     - service: cover.open_cover
@@ -1257,6 +1353,18 @@
     - condition: state
       entity_id: cover.kitchen_blinds_west
       state: 'closed'
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      below: 90
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      above: 20
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_forecasted_temperature_high
+      below: 96
+    - condition: numeric_state
+      entity_id: sensor.REDACTED_forecasted_temperature_high
+      above: 20
 
   action:
     - service: cover.set_cover_position

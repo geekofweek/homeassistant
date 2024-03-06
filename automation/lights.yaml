@@ -2412,7 +2412,13 @@
     - condition: template
       value_template: >-
         {{ as_timestamp(now()) - as_timestamp(states.sensor.uptime.last_changed) |
-        int > 60 }}
+        int > 90 }}
+    - condition: state
+      entity_id: input_boolean.disable_light_dimmer
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
     - service: light.turn_on
@@ -2443,7 +2449,13 @@
     - condition: template
       value_template: >-
         {{ as_timestamp(now()) - as_timestamp(states.sensor.uptime.last_changed) |
-        int > 60 }}
+        int > 90 }}
+    - condition: state
+      entity_id: input_boolean.disable_light_dimmer
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
 
   action:
     - service: light.turn_on

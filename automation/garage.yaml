@@ -14,6 +14,10 @@
       entity_id: group.household
       from: 'home'
       to: 'not_home'
+      for:
+        hours: 0
+        minutes: 3
+        seconds: 0
 
   condition:
     - condition: state
@@ -25,6 +29,82 @@
     - condition: state
       entity_id: input_boolean.garage_door_motor
       state: 'off'
+
+  action:
+    - service: lifx.effect_pulse
+      data:
+        cycles: 5
+        power_on: true
+        brightness_pct: 100
+      target:
+        entity_id: light.garage_interior
+    - delay: '00:00:05'
+    - service: cover.close_cover
+      entity_id: cover.garage_door
+
+        ##########################################################
+        ## Close Garage Door when USER1 Leaves
+        ##########################################################
+
+- alias: Garage - Close Garage when USER1 Leaves
+  id: 'garage_close_garage_when_USER1_leaves'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_away
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.garage_door_motor
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_auto_garage
+      state: 'off'
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'open'
+
+  action:
+    - service: lifx.effect_pulse
+      data:
+        cycles: 5
+        power_on: true
+        brightness_pct: 100
+      target:
+        entity_id: light.garage_interior
+    - delay: '00:00:05'
+    - service: cover.close_cover
+      entity_id: cover.garage_door
+
+        ##########################################################
+        ## Close Garage Door when USER2 Leaves
+        ##########################################################
+
+- alias: Garage - Close Garage when USER2 Leaves
+  id: 'garage_close_garage_when_USER2_leaves'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER2_away
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.garage_door_motor
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_auto_garage
+      state: 'off'
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'open'
 
   action:
     - service: lifx.effect_pulse
@@ -441,7 +521,7 @@
       for:
         hours: 0
         minutes: 0
-        seconds: 16
+        seconds: 18
 
   action:
     - service: homeassistant.turn_off

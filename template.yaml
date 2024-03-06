@@ -116,33 +116,33 @@
     - unique_id: hot_tub_mode
       name: Hot Tub Mode
       state: >
-        {% if states('sensor.hot_tub_watts') | float > 10300 %}
+        {% if states('sensor.hot_tub_watts') | float > 10000 %}
           CircPump-Blower-Pump1-Pump2-Heat
-        {% elif states('sensor.hot_tub_watts') | float > 9700 %}
+        {% elif states('sensor.hot_tub_watts') | float > 9500 %}
           CircPump-Pump1-Pump2-Heat
-        {% elif states('sensor.hot_tub_watts') | float > 8110 %}
+        {% elif states('sensor.hot_tub_watts') | float > 7900 %}
           CircPump-Blower-Pump1-Heat
-        {% elif states('sensor.hot_tub_watts') | float > 7990 %}
+        {% elif states('sensor.hot_tub_watts') | float > 7790 %}
           CircPump-Blower-Pump2-Heat
         {% elif states('sensor.hot_tub_watts') | float > 7600 %}
           CircPump-Pump1-Heat
-        {% elif states('sensor.hot_tub_watts') | float > 7500 %}
+        {% elif states('sensor.hot_tub_watts') | float > 7400 %}
           CircPump-Pump2-Heat
-        {% elif states('sensor.hot_tub_watts') | float > 5650 %}
+        {% elif states('sensor.hot_tub_watts') | float > 5600 %}
           CircPump-Blower-Heat
-        {% elif states('sensor.hot_tub_watts') | float > 5300 %}
+        {% elif states('sensor.hot_tub_watts') | float > 5200 %}
           CircPump-Heat
-        {% elif states('sensor.hot_tub_watts') | float > 5170 %}
+        {% elif states('sensor.hot_tub_watts') | float > 5000 %}
           CircPump-Blower-Pump1-Pump2
-        {% elif states('sensor.hot_tub_watts') | float > 4750 %}
+        {% elif states('sensor.hot_tub_watts') | float > 4600 %}
           CircPump-Pump1-Pump2
-        {% elif states('sensor.hot_tub_watts') | float > 2930 %}
+        {% elif states('sensor.hot_tub_watts') | float > 2900 %}
           CircPump-Blower-Pump1
-        {% elif states('sensor.hot_tub_watts') | float > 2630 %}
+        {% elif states('sensor.hot_tub_watts') | float > 3700 %}
           CircPump-Blower-Pump2
-        {% elif states('sensor.hot_tub_watts') | float > 2500 %}
+        {% elif states('sensor.hot_tub_watts') | float > 2350 %}
           CircPump-Pump1
-        {% elif states('sensor.hot_tub_watts') | float > 2380 %}
+        {% elif states('sensor.hot_tub_watts') | float > 2400 %}
           CircPump-Pump2
         {% elif states('sensor.hot_tub_watts') | float > 500 %}
           CircPump-Blower
@@ -492,6 +492,25 @@
       device_class: temperature
       unit_of_measurement: '°F'
       state: '{{ states.weather.REDACTED.attributes.temperature }}'
+
+      ##########################################################
+      ## Get Condition Forecast Every 2 Hours
+      ##########################################################
+
+  - trigger:
+      - platform: time_pattern
+        hours: '/2'
+    action:
+      - service: weather.get_forecasts
+        target:
+          entity_id: weather.REDACTED_ecobee
+        data:
+          type: daily
+        response_variable: forecast
+    sensor:
+      - name: REDACTED Forecasted Condition
+        unique_id: REDACTED_forecasted_condition
+        state: "{{ forecast['weather.REDACTED_ecobee'].forecast[0].condition }}"
 
       ##########################################################
       ## Get High Temp Forecast Every 2 Hours

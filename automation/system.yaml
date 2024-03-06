@@ -54,6 +54,7 @@
         - input_boolean.disable_startup_notifications
         - input_boolean.disable_blinds
         - input_boolean.disable_roomba
+        - input_boolean.disable_light_dimmer
     - service: homeassistant.turn_on
       entity_id:
         - switch.pihole
