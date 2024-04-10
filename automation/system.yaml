@@ -525,6 +525,63 @@
         - light.media_center_lighting
 
 #################################################################
+## Servers
+#################################################################
+
+        ##########################################################
+        ## Shutdown Windows VM at Bedtime
+        ##########################################################
+
+- alias: System Shutdown Windows VM at Bedtime
+  id: 'system_shutdown_windows_vm_at_bedtime'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: binary_sensor.qemu_windows_100_status
+      state: 'on'
+
+  action:
+    - service: button.press
+      target:
+        entity_id: button.qemu_windows_100_shutdown
+
+        ##########################################################
+        ## Shutdown Windows VM when Household Away
+        ##########################################################
+
+- alias: System - Shutdown Windows VM when Household Away
+  id: 'system_shutdown_windows_vm_when_household_away'
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: binary_sensor.qemu_windows_100_status
+      state: 'on'
+
+  action:
+    - service: button.press
+      target:
+        entity_id: button.qemu_windows_100_shutdown
+
+#################################################################
 ## Notifications
 #################################################################
 
@@ -554,7 +611,7 @@
           group: system
 
         #################################################################
-        ## NAS Warning iOS Notification
+        ## NAS-02 Warning iOS Notification
         #################################################################
 
 - alias: System - NAS-02 Warning iOS Notification
@@ -590,6 +647,7 @@
       entity_id: 
           - sensor.ups_a_input_voltage
           - sensor.ups_b_input_voltage
+          - sensor.ups_c_input_voltage
       below: 80
 
   condition:
@@ -617,6 +675,7 @@
       entity_id: 
           - sensor.ups_a_input_voltage
           - sensor.ups_b_input_voltage
+          - sensor.ups_c_input_voltage
       above: 110
 
   condition:
@@ -645,8 +704,9 @@
   trigger:
     - platform: numeric_state
       entity_id: 
-          - sensor.ups_a_battery_charge
-          - sensor.ups_b_battery_charge
+          - sensor.ups_a_battery
+          - sensor.ups_b_battery
+          - sensor.ups_c_input_voltage
       below: 15
 
   condition:
@@ -674,6 +734,7 @@
       entity_id: 
         - sensor.ups_a_status
         - sensor.ups_b_status
+        - sensor.ups_c_status
       to: 'unavailable'
 
   condition:
@@ -738,35 +799,6 @@
     - service: notify.USER1_devices
       data:
         message: Update Available for Home Assistant
-        data:
-          tag: homeassistant
-          group: system
-
-        ##########################################################
-        ## Server Memory Above 50 Percent
-        ##########################################################
-
-- alias: System - Server Memory Above 50 Percent
-  id: 'system_server_memory_above_50_percent'
-
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.memory_use_percent
-      above: 50
-      for:
-        hours: 0
-        minutes: 5
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  action:
-    - service: notify.USER1_devices
-      data:
-        message: 'Server Memory Above 50%'
         data:
           tag: homeassistant
           group: system

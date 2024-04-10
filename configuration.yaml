@@ -13,7 +13,7 @@ default_config:
 http:
   use_x_forREDACTEDed_for: true
   trusted_proxies:
-    - REDACTED05.33
+    - REDACTED.33
   ssl_certificate: !secret ssl_certificate
   ssl_key: !secret ssl_key
   ip_ban_enabled: false
@@ -60,7 +60,7 @@ weather:
     condition_template: "{{ states('sensor.weather_condition_REDACTED') }}"
     temperature_template: "{{ state_attr('weather.REDACTED_ecobee', 'temperature') }}"
     humidity_template: "{{ state_attr('weather.REDACTED_ecobee', 'humidity') }}"
-    forecast_template: "{{ state_attr('weather.REDACTED_ecobee', 'forecast') }}"
+    forecast_daily_template: "{{ state_attr('sensor.REDACTED_daily_forecast', 'forecast') }}"
     attribution_template: "{{ state_attr('weather.REDACTED_ecobee', 'attribution') }}"
     pressure_template: "{{ state_attr('weather.REDACTED_ecobee', 'pressure') }}"
     wind_speed_template: "{{ state_attr('weather.REDACTED_ecobee', 'wind_speed') }}"
@@ -92,7 +92,6 @@ notify:
 automation manual: !include_dir_merge_list automation/
 automation ui: !include automations.yaml
 group: !include groups.yaml
-sensor: !include sensors.yaml
 script: !include scripts.yaml
 homekit: !include homekit.yaml
 switch: !include switch.yaml

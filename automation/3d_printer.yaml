@@ -43,7 +43,7 @@
 
   trigger:
     - platform: state
-      entity_id: sensor.prusa_mk3
+      entity_id: sensor.prusa_mk3_5
       from: 'printing'
       to: 'finished'
 
@@ -60,7 +60,7 @@
   action:
     - service: notify.USER1_devices
       data:
-        message: 3D Print Complete (Prusa MK3)
+        message: 3D Print Complete (Prusa MK3.5)
         data:
           tag: prusa_finished
           group: 3d_printer
@@ -75,7 +75,7 @@
 
   trigger:
     - platform: state
-      entity_id: sensor.prusa_mk3
+      entity_id: sensor.prusa_mk3_5
       from: 'printing'
       to: 'stopped'
 
@@ -86,7 +86,7 @@
     - condition: not
       conditions:
       - condition: state
-        entity_id: sensor.prusa_mk3
+        entity_id: sensor.prusa_mk3_5
         state: 'printing'
 
   action:
@@ -98,7 +98,7 @@
         color_name: "purple"
     - service: notify.USER1_devices
       data:
-        message: Print Stopped (Prusa MK3)
+        message: Print Stopped (Prusa MK3.5)
         data:
           tag: prusa_error
           group: 3d_printer
@@ -113,7 +113,7 @@
 
   trigger:
     - platform: state
-      entity_id: sensor.prusa_mk3
+      entity_id: sensor.prusa_mk3_5
       from: 'printing'
       to: 'paused'
 
@@ -124,7 +124,7 @@
     - condition: not
       conditions:
       - condition: state
-        entity_id: sensor.prusa_mk3
+        entity_id: sensor.prusa_mk3_5
         state: 'printing'
 
   action:
@@ -136,7 +136,7 @@
         color_name: "orangered"
     - service: notify.USER1_devices
       data:
-        message: Print Paused (Prusa MK3)
+        message: Print Paused (Prusa MK3.5)
         data:
           tag: prusa_error
           group: 3d_printer
@@ -151,7 +151,7 @@
 
   trigger:
     - platform: numeric_state
-      entity_id: sensor.prusa_mk3_nozzle_temperature
+      entity_id: sensor.prusa_mk3_5_nozzle_temperature
       below: 165
       for:
         hours: 0
@@ -163,13 +163,13 @@
       entity_id: input_boolean.disable_notifications
       state: 'off'
     - condition: state
-      entity_id: sensor.prusa_mk3
+      entity_id: sensor.prusa_mk3_5
       state: 'printing'
 
   action:
     - service: notify.USER1_devices
       data:
-        message: Print Error (Prusa MK3)
+        message: Print Error (Prusa MK3.5)
         data:
           tag: prusa_error
           group: 3d_printer
@@ -184,7 +184,7 @@
 
   trigger:
     - platform: state
-      entity_id: sensor.prusa_mk3
+      entity_id: sensor.prusa_mk3_5
       from: 'printing'
       to: 'error'
 
@@ -195,7 +195,7 @@
     - condition: not
       conditions:
       - condition: state
-        entity_id: sensor.prusa_mk3
+        entity_id: sensor.prusa_mk3_5
         state: 'printing'
 
   action:
@@ -207,7 +207,7 @@
         color_name: "red"
     - service: notify.USER1_devices
       data:
-        message: Print Error (Prusa MK3)
+        message: Print Error (Prusa MK3.5)
         data:
           tag: prusa_error
           group: 3d_printer
@@ -222,8 +222,7 @@
 
   trigger:
     - platform: state
-      entity_id: sensor.prusa_mk3
-      from: 'printing'
+      entity_id: sensor.prusa_mk3_5
       to: 'attention'
 
   condition:
@@ -233,7 +232,7 @@
     - condition: not
       conditions:
       - condition: state
-        entity_id: sensor.prusa_mk3
+        entity_id: sensor.prusa_mk3_5
         state: 'printing'
 
   action:
@@ -245,7 +244,7 @@
         color_name: "red"
     - service: notify.USER1_devices
       data:
-        message: Print Needs Attention (Prusa MK3)
+        message: Print Needs Attention (Prusa MK3.5)
         data:
           tag: prusa_error
           group: 3d_printer
@@ -375,7 +374,6 @@
   trigger:
     - platform: state
       entity_id: sensor.prusa_mk4
-      from: 'printing'
       to: 'attention'
 
   condition:
@@ -450,7 +448,7 @@
     - condition: not
       conditions:
       - condition: state
-        entity_id: sensor.prusa_mk3
+        entity_id: sensor.prusa_mk3_5
         state: 'printing'
     - condition: state
       entity_id: light.3d_printer_light
@@ -507,7 +505,7 @@
         minutes: 0
         seconds: 5
     - platform: state
-      entity_id: sensor.prusa_mk3
+      entity_id: sensor.prusa_mk3_5
       to: 'printing'
       for:
         hours: 0
@@ -547,7 +545,7 @@
       from: 'printing'
       to: 'finished'
     - platform: state
-      entity_id: sensor.prusa_mk3
+      entity_id: sensor.prusa_mk3_5
       from: 'printing'
       to: 'finished'
 
@@ -574,13 +572,6 @@
   trigger:
     - platform: state
       entity_id: sensor.prusa_mk4
-      to: 'finished'
-      for:
-        hours: 0
-        minutes: 30
-        seconds: 0
-    - platform: state
-      entity_id: sensor.prusa_mk4
       from: 'finished'
       to: 'idle'
 
@@ -588,10 +579,6 @@
     - condition: state
       entity_id: light.3d_printer_light
       state: 'on'
-    - condition: state
-      entity_id: light.3d_printer_light
-      attribute: rgb_color
-      state: '0, 128, 0'
 
   action:
     - service: light.turn_on
@@ -610,29 +597,14 @@
 
   trigger:
     - platform: state
-      entity_id: sensor.prusa_mk3
-      to: 'finished'
-      for:
-        hours: 0
-        minutes: 30
-        seconds: 0
-    - platform: state
-      entity_id: sensor.prusa_mk3
+      entity_id: sensor.prusa_mk3_5
       from: 'finished'
       to: 'idle'
-      for:
-        hours: 0
-        minutes: 30
-        seconds: 0
 
   condition:
     - condition: state
       entity_id: light.3d_printer_light
       state: 'on'
-    - condition: state
-      entity_id: light.3d_printer_light
-      attribute: rgb_color
-      state: '0, 128, 0'
 
   action:
     - service: light.turn_on
@@ -651,18 +623,18 @@
 
   trigger:
     - platform: state
-      entity_id: sensor.prusa_mk3
+      entity_id: sensor.prusa_mk3_5
       to: 'idle'
       for:
-        hours: 1
-        minutes: 0
+        hours: 0
+        minutes: 1
         seconds: 0
     - platform: state
       entity_id: sensor.prusa_mk4
       to: 'idle'
       for:
-        hours: 1
-        minutes: 0
+        hours: 0
+        minutes: 1
         seconds: 0
 
   condition:
@@ -675,13 +647,13 @@
         entity_id: sensor.prusa_mk4
         state: 'idle'
       - condition: state
-        entity_id: sensor.prusa_mk3
+        entity_id: sensor.prusa_mk3_5
         state: 'idle'
       - condition: state
         entity_id: sensor.prusa_mk4
         state: 'printing'
       - condition: state
-        entity_id: sensor.prusa_mk3
+        entity_id: sensor.prusa_mk3_5
         state: 'printing'
 
   action:
@@ -804,10 +776,10 @@
     - condition: not
       conditions:
         - condition: state
-          entity_id: sensor.prusa_mk3_material
+          entity_id: sensor.prusa_mk3_5_material
           state: 'ABS'
         - condition: state
-          entity_id: sensor.prusa_mk3_material
+          entity_id: sensor.prusa_mk3_5_material
           state: 'ASA'
     - condition: numeric_state
       entity_id: sensor.prusa_mk4_enclosure_temperature
@@ -850,10 +822,10 @@
     - condition: not
       conditions:
         - condition: state
-          entity_id: sensor.prusa_mk3_material
+          entity_id: sensor.prusa_mk3_5_material
           state: 'ABS'
         - condition: state
-          entity_id: sensor.prusa_mk3_material
+          entity_id: sensor.prusa_mk3_5_material
           state: 'ASA'
     - condition: numeric_state
       entity_id: sensor.prusa_mk4_enclosure_temperature
@@ -965,7 +937,7 @@
 
   trigger:
     - platform: numeric_state
-      entity_id: sensor.prusa_mk3_enclosure_temperature
+      entity_id: sensor.prusa_mk3_5_enclosure_temperature
       above: 22
       for:
         hours: 0
@@ -982,7 +954,7 @@
           entity_id: switch.prusa_mk3_enclosure_fan
           state: 'off'
     - condition: state
-      entity_id: sensor.prusa_mk3
+      entity_id: sensor.prusa_mk3_5
       state: 'printing'
     - condition: state
       entity_id: input_boolean.prusa_mk3_disable_fans
@@ -1003,7 +975,7 @@
 
   trigger:
     - platform: numeric_state
-      entity_id: sensor.prusa_mk3_enclosure_temperature
+      entity_id: sensor.prusa_mk3_5_enclosure_temperature
       below: 22
       for:
         hours: 0
@@ -1020,7 +992,7 @@
           entity_id: switch.prusa_mk3_enclosure_fan
           state: 'on'
     - condition: state
-      entity_id: sensor.prusa_mk3
+      entity_id: sensor.prusa_mk3_5
       state: 'printing'
     - condition: state
       entity_id: input_boolean.prusa_mk3_disable_fans
@@ -1041,7 +1013,7 @@
 
   trigger:
     - platform: state
-      entity_id: sensor.prusa_mk3
+      entity_id: sensor.prusa_mk3_5
       to: 'printing'
       for:
         hours: 0
@@ -1058,7 +1030,7 @@
           entity_id: switch.prusa_mk3_enclosure_fan
           state: 'off'
     - condition: numeric_state
-      entity_id: sensor.prusa_mk3_enclosure_temperature
+      entity_id: sensor.prusa_mk3_5_enclosure_temperature
       above: 22
     - condition: state
       entity_id: input_boolean.prusa_mk3_disable_fans
@@ -1079,7 +1051,7 @@
 
   trigger:
     - platform: state
-      entity_id: sensor.prusa_mk3
+      entity_id: sensor.prusa_mk3_5
       to: 'printing'
       for:
         hours: 0
@@ -1096,7 +1068,7 @@
           entity_id: switch.prusa_mk3_enclosure_fan
           state: 'on'
     - condition: numeric_state
-      entity_id: sensor.prusa_mk3_enclosure_temperature
+      entity_id: sensor.prusa_mk3_5_enclosure_temperature
       below: 22
     - condition: state
       entity_id: input_boolean.prusa_mk3_disable_fans
@@ -1117,12 +1089,9 @@
 
   trigger:
     - platform: state
-      entity_id: sensor.prusa_mk3
+      entity_id: sensor.prusa_mk3_5
+      from: 'printing'
       to: 'finished'
-    - platform: state
-      entity_id: sensor.prusa_mk3
-      from: 'finished'
-      to: 'idle'
       for:
         hours: 0
         minutes: 1
@@ -1140,7 +1109,7 @@
     - condition: not
       conditions:
       - condition: state
-        entity_id: sensor.prusa_mk3
+        entity_id: sensor.prusa_mk3_5
         state: 'printing'
     - condition: state
       entity_id: input_boolean.prusa_mk3_disable_fans
@@ -1161,15 +1130,14 @@
 
   trigger:
     - platform: state
-      entity_id: sensor.prusa_mk3
+      entity_id: sensor.prusa_mk3_5
       to: 'finished'
       for:
         hours: 2
         minutes: 0
         seconds: 0
     - platform: state
-      entity_id: sensor.prusa_mk3
-      from: 'finished'
+      entity_id: sensor.prusa_mk3_5
       to: 'idle'
       for:
         hours: 2
@@ -1188,7 +1156,7 @@
     - condition: not
       conditions:
       - condition: state
-        entity_id: sensor.prusa_mk3
+        entity_id: sensor.prusa_mk3_5
         state: 'printing'
     - condition: state
       entity_id: input_boolean.prusa_mk3_disable_fans
@@ -1245,7 +1213,7 @@
 
   trigger:
     - platform: state
-      entity_id: sensor.prusa_mk3
+      entity_id: sensor.prusa_mk3_5
       to: 'printing'
       for:
         hours: 0
@@ -1274,7 +1242,7 @@
 
   trigger:
     - platform: state
-      entity_id: sensor.prusa_mk3
+      entity_id: sensor.prusa_mk3_5
       from: 'printing'
       for:
         hours: 0

@@ -35,6 +35,7 @@
         - light.garage_light
       data:
        brightness_pct: 2
+       transition: 330
 
         ##########################################################
         ## Turn On Exterior Garage Light when Garage Open
@@ -146,6 +147,8 @@
     - service: light.turn_off
       entity_id:
         - light.garage_light
+      data:
+       transition: 330
 
         ##########################################################
         ## Turn On Exterior Garage Light at Sunset

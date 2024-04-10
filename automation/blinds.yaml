@@ -710,8 +710,8 @@
       entity_id: cover.USER2_s_office_blinds
       state: 'closed'
     - condition: sun
-      after: sunrise
-      after_offset: "00:60:00"
+      #after: sunrise
+      #after_offset: "00:60:00"
       before: sunset
       before_offset: "-00:45:00"
     - condition: not
@@ -791,8 +791,8 @@
     - condition: time
       before: '11:30:00'
     - condition: sun
-      after: sunrise
-      after_offset: "00:60:00"
+      #after: sunrise
+      #after_offset: "00:60:00"
       before: sunset
       before_offset: "-00:45:00"
     - condition: not
@@ -860,8 +860,8 @@
     - condition: time
       before: '11:30:00'
     - condition: sun
-      after: sunrise
-      after_offset: "00:60:00"
+      #after: sunrise
+      #after_offset: "00:60:00"
       before: sunset
       before_offset: "-00:45:00"
     - condition: not
@@ -939,8 +939,8 @@
     - condition: time
       after: '11:31:00'
     - condition: sun
-      after: sunrise
-      after_offset: "00:60:00"
+      #after: sunrise
+      #after_offset: "00:60:00"
       before: sunset
       before_offset: "-00:45:00"
     - condition: not

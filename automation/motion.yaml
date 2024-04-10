@@ -1314,6 +1314,47 @@
         - light.hallway_light
 
         ##########################################################
+        ## Turn On Bathroom Lights when Motion Detected Morning
+        ##########################################################
+
+- alias: Motion - Turn On Bathroom Lights when Motion Detected Morning
+  id: 'motion_turn_on_bathroom_lights_when_motion_detected_morning'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bathroom_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.bathroom_lights
+      state: 'off'
+    - condition: time
+      after: '05:45:00'
+      before: '09:00:00'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.bathroom_vanity
+      data:
+        brightness_pct: 50
+        transition: 60
+    - service: light.turn_on
+      entity_id:
+        - light.bathroom_shower
+      data:
+        brightness_pct: 25
+        transition: 60
+
+        ##########################################################
         ## Turn On Bathroom Lights when Motion Detected Daytime
         ##########################################################
 
@@ -1339,6 +1380,9 @@
     - condition: state
       entity_id: sun.sun
       state: 'above_horizon'
+    - condition: time
+      after: '09:00:00'
+      before: '22:00:00'
 
   action:
     - service: light.turn_on
@@ -1379,7 +1423,7 @@
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: time
-      after: '06:00:00'
+      after: '15:00:00'
       before: '22:00:00'
 
   action:
@@ -1459,7 +1503,7 @@
       state: 'below_horizon'
     - condition: time
       after: '00:00:00'
-      before: '06:00:00'
+      before: '05:45:00'
 
   action:
     - service: light.turn_on
@@ -2851,6 +2895,7 @@
         - light.USER2_s_office_ceiling
       data:
         brightness_pct: 75
+        transition: 30
 
         ##########################################################
         ## Turn On USER2 Office Lights when Motion Detected Evening

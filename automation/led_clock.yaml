@@ -233,11 +233,11 @@
 
   trigger:
     - platform: state
-      entity_id: sensor.prusa_mk3_progress
+      entity_id: sensor.prusa_mk3_5_progress
   
   condition:
     - condition: state
-      entity_id: sensor.prusa_mk3
+      entity_id: sensor.prusa_mk3_5
       state: 'printing'
 
   action:
@@ -250,7 +250,7 @@
           "pushIcon": 0,
           "color": [255,98,0],
           "repeat": 3,
-          "text": "MK3: {{ states("sensor.prusa_mk3_progress") |round }}%"
+          "text": "MK3.5: {{ states("sensor.prusa_mk3_5_progress") |round }}%"
           }
     - service: mqtt.publish
       data:
@@ -261,7 +261,7 @@
           "pushIcon": 0,
           "color": [255,98,0],
           "repeat": 3,
-          "text": "MK3: {{ states("sensor.prusa_mk3_progress") |round }}%"
+          "text": "MK3.5: {{ states("sensor.prusa_mk3_5_progress") |round }}%"
           }
 
       ##########################################################
@@ -273,11 +273,11 @@
 
   trigger:
     - platform: state
-      entity_id: sensor.prusa_mk3_progress
+      entity_id: sensor.prusa_mk3_5_progress
   
   condition:
     - condition: state
-      entity_id: sensor.prusa_mk3
+      entity_id: sensor.prusa_mk3_5
       state: 'printing'
 
   action:
@@ -290,7 +290,7 @@
           "pushIcon": 2,
           "color": [255,98,0],
           "repeat": 3,
-          "text": "MK3: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusa_mk3_print_finish')) - as_timestamp(now()))) }}"
+          "text": "MK3.5: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusa_mk3_5_print_finish')) - as_timestamp(now()))) }}"
           }
     - service: mqtt.publish
       data:
@@ -301,7 +301,7 @@
           "pushIcon": 2,
           "color": [255,98,0],
           "repeat": 3,
-          "text": "MK3: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusa_mk3_print_finish')) - as_timestamp(now()))) }}"
+          "text": "MK3.5: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusa_mk3_5_print_finish')) - as_timestamp(now()))) }}"
           }
 
       ##########################################################
@@ -393,7 +393,7 @@
 
   trigger:
     - platform: state
-      entity_id: sensor.prusa_mk3
+      entity_id: sensor.prusa_mk3_5
       to: 'idle'
       for:
         hours: 0
@@ -423,7 +423,7 @@
 
   trigger:
     - platform: state
-      entity_id: sensor.prusa_mk3
+      entity_id: sensor.prusa_mk3_5
       from: 'printing'
       to: 'finished'
 
@@ -443,7 +443,7 @@
           "pushIcon": 0,
           "rainbow": true,
           "duration": 60,
-          "text": "MK3: Finished"
+          "text": "MK3.5: Finished"
           }
     - service: mqtt.publish
       data:
@@ -460,7 +460,7 @@
           "pushIcon": 0,
           "rainbow": true,
           "duration": 60,
-          "text": "MK3: Finished"
+          "text": "MK3.5: Finished"
           }
 
       ##########################################################
@@ -2183,6 +2183,12 @@
   action:
     - service: mqtt.publish
       data:
+        topic: living_room_clock/custom/tv_state
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/tv_state
+    - service: mqtt.publish
+      data:
         topic: living_room_clock/notify
         payload: >-
           { 
@@ -2219,6 +2225,9 @@
       to: "Play Nintendo Switch"
 
   action:
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/tv_state
     - service: mqtt.publish
       data:
         topic: living_room_clock/notify
@@ -2273,6 +2282,9 @@
       to: 'Play Xbox'
 
   action:
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/tv_state
     - service: mqtt.publish
       data:
         topic: living_room_clock/notify
@@ -3139,4 +3151,38 @@
           "color": [255,98,0],
           "stack": false,
           "text": "Fireplace On"
+          }
+
+      ##########################################################
+      ## Fireplace Off Living Room Clock
+      ##########################################################
+
+- alias: LED Clock - Living Room Fireplace Off
+  id: 'led_clock_living_room_fireplace_off'
+
+  trigger:
+    - platform: state
+      entity_id: switch.fireplace
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.living_room_clock
+      state: 'on'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/notify
+        payload: >-
+          { 
+          "icon": "fire_2",
+          "pushIcon": 0,
+          "duration": 30,
+          "color": [255,98,0],
+          "stack": false,
+          "text": "Fireplace Off"
           }
