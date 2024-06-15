@@ -11,36 +11,63 @@
         - cover.stairs_blinds
         - cover.kitchen_blinds
         - cover.bedroom_closet_blinds
+        - light.living_room_lamps
+        - light.globe
+        - light.media_center_lighting
+        - light.living_room_ceiling_east
+        - light.living_room_ceiling_west
+        - light.dining_room_table
+        - light.dining_room_ceiling
+        - light.kitchen_ceiling
+        - light.kitchen_cabinets
+        - light.kitchen_sink
         - light.hallway_light
-        - light.bathroom_lights
-        - light.garage_light
-        - light.garage_interior
-        - light.living_room_lights
-        - light.dining_room_lights
-        - light.bedroom_lights
-        - light.kitchen_lights
+        - light.bathroom_vanity
+        - light.bathroom_shower
+        - light.bedroom_ceiling
+        - light.USER1s_nightstand
+        - light.USER2s_nightstand
+        - light.bedroom_lamp
+        - light.bedroom_closet_ceiling
+        - light.closet_lamp
         - light.stairs_light
-        - light.USER1_office_lights
-        - light.USER2_office_lights
-        - light.guest_bedroom_lights
+        - light.office_lamp
+        - light.USER1_s_office_ceiling
+        - light.USER1_office_desk_lamp
+        - light.USER1_office_desk_accent
+        - light.moon_globe
+        - light.USER2_s_office_ceiling
+        - light.guest_bedroom_ceiling
+        - light.guest_bedroom_nightstand
+        - light.upstairs_bathroom_vanity
         - light.basement_lights
+        - light.basement_lamp
         - light.basement_stairs
         - light.work_bench_light
         - light.laundry_room_light
         - light.craft_room_ceiling
+        - light.jupitier_globe
         - light.fitness_room_ceiling
         - light.front_porch
         - light.back_door
         - light.backyard_deck
         - light.backyard_patio
-        - light.upstairs_bathroom_lights
+        - light.garage_light
+        - light.garage_interior
+        - vacuum.main_floor_roomba
+        - vacuum.upstairs_roomba
+        - vacuum.basement_roomba
         - fan.USER1s_office_fan
-        - switch.air_purifier
-        - switch.fountain
-        - climate.main_floor
-        - climate.office_fan
         - switch.front_yard_lighting
         - switch.backyard_lighting
+        - switch.air_purifier
+        - switch.fountain
+        - switch.fireplace
+        - switch.living_room_tv_watch_tv
+        - switch.living_room_tv_play_xbox
+        - switch.living_room_tv_play_nintendo_switch
+        - climate.main_floor
+        - climate.office_fan
         - sensor.main_floor_humidity
         - sensor.office_fan_humidity
         - fan.living_room_east
@@ -76,10 +103,23 @@
         - sensor.bathroom_humidity
         - sensor.craft_room_humidity
         - sensor.fitness_room_humidity
+        - input_boolean.bedtime
 
 #################################################################
 ## HomeKit Accessory Mode
 #################################################################
+
+  - name: Front Door Camera
+    mode: accessory
+    port: 21077
+    filter:
+      include_entities:
+        - camera.front_door
+    entity_config:
+        camera.front_door:
+          video_codec: copy
+          linked_motion_sensor: binary_sensor.front_door_person_detected
+          linked_doorbell_sensor: binary_sensor.front_door_doorbell
 
   - name: Front Porch Camera
     mode: accessory
@@ -89,11 +129,7 @@
         - camera.front_porch
     entity_config:
         camera.front_porch:
-          stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
           video_codec: copy
-          support_audio: True
-          linked_motion_sensor: binary_sensor.front_porch_person_detected
-          linked_doorbell_sensor: binary_sensor.ring_front_door_ding
 
   - name: Driveway Camera
     mode: accessory
@@ -103,9 +139,7 @@
         - camera.driveway
     entity_config:
         camera.driveway:
-          stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
           video_codec: copy
-          support_audio: True
 
   - name: Backyard Gate Camera
     mode: accessory
@@ -115,9 +149,7 @@
         - camera.backyard_gate
     entity_config:
         camera.backyard_gate:
-          stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
           video_codec: copy
-          support_audio: True
 
   - name: Backyard Camera
     mode: accessory
@@ -127,9 +159,7 @@
         - camera.backyard
     entity_config:
         camera.backyard:
-          stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
           video_codec: copy
-          support_audio: True
 
   - name: Side Yard Camera
     mode: accessory
@@ -139,9 +169,7 @@
         - camera.side_yard
     entity_config:
         camera.side_yard:
-          stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
           video_codec: copy
-          support_audio: True
 
   - name: Garage Camera
     mode: accessory
@@ -151,9 +179,7 @@
         - camera.garage
     entity_config:
         camera.garage:
-          stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
           video_codec: copy
-          support_audio: True
 
   - name: Front Yard Camera
     mode: accessory
@@ -163,9 +189,7 @@
         - camera.front_yard
     entity_config:
         camera.front_yard:
-          stream_source: "-rtsp_transport tcp -re -i rtsp://unifi-protect.network.REDACTED:7447/REDACTED"
           video_codec: copy
-          support_audio: True
 
   - name: Front Door Lock
     mode: accessory
@@ -196,3 +220,24 @@
     entity_config:
       lock.basement_door:
         linked_battery_sensor: sensor.basement_door_lock_batt
+
+  - name: Living Room TV
+    mode: accessory
+    port: 21074
+    filter:
+      include_entities:
+        - remote.living_room_tv
+
+  - name: Bedroom TV
+    mode: accessory
+    port: 21075
+    filter:
+      include_entities:
+        - remote.bedroom_tv
+
+  - name: USER1's Office TV
+    mode: accessory
+    port: 21076
+    filter:
+      include_entities:
+        - remote.USER1_s_office_tv

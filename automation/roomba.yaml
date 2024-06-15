@@ -222,7 +222,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.ring_front_door_ding
+      entity_id: binary_sensor.front_door_doorbell
       from: 'off'
       to: 'on'
 
@@ -257,7 +257,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.ring_front_door_ding
+      entity_id: binary_sensor.front_door_doorbell
       from: 'on'
       to: 'off'
       for:
@@ -1152,9 +1152,6 @@
         - light.hallway_light
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_fan_lights
 
         ##########################################################
         ## Turn Off lights when Main Floor Roomba finished Away
@@ -1312,7 +1309,7 @@
   action:
     - service: light.turn_on
       entity_id:
-        - light.living_room_lights
+        - light.living_room_accent_lights
       data:
        brightness_pct: 100
     - service: light.turn_on
@@ -1963,7 +1960,7 @@
   action:
     - service: light.turn_on
       entity_id:
-        - light.living_room_lights
+        - light.living_room_accent_lights
 
         ##########################################################
         ## Turn Off Living Room Lights Room Clean

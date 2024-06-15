@@ -148,6 +148,42 @@
            or is_state('sensor.hot_tub_mode', 'CircPump-Heat') }}
 
       ##########################################################
+      ## UPS-A Watts
+      ##########################################################
+
+  - sensor:
+      - unique_id: ups_a_watts
+        name: UPS-A Watts
+        state_class: measurement
+        device_class: power  
+        unit_of_measurement: "W"
+        state: "{{ states('sensor.ups_a_load')|float * 0.01 * states('sensor.ups_a_nominal_output_power')|round(2) }}"
+
+      ##########################################################
+      ## UPS-B Watts
+      ##########################################################
+
+  - sensor:
+      - unique_id: ups_b_watts
+        name: UPS-B Watts
+        state_class: measurement
+        device_class: power  
+        unit_of_measurement: "W"
+        state: "{{ states('sensor.ups_b_load')|float * 0.01 * states('sensor.ups_b_nominal_output_power')|round(2) }}"
+
+      ##########################################################
+      ## Server Rack Watts
+      ##########################################################
+
+  - sensor:
+      - unique_id: server_rack_watts
+        name: Server Rack Watts
+        state_class: measurement
+        device_class: power  
+        unit_of_measurement: "W"
+        state: "{{ states('sensor.ups_a_load')|float * 0.01 * states('sensor.ups_a_nominal_output_power')|round(2) + states('sensor.ups_b_load')|float * 0.01 * states('sensor.ups_b_nominal_output_power')|round(2) }}"
+
+      ##########################################################
       ## Washing Machine Time Remaining
       ##########################################################
 

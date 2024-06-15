@@ -69,6 +69,13 @@
         hours: 0
         minutes: 30
         seconds: 0
+    - platform: state
+      entity_id: weather.REDACTED
+      to: 'lightning-rainy'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
 
   condition:
     - condition: state
@@ -145,6 +152,11 @@
     - condition: not
       conditions:
       - condition: state
+        entity_id: weather.REDACTED
+        state: 'lightning-rainy'
+    - condition: not
+      conditions:
+      - condition: state
         entity_id: sensor.season
         state: 'winter'
 
@@ -182,6 +194,11 @@
       - condition: state
         entity_id: weather.REDACTED
         state: 'rainy'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: weather.REDACTED
+        state: 'lightning-rainy'
     - condition: not
       conditions:
       - condition: state

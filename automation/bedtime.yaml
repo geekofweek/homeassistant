@@ -371,7 +371,7 @@
     - service: climate.set_preset_mode
       data:
         entity_id: climate.main_floor
-        preset_mode: 'smart3'
+        preset_mode: 'Guest'
     - service: light.turn_off
       entity_id:
         - light.USER1s_office_desktop_clock
@@ -408,7 +408,7 @@
     - service: climate.set_preset_mode
       data:
         entity_id: climate.main_floor
-        preset_mode: 'Sleep'
+        preset_mode: 'sleep'
 
         ##########################################################
         ## Bedtime Exterior Lights

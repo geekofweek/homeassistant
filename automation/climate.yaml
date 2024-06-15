@@ -714,70 +714,6 @@
         resume_all: true
 
         ##########################################################
-        ## Reset Thermostat Mode After Selection
-        ##########################################################
-
-- alias: Climate - Reset Thermostat Mode After Selection
-  id: 'climate_reset_thermostat_mode_after_selection'
-
-  trigger:
-    - platform: state
-      entity_id: input_select.thermostat_mode
-      to: 'Clear Holds'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 30
-    - platform: state
-      entity_id: input_select.thermostat_mode
-      to: 'Home'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 30
-    - platform: state
-      entity_id: input_select.thermostat_mode
-      to: 'Away'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 30
-    - platform: state
-      entity_id: input_select.thermostat_mode
-      to: 'Sleep'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 30
-    - platform: state
-      entity_id: input_select.thermostat_mode
-      to: 'Upstairs'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 30
-    - platform: state
-      entity_id: input_select.thermostat_mode
-      to: 'Guest'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 30
-    - platform: state
-      entity_id: input_select.thermostat_mode
-      to: 'Fireplace'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 30
-
-  action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.thermostat_mode
-        option: 'None'
-
-        ##########################################################
         ## Adjust Thermostat to Upstairs Mode at Noon when Hot
         ##########################################################
 
@@ -1236,7 +1172,7 @@
     - platform: event
       event_type: lutron_caseta_button_event
       event_data:
-        serial: 48491915
+        serial: 91525691
         button_number: 3
         action: press
 
@@ -1263,7 +1199,7 @@
     - platform: event
       event_type: lutron_caseta_button_event
       event_data:
-        serial: 48491915
+        serial: 91525691
         button_number: 3
         action: press
 
@@ -1474,143 +1410,3 @@
         data:
           tag: climate
           group: climate
-
-#################################################################
-## Input Booleans, Input Selects, and UI
-#################################################################
-
-        ##########################################################
-        ## Clear Thermostat Hold Modes Manually
-        ##########################################################
-
-- alias: Climate - Clear Thermostat Hold Mode Manually
-  id: 'climate_clear_thermostat_hold_manually'
-
-  trigger:
-    - platform: state
-      entity_id: input_select.thermostat_mode
-      to: "Clear Holds"
-
-  action:
-    - service: ecobee.resume_program
-      data:
-        entity_id: climate.main_floor
-        resume_all: true
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.thermostat_away
-
-        ##########################################################
-        ## Set Home Mode Manually
-        ##########################################################
-
-- alias: Climate - Set Home Mode Manually
-  id: 'climate_set_home_mode_manually'
-
-  trigger:
-    - platform: state
-      entity_id: input_select.thermostat_mode
-      to: 'Home'
-
-  action:
-    - service: climate.set_preset_mode
-      data:
-        entity_id: climate.main_floor
-        preset_mode: 'home'
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.thermostat_away
-
-        ##########################################################
-        ## Set Away Mode
-        ##########################################################
-
-- alias: Climate - Set Away Mode Manually
-  id: 'climate_set_away_mode_manually'
-
-  trigger:
-    - platform: state
-      entity_id: input_select.thermostat_mode
-      to: 'Away'
-
-  action:
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.thermostat_away
-
-        ##########################################################
-        ## Set Sleep Mode Manually
-        ##########################################################
-
-- alias: Climate - Set Sleep Mode Manually
-  id: 'climate_set_sleep_mode_manually'
-
-  trigger:
-    - platform: state
-      entity_id: input_select.thermostat_mode
-      to: 'Sleep'
-
-  action:
-    - service: climate.set_preset_mode
-      data:
-        entity_id: climate.main_floor
-        preset_mode: 'Sleep'
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.thermostat_away
-
-        ##########################################################
-        ## Set Upstairs Mode Manually
-        ##########################################################
-
-- alias: Climate - Set Upstairs Mode Manually
-  id: 'climate_set_upstairs_mode_manually'
-
-  trigger:
-    - platform: state
-      entity_id: input_select.thermostat_mode
-      to: 'Upstairs'
-
-  action:
-    - service: climate.set_preset_mode
-      data:
-        entity_id: climate.main_floor
-        preset_mode: 'Upstairs'
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.thermostat_away
-
-        ##########################################################
-        ## Set Guest Mode Manually
-        ##########################################################
-
-- alias: Climate - Set Guest Mode Manually
-  id: 'climate_set_guest_mode_manually'
-
-  trigger:
-    - platform: state
-      entity_id: input_select.thermostat_mode
-      to: 'Guest'
-
-  action:
-    - service: climate.set_preset_mode
-      data:
-        entity_id: climate.main_floor
-        preset_mode: 'Guest'
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.thermostat_away
-
-        ##########################################################
-        ## Set Fireplace Mode Manually
-        ##########################################################
-
-- alias: Climate - Set Fireplace Mode Manually
-  id: 'climate_set_fireplace_mode_manually'
-
-  trigger:
-    - platform: state
-      entity_id: input_select.thermostat_mode
-      to: 'Fireplace'
-
-  action:
-    - service: climate.set_preset_mode
-      data:
-        entity_id: climate.main_floor
-        preset_mode: 'Fireplace'
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.thermostat_away

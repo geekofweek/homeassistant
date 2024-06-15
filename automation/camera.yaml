@@ -11,7 +11,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.ring_front_door_ding
+      entity_id: binary_sensor.front_door_doorbell
       from: 'off'
       to: 'on'
 
@@ -39,7 +39,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.ring_front_door_ding
+      entity_id: binary_sensor.front_door_doorbell
       from: 'on'
       to: 'off'
       for:
@@ -72,7 +72,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.ring_front_door_motion
+      entity_id: binary_sensor.front_door_person_detected
       from: 'off'
       to: 'on'
     - platform: state
@@ -108,7 +108,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.ring_front_door_motion
+      entity_id: binary_sensor.front_door_person_detected
       from: 'on'
       to: 'off'
       for:
@@ -164,7 +164,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.ring_front_door_ding
+      entity_id: binary_sensor.front_door_doorbell
       from: 'off'
       to: 'on'
 
@@ -213,7 +213,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.ring_front_door_ding
+      entity_id: binary_sensor.front_door_doorbell
       from: 'on'
       to: 'off'
       for:
@@ -263,7 +263,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.ring_front_door_motion
+      entity_id: binary_sensor.front_door_person_detected
       from: 'off'
       to: 'on'
     - platform: state
@@ -320,7 +320,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.ring_front_door_motion
+      entity_id: binary_sensor.front_door_person_detected
       from: 'on'
       to: 'off'
       for:
@@ -967,7 +967,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.ring_front_door_ding
+      entity_id: binary_sensor.front_door_doorbell
       from: 'off'
       to: 'on'
 
@@ -983,7 +983,7 @@
         data:
           tag: doorbell
           group: doorbell
-          entity_id: camera.front_porch
+          entity_id: camera.front_door
           actions:
             - action: "unlock_front_door"
               title: "Unlock Front Door"
@@ -998,7 +998,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.ring_front_door_ding
+      entity_id: binary_sensor.front_door_doorbell
       from: 'off'
       to: 'on'
 
@@ -1015,37 +1015,8 @@
           tag: doorbell
           group: doorbell
           entity_id: 
-           - camera.front_porch
+           - camera.front_door
           actions:
             - action: "unlock_front_door"
               title: "Unlock Front Door"
               destructive: true
-
-        ##########################################################
-        ## Ring Battery Low
-        ##########################################################
-
-- alias: Camera - Ring Battery Low
-  id: 'camera_ring_battery_low'
-
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.ring_front_door_battery
-      below: 31
-      for:
-        hours: 1
-        minutes: 0
-        seconds: 0
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  action:
-    - service: notify.USER1_devices
-      data:
-        message: Ring Battery Low, Replace Battery Soon
-        data:
-          tag: doorbell-battery
-          group: doorbell

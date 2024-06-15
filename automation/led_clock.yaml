@@ -1681,7 +1681,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.ring_front_door_ding
+      entity_id: binary_sensor.front_door_doorbell
       from: 'off'
       to: 'on'
 
@@ -1983,6 +1983,9 @@
   condition:
     - condition: state
       entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_living_room_motion
       state: 'off'
     - condition: state
       entity_id: group.household
@@ -2789,7 +2792,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.ring_front_door_ding
+      entity_id: binary_sensor.front_door_doorbell
       from: 'off'
       to: 'on'
 

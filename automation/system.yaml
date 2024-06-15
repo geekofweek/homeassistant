@@ -55,6 +55,7 @@
         - input_boolean.disable_blinds
         - input_boolean.disable_roomba
         - input_boolean.disable_light_dimmer
+        - input_boolean.disable_living_room_motion
     - service: homeassistant.turn_on
       entity_id:
         - switch.pihole
@@ -147,6 +148,48 @@
         hours: 0
         minutes: 10
         seconds: 0
+    - platform: state
+      entity_id: lock.front_door
+      to: 'unknown'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+    - platform: state
+      entity_id: lock.back_door
+      to: 'unknown'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+    - platform: state
+      entity_id: lock.basement_door
+      to: 'unknown'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+    - platform: state
+      entity_id: lock.front_door
+      to: 'unknown'
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
+    - platform: state
+      entity_id: lock.back_door
+      to: 'unknown'
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
+    - platform: state
+      entity_id: lock.basement_door
+      to: 'unknown'
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
 
   action:
     - service: zwave_js.ping
@@ -155,6 +198,60 @@
           - lock.front_door
           - lock.back_door
           - lock.basement_door
+
+        #################################################################
+        ## Power Cycle Garage Door Relay if Offline
+        #################################################################
+
+- alias: System - Power Cycle Garage Door Relay if Offline
+  id: 'system_power_cycle_garage_door_realy_if_offline'
+
+  trigger:
+    - platform: state
+      entity_id: cover.garage_door
+      to: 'unavailable'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+    - platform: state
+      entity_id: cover.garage_door
+      to: 'unknown'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+    - platform: state
+      entity_id: cover.garage_door
+      to: 'unavailable'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+    - platform: state
+      entity_id: cover.garage_door
+      to: 'unknown'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+
+  action:
+    - service: notify.USER1_devices
+      data:
+        message: "Power Cycling Garage Door Relay"
+        data:
+          tag: garage
+          group: system
+    - service: switch.turn_off
+      target:
+        entity_id: 
+          - switch.garage_door_relay
+    - delay: '00:60:00'
+    - service: switch.turn_on
+      target:
+        entity_id: 
+          - switch.garage_door_relay
 
         #################################################################
         ## Turn On Guest Mode if Overnight Guest Mode Turned On

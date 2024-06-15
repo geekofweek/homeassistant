@@ -1875,67 +1875,13 @@
       state: 'off'
 
   action:
+    - delay:
+        seconds: 1
     - service: light.turn_on
       entity_id:
         - light.living_room_fan_lights
     - delay:
         seconds: 1
-
-  #################################################################
-  ## Living Room Fan Dimm Lights Pico Remote
-  #################################################################
-
-- alias: Lights - Living Room Fan Dimm Lights Pico Remote
-  id: 'lights_living_room_fan_dimm)lights_pico_remote'
-
-  trigger:
-    - platform: event
-      event_type: lutron_caseta_button_event
-      event_data:
-        serial: 49229391
-        button_number: 2
-        action: press
-
-  condition:
-    - condition: state
-      entity_id: light.living_room_fan_lights
-      state: 'on'
-
-  action:
-    - service: script.turn_on
-      entity_id:
-        - script.living_room_fan_light_dimmer
-    - delay:
-        seconds: 3
-
-  #################################################################
-  ## Living Room Fan Lights Start Dimmer Reset
-  #################################################################
-
-- alias: Lights - Living Room Fan Lights Start Dimmer Reset
-  id: 'lights_living_room_fan_lights_start_dimmer_reset'
-
-  trigger:
-    - platform: state
-      entity_id: switch.living_room_east_fan_dimmer
-      to: 'on'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 10
-    - platform: state
-      entity_id: switch.living_room_east_fan_dimmer
-      to: 'on'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 10
-
-  action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.living_room_east_fan_dimmer
-        - switch.living_room_east_fan_dimmer
 
   #################################################################
   ## Living Room Fan Lights Off Pico Remote
@@ -1958,6 +1904,8 @@
       state: 'on'
 
   action:
+    - delay:
+        seconds: 1
     - service: light.turn_off
       entity_id:
         - light.living_room_fan_lights
@@ -1965,17 +1913,73 @@
         seconds: 1
 
   #################################################################
-  ## Living Room West Fan Lights On Pico Remote
+  ## Living Room Fan Dimm Lights Pico Remote
   #################################################################
 
-- alias: Lights - Living Room West Fan Lights On Pico Remote
-  id: 'lights_living_room_west_fan_lights_on_pico_remote'
+#- alias: Lights - Living Room Fan Dimm Lights Pico Remote
+#  id: 'lights_living_room_fan_dimm)lights_pico_remote'
+
+#  trigger:
+#    - platform: event
+#      event_type: lutron_caseta_button_event
+#      event_data:
+#        serial: 49229391
+#        button_number: 2
+#        action: press
+
+#  condition:
+#    - condition: state
+#      entity_id: light.living_room_fan_lights
+#      state: 'on'
+
+#  action:
+#    - service: script.turn_on
+#      entity_id:
+#        - script.living_room_fan_light_dimmer
+#    - delay:
+#        seconds: 3
+
+  #################################################################
+  ## Living Room Fan Lights Start Dimmer Reset
+  #################################################################
+
+#- alias: Lights - Living Room Fan Lights Start Dimmer Reset
+#  id: 'lights_living_room_fan_lights_start_dimmer_reset'
+
+#  trigger:
+#    - platform: state
+#      entity_id: switch.living_room_east_fan_dimmer
+#      to: 'on'
+#      for:
+#        hours: 0
+#        minutes: 0
+#        seconds: 10
+#    - platform: state
+#      entity_id: switch.living_room_east_fan_dimmer
+#      to: 'on'
+#      for:
+#        hours: 0
+#        minutes: 0
+#        seconds: 10
+
+#  action:
+#    - service: switch.turn_off
+#      entity_id:
+#        - switch.living_room_east_fan_dimmer
+#        - switch.living_room_east_fan_dimmer
+
+  #################################################################
+  ## West Living Room Fan Lights On Pico Remote
+  #################################################################
+
+- alias: Lights - West Living Room Fan Lights On Pico Remote
+  id: 'lights_west_living_room_fan_lights_on_pico_remote'
 
   trigger:
     - platform: event
       event_type: lutron_caseta_button_event
       event_data:
-        serial: 48491915
+        serial: 91525691
         button_number: 2
         action: press
 
@@ -1985,6 +1989,8 @@
       state: 'off'
 
   action:
+    - delay:
+        seconds: 1
     - service: light.turn_on
       entity_id:
         - light.living_room_ceiling_west
@@ -1992,72 +1998,17 @@
         seconds: 1
 
   #################################################################
-  ## Living Room West Fan Dimm Lights Pico Remote
+  ## West Living Room Fan Lights Off Pico Remote
   #################################################################
 
-- alias: Lights - Living Room West Fan Dimm Lights Pico Remote
-  id: 'lights_living_room_west_fan_dimm_lights_pico_remote'
+- alias: Lights - West Fan Living Room Lights Off Pico Remote
+  id: 'lights_west_living_room_fan_lights_off_pico_remote'
 
   trigger:
     - platform: event
       event_type: lutron_caseta_button_event
       event_data:
-        serial: 48491915
-        button_number: 2
-        action: press
-
-  condition:
-    - condition: state
-      entity_id: light.living_room_ceiling_west
-      state: 'on'
-
-  action:
-    - service: script.turn_on
-      entity_id:
-        - script.living_room_west_fan_light_dimmer
-    - delay:
-        seconds: 3
-
-  #################################################################
-  ## Living Room West Fan Lights Start Dimmer Reset
-  #################################################################
-
-- alias: Lights - Living Room West Fan Lights Start Dimmer Reset
-  id: 'lights_living_room_west_fan_lights_start_dimmer_reset'
-
-  trigger:
-    - platform: state
-      entity_id: switch.living_room_east_fan_dimmer
-      to: 'on'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 10
-    - platform: state
-      entity_id: switch.living_room_east_fan_dimmer
-      to: 'on'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 10
-
-  action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.living_room_east_fan_dimmer
-
-  #################################################################
-  ## Living Room West Fan Lights Off Pico Remote
-  #################################################################
-
-- alias: Lights - Living Room West Fan Lights Off Pico Remote
-  id: 'lights_living_room_west_fan_lights_off_pico_remote'
-
-  trigger:
-    - platform: event
-      event_type: lutron_caseta_button_event
-      event_data:
-        serial: 48491915
+        serial: 91525691
         button_number: 4
         action: press
 
@@ -2067,11 +2018,68 @@
       state: 'on'
 
   action:
+    - delay:
+        seconds: 1
     - service: light.turn_off
       entity_id:
         - light.living_room_ceiling_west
     - delay:
         seconds: 1
+
+  #################################################################
+  ## Living Room West Fan Dimm Lights Pico Remote
+  #################################################################
+
+#- alias: Lights - Living Room West Fan Dimm Lights Pico Remote
+#  id: 'lights_living_room_west_fan_dimm_lights_pico_remote'
+
+#  trigger:
+#    - platform: event
+#      event_type: lutron_caseta_button_event
+#      event_data:
+#        serial: 91525691
+#        button_number: 2
+#        action: press
+
+#  condition:
+#    - condition: state
+#      entity_id: light.living_room_ceiling_west
+#      state: 'on'
+
+#  action:
+#    - service: script.turn_on
+#      entity_id:
+#        - script.living_room_west_fan_light_dimmer
+#    - delay:
+#        seconds: 3
+
+  #################################################################
+  ## Living Room West Fan Lights Start Dimmer Reset
+  #################################################################
+
+#- alias: Lights - Living Room West Fan Lights Start Dimmer Reset
+#  id: 'lights_living_room_west_fan_lights_start_dimmer_reset'
+
+#  trigger:
+#    - platform: state
+#      entity_id: switch.living_room_west_fan_dimmer
+#      to: 'on'
+#      for:
+#        hours: 0
+#        minutes: 0
+#        seconds: 10
+#    - platform: state
+#      entity_id: switch.living_room_west_fan_dimmer
+#      to: 'on'
+#      for:
+#        hours: 0
+#        minutes: 0
+#        seconds: 10
+
+#  action:
+#    - service: switch.turn_off
+#      entity_id:
+#        - switch.living_room_west_fan_dimmer
 
   #################################################################
   ## Basement Lights On Pico Remote

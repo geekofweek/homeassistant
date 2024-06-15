@@ -54,7 +54,7 @@
     - condition: not
       conditions:
       - condition: state
-        entity_id: sensor.prusa_mk4
+        entity_id: sensor.prusa_mk3_5
         state: 'printing'
 
   action:
@@ -665,11 +665,11 @@
         color_temp: 370
 
         ##########################################################
-        ## Prusa MK4 Enclosure Fans On Temp
+        ## Prusa MK4 Enclosure Fan On Temp
         ##########################################################
 
-- alias: 3D-Printer - Prusa MK4 Enclosure Fans On Temp
-  id: '3d_printer_prusa_mk4_enclosure_fans_on_temp'
+- alias: 3D-Printer - Prusa MK4 Enclosure Fan On Temp
+  id: '3d_printer_prusa_mk4_enclosure_fan_on_temp'
 
   trigger:
     - platform: numeric_state
@@ -683,9 +683,6 @@
   condition:
     - condition: or
       conditions:
-        - condition: state
-          entity_id: switch.prusa_mk4_psu_fan
-          state: 'off'
         - condition: state
           entity_id: switch.prusa_mk4_enclosure_fan
           state: 'off'
@@ -708,14 +705,55 @@
     - service: switch.turn_on
       entity_id:
         - switch.prusa_mk4_enclosure_fan
+
+        ##########################################################
+        ## Prusa MK4 PSU Fan On Temp
+        ##########################################################
+
+- alias: 3D-Printer - Prusa MK4 PSU Fan On Temp
+  id: '3d_printer_prusa_mk4_psu_fan_on_temp'
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.prusa_mk4_enclosure_temperature
+      above: 30
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: switch.prusa_mk4_psu_fan
+          state: 'off'
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: sensor.prusa_mk4_material
+          state: 'ABS'
+        - condition: state
+          entity_id: sensor.prusa_mk4_material
+          state: 'ASA'
+    - condition: state
+      entity_id: sensor.prusa_mk4
+      state: 'printing'
+    - condition: state
+      entity_id: input_boolean.prusa_mk4_disable_fans
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
         - switch.prusa_mk4_psu_fan
 
         ##########################################################
-        ## Prusa MK4 Enclosure Fans Off Temp
+        ## Prusa MK4 Enclosure Fan Off Temp
         ##########################################################
 
-- alias: 3D-Printer - Prusa MK4 Enclosure Fans Off Temp
-  id: '3d_printer_prusa_mk4_enclosure_fans_off_temp'
+- alias: 3D-Printer - Prusa MK4 Enclosure Fan Off Temp
+  id: '3d_printer_prusa_mk4_enclosure_fan_off_temp'
 
   trigger:
     - platform: numeric_state
@@ -730,9 +768,6 @@
     - condition: or
       conditions:
         - condition: state
-          entity_id: switch.prusa_mk4_psu_fan
-          state: 'on'
-        - condition: state
           entity_id: switch.prusa_mk4_enclosure_fan
           state: 'on'
     - condition: state
@@ -746,14 +781,47 @@
     - service: switch.turn_off
       entity_id:
         - switch.prusa_mk4_enclosure_fan
+
+        ##########################################################
+        ## Prusa MK4 PSU Fan Off Temp
+        ##########################################################
+
+- alias: 3D-Printer - Prusa MK4 PSU Fan Off Temp
+  id: '3d_printer_prusa_mk4_psu_fan_off_temp'
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.prusa_mk4_enclosure_temperature
+      below: 28
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: switch.prusa_mk4_psu_fan
+          state: 'on'
+    - condition: state
+      entity_id: sensor.prusa_mk4
+      state: 'printing'
+    - condition: state
+      entity_id: input_boolean.prusa_mk4_disable_fans
+      state: 'off'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
         - switch.prusa_mk4_psu_fan
 
         ##########################################################
-        ## Prusa MK4 Enclosure Fans On Print Start
+        ## Prusa MK4 Enclosure Fan On Print Start
         ##########################################################
 
-- alias: 3D-Printer - Prusa MK4 Enclosure Fans On Print Start
-  id: '3d_printer_prusa_mk4_enclosure_fans_on_print_start'
+- alias: 3D-Printer - Prusa MK4 Enclosure Fan On Print Start
+  id: '3d_printer_prusa_mk4_enclosure_fan_on_print_start'
 
   trigger:
     - platform: state
@@ -767,9 +835,6 @@
   condition:
     - condition: or
       conditions:
-        - condition: state
-          entity_id: switch.prusa_mk4_psu_fan
-          state: 'off'
         - condition: state
           entity_id: switch.prusa_mk4_enclosure_fan
           state: 'off'
@@ -792,14 +857,13 @@
     - service: switch.turn_on
       entity_id:
         - switch.prusa_mk4_enclosure_fan
-        - switch.prusa_mk4_psu_fan
 
         ##########################################################
-        ## Prusa MK4 Enclosure Fans Off Print Start
+        ## Prusa MK4 PSU Fan On Print Start
         ##########################################################
 
-- alias: 3D-Printer - Prusa MK4 Enclosure Fans Off Print Start
-  id: '3d_printer_prusa_mk4_enclosure_fans_off_print_start'
+- alias: 3D-Printer - Prusa MK4 PSU Fan On Print Start
+  id: '3d_printer_prusa_mk4_psu_fan_on_print_start'
 
   trigger:
     - platform: state
@@ -815,7 +879,46 @@
       conditions:
         - condition: state
           entity_id: switch.prusa_mk4_psu_fan
-          state: 'on'
+          state: 'off'
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: sensor.prusa_mk3_5_material
+          state: 'ABS'
+        - condition: state
+          entity_id: sensor.prusa_mk3_5_material
+          state: 'ASA'
+    - condition: numeric_state
+      entity_id: sensor.prusa_mk4_enclosure_temperature
+      above: 30
+    - condition: state
+      entity_id: input_boolean.prusa_mk4_disable_fans
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.prusa_mk4_psu_fan
+
+        ##########################################################
+        ## Prusa MK4 Enclosure Fan Off Print Start
+        ##########################################################
+
+- alias: 3D-Printer - Prusa MK4 Enclosure Fan Off Print Start
+  id: '3d_printer_prusa_mk4_enclosure_fan_off_print_start'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk4
+      to: 'printing'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: or
+      conditions:
         - condition: state
           entity_id: switch.prusa_mk4_enclosure_fan
           state: 'on'
@@ -838,6 +941,47 @@
     - service: switch.turn_off
       entity_id:
         - switch.prusa_mk4_enclosure_fan
+
+        ##########################################################
+        ## Prusa MK4 PSU Fan Off Print Start
+        ##########################################################
+
+- alias: 3D-Printer - Prusa MK4 PSU Fan Off Print Start
+  id: '3d_printer_prusa_mk4_psu_fan_off_print_start'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk4
+      to: 'printing'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: switch.prusa_mk4_psu_fan
+          state: 'on'
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: sensor.prusa_mk3_5_material
+          state: 'ABS'
+        - condition: state
+          entity_id: sensor.prusa_mk3_5_material
+          state: 'ASA'
+    - condition: numeric_state
+      entity_id: sensor.prusa_mk4_enclosure_temperature
+      below: 28
+    - condition: state
+      entity_id: input_boolean.prusa_mk4_disable_fans
+      state: 'off'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
         - switch.prusa_mk4_psu_fan
 
         ##########################################################
@@ -929,11 +1073,11 @@
         - switch.prusa_mk4_psu_fan
 
         ##########################################################
-        ## Prusa MK3 Enclosure Fans On Temp
+        ## Prusa MK3 Enclosure Fan On Temp
         ##########################################################
 
-- alias: 3D-Printer - Prusa MK3 Enclosure Fans On Temp
-  id: '3d_printer_prusa_mk3_enclosure_fans_on_temp'
+- alias: 3D-Printer - Prusa MK3 Enclosure Fan On Temp
+  id: '3d_printer_prusa_mk3_enclosure_fan_on_temp'
 
   trigger:
     - platform: numeric_state
@@ -948,9 +1092,6 @@
     - condition: or
       conditions:
         - condition: state
-          entity_id: switch.prusa_mk3_psu_fan
-          state: 'off'
-        - condition: state
           entity_id: switch.prusa_mk3_enclosure_fan
           state: 'off'
     - condition: state
@@ -964,14 +1105,47 @@
     - service: switch.turn_on
       entity_id:
         - switch.prusa_mk3_enclosure_fan
+
+        ##########################################################
+        ## Prusa MK3 PSU Fan On Temp
+        ##########################################################
+
+- alias: 3D-Printer - Prusa MK3 PSU Fan On Temp
+  id: '3d_printer_prusa_mk3_psu_fan_on_temp'
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.prusa_mk3_5_enclosure_temperature
+      above: 30
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: switch.prusa_mk3_psu_fan
+          state: 'off'
+    - condition: state
+      entity_id: sensor.prusa_mk3_5
+      state: 'printing'
+    - condition: state
+      entity_id: input_boolean.prusa_mk3_disable_fans
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
         - switch.prusa_mk3_psu_fan
 
         ##########################################################
-        ## Prusa MK3 Enclosure Fans Off Temp
+        ## Prusa MK3 Enclosure Fan Off Temp
         ##########################################################
 
-- alias: 3D-Printer - Prusa MK3 Enclosure Fans Off Temp
-  id: '3d_printer_prusa_mk3_enclosure_fans_off_temp'
+- alias: 3D-Printer - Prusa MK3 Enclosure Fan Off Temp
+  id: '3d_printer_prusa_mk3_enclosure_fan_off_temp'
 
   trigger:
     - platform: numeric_state
@@ -986,9 +1160,6 @@
     - condition: or
       conditions:
         - condition: state
-          entity_id: switch.prusa_mk3_psu_fan
-          state: 'on'
-        - condition: state
           entity_id: switch.prusa_mk3_enclosure_fan
           state: 'on'
     - condition: state
@@ -1002,14 +1173,81 @@
     - service: switch.turn_off
       entity_id:
         - switch.prusa_mk3_enclosure_fan
+
+        ##########################################################
+        ## Prusa MK3 Enclosure PSU Off Temp
+        ##########################################################
+
+- alias: 3D-Printer - Prusa MK3 PSU Fan Off Temp
+  id: '3d_printer_prusa_mk3_psu_fan_off_temp'
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.prusa_mk3_5_enclosure_temperature
+      below: 28
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: switch.prusa_mk3_psu_fan
+          state: 'on'
+    - condition: state
+      entity_id: sensor.prusa_mk3_5
+      state: 'printing'
+    - condition: state
+      entity_id: input_boolean.prusa_mk3_disable_fans
+      state: 'off'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
         - switch.prusa_mk3_psu_fan
 
         ##########################################################
-        ## Prusa MK3 Enclosure Fans On Print Start
+        ## Prusa MK3 Enclosure Fan On Print Start
         ##########################################################
 
-- alias: 3D-Printer - Prusa MK3 Enclosure Fans On Print Start
-  id: '3d_printer_prusa_mk3_enclosure_fans_on_print_start'
+- alias: 3D-Printer - Prusa MK3 Enclosure Fan On Print Start
+  id: '3d_printer_prusa_mk3_enclosure_fan_on_print_start'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk3_5
+      to: 'printing'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: switch.prusa_mk3_enclosure_fan
+          state: 'off'
+    - condition: numeric_state
+      entity_id: sensor.prusa_mk3_5_enclosure_temperature
+      above: 22
+    - condition: state
+      entity_id: input_boolean.prusa_mk3_disable_fans
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.prusa_mk3_enclosure_fan
+
+        ##########################################################
+        ## Prusa MK3 PSU Fan On Print Start
+        ##########################################################
+
+- alias: 3D-Printer - Prusa MK3 PSU Fan On Print Start
+  id: '3d_printer_prusa_mk3_psu_fan_on_print_start'
 
   trigger:
     - platform: state
@@ -1026,12 +1264,9 @@
         - condition: state
           entity_id: switch.prusa_mk3_psu_fan
           state: 'off'
-        - condition: state
-          entity_id: switch.prusa_mk3_enclosure_fan
-          state: 'off'
     - condition: numeric_state
       entity_id: sensor.prusa_mk3_5_enclosure_temperature
-      above: 22
+      above: 30
     - condition: state
       entity_id: input_boolean.prusa_mk3_disable_fans
       state: 'off'
@@ -1039,15 +1274,48 @@
   action:
     - service: switch.turn_on
       entity_id:
-        - switch.prusa_mk3_enclosure_fan
         - switch.prusa_mk3_psu_fan
 
         ##########################################################
-        ## Prusa MK3 Enclosure Fans Off Print Start
+        ## Prusa MK3 Enclosure Fan Off Print Start
         ##########################################################
 
-- alias: 3D-Printer - Prusa MK3 Enclosure Fans Off Print Start
-  id: '3d_printer_prusa_mk3_enclosure_fans_off_print_start'
+- alias: 3D-Printer - Prusa MK3 Enclosure Fan Off Print Start
+  id: '3d_printer_prusa_mk3_enclosure_fan_off_print_start'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk3_5
+      to: 'printing'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: switch.prusa_mk3_enclosure_fan
+          state: 'on'
+    - condition: numeric_state
+      entity_id: sensor.prusa_mk3_5_enclosure_temperature
+      below: 22
+    - condition: state
+      entity_id: input_boolean.prusa_mk3_disable_fans
+      state: 'off'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.prusa_mk3_enclosure_fan
+
+        ##########################################################
+        ## Prusa MK3 PSU Fan Off Print Start
+        ##########################################################
+
+- alias: 3D-Printer - Prusa MK3 PSU Fan Off Print Start
+  id: '3d_printer_prusa_mk3_psu_fan_off_print_start'
 
   trigger:
     - platform: state
@@ -1064,12 +1332,9 @@
         - condition: state
           entity_id: switch.prusa_mk3_psu_fan
           state: 'on'
-        - condition: state
-          entity_id: switch.prusa_mk3_enclosure_fan
-          state: 'on'
     - condition: numeric_state
       entity_id: sensor.prusa_mk3_5_enclosure_temperature
-      below: 22
+      below: 28
     - condition: state
       entity_id: input_boolean.prusa_mk3_disable_fans
       state: 'off'
@@ -1077,7 +1342,6 @@
   action:
     - service: switch.turn_off
       entity_id:
-        - switch.prusa_mk3_enclosure_fan
         - switch.prusa_mk3_psu_fan
 
         ##########################################################
