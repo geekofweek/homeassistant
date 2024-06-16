@@ -333,7 +333,7 @@ More detailed information on the custom Home Assistant Managment Tools can be fo
 | [Zooz Power Switch ZEN15](https://amzn.to/2WRPeiv) | 2 | Z-Wave | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Realized these would flood the z-wave network with traffic and make it unstable, do not recommend |
 | [iRobot Roomba 980](https://amzn.to/2L9q1tm) | 1 | Wi-Fi | [iRobot Roomba](https://www.home-assistant.io/components/vacuum.roomba/)| Automated to run at specific times based on presence detection |
 | [Prusa Mini+](https://shop.prusa3d.com/en/3d-printers/994-original-prusa-mini.html) | 1 | Ethernet | [PrusaLink](https://www.home-assistant.io/integrations/prusalink/)| 3D Printer connected to Home Assitant via PrusaLink. |
-| [Ring Video Doorbell 3 Plus](https://amzn.to/34ysSWV) | 1 | Wi-Fi | [Ring](https://www.home-assistant.io/components/ring/) / [Ring Binary Sensor](https://www.home-assistant.io/components/binary_sensor.ring/) | Automated around binary sensors via motion or doorbell button press |
+| [Ring Video Doorbell 3 Plus](https://amzn.to/34ysSWV) | 1 | Wi-Fi | [Ring](https://www.home-assistant.io/components/ring/) / [Ring Binary Sensor](https://www.home-assistant.io/components/binary_sensor.ring/) | Automated around binary sensors via motion or doorbell button press.  Retired as I am attempting to purge any Cluod based devices, espeically ones with subscriptions. |
 
 # <a name="screenshots">Screenshots</a>
 
