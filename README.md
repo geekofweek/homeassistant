@@ -165,14 +165,16 @@ Water sensors serve one major function, to alert me to the presence of water.  A
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | ------------- | :---: | ------------- | ------------- | ------------- |
-| [Ring Video Doorbell 3 Plus](https://amzn.to/34ysSWV) | 1 | Wi-Fi | [Ring](https://www.home-assistant.io/components/ring/) / [Ring Binary Sensor](https://www.home-assistant.io/components/binary_sensor.ring/) | Automated around binary sensors via motion or doorbell button press |
+| [Ubiquiti Unifi G4 Doorbell Pro](https://amzn.to/3RrXXoQ) | 1 | Wi-Fi | [Unifi Protect](https://www.home-assistant.io/integrations/unifiprotect/) | Automated around binary sensors via person detection or doorbell button press |
 | [Ubiquiti Unifi Protect G4 Pro](https://amzn.to/2CrW5cK) | 1 | Ethernet | [Unifi Protect](https://www.home-assistant.io/integrations/unifiprotect/) | 4K POE Camera. |
 | [Ubiquiti Unifi G4 Bullet](https://amzn.to/2XRWtIv) | 1 | Ethernet | [Unifi Protect](https://www.home-assistant.io/integrations/unifiprotect/) | 1440p POE Camera. |
 | [Ubiquiti UniFi Video G5 Flex](https://amzn.to/2PKrSqA) | 5 | Ethernet | [Unifi Protect](https://www.home-assistant.io/integrations/unifiprotect/) | 1440p POE Camera. |
 | [Ubiquiti UniFi Video G3 Flex](https://amzn.to/2PKrSqA) | 1 | Ethernet | [Unifi Protect](https://www.home-assistant.io/integrations/unifiprotect/) | 1080p POE Camera. |
+| [Ubiquiti UniFi Video G3 Instant](https://amzn.to/3xlYL86) | 2 | Wi-Fi | [Unifi Protect](https://www.home-assistant.io/integrations/unifiprotect/) | 3D Printer Cameras. |
+| [Ubiquiti UniFi Video G4 Instant](https://amzn.to/3KIWeYu) | 2 | Wi-Fi | [Unifi Protect](https://www.home-assistant.io/integrations/unifiprotect/) | 1440p Wi-Fi Camera. |
 | [Unifi Network Video Recorder (UNVR)](https://amzn.to/3l5xfSV) | 1 | Ethernet | [Unifi Protect](https://www.home-assistant.io/integrations/unifiprotect/) | Unifi Protect NVR. |
 
-Nothing is currently automated around cameras, just a [UI](https://github.com/geekofweek/homeassistant/blob/master/images/camera-screenshot.jpg) element.  The Ring doorbell is used in a number of ways to trigger an action based on motion detection or someone ringing the doorbell.  Examples can be found in [doorbell.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/doorbell.yaml)
+Nothing is currently automated around cameras, just a [UI](https://github.com/geekofweek/homeassistant/blob/master/images/camera-screenshot.jpg) element.  The doorbell is used in a number of ways to trigger an action based on person detection or someone ringing the doorbell.  Examples can be found in [camera.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/camera.yaml)
 
 I also send camera feeds as a payload on a few iOS notifications, those can mostly be found in [camera.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/camera.yaml)
 
@@ -331,6 +333,7 @@ More detailed information on the custom Home Assistant Managment Tools can be fo
 | [Zooz Power Switch ZEN15](https://amzn.to/2WRPeiv) | 2 | Z-Wave | [Z-Wave JS](https://www.home-assistant.io/integrations/zwave_js/) | Realized these would flood the z-wave network with traffic and make it unstable, do not recommend |
 | [iRobot Roomba 980](https://amzn.to/2L9q1tm) | 1 | Wi-Fi | [iRobot Roomba](https://www.home-assistant.io/components/vacuum.roomba/)| Automated to run at specific times based on presence detection |
 | [Prusa Mini+](https://shop.prusa3d.com/en/3d-printers/994-original-prusa-mini.html) | 1 | Ethernet | [PrusaLink](https://www.home-assistant.io/integrations/prusalink/)| 3D Printer connected to Home Assitant via PrusaLink. |
+| [Ring Video Doorbell 3 Plus](https://amzn.to/34ysSWV) | 1 | Wi-Fi | [Ring](https://www.home-assistant.io/components/ring/) / [Ring Binary Sensor](https://www.home-assistant.io/components/binary_sensor.ring/) | Automated around binary sensors via motion or doorbell button press |
 
 # <a name="screenshots">Screenshots</a>
 
