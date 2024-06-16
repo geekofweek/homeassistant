@@ -174,7 +174,7 @@ Water sensors serve one major function, to alert me to the presence of water.  A
 | [Ubiquiti UniFi Video G4 Instant](https://amzn.to/3KIWeYu) | 2 | Wi-Fi | [Unifi Protect](https://www.home-assistant.io/integrations/unifiprotect/) | 1440p Wi-Fi Camera. |
 | [Unifi Network Video Recorder (UNVR)](https://amzn.to/3l5xfSV) | 1 | Ethernet | [Unifi Protect](https://www.home-assistant.io/integrations/unifiprotect/) | Unifi Protect NVR. |
 
-Nothing is currently automated around cameras, just a [UI](https://github.com/geekofweek/homeassistant/blob/master/images/camera-screenshot.jpg) element.  The doorbell is used in a number of ways to trigger an action based on person detection or someone ringing the doorbell.  Examples can be found in [camera.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/camera.yaml)
+The cameras are used in a number of ways to trigger an action based on person detection, someone ringing the doorbell, and as a UI element.  Examples can be found in [camera.yaml]( https://github.com/geekofweek/homeassistant/blob/master/automation/camera.yaml)
 
 I also send camera feeds as a payload on a few iOS notifications, those can mostly be found in [camera.yaml](https://github.com/geekofweek/homeassistant/blob/master/automation/camera.yaml)
 
