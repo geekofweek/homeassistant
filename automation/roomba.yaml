@@ -222,7 +222,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door_doorbell
+      entity_id: binary_sensor.front_door_camera_doorbell
       from: 'off'
       to: 'on'
 
@@ -257,7 +257,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door_doorbell
+      entity_id: binary_sensor.front_door_camera_doorbell
       from: 'on'
       to: 'off'
       for:

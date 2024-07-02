@@ -116,14 +116,8 @@
       - condition: state
         entity_id: cover.stairs_blinds
         state: 'open'
-      - condition: state
-        entity_id: cover.USER2_s_office_blinds
-        state: 'open'
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.USER2_s_office_blinds
     - service: cover.close_cover
       entity_id:
         - cover.stairs_blinds
@@ -604,6 +598,109 @@
     - service: cover.close_cover
       entity_id:
         - cover.USER1_s_office_blinds
+
+        ##########################################################
+        ## Bedtime - USER1's Office Blinds Portable AC
+        ##########################################################
+
+- alias: Bedtime USER1's Office Blinds Portable AC
+  id: 'bedtime_USER1_office_blinds_portable_ac'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 30
+
+  condition:
+    - condition: state
+      entity_id: binary_sensor.USER1s_office_window_right
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER1_office_portable_ac
+      state: 'on'
+
+  action:
+    - service: cover.close_cover
+      data:
+        entity_id: 
+          - cover.USER1s_office_blinds_left
+          - cover.USER1s_office_blinds_center
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER1s_office_blinds_right
+        position: 13
+
+        ##########################################################
+        ## Bedtime - USER2's Office Blinds
+        ##########################################################
+
+- alias: Bedtime USER2's Office Blinds
+  id: 'bedtime_USER2_office_blinds'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 4
+        seconds: 30
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.USER2_office_portable_ac
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+
+  action:
+    - service: cover.close_cover
+      entity_id:
+        - cover.USER2_s_office_blinds
+
+        ##########################################################
+        ## Bedtime - USER2's Office Blinds Portable AC
+        ##########################################################
+
+- alias: Bedtime USER2's Office Blinds Portable AC
+  id: 'bedtime_USER2_office_blinds_portable_ac'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 4
+        seconds: 30
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.USER2_office_portable_ac
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+
+  action:
+    - service: cover.close_cover
+      data:
+        entity_id: 
+          - cover.USER2s_office_blinds_left
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER2s_office_blinds_right
+        position: 15
 
         ##########################################################
         ## Reset Bedtime Switch

@@ -1713,6 +1713,9 @@
     - condition: state
       entity_id: switch.grow_light
       state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_grow_light
+      state: 'off'
 
   action:
     - service: switch.turn_off
@@ -1733,6 +1736,9 @@
   condition:
     - condition: state
       entity_id: switch.grow_light
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_grow_light
       state: 'off'
 
   action:

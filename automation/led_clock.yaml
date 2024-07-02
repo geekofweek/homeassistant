@@ -1839,6 +1839,9 @@
     - condition: state
       entity_id: light.USER1s_office_desktop_clock
       state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_echo
+      state: 'off'
 
   action:
     - service: mqtt.publish
@@ -2995,6 +2998,9 @@
     - condition: state
       entity_id: light.living_room_clock
       state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_echo
+      state: 'off'
 
   action:
     - service: mqtt.publish

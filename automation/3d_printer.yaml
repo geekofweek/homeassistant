@@ -674,7 +674,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.prusa_mk4_enclosure_temperature
-      above: 22
+      above: 26
       for:
         hours: 0
         minutes: 5
@@ -758,7 +758,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.prusa_mk4_enclosure_temperature
-      below: 22
+      below: 26
       for:
         hours: 0
         minutes: 5
@@ -848,7 +848,7 @@
           state: 'ASA'
     - condition: numeric_state
       entity_id: sensor.prusa_mk4_enclosure_temperature
-      above: 22
+      above: 26
     - condition: state
       entity_id: input_boolean.prusa_mk4_disable_fans
       state: 'off'
@@ -932,7 +932,7 @@
           state: 'ASA'
     - condition: numeric_state
       entity_id: sensor.prusa_mk4_enclosure_temperature
-      below: 22
+      below: 26
     - condition: state
       entity_id: input_boolean.prusa_mk4_disable_fans
       state: 'off'
@@ -1082,7 +1082,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.prusa_mk3_5_enclosure_temperature
-      above: 22
+      above: 26
       for:
         hours: 0
         minutes: 5
@@ -1150,7 +1150,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.prusa_mk3_5_enclosure_temperature
-      below: 22
+      below: 26
       for:
         hours: 0
         minutes: 5
@@ -1232,7 +1232,7 @@
           state: 'off'
     - condition: numeric_state
       entity_id: sensor.prusa_mk3_5_enclosure_temperature
-      above: 22
+      above: 26
     - condition: state
       entity_id: input_boolean.prusa_mk3_disable_fans
       state: 'off'
@@ -1300,7 +1300,7 @@
           state: 'on'
     - condition: numeric_state
       entity_id: sensor.prusa_mk3_5_enclosure_temperature
-      below: 22
+      below: 26
     - condition: state
       entity_id: input_boolean.prusa_mk3_disable_fans
       state: 'off'
@@ -1531,7 +1531,7 @@
         ##########################################################
 
 - alias: 3D-Printer - Turn On Camera Recording Prusa MK4
-  id: '3d_printer_turn_on_camera_recording_prusa_mini'
+  id: '3d_printer_turn_on_camera_recording_prusa_mk4'
 
   trigger:
     - platform: state
@@ -1560,7 +1560,7 @@
         ##########################################################
 
 - alias: 3D-Printer - Turn Off Camera Recording Prusa MK4
-  id: '3d_printer_turn_off_camera_recording_prusa_mini'
+  id: '3d_printer_turn_off_camera_recording_prusa_mk4'
 
   trigger:
     - platform: state
@@ -1583,3 +1583,63 @@
       data:
         entity_id: select.prusa_mk4_recording_mode
         option: "Never"
+
+#################################################################
+## Network Access
+#################################################################
+
+        ##########################################################
+        ## Disable MK3.5 Network Access When Powered Off
+        ##########################################################
+
+- alias: 3D-Printer - Disable MK3.5 Network Access When Powered Off
+  id: '3d_printer_disable_mk3_5_network_access_when_powered_off'
+
+  trigger:
+    - platform: state
+      entity_id: switch.prusa_mk3
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.prusa_mk3_5
+        state: 'printing'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.prusa_mk3_5_network
+
+        ##########################################################
+        ## Enable MK3.5 Network Access When Powered On
+        ##########################################################
+
+- alias: 3D-Printer - Enable MK3.5 Network Access When Powered On
+  id: '3d_printer_disable_mk3_5_network_access_when_powered_on'
+
+  trigger:
+    - platform: state
+      entity_id: switch.prusa_mk3
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.prusa_mk3_5
+        state: 'printing'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.prusa_mk3_5_network

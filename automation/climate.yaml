@@ -23,6 +23,9 @@
       entity_id: input_boolean.disable_climate
       state: 'off'
     - condition: state
+      entity_id: input_boolean.thermostat_away
+      state: 'on'
+    - condition: state
       entity_id: group.household
       state: 'home'
 
@@ -69,10 +72,10 @@
         state: 'home'
     - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
-      below: 96
+      below: 85
     - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_low
-      above: 15
+      above: 20
 
   action:
     - service: notify.USER1_devices
@@ -627,11 +630,9 @@
     - condition: state
       entity_id: input_boolean.overnight_guest_mode
       state: 'on'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: climate.portable_air_conditioner
-        state: 'cool'
+    - condition: state
+      entity_id: input_boolean.guest_bedroom_portable_ac
+      state: 'off'
 
   action:
     - service: climate.set_preset_mode
@@ -661,11 +662,9 @@
     - condition: state
       entity_id: group.household
       state: 'home'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: climate.portable_air_conditioner
-        state: 'cool'
+    - condition: state
+      entity_id: input_boolean.guest_bedroom_portable_ac
+      state: 'off'
 
   action:
     - service: climate.set_preset_mode
@@ -714,52 +713,52 @@
         resume_all: true
 
         ##########################################################
-        ## Adjust Thermostat to Upstairs Mode at Noon when Hot
+        ## Adjust Thermostat to Upstairs Mode in the Morning
         ##########################################################
 
-- alias: Climate - Adjust Thermostat to Upstairs Mode at Noon when Hot
-  id: 'climate_adjust_thermostat_to_upstairs_mode_at_noon_when_hot'
+- alias: Climate - Adjust Thermostat to Upstairs Mode in the Morning
+  id: 'climate_adjust_thermostat_to_upstairs_mode_in_the_morning'
 
   trigger:
     - platform: time
-      at: '12:00:00'
+      at: '10:00:00'
 
   condition:
     - condition: state
       entity_id: input_boolean.thermostat_away
       state: 'off'
-    - condition: state
-      entity_id: sensor.season
-      state: 'summer'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.season
+        state: 'winter'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: climate.main_floor
+        state: 'heat'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: climate.main_floor
+        state: 'off'
     - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
       above: 79
     - condition: state
       entity_id: input_boolean.disable_climate
       state: 'off'
-    - condition: time
-      weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
-    - condition: state
-      entity_id: person.USER1
-      state: 'home'
     - condition: state
       entity_id: group.household
       state: 'home'
-    - condition: not
+    - condition: or
       conditions:
       - condition: state
-        entity_id: climate.portable_air_conditioner
-        state: 'cool'
-    - condition: not
-      conditions:
+        entity_id: input_boolean.USER1_office_portable_ac
+        state: 'off'
       - condition: state
-        entity_id: climate.portable_air_conditioner
-        state: 'auto'
+        entity_id: input_boolean.USER2_office_portable_ac
+        state: 'off'
 
   action:
     - service: climate.set_preset_mode
@@ -788,38 +787,38 @@
     - condition: state
       entity_id: input_boolean.thermostat_away
       state: 'off'
-    - condition: state
-      entity_id: sensor.season
-      state: 'summer'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.season
+        state: 'winter'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: climate.main_floor
+        state: 'heat'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: climate.main_floor
+        state: 'off'
     - condition: state
       entity_id: input_boolean.disable_climate
       state: 'off'
     - condition: time
       after: '12:00:00'
       before: '19:00:00'
-    - condition: time
-      weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
-    - condition: state
-      entity_id: person.USER1
-      state: 'home'
     - condition: state
       entity_id: group.household
       state: 'home'
-    - condition: not
+    - condition: or
       conditions:
       - condition: state
-        entity_id: climate.portable_air_conditioner
-        state: 'cool'
-    - condition: not
-      conditions:
+        entity_id: input_boolean.USER1_office_portable_ac
+        state: 'off'
       - condition: state
-        entity_id: climate.portable_air_conditioner
-        state: 'auto'
+        entity_id: input_boolean.USER2_office_portable_ac
+        state: 'off'
 
   action:
     - service: climate.set_preset_mode
@@ -840,7 +839,7 @@
 
   condition:
     - condition: state
-      entity_id: person.USER1
+      entity_id: group.household
       state: 'home'
     - condition: state
       entity_id: input_boolean.thermostat_away
@@ -851,102 +850,9 @@
     - condition: state
       entity_id: sensor.thermostat_climate_mode
       state: 'Upstairs'
-    - condition: time
-      weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
     - condition: state
       entity_id: input_boolean.guest_mode
       state: 'off'
-
-  action:
-    - service: ecobee.resume_program
-      data:
-        entity_id: climate.main_floor
-        resume_all: true
-
-        ##########################################################
-        ## Lower Temperature when Guests Visiting
-        ##########################################################
-
-- alias: Climate - Lower Temperature when Guests Visiting
-  id: 'climate_lower_temerature_when_guest_visiting'
-
-  trigger:
-    - platform: state
-      entity_id: input_boolean.guest_mode
-      from: 'off'
-      to: 'on'
-      for:
-        hours: 0
-        minutes: 30
-        seconds: 0
-
-  condition:
-    - condition: time
-      after: '09:00:00'
-      before: '23:30:00'
-    - condition: state
-      entity_id: input_boolean.thermostat_away
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.disable_climate
-      state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: sensor.season
-      state: 'summer'
-    - condition: state
-      entity_id: sensor.thermostat_climate_mode
-      state: 'Home'
-
-  action:
-    - service: climate.set_temperature
-      data:
-        entity_id: climate.main_floor
-        temperature: 73
-
-        ##########################################################
-        ## Reset Temperature when Guests Leaves
-        ##########################################################
-
-- alias: Climate - Reset Temperature when Guests Leaves
-  id: 'climate_reset_temperature_when_guest_leaves'
-
-  trigger:
-    - platform: state
-      entity_id: input_boolean.guest_mode
-      from: 'on'
-      to: 'off'
-      for:
-        hours: 0
-        minutes: 30
-        seconds: 0
-
-  condition:
-    - condition: time
-      after: '09:00:00'
-      before: '23:30:00'
-    - condition: state
-      entity_id: input_boolean.thermostat_away
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.disable_climate
-      state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: sensor.thermostat_climate_mode
-      state: 'Temperature Hold'
-    - condition: state
-      entity_id: sensor.season
-      state: 'summer'
 
   action:
     - service: ecobee.resume_program
@@ -1330,6 +1236,95 @@
 #################################################################
 
         ##########################################################
+        ## Adjust Thermostat for Portable AC at 9:30a
+        ##########################################################
+
+- alias: Climate - Adjust Thermostat for Portable AC at 9:30a
+  id: 'climate_adjust_thermostat_for_portable_ac_at_9:30a'
+
+  trigger:
+   - platform: time
+     at: '09:30:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.USER1_office_portable_ac
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.USER2_office_portable_ac
+      state: 'on'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.season
+        state: 'winter'
+
+  action:
+    - service: climate.set_preset_mode
+      data:
+        entity_id: climate.main_floor
+        preset_mode: 'Downstairs'
+
+        ##########################################################
+        ## Adjust Thermostat for Portable AC when Enabled
+        ##########################################################
+
+- alias: Climate - Adjust Thermostat for Portable when Enabled
+  id: 'climate_adjust_thermostat_for_portable_ac_when_enabled'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER2_office_portable_ac
+      to: 'on'
+    - platform: state
+      entity_id: input_boolean.USER1_office_portable_ac
+      to: 'on'
+    - platform: state
+      entity_id: input_boolean.guest_bedroom_portable_ac
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.USER1_office_portable_ac
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.USER2_office_portable_ac
+      state: 'on'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.season
+        state: 'winter'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: climate.main_floor
+        state: 'heat'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: climate.main_floor
+        state: 'off'
+
+  action:
+    - service: climate.set_preset_mode
+      data:
+        entity_id: climate.main_floor
+        preset_mode: 'Downstairs'
+
+        ##########################################################
         ## Turn Off Portable AC when Water Bin Full
         ##########################################################
 
@@ -1356,7 +1351,7 @@
   action:
     - service: climate.turn_off
       entity_id: climate.portable_air_conditioner
-    - delay: '00:02:00'
+    - delay: '00:05:00'
     - service: switch.turn_off
       entity_id: switch.portable_ac
 
@@ -1387,7 +1382,7 @@
         data:
           tag: climate
           group: climate
-    - delay: '00:02:00'
+    - delay: '00:05:00'
     - service: switch.turn_off
       entity_id: switch.portable_ac
 

@@ -3,6 +3,85 @@
 #################################################################
 
         ##########################################################
+        ## Package Camera On
+        ##########################################################
+
+- alias: Camera - Package Camera On
+  id: 'camera_package_camera_on'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_camera_package_detected
+      to: 'on'
+#    - platform: state
+#      entity_id: binary_sensor.front_door_camera_person_detected
+#      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.front_door_camera_doorbell
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.view_package_camera
+      state: 'off'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id:
+        - input_boolean.view_package_camera
+
+        ##########################################################
+        ## Package Camera Off
+        ##########################################################
+
+- alias: Camera - Package Camera Off
+  id: 'camera_package_camera_off'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_opened
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.view_package_camera
+      state: 'on'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.view_package_camera
+
+        ##########################################################
+        ## Package Camera Off at Midnight
+        ##########################################################
+
+- alias: Camera - Package Camera Off at Midnight
+  id: 'camera_package_camera_off_at_midnight'
+
+  trigger:
+   - platform: time
+     at: '11:59:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.view_package_camera
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.front_door_camera_package_detected
+      state: 'off'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.view_package_camera
+
+        ##########################################################
         ## Turn On Front Porch Lights when Doorbell Rings
         ##########################################################
 
@@ -11,7 +90,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door_doorbell
+      entity_id: binary_sensor.front_door_camera_doorbell
       from: 'off'
       to: 'on'
 
@@ -39,7 +118,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door_doorbell
+      entity_id: binary_sensor.front_door_camera_doorbell
       from: 'on'
       to: 'off'
       for:
@@ -72,7 +151,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door_person_detected
+      entity_id: binary_sensor.front_door_camera_person_detected
       from: 'off'
       to: 'on'
     - platform: state
@@ -108,7 +187,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door_person_detected
+      entity_id: binary_sensor.front_door_camera_person_detected
       from: 'on'
       to: 'off'
       for:
@@ -164,7 +243,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door_doorbell
+      entity_id: binary_sensor.front_door_camera_doorbell
       from: 'off'
       to: 'on'
 
@@ -213,7 +292,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door_doorbell
+      entity_id: binary_sensor.front_door_camera_doorbell
       from: 'on'
       to: 'off'
       for:
@@ -263,7 +342,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door_person_detected
+      entity_id: binary_sensor.front_door_camera_person_detected
       from: 'off'
       to: 'on'
     - platform: state
@@ -320,7 +399,7 @@
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door_person_detected
+      entity_id: binary_sensor.front_door_camera_person_detected
       from: 'on'
       to: 'off'
       for:
@@ -773,6 +852,37 @@
 #################################################################
 
     #################################################################
+    ## Person Detected at Front Door
+    #################################################################
+
+- alias: Camera - Person Detected in Front Door
+  id: 'camera_person_detected_in_front_door'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_camera_person_detected
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+
+  action:
+    - service: notify.USER1_devices
+      data:
+        message: Person Detected at Front Door!
+        data:
+          tag: camera
+          group: camera
+          entity_id: camera.front_door
+
+    #################################################################
     ## Person Detected on Front Porch
     #################################################################
 
@@ -959,15 +1069,15 @@
           entity_id: camera.garage
 
         ##########################################################
-        ## Doorbell Ring iOS USER1 Notification
+        ## Doorbell iOS USER1 Notification
         ##########################################################
 
-- alias: Camera - Ring iOS USER1 Notification
-  id: 'camera_ring_ios_USER1_notification'
+- alias: Camera - Doorbell iOS USER1 Notification
+  id: 'camera_doorbell_ios_USER1_notification'
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door_doorbell
+      entity_id: binary_sensor.front_door_camera_doorbell
       from: 'off'
       to: 'on'
 
@@ -990,15 +1100,15 @@
               destructive: true
 
         ##########################################################
-        ## Doorbell Ring iOS USER2 Notification
+        ## Doorbell iOS USER2 Notification
         ##########################################################
 
-- alias: Camera - Ring iOS USER2 Notification
-  id: 'camera_ring_ios_USER2_notification'
+- alias: Camera - Doorbell iOS USER2 Notification
+  id: 'camera_doorbell_ios_USER2_notification'
 
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door_doorbell
+      entity_id: binary_sensor.front_door_camera_doorbell
       from: 'off'
       to: 'on'
 
@@ -1020,3 +1130,61 @@
             - action: "unlock_front_door"
               title: "Unlock Front Door"
               destructive: true
+
+        ##########################################################
+        ## Package iOS USER1 Notification
+        ##########################################################
+
+- alias: Camera - Package iOS USER1 Notification
+  id: 'camera_package_ios_USER1_notification'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_camera_package_detected
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+    - condition: state
+      entity_id:  input_boolean.view_package_camera
+      state: 'off'
+
+  action:
+    - service: notify.USER1_devices
+      data:
+        message: Package Detected on Front Porch
+        data:
+          tag: package
+          group: package
+          entity_id: camera.front_door
+
+        ##########################################################
+        ## Package iOS USER2 Notification
+        ##########################################################
+
+- alias: Camera - Package iOS USER2 Notification
+  id: 'camera_package_ios_USER2_notification'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_camera_package_detected
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+    - condition: state
+      entity_id:  input_boolean.view_package_camera
+      state: 'off'
+
+  action:
+    - service: notify.USER2_devices
+      data:
+        message: Package Detected on Front Porch
+        data:
+          tag: package
+          group: package
+          entity_id: camera.front_door

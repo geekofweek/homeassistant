@@ -251,16 +251,8 @@
       - condition: state
         entity_id: cover.stairs_blinds
         state: 'open'
-      - condition: state
-        entity_id: cover.USER2_s_office_blinds
-        state: 'open'
 
   action:
-    - service: cover.close_cover
-      data:
-        entity_id: 
-          - cover.USER2_s_office_blinds
-    - delay: '00:00:15'
     - service: cover.close_cover
       data:
         entity_id: 
@@ -928,6 +920,9 @@
     - condition: state
       entity_id: binary_sensor.USER1s_office_window_right
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER1_office_portable_ac
+      state: 'off'
 
   action:
     - service: cover.close_cover
@@ -955,6 +950,9 @@
     - condition: state
       entity_id: binary_sensor.USER1s_office_window_right
       state: 'on'
+    - condition: state
+      entity_id: input_boolean.USER1_office_portable_ac
+      state: 'off'
 
   action:
     - service: cover.close_cover
@@ -974,6 +972,41 @@
           group: location
 
         ##########################################################
+        ## USER1 Away Close Blinds Portable AC
+        ##########################################################
+
+- alias: Location - USER1 Away Close Blinds Portable AC
+  id: 'location_USER1_away_shut_off_office_portable_ac'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_away
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.USER1s_office_window_right
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.USER1_office_portable_ac
+      state: 'on'
+
+  action:
+    - service: cover.close_cover
+      data:
+        entity_id: 
+          - cover.USER1s_office_blinds_left
+          - cover.USER1s_office_blinds_center
+    - service: cover.set_cover_position
+      data:
+        entity_id: cover.USER1s_office_blinds_right
+        position: 13
+
+        ##########################################################
         ## USER2 Away Shut Off Office
         ##########################################################
 
@@ -990,6 +1023,9 @@
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER2_office_portable_ac
+      state: 'off'
 
   action:
     - service: light.turn_off
@@ -999,6 +1035,41 @@
       data:
         entity_id: 
           - cover.USER2_s_office_blinds
+
+        ##########################################################
+        ## USER2 Away Shut Off Office Portable AC
+        ##########################################################
+
+- alias: Location - USER2 Away Shut Off Office Portable AC
+  id: 'location_USER2_away_shut_off_office_portable_ac'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER2_away
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER2_office_portable_ac
+      state: 'on'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.USER2_s_office_ceiling
+    - service: cover.close_cover
+      data:
+        entity_id: 
+          - cover.USER2s_office_blinds_left
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER2s_office_blinds_right
+        position: 15
 
         ##########################################################
         ## USER1 Away Lock Doors

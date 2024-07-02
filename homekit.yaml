@@ -63,9 +63,6 @@
         - switch.air_purifier
         - switch.fountain
         - switch.fireplace
-        - switch.living_room_tv_watch_tv
-        - switch.living_room_tv_play_xbox
-        - switch.living_room_tv_play_nintendo_switch
         - climate.main_floor
         - climate.office_fan
         - sensor.main_floor_humidity
@@ -118,8 +115,8 @@
     entity_config:
         camera.front_door:
           video_codec: copy
-          linked_motion_sensor: binary_sensor.front_door_person_detected
-          linked_doorbell_sensor: binary_sensor.front_door_doorbell
+          linked_motion_sensor: binary_sensor.front_door_camera_person_detected
+          linked_doorbell_sensor: binary_sensor.front_door_camera_doorbell
 
   - name: Front Porch Camera
     mode: accessory

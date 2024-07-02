@@ -56,6 +56,7 @@
         - input_boolean.disable_roomba
         - input_boolean.disable_light_dimmer
         - input_boolean.disable_living_room_motion
+        - input_boolean.disable_echo
     - service: homeassistant.turn_on
       entity_id:
         - switch.pihole
@@ -79,6 +80,31 @@
     - service: homeassistant.turn_off
       entity_id:
         - input_boolean.disable_startup_notifications
+
+        ##########################################################
+        ## Reload Echo Integration on Startup
+        ##########################################################
+
+- alias: System - Reload Echo Integration on Startup
+  id: 'system_reload_echo_integration_on_startup'
+
+  trigger:
+    - platform: homeassistant
+      event: start
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id:
+        - input_boolean.disable_echo
+    - delay: 00:01:00
+    - service: homeassistant.reload_config_entry
+      target: {}
+      data:
+        entry_id: 2c39bd41b37b18b2c96b03d10fb00866
+    - delay: 00:01:00
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.disable_echo
 
         #################################################################
         ## Clear Erroneous Failed Login Notifications
@@ -500,6 +526,9 @@
       - condition: state
         entity_id: light.media_center_lighting
         state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_echo
+      state: 'off'
 
   action:
     - service: light.turn_on
@@ -986,6 +1015,9 @@
     - condition: state
       entity_id: person.USER1
       state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_echo
+      state: 'off'
 
   action:
     - service: notify.USER1_devices
@@ -1052,6 +1084,9 @@
     - condition: state
       entity_id: person.USER2
       state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_echo
+      state: 'off'
 
   action:
     - service: notify.USER2_devices

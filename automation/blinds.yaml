@@ -22,12 +22,50 @@
     - condition: state
       entity_id: cover.USER2_s_office_blinds
       state: 'open'
+    - condition: state
+      entity_id: input_boolean.USER2_office_portable_ac
+      state: 'off'
 
   action:
     - service: cover.close_cover
       data:
         entity_id: 
           - cover.USER2_s_office_blinds
+
+        ##########################################################
+        ## Close USER2's Office Blinds when Sun Below Horizon Portable AC
+        ##########################################################
+
+- alias: Blinds - Close USER2's Office Blinds when Sun Below Horizon Portable AC
+  id: 'blinds_close_USER2_office_blinds_when_sun_below_horizon_portable_ac'
+
+  trigger:
+    - platform: state
+      entity_id: sun.sun
+      from: 'above_horizon'
+      to: 'below_horizon'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.USER2_s_office_blinds
+      state: 'open'
+    - condition: state
+      entity_id: input_boolean.USER2_office_portable_ac
+      state: 'on'
+
+  action:
+    - service: cover.close_cover
+      data:
+        entity_id: 
+          - cover.USER2s_office_blinds_left
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER2s_office_blinds_right
+        position: 15
 
         ##########################################################
         ## Close Bedroom Closet Blinds when Sun Below Horizon
@@ -141,19 +179,24 @@
       after: '08:00:00'
     - condition: numeric_state
       entity_id: sensor.REDACTED_temperature
-      below: 86
+      below: 85
     - condition: numeric_state
       entity_id: sensor.REDACTED_temperature
       above: 20
     - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
-      below: 96
+      below: 90
     - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
       above: 20
-    - condition: state
-      entity_id: cover.USER1_s_office_blinds
-      state: 'closed'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: cover.USER1_s_office_blinds
+        state: 'closed'
+      - condition: state
+        entity_id: input_boolean.USER1_office_portable_ac
+        state: 'on'
     - condition: sun
       after: sunrise
       after_offset: "00:60:00"
@@ -201,12 +244,58 @@
     - condition: state
       entity_id: cover.USER1_s_office_blinds
       state: 'open'
+    - condition: state
+      entity_id: input_boolean.USER1_office_portable_ac
+      state: 'off'
 
   action:
     - service: cover.close_cover
       data:
         entity_id: 
           - cover.USER1_s_office_blinds
+
+        ##########################################################
+        ## Close USER1's Office Blinds When No Motion Detected Portable AC
+        ##########################################################
+
+- alias: Blinds - Close USER1's Office Blinds When No Motion Detected Portable AC
+  id: 'blinds_close_USER1_office_blinds_when_no_motion_detected_portable_ac'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER1s_office_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.USER1s_office_window_right
+      state: 'on'
+    - condition: state
+      entity_id: cover.USER1_s_office_blinds
+      state: 'open'
+    - condition: state
+      entity_id: input_boolean.USER1_office_portable_ac
+      state: 'on'
+
+  action:
+    - service: cover.close_cover
+      data:
+        entity_id: 
+          - cover.USER1s_office_blinds_left
+          - cover.USER1s_office_blinds_center
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER1s_office_blinds_right
+        position: 13
 
         ##########################################################
         ## Close USER1's Office Blinds Outside Temperature
@@ -218,7 +307,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.REDACTED_temperature
-      above: 86
+      above: 85
       for:
         hours: 0
         minutes: 30
@@ -241,12 +330,64 @@
     - condition: state
       entity_id: cover.USER1_s_office_blinds
       state: 'open'
+    - condition: state
+      entity_id: input_boolean.USER1_office_portable_ac
+      state: 'off'
 
   action:
     - service: cover.close_cover
       data:
         entity_id: 
           - cover.USER1_s_office_blinds
+
+        ##########################################################
+        ## Close USER1's Office Blinds Outside Temperature Portable AC
+        ##########################################################
+
+- alias: Blinds - Close USER1's Office Blinds Outside Temperature Portable AC
+  id: 'blinds_close_USER1_office_blinds_outside_temperature_portable_ac'
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      above: 85
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+    - platform: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      below: 20
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.USER1s_office_window_right
+      state: 'on'
+    - condition: state
+      entity_id: cover.USER1_s_office_blinds
+      state: 'open'
+    - condition: state
+      entity_id: input_boolean.USER1_office_portable_ac
+      state: 'on'
+
+  action:
+    - service: cover.close_cover
+      data:
+        entity_id: 
+          - cover.USER1s_office_blinds_left
+          - cover.USER1s_office_blinds_center
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER1s_office_blinds_right
+        position: 13
 
         ##########################################################
         ## Close USER1's Office Blinds Halfway Before Sunset
@@ -389,6 +530,9 @@
     - condition: state
       entity_id: binary_sensor.USER1s_office_window_right
       state: 'on'
+    - condition: state
+      entity_id: input_boolean.USER1_office_portable_ac
+      state: 'off'
 
   action:
     - service: cover.close_cover
@@ -401,6 +545,46 @@
         entity_id: 
           - cover.USER1s_office_blinds_right
         position: 45
+
+        ##########################################################
+        ## Close USER1's Office Blinds Partially when Sun Below Horizon Portable AC
+        ##########################################################
+
+- alias: Blinds - Close USER1's Office Blinds Partially when Sun Below Horizon Portable AC
+  id: 'blinds_close_USER1s_office_blinds_partially_when_sun_below_horizon_and_window_open_portable_ac'
+
+  trigger:
+    - platform: state
+      entity_id: sun.sun
+      from: 'above_horizon'
+      to: 'below_horizon'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.USER1s_office_window_right
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.USER1_office_portable_ac
+      state: 'on'
+
+  action:
+    - service: cover.close_cover
+      data:
+        entity_id: 
+          - cover.USER1s_office_blinds_left
+          - cover.USER1s_office_blinds_center
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER1s_office_blinds_right
+        position: 13
 
         ##########################################################
         ## Turn Off USER1's Office Lights when Blinds are Open
@@ -499,13 +683,13 @@
       state: 'above_horizon'
     - condition: numeric_state
       entity_id: sensor.REDACTED_temperature
-      below: 86
+      below: 85
     - condition: numeric_state
       entity_id: sensor.REDACTED_temperature
       above: 20
     - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
-      below: 96
+      below: 90
     - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
       above: 20
@@ -585,7 +769,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.REDACTED_temperature
-      above: 86
+      above: 85
       for:
         hours: 0
         minutes: 30
@@ -696,19 +880,16 @@
       state: 'above_horizon'
     - condition: numeric_state
       entity_id: sensor.REDACTED_temperature
-      below: 86
+      below: 85
     - condition: numeric_state
       entity_id: sensor.REDACTED_temperature
       above: 20
     - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
-      below: 96
+      below: 90
     - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
       above: 20
-    - condition: state
-      entity_id: cover.USER2_s_office_blinds
-      state: 'closed'
     - condition: sun
       #after: sunrise
       #after_offset: "00:60:00"
@@ -732,6 +913,14 @@
       - condition: state
         entity_id: vacuum.upstairs_roomba
         state: 'returning'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: cover.USER2_s_office_blinds
+        state: 'closed'
+      - condition: state
+        entity_id: input_boolean.USER2_office_portable_ac
+        state: 'on'
 
   action:
     - service: cover.open_cover
@@ -764,13 +953,13 @@
       state: 'above_horizon'
     - condition: numeric_state
       entity_id: sensor.REDACTED_temperature
-      below: 86
+      below: 85
     - condition: numeric_state
       entity_id: sensor.REDACTED_temperature
       above: 20
     - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
-      below: 96
+      below: 90
     - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
       above: 20
@@ -836,13 +1025,13 @@
       state: 'above_horizon'
     - condition: numeric_state
       entity_id: sensor.REDACTED_temperature
-      below: 86
+      below: 85
     - condition: numeric_state
       entity_id: sensor.REDACTED_temperature
       above: 20
     - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
-      below: 96
+      below: 90
     - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
       above: 20
@@ -909,13 +1098,13 @@
       state: 'above_horizon'
     - condition: numeric_state
       entity_id: sensor.REDACTED_temperature
-      below: 86
+      below: 85
     - condition: numeric_state
       entity_id: sensor.REDACTED_temperature
       above: 20
     - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
-      below: 96
+      below: 90
     - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
       above: 20
@@ -982,12 +1171,54 @@
     - condition: state
       entity_id: cover.USER2_s_office_blinds
       state: 'open'
+    - condition: state
+      entity_id: input_boolean.USER2_office_portable_ac
+      state: 'off'
 
   action:
     - service: cover.close_cover
       data:
         entity_id: 
           - cover.USER2_s_office_blinds
+
+        ##########################################################
+        ## Close USER2's Office Blinds When No Motion Detected Portable AC
+        ##########################################################
+
+- alias: Blinds - Close USER2's Office Blinds When No Motion Detected Portable AC
+  id: 'blinds_close_USER2_office_blinds_when_no_motion_detected_portable_ac'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.USER2s_office_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.USER2_s_office_blinds
+      state: 'open'
+    - condition: state
+      entity_id: input_boolean.USER2_office_portable_ac
+      state: 'on'
+
+  action:
+    - service: cover.close_cover
+      data:
+        entity_id: 
+          - cover.USER2s_office_blinds_left
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER2s_office_blinds_right
+        position: 15
 
         ##########################################################
         ## Close USER2's Office Blinds Outside Temperature
@@ -999,7 +1230,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.REDACTED_temperature
-      above: 86
+      above: 85
       for:
         hours: 0
         minutes: 30
@@ -1019,12 +1250,60 @@
     - condition: state
       entity_id: cover.USER2_s_office_blinds
       state: 'open'
+    - condition: state
+      entity_id: input_boolean.USER2_office_portable_ac
+      state: 'off'
 
   action:
     - service: cover.close_cover
       data:
         entity_id: 
           - cover.USER2_s_office_blinds
+
+        ##########################################################
+        ## Close USER2's Office Blinds Outside Temperature Portable AC
+        ##########################################################
+
+- alias: Blinds - Close USER2's Office Blinds Outside Temperature Portable AC
+  id: 'blinds_close_USER2_office_blinds_outside_temperature_portable_ac'
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      above: 85
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+    - platform: numeric_state
+      entity_id: sensor.REDACTED_temperature
+      below: 20
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.USER2_s_office_blinds
+      state: 'open'
+    - condition: state
+      entity_id: input_boolean.USER2_office_portable_ac
+      state: 'on'
+
+  action:
+    - service: cover.close_cover
+      data:
+        entity_id: 
+          - cover.USER2s_office_blinds_left
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER2s_office_blinds_right
+        position: 15
 
         ##########################################################
         ## Close USER2's Office Blinds Before Sunset
@@ -1045,12 +1324,49 @@
     - condition: state
       entity_id: cover.USER2_s_office_blinds
       state: 'open'
+    - condition: state
+      entity_id: input_boolean.USER2_office_portable_ac
+      state: 'off'
 
   action:
     - service: cover.close_cover
       data:
         entity_id: 
           - cover.USER2_s_office_blinds
+
+        ##########################################################
+        ## Close USER2's Office Blinds Before Sunset Portable AC
+        ##########################################################
+
+- alias: Blinds - Close USER2's Office Blinds Before Sunset Portable AC
+  id: 'blinds_close_USER2_office_blinds_before_sunset_portable_ac'
+
+  trigger:
+    - platform: sun
+      event: 'sunset'
+      offset: '-00:45:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_blinds
+      state: 'off'
+    - condition: state
+      entity_id: cover.USER2_s_office_blinds
+      state: 'open'
+    - condition: state
+      entity_id: input_boolean.USER2_office_portable_ac
+      state: 'off'
+
+  action:
+    - service: cover.close_cover
+      data:
+        entity_id: 
+          - cover.USER2s_office_blinds_left
+    - service: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.USER2s_office_blinds_right
+        position: 15
 
 #################################################################
 ## Bedroom
@@ -1085,7 +1401,7 @@
       above: 20
     - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
-      below: 96
+      below: 95
     - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
       above: 20
@@ -1183,7 +1499,7 @@
       state: 'off'
     - condition: numeric_state
       entity_id: sensor.REDACTED_temperature
-      below: 86
+      below: 85
     - condition: not
       conditions:
       - condition: state
@@ -1258,7 +1574,7 @@
       above: 20
     - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
-      below: 96
+      below: 95
     - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
       above: 20
@@ -1313,7 +1629,7 @@
       above: 20
     - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
-      below: 96
+      below: 95
     - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
       above: 20
@@ -1361,7 +1677,7 @@
       above: 20
     - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
-      below: 96
+      below: 95
     - condition: numeric_state
       entity_id: sensor.REDACTED_forecasted_temperature_high
       above: 20
