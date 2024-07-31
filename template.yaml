@@ -2,6 +2,30 @@
 ## Templates
 #################################################################
 
+       ##########################################################
+       ## Thermostat Out of Bounds
+       ##########################################################
+
+  - binary_sensor:
+    - unique_id: thermostat_out_of_bounds
+      name: "eco+ Enabled"
+      state: >
+        {% if is_state('climate.main_floor', 'cool') and state_attr('climate.main_floor', 'preset_mode') =='Upstairs' and state_attr('climate.main_floor', 'temperature')| int != 75 %}
+          on
+        {% elif is_state('climate.main_floor', 'cool') and state_attr('climate.main_floor', 'preset_mode') =='home' and state_attr('climate.main_floor', 'temperature')| int != 75 %}
+          on
+        {% elif is_state('climate.main_floor', 'cool') and state_attr('climate.main_floor', 'preset_mode') =='Guest' and state_attr('climate.main_floor', 'temperature')| int != 72 %}
+          on
+        {% elif is_state('climate.main_floor', 'cool') and state_attr('climate.main_floor', 'preset_mode') =='Downstairs' and state_attr('climate.main_floor', 'temperature')| int != 73 %}
+          on
+        {% elif is_state('climate.main_floor', 'cool') and state_attr('climate.main_floor', 'preset_mode') =='away_indefinitely' and state_attr('climate.main_floor', 'temperature')| int != 79 %}
+          on
+        {% elif is_state('climate.main_floor', 'cool') and state_attr('climate.main_floor', 'preset_mode') =='sleep' and state_attr('climate.main_floor', 'temperature')| int != 71 %}
+          on
+        {% else %}
+          off
+        {% endif %}
+    
       ##########################################################
       ## Electricity Rate
       ##########################################################
@@ -345,7 +369,7 @@
     - unique_id: kitchen_echo_timer
       name: "Kitchen Timer"
       state: >-
-        {{ states('sensor.kitchen_echo_show_next_timer') != "unknown" }}
+        {{ states('sensor.kitchen_echo_dot_next_timer') != "unknown" }}
 
        ##########################################################
        ## USER2's Office Echo Timer

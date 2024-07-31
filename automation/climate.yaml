@@ -3,6 +3,45 @@
 #################################################################
 
         ##########################################################
+        ## Thermostat eco+ Enabled
+        ##########################################################
+
+- alias: Climate - Thermostat eco+ Enabled
+  id: 'climate_thermostat_eco_plus_enabled'
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.thermostat_eco_plus_enabled
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_climate
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.thermostat_away
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - service: ecobee.resume_program
+      data:
+        entity_id: climate.main_floor
+    - service: notify.USER1_devices
+      data:
+        message: Ecobee eco+ Detected - Disabling
+        data:
+          tag: climate
+          group: climate
+
+        ##########################################################
         ## Set Thermostat Home
         ##########################################################
 

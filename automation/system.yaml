@@ -55,11 +55,32 @@
         - input_boolean.disable_blinds
         - input_boolean.disable_roomba
         - input_boolean.disable_light_dimmer
-        - input_boolean.disable_living_room_motion
         - input_boolean.disable_echo
     - service: homeassistant.turn_on
       entity_id:
         - switch.pihole
+
+        ##########################################################
+        ## Reset Overrides at 12p
+        ##########################################################
+
+- alias: System - Reset Overrides at 12p
+  id: 'system_reset_overrides_at_12p'
+
+  trigger:
+   - platform: time
+     at: '12:00:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.living_room_guest
+        - input_boolean.USER1_office_guest
 
         ##########################################################
         ## Disable Erroneous Startup Notifications
@@ -96,12 +117,12 @@
     - service: homeassistant.turn_on
       entity_id:
         - input_boolean.disable_echo
-    - delay: 00:01:00
+    - delay: 00:00:30
     - service: homeassistant.reload_config_entry
       target: {}
       data:
         entry_id: 2c39bd41b37b18b2c96b03d10fb00866
-    - delay: 00:01:00
+    - delay: 00:00:30
     - service: homeassistant.turn_off
       entity_id:
         - input_boolean.disable_echo

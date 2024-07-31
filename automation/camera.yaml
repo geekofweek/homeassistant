@@ -13,9 +13,9 @@
     - platform: state
       entity_id: binary_sensor.front_door_camera_package_detected
       to: 'on'
-#    - platform: state
-#      entity_id: binary_sensor.front_door_camera_person_detected
-#      to: 'on'
+    #- platform: state
+    #  entity_id: binary_sensor.front_door_camera_person_detected
+    #  to: 'on'
     - platform: state
       entity_id: binary_sensor.front_door_camera_doorbell
       to: 'on'
@@ -48,14 +48,20 @@
         seconds: 0
 
   condition:
-    - condition: state
-      entity_id: input_boolean.view_package_camera
-      state: 'on'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: input_boolean.view_package_camera
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.package_camera_notification
+        state: 'on'
 
   action:
     - service: homeassistant.turn_off
       entity_id:
         - input_boolean.view_package_camera
+        - input_boolean.package_camera_notification
 
         ##########################################################
         ## Package Camera Off at Midnight
@@ -66,20 +72,23 @@
 
   trigger:
    - platform: time
-     at: '11:59:00'
+     at: '23:59:00'
 
   condition:
-    - condition: state
-      entity_id: input_boolean.view_package_camera
-      state: 'on'
-    - condition: state
-      entity_id: binary_sensor.front_door_camera_package_detected
-      state: 'off'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: input_boolean.view_package_camera
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.package_camera_notification
+        state: 'on'
 
   action:
     - service: homeassistant.turn_off
       entity_id:
         - input_boolean.view_package_camera
+        - input_boolean.package_camera_notification
 
         ##########################################################
         ## Turn On Front Porch Lights when Doorbell Rings
@@ -1132,11 +1141,11 @@
               destructive: true
 
         ##########################################################
-        ## Package iOS USER1 Notification
+        ## Package iOS Notification
         ##########################################################
 
-- alias: Camera - Package iOS USER1 Notification
-  id: 'camera_package_ios_USER1_notification'
+- alias: Camera - Package iOS Notification
+  id: 'camera_package_ios_notification'
 
   trigger:
     - platform: state
@@ -1148,7 +1157,7 @@
       entity_id: input_boolean.disable_notifications
       state: 'off'
     - condition: state
-      entity_id:  input_boolean.view_package_camera
+      entity_id:  input_boolean.package_camera_notification
       state: 'off'
 
   action:
@@ -1159,28 +1168,6 @@
           tag: package
           group: package
           entity_id: camera.front_door
-
-        ##########################################################
-        ## Package iOS USER2 Notification
-        ##########################################################
-
-- alias: Camera - Package iOS USER2 Notification
-  id: 'camera_package_ios_USER2_notification'
-
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.front_door_camera_package_detected
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-    - condition: state
-      entity_id:  input_boolean.view_package_camera
-      state: 'off'
-
-  action:
     - service: notify.USER2_devices
       data:
         message: Package Detected on Front Porch
@@ -1188,3 +1175,7 @@
           tag: package
           group: package
           entity_id: camera.front_door
+    - delay: '00:00:30'
+    - service: homeassistant.turn_on
+      entity_id:
+        - input_boolean.package_camera_notification

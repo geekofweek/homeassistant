@@ -20,7 +20,7 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
     - condition: state
-      entity_id: input_boolean.disable_living_room_motion
+      entity_id: input_boolean.living_room_guest
       state: 'off'
     - condition: state
       entity_id: input_boolean.watching_plex
@@ -92,7 +92,7 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
     - condition: state
-      entity_id: input_boolean.disable_living_room_motion
+      entity_id: input_boolean.living_room_guest
       state: 'off'
     - condition: state
       entity_id: input_boolean.watching_plex
@@ -166,6 +166,9 @@
   condition:
     - condition: state
       entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.living_room_guest
       state: 'off'
     - condition: state
       entity_id: input_boolean.watching_plex
@@ -247,6 +250,9 @@
   condition:
     - condition: state
       entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.living_room_guest
       state: 'off'
     - condition: state
       entity_id: group.household
@@ -429,6 +435,9 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
     - condition: state
+      entity_id: input_boolean.living_room_guest
+      state: 'off'
+    - condition: state
       entity_id: fan.living_room_fans
       state: 'off'
     - condition: state
@@ -470,6 +479,9 @@
   condition:
     - condition: state
       entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.living_room_guest
       state: 'off'
     - condition: state
       entity_id: group.household
@@ -888,7 +900,7 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
     - condition: state
-      entity_id: input_boolean.disable_living_room_motion
+      entity_id: input_boolean.living_room_guest
       state: 'off'
     - condition: state
       entity_id: light.dining_room_lights
@@ -934,7 +946,7 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
     - condition: state
-      entity_id: input_boolean.disable_living_room_motion
+      entity_id: input_boolean.living_room_guest
       state: 'off'
     - condition: state
       entity_id: light.dining_room_lights
@@ -986,7 +998,7 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
     - condition: state
-      entity_id: input_boolean.disable_living_room_motion
+      entity_id: input_boolean.living_room_guest
       state: 'off'
     - condition: state
       entity_id: light.dining_room_lights
@@ -2431,6 +2443,9 @@
       - condition: state
         entity_id: vacuum.upstairs_roomba
         state: 'returning'
+    - condition: state
+      entity_id: input_boolean.USER1_office_guest
+      state: 'off'
 
   action:
     - service: fan.turn_on
@@ -2488,12 +2503,21 @@
       - condition: state
         entity_id: vacuum.upstairs_roomba
         state: 'returning'
+    - condition: state
+      entity_id: input_boolean.USER1_office_guest
+      state: 'off'
 
   action:
     - service: select.select_option
       data:
         entity_id: select.USER1_s_office_tv_activities
         option: "Watch TV"
+    - delay: '00:00:30'
+    - service: media_player.select_source
+      data:
+        source: Protect
+      target:
+        entity_id: media_player.USER1_s_office_apple_tv
 
         ##########################################################
         ## Turn Off USER1 Office Fan when No Motion Detected
@@ -2515,6 +2539,9 @@
   condition:
     - condition: state
       entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER1_office_guest
       state: 'off'
 
   action:
@@ -2556,6 +2583,9 @@
       - condition: state
         entity_id: media_player.USER1_s_office_apple_tv
         state: 'playing'
+    - condition: state
+      entity_id: input_boolean.USER1_office_guest
+      state: 'off'
 
   action:
     - service: select.select_option
@@ -2608,6 +2638,9 @@
       - condition: state
         entity_id: media_player.USER1_s_office_apple_tv
         state: 'playing'
+    - condition: state
+      entity_id: input_boolean.USER1_office_guest
+      state: 'off'
 
   action:
     - service: light.turn_on
@@ -2669,6 +2702,22 @@
     - condition: state
       entity_id: cover.USER1_s_office_blinds
       state: 'closed'
+    - condition: state
+      entity_id: input_boolean.USER1_office_guest
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: select.USER1_s_office_tv_activities
+        state: "Play Xbox One"
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.USER1_s_office_apple_tv
+        state: 'playing'
+    - condition: state
+      entity_id: input_boolean.USER1_office_guest
+      state: 'off'
 
   action:
     - service: light.turn_on
@@ -2720,6 +2769,9 @@
     - condition: state
       entity_id: person.USER1
       state: 'home'
+    - condition: state
+      entity_id: input_boolean.USER1_office_guest
+      state: 'off'
 
   action:
     - service: light.turn_on
@@ -2761,6 +2813,9 @@
       - condition: state
         entity_id: vacuum.upstairs_roomba
         state: 'returning'
+    - condition: state
+      entity_id: input_boolean.USER1_office_guest
+      state: 'off'
 
   action:
     - service: light.turn_off
@@ -2787,6 +2842,9 @@
   condition:
     - condition: state
       entity_id: input_boolean.disable_motion
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER1_office_guest
       state: 'off'
 
   action:

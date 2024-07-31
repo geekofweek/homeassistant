@@ -38,6 +38,9 @@
     - condition: state
       entity_id: input_boolean.guest_mode
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.living_room_guest
+      state: 'off'
 
   action:
     - service: light.turn_on
@@ -103,6 +106,9 @@
       state: 'off'
     - condition: state
       entity_id: input_boolean.guest_mode
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.living_room_guest
       state: 'off'
 
   action:
@@ -220,6 +226,9 @@
     - condition: state
       entity_id: input_boolean.guest_mode
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.living_room_guest
+      state: 'off'
 
   action:
     - service: light.turn_on
@@ -308,6 +317,9 @@
       state: "Watch TV"
     - condition: state
       entity_id: input_boolean.guest_mode
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.living_room_guest
       state: 'off'
 
   action:
@@ -412,6 +424,9 @@
         entity_id: media_player.living_room_apple_tv
         attribute: app_id
         state: "com.apple.TVPhotos"
+    - condition: state
+      entity_id: input_boolean.living_room_guest
+      state: 'off'
 
   action:
     - service: light.turn_off
@@ -506,6 +521,9 @@
         entity_id: media_player.living_room_apple_tv
         attribute: app_id
         state: "com.apple.TVPhotos"
+    - condition: state
+      entity_id: input_boolean.living_room_guest
+      state: 'off'
 
   action:
     - service: light.turn_off

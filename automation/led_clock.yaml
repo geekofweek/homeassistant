@@ -716,6 +716,62 @@
           "text": "Dryer Finished"
           }
 
+      ##########################################################
+      ## Package App
+      ##########################################################
+
+- alias: LED Clock - Package App
+  id: 'led_clock_package_app'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.package_camera_notification
+      to: 'on'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/package
+        payload: >-
+          { 
+          "icon": "delivery",
+          "pushIcon": 0,
+          "repeat": 3,
+          "color": [0,125,125],
+          "text": "Package Detected"
+          }
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/package
+        payload: >-
+          { 
+          "icon": "delivery",
+          "pushIcon": 0,
+          "repeat": 3,
+          "color": [0,125,125],
+          "text": "Package Detected"
+          }
+
+      ##########################################################
+      ## Package App Clear
+      ##########################################################
+
+- alias: LED Clock - Package App Clear
+  id: 'led_clock_package_app_clear'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.package_camera_notification
+      to: 'off'
+
+  action:
+    - service: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/package
+    - service: mqtt.publish
+      data:
+        topic: living_room_clock/custom/package
+
   ##########################################################
   ## Universal Holiday Apps
   ##########################################################
@@ -1147,6 +1203,9 @@
     - condition: state
       entity_id: person.USER1
       state: 'home'
+    - condition: state
+      entity_id: input_boolean.USER1_office_guest
+      state: 'off'
 
   action:
     - service: light.turn_on
@@ -1988,7 +2047,7 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
     - condition: state
-      entity_id: input_boolean.disable_living_room_motion
+      entity_id: input_boolean.living_room_guest
       state: 'off'
     - condition: state
       entity_id: group.household

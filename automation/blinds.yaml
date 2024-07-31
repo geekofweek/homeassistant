@@ -210,6 +210,9 @@
       - condition: state
         entity_id: vacuum.upstairs_roomba
         state: 'returning'
+    - condition: state
+      entity_id: input_boolean.USER1_office_guest
+      state: 'off'
 
   action:
     - service: cover.open_cover
