@@ -14,7 +14,7 @@
      at: '04:00:00'
 
   action:
-    - service: backup.create
+    - action: backup.create
 
         ##########################################################
         ## Reset Overrides at 7a
@@ -33,32 +33,34 @@
       state: 'off'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.disable_climate
-        - input_boolean.disable_notifications
-        - input_boolean.disable_doorbell
-        - input_boolean.disable_door_open_lights_on
-        - input_boolean.disable_exterior_on_sunset
-        - input_boolean.disable_exterior_off_night
-        - input_boolean.disable_auto_garage
-        - input_boolean.disable_home_away
-        - input_boolean.disable_interior_lights_sunset
-        - input_boolean.disable_lock_unlock_doors
-        - input_boolean.disable_media_lights
-        - input_boolean.disable_motion
-        - input_boolean.disable_occupancy
-        - input_boolean.disable_rainy_day
-        - input_boolean.disable_water_automations
-        - input_boolean.downstairs_roomba_pause
-        - input_boolean.disable_startup_notifications
-        - input_boolean.disable_blinds
-        - input_boolean.disable_roomba
-        - input_boolean.disable_light_dimmer
-        - input_boolean.disable_echo
-    - service: homeassistant.turn_on
-      entity_id:
-        - switch.pihole
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.disable_climate
+          - input_boolean.disable_notifications
+          - input_boolean.disable_doorbell
+          - input_boolean.disable_door_open_lights_on
+          - input_boolean.disable_exterior_on_sunset
+          - input_boolean.disable_exterior_off_night
+          - input_boolean.disable_auto_garage
+          - input_boolean.disable_home_away
+          - input_boolean.disable_interior_lights_sunset
+          - input_boolean.disable_lock_unlock_doors
+          - input_boolean.disable_media_lights
+          - input_boolean.disable_motion
+          - input_boolean.disable_occupancy
+          - input_boolean.disable_rainy_day
+          - input_boolean.disable_water_automations
+          - input_boolean.downstairs_roomba_pause
+          - input_boolean.disable_startup_notifications
+          - input_boolean.disable_blinds
+          - input_boolean.disable_roomba
+          - input_boolean.disable_light_dimmer
+          - input_boolean.disable_echo
+    - action: homeassistant.turn_on
+      target:
+        entity_id:
+          - switch.pihole
 
         ##########################################################
         ## Reset Overrides at 12p
@@ -77,10 +79,11 @@
       state: 'off'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.living_room_guest
-        - input_boolean.USER1_office_guest
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.living_room_guest
+          - input_boolean.USER1_office_guest
 
         ##########################################################
         ## Disable Erroneous Startup Notifications
@@ -94,13 +97,15 @@
       event: start
 
   action:
-    - service: homeassistant.turn_on
-      entity_id:
-        - input_boolean.disable_startup_notifications
+    - action: homeassistant.turn_on
+      target:
+        entity_id:
+          - input_boolean.disable_startup_notifications
     - delay: 00:02:00
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.disable_startup_notifications
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.disable_startup_notifications
 
         ##########################################################
         ## Reload Echo Integration on Startup
@@ -114,18 +119,20 @@
       event: start
 
   action:
-    - service: homeassistant.turn_on
-      entity_id:
-        - input_boolean.disable_echo
+    - action: homeassistant.turn_on
+      target:
+        entity_id:
+          - input_boolean.disable_echo
     - delay: 00:00:30
-    - service: homeassistant.reload_config_entry
+    - action: homeassistant.reload_config_entry
       target: {}
       data:
         entry_id: 2c39bd41b37b18b2c96b03d10fb00866
     - delay: 00:00:30
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.disable_echo
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.disable_echo
 
         #################################################################
         ## Clear Erroneous Failed Login Notifications
@@ -141,7 +148,7 @@
 
   action:
     - delay: "00:00:01"
-    - service: persistent_notification.dismiss
+    - action: persistent_notification.dismiss
       data:
         notification_id: http-login
 
@@ -239,7 +246,7 @@
         seconds: 0
 
   action:
-    - service: zwave_js.ping
+    - action: zwave_js.ping
       target:
         entity_id: 
           - lock.front_door
@@ -273,29 +280,29 @@
       to: 'unavailable'
       for:
         hours: 0
-        minutes: 15
+        minutes: 30
         seconds: 0
     - platform: state
       entity_id: cover.garage_door
       to: 'unknown'
       for:
         hours: 0
-        minutes: 15
+        minutes: 30
         seconds: 0
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: "Power Cycling Garage Door Relay"
         data:
           tag: garage
           group: system
-    - service: switch.turn_off
+    - action: switch.turn_off
       target:
         entity_id: 
           - switch.garage_door_relay
-    - delay: '00:60:00'
-    - service: switch.turn_on
+    - delay: '00:00:30'
+    - action: switch.turn_on
       target:
         entity_id: 
           - switch.garage_door_relay
@@ -322,7 +329,7 @@
       state: 'off'
 
   action:
-    - service: homeassistant.turn_on
+    - action: homeassistant.turn_on
       target:
         entity_id: 
           - input_boolean.guest_mode
@@ -349,7 +356,7 @@
       state: 'on'
 
   action:
-    - service: homeassistant.turn_off
+    - action: homeassistant.turn_off
       target:
         entity_id: 
           - input_boolean.guest_mode
@@ -371,9 +378,10 @@
       state: 'off'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.guest_mode
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.guest_mode
 
         #################################################################
         ## Turn On USER1 Office Do not Disturb when MacBook AV Input On
@@ -424,7 +432,7 @@
       state: 'off'
 
   action:
-    - service: homeassistant.turn_on
+    - action: homeassistant.turn_on
       entity_id: input_boolean.USER1_s_office_do_not_disturb
 
         #################################################################
@@ -482,7 +490,7 @@
       state: 'off'
 
   action:
-    - service: homeassistant.turn_off
+    - action: homeassistant.turn_off
       entity_id: input_boolean.USER1_s_office_do_not_disturb
 
         ##########################################################
@@ -552,7 +560,7 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       data:
         flash: long
         color_name: green
@@ -560,7 +568,7 @@
       target:
         entity_id: 
           - light.globe
-    - service: light.turn_on
+    - action: light.turn_on
       data:
         flash: long
         color_name: green
@@ -569,15 +577,17 @@
         entity_id: 
           - light.media_center_lighting
     - delay: '00:03:00'
-    - service: light.turn_on
-      entity_id: 
-        - light.media_center_lighting
+    - action: light.turn_on
+      target:
+        entity_id: 
+          - light.media_center_lighting
       data:
        transition: 5
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.globe
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.globe
       data:
        transition: 5
        brightness_pct: 65
@@ -647,7 +657,7 @@
         state: 'off'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       data:
         flash: long
         color_name: green
@@ -655,7 +665,7 @@
       target:
         entity_id: 
           - light.globe
-    - service: light.turn_on
+    - action: light.turn_on
       data:
         flash: long
         color_name: green
@@ -664,12 +674,14 @@
         entity_id: 
           - light.media_center_lighting
     - delay: '00:03:00'
-    - service: light.turn_off
-      entity_id:
-        - light.globe 
-    - service: light.turn_off
-      entity_id:
-        - light.media_center_lighting
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.globe 
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.media_center_lighting
 
 #################################################################
 ## Servers
@@ -697,7 +709,7 @@
       state: 'on'
 
   action:
-    - service: button.press
+    - action: button.press
       target:
         entity_id: button.qemu_windows_100_shutdown
 
@@ -724,7 +736,7 @@
       state: 'on'
 
   action:
-    - service: button.press
+    - action: button.press
       target:
         entity_id: button.qemu_windows_100_shutdown
 
@@ -750,7 +762,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: NAS-01 RAID Failing
         data:
@@ -775,7 +787,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: NAS-02 RAID Failing
         data:
@@ -803,7 +815,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Power Outage Detected
         data:
@@ -834,7 +846,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Power Restored
         data:
@@ -862,7 +874,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: "{{ trigger.to_state.attributes.friendly_name }} Low"
         data:
@@ -890,7 +902,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: "{{ trigger.to_state.attributes.friendly_name }} has Disconnected"
         data:
@@ -914,7 +926,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Home Assistant Started
         data:
@@ -943,7 +955,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Update Available for Home Assistant
         data:
@@ -972,7 +984,7 @@
         state: 'on'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: 'Guest Mode is Still On'
         data:
@@ -1041,7 +1053,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: "{{ trigger.to_state.attributes.friendly_name }} Finished"
         data:
@@ -1110,7 +1122,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER2_devices
+    - action: notify.USER2_devices
       data:
         message: "{{ trigger.to_state.attributes.friendly_name }} Finished"
         data:

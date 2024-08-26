@@ -30,9 +30,10 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.garage_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.garage_light
       data:
        brightness_pct: 2
        transition: 330
@@ -59,9 +60,10 @@
       state: 'below_horizon'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.garage_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.garage_light
       data:
        brightness_pct: 100
 
@@ -86,9 +88,10 @@
       state: 'on'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.garage_interior
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.garage_interior
       data:
        transition: 330
 
@@ -115,9 +118,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.garage_interior
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.garage_interior
       data:
        brightness_pct: 100
 
@@ -144,9 +148,10 @@
       before: '07:30:00'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.garage_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.garage_light
       data:
        transition: 330
 
@@ -168,9 +173,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.garage_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.garage_light
       data:
        brightness_pct: 2
 
@@ -197,9 +203,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.garage_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.garage_light
 
         ##########################################################
         ## Turn Off Exterior Garage Light at Midnight Friends Visiting Weekdays
@@ -230,9 +237,10 @@
         - thu
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.garage_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.garage_light
 
         ##########################################################
         ## Turn On Front Porch Lights at Sunset
@@ -255,9 +263,10 @@
       state: 'None'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.front_porch
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.front_porch
       data:
         transition: 900
         brightness_pct: 50
@@ -286,15 +295,17 @@
       state: 'None'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.front_porch
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.front_porch
       data:
        transition: 900
     - delay: '00:16:00'
-    - service: light.turn_off
-      entity_id:
-        - light.front_porch
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.front_porch
 
         ##########################################################
         ## Turn Off Front Porch Lights After Midnight
@@ -328,15 +339,17 @@
       state: 'None'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.front_porch
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.front_porch
       data:
        transition: 300
     - delay: '00:06:00'
-    - service: light.turn_off
-      entity_id:
-        - light.front_porch
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.front_porch
 
         ##########################################################
         ## Turn Off Front Porch Lights After 2a
@@ -367,15 +380,17 @@
       state: 'home'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.front_porch
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.front_porch
       data:
        transition: 300
     - delay: '00:06:00'
-    - service: light.turn_off
-      entity_id:
-        - light.front_porch
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.front_porch
 
         ##########################################################
         ## Turn On Front Yard Lighting at Sunset
@@ -390,9 +405,10 @@
       offset: '-00:15:00'
 
   action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.front_yard_lighting
+    - action: switch.turn_on
+      target:
+        entity_id:
+          - switch.front_yard_lighting
 
         ##########################################################
         ## Turn Off Front Yard Lighting at 3a
@@ -406,9 +422,10 @@
      at: '03:00:00'
 
   action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.front_yard_lighting
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.front_yard_lighting
 
         ##########################################################
         ## Turn Off Front Yard Lighting after 3a
@@ -439,9 +456,10 @@
       state: 'home'
 
   action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.front_yard_lighting
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.front_yard_lighting
 
         ##########################################################
         ## Turn On Back Door Lights at Sunset
@@ -461,9 +479,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.back_door
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.back_door
       data:
         brightness_pct: 2
         transition: 60
@@ -491,13 +510,15 @@
       state: 'off'
 
   action:
-   - service: light.turn_off
-     entity_id:
-       - light.back_door
+   - action: light.turn_off
+     target:
+      entity_id:
+        - light.back_door
    - delay: '00:00:30'
-   - service: light.turn_off
-     entity_id:
-       - light.back_door
+   - action: light.turn_off
+     target:
+      entity_id:
+        - light.back_door
        
         ##########################################################
         ## Turn Off Back Door Lights at Midnight Weekdays Friends Visiting
@@ -528,12 +549,14 @@
         - thu
 
   action:
-   - service: light.turn_off
-     entity_id:
+   - action: light.turn_off
+     target:
+      entity_id:
        - light.back_door
    - delay: '00:00:30'
-   - service: light.turn_off
-     entity_id:
+   - action: light.turn_off
+     target:
+      entity_id:
        - light.back_door
 
         ##########################################################
@@ -568,19 +591,23 @@
       state: 'off'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.back_door
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_deck
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_patio
-    - service: switch.turn_off
-      entity_id:
-        - switch.lower_backyard_lighting
-        - switch.backyard_patio_lighting
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.back_door
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_deck
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_patio
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.lower_backyard_lighting
+          - switch.backyard_patio_lighting
 
         ##########################################################
         ## Turn Off Interior Lights at Sunrise
@@ -608,9 +635,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.interior_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.interior_lights
 
         ##########################################################
         ## Turn Off Exterior Lights at Sunrise
@@ -625,27 +653,33 @@
       offset: '+00:15:00'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.exterior_lights
-    - service: switch.turn_off
-      entity_id:
-        - switch.lower_backyard_lighting
-        - switch.backyard_patio_lighting
-        - switch.front_yard_lighting
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.exterior_lights
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.lower_backyard_lighting
+          - switch.backyard_patio_lighting
+          - switch.front_yard_lighting
     - delay: '00:02:00'
-    - service: light.turn_off
-      entity_id:
-        - light.front_porch
-    - service: light.turn_off
-      entity_id:
-        - light.back_door
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_deck
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_patio
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.front_porch
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.back_door
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_deck
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_patio
 
         ##########################################################
         ## Turn On Backyard Lighting at Sunset
@@ -671,19 +705,22 @@
       state: 'home'
 
   action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.backyard_patio_lighting
-        - switch.lower_backyard_lighting
-    - service: light.turn_on
-      entity_id:
-        - light.backyard_patio
+    - action: switch.turn_on
+      target:
+        entity_id:
+          - switch.backyard_patio_lighting
+          - switch.lower_backyard_lighting
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.backyard_patio
       data:
         brightness_pct: 10
         color_temp: 370
-    - service: light.turn_on
-      entity_id:
-        - light.backyard_deck
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.backyard_deck
       data:
         brightness_pct: 2
 
@@ -707,20 +744,24 @@
       state: 'off'
 
   action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.lower_backyard_lighting
-        - switch.backyard_patio_lighting
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_patio
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_deck
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.lower_backyard_lighting
+          - switch.backyard_patio_lighting
+    - action: light.turn_off
+      target:
+        entity_id:
+           light.backyard_patio
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_deck
     - delay: '00:00:30'
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_deck
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_deck
 
         ##########################################################
         ## Turn Off Backyard Lighting At Midnight Weekedays Friends Visiting
@@ -748,20 +789,24 @@
         - thu
 
   action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.lower_backyard_lighting
-        - switch.backyard_patio_lighting
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_patio
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_deck
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.lower_backyard_lighting
+          - switch.backyard_patio_lighting
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_patio
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_deck
     - delay: '00:00:30'
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_deck
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_deck
    
         ##########################################################
         ## Turn On Guest Bedroom Lamp when Ceiling is On
@@ -782,9 +827,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.guest_bedroom_nightstand
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.guest_bedroom_nightstand
       data:
        brightness_pct: 50
 
@@ -807,9 +853,10 @@
       state: 'on'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.guest_bedroom_nightstand
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.guest_bedroom_nightstand
 
         ##########################################################
         ## Turn On Basement Lights when Workbench Switch Used
@@ -825,22 +872,26 @@
       to: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.basement_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_lights
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.laundry_room_light
-    - service: light.turn_on
-      entity_id:
-        - light.basement_stairs
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.laundry_room_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_stairs
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.basement_lamp
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_lamp
       data:
        brightness_pct: 100
 
@@ -858,24 +909,28 @@
       to: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.basement_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_lights
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.basement_stairs
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_stairs
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.basement_lamp
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_lamp
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.work_bench_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.work_bench_light
       data:
        brightness_pct: 25
 
@@ -901,18 +956,22 @@
       state: 'on'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.basement_stairs
-    - service: light.turn_off
-      entity_id:
-        - light.basement_lights
-    - service: light.turn_off
-      entity_id:
-        - light.basement_lamp
-    - service: light.turn_off
-      entity_id:
-        - light.work_bench_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.basement_stairs
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.basement_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.basement_lamp
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.work_bench_light
 
         ##########################################################
         ## Turn Off Basement Lights when Work Bench Switch Used
@@ -936,18 +995,22 @@
       state: 'on'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.basement_stairs
-    - service: light.turn_off
-      entity_id:
-        - light.basement_lights
-    - service: light.turn_off
-      entity_id:
-        - light.laundry_room_light
-    - service: light.turn_off
-      entity_id:
-        - light.basement_lamp
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.basement_stairs
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.basement_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.laundry_room_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.basement_lamp
 
 #################################################################
 ## Color Modes
@@ -979,7 +1042,7 @@
       state: 'home'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       target:
         entity_id: light.media_center_lighting
       data:
@@ -1012,10 +1075,11 @@
       state: 'off'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.living_room_fan_lights
-    - service: light.turn_on
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_fan_lights
+    - action: light.turn_on
       target:
         entity_id: light.living_room_lamp_1
       data:
@@ -1024,7 +1088,7 @@
           - '{{ (range(0, 360)|random) }}'
           - '100'
         brightness_pct: 100
-    - service: light.turn_on
+    - action: light.turn_on
       target:
         entity_id: light.media_center_lighting
       data:
@@ -1033,7 +1097,7 @@
           - '{{ (range(0, 360)|random) }}'
           - '100'
         brightness_pct: 100
-    - service: light.turn_on
+    - action: light.turn_on
       target:
         entity_id: light.globe
       data:
@@ -1042,7 +1106,7 @@
           - '{{ (range(0, 360)|random) }}'
           - '100'
         brightness_pct: 100
-    - service: light.turn_on
+    - action: light.turn_on
       target:
         entity_id: light.living_room_lamp_2
       data:
@@ -1076,25 +1140,28 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_accent_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.living_room_accent_lights
     - delay: '00:00:05'
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_lamps
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.living_room_lamps
       data:
         transition: 15
         brightness_pct: 100
         color_temp: 370
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.media_center_lighting
       data:
         transition: 15
         brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.globe
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.globe
       data:
         transition: 15
         brightness_pct: 65
@@ -1123,10 +1190,11 @@
       state: 'off'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.bedroom_closet_ceiling
-    - service: light.turn_on
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.bedroom_closet_ceiling
+    - action: light.turn_on
       data:
         brightness_pct: 100
         effect: Party
@@ -1135,7 +1203,7 @@
           - light.USER1s_nightstand
           - light.USER2s_nightstand
           - light.closet_lamp
-    - service: light.turn_on
+    - action: light.turn_on
       target:
         entity_id: light.bedroom_lamp
       data:
@@ -1169,18 +1237,20 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.USER1s_nightstand
-        - light.USER2s_nightstand
-        - light.bedroom_lamp
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1s_nightstand
+          - light.USER2s_nightstand
+          - light.bedroom_lamp
     - delay: '00:00:05'
-    - service: light.turn_on
-      entity_id:
-        - light.USER1s_nightstand
-        - light.USER2s_nightstand
-        - light.bedroom_lamp
-        - light.closet_lamp
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1s_nightstand
+          - light.USER2s_nightstand
+          - light.bedroom_lamp
+          - light.closet_lamp
       data:
         transition: 15
         color_temp: 370
@@ -1210,7 +1280,7 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       data:
         brightness_pct: 100
         effect: Party
@@ -1218,9 +1288,10 @@
         entity_id: 
           - light.USER1_office_desk_lamp
           - light.moon_globe
-    - service: light.turn_off
-      entity_id:
-        - light.USER1_s_office_ceiling
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.USER1_s_office_ceiling
 
         ##########################################################
         ## USER1's Office Lamp Random Color
@@ -1245,7 +1316,7 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       target:
         entity_id: 
           - light.office_lamp
@@ -1284,27 +1355,30 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.office_lamp
       data:
         transition: 5
         color_temp: 370
         brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.moon_globe
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.moon_globe
       data:
         brightness_pct: 10
         color_temp: 238
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_office_desk_lamp
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1_office_desk_lamp
       data:
         brightness_pct: 25
         color_temp: 370
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_office_desk_accent
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1_office_desk_accent
       data:
         brightness_pct: 80
         color_temp: 370
@@ -1332,7 +1406,7 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       target:
         entity_id: light.front_porch_left
       data:
@@ -1341,7 +1415,7 @@
           - '{{ (range(0, 360)|random) }}'
           - '100'
         brightness_pct: 100
-    - service: light.turn_on
+    - action: light.turn_on
       target:
         entity_id: light.front_porch_right
       data:
@@ -1369,10 +1443,10 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch
     - delay: '00:00:01'
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch
       data:
         transition: 15
@@ -1397,9 +1471,10 @@
       state: 'home'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_office_desk_lamp
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1_office_desk_lamp
       data:
         brightness_pct: 50
         color_name: red
@@ -1425,9 +1500,10 @@
       state: 'closed'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_office_desk_accent
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1_office_desk_accent
       data:
         brightness_pct: 100
         color_name: red
@@ -1464,16 +1540,18 @@
         state: 'opening'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_office_desk_lamp
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1_office_desk_lamp
       data:
         brightness_pct: 25
         color_temp: 370
     - delay: '00:00:05'
-    - service: light.turn_off
-      entity_id:
-        - light.USER1_office_desk_lamp
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.USER1_office_desk_lamp
 
         ##########################################################
         ## USER1's Office Desk Lamp Do Not Disturb Off Daytime Blinds Closed
@@ -1507,9 +1585,10 @@
         state: 'closing'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_office_desk_lamp
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1_office_desk_lamp
       data:
         brightness_pct: 25
         color_temp: 370
@@ -1546,9 +1625,10 @@
         state: 'closing'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_office_desk_accent
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1_office_desk_accent
       data:
         brightness_pct: 80
         color_temp: 370
@@ -1577,9 +1657,10 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_office_desk_lamp
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1_office_desk_lamp
       data:
         brightness_pct: 25
         color_temp: 370
@@ -1608,9 +1689,10 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_office_desk_accent
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1_office_desk_accent
       data:
         brightness_pct: 80
         color_temp: 370
@@ -1687,7 +1769,7 @@
         state: 'off'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       target:
         entity_id: "{{ trigger.entity_id }}"
       data:
@@ -1718,9 +1800,10 @@
       state: 'off'
 
   action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.grow_light
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.grow_light
 
         ##########################################################
         ## Turn On Grow Light at Sunrise
@@ -1742,9 +1825,10 @@
       state: 'off'
 
   action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.grow_light
+    - action: switch.turn_on
+      target:
+        entity_id:
+          - switch.grow_light
 
 #################################################################
 ## Pico Remotes
@@ -1766,20 +1850,23 @@
         action: press
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_lamps
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.living_room_lamps
       data:
         brightness_pct: 100
         color_temp: 370
-    - service: light.turn_on
-      entity_id: 
-        - light.media_center_lighting
+    - action: light.turn_on
+      target:
+        entity_id: 
+          - light.media_center_lighting
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.globe
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.globe
       data:
         brightness_pct: 65
     - delay:
@@ -1801,9 +1888,10 @@
         action: press
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.living_room_accent_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_accent_lights
     - delay:
         seconds: 1
 
@@ -1823,9 +1911,10 @@
         action: press
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_accent_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.living_room_accent_lights
       data:
         brightness_step_pct: 10
     - delay:
@@ -1852,9 +1941,10 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_accent_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.living_room_accent_lights
       data:
         brightness_step_pct: -10
     - delay:
@@ -1883,9 +1973,10 @@
   action:
     - delay:
         seconds: 1
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_fan_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.living_room_fan_lights
     - delay:
         seconds: 1
 
@@ -1912,9 +2003,10 @@
   action:
     - delay:
         seconds: 1
-    - service: light.turn_off
-      entity_id:
-        - light.living_room_fan_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_fan_lights
     - delay:
         seconds: 1
 
@@ -1939,7 +2031,7 @@
 #      state: 'on'
 
 #  action:
-#    - service: script.turn_on
+#    - action: script.turn_on
 #      entity_id:
 #        - script.living_room_fan_light_dimmer
 #    - delay:
@@ -1969,7 +2061,7 @@
 #        seconds: 10
 
 #  action:
-#    - service: switch.turn_off
+#    - action: switch.turn_off
 #      entity_id:
 #        - switch.living_room_east_fan_dimmer
 #        - switch.living_room_east_fan_dimmer
@@ -1997,9 +2089,10 @@
   action:
     - delay:
         seconds: 1
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_ceiling_west
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.living_room_ceiling_west
     - delay:
         seconds: 1
 
@@ -2026,9 +2119,10 @@
   action:
     - delay:
         seconds: 1
-    - service: light.turn_off
-      entity_id:
-        - light.living_room_ceiling_west
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_ceiling_west
     - delay:
         seconds: 1
 
@@ -2053,7 +2147,7 @@
 #      state: 'on'
 
 #  action:
-#    - service: script.turn_on
+#    - action: script.turn_on
 #      entity_id:
 #        - script.living_room_west_fan_light_dimmer
 #    - delay:
@@ -2083,7 +2177,7 @@
 #        seconds: 10
 
 #  action:
-#    - service: switch.turn_off
+#    - action: switch.turn_off
 #      entity_id:
 #        - switch.living_room_west_fan_dimmer
 
@@ -2103,27 +2197,32 @@
         action: press
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.basement_stairs
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_stairs
       data:
         brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.basement_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_lights
       data:
         brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.work_bench_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.work_bench_light
       data:
         brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.laundry_room_light
-    - service: light.turn_on
-      entity_id:
-        - light.basement_lamp
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.laundry_room_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_lamp
       data:
         brightness_pct: 100
     - delay:
@@ -2145,9 +2244,10 @@
         action: press
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.basement_lighting
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.basement_lighting
     - delay:
         seconds: 1
 
@@ -2167,19 +2267,22 @@
         action: press
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.basement_stairs
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_stairs
       data:
         brightness_step_pct: 10
-    - service: light.turn_on
-      entity_id:
-        - light.basement_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_lights
       data:
         brightness_step_pct: 10
-    - service: light.turn_on
-      entity_id:
-        - light.work_bench_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.work_bench_light
       data:
         brightness_step_pct: 10
     - delay:
@@ -2214,19 +2317,22 @@
         state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.basement_stairs
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_stairs
       data:
         brightness_step_pct: -10
-    - service: light.turn_on
-      entity_id:
-        - light.basement_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_lights
       data:
         brightness_step_pct: -10
-    - service: light.turn_on
-      entity_id:
-        - light.work_bench_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.work_bench_light
       data:
         brightness_step_pct: -10
     - delay:
@@ -2261,21 +2367,26 @@
         state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.basement_stairs
-    - service: light.turn_on
-      entity_id:
-        - light.basement_lights
-    - service: light.turn_on
-      entity_id:
-        - light.work_bench_light
-    - service: light.turn_on
-      entity_id:
-        - light.laundry_room_light
-    - service: light.turn_on
-      entity_id:
-        - light.basement_lamp
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_stairs
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.work_bench_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.laundry_room_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_lamp
     - delay:
         seconds: 1
 
@@ -2300,9 +2411,10 @@
       state: 'on'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.basement_lighting
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.basement_lighting
     - delay:
         seconds: 1
 
@@ -2322,9 +2434,10 @@
         action: press
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.bedroom_closet_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bedroom_closet_lights
       data:
         brightness_pct: 100
         color_temp: 370
@@ -2345,9 +2458,10 @@
         action: press
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.bedroom_closet_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.bedroom_closet_lights
     - delay:
         seconds: 1
 
@@ -2367,9 +2481,10 @@
         action: press
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.bedroom_closet_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bedroom_closet_lights
       data:
         brightness_step_pct: 20
     - delay:
@@ -2396,9 +2511,10 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.bedroom_closet_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bedroom_closet_lights
       data:
         brightness_step_pct: -20
     - delay:
@@ -2438,7 +2554,7 @@
       state: 'home'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       target:
         entity_id: light.bedroom_lamps
       data:
@@ -2475,7 +2591,7 @@
       state: 'home'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       target:
         entity_id: light.bedroom_ceiling
       data:

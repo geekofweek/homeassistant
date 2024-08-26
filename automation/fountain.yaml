@@ -28,10 +28,11 @@
       state: 'on'
 
   action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.fountain
-        - switch.fountain_lights
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.fountain
+          - switch.fountain_lights
 
         ##########################################################
         ## Fountain On When Home
@@ -80,9 +81,10 @@
         state: 'winter'
 
   action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.fountain
+    - action: switch.turn_on
+      target:
+        entity_id:
+          - switch.fountain
 
         ##########################################################
         ## Fountain Lights On When Home Before Sunset
@@ -112,9 +114,10 @@
       after_offset: "-00:15:00"
 
   action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.fountain_lights
+    - action: switch.turn_on
+      target:
+        entity_id:
+          - switch.fountain_lights
 
         ##########################################################
         ## Turn on Fountain Lights at Sunset
@@ -140,9 +143,10 @@
       state: 'on'
 
   action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.fountain_lights
+    - action: switch.turn_on
+      target:
+        entity_id:
+          - switch.fountain_lights
 
         ##########################################################
         ## Turn on Fountain Lights when Fountain on at Night
@@ -171,9 +175,10 @@
       state: 'below_horizon'
 
   action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.fountain_lights
+    - action: switch.turn_on
+      target:
+        entity_id:
+          - switch.fountain_lights
 
         ##########################################################
         ## Turn off Fountain Lights when Fountain turns off
@@ -199,9 +204,10 @@
       state: 'on'
 
   action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.fountain_lights
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.fountain_lights
 
         ##########################################################
         ## Turn On Fountain Daily
@@ -244,9 +250,10 @@
         state: 'winter'
 
   action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.fountain
+    - action: switch.turn_on
+      target:
+        entity_id:
+          - switch.fountain
 
         ##########################################################
         ## Turn Off Fountain at Midnight
@@ -271,10 +278,11 @@
       state: 'off'
 
   action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.fountain
-        - switch.fountain_lights
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.fountain
+          - switch.fountain_lights
 
         ##########################################################
         ## Turn Off Fountain When Raining
@@ -311,9 +319,10 @@
       state: 'home'
 
   action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.fountain
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.fountain
 
         ##########################################################
         ## Turn On Fountain When Done Raining
@@ -371,9 +380,10 @@
         state: 'winter'
 
   action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.fountain
+    - action: switch.turn_on
+      target:
+        entity_id:
+          - switch.fountain
 
         ##########################################################
         ## Turn Off Fountain When Cold
@@ -397,10 +407,11 @@
       state: 'on'
 
   action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.fountain
-    - service: notify.USER1_devices
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.fountain
+    - action: notify.USER1_devices
       data:
         message: Cold Outside Shutting Off Fountain
         data:

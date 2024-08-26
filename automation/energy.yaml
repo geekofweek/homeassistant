@@ -26,7 +26,7 @@
         state: "Winter Rate First 750"
 
   action:
-    - service: select.select_option
+    - action: select.select_option
       data:
         entity_id: select.monthly_electric
         option: "Winter Rate First 750"
@@ -55,7 +55,7 @@
         state: "Winter Rate Over 750"
 
   action:
-    - service: select.select_option
+    - action: select.select_option
       data:
         entity_id: select.monthly_electric
         option: "Winter Rate Over 750"
@@ -82,7 +82,7 @@
         state: "Summer Rate"
 
   action:
-    - service: select.select_option
+    - action: select.select_option
       data:
         entity_id: select.monthly_electric
         option: "Summer Rate"
@@ -109,7 +109,7 @@
       state: 'on'
 
   action:
-    - service: switch.turn_off
+    - action: switch.turn_off
       data:
         entity_id: switch.USER1s_bike_charger
 
@@ -135,6 +135,6 @@
       state: 'on'
 
   action:
-    - service: switch.turn_off
+    - action: switch.turn_off
       data:
         entity_id: switch.USER2s_bike_charger

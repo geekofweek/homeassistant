@@ -25,14 +25,15 @@
       state: 'off'
 
   action:
-    - service: homeassistant.turn_on
-      entity_id:
-       - input_boolean.disable_rainy_day
-       - input_boolean.disable_interior_lights_sunset
-       - input_boolean.disable_media_lights
-       - input_boolean.disable_occupancy
-       - input_boolean.disable_motion
-       - input_boolean.disable_fountain
+    - action: homeassistant.turn_on
+      target:
+        entity_id:
+          - input_boolean.disable_rainy_day
+          - input_boolean.disable_interior_lights_sunset
+          - input_boolean.disable_media_lights
+          - input_boolean.disable_occupancy
+          - input_boolean.disable_motion
+          - input_boolean.disable_fountain
 
         ##########################################################
         ## Vacation Mode Off
@@ -47,14 +48,15 @@
       to: 'off'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-       - input_boolean.disable_rainy_day
-       - input_boolean.disable_interior_lights_sunset
-       - input_boolean.disable_media_lights
-       - input_boolean.disable_occupancy
-       - input_boolean.thermostat_away
-       - input_boolean.disable_motion
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.disable_rainy_day
+          - input_boolean.disable_interior_lights_sunset
+          - input_boolean.disable_media_lights
+          - input_boolean.disable_occupancy
+          - input_boolean.thermostat_away
+          - input_boolean.disable_motion
 
         ##########################################################
         ## Turn On Vacation Mode when Gone 24 Hours
@@ -78,7 +80,7 @@
       state: 'off'
 
   action:
-    - service: homeassistant.turn_on
+    - action: homeassistant.turn_on
       entity_id: input_boolean.vacation_mode
 
         ##########################################################
@@ -100,7 +102,7 @@
       state: 'off'
 
   action:
-    - service: homeassistant.turn_off
+    - action: homeassistant.turn_off
       entity_id: input_boolean.vacation_mode
 
         ##########################################################
@@ -126,7 +128,7 @@
         state: 'home'
 
   action:
-    - service: homeassistant.turn_on
+    - action: homeassistant.turn_on
       entity_id: input_boolean.vacation_mode
 
         ##########################################################
@@ -150,33 +152,37 @@
   action:
     - delay:
         minutes: '{{ range(2, 20) | random }}'
-    - service: light.turn_on
-      entity_id:
-        - light.kitchen_sink
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.kitchen_sink
       data:
         brightness_pct: 50
     - delay:
         minutes: '{{ range(2, 28) | random }}'
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_lamps
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.living_room_lamps
       data:
         brightness_pct: 75
         transition: 120
     - delay:
         minutes: '{{ range(2, 59) | random }}'
-    - service: light.turn_on
-      entity_id:
-        - light.bedroom_ceiling
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bedroom_ceiling
       data:
         brightness_pct: 25
         transition: 60
     - delay:
         minutes: '{{ range(2, 45) | random }}'
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_office_desk_lamp
-        - light.USER1_office_desk_accent
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1_office_desk_lamp
+          - light.USER1_office_desk_accent
       data:
         brightness_pct: 80
 
@@ -199,22 +205,26 @@
   action:
     - delay:
         minutes: '{{ range(2, 32) | random }}'
-    - service: light.turn_off
-      entity_id:
-        - light.kitchen_sink
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.kitchen_sink
     - delay:
         minutes: '{{ range(2, 59) | random }}'
-    - service: light.turn_off
-      entity_id:
-        - light.living_room_lamps
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_lamps
     - delay:
         minutes: '{{ range(2, 30) | random }}'
-    - service: light.turn_off
-      entity_id:
-        - light.bedroom_ceiling
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.bedroom_ceiling
     - delay:
         minutes: '{{ range(2, 45) | random }}'
-    - service: light.turn_off
-      entity_id:
-        - light.USER1_office_desk_lamp
-        - light.USER1_office_desk_accent
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.USER1_office_desk_lamp
+          - light.USER1_office_desk_accent

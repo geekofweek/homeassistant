@@ -29,7 +29,7 @@
         state: 'Christmas Day'
 
   action:
-    - service: input_select.select_option
+    - action: input_select.select_option
       data:
         entity_id: input_select.holiday
         option: 'Christmas'
@@ -55,13 +55,13 @@
       state: 'Christmas'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_left
       data:
         transition: 900
         brightness_pct: 100
         color_name: green
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_right
       data:
         transition: 900
@@ -91,19 +91,19 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_left
       data:
         transition: 5
         brightness_pct: 100
         color_name: '{{ states(''input_select.exterior_christmas_light_color_left'') }}'
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_right
       data:
         transition: 5
         brightness_pct: 100
         color_name: '{{ states(''input_select.exterior_christmas_light_color_right'') }}'
-    - service: input_select.select_option
+    - action: input_select.select_option
       target:
         entity_id: input_select.exterior_christmas_light_color_left
       data:
@@ -112,7 +112,7 @@
               | reject('eq', states('input_select.exterior_christmas_light_color_left'))
               | reject('eq', states('input_select.exterior_christmas_light_color_right'))
               | list | random }}
-    - service: input_select.select_option
+    - action: input_select.select_option
       target:
         entity_id: input_select.exterior_christmas_light_color_right
       data:
@@ -146,7 +146,7 @@
         state: "New Year's Eve"
 
   action:
-    - service: input_select.select_option
+    - action: input_select.select_option
       data:
         entity_id: input_select.holiday
         option: "New Year's Eve"
@@ -172,8 +172,8 @@
       state: "New Year's Eve"
 
   action:
-    - service: homeassistant.turn_on
-      entity_id:  input_boolean.front_porch_rainbow
+    - action: homeassistant.turn_on
+      entity_id: input_boolean.front_porch_rainbow
 
         ##########################################################
         ## Enable Halloween Lighting
@@ -197,7 +197,7 @@
       state: 'Halloween'
 
   action:
-    - service: input_select.select_option
+    - action: input_select.select_option
       data:
         entity_id: input_select.holiday
         option: 'Halloween'
@@ -223,13 +223,13 @@
       state: 'Halloween'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_left
       data:
         transition: 900
         brightness_pct: 100
         rgb_color: [255,85,7]
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_right
       data:
         transition: 900
@@ -259,13 +259,13 @@
       state: 'Halloween'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_left
       data:
         transition: 2
         brightness_pct: 100
         rgb_color: [160,6,255]
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_right
       data:
         transition: 2
@@ -295,13 +295,13 @@
       state: 'Halloween'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_left
       data:
         transition: 2
         brightness_pct: 100
         rgb_color: [255,85,7]
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_right
       data:
         transition: 2
@@ -331,13 +331,13 @@
       state: 'Halloween'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_left
       data:
         transition: 2
         brightness_pct: 100
         rgb_color: [160,6,255]
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_right
       data:
         transition: 2
@@ -367,13 +367,13 @@
       state: 'Halloween'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_left
       data:
         transition: 2
         brightness_pct: 100
         rgb_color: [255,85,7]
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_right
       data:
         transition: 2
@@ -402,7 +402,7 @@
       state: "St. Patrick's Day"
 
   action:
-    - service: input_select.select_option
+    - action: input_select.select_option
       data:
         entity_id: input_select.holiday
         option: "St. Patricks Day"
@@ -428,13 +428,13 @@
       state: "St. Patrick's Day"
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_left
       data:
         transition: 900
         brightness_pct: 100
         color_name: green
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_right
       data:
         transition: 900
@@ -463,7 +463,7 @@
       state: "Valentine's Day"
 
   action:
-    - service: input_select.select_option
+    - action: input_select.select_option
       data:
         entity_id: input_select.holiday
         option: "Valentine's Day"
@@ -489,13 +489,13 @@
       state: "Valentine's Day"
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_left
       data:
         transition: 900
         brightness_pct: 100
         color_name: "deeppink"
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_right
       data:
         transition: 900
@@ -523,13 +523,13 @@
       state: 'Cardinals Game'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_left
       data:
         transition: 900
         brightness_pct: 100
         color_name: red
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_right
       data:
         transition: 900
@@ -557,13 +557,13 @@
       state: 'Blues Game'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_left
       data:
         transition: 900
         brightness_pct: 100
         color_name: blue
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_right
       data:
         transition: 900
@@ -592,7 +592,7 @@
       state: "Easter Sunday"
 
   action:
-    - service: input_select.select_option
+    - action: input_select.select_option
       data:
         entity_id: input_select.holiday
         option: 'Easter'
@@ -618,13 +618,13 @@
       state: 'Easter'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_left
       data:
         transition: 900
         brightness_pct: 100
         color_name: "indigo"
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_right
       data:
         transition: 900
@@ -653,7 +653,7 @@
       state: "Thanksgiving Day"
 
   action:
-    - service: input_select.select_option
+    - action: input_select.select_option
       data:
         entity_id: input_select.holiday
         option: 'Thanksgiving'
@@ -680,13 +680,13 @@
       state: 'Thanksgiving'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_left
       data:
         transition: 900
         brightness_pct: 100
         color_name: "darkorange"
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_right
       data:
         transition: 900
@@ -715,7 +715,7 @@
       state: "Independence Day"
 
   action:
-    - service: input_select.select_option
+    - action: input_select.select_option
       data:
         entity_id: input_select.holiday
         option: 'Independence Day'
@@ -742,7 +742,7 @@
       state: "Memorial Day"
 
   action:
-    - service: input_select.select_option
+    - action: input_select.select_option
       data:
         entity_id: input_select.holiday
         option: 'Memorial Day'
@@ -769,7 +769,7 @@
       state: "Veterans Day"
 
   action:
-    - service: input_select.select_option
+    - action: input_select.select_option
       data:
         entity_id: input_select.holiday
         option: 'Veterans Day'
@@ -796,7 +796,7 @@
       state: "Labor Day"
 
   action:
-    - service: input_select.select_option
+    - action: input_select.select_option
       data:
         entity_id: input_select.holiday
         option: 'Labor Day'
@@ -830,13 +830,13 @@
         state: 'Veterans Day'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_left
       data:
         transition: 900
         brightness_pct: 100
         color_name: blue
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.front_porch_right
       data:
         transition: 900
@@ -862,25 +862,25 @@
       state: 'Christmas'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.living_room_lamp_1
       data:
         transition: 15
         brightness_pct: 100
         color_name: red
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.living_room_lamp_2
       data:
         transition: 15
         brightness_pct: 100
         color_name: red
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.media_center_lighting
       data:
         transition: 15
         brightness_pct: 100
         color_name: green
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.globe
       data:
         transition: 15
@@ -907,25 +907,25 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.living_room_lamp_1
       data:
         transition: 15
         brightness_pct: 100
         color_name: red
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.living_room_lamp_2
       data:
         transition: 15
         brightness_pct: 100
         color_name: red
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.media_center_lighting
       data:
         transition: 15
         brightness_pct: 100
         color_name: green
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.globe
       data:
         transition: 15
@@ -952,25 +952,25 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.living_room_lamp_1
       data:
         transition: 15
         brightness_pct: 100
         color_name: green
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.living_room_lamp_2
       data:
         transition: 15
         brightness_pct: 100
         color_name: green
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.media_center_lighting
       data:
         transition: 15
         brightness_pct: 100
         color_name: red
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.globe
       data:
         transition: 15
@@ -996,25 +996,25 @@
       state: 'Halloween'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.living_room_lamp_1
       data:
         transition: 15
         brightness_pct: 100
         rgb_color: [255,85,7]
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.living_room_lamp_2
       data:
         transition: 15
         brightness_pct: 100
         rgb_color: [255,85,7]
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.media_center_lighting
       data:
         transition: 15
         brightness_pct: 100
         rgb_color: 152,39,25
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.globe
       data:
         transition: 15
@@ -1040,25 +1040,25 @@
       state: "St. Patrick's Day"
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.living_room_lamp_1
       data:
         transition: 15
         brightness_pct: 100
         color_name: green
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.living_room_lamp_2
       data:
         transition: 15
         brightness_pct: 100
         color_name: green
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.media_center_lighting
       data:
         transition: 15
         brightness_pct: 100
         color_name: green
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.globe
       data:
         transition: 15
@@ -1087,25 +1087,25 @@
       state: "Valentine's Day"
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.living_room_lamp_1
       data:
         transition: 15
         brightness_pct: 100
         color_name: "deeppink"
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.living_room_lamp_2
       data:
         transition: 15
         brightness_pct: 100
         color_name: "deeppink"
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.media_center_lighting
       data:
         transition: 15
         brightness_pct: 100
         color_name: "deeppink"
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.globe
       data:
         transition: 15
@@ -1134,25 +1134,25 @@
       state: 'Cardinals Game'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.living_room_lamp_1
       data:
         transition: 15
         brightness_pct: 100
         color_name: red
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.living_room_lamp_2
       data:
         transition: 15
         brightness_pct: 100
         color_name: red
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.media_center_lighting
       data:
         transition: 15
         brightness_pct: 100
         color_name: red
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.globe
       data:
         transition: 15
@@ -1181,25 +1181,25 @@
       state: 'Blues Game'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.living_room_lamp_1
       data:
         transition: 15
         brightness_pct: 100
         color_name: blue
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.living_room_lamp_2
       data:
         transition: 15
         brightness_pct: 100
         color_name: blue
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.media_center_lighting
       data:
         transition: 15
         brightness_pct: 100
         color_name: blue
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.globe
       data:
         transition: 15
@@ -1225,25 +1225,25 @@
       state: 'Easter'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.living_room_lamp_1
       data:
         transition: 15
         brightness_pct: 100
         color_name: "indigo"
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.living_room_lamp_2
       data:
         transition: 15
         brightness_pct: 100
         color_name: "indigo"
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.media_center_lighting
       data:
         transition: 15
         brightness_pct: 100
         color_name: "tomato"
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.globe
       data:
         transition: 15
@@ -1269,25 +1269,25 @@
       state: 'Thanksgiving'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.living_room_lamp_1
       data:
         transition: 15
         brightness_pct: 100
         color_name: "darkorange"
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.living_room_lamp_2
       data:
         transition: 15
         brightness_pct: 100
         color_name: "darkorange"
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.media_center_lighting
       data:
         transition: 15
         brightness_pct: 100
         color_name: "yellow"
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.globe
       data:
         transition: 15
@@ -1324,25 +1324,25 @@
         state: 'Veterans Day'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.living_room_lamp_1
       data:
         transition: 15
         brightness_pct: 100
         color_name: red
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.living_room_lamp_2
       data:
         transition: 15
         brightness_pct: 100
         color_name: red
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.media_center_lighting
       data:
         transition: 15
         brightness_pct: 100
         color_name: blue
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.globe
       data:
         transition: 15
@@ -1368,13 +1368,13 @@
         state: 'None'
 
   action:
-    - service: homeassistant.turn_off
+    - action: homeassistant.turn_off
       entity_id: input_boolean.front_porch_rainbow
     - delay: '00:00:60'
-    - service: light.turn_off
+    - action: light.turn_off
       entity_id: light.front_porch
     - delay: '00:00:60'
-    - service: light.turn_off
+    - action: light.turn_off
       entity_id: light.front_porch
 
         ##########################################################
@@ -1426,9 +1426,9 @@
         state: 'Blues Game'
 
   action:
-    - service: input_select.select_option
+    - action: input_select.select_option
       data:
         entity_id: input_select.holiday
         option: "None"
-    - service: homeassistant.turn_off
+    - action: homeassistant.turn_off
       entity_id: input_boolean.interior_holiday

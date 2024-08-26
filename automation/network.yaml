@@ -25,9 +25,10 @@
       state: 'off'
 
   action:
-    - service: homeassistant.turn_on
-      entity_id:
-        - switch.pihole
+    - action: homeassistant.turn_on
+      target:
+        entity_id:
+          - switch.pihole
 
 #################################################################
 ## Notifications
@@ -55,7 +56,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Internet is Down!
         data:
@@ -85,7 +86,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Internet is Up
         data:

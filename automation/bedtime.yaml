@@ -24,11 +24,12 @@
       state: 'home'
 
   action:
-    - service: lock.lock
-      entity_id:
-       - lock.front_door
-       - lock.back_door
-       - lock.basement_door
+    - action: lock.lock
+      target:
+        entity_id:
+          - lock.front_door
+          - lock.back_door
+          - lock.basement_door
 
         ##########################################################
         ## Bedtime Media
@@ -52,35 +53,35 @@
       state: 'home'
 
   action:
-    - service: select.select_option
+    - action: select.select_option
       data:
         entity_id: select.living_room_tv_activities
         option: "power_off"
-    - service: select.select_option
+    - action: select.select_option
       data:
         entity_id: select.USER1_s_office_tv_activities
         option: "power_off"
-    - service: input_select.select_option
+    - action: input_select.select_option
       data:
         entity_id: input_select.sonos
         option: "None"
-    - service: media_player.media_stop
-      entity_id:
-        - media_player.sonos_surround_sound
-        - media_player.sonos_living_room
-        - media_player.sonos_dining_room
-        - media_player.sonos_kitchen
-        - media_player.sonos_bathroom
-        - media_player.sonos_bedroom
-        - media_player.sonos_bedroom_closet
-        - media_player.sonos_USER1s_office
-        - media_player.sonos_USER1s_office_move
-        - media_player.sonos_USER2s_office
-        - media_player.sonos_move
-        - media_player.sonos_craft_room
-        - media_player.sonos_fitness_room
-        - media_player.sonos_backyard_patio
-        - media_player.sonos_roam
+    - action: media_player.media_stop
+      target:
+        entity_id:
+          - media_player.sonos_surround_sound
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_craft_room
+          - media_player.sonos_fitness_room
+          - media_player.sonos_backyard_patio
+          - media_player.sonos_roam
 
         ##########################################################
         ## Bedtime Blinds
@@ -118,15 +119,18 @@
         state: 'open'
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.stairs_blinds
-    - service: cover.close_cover
-      entity_id:
-        - cover.bedroom_closet_blinds
-    - service: cover.close_cover
-      entity_id:
-        - cover.kitchen_blinds
+    - action: cover.close_cover
+      target:
+        entity_id:
+          - cover.stairs_blinds
+    - action: cover.close_cover
+      target:
+        entity_id:
+          - cover.bedroom_closet_blinds
+    - action: cover.close_cover
+      target:
+        entity_id:
+          - cover.kitchen_blinds
 
         ##########################################################
         ## Bedtime Helpers
@@ -150,21 +154,22 @@
       state: 'home'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.interior_holiday
-        - input_boolean.office_rainbow
-        - input_boolean.livingroom_rainbow
-        - input_boolean.bedroom_rainbow
-        - input_boolean.front_porch_rainbow
-        - input_boolean.pop_music
-        - input_boolean.jazz_music
-        - input_boolean.chill_music
-        - input_boolean.electronic_music
-        - input_boolean.classical_music
-        - input_boolean.group_all_sonos
-        - input_boolean.view_package_camera
-        - input_boolean.package_camera_notification
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.interior_holiday
+          - input_boolean.office_rainbow
+          - input_boolean.livingroom_rainbow
+          - input_boolean.bedroom_rainbow
+          - input_boolean.front_porch_rainbow
+          - input_boolean.pop_music
+          - input_boolean.jazz_music
+          - input_boolean.chill_music
+          - input_boolean.electronic_music
+          - input_boolean.classical_music
+          - input_boolean.group_all_sonos
+          - input_boolean.view_package_camera
+          - input_boolean.package_camera_notification
 
         ##########################################################
         ## Bedtime Fans
@@ -188,11 +193,12 @@
       state: 'home'
 
   action:
-    - service: fan.turn_off
-      entity_id:
-        - fan.USER1s_office_fan
-        - fan.living_room_east
-        - fan.living_room_west
+    - action: fan.turn_off
+      target:
+        entity_id:
+          - fan.USER1s_office_fan
+          - fan.living_room_east
+          - fan.living_room_west
 
         ##########################################################
         ## Bedtime Switches
@@ -216,14 +222,15 @@
       state: 'home'
 
   action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.air_purifier
-        - switch.lower_backyard_lighting
-        - switch.backyard_patio_lighting
-        - switch.fireplace
-        - switch.fountain
-        - switch.fountain_lights
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.air_purifier
+          - switch.lower_backyard_lighting
+          - switch.backyard_patio_lighting
+          - switch.fireplace
+          - switch.fountain
+          - switch.fountain_lights
 
         ##########################################################
         ## Bedtime Lights
@@ -253,31 +260,39 @@
       state: 'off'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.interior_lights
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_deck
-    - service: light.turn_off
-      entity_id:
-        - light.garage_interior
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_patio
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.interior_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_deck
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.garage_interior
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_patio
     - delay: '00:00:60'
-    - service: light.turn_off
-      entity_id:
-        - light.interior_lights
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_deck
-    - service: light.turn_off
-      entity_id:
-        - light.garage_interior
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_patio
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.interior_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_deck
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.garage_interior
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_patio
 
         ##########################################################
         ## Bedtime Guest Mode
@@ -304,74 +319,95 @@
       state: 'on'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.living_room_lights
-    - service: light.turn_off
-      entity_id:
-        - light.dining_room_lights
-    - service: light.turn_off
-      entity_id:
-        - light.bedroom_lights
-    - service: light.turn_off
-      entity_id:
-        - light.USER2s_bedroom_closet
-    - service: light.turn_off
-      entity_id:
-        - light.kitchen_lights
-    - service: light.turn_off
-      entity_id:
-        - light.hallway_light
-    - service: light.turn_off
-      entity_id:
-        - light.bathroom_lights
-    - service: light.turn_off
-      entity_id:
-        - light.basement_lights
-    - service: light.turn_off
-      entity_id:
-        - light.basement_stairs
-    - service: light.turn_off
-      entity_id:
-        - light.work_bench_light
-    - service: light.turn_off
-      entity_id:
-        - light.laundry_room_light
-    - service: light.turn_off
-      entity_id:
-        - light.basement_stairs
-    - service: light.turn_off
-      entity_id:
-        - light.craft_room_ceiling
-    - service: light.turn_off
-      entity_id:
-        - light.fitness_room_ceiling
-    - service: light.turn_off
-      entity_id:
-        - light.basement_lamp
-    - service: light.turn_off
-      entity_id:
-        - light.USER1_office_lights
-    - service: light.turn_off
-      entity_id:
-        - light.USER2_office_lights
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_deck
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_patio
-    - service: light.turn_off
-      entity_id:
-        - light.garage_interior
-    - service: climate.set_preset_mode
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.dining_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.bedroom_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.USER2s_bedroom_closet
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.kitchen_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.hallway_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.bathroom_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.basement_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.basement_stairs
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.work_bench_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.laundry_room_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.basement_stairs
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.craft_room_ceiling
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.fitness_room_ceiling
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.basement_lamp
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.USER1_office_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.USER2_office_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_deck
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_patio
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.garage_interior
+    - action: climate.set_preset_mode
       data:
         entity_id: climate.main_floor
         preset_mode: 'Guest'
-    - service: light.turn_off
-      entity_id:
-        - light.USER1s_office_desktop_clock
-        - light.living_room_clock
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.USER1s_office_desktop_clock
+          - light.living_room_clock
 
         ##########################################################
         ## Bedtime Thermostat
@@ -401,7 +437,7 @@
       before: '23:00:00'
 
   action:
-    - service: climate.set_preset_mode
+    - action: climate.set_preset_mode
       data:
         entity_id: climate.main_floor
         preset_mode: 'sleep'
@@ -431,49 +467,62 @@
       state: 'None'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.front_porch
-    - service: light.turn_off
-      entity_id:
-        - light.back_door
-    - service: light.turn_off
-      entity_id:
-        - light.garage_light
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_deck
-    - service: light.turn_off
-      entity_id:
-        - light.garage_interior
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_patio
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.front_porch
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.back_door
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.garage_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_deck
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.garage_interior
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_patio
     - delay: '00:00:60'
-    - service: light.turn_off
-      entity_id:
-        - light.front_porch
-    - service: light.turn_off
-      entity_id:
-        - light.back_door
-    - service: light.turn_off
-      entity_id:
-        - light.garage_light
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_deck
-    - service: light.turn_off
-      entity_id:
-        - light.garage_interior
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_patio
-    - service: switch.turn_off
-      entity_id:
-        - switch.lower_backyard_lighting
-        - switch.backyard_patio_lighting
-        - switch.fountain
-        - switch.fountain_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.front_porch
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.back_door
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.garage_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_deck
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.garage_interior
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_patio
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.lower_backyard_lighting
+          - switch.backyard_patio_lighting
+          - switch.fountain
+          - switch.fountain_lights
 
         ##########################################################
         ## Bedtime Exterior Lights Holiday
@@ -502,41 +551,52 @@
           state: 'None'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.back_door
-    - service: light.turn_off
-      entity_id:
-        - light.garage_light
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_patio
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_deck
-    - service: light.turn_off
-      entity_id:
-        - light.garage_interior
-    - service: switch.turn_off
-      entity_id:
-        - switch.lower_backyard_lighting
-        - switch.backyard_patio_lighting
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.back_door
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.garage_light
+    - action: light.turn_off
+      target:
+        entity_id:
+           light.backyard_patio
+    - action: light.turn_off
+      target:
+        entity_id:
+           light.backyard_deck
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.garage_interior
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.lower_backyard_lighting
+          - switch.backyard_patio_lighting
     - delay: '00:00:30'
-    - service: light.turn_off
-      entity_id:
-        - light.back_door
-    - service: light.turn_off
-      entity_id:
-        - light.garage_light
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_deck
-    - service: light.turn_off
-      entity_id:
-        - light.garage_interior
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_patio
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.back_door
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.garage_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_deck
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.garage_interior
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_patio
 
         ##########################################################
         ## Bedtime Garage Door
@@ -563,13 +623,14 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.garage_interior
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.garage_interior
       data:
        flash: long
     - delay: '00:00:15'
-    - service: cover.close_cover
+    - action: cover.close_cover
       entity_id: cover.garage_door
 
         ##########################################################
@@ -597,9 +658,10 @@
       state: 'off'
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.USER1_s_office_blinds
+    - action: cover.close_cover
+      target:
+        entity_id:
+          - cover.USER1_s_office_blinds
 
         ##########################################################
         ## Bedtime - USER1's Office Blinds Portable AC
@@ -629,12 +691,12 @@
       state: 'on'
 
   action:
-    - service: cover.close_cover
-      data:
-        entity_id: 
+    - action: cover.close_cover
+      target:
+        entity_id:  
           - cover.USER1s_office_blinds_left
           - cover.USER1s_office_blinds_center
-    - service: cover.set_cover_position
+    - action: cover.set_cover_position
       data:
         entity_id: 
           - cover.USER1s_office_blinds_right
@@ -665,9 +727,10 @@
       state: 'off'
 
   action:
-    - service: cover.close_cover
-      entity_id:
-        - cover.USER2_s_office_blinds
+    - action: cover.close_cover
+      target:
+        entity_id:
+          - cover.USER2_s_office_blinds
 
         ##########################################################
         ## Bedtime - USER2's Office Blinds Portable AC
@@ -694,11 +757,11 @@
       state: 'off'
 
   action:
-    - service: cover.close_cover
-      data:
+    - action: cover.close_cover
+      target:
         entity_id: 
           - cover.USER2s_office_blinds_left
-    - service: cover.set_cover_position
+    - action: cover.set_cover_position
       data:
         entity_id: 
           - cover.USER2s_office_blinds_right
@@ -722,5 +785,5 @@
         seconds: 0
 
   action:
-    - service: homeassistant.turn_off
+    - action: homeassistant.turn_off
       entity_id: input_boolean.bedtime

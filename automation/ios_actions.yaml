@@ -16,9 +16,10 @@
         actionName: 'Bedtime'
 
   action:
-    - service: homeassistant.turn_on
-      entity_id:
-        - input_boolean.bedtime
+    - action: homeassistant.turn_on
+      target:
+        entity_id:
+          - input_boolean.bedtime
 
         #################################################################
         ## Arm Alarm Home
@@ -34,7 +35,7 @@
         actionName: 'Arm Alarm Home'
 
   action:
-    - service: alarm_control_panel.alarm_arm_home
+    - action: alarm_control_panel.alarm_arm_home
       entity_id: alarm_control_panel.alarm
 
         #################################################################
@@ -51,7 +52,7 @@
         actionName: 'Arm Alarm Away'
 
   action:
-    - service: alarm_control_panel.alarm_arm_away
+    - action: alarm_control_panel.alarm_arm_away
       entity_id: alarm_control_panel.alarm
 
         #################################################################
@@ -68,7 +69,7 @@
         actionName: 'Disarm Alarm'
 
   action:
-    - service: alarm_control_panel.alarm_disarm
+    - action: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarm
 
 #################################################################
@@ -89,10 +90,11 @@
         action: "unlock_doors"
 
   action:
-    - service: lock.unlock
-      entity_id:
-        - lock.back_door
-        - lock.front_door
+    - action: lock.unlock
+      target:
+        entity_id:
+          - lock.back_door
+          - lock.front_door
 
         #################################################################
         ## Unlock Front Door
@@ -108,9 +110,10 @@
         action: "unlock_front_door"
 
   action:
-    - service: lock.unlock
-      entity_id:
-        - lock.front_door
+    - action: lock.unlock
+      target:
+        entity_id:
+          - lock.front_door
 
         #################################################################
         ## Close Garage
@@ -126,7 +129,7 @@
         action: "close_garage"
 
   action:
-    - service: cover.close_cover
+    - action: cover.close_cover
       entity_id: cover.garage_door
 
         #################################################################
@@ -143,7 +146,7 @@
         action: "open_garage"
 
   action:
-    - service: cover.open_cover
+    - action: cover.open_cover
       entity_id: cover.garage_door
 
         #################################################################
@@ -160,7 +163,7 @@
         action: "disarm_alarm"
 
   action:
-    - service: alarm_control_panel.alarm_disarm
+    - action: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarm
 
         #################################################################
@@ -177,7 +180,7 @@
         action: "arm_alarm"
 
   action:
-    - service: alarm_control_panel.alarm_arm_away
+    - action: alarm_control_panel.alarm_arm_away
       entity_id: alarm_control_panel.alarm
 
         #################################################################
@@ -194,7 +197,7 @@
         action: "siren_off"
 
   action:
-    - service: switch.turn_off
+    - action: switch.turn_off
       entity_id: switch.siren
 
         #################################################################
@@ -211,5 +214,5 @@
         action: "fireplace_off"
 
   action:
-    - service: switch.turn_off
+    - action: switch.turn_off
       entity_id: switch.fireplace

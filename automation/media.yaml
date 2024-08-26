@@ -43,44 +43,49 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.living_room_lamps
       data:
        transition: 5
        color_temp: 370
        brightness_pct: 100
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.media_center_lighting
       data:
        transition: 5
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id: 
-        - light.hallway_light
+    - action: light.turn_on
+      target:
+        entity_id: 
+          - light.hallway_light
       data:
        brightness_pct: 25
-    - service: light.turn_on
-      entity_id:
-        - light.dining_room_table
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.dining_room_table
       data:
        brightness_pct: 40
-    - service: light.turn_on
-      entity_id:
-        - light.bathroom_vanity
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bathroom_vanity
       data:
        brightness_pct: 40
-    - service: light.turn_on
-      entity_id:
-        - light.kitchen_sink
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.kitchen_sink
       data:
        brightness_pct: 40
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.kitchen_cabinets
       data:
        brightness_pct: 2
-    - service: light.turn_on
-      entity_id:
-        - light.globe
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.globe
       data:
        transition: 5
        brightness_pct: 65
@@ -112,41 +117,51 @@
       state: 'off'
 
   action:
-    - service: homeassistant.turn_on
+    - action: homeassistant.turn_on
       entity_id: input_boolean.watching_plex
-    - service: light.turn_off
-      entity_id:
-        - light.living_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_lights
       data:
        transition: 10
-    - service: light.turn_off
-      entity_id:
-        - light.dining_room_lights
-    - service: light.turn_off
-      entity_id:
-        - light.kitchen_lights
-    - service: light.turn_off
-      entity_id:
-        - light.bathroom_lights
-    - service: light.turn_off
-      entity_id:
-        - light.hallway_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.dining_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.kitchen_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.bathroom_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.hallway_light
     - delay: '00:00:15' 
-    - service: light.turn_off
-      entity_id:
-        - light.living_room_lights
-    - service: light.turn_off
-      entity_id:
-        - light.dining_room_lights
-    - service: light.turn_off
-      entity_id:
-        - light.kitchen_lights
-    - service: light.turn_off
-      entity_id:
-        - light.bathroom_lights
-    - service: light.turn_off
-      entity_id:
-        - light.hallway_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.dining_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.kitchen_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.bathroom_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.hallway_light
 
         ##########################################################
         ## Turn Off Watching Plex Boolean
@@ -179,7 +194,7 @@
         seconds: 0
 
   action:
-    - service: homeassistant.turn_off
+    - action: homeassistant.turn_off
       entity_id: input_boolean.watching_plex
 
         ##########################################################
@@ -231,44 +246,49 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.living_room_lamps
       data:
        transition: 5
        color_temp: 370
        brightness_pct: 100
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.media_center_lighting
       data:
        transition: 5
        brightness_pct: 100
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.hallway_light
       data:
        brightness_pct: 2
-    - service: light.turn_on
-      entity_id:
-        - light.dining_room_table
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.dining_room_table
       data:
        brightness_pct: 2
-    - service: light.turn_on
-      entity_id:
-        - light.kitchen_sink
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.kitchen_sink
       data:
        brightness_pct: 2
-    - service: light.turn_on
-      entity_id:
-        - light.kitchen_cabinets
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.kitchen_cabinets
       data:
        brightness_pct: 2
-    - service: light.turn_on
-      entity_id:
-        - light.bathroom_vanity
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bathroom_vanity
       data:
        brightness_pct: 30
-    - service: light.turn_on
-      entity_id:
-        - light.globe
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.globe
       data:
        transition: 5
        brightness_pct: 65
@@ -323,44 +343,49 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.living_room_lamps
       data:
        transition: 5
        color_temp: 370
        brightness_pct: 100
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.media_center_lighting
       data:
        transition: 5
        brightness_pct: 100
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.hallway_light
       data:
        brightness_pct: 2
-    - service: light.turn_on
-      entity_id:
-        - light.dining_room_table
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.dining_room_table
       data:
        brightness_pct: 2
-    - service: light.turn_on
-      entity_id:
-        - light.kitchen_sink
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.kitchen_sink
       data:
        brightness_pct: 2
-    - service: light.turn_on
-      entity_id:
-        - light.kitchen_cabinets
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.kitchen_cabinets
       data:
        brightness_pct: 2
-    - service: light.turn_on
-      entity_id:
-        - light.bathroom_vanity
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bathroom_vanity
       data:
        brightness_pct: 30
-    - service: light.turn_on
-      entity_id:
-        - light.globe
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.globe
       data:
        transition: 5
        brightness_pct: 65
@@ -429,39 +454,49 @@
       state: 'off'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.living_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_lights
       data:
        transition: 10
-    - service: light.turn_off
-      entity_id:
-        - light.dining_room_lights
-    - service: light.turn_off
-      entity_id:
-        - light.kitchen_lights
-    - service: light.turn_off
-      entity_id:
-        - light.bathroom_lights
-    - service: light.turn_off
-      entity_id:
-        - light.hallway_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.dining_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.kitchen_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.bathroom_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.hallway_light
     - delay: '00:00:15' 
-    - service: light.turn_off
-      entity_id:
-        - light.living_room_lights
-    - service: light.turn_off
-      entity_id:
-        - light.dining_room_lights
-    - service: light.turn_off
-      entity_id:
-        - light.kitchen_lights
-    - service: light.turn_off
-      entity_id:
-        - light.bathroom_lights
-    - service: light.turn_off
-      entity_id:
-        - light.hallway_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.dining_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.kitchen_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.bathroom_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.hallway_light
 
         ##########################################################
         ## Late Night TV Watching before Midnight Lights Off
@@ -526,39 +561,49 @@
       state: 'off'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.living_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_lights
       data:
        transition: 10
-    - service: light.turn_off
-      entity_id:
-        - light.dining_room_lights
-    - service: light.turn_off
-      entity_id:
-        - light.kitchen_lights
-    - service: light.turn_off
-      entity_id:
-        - light.bathroom_lights
-    - service: light.turn_off
-      entity_id:
-        - light.hallway_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.dining_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.kitchen_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.bathroom_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.hallway_light
     - delay: '00:00:15' 
-    - service: light.turn_off
-      entity_id:
-        - light.living_room_lights
-    - service: light.turn_off
-      entity_id:
-        - light.dining_room_lights
-    - service: light.turn_off
-      entity_id:
-        - light.kitchen_lights
-    - service: light.turn_off
-      entity_id:
-        - light.bathroom_lights
-    - service: light.turn_off
-      entity_id:
-        - light.hallway_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.dining_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.kitchen_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.bathroom_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.hallway_light
 
         ##########################################################
         ## Living Room TV Turn Off Harmony Activity if TV Off
@@ -584,7 +629,7 @@
         state: 'power_off'
 
   action:
-    - service: select.select_option
+    - action: select.select_option
       data:
         entity_id: select.living_room_tv_activities
         option: "power_off"      
@@ -613,7 +658,7 @@
         state: 'power_off'
 
   action:
-    - service: select.select_option
+    - action: select.select_option
       data:
         entity_id: select.bedroom_tv_activities
         option: "power_off"
@@ -630,53 +675,53 @@
       at: '05:00:00'
 
   action:
-    - service: media_player.unjoin
-      entity_id:
-        - media_player.sonos_surround_sound
-        - media_player.sonos_living_room
-        - media_player.sonos_dining_room
-        - media_player.sonos_kitchen
-        - media_player.sonos_bathroom
-        - media_player.sonos_bedroom
-        - media_player.sonos_bedroom_closet
-        - media_player.sonos_USER1s_office
-        - media_player.sonos_USER1s_office_move
-        - media_player.sonos_USER2s_office
-        - media_player.sonos_move
-        - media_player.sonos_craft_room
-        - media_player.sonos_fitness_room
-        - media_player.sonos_backyard_patio
-        - media_player.sonos_roam
-    - service: media_player.clear_playlist
-      entity_id:
-        - media_player.sonos_surround_sound
-        - media_player.sonos_living_room
-        - media_player.sonos_dining_room
-        - media_player.sonos_kitchen
-        - media_player.sonos_bathroom
-        - media_player.sonos_bedroom
-        - media_player.sonos_bedroom_closet
-        - media_player.sonos_USER1s_office
-        - media_player.sonos_USER1s_office_move
-        - media_player.sonos_USER2s_office
-        - media_player.sonos_move
-        - media_player.sonos_craft_room
-        - media_player.sonos_fitness_room
-        - media_player.sonos_backyard_patio
-        - media_player.sonos_roam
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.pop_music
-        - input_boolean.jazz_music
-        - input_boolean.chill_music
-        - input_boolean.electronic_music
-        - input_boolean.classical_music
-        - input_boolean.group_all_sonos
-    - service: input_select.select_option
+    - action: media_player.unjoin
+      target:
+        entity_id:
+          - media_player.sonos_surround_sound
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_craft_room
+          - media_player.sonos_fitness_room
+          - media_player.sonos_backyard_patio
+          - media_player.sonos_roam
+    - action: media_player.clear_playlist
+      target:
+        entity_id:
+          - media_player.sonos_surround_sound
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_craft_room
+          - media_player.sonos_fitness_room
+          - media_player.sonos_backyard_patio
+          - media_player.sonos_roam
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.pop_music
+          - input_boolean.jazz_music
+          - input_boolean.chill_music
+          - input_boolean.classical_music
+          - input_boolean.group_all_sonos
+    - action: input_select.select_option
       data:
         entity_id: input_select.sonos
         option: "None"
-    - service: switch.turn_off
+    - action: switch.turn_off
       data:
         entity_id: 
           - switch.sonos_bedroom_night_sound
@@ -702,7 +747,7 @@
       state: 'home'
 
   action:
-    - service: media_player.join
+    - action: media_player.join
       data:
         entity_id:
           - media_player.sonos_living_room
@@ -715,7 +760,6 @@
           - media_player.sonos_bedroom
           - media_player.sonos_bedroom_closet
           - media_player.sonos_USER1s_office
-          - media_player.sonos_USER1s_office_move
           - media_player.sonos_USER2s_office
           - media_player.sonos_craft_room
           - media_player.sonos_fitness_room
@@ -740,7 +784,7 @@
       state: 'home'
 
   action:
-    - service: media_player.unjoin
+    - action: media_player.unjoin
       data:
         entity_id:
           - media_player.sonos_living_room
@@ -751,7 +795,6 @@
           - media_player.sonos_bedroom
           - media_player.sonos_bedroom_closet
           - media_player.sonos_USER1s_office
-          - media_player.sonos_USER1s_office_move
           - media_player.sonos_USER2s_office
           - media_player.sonos_craft_room
           - media_player.sonos_fitness_room
@@ -776,7 +819,7 @@
       state: 'home'
 
   action:
-    - service: media_player.join
+    - action: media_player.join
       data:
         group_members:
           - media_player.sonos_living_room
@@ -787,30 +830,31 @@
       target:
         entity_id:
           - media_player.sonos_living_room
-    - delay: '00:00:02'
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.sonos_living_room
-        - media_player.sonos_surround_sound
-        - media_player.sonos_dining_room
-        - media_player.sonos_kitchen
-        - media_player.sonos_bathroom
+    - delay: '00:00:05'
+    - action: media_player.volume_set
+      target:
+        entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_surround_sound
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
       data:
-        volume_level: 0.4
-    - delay: '00:00:01'
-    - service: media_player.select_source
+        volume_level: 0.3
+    - delay: '00:00:05'
+    - action: media_player.select_source
       data:
         source: 'Pop Station'
       target:
         entity_id: 
           - media_player.sonos_living_room
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.classical_music
-        - input_boolean.jazz_music
-        - input_boolean.chill_music
-        - input_boolean.electronic_music
-    - service: input_select.select_option
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.classical_music
+          - input_boolean.jazz_music
+          - input_boolean.chill_music
+    - action: input_select.select_option
       data:
         entity_id: input_select.sonos
         option: "Pop Music"
@@ -834,7 +878,7 @@
       state: 'home'
 
   action:
-    - service: media_player.join
+    - action: media_player.join
       data:
         group_members:
           - media_player.sonos_living_room
@@ -845,30 +889,31 @@
       target:
         entity_id:
           - media_player.sonos_living_room
-    - delay: '00:00:02'
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.sonos_living_room
-        - media_player.sonos_surround_sound
-        - media_player.sonos_dining_room
-        - media_player.sonos_kitchen
-        - media_player.sonos_bathroom
+    - delay: '00:00:05'
+    - action: media_player.volume_set
+      target:
+        entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_surround_sound
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
       data:
-        volume_level: 0.04
-    - delay: '00:00:01'
-    - service: media_player.select_source
+        volume_level: 0.03
+    - delay: '00:00:05'
+    - action: media_player.select_source
       data:
         source: 'Smooth Jazz'
       target:
         entity_id: 
           - media_player.sonos_living_room
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.classical_music
-        - input_boolean.pop_music
-        - input_boolean.chill_music
-        - input_boolean.electronic_music
-    - service: input_select.select_option
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.classical_music
+          - input_boolean.pop_music
+          - input_boolean.chill_music
+    - action: input_select.select_option
       data:
         entity_id: input_select.sonos
         option: "Jazz Music"
@@ -892,7 +937,7 @@
       state: 'home'
 
   action:
-    - service: media_player.join
+    - action: media_player.join
       data:
         group_members:
           - media_player.sonos_living_room
@@ -903,91 +948,34 @@
       target:
         entity_id:
           - media_player.sonos_living_room
-    - delay: '00:00:02'
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.sonos_living_room
-        - media_player.sonos_surround_sound
-        - media_player.sonos_dining_room
-        - media_player.sonos_kitchen
-        - media_player.sonos_bathroom
+    - delay: '00:00:05'
+    - action: media_player.volume_set
+      target:
+        entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_surround_sound
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
       data:
-        volume_level: 0.04
-    - delay: '00:00:01'
-    - service: media_player.select_source
+        volume_level: 0.03
+    - delay: '00:00:05'
+    - action: media_player.select_source
       data:
         source: 'Classical'
       target:
         entity_id: 
           - media_player.sonos_living_room
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.jazz_music
-        - input_boolean.pop_music
-        - input_boolean.chill_music
-        - input_boolean.electronic_music
-    - service: input_select.select_option
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.jazz_music
+          - input_boolean.pop_music
+          - input_boolean.chill_music
+    - action: input_select.select_option
       data:
         entity_id: input_select.sonos
         option: "Classical Music"
-
-        ##########################################################
-        ## Play Electronic Music
-        ##########################################################
-
-- alias: Media - Play Electronic Music
-  id: 'media_play_electronic_music'
-
-  trigger:
-    - platform: state
-      entity_id: input_boolean.electronic_music
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-
-  action:
-    - service: media_player.join
-      data:
-        group_members:
-          - media_player.sonos_living_room
-          - media_player.sonos_surround_sound
-          - media_player.sonos_dining_room
-          - media_player.sonos_kitchen
-          - media_player.sonos_bathroom
-      target:
-        entity_id:
-          - media_player.sonos_living_room
-    - delay: '00:00:02'
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.sonos_living_room
-        - media_player.sonos_surround_sound
-        - media_player.sonos_dining_room
-        - media_player.sonos_kitchen
-        - media_player.sonos_bathroom
-      data:
-        volume_level: 0.04
-    - delay: '00:00:01'
-    - service: media_player.select_source
-      data:
-        source: 'Atmospheric Electronic'
-      target:
-        entity_id: 
-          - media_player.sonos_living_room
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.jazz_music
-        - input_boolean.pop_music
-        - input_boolean.chill_music
-        - input_boolean.classical_music
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.sonos
-        option: "Electronic Music"
 
         ##########################################################
         ## Play Chill Music
@@ -1008,7 +996,7 @@
       state: 'home'
 
   action:
-    - service: media_player.join
+    - action: media_player.join
       data:
         group_members:
           - media_player.sonos_living_room
@@ -1019,30 +1007,31 @@
       target:
         entity_id:
           - media_player.sonos_living_room
-    - delay: '00:00:02'
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.sonos_living_room
-        - media_player.sonos_surround_sound
-        - media_player.sonos_dining_room
-        - media_player.sonos_kitchen
-        - media_player.sonos_bathroom
+    - delay: '00:00:05'
+    - action: media_player.volume_set
+      target:
+        entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_surround_sound
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
       data:
-        volume_level: 0.04
-    - delay: '00:00:01'
-    - service: media_player.select_source
+        volume_level: 0.03
+    - delay: '00:00:05'
+    - action: media_player.select_source
       data:
         source: 'Chill'
       target:
         entity_id: 
           - media_player.sonos_living_room
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.jazz_music
-        - input_boolean.electronic_music
-        - input_boolean.pop_music
-        - input_boolean.classical_music
-    - service: input_select.select_option
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.jazz_music
+          - input_boolean.pop_music
+          - input_boolean.classical_music
+    - action: input_select.select_option
       data:
         entity_id: input_select.sonos
         option: "Chill Music"
@@ -1066,23 +1055,14 @@
       state: 'home'
 
   action:
-    - service: media_player.join
-      data:
-        group_members:
-          - media_player.sonos_USER1s_office
-          - media_player.sonos_USER1s_office_move
+    - action: media_player.volume_set
       target:
         entity_id:
           - media_player.sonos_USER1s_office
-    - delay: '00:00:02'
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.sonos_USER1s_office
-        - media_player.sonos_USER1s_office_move
       data:
-        volume_level: 0.07
+        volume_level: 0.1
     - delay: '00:00:01'
-    - service: media_player.select_source
+    - action: media_player.select_source
       data:
         source: 'Chill'
       target:
@@ -1103,10 +1083,10 @@
       to: 'off'
 
   action:
-    - service: media_player.media_stop
-      entity_id:
-        - media_player.sonos_USER1s_office
-        - media_player.sonos_USER1s_office_move
+    - action: media_player.media_stop
+      target:
+        entity_id:
+          - media_player.sonos_USER1s_office
 
         ##########################################################
         ## Sonos start activity from input select Pop Music
@@ -1121,7 +1101,7 @@
       to: 'Pop Music'
 
   action:
-    - service: homeassistant.turn_on
+    - action: homeassistant.turn_on
       entity_id: input_boolean.pop_music
 
         ##########################################################
@@ -1137,7 +1117,7 @@
       to: 'Jazz Music'
 
   action:
-    - service: homeassistant.turn_on
+    - action: homeassistant.turn_on
       entity_id: input_boolean.jazz_music
 
         ##########################################################
@@ -1153,24 +1133,8 @@
       to: 'Chill Music'
 
   action:
-    - service: homeassistant.turn_on
+    - action: homeassistant.turn_on
       entity_id: input_boolean.chill_music
-
-        ##########################################################
-        ## Sonos start activity from input select Electronic Music
-        ##########################################################
-
-- alias: Media - Sonos start activity from input select Electronic Music
-  id: 'media_sonos_start_activity_from_input_select_electronic_music'
-
-  trigger:
-    - platform: state
-      entity_id: input_select.sonos
-      to: 'Electronic Music'
-
-  action:
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.electronic_music
 
         ##########################################################
         ## Sonos start activity from input select Classical Music
@@ -1185,7 +1149,7 @@
       to: 'Classical Music'
 
   action:
-    - service: homeassistant.turn_on
+    - action: homeassistant.turn_on
       entity_id: input_boolean.classical_music
 
         ##########################################################
@@ -1201,24 +1165,25 @@
       to: 'None'
 
   action:
-    - service: media_player.media_stop
-      entity_id:
-        - media_player.sonos_surround_sound
-        - media_player.sonos_living_room
-        - media_player.sonos_dining_room
-        - media_player.sonos_kitchen
-        - media_player.sonos_bathroom
-        - media_player.sonos_USER1s_office
-        - media_player.sonos_USER2s_office
-        - media_player.sonos_move
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.pop_music
-        - input_boolean.jazz_music
-        - input_boolean.chill_music
-        - input_boolean.electronic_music
-        - input_boolean.classical_music
-        - input_boolean.group_all_sonos
+    - action: media_player.media_stop
+      target:
+        entity_id:
+          - media_player.sonos_surround_sound
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.pop_music
+          - input_boolean.jazz_music
+          - input_boolean.chill_music
+          - input_boolean.classical_music
+          - input_boolean.group_all_sonos
 
         ##########################################################
         ## Turn Down Backyard Sonos at 10p
@@ -1232,9 +1197,10 @@
      at: '22:00:00'
 
   action:
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.sonos_backyard_patio
+    - action: media_player.volume_set
+      target:
+        entity_id:
+          - media_player.sonos_backyard_patio
       data:
         volume_level: 0.3
 
@@ -1250,9 +1216,16 @@
      at: '23:59:00'
 
   action:
-    - service: media_player.media_stop
-      entity_id:
-        - media_player.sonos_backyard_patio
+    - action: media_player.media_stop
+      target:
+        entity_id:
+          - media_player.sonos_backyard_patio
+    - action: media_player.volume_set
+      target:
+        entity_id:
+          - media_player.sonos_backyard_patio
+      data:
+        volume_level: 0
 
         ##########################################################
         ## Reset Backyard Sonos Volume if after 10p
@@ -1271,9 +1244,10 @@
       before: '23:59:00'
 
   action:
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.sonos_backyard_patio
+    - action: media_player.volume_set
+      target:
+        entity_id:
+          - media_player.sonos_backyard_patio
       data:
         volume_level: 0.3
 
@@ -1295,11 +1269,12 @@
       before: '06:00:00'
 
   action:
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.sonos_backyard_patio
+    - action: media_player.volume_set
+      target:
+        entity_id:
+          - media_player.sonos_backyard_patio
       data:
-        volume_level: 0.3
+        volume_level: 0
 
         ##########################################################
         ## Turn on Bedroom Sonos Night Sound Weeknights
@@ -1328,9 +1303,10 @@
         - thu
 
   action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.sonos_bedroom_night_sound
+    - action: switch.turn_on
+      target:
+        entity_id:
+          - switch.sonos_bedroom_night_sound
 
         ##########################################################
         ## Fix Bedroom TV Sound Output Power On
@@ -1349,7 +1325,7 @@
         seconds: 15
 
   action:
-    - service: webostv.select_sound_output
+    - action: webostv.select_sound_output
       data:
         entity_id: media_player.bedroom_tv
         sound_output: external_arc
@@ -1377,7 +1353,7 @@
       state: 'on'
 
   action:
-    - service: webostv.select_sound_output
+    - action: webostv.select_sound_output
       data:
         entity_id: media_player.bedroom_tv
         sound_output: external_arc
@@ -1416,15 +1392,18 @@
       before: '05:00:00'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.living_room_lamps
-    - service: light.turn_off
-      entity_id:
-        - light.living_room_ceiling_east
-    - service: light.turn_off
-      entity_id:
-        - light.living_room_ceiling_west
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_lamps
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_ceiling_east
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_ceiling_west
 
         ##########################################################
         ## Turn on Living Room Lights When Done Playing Xbox
@@ -1460,9 +1439,10 @@
       before: '05:00:00'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_accent_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.living_room_accent_lights
 
         ##########################################################
         ## Set Living Room Remote Input when Xbox On
@@ -1489,7 +1469,7 @@
       state: 'on'
 
   action:
-    - service: input_select.select_option
+    - action: input_select.select_option
       data:
         entity_id: input_select.sonos
         option: "Play Xbox"

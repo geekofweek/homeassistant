@@ -28,41 +28,41 @@
       state: 'home'
 
   action:
-    - service: light.turn_off
+    - action: light.turn_off
       entity_id:
         - light.USER1s_office_desktop_clock
         - light.living_room_clock
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/music_song
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/music_album
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/music_song
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/music_album
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/youtube
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/youtube
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/party_time
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/party_time
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/tv_state
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/temp
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/temp
 
@@ -89,35 +89,35 @@
       state: 'off'
 
   action:
-    - service: light.turn_off
+    - action: light.turn_off
       entity_id:
         - light.USER1s_office_desktop_clock
         - light.living_room_clock
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/music_song
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/music_album
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/music_song
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/music_album
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/youtube
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/youtube
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/party_time
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/party_time
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/tv_state
 
@@ -139,7 +139,7 @@
       entity_id: weather.REDACTED
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/weather
         payload: >-
@@ -148,7 +148,7 @@
           "pushIcon": 0,
           "text": "{{ states("sensor.weather_condition_human_readable") }}"
           }
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/weather
         payload: >-
@@ -172,7 +172,7 @@
       entity_id: sensor.REDACTED_temperature
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/temperature
         payload: >-
@@ -181,7 +181,7 @@
           "pushIcon": 0,
           "text": "{{ states("sensor.REDACTED_temperature") }}°F"
           }
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/temperature
         payload: >-
@@ -205,7 +205,7 @@
       entity_id: sensor.REDACTED_humidity
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/humidity
         payload: >-
@@ -214,7 +214,7 @@
           "pushIcon": 0,
           "text": "{{ states("sensor.REDACTED_humidity") }}%"
           }
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/humidity
         payload: >-
@@ -225,11 +225,329 @@
           }
 
       ##########################################################
-      ## MK3 Print Progress App
+      ## MK4S MMU3 Print Progress App
       ##########################################################
 
-- alias: LED Clock - MK3 Print Progress App
-  id: 'led_clock_mk3_print_progress_app'
+- alias: LED Clock - MK4S MMU3 Print Progress App
+  id: 'led_clock_mk4s_mmu3_print_progress_app'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk4s_mmu3_progress
+  
+  condition:
+    - condition: state
+      entity_id: sensor.prusa_mk4s_mmu3
+      state: 'printing'
+
+  action:
+    - action: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mk4s_mmu3_progress
+        payload: >-
+          { 
+          "icon": "3d_print",
+          "pushIcon": 0,
+          "color": [255,98,0],
+          "repeat": 3,
+          "text": "MMU: {{ states("sensor.prusa_mk4s_mmu3_progress") |round }}%"
+          }
+    - action: mqtt.publish
+      data:
+        topic: living_room_clock/custom/mk4s_mmu3_progress
+        payload: >-
+          { 
+          "icon": "3d_print",
+          "pushIcon": 0,
+          "color": [255,98,0],
+          "repeat": 3,
+          "text": "MMU: {{ states("sensor.prusa_mk4s_mmu3_progress") |round }}%"
+          }
+
+      ##########################################################
+      ## MK4S MMU3 3D Print Time Remaining App
+      ##########################################################
+
+- alias: LED Clock - MK4S MMU3 Print Time Remaining App
+  id: 'led_clock_mk4s_mmu3_print_time_remaining_app'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk4s_mmu3_progress
+  
+  condition:
+    - condition: state
+      entity_id: sensor.prusa_mk4s_mmu3
+      state: 'printing'
+
+  action:
+    - action: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mk4s_mmu3_time_remaining
+        payload: >-
+          { 
+          "icon": "clock",
+          "pushIcon": 2,
+          "color": [255,98,0],
+          "repeat": 3,
+          "text": "MMU: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusa_mk4s_mmu3_print_finish')) - as_timestamp(now()))) }}"
+          }
+    - action: mqtt.publish
+      data:
+        topic: living_room_clock/custom/mk4s_mmu3_time_remaining
+        payload: >-
+          { 
+          "icon": "clock",
+          "pushIcon": 2,
+          "color": [255,98,0],
+          "repeat": 3,
+          "text": "MMU: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusa_mk4s_mmu3_print_finish')) - as_timestamp(now()))) }}"
+          }
+
+      ##########################################################
+      ## MK4S MMU3 3D Print Clear When Idle
+      ##########################################################
+
+- alias: LED Clock - MK4S MMU3 3D Print Clear When Idle
+  id: 'led_clock_mk4s_mmu3_3d_print_clear_when_idle'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk4s_mmu3
+      to: 'idle'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  action:
+    - action: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mk4s_mmu3_progress
+    - action: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mk4s_mmu3_time_remaining
+    - action: mqtt.publish
+      data:
+        topic: living_room_clock/custom/mk4s_mmu3_progress
+    - action: mqtt.publish
+      data:
+        topic: living_room_clock/custom/mk4s_mmu3_time_remaining
+
+      ##########################################################
+      ## MK4S MMU3 3D Print Complete App
+      ##########################################################
+
+- alias: LED Clock - MK4S MMU3 3D Print Complete App
+  id: 'led_clock_mk4s_mmu3_3d_print_complete_app'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk4s_mmu3
+      from: 'printing'
+      to: 'finished'
+
+  action:
+    - action: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mk4s_mmu3_progress
+    - action: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mk4s_mmu3_time_remaining
+    - action: mqtt.publish
+      data:
+        topic: USER1_office_clock/notify
+        payload: >-
+          { 
+          "icon": "3d_print_complete",
+          "pushIcon": 0,
+          "rainbow": true,
+          "duration": 60,
+          "text": "MMU: Finished"
+          }
+    - action: mqtt.publish
+      data:
+        topic: living_room_clock/custom/mk4s_mmu3_progress
+    - action: mqtt.publish
+      data:
+        topic: living_room_clock/custom/mk4s_mmu3_time_remaining
+    - action: mqtt.publish
+      data:
+        topic: living_room_clock/notify
+        payload: >-
+          { 
+          "icon": "3d_print_complete",
+          "pushIcon": 0,
+          "rainbow": true,
+          "duration": 60,
+          "text": "MMU: Finished"
+          }
+
+      ##########################################################
+      ## MK4S Print Progress App
+      ##########################################################
+
+- alias: LED Clock - mk4s_ Print Progress App
+  id: 'led_clock_mk4s_print_progress_app'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk4s_progress
+  
+  condition:
+    - condition: state
+      entity_id: sensor.prusa_mk4s
+      state: 'printing'
+
+  action:
+    - action: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mk4s_progress
+        payload: >-
+          { 
+          "icon": "3d_print",
+          "pushIcon": 0,
+          "color": [255,98,0],
+          "repeat": 3,
+          "text": "MK4: {{ states("sensor.prusa_mk4s_progress") |round }}%"
+          }
+    - action: mqtt.publish
+      data:
+        topic: living_room_clock/custom/mk4s_progress
+        payload: >-
+          { 
+          "icon": "3d_print",
+          "pushIcon": 0,
+          "color": [255,98,0],
+          "repeat": 3,
+          "text": "MK4: {{ states("sensor.prusa_mk4s_progress") |round }}%"
+          }
+
+      ##########################################################
+      ## MK4S 3D Print Time Remaining App
+      ##########################################################
+
+- alias: LED Clock - MK4S Print Time Remaining App
+  id: 'led_clock_mk4s_print_time_remaining_app'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk4s_progress
+  
+  condition:
+    - condition: state
+      entity_id: sensor.prusa_mk4s
+      state: 'printing'
+
+  action:
+    - action: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mk4s_time_remaining
+        payload: >-
+          { 
+          "icon": "clock",
+          "pushIcon": 2,
+          "color": [255,98,0],
+          "repeat": 3,
+          "text": "MK4: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusa_mk4s_print_finish')) - as_timestamp(now()))) }}"
+          }
+    - action: mqtt.publish
+      data:
+        topic: living_room_clock/custom/mk4s_time_remaining
+        payload: >-
+          { 
+          "icon": "clock",
+          "pushIcon": 2,
+          "color": [255,98,0],
+          "repeat": 3,
+          "text": "MK4: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusa_mk4s_print_finish')) - as_timestamp(now()))) }}"
+          }
+
+      ##########################################################
+      ## MK4S 3D Print Clear When Idle
+      ##########################################################
+
+- alias: LED Clock - MK4S 3D Print Clear When Idle
+  id: 'led_clock_mk4s_3d_print_clear_when_idle'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk4s
+      to: 'idle'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  action:
+    - action: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mk4s_progress
+    - action: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mk4s_time_remaining
+    - action: mqtt.publish
+      data:
+        topic: living_room_clock/custom/mk4s_progress
+    - action: mqtt.publish
+      data:
+        topic: living_room_clock/custom/mk4s_time_remaining
+
+      ##########################################################
+      ## MK4S 3D Print Complete App
+      ##########################################################
+
+- alias: LED Clock - MK4S 3D Print Complete App
+  id: 'led_clock_mk4s_3d_print_complete_app'
+
+  trigger:
+    - platform: state
+      entity_id: sensor.prusa_mk4s
+      from: 'printing'
+      to: 'finished'
+
+  action:
+    - action: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mk4s_progress
+    - action: mqtt.publish
+      data:
+        topic: USER1_office_clock/custom/mk4s_time_remaining
+    - action: mqtt.publish
+      data:
+        topic: USER1_office_clock/notify
+        payload: >-
+          { 
+          "icon": "3d_print_complete",
+          "pushIcon": 0,
+          "rainbow": true,
+          "duration": 60,
+          "text": "MK4: Finished"
+          }
+    - action: mqtt.publish
+      data:
+        topic: living_room_clock/custom/mk4s_progress
+    - action: mqtt.publish
+      data:
+        topic: living_room_clock/custom/mk4s_time_remaining
+    - action: mqtt.publish
+      data:
+        topic: living_room_clock/notify
+        payload: >-
+          { 
+          "icon": "3d_print_complete",
+          "pushIcon": 0,
+          "rainbow": true,
+          "duration": 60,
+          "text": "MK4: Finished"
+          }
+
+      ##########################################################
+      ## MK3.5 Print Progress App
+      ##########################################################
+
+- alias: LED Clock - MK3.5 Print Progress App
+  id: 'led_clock_mk3_5_print_progress_app'
 
   trigger:
     - platform: state
@@ -241,35 +559,35 @@
       state: 'printing'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
-        topic: USER1_office_clock/custom/mk3_progress
+        topic: USER1_office_clock/custom/mk3_5_progress
         payload: >-
           { 
           "icon": "3d_print",
           "pushIcon": 0,
           "color": [255,98,0],
           "repeat": 3,
-          "text": "MK3.5: {{ states("sensor.prusa_mk3_5_progress") |round }}%"
+          "text": "MK3: {{ states("sensor.prusa_mk3_5_progress") |round }}%"
           }
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
-        topic: living_room_clock/custom/mk3_progress
+        topic: living_room_clock/custom/mk3_5_progress
         payload: >-
           { 
           "icon": "3d_print",
           "pushIcon": 0,
           "color": [255,98,0],
           "repeat": 3,
-          "text": "MK3.5: {{ states("sensor.prusa_mk3_5_progress") |round }}%"
+          "text": "MK3: {{ states("sensor.prusa_mk3_5_progress") |round }}%"
           }
 
       ##########################################################
-      ## MK3 3D Print Time Remaining App
+      ## MK3.5 3D Print Time Remaining App
       ##########################################################
 
-- alias: LED Clock - MK3 Print Time Remaining App
-  id: 'led_clock_mk3_print_time_remaining_app'
+- alias: LED Clock - MK3.5 Print Time Remaining App
+  id: 'led_clock_mk3_5_print_time_remaining_app'
 
   trigger:
     - platform: state
@@ -281,115 +599,35 @@
       state: 'printing'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
-        topic: USER1_office_clock/custom/mk3_time_remaining
+        topic: USER1_office_clock/custom/mk3_5_time_remaining
         payload: >-
           { 
           "icon": "clock",
           "pushIcon": 2,
           "color": [255,98,0],
           "repeat": 3,
-          "text": "MK3.5: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusa_mk3_5_print_finish')) - as_timestamp(now()))) }}"
+          "text": "MK3: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusa_mk3_5_print_finish')) - as_timestamp(now()))) }}"
           }
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
-        topic: living_room_clock/custom/mk3_time_remaining
+        topic: living_room_clock/custom/mk3_5_time_remaining
         payload: >-
           { 
           "icon": "clock",
           "pushIcon": 2,
           "color": [255,98,0],
           "repeat": 3,
-          "text": "MK3.5: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusa_mk3_5_print_finish')) - as_timestamp(now()))) }}"
+          "text": "MK3: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusa_mk3_5_print_finish')) - as_timestamp(now()))) }}"
           }
 
       ##########################################################
-      ## MK4 Print Progress App
+      ## MK3.5 3D Print Clear When Idle
       ##########################################################
 
-- alias: LED Clock - MK4 Print Progress App
-  id: 'led_clock_mk4_print_progress_app'
-
-  trigger:
-    - platform: state
-      entity_id: sensor.prusa_mk4_progress
-  
-  condition:
-    - condition: state
-      entity_id: sensor.prusa_mk4
-      state: 'printing'
-
-  action:
-    - service: mqtt.publish
-      data:
-        topic: USER1_office_clock/custom/mk4_progress
-        payload: >-
-          { 
-          "icon": "3d_print",
-          "pushIcon": 0,
-          "color": [255,98,0],
-          "repeat": 3,
-          "text": "MK4: {{ states("sensor.prusa_mk4_progress") |round }}%"
-          }
-    - service: mqtt.publish
-      data:
-        topic: living_room_clock/custom/mk4_progress
-        payload: >-
-          { 
-          "icon": "3d_print",
-          "pushIcon": 0,
-          "color": [255,98,0],
-          "repeat": 3,
-          "text": "MK4: {{ states("sensor.prusa_mk4_progress") |round }}%"
-          }
-
-      ##########################################################
-      ## MK4 3D Print Time Remaining App
-      ##########################################################
-
-- alias: LED Clock - MK4 Print Time Remaining App
-  id: 'led_clock_mk4_print_time_remaining_app'
-
-  trigger:
-    - platform: state
-      entity_id: sensor.prusa_mk4_progress
-  
-  condition:
-    - condition: state
-      entity_id: sensor.prusa_mk4
-      state: 'printing'
-
-  action:
-    - service: mqtt.publish
-      data:
-        topic: USER1_office_clock/custom/mk4_time_remaining
-        payload: >-
-          { 
-          "icon": "clock",
-          "pushIcon": 2,
-          "color": [255,98,0],
-          "repeat": 3,
-          "text": "MK4: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusa_mk4_print_finish')) - as_timestamp(now()))) }}"
-          }
-    - service: mqtt.publish
-      data:
-        topic: living_room_clock/custom/mk4_time_remaining
-        payload: >-
-          { 
-          "icon": "clock",
-          "pushIcon": 2,
-          "color": [255,98,0],
-          "repeat": 3,
-          "text": "MK4: {{ relative_time(now() - timedelta( seconds = as_timestamp(states('sensor.prusa_mk4_print_finish')) - as_timestamp(now()))) }}"
-          }
-
-      ##########################################################
-      ## MK3 3D Print Clear When Idle
-      ##########################################################
-
-- alias: LED Clock - MK3 3D Print Clear When Idle
-  id: 'led_clock_mk3_3d_print_clear_when_idle'
+- alias: LED Clock - MK3.5 3D Print Clear When Idle
+  id: 'led_clock_mk3_5_3d_print_clear_when_idle'
 
   trigger:
     - platform: state
@@ -401,25 +639,25 @@
         seconds: 0
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
-        topic: USER1_office_clock/custom/mk3_progress
-    - service: mqtt.publish
+        topic: USER1_office_clock/custom/mk3_5_progress
+    - action: mqtt.publish
       data:
-        topic: USER1_office_clock/custom/mk3_time_remaining
-    - service: mqtt.publish
+        topic: USER1_office_clock/custom/mk3_5_time_remaining
+    - action: mqtt.publish
       data:
-        topic: living_room_clock/custom/mk3_progress
-    - service: mqtt.publish
+        topic: living_room_clock/custom/mk3_5_progress
+    - action: mqtt.publish
       data:
-        topic: living_room_clock/custom/mk3_time_remaining
+        topic: living_room_clock/custom/mk3_5_time_remaining
 
       ##########################################################
-      ## MK3 3D Print Complete App
+      ## MK3.5 3D Print Complete App
       ##########################################################
 
-- alias: LED Clock - MK3 3D Print Complete App
-  id: 'led_clock_mk3_3d_print_complete_app'
+- alias: LED Clock - MK3.5 3D Print Complete App
+  id: 'led_clock_mk3_5_3d_print_complete_app'
 
   trigger:
     - platform: state
@@ -428,92 +666,13 @@
       to: 'finished'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
-        topic: USER1_office_clock/custom/mk3_progress
-    - service: mqtt.publish
+        topic: USER1_office_clock/custom/mk3_5_progress
+    - action: mqtt.publish
       data:
-        topic: USER1_office_clock/custom/mk3_time_remaining
-    - service: mqtt.publish
-      data:
-        topic: USER1_office_clock/notify
-        payload: >-
-          { 
-          "icon": "3d_print_complete",
-          "pushIcon": 0,
-          "rainbow": true,
-          "duration": 60,
-          "text": "MK3.5: Finished"
-          }
-    - service: mqtt.publish
-      data:
-        topic: living_room_clock/custom/mk3_progress
-    - service: mqtt.publish
-      data:
-        topic: living_room_clock/custom/mk3_time_remaining
-    - service: mqtt.publish
-      data:
-        topic: living_room_clock/notify
-        payload: >-
-          { 
-          "icon": "3d_print_complete",
-          "pushIcon": 0,
-          "rainbow": true,
-          "duration": 60,
-          "text": "MK3.5: Finished"
-          }
-
-      ##########################################################
-      ## MK4 3D Print Clear When Idle
-      ##########################################################
-
-- alias: LED Clock - MK4 3D Print Clear When Idle
-  id: 'led_clock_mk4_3d_print_clear_when_idle'
-
-  trigger:
-    - platform: state
-      entity_id: sensor.prusa_mk4
-      to: 'idle'
-      for:
-        hours: 0
-        minutes: 5
-        seconds: 0
-
-  action:
-    - service: mqtt.publish
-      data:
-        topic: USER1_office_clock/custom/mk4_progress
-    - service: mqtt.publish
-      data:
-        topic: USER1_office_clock/custom/mk4_time_remaining
-    - service: mqtt.publish
-      data:
-        topic: living_room_clock/custom/mk4_progress
-    - service: mqtt.publish
-      data:
-        topic: living_room_clock/custom/mk4_time_remaining
-
-      ##########################################################
-      ## MK4 3D Print Complete App
-      ##########################################################
-
-- alias: LED Clock - MK4 3D Print Complete App
-  id: 'led_clock_mk4_3d_print_complete_app'
-
-  trigger:
-    - platform: state
-      entity_id: sensor.prusa_mk4
-      from: 'printing'
-      to: 'finished'
-
-  action:
-    - service: mqtt.publish
-      data:
-        topic: USER1_office_clock/custom/mk4_progress
-    - service: mqtt.publish
-      data:
-        topic: USER1_office_clock/custom/mk4_time_remaining
-    - service: mqtt.publish
+        topic: USER1_office_clock/custom/mk3_5_time_remaining
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/notify
         payload: >-
@@ -522,15 +681,15 @@
           "pushIcon": 0,
           "rainbow": true,
           "duration": 60,
-          "text": "MK4: Finished"
+          "text": "MK3: Finished"
           }
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
-        topic: living_room_clock/custom/mk4_progress
-    - service: mqtt.publish
+        topic: living_room_clock/custom/mk3_5_progress
+    - action: mqtt.publish
       data:
-        topic: living_room_clock/custom/mk4_time_remaining
-    - service: mqtt.publish
+        topic: living_room_clock/custom/mk3_5_time_remaining
+    - action: mqtt.publish
       data:
         topic: living_room_clock/notify
         payload: >-
@@ -539,7 +698,7 @@
           "pushIcon": 0,
           "rainbow": true,
           "duration": 60,
-          "text": "MK4: Finished"
+          "text": "MK3: Finished"
           }
 
       ##########################################################
@@ -559,7 +718,7 @@
       state: 'on'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/washer
         payload: >-
@@ -570,7 +729,7 @@
           "color": [0,255,255],
           "text": "Washer: {{ states("sensor.washing_machine_time_remaining") }}"
           }
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/washer
         payload: >-
@@ -600,10 +759,10 @@
         seconds: 1
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/washer
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/notify
         payload: >-
@@ -614,10 +773,10 @@
           "color": [0,255,255],
           "text": "Washer Finished"
           }
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/washer
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/notify
         payload: >-
@@ -646,7 +805,7 @@
       state: 'on'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/dryer
         payload: >-
@@ -657,7 +816,7 @@
           "color": [255,0,0],
           "text": "Dryer: {{ states("sensor.dryer_time_remaining") }}"
           }
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/dryer
         payload: >-
@@ -687,10 +846,10 @@
         seconds: 1
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/dryer
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/notify
         payload: >-
@@ -701,10 +860,10 @@
           "color": [255,0,0],
           "text": "Dryer Finished"
           }
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/dryer
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/notify
         payload: >-
@@ -729,7 +888,7 @@
       to: 'on'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/package
         payload: >-
@@ -740,7 +899,7 @@
           "color": [0,125,125],
           "text": "Package Detected"
           }
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/package
         payload: >-
@@ -765,10 +924,10 @@
       to: 'off'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/package
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/package
 
@@ -793,10 +952,10 @@
       state: 'None'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/holiday
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/holiday
 
@@ -820,7 +979,7 @@
       state: 'Christmas'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/holiday
         payload: >-
@@ -839,7 +998,7 @@
             }
           ]
           }
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/holiday
         payload: >-
@@ -879,7 +1038,7 @@
       state: 'Halloween'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/holiday
         payload: >-
@@ -898,7 +1057,7 @@
             }
           ]
           }
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/holiday
         payload: >-
@@ -938,7 +1097,7 @@
       state: 'Thanksgiving'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/holiday
         payload: >-
@@ -957,7 +1116,7 @@
             }
           ]
           }
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/holiday
         payload: >-
@@ -997,7 +1156,7 @@
       state: "Independence Day"
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/holiday
         payload: >-
@@ -1020,7 +1179,7 @@
             }
           ]
           }
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/holiday
         payload: >-
@@ -1064,7 +1223,7 @@
       state: "Valentine's Day"
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/holiday
         payload: >-
@@ -1075,7 +1234,7 @@
           "color": [255,192,203],
           "text": "Happy Valentines Day"
           }
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/holiday
         payload: >-
@@ -1107,7 +1266,7 @@
       state: "Easter"
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/holiday
         payload: >-
@@ -1118,7 +1277,7 @@
           "color": [173,216,230],
           "text": "Happy Easter"
           }
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/holiday
         payload: >-
@@ -1150,7 +1309,7 @@
       state: "New Year's Eve"
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/holiday
         payload: >-
@@ -1161,7 +1320,7 @@
           "rainbow": true,
           "text": "Happy New Years!"
           }
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/holiday
         payload: >-
@@ -1208,7 +1367,7 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id:
         - light.USER1s_office_desktop_clock
 
@@ -1238,7 +1397,7 @@
       state: 'on'
 
   action:
-    - service: light.turn_off
+    - action: light.turn_off
       entity_id:
         - light.USER1s_office_desktop_clock
 
@@ -1277,7 +1436,7 @@
         state: 'power_off'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/music_song
         payload: >-
@@ -1315,7 +1474,7 @@
       state: 'music'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/music_song
         payload: >-
@@ -1325,44 +1484,6 @@
           "repeat": 3,
           "rainbow": true,
           "text": "Song: {{ state_attr('media_player.sonos_USER1s_office', 'media_title') }}"
-          }
-
-      ##########################################################
-      ## Music Title Sonos Move USER1's Office Clock
-      ##########################################################
-
-- alias: LED Clock - USER1's Office Music Title Sonos Move
-  id: 'led_clock_USER1_office_music_title_sonos_move'
-
-  trigger:
-    - platform: state
-      entity_id: media_player.sonos_USER1s_office_move
-      attribute: media_title
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 1
-
-  condition:
-    - condition: state
-      entity_id: media_player.sonos_USER1s_office_move
-      state: 'playing'
-    - condition: state
-      entity_id: media_player.sonos_USER1s_office_move
-      attribute: media_content_type
-      state: 'music'
-
-  action:
-    - service: mqtt.publish
-      data:
-        topic: USER1_office_clock/custom/music_song
-        payload: >-
-          { 
-          "icon": "music",
-          "pushIcon": 0,
-          "repeat": 3,
-          "rainbow": true,
-          "text": "Song: {{ state_attr('media_player.sonos_USER1s_office_move', 'media_title') }}"
           }
 
       ##########################################################
@@ -1396,7 +1517,7 @@
         state: 'power_off'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/music_album
         payload: >-
@@ -1434,7 +1555,7 @@
       state: 'music'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/music_album
         payload: >-
@@ -1444,44 +1565,6 @@
           "repeat": 3,
           "rainbow": true,
           "text": "Artist: {{ state_attr('media_player.sonos_USER1s_office', 'media_artist') }} - Album: {{ state_attr('media_player.sonos_USER1s_office', 'media_album_name') }}"
-          }
-
-      ##########################################################
-      ## Album Title Sonos Move USER1's Office Clock
-      ##########################################################
-
-- alias: LED Clock - USER1's Office Album Title Sonos Move
-  id: 'led_clock_USER1_office_album_title_sonos_move'
-
-  trigger:
-    - platform: state
-      entity_id: media_player.sonos_USER1s_office_move
-      attribute: media_title
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 1
-
-  condition:
-    - condition: state
-      entity_id: media_player.sonos_USER1s_office_move
-      state: 'playing'
-    - condition: state
-      entity_id: media_player.sonos_USER1s_office_move
-      attribute: media_content_type
-      state: 'music'
-
-  action:
-    - service: mqtt.publish
-      data:
-        topic: USER1_office_clock/custom/music_album
-        payload: >-
-          { 
-          "icon": "album",
-          "pushIcon": 2,
-          "repeat": 3,
-          "rainbow": true,
-          "text": "Artist: {{ state_attr('media_player.sonos_USER1s_office_move', 'media_artist') }} - Album: {{ state_attr('media_player.sonos_USER1s_office_move', 'media_album_name') }}"
           }
 
       ##########################################################
@@ -1519,7 +1602,7 @@
         state: "YouTube"
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/youtube
         payload: >-
@@ -1547,13 +1630,6 @@
         minutes: 0
         seconds: 10
     - platform: state
-      entity_id: media_player.sonos_USER1s_office_move
-      from: 'playing'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 10
-    - platform: state
       entity_id: media_player.USER1_s_office_apple_tv
       from: 'playing'
       for:
@@ -1562,13 +1638,13 @@
         seconds: 10
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/music_song
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/music_album
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/youtube
 
@@ -1585,7 +1661,7 @@
       to: 'on'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/party_time
         payload: >-
@@ -1610,7 +1686,7 @@
       to: 'off'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/party_time
 
@@ -1639,7 +1715,7 @@
       state: 'home'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/notify
         payload: >-
@@ -1674,7 +1750,7 @@
       state: 'home'
 
   action:
-    - service: button.press
+    - action: button.press
       target:
         entity_id: button.USER1s_office_desktop_clock_dismiss_notification
 
@@ -1718,7 +1794,7 @@
         state: "com.google.ios.youtube"
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/notify
         payload: >-
@@ -1753,7 +1829,7 @@
       state: 'home'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/notify
         payload: >-
@@ -1786,7 +1862,7 @@
       state: 'on'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/notify
         payload: >-
@@ -1829,7 +1905,7 @@
 
   action:
     - delay: '00:00:30'
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/notify
         payload: >-
@@ -1903,7 +1979,7 @@
       state: 'off'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/notify
         payload: >-
@@ -1945,7 +2021,7 @@
       state: 'on'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/notify
         payload: >-
@@ -1979,7 +2055,7 @@
       state: 'on'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/notify
         payload: >-
@@ -2013,7 +2089,7 @@
       state: 'on'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: USER1_office_clock/notify
         payload: >-
@@ -2070,7 +2146,7 @@
         state: 'playing'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id:
         - light.living_room_clock
 
@@ -2100,7 +2176,7 @@
       state: 'on'
 
   action:
-    - service: light.turn_off
+    - action: light.turn_off
       entity_id:
         - light.living_room_clock
 
@@ -2150,7 +2226,7 @@
         state: "YouTube"
 
   action:
-    - service: light.turn_off
+    - action: light.turn_off
       entity_id:
         - light.living_room_clock
 
@@ -2196,7 +2272,7 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id:
         - light.living_room_clock
 
@@ -2217,10 +2293,10 @@
       to: 'power_off'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/tv_state
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/notify
         payload: >-
@@ -2246,13 +2322,13 @@
       to: 'Watch TV'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/tv_state
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/tv_state
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/notify
         payload: >-
@@ -2265,7 +2341,7 @@
           "text": "TV"
           }
     - delay: '00:00:20'
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/tv_state
         payload: >-
@@ -2290,10 +2366,10 @@
       to: "Play Nintendo Switch"
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/tv_state
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/notify
         payload: >-
@@ -2314,7 +2390,7 @@
           ]
           }
     - delay: '00:00:20'
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/tv_state
         payload: >-
@@ -2347,10 +2423,10 @@
       to: 'Play Xbox'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/tv_state
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/notify
         payload: >-
@@ -2363,7 +2439,7 @@
           "text": "Xbox"
           }
     - delay: '00:00:20'
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/tv_state
         payload: >-
@@ -2421,7 +2497,7 @@
         state: "YouTube"
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/music_song
         payload: >-
@@ -2456,7 +2532,7 @@
       state: 'music'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/music_song
         payload: >-
@@ -2509,7 +2585,7 @@
         state: "TV"
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/music_song
         payload: >-
@@ -2552,7 +2628,7 @@
         state: 'power_off'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/music_album
         payload: >-
@@ -2590,7 +2666,7 @@
       state: 'music'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/music_album
         payload: >-
@@ -2646,7 +2722,7 @@
         state: "TV"
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/music_album
         payload: >-
@@ -2696,7 +2772,7 @@
         state: "YouTube"
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/youtube
         payload: >-
@@ -2739,13 +2815,13 @@
         seconds: 10
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/music_song
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/music_album
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/youtube
 
@@ -2762,7 +2838,7 @@
       to: 'on'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/party_time
         payload: >-
@@ -2787,7 +2863,7 @@
       to: 'off'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/custom/party_time
 
@@ -2832,7 +2908,7 @@
         state: "com.google.ios.youtube"
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/notify
         payload: >-
@@ -2867,7 +2943,7 @@
       state: 'home'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/notify
         payload: >-
@@ -2901,7 +2977,7 @@
       state: 'on'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/notify
         payload: >-
@@ -2944,7 +3020,7 @@
 
   action:
     - delay: '00:00:30'
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/notify
         payload: >-
@@ -2988,7 +3064,7 @@
 
   action:
     - delay: '00:00:30'
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/notify
         payload: >-
@@ -3062,7 +3138,7 @@
       state: 'off'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/notify
         payload: >-
@@ -3104,7 +3180,7 @@
       state: 'on'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/notify
         payload: >-
@@ -3139,7 +3215,7 @@
       state: 'on'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/notify
         payload: >-
@@ -3174,7 +3250,7 @@
       state: 'on'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/notify
         payload: >-
@@ -3208,7 +3284,7 @@
       state: 'on'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/notify
         payload: >-
@@ -3242,7 +3318,7 @@
       state: 'on'
 
   action:
-    - service: mqtt.publish
+    - action: mqtt.publish
       data:
         topic: living_room_clock/notify
         payload: >-

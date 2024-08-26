@@ -37,9 +37,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.globe
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.globe
       data:
         color_name: blue
         brightness_pct: 100
@@ -72,9 +73,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.globe
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.globe
       data:
         brightness_pct: 65
         color_temp: 366
@@ -143,9 +145,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.globe
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.globe
       data:
         color_name: blue
         brightness_pct: 100
@@ -192,9 +195,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_office_desk_lamp
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1_office_desk_lamp
       data:
         color_name: blue
         brightness_pct: 25
@@ -243,9 +247,10 @@
       state: 'closed'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_office_desk_accent
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1_office_desk_accent
       data:
         color_name: blue
         brightness_pct: 100
@@ -284,9 +289,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_office_desk_lamp
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1_office_desk_lamp
       data:
         brightness_pct: 25
         color_temp: 454
@@ -324,9 +330,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_office_desk_accent
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1_office_desk_accent
       data:
         brightness_pct: 80
         color_temp: 370
@@ -375,9 +382,10 @@
         state: 'lightning-rainy'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_office_desk_lamp
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1_office_desk_lamp
       data:
         color_name: blue
         brightness_pct: 25
@@ -425,9 +433,10 @@
         state: 'lightning-rainy'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_office_desk_accent
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1_office_desk_accent
       data:
         color_name: blue
         brightness_pct: 100

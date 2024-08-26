@@ -43,11 +43,12 @@
         state: 'home'
 
   action:
-    - service: vacuum.start
-      entity_id:
-        - vacuum.main_floor_roomba
-        - vacuum.basement_roomba
-        - vacuum.upstairs_roomba
+    - action: vacuum.start
+      target:
+        entity_id:
+          - vacuum.main_floor_roomba
+          - vacuum.basement_roomba
+          - vacuum.upstairs_roomba
 
         ##########################################################
         ## Run Main Floor Roomba Weekdays
@@ -93,9 +94,10 @@
         state: 'home'
 
   action:
-    - service: vacuum.start
-      entity_id:
-        - vacuum.main_floor_roomba
+    - action: vacuum.start
+      target:
+        entity_id:
+          - vacuum.main_floor_roomba
 
         ##########################################################
         ## Run Main Floor Roomba Weekdays Partial Clean
@@ -142,19 +144,22 @@
       state: 'home'
 
   action:
-    - service: homeassistant.turn_on
-      entity_id: 
-        - input_boolean.roomba_clean_kitchen
+    - action: homeassistant.turn_on
+      target:
+        entity_id: 
+          - input_boolean.roomba_clean_kitchen
     - delay: '00:00:02'
-    - service: homeassistant.turn_on
-      entity_id: 
-        - input_boolean.roomba_clean_dining_room_table
+    - action: homeassistant.turn_on
+      target:
+        entity_id: 
+          - input_boolean.roomba_clean_dining_room_table
     - delay: '00:00:02'
-    - service: homeassistant.turn_on
-      entity_id: 
-        - input_boolean.roomba_clean_front_door
+    - action: homeassistant.turn_on
+      target:
+        entity_id: 
+          - input_boolean.roomba_clean_front_door
     - delay: '00:00:02'
-    - service: python_script.main_floor_roomba
+    - action: python_script.main_floor_roomba
 
         ##########################################################
         ## Run Main Floor Roomba Weekends
@@ -209,9 +214,10 @@
         state: 'home'
 
   action:
-    - service: vacuum.start
-      entity_id:
-        - vacuum.main_floor_roomba
+    - action: vacuum.start
+      target:
+        entity_id:
+          - vacuum.main_floor_roomba
 
         ##########################################################
         ## Pause Main Floor Roomba when Doorbell Rings
@@ -241,12 +247,14 @@
       state: 'home'
 
   action:
-    - service: vacuum.pause
-      entity_id:
-        - vacuum.main_floor_roomba
-    - service: homeassistant.turn_on
-      entity_id:
-        - input_boolean.main_floor_roomba_pause
+    - action: vacuum.pause
+      target:
+        entity_id:
+          - vacuum.main_floor_roomba
+    - action: homeassistant.turn_on
+      target:
+        entity_id:
+          - input_boolean.main_floor_roomba_pause
 
         ##########################################################
         ## Resume Main Floor Roomba after Doorbell Rings
@@ -280,12 +288,14 @@
       state: 'paused'
 
   action:
-    - service: vacuum.start
-      entity_id:
-        - vacuum.main_floor_roomba
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.main_floor_roomba_pause
+    - action: vacuum.start
+      target:
+        entity_id:
+          - vacuum.main_floor_roomba
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.main_floor_roomba_pause
 
         ##########################################################
         ## Run Main Floor Roomba when Away
@@ -328,9 +338,10 @@
       state: 'off'
 
   action:
-    - service: vacuum.start
-      entity_id:
-        - vacuum.main_floor_roomba
+    - action: vacuum.start
+      target:
+        entity_id:
+          - vacuum.main_floor_roomba
 
         ##########################################################
         ## Run Main Floor Roomba when Away Already Ran
@@ -373,15 +384,17 @@
       state: 'off'
 
   action:
-    - service: homeassistant.turn_on
-      entity_id: 
-        - input_boolean.roomba_clean_front_door
+    - action: homeassistant.turn_on
+      target:
+        entity_id: 
+          - input_boolean.roomba_clean_front_door
     - delay: '00:00:02'
-    - service: homeassistant.turn_on
-      entity_id: 
-        - input_boolean.roomba_clean_back_door
+    - action: homeassistant.turn_on
+      target:
+        entity_id: 
+          - input_boolean.roomba_clean_back_door
     - delay: '00:00:02'
-    - service: python_script.main_floor_roomba
+    - action: python_script.main_floor_roomba
 
         ##########################################################
         ## Run Upstairs Roomba in USER1's Office
@@ -449,12 +462,13 @@
         - fri
 
   action:
-    - service: homeassistant.turn_on
-      entity_id: 
-        - input_boolean.roomba_clean_USER1_office
-        - input_boolean.upstairs_roomba_ran_USER1_office
+    - action: homeassistant.turn_on
+      target:
+        entity_id: 
+          - input_boolean.roomba_clean_USER1_office
+          - input_boolean.upstairs_roomba_ran_USER1_office
     - delay: '00:00:02'
-    - service: python_script.upstairs_roomba
+    - action: python_script.upstairs_roomba
 
         ##########################################################
         ## Run Upstairs Roomba when USER2 Away Partial Clean
@@ -500,19 +514,22 @@
         - fri
 
   action:
-    - service: homeassistant.turn_on
-      entity_id: 
-        - input_boolean.roomba_clean_USER2_office
+    - action: homeassistant.turn_on
+      target:
+        entity_id: 
+          - input_boolean.roomba_clean_USER2_office
     - delay: '00:00:02'
-    - service: homeassistant.turn_on
-      entity_id: 
-        - input_boolean.roomba_clean_guest_bedroom
+    - action: homeassistant.turn_on
+      target:
+        entity_id: 
+          - input_boolean.roomba_clean_guest_bedroom
     - delay: '00:00:02'
-    - service: homeassistant.turn_on
-      entity_id: 
-        - input_boolean.roomba_clean_upstairs_hallway
+    - action: homeassistant.turn_on
+      target:
+        entity_id: 
+          - input_boolean.roomba_clean_upstairs_hallway
     - delay: '00:00:02'
-    - service: python_script.upstairs_roomba
+    - action: python_script.upstairs_roomba
 
         ##########################################################
         ## Run Upstairs Roomba when Away
@@ -555,9 +572,10 @@
       state: 'off'
 
   action:
-    - service: vacuum.start
-      entity_id:
-        - vacuum.upstairs_roomba
+    - action: vacuum.start
+      target:
+        entity_id:
+          - vacuum.upstairs_roomba
 
         ##########################################################
         ## Shut Off Roombas when Home
@@ -596,11 +614,12 @@
         state: 'cleaning'
 
   action:
-    - service: vacuum.return_to_base
-      entity_id:
-        - vacuum.main_floor_roomba
-        - vacuum.upstairs_roomba
-        - vacuum.basement_roomba
+    - action: vacuum.return_to_base
+      target:
+        entity_id:
+          - vacuum.main_floor_roomba
+          - vacuum.upstairs_roomba
+          - vacuum.basement_roomba
 
         ##########################################################
         ## Run Upstairs Roomba Mornings when Away
@@ -640,9 +659,10 @@
       state: 'off'
 
   action:
-    - service: vacuum.start
-      entity_id:
-        - vacuum.upstairs_roomba
+    - action: vacuum.start
+      target:
+        entity_id:
+          - vacuum.upstairs_roomba
 
         ##########################################################
         ## Run Basement Roomba Weekdays
@@ -694,9 +714,10 @@
       state: 'off'
 
   action:
-    - service: vacuum.start
-      entity_id:
-        - vacuum.basement_roomba
+    - action: vacuum.start
+      target:
+        entity_id:
+          - vacuum.basement_roomba
 
         ##########################################################
         ## Run Basement Roomba Partial Clean
@@ -747,15 +768,17 @@
       state: 'off'
 
   action:
-    - service: homeassistant.turn_on
-      entity_id: 
-        - input_boolean.roomba_clean_workbench
+    - action: homeassistant.turn_on
+      target:
+        entity_id: 
+          - input_boolean.roomba_clean_workbench
     - delay: '00:00:02'
-    - service: homeassistant.turn_on
-      entity_id: 
-        - input_boolean.roomba_clean_laundry_room
+    - action: homeassistant.turn_on
+      target:
+        entity_id: 
+          - input_boolean.roomba_clean_laundry_room
     - delay: '00:00:02'
-    - service: python_script.basement_roomba
+    - action: python_script.basement_roomba
 
         ##########################################################
         ## Run Basement Roomba Partial Clean Weekend
@@ -806,15 +829,17 @@
       state: 'off'
 
   action:
-    - service: homeassistant.turn_on
-      entity_id: 
-        - input_boolean.roomba_clean_workbench
+    - action: homeassistant.turn_on
+      target:
+        entity_id: 
+          - input_boolean.roomba_clean_workbench
     - delay: '00:00:02'
-    - service: homeassistant.turn_on
-      entity_id: 
-        - input_boolean.roomba_clean_laundry_room
+    - action: homeassistant.turn_on
+      target:
+        entity_id: 
+          - input_boolean.roomba_clean_laundry_room
     - delay: '00:00:02'
-    - service: python_script.basement_roomba
+    - action: python_script.basement_roomba
 
         ##########################################################
         ## Run Basement Roomba when Away
@@ -854,11 +879,12 @@
       state: 'off'
 
   action:
-    - service: homeassistant.turn_on
-      entity_id: 
-        - input_boolean.roomba_clean_workbench
+    - action: homeassistant.turn_on
+      target:
+        entity_id: 
+          - input_boolean.roomba_clean_workbench
     - delay: '00:00:02'
-    - service: python_script.basement_roomba
+    - action: python_script.basement_roomba
 
         ##########################################################
         ## Run Main Floor Roomba when USER2 Leaves
@@ -911,9 +937,10 @@
       state: 'off'
 
   action:
-    - service: vacuum.start
-      entity_id:
-        - vacuum.main_floor_roomba
+    - action: vacuum.start
+      target:
+        entity_id:
+          - vacuum.main_floor_roomba
 
         ##########################################################
         ## Run Upstairs Roomba when USER2 Leaves
@@ -966,19 +993,22 @@
       state: 'off'
 
   action:
-    - service: homeassistant.turn_on
-      entity_id: 
-        - input_boolean.roomba_clean_USER2_office
+    - action: homeassistant.turn_on
+      target:
+        entity_id: 
+          - input_boolean.roomba_clean_USER2_office
     - delay: '00:00:02'
-    - service: homeassistant.turn_on
-      entity_id: 
-        - input_boolean.roomba_clean_guest_bedroom
+    - action: homeassistant.turn_on
+      target:
+        entity_id: 
+          - input_boolean.roomba_clean_guest_bedroom
     - delay: '00:00:02'
-    - service: homeassistant.turn_on
-      entity_id: 
-        - input_boolean.roomba_clean_upstairs_hallway
+    - action: homeassistant.turn_on
+      target:
+        entity_id: 
+          - input_boolean.roomba_clean_upstairs_hallway
     - delay: '00:00:02'
-    - service: python_script.upstairs_roomba
+    - action: python_script.upstairs_roomba
 
         ##########################################################
         ## Turn Off Roombas when USER2 Home
@@ -1017,10 +1047,11 @@
         state: 'cleaning'
 
   action:
-    - service: vacuum.return_to_base
-      entity_id:
-        - vacuum.main_floor_roomba
-        - vacuum.upstairs_roomba
+    - action: vacuum.return_to_base
+      target:
+        entity_id:
+          - vacuum.main_floor_roomba
+          - vacuum.upstairs_roomba
 
         ##########################################################
         ## Turn Off Roomba when Friends and Family Arrive
@@ -1059,11 +1090,12 @@
         state: 'cleaning'
 
   action:
-    - service: vacuum.return_to_base
-      entity_id:
-        - vacuum.main_floor_roomba
-        - vacuum.upstairs_roomba
-        - vacuum.basement_roomba
+    - action: vacuum.return_to_base
+      target:
+        entity_id:
+          - vacuum.main_floor_roomba
+          - vacuum.upstairs_roomba
+          - vacuum.basement_roomba
 
 #################################################################
 ## Whole House Lights
@@ -1120,36 +1152,42 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_accent_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.living_room_accent_lights
       data:
        brightness_pct: 100
        color_temp: 370
-    - service: light.turn_on
-      entity_id:
-        - light.bedroom_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bedroom_lights
       data:
        brightness_pct: 100
        color_temp: 370
-    - service: light.turn_on
-      entity_id:
-        - light.dining_room_table
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.dining_room_table
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.bathroom_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bathroom_lights
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.kitchen_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.kitchen_lights
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.hallway_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.hallway_light
       data:
        brightness_pct: 100
 
@@ -1218,24 +1256,30 @@
       state: 'off'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.living_room_lights
-    - service: light.turn_off
-      entity_id:
-        - light.dining_room_lights
-    - service: light.turn_off
-      entity_id:
-        - light.hallway_light
-    - service: light.turn_off
-      entity_id:
-        - light.bathroom_lights
-    - service: light.turn_off
-      entity_id:
-        - light.bedroom_lights
-    - service: light.turn_off
-      entity_id:
-        - light.kitchen_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.dining_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.hallway_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.bathroom_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.bedroom_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.kitchen_lights
 
         ##########################################################
         ## Turn On lights for Main Floor Roomba when Dark
@@ -1307,40 +1351,47 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_accent_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.living_room_accent_lights
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.dining_room_table
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.dining_room_table
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.bathroom_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bathroom_lights
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.kitchen_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.kitchen_lights
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.hallway_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.hallway_light
       data:
        brightness_pct: 100
     - delay: '00:01:00'
-    - service: light.turn_on
-      entity_id:
-        - light.bedroom_lamps
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bedroom_lamps
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.bedroom_closet_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bedroom_closet_lights
       data:
        brightness_pct: 100
 
@@ -1416,24 +1467,30 @@
       state: 'off'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.living_room_lights
-    - service: light.turn_off
-      entity_id:
-        - light.dining_room_lights
-    - service: light.turn_off
-      entity_id:
-        - light.hallway_light
-    - service: light.turn_off
-      entity_id:
-        - light.bathroom_lights
-    - service: light.turn_off
-      entity_id:
-        - light.bedroom_lights
-    - service: light.turn_off
-      entity_id:
-        - light.kitchen_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.dining_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.hallway_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.bathroom_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.bedroom_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.kitchen_lights
 
         ##########################################################
         ## Turn On lights for Upstairs Roomba Away
@@ -1474,12 +1531,13 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_office_lights
-        - light.USER2_office_lights
-        - light.guest_bedroom_lights
-        - light.stairs_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1_office_lights
+          - light.USER2_office_lights
+          - light.guest_bedroom_lights
+          - light.stairs_light
       data:
        brightness_pct: 100
 
@@ -1536,12 +1594,13 @@
       state: 'off'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.USER1_office_lights
-        - light.USER2_office_lights
-        - light.guest_bedroom_lights
-        - light.stairs_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.USER1_office_lights
+          - light.USER2_office_lights
+          - light.guest_bedroom_lights
+          - light.stairs_light
 
         ##########################################################
         ## Turn On lights for Upstairs Roomba
@@ -1577,12 +1636,13 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_office_lights
-        - light.USER2_office_lights
-        - light.guest_bedroom_lights
-        - light.stairs_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1_office_lights
+          - light.USER2_office_lights
+          - light.guest_bedroom_lights
+          - light.stairs_light
       data:
        brightness_pct: 100
 
@@ -1646,12 +1706,13 @@
       state: 'off'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.USER1_office_lights
-        - light.USER2_office_lights
-        - light.guest_bedroom_lights
-        - light.stairs_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.USER1_office_lights
+          - light.USER2_office_lights
+          - light.guest_bedroom_lights
+          - light.stairs_light
 
         ##########################################################
         ## Turn On lights for Basement Roomba
@@ -1690,9 +1751,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.basement_lighting
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_lighting
       data:
        brightness_pct: 100
 
@@ -1752,9 +1814,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.basement_lighting
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.basement_lighting
 
 #################################################################
 ## Individual Room Lights
@@ -1927,7 +1990,7 @@
         seconds: 1
 
   action:
-    - service: homeassistant.turn_on
+    - action: homeassistant.turn_on
       target:
         entity_id: '{{ trigger.id }}'
 
@@ -1958,9 +2021,10 @@
         state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_accent_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.living_room_accent_lights
 
         ##########################################################
         ## Turn Off Living Room Lights Room Clean
@@ -2003,13 +2067,15 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_living_room_lights
-        - input_boolean.roomba_clean_front_door
-    - service: light.turn_off
-      entity_id:
-        - light.living_room_lights
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_living_room_lights
+          - input_boolean.roomba_clean_front_door
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_lights
 
         ##########################################################
         ## Turn Off Living Room Lights Room Clean Boolean
@@ -2044,9 +2110,10 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_living_room_lights
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_living_room_lights
 
         ##########################################################
         ## Turn On Dining Room Lights Room Clean
@@ -2075,9 +2142,10 @@
         state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.dining_room_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.dining_room_lights
 
         ##########################################################
         ## Turn Off Dining Room Lights Room Clean
@@ -2120,13 +2188,15 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_dining_room_lights
-        - input_boolean.roomba_clean_dining_room_table
-    - service: light.turn_off
-      entity_id:
-        - light.dining_room_lights
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_dining_room_lights
+          - input_boolean.roomba_clean_dining_room_table
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.dining_room_lights
 
         ##########################################################
         ## Turn Off Dining Room Lights Room Clean Boolean
@@ -2161,10 +2231,11 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_dining_room_lights
-        - input_boolean.roomba_clean_dining_room_table
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_dining_room_lights
+          - input_boolean.roomba_clean_dining_room_table
 
         ##########################################################
         ## Turn On Kitchen Lights Room Clean
@@ -2193,9 +2264,10 @@
         state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.kitchen_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.kitchen_lights
 
         ##########################################################
         ## Turn Off Kitchen Lights Room Clean
@@ -2238,13 +2310,15 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_kitchen_lights
-        - input_boolean.roomba_clean_back_door
-    - service: light.turn_off
-      entity_id:
-        - light.kitchen_lights
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_kitchen_lights
+          - input_boolean.roomba_clean_back_door
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.kitchen_lights
 
         ##########################################################
         ## Turn Off Kitchen Lights Room Clean Boolean
@@ -2279,10 +2353,11 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_kitchen_lights
-        - input_boolean.roomba_clean_back_door
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_kitchen_lights
+          - input_boolean.roomba_clean_back_door
 
         ##########################################################
         ## Turn On Hallway Lights Room Clean
@@ -2306,9 +2381,10 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.hallway_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.hallway_light
 
         ##########################################################
         ## Turn Off Hallway Lights Room Clean
@@ -2351,12 +2427,14 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_hallway_lights
-    - service: light.turn_off
-      entity_id:
-        - light.hallway_light
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_hallway_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.hallway_light
 
         ##########################################################
         ## Turn Off Hallway Lights Room Clean Boolean
@@ -2391,9 +2469,10 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_hallway_lights
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_hallway_lights
 
         ##########################################################
         ## Turn On Bathroom Lights Room Clean
@@ -2417,9 +2496,10 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.bathroom_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bathroom_lights
 
         ##########################################################
         ## Turn Off Bathroom Lights Room Clean
@@ -2462,12 +2542,14 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_bathroom_lights
-    - service: light.turn_off
-      entity_id:
-        - light.bathroom_lights
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_bathroom_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.bathroom_lights
 
         ##########################################################
         ## Turn Off Bathroom Lights Room Clean Boolean
@@ -2502,9 +2584,10 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_bathroom_lights
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_bathroom_lights
 
         ##########################################################
         ## Turn On Bedroom Lights Room Clean
@@ -2528,10 +2611,11 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.bedroom_lamps
-        - light.bedroom_ceiling
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bedroom_lamps
+          - light.bedroom_ceiling
 
         ##########################################################
         ## Turn Off Bedroom Lights Room Clean
@@ -2569,13 +2653,15 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_bedroom_lights
-    - service: light.turn_off
-      entity_id:
-        - light.bedroom_lamps
-        - light.bedroom_ceiling
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_bedroom_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.bedroom_lamps
+          - light.bedroom_ceiling
 
         ##########################################################
         ## Turn Off Bedroom Lights Room Clean Boolean
@@ -2610,9 +2696,10 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_bedroom_lights
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_bedroom_lights
 
         ##########################################################
         ## Turn On Bedroom Closet Lights Room Clean
@@ -2636,9 +2723,10 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.bedroom_closet_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bedroom_closet_lights
 
         ##########################################################
         ## Turn Off Bedroom Closet Lights Room Clean
@@ -2681,12 +2769,14 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_bedroom_closet_lights
-    - service: light.turn_off
-      entity_id:
-        - light.bedroom_closet_lights
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_bedroom_closet_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.bedroom_closet_lights
 
         ##########################################################
         ## Turn Off Bedroom Closet Lights Room Clean Boolean
@@ -2721,9 +2811,10 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_bedroom_closet_lights
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_bedroom_closet_lights
 
         ##########################################################
         ## Turn On USER1's Office Lights Room Clean
@@ -2747,9 +2838,10 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_office_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1_office_lights
 
         ##########################################################
         ## Turn Off USER1's Office Lights Room Clean
@@ -2792,12 +2884,14 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_USER1_office_lights
-    - service: light.turn_off
-      entity_id:
-        - light.USER1_office_lights
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_USER1_office_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.USER1_office_lights
 
         ##########################################################
         ## Turn Off USER1's Office Lights Room Clean Boolean
@@ -2832,9 +2926,10 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_USER1_office_lights
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_USER1_office_lights
 
         ##########################################################
         ## Turn On USER2's Office Lights Room Clean
@@ -2858,9 +2953,10 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.USER2_office_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER2_office_lights
 
         ##########################################################
         ## Turn Off USER2's Office Lights Room Clean
@@ -2903,12 +2999,14 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_USER2_office_lights
-    - service: light.turn_off
-      entity_id:
-        - light.USER2_office_lights
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_USER2_office_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.USER2_office_lights
 
         ##########################################################
         ## Turn Off USER2's Office Lights Room Clean Boolean
@@ -2943,9 +3041,10 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_USER2_office_lights
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_USER2_office_lights
 
         ##########################################################
         ## Turn On Guest Bedroom Lights Room Clean
@@ -2969,9 +3068,10 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.guest_bedroom_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.guest_bedroom_lights
 
         ##########################################################
         ## Turn Off Guest Bedroom Lights Room Clean
@@ -3012,12 +3112,14 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_guest_bedroom_lights
-    - service: light.turn_off
-      entity_id:
-        - light.guest_bedroom_lights
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_guest_bedroom_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.guest_bedroom_lights
 
         ##########################################################
         ## Turn On Upstairs Hallway Lights Room Clean
@@ -3041,9 +3143,10 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.stairs_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.stairs_light
 
         ##########################################################
         ## Turn Off Upstairs Hallway Lights Room Clean
@@ -3086,12 +3189,14 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_upstairs_hallway_lights
-    - service: light.turn_off
-      entity_id:
-        - light.stairs_light
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_upstairs_hallway_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.stairs_light
 
         ##########################################################
         ## Turn Off Upstairs Hallway Lights Room Clean Boolean
@@ -3126,9 +3231,10 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_upstairs_hallway_lights
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_upstairs_hallway_lights
 
         ##########################################################
         ## Turn On Utility Area Lights Room Clean
@@ -3152,12 +3258,13 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.basement_lights
-        - light.basement_lamp
-        - light.work_bench_light
-        - light.laundry_room_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_lights
+          - light.basement_lamp
+          - light.work_bench_light
+          - light.laundry_room_light
 
         ##########################################################
         ## Turn Off Utility Area Lights Room Clean
@@ -3211,15 +3318,17 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_utility_area_lights
-    - service: light.turn_off
-      entity_id:
-        - light.basement_lights
-        - light.basement_lamp
-        - light.work_bench_light
-        - light.laundry_room_light
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_utility_area_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.basement_lights
+          - light.basement_lamp
+          - light.work_bench_light
+          - light.laundry_room_light
 
         ##########################################################
         ## Turn Off Utility Area Lights Room Clean Boolean
@@ -3254,9 +3363,10 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_utility_area_lights
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+         - input_boolean.roomba_clean_utility_area_lights
 
         ##########################################################
         ## Turn On Laundry Room Lights Room Clean
@@ -3280,12 +3390,13 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.basement_lights
-        - light.basement_lamp
-        - light.work_bench_light
-        - light.laundry_room_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_lights
+          - light.basement_lamp
+          - light.work_bench_light
+          - light.laundry_room_light
 
         ##########################################################
         ## Turn Off Laundry Room Lights Room Clean
@@ -3339,15 +3450,17 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_laundry_room_lights
-    - service: light.turn_off
-      entity_id:
-        - light.basement_lights
-        - light.basement_lamp
-        - light.work_bench_light
-        - light.laundry_room_light
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_laundry_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.basement_lights
+          - light.basement_lamp
+          - light.work_bench_light
+          - light.laundry_room_light
 
         ##########################################################
         ## Turn Off Laundry Room Lights Room Clean Boolean
@@ -3382,9 +3495,10 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_laundry_room_lights
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_laundry_room_lights
 
         ##########################################################
         ## Turn On Workbench Lights Room Clean
@@ -3408,12 +3522,13 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.basement_lights
-        - light.basement_lamp
-        - light.work_bench_light
-        - light.laundry_room_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_lights
+          - light.basement_lamp
+          - light.work_bench_light
+          - light.laundry_room_light
 
         ##########################################################
         ## Turn Off Workbench Lights Room Clean
@@ -3467,15 +3582,17 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_workbench_lights
-    - service: light.turn_off
-      entity_id:
-        - light.basement_lights
-        - light.basement_lamp
-        - light.work_bench_light
-        - light.laundry_room_light
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_workbench_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.basement_lights
+          - light.basement_lamp
+          - light.work_bench_light
+          - light.laundry_room_light
 
         ##########################################################
         ## Turn Off Workbench Lights Room Clean Boolean
@@ -3510,9 +3627,10 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_workbench_lights
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_workbench_lights
 
         ##########################################################
         ## Turn On Fitness Room Lights Room Clean
@@ -3536,9 +3654,10 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.fitness_room_ceiling
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.fitness_room_ceiling
 
         ##########################################################
         ## Turn Off Fitness Room Lights Room Clean
@@ -3581,12 +3700,14 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_fitness_room_lights
-    - service: light.turn_off
-      entity_id:
-        - light.fitness_room_ceiling
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_fitness_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.fitness_room_ceiling
 
         ##########################################################
         ## Turn Off Fitness Room Lights Room Clean Boolean
@@ -3621,9 +3742,10 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_fitness_room_lights
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_fitness_room_lights
 
         ##########################################################
         ## Turn On Craft Room Lights Room Clean
@@ -3647,9 +3769,10 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.craft_room_ceiling
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.craft_room_ceiling
 
         ##########################################################
         ## Turn Off Craft Room Lights Room Clean
@@ -3692,12 +3815,14 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_craft_room_lights
-    - service: light.turn_off
-      entity_id:
-        - light.craft_room_ceiling
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_craft_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.craft_room_ceiling
 
         ##########################################################
         ## Turn Off Craft Room Lights Room Clean Boolean
@@ -3732,9 +3857,10 @@
       before: '23:00:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.roomba_clean_craft_room_lights
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.roomba_clean_craft_room_lights
 
 #################################################################
 ## Helper Automations
@@ -3785,7 +3911,7 @@
         seconds: 0
 
   action:
-    - service: homeassistant.turn_off
+    - action: homeassistant.turn_off
       target:
         entity_id: '{{ trigger.entity_id }}'
 
@@ -3824,7 +3950,7 @@
         seconds: 0
 
   action:
-    - service: homeassistant.turn_off
+    - action: homeassistant.turn_off
       target:
         entity_id: '{{ trigger.entity_id }}'
 
@@ -3865,7 +3991,7 @@
         seconds: 0
 
   action:
-    - service: homeassistant.turn_off
+    - action: homeassistant.turn_off
       target:
         entity_id: '{{ trigger.entity_id }}'
 
@@ -3891,9 +4017,10 @@
       state: 'off'
 
   action:
-    - service: homeassistant.turn_on
-      entity_id:
-        - input_boolean.upstairs_roomba_ran
+    - action: homeassistant.turn_on
+      target:
+        entity_id:
+          - input_boolean.upstairs_roomba_ran
 
         ##########################################################
         ## Set Main Floor Roomba has Ran for the Day
@@ -3917,9 +4044,10 @@
       state: 'off'
 
   action:
-    - service: homeassistant.turn_on
-      entity_id:
-        - input_boolean.main_floor_roomba_ran
+    - action: homeassistant.turn_on
+      target:
+        entity_id:
+          - input_boolean.main_floor_roomba_ran
 
         ##########################################################
         ## Set Basement Roomba has Ran for the Day
@@ -3943,9 +4071,10 @@
       state: 'off'
 
   action:
-    - service: homeassistant.turn_on
-      entity_id:
-        - input_boolean.basement_roomba_ran
+    - action: homeassistant.turn_on
+      target:
+        entity_id:
+          - input_boolean.basement_roomba_ran
 
         ##########################################################
         ## Set Upstairs Roomba has Ran USER1's Office
@@ -3973,9 +4102,10 @@
 
 
   action:
-    - service: homeassistant.turn_on
-      entity_id:
-        - input_boolean.upstairs_roomba_ran_USER1_office
+    - action: homeassistant.turn_on
+      target:
+        entity_id:
+          - input_boolean.upstairs_roomba_ran_USER1_office
 
         ##########################################################
         ## Reset Roomba Helpers
@@ -3989,28 +4119,29 @@
      at: '00:01:00'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.main_floor_roomba_ran
-        - input_boolean.upstairs_roomba_ran
-        - input_boolean.basement_roomba_ran
-        - input_boolean.upstairs_roomba_ran_USER1_office
-        - input_boolean.roomba_clean_living_room_lights
-        - input_boolean.roomba_clean_dining_room_lights
-        - input_boolean.roomba_clean_kitchen_lights
-        - input_boolean.roomba_clean_hallway_lights
-        - input_boolean.roomba_clean_bathroom_lights
-        - input_boolean.roomba_clean_bedroom_lights
-        - input_boolean.roomba_clean_bedroom_closet_lights
-        - input_boolean.roomba_clean_utility_area_lights
-        - input_boolean.roomba_clean_fitness_room_lights
-        - input_boolean.roomba_clean_craft_room_lights
-        - input_boolean.roomba_clean_laundry_room_lights
-        - input_boolean.roomba_clean_workbench_lights
-        - input_boolean.roomba_clean_USER1_office_lights
-        - input_boolean.roomba_clean_USER2_office_lights
-        - input_boolean.roomba_clean_guest_bedroom_lights
-        - input_boolean.roomba_clean_upstairs_hallway_lights
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.main_floor_roomba_ran
+          - input_boolean.upstairs_roomba_ran
+          - input_boolean.basement_roomba_ran
+          - input_boolean.upstairs_roomba_ran_USER1_office
+          - input_boolean.roomba_clean_living_room_lights
+          - input_boolean.roomba_clean_dining_room_lights
+          - input_boolean.roomba_clean_kitchen_lights
+          - input_boolean.roomba_clean_hallway_lights
+          - input_boolean.roomba_clean_bathroom_lights
+          - input_boolean.roomba_clean_bedroom_lights
+          - input_boolean.roomba_clean_bedroom_closet_lights
+          - input_boolean.roomba_clean_utility_area_lights
+          - input_boolean.roomba_clean_fitness_room_lights
+          - input_boolean.roomba_clean_craft_room_lights
+          - input_boolean.roomba_clean_laundry_room_lights
+          - input_boolean.roomba_clean_workbench_lights
+          - input_boolean.roomba_clean_USER1_office_lights
+          - input_boolean.roomba_clean_USER2_office_lights
+          - input_boolean.roomba_clean_guest_bedroom_lights
+          - input_boolean.roomba_clean_upstairs_hallway_lights
 
 #################################################################
 ## Notifications
@@ -4033,7 +4164,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Main Floor Roomba is Stuck, Please Help
         data:
@@ -4057,7 +4188,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Upstairs Roomba is Stuck, Please Help
         data:
@@ -4081,7 +4212,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Basement Roomba is Stuck, Please Help
         data:
@@ -4106,7 +4237,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Main Floor Roomba is Full, Empty It
         data:
@@ -4131,7 +4262,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Upstairs Roomba is Full, Empty It
         data:
@@ -4156,7 +4287,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Basement Roomba is Full, Empty It
         data:

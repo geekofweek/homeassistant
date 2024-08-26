@@ -25,36 +25,42 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.smart_bulbs
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.smart_bulbs
       data:
        brightness_pct: 100
        color_name: "red"
-    - service: light.turn_on
-      entity_id:
-        - light.smart_bulbs_exterior
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.smart_bulbs_exterior
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.lutron_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.lutron_lights
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.lutron_lights_exterior
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.lutron_lights_exterior
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.smart_bulbs
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.smart_bulbs
       data:
        flash: long
-    - service: switch.turn_on
-      entity_id:
-        - switch.siren
-    - service: media_player.play_media
+    - action: switch.turn_on
+      target:
+        entity_id:
+          - switch.siren
+    - action: media_player.play_media
       target:
         entity_id: 
           - media_player.sonos_living_room
@@ -64,7 +70,6 @@
           - media_player.sonos_bedroom
           - media_player.sonos_bedroom_closet
           - media_player.sonos_USER1s_office
-          - media_player.sonos_USER1s_office_move
           - media_player.sonos_USER2s_office
           - media_player.sonos_move
           - media_player.sonos_fitness_room
@@ -76,7 +81,7 @@
         media_content_type: "music"
         extra:
           volume: 90
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Alarm Triggered!
         data:
@@ -97,7 +102,7 @@
             - action: "siren_off"
               title: "Siren Off"
               uri: "/lovelace/alarm"
-    - service: notify.USER2_devices
+    - action: notify.USER2_devices
       data:
         message: Alarm Triggered!
         data:
@@ -137,36 +142,42 @@
       state: 'home'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.smart_bulbs
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.smart_bulbs
       data:
        brightness_pct: 100
        color_name: "red"
-    - service: light.turn_on
-      entity_id:
-        - light.smart_bulbs_exterior
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.smart_bulbs_exterior
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.lutron_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.lutron_lights
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.lutron_lights_exterior
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.lutron_lights_exterior
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.smart_bulbs
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.smart_bulbs
       data:
        flash: long
-    - service: switch.turn_on
-      entity_id:
-        - switch.siren
-    - service: notify.USER1_devices
+    - action: switch.turn_on
+      target:
+        entity_id:
+          - switch.siren
+    - action: notify.USER1_devices
       data:
         message: Alarm Triggered!
         data:
@@ -187,7 +198,7 @@
             - action: "siren_off"
               title: "Siren Off"
               uri: "/lovelace/alarm"
-    - service: notify.USER2_devices
+    - action: notify.USER2_devices
       data:
         message: Alarm Triggered!
         data:
@@ -222,36 +233,42 @@
       to: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.smart_bulbs
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.smart_bulbs
       data:
        brightness_pct: 100
        color_name: "red"
-    - service: light.turn_on
-      entity_id:
-        - light.smart_bulbs_exterior
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.smart_bulbs_exterior
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.lutron_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.lutron_lights
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.lutron_lights_exterior
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.lutron_lights_exterior
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.smart_bulbs
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.smart_bulbs
       data:
        flash: long
-    - service: switch.turn_on
-      entity_id:
-        - switch.siren
-    - service: notify.USER1_devices
+    - action: switch.turn_on
+      target:
+        entity_id:
+          - switch.siren
+    - action: notify.USER1_devices
       data:
         message: Panic Button Has Been Pressed!
         data:
@@ -268,7 +285,7 @@
             - action: "siren_off"
               title: "Siren Off"
               uri: "/lovelace/alarm"
-    - service: notify.USER2_devices
+    - action: notify.USER2_devices
       data:
         message: Panic Button Has Been Pressed!
         data:
@@ -299,9 +316,10 @@
       to: 'off'
 
   action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.siren
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.siren
 
         ##########################################################
         ## Panic Button Auto Off
@@ -320,9 +338,10 @@
         seconds: 0
 
   action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.siren
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.siren
 
         ##########################################################
         ## Door Alarm Away
@@ -351,7 +370,7 @@
       state: 'armed_away'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Door Alarm Triggered!
         data:
@@ -372,7 +391,7 @@
             - action: "siren_off"
               title: "Siren Off"
               uri: "/lovelace/alarm"
-    - service: notify.USER2_devices
+    - action: notify.USER2_devices
       data:
         message: Door Alarm Triggered!
         data:
@@ -393,9 +412,10 @@
             - action: "siren_off"
               title: "Siren Off"
               uri: "/lovelace/alarm"
-    - service: alarm_control_panel.alarm_trigger
-      entity_id:
-        - alarm_control_panel.alarm
+    - action: alarm_control_panel.alarm_trigger
+      target:
+        entity_id:
+          - alarm_control_panel.alarm
 
         ##########################################################
         ## Door Alarm Home
@@ -419,7 +439,7 @@
       state: 'armed_home'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Door Alarm Triggered!
         data:
@@ -440,7 +460,7 @@
             - action: "siren_off"
               title: "Siren Off"
               uri: "/lovelace/alarm"
-    - service: notify.USER2_devices
+    - action: notify.USER2_devices
       data:
         message: Door Alarm Triggered!
         data:
@@ -461,9 +481,10 @@
             - action: "siren_off"
               title: "Siren Off"
               uri: "/lovelace/alarm"
-    - service: alarm_control_panel.alarm_trigger
-      entity_id:
-        - alarm_control_panel.alarm
+    - action: alarm_control_panel.alarm_trigger
+      target:
+        entity_id:
+          - alarm_control_panel.alarm
 
         #################################################################
         ## Motion Alarm Away
@@ -511,7 +532,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Motion Alarm Triggered!
         data:
@@ -529,7 +550,7 @@
               title: "Disable Alarm System"
               destructive: true
               uri: "/lovelace/alarm"
-#    - service: alarm_control_panel.alarm_trigger
+#    - action: alarm_control_panel.alarm_trigger
 #      entity_id:
 #        - alarm_control_panel.alarm
 
@@ -554,7 +575,7 @@
       state: 'armed_home'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Garage Door Alarm Triggered!
         data:
@@ -588,7 +609,7 @@
       state: 'armed_away'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Garage Door Alarm Triggered!
         data:
@@ -617,7 +638,7 @@
         state: 'disarmed'
 
   action:
-    - service: alarm_control_panel.alarm_disarm
+    - action: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarm
 
         ##########################################################
@@ -645,7 +666,7 @@
         state: 'disarmed'
 
   action:
-    - service: alarm_control_panel.alarm_disarm
+    - action: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarm
 
         ##########################################################
@@ -679,7 +700,7 @@
       state: 'disarmed'
 
   action:
-    - service: alarm_control_panel.alarm_arm_away
+    - action: alarm_control_panel.alarm_arm_away
       entity_id: alarm_control_panel.alarm
 
         ##########################################################
@@ -708,7 +729,7 @@
       state: 'disarmed'
 
   action:
-    - service: alarm_control_panel.alarm_arm_home
+    - action: alarm_control_panel.alarm_arm_home
       entity_id: alarm_control_panel.alarm
 
         ##########################################################
@@ -744,7 +765,7 @@
       before: '21:00:00'
 
   action:
-    - service: alarm_control_panel.alarm_disarm
+    - action: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarm
 
         ##########################################################
@@ -791,7 +812,7 @@
         state: 'disarmed'
 
   action:
-    - service: alarm_control_panel.alarm_disarm
+    - action: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarm
 
 #################################################################
@@ -816,7 +837,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Alarm is Armed
         data:
@@ -846,7 +867,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Alarm is Armed
         data:
@@ -876,7 +897,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Alarm is Disarmed
         data:
@@ -911,7 +932,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Alarm {{ trigger.to_state.attributes.friendly_name }} Low Battery
         data:

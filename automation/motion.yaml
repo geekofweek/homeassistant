@@ -54,22 +54,25 @@
         state: "Play Nintendo Switch"
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_lamps
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.living_room_lamps
       data:
         transition: 5
         brightness_pct: 100
         color_temp: 370
-    - service: light.turn_on
-      entity_id: 
-        - light.media_center_lighting
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.media_center_lighting
       data:
        transition: 5
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.globe
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.globe
       data:
        transition: 5
        brightness_pct: 65
@@ -130,22 +133,25 @@
         state: "Play Nintendo Switch"
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_lamps
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.living_room_lamps
       data:
         transition: 5
         brightness_pct: 100
         color_temp: 370
-    - service: light.turn_on
-      entity_id: 
-        - light.media_center_lighting
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.media_center_lighting
       data:
        transition: 5
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.globe
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.globe
       data:
        transition: 5
        brightness_pct: 65
@@ -210,22 +216,25 @@
         state: "Play Nintendo Switch"
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_lamps
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.living_room_lamps
       data:
         transition: 5
         brightness_pct: 100
         color_temp: 370
-    - service: light.turn_on
-      entity_id: 
-        - light.media_center_lighting
+    - action: light.turn_on
+      target:
+        entity_id: 
+          - light.media_center_lighting
       data:
        transition: 5
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.globe
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.globe
       data:
        transition: 5
        brightness_pct: 65
@@ -270,9 +279,10 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.living_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_lights
 
         ##########################################################
         ## Turn Off Living Room Lights when No Motion Detected when Daytime
@@ -317,9 +327,10 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.living_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_lights
 
         ##########################################################
         ## Turn Off Living Room Lights when No Motion Detected when Daytime USER2 Away
@@ -372,9 +383,10 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.living_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_lights
 
         ##########################################################
         ## Turn On Living Room Fans when Motion Detected and USER2 Away
@@ -412,10 +424,11 @@
         state: 'home'
 
   action:
-    - service: fan.turn_on
-      entity_id:
-        - fan.living_room_east
-        - fan.living_room_west
+    - action: fan.turn_on
+      target:
+        entity_id:
+          - fan.living_room_east
+          - fan.living_room_west
 
         ##########################################################
         ## Turn On Living Room Fans when Motion Detected at Night
@@ -454,10 +467,11 @@
       state: 'home'
 
   action:
-    - service: fan.turn_on
-      entity_id:
-        - fan.living_room_east
-        - fan.living_room_west
+    - action: fan.turn_on
+      target:
+        entity_id:
+          - fan.living_room_east
+          - fan.living_room_west
 
         ##########################################################
         ## Turn Off Living Room Fans when No Motion Detected
@@ -491,10 +505,11 @@
       state: 'on'
 
   action:
-    - service: fan.turn_off
-      entity_id:
-        - fan.living_room_east
-        - fan.living_room_west
+    - action: fan.turn_off
+      target:
+        entity_id:
+          - fan.living_room_east
+          - fan.living_room_west
 
         ##########################################################
         ## Turn On Kitchen Lights when Motion Detected Evening
@@ -527,18 +542,20 @@
       state: 'home'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.kitchen_cabinets
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.kitchen_cabinets
       data:
         brightness_pct: 2
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.kitchen_sink
       data:
        brightness_pct: 40
-    - service: light.turn_on
-      entity_id:
-        - light.kitchen_ceiling
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.kitchen_ceiling
       data:
         brightness_pct: 100
 
@@ -573,14 +590,16 @@
       state: 'home'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.kitchen_cabinets
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.kitchen_cabinets
       data:
         brightness_pct: 2
-    - service: light.turn_on
-      entity_id: 
-        - light.kitchen_sink
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.kitchen_sink
       data:
        brightness_pct: 2
 
@@ -620,14 +639,16 @@
       state: 'home'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.kitchen_cabinets
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.kitchen_cabinets
       data:
         brightness_pct: 2
-    - service: light.turn_on
-      entity_id: 
-        - light.kitchen_sink
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.kitchen_sink
       data:
         brightness_pct: 100
 
@@ -674,9 +695,10 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.kitchen_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.kitchen_lights
 
         ##########################################################
         ## Turn Off Kitchen Lights when No Motion Detected Weeknights
@@ -728,9 +750,10 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.kitchen_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.kitchen_lights
 
         ##########################################################
         ## Turn Off Kitchen Lights when No Motion Detected Weekends
@@ -779,9 +802,10 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.kitchen_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.kitchen_lights
 
         ##########################################################
         ## Turn Off Kitchen Lights when No Motion Detected Daytime
@@ -823,9 +847,10 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.kitchen_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.kitchen_lights
 
         ##########################################################
         ## Turn Off Kitchen Lights when No Motion Detected Daytime USER2 Away
@@ -878,9 +903,10 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.kitchen_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.kitchen_lights
 
         ##########################################################
         ## Turn On Dining Room Lights when Motion Detected Evening
@@ -916,15 +942,17 @@
       state: 'home'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.dining_room_table
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.dining_room_table
       data:
         brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.hallway_light
-        - light.dining_room_ceiling
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.hallway_light
+          - light.dining_room_ceiling
       data:
        brightness_pct: 25
 
@@ -969,14 +997,16 @@
       state: 'home'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.dining_room_table
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.dining_room_table
       data:
         brightness_pct: 2
-    - service: light.turn_on
-      entity_id:
-        - light.hallway_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.hallway_light
       data:
        brightness_pct: 2
 
@@ -1019,14 +1049,16 @@
       state: 'home'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.dining_room_table
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.dining_room_table
       data:
         brightness_pct: 2
-    - service: light.turn_on
-      entity_id:
-        - light.hallway_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.hallway_light
       data:
        brightness_pct: 2
 
@@ -1066,14 +1098,16 @@
       state: 'home'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.dining_room_table
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.dining_room_table
       data:
         brightness_pct: 25
-    - service: light.turn_on
-      entity_id:
-        - light.hallway_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.hallway_light
       data:
        brightness_pct: 25
 
@@ -1127,12 +1161,14 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.dining_room_lights
-    - service: light.turn_off
-      entity_id:
-        - light.hallway_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.dining_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.hallway_light
 
         ##########################################################
         ## Turn Off Dining Room Lights when No Motion Detected Evenings
@@ -1177,9 +1213,10 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.dining_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.dining_room_lights
 
         ##########################################################
         ## Turn Off Dining Room Lights when No Motion Detected Weekends
@@ -1228,12 +1265,14 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.dining_room_lights
-    - service: light.turn_off
-      entity_id:
-        - light.hallway_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.dining_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.hallway_light
 
         ##########################################################
         ## Turn Off Dining Room Lights when No Motion Detected Daytime
@@ -1275,12 +1314,14 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.dining_room_lights
-    - service: light.turn_off
-      entity_id:
-        - light.hallway_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.dining_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.hallway_light
 
         ##########################################################
         ## Turn Off Dining Room Lights when No Motion Detected Daytime USER2 Away
@@ -1333,12 +1374,14 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.dining_room_lights
-    - service: light.turn_off
-      entity_id:
-        - light.hallway_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.dining_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.hallway_light
 
         ##########################################################
         ## Turn On Bathroom Lights when Motion Detected Morning
@@ -1368,15 +1411,17 @@
       before: '09:00:00'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.bathroom_vanity
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bathroom_vanity
       data:
         brightness_pct: 50
         transition: 60
-    - service: light.turn_on
-      entity_id:
-        - light.bathroom_shower
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bathroom_shower
       data:
         brightness_pct: 25
         transition: 60
@@ -1412,14 +1457,16 @@
       before: '22:00:00'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.bathroom_vanity
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bathroom_vanity
       data:
         brightness_pct: 50
-    - service: light.turn_on
-      entity_id:
-        - light.bathroom_shower
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bathroom_shower
       data:
         brightness_pct: 25
 
@@ -1454,14 +1501,16 @@
       before: '22:00:00'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.bathroom_vanity
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bathroom_vanity
       data:
         brightness_pct: 75
-    - service: light.turn_on
-      entity_id:
-        - light.bathroom_shower
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bathroom_shower
       data:
         brightness_pct: 25
 
@@ -1496,9 +1545,10 @@
       before: '00:00:00'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.bathroom_vanity
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bathroom_vanity
       data:
         brightness_pct: 25
 
@@ -1533,9 +1583,10 @@
       before: '05:45:00'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.bathroom_vanity
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bathroom_vanity
       data:
         brightness_pct: 2
 
@@ -1579,9 +1630,10 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.bathroom_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.bathroom_lights
 
         ##########################################################
         ## Turn Off Bathroom Lights when No Motion Detected Late Night
@@ -1623,9 +1675,10 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.bathroom_lights        
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.bathroom_lights        
         
         ##########################################################
         ## Turn On Stair Lights when Motion Detected Evening
@@ -1658,9 +1711,10 @@
       state: 'home'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.stairs_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.stairs_light
       data:
         brightness_pct: 75
 
@@ -1695,9 +1749,10 @@
       state: 'home'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.stairs_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.stairs_light
       data:
         brightness_pct: 2
 
@@ -1737,9 +1792,10 @@
       state: 'home'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.stairs_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.stairs_light
       data:
         brightness_pct: 15
 
@@ -1786,9 +1842,10 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.stairs_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.stairs_light
 
         ##########################################################
         ## Turn Off Stair Lights when No Motion Detected Night
@@ -1833,9 +1890,10 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.stairs_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.stairs_light
 
         ##########################################################
         ## Turn Off Stair Lights when No Motion Detected Daytime
@@ -1877,9 +1935,10 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.stairs_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.stairs_light
 
         ##########################################################
         ## Turn On Basement Lights when Motion Detected
@@ -1920,27 +1979,32 @@
       state: 'home'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.basement_stairs
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_stairs
       data:
         brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.basement_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_lights
       data:
         brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.work_bench_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.work_bench_light
       data:
         brightness_pct: 25
-    - service: light.turn_on
-      entity_id:
-        - light.laundry_room_light
-    - service: light.turn_on
-      entity_id:
-        - light.basement_lamp
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.laundry_room_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_lamp
       data:
         brightness_pct: 100
 
@@ -1987,21 +2051,26 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.basement_stairs
-    - service: light.turn_off
-      entity_id:
-        - light.basement_lights
-    - service: light.turn_off
-      entity_id:
-        - light.work_bench_light
-    - service: light.turn_off
-      entity_id:
-        - light.laundry_room_light
-    - service: light.turn_off
-      entity_id:
-        - light.basement_lamp
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.basement_stairs
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.basement_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.work_bench_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.laundry_room_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.basement_lamp
 
         ##########################################################
         ## Turn Off Basement Lights when No Motion Detected Night
@@ -2043,21 +2112,26 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.basement_stairs
-    - service: light.turn_off
-      entity_id:
-        - light.basement_lights
-    - service: light.turn_off
-      entity_id:
-        - light.work_bench_light
-    - service: light.turn_off
-      entity_id:
-        - light.laundry_room_light
-    - service: light.turn_off
-      entity_id:
-        - light.basement_lamp
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.basement_stairs
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.basement_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.work_bench_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.laundry_room_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.basement_lamp
 
         ##########################################################
         ## Turn On Craft Room Lights when Motion Detected
@@ -2084,12 +2158,13 @@
       state: 'home'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.craft_room_ceiling
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.craft_room_ceiling
       data:
         brightness_pct: 100
-    - service: light.turn_on
+    - action: light.turn_on
       data:
         brightness_pct: 100
         effect: Club
@@ -2134,10 +2209,11 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.craft_room_ceiling
-        - light.jupitier_globe
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.craft_room_ceiling
+          - light.jupitier_globe
 
         ##########################################################
         ## Turn Off Craft Room Lights when No Motion Detected Night
@@ -2179,10 +2255,11 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.craft_room_ceiling
-        - light.jupitier_globe
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.craft_room_ceiling
+          - light.jupitier_globe
 
         ##########################################################
         ## Turn On Fitness Room Lights when Motion Detected
@@ -2209,9 +2286,10 @@
       state: 'home'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.fitness_room_ceiling
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.fitness_room_ceiling
       data:
         brightness_pct: 100
 
@@ -2252,9 +2330,10 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.fitness_room_ceiling
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.fitness_room_ceiling
 
         ##########################################################
         ## Turn Off Fitness Room Lights when No Motion Detected Night
@@ -2296,9 +2375,10 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.fitness_room_ceiling
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.fitness_room_ceiling
 
         ##########################################################
         ## Turn On USER2 Closet Light when Motion Detected Weekdays
@@ -2335,9 +2415,10 @@
       state: 'home'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.USER2s_bedroom_closet
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER2s_bedroom_closet
       data:
         brightness_pct: 100
 
@@ -2370,9 +2451,10 @@
       state: 'home'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.USER2s_bedroom_closet
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER2s_bedroom_closet
       data:
         brightness_pct: 100
 
@@ -2405,9 +2487,10 @@
       state: 'on'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.USER2s_bedroom_closet
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.USER2s_bedroom_closet
 
         ##########################################################
         ## Turn On USER1 Office Fan when Motion Detected
@@ -2448,29 +2531,31 @@
       state: 'off'
 
   action:
-    - service: fan.turn_on
-      entity_id:
-        - fan.USER1s_office_fan
+    - action: fan.turn_on
+      target:
+        entity_id:
+          - fan.USER1s_office_fan
     - delay: '00:00:01'
-    - service: fan.set_preset_mode
+    - action: fan.set_preset_mode
       target:
         entity_id: fan.USER1s_office_fan
       data:
         preset_mode: Auto
-    - service: climate.set_hvac_mode
+    - action: climate.set_hvac_mode
       data:
         entity_id: 
           - climate.office_fan
         hvac_mode: cool
     - delay: '00:00:01'
-    - service: fan.oscillate
+    - action: fan.oscillate
       data:
         entity_id: 
           - fan.USER1s_office_fan
         oscillating: 'true'
-    - service: switch.turn_on
-      entity_id:
-        - switch.air_purifier
+    - action: switch.turn_on
+      target:
+        entity_id:
+          - switch.air_purifier
 
         ##########################################################
         ## Turn On USER1 Office TV when Motion Detected
@@ -2508,12 +2593,12 @@
       state: 'off'
 
   action:
-    - service: select.select_option
+    - action: select.select_option
       data:
         entity_id: select.USER1_s_office_tv_activities
         option: "Watch TV"
     - delay: '00:00:30'
-    - service: media_player.select_source
+    - action: media_player.select_source
       data:
         source: Protect
       target:
@@ -2545,12 +2630,14 @@
       state: 'off'
 
   action:
-    - service: fan.turn_off
-      entity_id:
-        - fan.USER1s_office_fan
-    - service: switch.turn_off
-      entity_id:
-        - switch.air_purifier
+    - action: fan.turn_off
+      target:
+        entity_id:
+          - fan.USER1s_office_fan
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.air_purifier
 
         ##########################################################
         ## Turn Off USER1 Office TV when No Motion Detected
@@ -2588,7 +2675,7 @@
       state: 'off'
 
   action:
-    - service: select.select_option
+    - action: select.select_option
       data:
         entity_id: select.USER1_s_office_tv_activities
         option: "power_off"
@@ -2643,26 +2730,28 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.office_lamp
       data:
         transition: 60
         brightness_pct: 100
         color_temp: 370
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.USER1_office_desk_accent
       data:
         transition: 60
         brightness_pct: 80
         color_temp: 370
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_s_office_ceiling
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1_s_office_ceiling
       data:
         brightness_pct: 15
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_office_desk_lamp
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1_office_desk_lamp
       data:
         brightness_pct: 25
         color_temp: 370
@@ -2720,25 +2809,27 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.office_lamp
       data:
         brightness_pct: 100
         color_temp: 370
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.USER1_office_desk_accent
       data:
         transition: 15
         brightness_pct: 80
         color_temp: 370
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_s_office_ceiling
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1_s_office_ceiling
       data:
         brightness_pct: 15
-    - service: light.turn_on
-      entity_id:
-        - light.USER1_office_desk_lamp
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1_office_desk_lamp
       data:
         brightness_pct: 25
         color_temp: 370
@@ -2774,9 +2865,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.moon_globe
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.moon_globe
       data:
         brightness_pct: 10
         color_temp: 238
@@ -2818,9 +2910,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_off
-      entity_id: 
-        - light.USER1_office_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.USER1_office_lights
 
         ##########################################################
         ## Turn Off USER1 Office Music when No Motion Detected
@@ -2848,14 +2941,15 @@
       state: 'off'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id: 
-        - input_boolean.USER1_s_office_music
+    - action: homeassistant.turn_off
+      target:
+        entity_id: 
+          - input_boolean.USER1_s_office_music
     - delay: '00:00:15'
-    - service: media_player.media_stop
-      entity_id:
-        - media_player.sonos_USER1s_office
-        - media_player.sonos_USER1s_office_move
+    - action: media_player.media_stop
+      target:
+        entity_id:
+          - media_player.sonos_USER1s_office
 
         ##########################################################
         ## Turn Off USER1 Office Do Not Disturb No Motion Detected
@@ -2883,7 +2977,7 @@
       state: 'on'
 
   action:
-    - service: homeassistant.turn_off
+    - action: homeassistant.turn_off
       entity_id: input_boolean.USER1_s_office_do_not_disturb
 
         ##########################################################
@@ -2924,14 +3018,16 @@
         - fri
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.dining_room_table
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.dining_room_table
       data:
         brightness_pct: 2
-    - service: light.turn_on
-      entity_id:
-        - light.hallway_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.hallway_light
       data:
        brightness_pct: 2
 
@@ -2963,9 +3059,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id: 
-        - light.USER2_s_office_ceiling
+    - action: light.turn_on
+      target:
+        entity_id: 
+          - light.USER2_s_office_ceiling
       data:
         brightness_pct: 75
         transition: 30
@@ -3001,9 +3098,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id: 
-        - light.USER2_s_office_ceiling
+    - action: light.turn_on
+      target:
+        entity_id: 
+          - light.USER2_s_office_ceiling
       data:
         brightness_pct: 100
 
@@ -3038,9 +3136,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id: 
-        - light.USER2_s_office_ceiling
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER2_s_office_ceiling
       data:
         brightness_pct: 15
 
@@ -3078,9 +3177,10 @@
       state: 'on'
 
   action:
-    - service: light.turn_off
-      entity_id: 
-        - light.USER2_s_office_ceiling
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.USER2_s_office_ceiling
 
         ##########################################################
         ## Turn Off USER2 Office Lights when No Motion Detected Night
@@ -3122,9 +3222,10 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
-      entity_id: 
-        - light.USER2_s_office_ceiling
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.USER2_s_office_ceiling
 
         ##########################################################
         ## Turn On Upstairs Bathroom Lights when Motion Detected Evening
@@ -3157,9 +3258,10 @@
       before: '22:00:00'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.upstairs_bathroom_vanity
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.upstairs_bathroom_vanity
       data:
         brightness_pct: 60
 
@@ -3194,9 +3296,10 @@
       before: '07:00:00'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.upstairs_bathroom_vanity
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.upstairs_bathroom_vanity
       data:
         brightness_pct: 2
 
@@ -3236,9 +3339,10 @@
         state: 'unknown'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.upstairs_bathroom_vanity
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.upstairs_bathroom_vanity
       data:
         brightness_pct: 2
 
@@ -3271,9 +3375,10 @@
       state: 'on'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.upstairs_bathroom_vanity
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.upstairs_bathroom_vanity
 
         ##########################################################
         ## Turn On Bedroom Closet Lights when Motion Detected Early Morning
@@ -3303,9 +3408,10 @@
       state: 'closed'
 
   action:
-    - service: light.turn_on
-      entity_id: 
-        - light.bedroom_closet_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bedroom_closet_lights
       data:
         brightness: 2
         color_temp: 370
@@ -3345,9 +3451,10 @@
         - thu
 
   action:
-    - service: light.turn_on
-      entity_id: 
-        - light.bedroom_closet_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bedroom_closet_lights
       data:
         brightness: 77
         color_temp: 370
@@ -3384,9 +3491,10 @@
         - sat
 
   action:
-    - service: light.turn_on
-      entity_id: 
-        - light.bedroom_closet_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bedroom_closet_lights
       data:
         brightness: 77
         color_temp: 370
@@ -3420,9 +3528,10 @@
       state: 'on'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.bedroom_closet_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.bedroom_closet_lights
 
 #################################################################
 ## Notifications
@@ -3463,7 +3572,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: "{{ trigger.to_state.attributes.friendly_name }} Low"
         data:

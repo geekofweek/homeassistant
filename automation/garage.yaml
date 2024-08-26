@@ -31,7 +31,7 @@
       state: 'off'
 
   action:
-    - service: lifx.effect_pulse
+    - action: lifx.effect_pulse
       data:
         cycles: 5
         power_on: true
@@ -39,7 +39,7 @@
       target:
         entity_id: light.garage_interior
     - delay: '00:00:05'
-    - service: cover.close_cover
+    - action: cover.close_cover
       entity_id: cover.garage_door
 
         ##########################################################
@@ -71,7 +71,7 @@
       state: 'open'
 
   action:
-    - service: lifx.effect_pulse
+    - action: lifx.effect_pulse
       data:
         cycles: 5
         power_on: true
@@ -79,7 +79,7 @@
       target:
         entity_id: light.garage_interior
     - delay: '00:00:05'
-    - service: cover.close_cover
+    - action: cover.close_cover
       entity_id: cover.garage_door
 
         ##########################################################
@@ -107,7 +107,7 @@
       state: 'open'
 
   action:
-    - service: lifx.effect_pulse
+    - action: lifx.effect_pulse
       data:
         cycles: 5
         power_on: true
@@ -115,7 +115,7 @@
       target:
         entity_id: light.garage_interior
     - delay: '00:00:05'
-    - service: cover.close_cover
+    - action: cover.close_cover
       entity_id: cover.garage_door
 
         ##########################################################
@@ -152,7 +152,7 @@
       state: 'closed'
 
   action:
-    - service: cover.open_cover
+    - action: cover.open_cover
       entity_id: cover.garage_door
 
         ##########################################################
@@ -180,7 +180,7 @@
       state: 'off'
 
   action:
-    - service: lifx.effect_pulse
+    - action: lifx.effect_pulse
       data:
         cycles: 5
         power_on: true
@@ -188,9 +188,9 @@
       target:
         entity_id: light.garage_interior
     - delay: '00:00:05'
-    - service: homeassistant.turn_on
+    - action: homeassistant.turn_on
       entity_id: input_boolean.garage_door_motor
-    - service: cover.close_cover
+    - action: cover.close_cover
       entity_id: cover.garage_door
 
         ##########################################################
@@ -231,7 +231,7 @@
       state: 'closed'
 
   action:
-    - service: cover.open_cover
+    - action: cover.open_cover
       entity_id: cover.garage_door
 
         ##########################################################
@@ -263,7 +263,7 @@
       state: 'off'
 
   action:
-    - service: lifx.effect_pulse
+    - action: lifx.effect_pulse
       data:
         cycles: 5
         power_on: true
@@ -271,9 +271,9 @@
       target:
         entity_id: light.garage_interior
     - delay: '00:00:05'
-    - service: homeassistant.turn_on
+    - action: homeassistant.turn_on
       entity_id: input_boolean.garage_door_motor
-    - service: cover.close_cover
+    - action: cover.close_cover
       entity_id: cover.garage_door
 
         ##########################################################
@@ -304,7 +304,7 @@
       state: 'off'
 
   action:
-    - service: lifx.effect_pulse
+    - action: lifx.effect_pulse
       data:
         cycles: 5
         power_on: true
@@ -312,7 +312,7 @@
       target:
         entity_id: light.garage_interior
     - delay: '00:00:05'
-    - service: cover.close_cover
+    - action: cover.close_cover
       entity_id: cover.garage_door
 
         ##########################################################
@@ -336,7 +336,7 @@
       state: 'off'
 
   action:
-    - service: cover.open_cover
+    - action: cover.open_cover
       entity_id: cover.garage_door
 
         ##########################################################
@@ -360,7 +360,7 @@
       state: 'off'
 
   action:
-    - service: lifx.effect_pulse
+    - action: lifx.effect_pulse
       data:
         cycles: 5
         power_on: true
@@ -368,7 +368,7 @@
       target:
         entity_id: light.garage_interior
     - delay: '00:00:05'
-    - service: cover.close_cover
+    - action: cover.close_cover
       entity_id: cover.garage_door
 
         ##########################################################
@@ -390,7 +390,7 @@
       state: 'closed'
 
   action:
-    - service: homeassistant.turn_off
+    - action: homeassistant.turn_off
       entity_id: input_boolean.garage_door
 
         ##########################################################
@@ -412,7 +412,7 @@
       state: 'open'
 
   action:
-    - service: homeassistant.turn_on
+    - action: homeassistant.turn_on
       entity_id: input_boolean.garage_door
 
         ##########################################################
@@ -456,7 +456,7 @@
       state: 'off'
 
   action:
-    - service: cover.open_cover
+    - action: cover.open_cover
       entity_id: cover.garage_door
 
         ##########################################################
@@ -472,7 +472,7 @@
       to: 'on'
 
   action:
-    - service: lifx.effect_pulse
+    - action: lifx.effect_pulse
       data:
         cycles: 5
         power_on: true
@@ -504,7 +504,7 @@
           entity_id: cover.garage_door
 
   action:
-    - service: homeassistant.turn_on
+    - action: homeassistant.turn_on
       entity_id: input_boolean.garage_door_motor
 
         ##########################################################
@@ -524,7 +524,7 @@
         seconds: 18
 
   action:
-    - service: homeassistant.turn_off
+    - action: homeassistant.turn_off
       entity_id: input_boolean.garage_door_motor
 
 #################################################################
@@ -550,7 +550,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Garage Door Open
         data:
@@ -582,7 +582,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Garage Door Closed
         data:
@@ -631,7 +631,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Garage Door is Still Open!
         data:

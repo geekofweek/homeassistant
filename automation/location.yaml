@@ -21,11 +21,12 @@
       state: 'off'
 
   action:
-    - service: lock.lock
-      entity_id:
-       - lock.front_door
-       - lock.back_door
-       - lock.basement_door
+    - action: lock.lock
+      target:
+        entity_id:
+        - lock.front_door
+        - lock.back_door
+        - lock.basement_door
 
         ##########################################################
         ## Household Away Mode Helpers
@@ -46,19 +47,20 @@
       state: 'off'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.guest_mode
-        - input_boolean.interior_holiday
-        - input_boolean.office_rainbow
-        - input_boolean.livingroom_rainbow
-        - input_boolean.front_porch_rainbow
-        - input_boolean.pop_music
-        - input_boolean.jazz_music
-        - input_boolean.chill_music
-        - input_boolean.electronic_music
-        - input_boolean.classical_music
-        - input_boolean.group_all_sonos
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.guest_mode
+          - input_boolean.interior_holiday
+          - input_boolean.office_rainbow
+          - input_boolean.livingroom_rainbow
+          - input_boolean.front_porch_rainbow
+          - input_boolean.pop_music
+          - input_boolean.jazz_music
+          - input_boolean.chill_music
+          - input_boolean.electronic_music
+          - input_boolean.classical_music
+          - input_boolean.group_all_sonos
 
         ##########################################################
         ## Household Away Mode Switches
@@ -79,14 +81,15 @@
       state: 'off'
 
   action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.air_purifier
-        - switch.lower_backyard_lighting
-        - switch.backyard_patio_lighting
-        - switch.fireplace
-        - switch.bug_zapper
-        - switch.USER1s_office_desktop_clock_display
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.air_purifier
+          - switch.lower_backyard_lighting
+          - switch.backyard_patio_lighting
+          - switch.fireplace
+          - switch.bug_zapper
+          - switch.USER1s_office_desktop_clock_display
 
         ##########################################################
         ## Household Away Mode Fans
@@ -107,11 +110,12 @@
       state: 'off'
 
   action:
-    - service: fan.turn_off
-      entity_id:
-        - fan.USER1s_office_fan
-        - fan.living_room_east
-        - fan.living_room_west
+    - action: fan.turn_off
+      target:
+        entity_id:
+          - fan.USER1s_office_fan
+          - fan.living_room_east
+          - fan.living_room_west
 
         ##########################################################
         ## Household Away Mode Media
@@ -136,39 +140,39 @@
       state: 'off'
 
   action:
-    - service: select.select_option
+    - action: select.select_option
       data:
         entity_id: select.living_room_tv_activities
         option: "power_off"
-    - service: select.select_option
+    - action: select.select_option
       data:
         entity_id: select.bedroom_tv_activities
         option: "power_off"
-    - service: select.select_option
+    - action: select.select_option
       data:
         entity_id: select.USER1_s_office_tv_activities
         option: "power_off"
-    - service: input_select.select_option
+    - action: input_select.select_option
       data:
         entity_id: input_select.sonos
         option: "None"
-    - service: media_player.media_stop
-      entity_id:
-        - media_player.sonos_surround_sound
-        - media_player.sonos_living_room
-        - media_player.sonos_dining_room
-        - media_player.sonos_kitchen
-        - media_player.sonos_bathroom
-        - media_player.sonos_bedroom
-        - media_player.sonos_bedroom_closet
-        - media_player.sonos_USER1s_office
-        - media_player.sonos_USER1s_office_move
-        - media_player.sonos_USER2s_office
-        - media_player.sonos_move
-        - media_player.sonos_craft_room
-        - media_player.sonos_fitness_room
-        - media_player.sonos_backyard_patio
-        - media_player.sonos_roam
+    - action: media_player.media_stop
+      target:
+        entity_id:
+          - media_player.sonos_surround_sound
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_move
+          - media_player.sonos_craft_room
+          - media_player.sonos_fitness_room
+          - media_player.sonos_backyard_patio
+          - media_player.sonos_roam
 
         ##########################################################
         ## Household Away Mode Lights
@@ -196,28 +200,35 @@
       state: 'on'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.interior_lights
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_deck
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_patio
-    - service: light.turn_off
-      entity_id:
-        - light.garage_interior
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.interior_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_deck
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_patio
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.garage_interior
     - delay: '00:00:60'
-    - service: light.turn_off
-      entity_id:
-        - light.interior_lights
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_deck
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_patio
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.interior_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_deck
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_patio
 
         ##########################################################
         ## Household Away Mode Blinds
@@ -253,17 +264,17 @@
         state: 'open'
 
   action:
-    - service: cover.close_cover
+    - action: cover.close_cover
       data:
         entity_id: 
           - cover.stairs_blinds
     - delay: '00:00:15'
-    - service: cover.close_cover
+    - action: cover.close_cover
       data:
         entity_id: 
           - cover.bedroom_closet_blinds
     - delay: '00:00:15'
-    - service: cover.close_cover
+    - action: cover.close_cover
       data:
         entity_id: 
           - cover.kitchen_blinds
@@ -293,10 +304,11 @@
       state: 'off'
 
   action:
-    - service: lock.unlock
-      entity_id:
-        - lock.back_door
-        - lock.front_door
+    - action: lock.unlock
+      target:
+        entity_id:
+          - lock.back_door
+          - lock.front_door
 
         ##########################################################
         ## USER1 Home from Driving Unlock Door
@@ -329,10 +341,11 @@
       state: 'locked'
 
   action:
-    - service: lock.unlock
-      entity_id: 
-        - lock.back_door
-        - lock.basement_door
+    - action: lock.unlock
+      target:
+        entity_id: 
+          - lock.back_door
+          - lock.basement_door
 
         ##########################################################
         ## After USER1 Home Lock Doors
@@ -359,11 +372,12 @@
       state: 'off'
 
   action:
-    - service: lock.lock
-      entity_id:
-        - lock.back_door
-        - lock.front_door
-        - lock.basement_door
+    - action: lock.lock
+      target:
+        entity_id:
+          - lock.back_door
+          - lock.front_door
+          - lock.basement_door
 
         ##########################################################
         ## USER2 Home from Walking Unlock Doors
@@ -390,10 +404,11 @@
       state: 'off'
 
   action:
-    - service: lock.unlock
-      entity_id:
-        - lock.back_door
-        - lock.front_door
+    - action: lock.unlock
+      target:
+        entity_id:
+          - lock.back_door
+          - lock.front_door
 
         ##########################################################
         ## USER2 Home from Driving Unlock Door
@@ -426,7 +441,7 @@
       state: 'locked'
 
   action:
-    - service: lock.unlock
+    - action: lock.unlock
       entity_id: lock.back_door
 
         ##########################################################
@@ -454,10 +469,11 @@
       state: 'off'
 
   action:
-    - service: lock.lock
-      entity_id:
-        - lock.back_door
-        - lock.front_door
+    - action: lock.lock
+      target:
+        entity_id:
+          - lock.back_door
+          - lock.front_door
 
         ##########################################################
         ## USER1 Home Turn On Lights
@@ -484,55 +500,65 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.kitchen_sink
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.kitchen_sink
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_lamps
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.living_room_lamps
       data:
        color_temp: 370
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.dining_room_table
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.dining_room_table
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.media_center_lighting
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.media_center_lighting
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.kitchen_cabinets
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.kitchen_cabinets
       data:
        brightness_pct: 2
-    - service: light.turn_on
-      entity_id:
-        - light.hallway_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.hallway_light
       data:
        brightness_pct: 25
-    - service: light.turn_on
-      entity_id:
-        - light.front_porch
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.front_porch
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.back_door
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.back_door
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.garage_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.garage_light
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.globe
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.globe
       data:
        color_temp: 366
        brightness_pct: 65
@@ -562,9 +588,10 @@
       state: 'None'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.front_porch
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.front_porch
       data:
         brightness_pct: 50
         transition: 120
@@ -591,9 +618,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.back_door
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.back_door
       data:
         brightness_pct: 2
         transition: 120
@@ -624,9 +652,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.garage_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.garage_light
       data:
        brightness_pct: 2
 
@@ -655,55 +684,65 @@
       state: 'on'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.kitchen_sink
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.kitchen_sink
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_lamps
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.living_room_lamps
       data:
        color_temp: 370
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.dining_room_table
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.dining_room_table
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.media_center_lighting
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.media_center_lighting
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.kitchen_cabinets
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.kitchen_cabinets
       data:
        brightness_pct: 2
-    - service: light.turn_on
-      entity_id:
-        - light.hallway_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.hallway_light
       data:
        brightness_pct: 25
-    - service: light.turn_on
-      entity_id:
-        - light.front_porch
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.front_porch
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.back_door
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.back_door
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.garage_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.garage_light
       data:
        brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.globe
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.globe
       data:
        color_temp: 366
        brightness_pct: 65
@@ -743,32 +782,37 @@
         - fri
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.bathroom_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bathroom_lights
       data:
        brightness_pct: 25
-    - service: light.turn_on
-      entity_id:
-        - light.USER1s_nightstand
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1s_nightstand
       data:
        transition: 90
        brightness_pct: 50
-    - service: light.turn_on
-      entity_id:
-        - light.USER2s_nightstand
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER2s_nightstand
       data:
        transition: 90
        brightness_pct: 50
-    - service: light.turn_on
-      entity_id:
-        - light.bedroom_lamp
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bedroom_lamp
       data:
        transition: 90
        brightness_pct: 50
-    - service: light.turn_on
-      entity_id:
-        - light.closet_lamp
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.closet_lamp
       data:
        transition: 90
        brightness_pct: 50
@@ -798,9 +842,10 @@
       state: 'None'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.front_porch
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.front_porch
       data:
         brightness_pct: 50
         transition: 120
@@ -827,9 +872,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.back_door
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.back_door
       data:
         brightness_pct: 2
         transition: 120
@@ -860,9 +906,10 @@
       state: 'below_horizon'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.garage_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.garage_light
       data:
        brightness_pct: 2
 
@@ -885,17 +932,20 @@
       state: 'off'
 
   action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.air_purifier
-        - switch.USER1s_office_desktop_clock_display
-    - service: fan.turn_off
-      entity_id:
-        - fan.USER1s_office_fan
-    - service: light.turn_off
-      entity_id:
-        - light.USER1_office_lights
-    - service: select.select_option
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.air_purifier
+          - switch.USER1s_office_desktop_clock_display
+    - action: fan.turn_off
+      target:
+        entity_id:
+          - fan.USER1s_office_fan
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.USER1_office_lights
+    - action: select.select_option
       data:
         entity_id: select.USER1_s_office_tv_activities
         option: "power_off"
@@ -925,7 +975,7 @@
       state: 'off'
 
   action:
-    - service: cover.close_cover
+    - action: cover.close_cover
       data:
         entity_id: 
           - cover.USER1_s_office_blinds
@@ -955,16 +1005,16 @@
       state: 'off'
 
   action:
-    - service: cover.close_cover
+    - action: cover.close_cover
       data:
         entity_id: 
           - cover.USER1s_office_blinds_left
           - cover.USER1s_office_blinds_center
-    - service: cover.set_cover_position
+    - action: cover.set_cover_position
       data:
         entity_id: cover.USER1s_office_blinds_right
         position: 45
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Office Window Open!
         data:
@@ -996,12 +1046,12 @@
       state: 'on'
 
   action:
-    - service: cover.close_cover
+    - action: cover.close_cover
       data:
         entity_id: 
           - cover.USER1s_office_blinds_left
           - cover.USER1s_office_blinds_center
-    - service: cover.set_cover_position
+    - action: cover.set_cover_position
       data:
         entity_id: cover.USER1s_office_blinds_right
         position: 13
@@ -1028,10 +1078,11 @@
       state: 'off'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.USER2_s_office_ceiling
-    - service: cover.close_cover
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.USER2_s_office_ceiling
+    - action: cover.close_cover
       data:
         entity_id: 
           - cover.USER2_s_office_blinds
@@ -1058,14 +1109,15 @@
       state: 'on'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.USER2_s_office_ceiling
-    - service: cover.close_cover
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.USER2_s_office_ceiling
+    - action: cover.close_cover
       data:
         entity_id: 
           - cover.USER2s_office_blinds_left
-    - service: cover.set_cover_position
+    - action: cover.set_cover_position
       data:
         entity_id: 
           - cover.USER2s_office_blinds_right
@@ -1096,11 +1148,12 @@
       state: 'off'
 
   action:
-    - service: lock.lock
-      entity_id:
-        - lock.front_door
-        - lock.back_door
-        - lock.basement_door
+    - action: lock.lock
+      target:
+        entity_id:
+          - lock.front_door
+          - lock.back_door
+          - lock.basement_door
 
         ##########################################################
         ## USER2 Away Lock Doors
@@ -1127,11 +1180,12 @@
       state: 'off'
 
   action:
-    - service: lock.lock
-      entity_id:
-        - lock.front_door
-        - lock.back_door
-        - lock.basement_door
+    - action: lock.lock
+      target:
+        entity_id:
+          - lock.front_door
+          - lock.back_door
+          - lock.basement_door
 
         ##########################################################
         ## Turn Off Lights when USER2 Leaves
@@ -1165,19 +1219,23 @@
       state: 'off'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.interior_lights
-    - service: light.turn_off
-      entity_id:
-        - light.back_door
-    - service: light.turn_off
-      entity_id:
-        - light.garage_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.interior_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.back_door
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.garage_light
     - delay: '00:00:30'
-    - service: light.turn_off
-      entity_id:
-        - light.back_door
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.back_door
 
         ##########################################################
         ## Turn On Outdoor Lighting when Home
@@ -1211,20 +1269,23 @@
             state: 'on'
 
   action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.backyard_patio_lighting
-        - switch.lower_backyard_lighting
-        - switch.front_yard_lighting
-    - service: light.turn_on
-      entity_id:
-        - light.backyard_patio
+    - action: switch.turn_on
+      target:
+        entity_id:
+          - switch.backyard_patio_lighting
+          - switch.lower_backyard_lighting
+          - switch.front_yard_lighting
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.backyard_patio
       data:
         brightness_pct: 10
         color_temp: 370
-    - service: light.turn_on
-      entity_id:
-        - light.backyard_deck
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.backyard_deck
       data:
         brightness_pct: 2
 
@@ -1253,19 +1314,22 @@
       before: '23:59:00'
 
   action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.backyard_patio_lighting
-        - switch.lower_backyard_lighting
-    - service: light.turn_on
-      entity_id:
-        - light.backyard_patio
+    - action: switch.turn_on
+      target:
+        entity_id:
+          - switch.backyard_patio_lighting
+          - switch.lower_backyard_lighting
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.backyard_patio
       data:
         brightness_pct: 10
         color_temp: 370
-    - service: light.turn_on
-      entity_id:
-        - light.backyard_deck
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.backyard_deck
       data:
         brightness_pct: 2
 
@@ -1288,7 +1352,7 @@
       state: 'open'
 
   action:
-    - service: homeassistant.turn_on
+    - action: homeassistant.turn_on
       entity_id: input_boolean.USER1_away_driving
 
         ##########################################################
@@ -1309,10 +1373,11 @@
         seconds: 0
 
   action:
-    - service: homeassistant.turn_on
-      entity_id:
-        - input_boolean.USER1_away
-        - input_boolean.USER1_greeting
+    - action: homeassistant.turn_on
+      target:
+        entity_id:
+          - input_boolean.USER1_away
+          - input_boolean.USER1_greeting
 
         ##########################################################
         ## Set USER1 Home after 10 Mins
@@ -1332,11 +1397,12 @@
         seconds: 30
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.USER1_away
-        - input_boolean.USER1_away_driving
-        - input_boolean.USER1_greeting
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.USER1_away
+          - input_boolean.USER1_away_driving
+          - input_boolean.USER1_greeting
 
         ##########################################################
         ## Set USER2 Away Driving
@@ -1357,7 +1423,7 @@
       state: 'open'
 
   action:
-    - service: homeassistant.turn_on
+    - action: homeassistant.turn_on
       entity_id: input_boolean.USER2_away_driving
 
         ##########################################################
@@ -1378,10 +1444,11 @@
         seconds: 0
 
   action:
-    - service: homeassistant.turn_on
-      entity_id:
-        - input_boolean.USER2_away
-        - input_boolean.USER2_greeting
+    - action: homeassistant.turn_on
+      target:
+        entity_id:
+          - input_boolean.USER2_away
+          - input_boolean.USER2_greeting
 
         ##########################################################
         ## Set USER2 Home after 10 Mins
@@ -1401,11 +1468,12 @@
         seconds: 0
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.USER2_away
-        - input_boolean.USER2_away_driving
-        - input_boolean.USER2_greeting
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.USER2_away
+          - input_boolean.USER2_away_driving
+          - input_boolean.USER2_greeting
 
 #################################################################
 ## Notifications
@@ -1436,7 +1504,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: USER1 Home
         data:
@@ -1469,7 +1537,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: USER1 Home
         data:
@@ -1496,7 +1564,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: USER1 Away
         data:
@@ -1528,7 +1596,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: USER2 Home
         data:
@@ -1561,7 +1629,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: USER2 Home
         data:
@@ -1588,7 +1656,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: USER2 Away
         data:
@@ -1614,7 +1682,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: "USER2 has left work, ETA: {{states('sensor.USER2_to_home')}} mins"
         data:
@@ -1650,7 +1718,7 @@
 
   action:
     - delay: '00:00:08'
-    - service: media_player.play_media
+    - action: media_player.play_media
       target:
         entity_id: 
           - media_player.sonos_living_room
@@ -1664,7 +1732,7 @@
         extra:
           volume: 50
     - delay: '00:00:30'
-    - service: homeassistant.turn_off
+    - action: homeassistant.turn_off
       entity_id: input_boolean.USER1_greeting
 
         ##########################################################
@@ -1705,7 +1773,7 @@
 
   action:
     - delay: '00:00:10'
-    - service: media_player.play_media
+    - action: media_player.play_media
       target:
         entity_id: 
           - media_player.sonos_USER2s_office
@@ -1746,7 +1814,7 @@
 
   action:
     - delay: '00:00:04'
-    - service: media_player.play_media
+    - action: media_player.play_media
       target:
         entity_id: 
           - media_player.sonos_living_room
@@ -1760,7 +1828,7 @@
         extra:
           volume: 50
     - delay: '00:00:30'
-    - service: homeassistant.turn_off
+    - action: homeassistant.turn_off
       entity_id: input_boolean.USER2_greeting
 
         ##########################################################
@@ -1804,7 +1872,7 @@
 
   action:
     - delay: '00:00:10'
-    - service: media_player.play_media
+    - action: media_player.play_media
       target:
         entity_id: 
           - media_player.sonos_USER1s_office
@@ -1850,7 +1918,7 @@
       before: '19:00:00'
 
   action:
-    - service: media_player.play_media
+    - action: media_player.play_media
       target:
         entity_id: 
           - media_player.sonos_living_room

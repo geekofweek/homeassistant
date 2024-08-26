@@ -28,9 +28,10 @@
         state: 'winter'
 
   action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.bug_zapper
+    - action: switch.turn_on
+      target:
+        entity_id:
+          - switch.bug_zapper
 
         ##########################################################
         ## Turn Off Bug Zapper at Sunrise
@@ -50,9 +51,10 @@
       state: 'on'
 
   action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.bug_zapper
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.bug_zapper
 
         ##########################################################
         ## Turn Off Bug Zapper in the Rain
@@ -83,9 +85,10 @@
       state: 'on'
 
   action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.bug_zapper
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.bug_zapper
 
         ##########################################################
         ## Turn On Bug Zapper After Rain Stops
@@ -116,9 +119,10 @@
         state: 'winter'
 
   action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.bug_zapper
+    - action: switch.turn_on
+      target:
+        entity_id:
+          - switch.bug_zapper
 
         ##########################################################
         ## Turn On Bug Zapper when Returning Home
@@ -161,9 +165,10 @@
         state: 'winter'
 
   action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.bug_zapper
+    - action: switch.turn_on
+      target:
+        entity_id:
+          - switch.bug_zapper
 
         ##########################################################
         ## Turn On Bug Zapper when Returning Home before Sunset
@@ -206,6 +211,7 @@
         state: 'winter'
 
   action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.bug_zapper
+    - action: switch.turn_on
+      target:
+        entity_id:
+          - switch.bug_zapper

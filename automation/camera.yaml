@@ -26,9 +26,10 @@
       state: 'off'
 
   action:
-    - service: homeassistant.turn_on
-      entity_id:
-        - input_boolean.view_package_camera
+    - action: homeassistant.turn_on
+      target:
+        entity_id:
+          - input_boolean.view_package_camera
 
         ##########################################################
         ## Package Camera Off
@@ -58,10 +59,11 @@
         state: 'on'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.view_package_camera
-        - input_boolean.package_camera_notification
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.view_package_camera
+          - input_boolean.package_camera_notification
 
         ##########################################################
         ## Package Camera Off at Midnight
@@ -85,10 +87,11 @@
         state: 'on'
 
   action:
-    - service: homeassistant.turn_off
-      entity_id:
-        - input_boolean.view_package_camera
-        - input_boolean.package_camera_notification
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.view_package_camera
+          - input_boolean.package_camera_notification
 
         ##########################################################
         ## Turn On Front Porch Lights when Doorbell Rings
@@ -112,9 +115,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.front_porch
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.front_porch
       data:
         brightness_pct: 100
 
@@ -144,9 +148,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.front_porch
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.front_porch
       data:
         brightness_pct: 50
         transition: 900
@@ -181,9 +186,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.front_porch
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.front_porch
       data:
         brightness_pct: 100
 
@@ -236,9 +242,10 @@
         seconds: 0
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.front_porch
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.front_porch
       data:
         brightness_pct: 50
         transition: 900
@@ -270,25 +277,29 @@
         state: 'home'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_lamps
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.living_room_lamps
       data:
         brightness_pct: 100
         color_temp: 370
-    - service: light.turn_on
-      entity_id:
-        - light.kitchen_sink
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.kitchen_sink
       data:
         brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.back_door
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.back_door
       data:
         brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.garage_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.garage_light
       data:
         brightness_pct: 100
 
@@ -323,22 +334,26 @@
         state: 'home'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.living_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_lights
       data:
         transition: 900
-    - service: light.turn_off
-      entity_id:
-        - light.kitchen_sink
-    - service: light.turn_on
-      entity_id:
-        - light.back_door
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.kitchen_sink
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.back_door
       data:
         brightness_pct: 1
-    - service: light.turn_on
-      entity_id:
-        - light.garage_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.garage_light
       data:
         brightness_pct: 1
 
@@ -377,25 +392,29 @@
         state: 'home'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_lamps
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.living_room_lamps
       data:
         brightness_pct: 100
         color_temp: 370
-    - service: light.turn_on
-      entity_id:
-        - light.kitchen_sink
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.kitchen_sink
       data:
         brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.back_door
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.back_door
       data:
         brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.garage_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.garage_light
       data:
         brightness_pct: 100
 
@@ -446,22 +465,26 @@
         state: 'home'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.living_room_lights
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_lights
       data:
         transition: 900
-    - service: light.turn_off
-      entity_id:
-        - light.kitchen_sink
-    - service: light.turn_on
-      entity_id:
-        - light.back_door
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.kitchen_sink
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.back_door
       data:
         brightness_pct: 1
-    - service: light.turn_on
-      entity_id:
-        - light.garage_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.garage_light
       data:
         brightness_pct: 1
 
@@ -514,24 +537,28 @@
         state: 'home'
 
   action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.backyard_patio_lighting
-        - switch.lower_backyard_lighting
-    - service: light.turn_on
-      entity_id:
-        - light.backyard_patio
+    - action: switch.turn_on
+      target:
+        entity_id:
+          - switch.backyard_patio_lighting
+          - switch.lower_backyard_lighting
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.backyard_patio
       data:
         brightness_pct: 100
         color_temp: 370
-    - service: light.turn_on
-      entity_id:
-        - light.backyard_deck
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.backyard_deck
       data:
         brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.back_door
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.back_door
       data:
         brightness_pct: 100
 
@@ -598,19 +625,23 @@
         state: 'home'
 
   action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.backyard_patio_lighting
-        - switch.lower_backyard_lighting
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_patio
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_deck
-    - service: light.turn_on
-      entity_id:
-        - light.back_door
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.backyard_patio_lighting
+          - switch.lower_backyard_lighting
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_patio
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_deck
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.back_door
       data:
         brightness_pct: 2
 
@@ -678,19 +709,23 @@
         state: 'home'
 
   action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.backyard_patio_lighting
-        - switch.lower_backyard_lighting
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_patio
-    - service: light.turn_off
-      entity_id:
-        - light.backyard_deck
-    - service: light.turn_off
-      entity_id:
-        - light.back_door
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.backyard_patio_lighting
+          - switch.lower_backyard_lighting
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_patio
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.backyard_deck
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.back_door
 
         ##########################################################
         ## Household Away Turn Off Camera Privacy Mode
@@ -715,16 +750,18 @@
       state: 'off'
 
   action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.secondary_switch_basement_camera_poe
+    - action: switch.turn_on
+      target:
+        entity_id:
+          - switch.secondary_switch_basement_camera_poe
     - delay: '00:02:00'
-    - service: switch.turn_off
-      entity_id:
-        - switch.basement_camera_privacy_mode
-        - switch.living_room_camera_privacy_mode
-        - switch.kitchen_camera_privacy_mode
-        - switch.USER1_office_camera_privacy_mode
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.basement_camera_privacy_mode
+          - switch.living_room_camera_privacy_mode
+          - switch.kitchen_camera_privacy_mode
+          - switch.USER1_office_camera_privacy_mode
 
         ##########################################################
         ## Household Away Turn On Camera Privacy Mode
@@ -749,16 +786,18 @@
       state: 'off'
 
   action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.basement_camera_privacy_mode
-        - switch.living_room_camera_privacy_mode
-        - switch.kitchen_camera_privacy_mode
-        - switch.USER1_office_camera_privacy_mode
+    - action: switch.turn_on
+      target:
+        entity_id:
+          - switch.basement_camera_privacy_mode
+          - switch.living_room_camera_privacy_mode
+          - switch.kitchen_camera_privacy_mode
+          - switch.USER1_office_camera_privacy_mode
     - delay: '00:05:00'
-    - service: switch.turn_off
-      entity_id:
-        - switch.secondary_switch_basement_camera_poe
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.secondary_switch_basement_camera_poe
 
         ##########################################################
         ## Turn on Front Yard Camera Infrared after Sunset
@@ -781,7 +820,7 @@
       state: "Auto"
 
   action:
-    - service: select.select_option
+    - action: select.select_option
       data:
         entity_id: select.front_yard_camera_infrared_mode
         option: "Always Enable"
@@ -803,7 +842,7 @@
       state: "Always Enable"
 
   action:
-    - service: select.select_option
+    - action: select.select_option
       data:
         entity_id: select.front_yard_camera_infrared_mode
         option: "Auto"
@@ -829,7 +868,7 @@
       state: "Auto"
 
   action:
-    - service: select.select_option
+    - action: select.select_option
       data:
         entity_id: select.front_porch_camera_infrared_mode
         option: "Always Enable"
@@ -851,7 +890,7 @@
       state: "Always Enable"
 
   action:
-    - service: select.select_option
+    - action: select.select_option
       data:
         entity_id: select.front_porch_camera_infrared_mode
         option: "Auto"
@@ -883,7 +922,7 @@
         state: 'home'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Person Detected at Front Door!
         data:
@@ -914,7 +953,7 @@
         state: 'home'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Person Detected on Front Porch!
         data:
@@ -945,7 +984,7 @@
         state: 'home'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Person Detected in Front Yard!
         data:
@@ -976,7 +1015,7 @@
         state: 'home'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Person Detected in Backyard!
         data:
@@ -1007,7 +1046,7 @@
         state: 'home'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Person Detected at Backyard Gate!
         data:
@@ -1038,7 +1077,7 @@
         state: 'home'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Person Detected in Side Yard!
         data:
@@ -1069,7 +1108,7 @@
         state: 'home'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Person Detected in Garage!
         data:
@@ -1096,7 +1135,7 @@
       state: 'off'
       
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Someone is at the Front Door
         data:
@@ -1127,7 +1166,7 @@
       state: 'off'
       
   action:
-    - service: notify.USER2_devices
+    - action: notify.USER2_devices
       data:
         message: Someone is at the Front Door
         data:
@@ -1161,14 +1200,14 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Package Detected on Front Porch
         data:
           tag: package
           group: package
           entity_id: camera.front_door
-    - service: notify.USER2_devices
+    - action: notify.USER2_devices
       data:
         message: Package Detected on Front Porch
         data:
@@ -1176,6 +1215,6 @@
           group: package
           entity_id: camera.front_door
     - delay: '00:00:30'
-    - service: homeassistant.turn_on
+    - action: homeassistant.turn_on
       entity_id:
         - input_boolean.package_camera_notification

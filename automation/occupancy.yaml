@@ -33,9 +33,10 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
-      entity_id: 
-       - light.bedroom_lights
+    - action: light.turn_off
+      target:
+        entity_id: 
+          - light.bedroom_lights
 
         ##########################################################
         ## Turn Off Guest Bedroom when Unoccupied
@@ -71,5 +72,5 @@
         state: 'returning'
 
   action:
-    - service: light.turn_off
+    - action: light.turn_off
       entity_id: light.guest_bedroom_lights

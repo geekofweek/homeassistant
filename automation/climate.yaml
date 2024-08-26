@@ -31,10 +31,10 @@
       state: 'home'
 
   action:
-    - service: ecobee.resume_program
+    - action: ecobee.resume_program
       data:
         entity_id: climate.main_floor
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Ecobee eco+ Detected - Disabling
         data:
@@ -69,10 +69,10 @@
       state: 'home'
 
   action:
-    - service: homeassistant.turn_off
+    - action: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
     - delay: '00:00:30'
-    - service: ecobee.set_fan_min_on_time
+    - action: ecobee.set_fan_min_on_time
       data:
         entity_id: climate.main_floor
         fan_min_on_time: '15'
@@ -117,16 +117,16 @@
       above: 20
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: House has been empty for an hour, shutting Off HVAC
         data:
           tag: climate
           group: climate
-    - service: homeassistant.turn_on
+    - action: homeassistant.turn_on
       entity_id: input_boolean.thermostat_away
     - delay: '00:00:30'
-    - service: ecobee.set_fan_min_on_time
+    - action: ecobee.set_fan_min_on_time
       data:
         entity_id: climate.main_floor
         fan_min_on_time: '0'
@@ -157,7 +157,7 @@
       state: 'off'
 
   action:
-    - service: humidifier.set_mode
+    - action: humidifier.set_mode
       data:
         mode: "off"
       target:
@@ -189,7 +189,7 @@
       state: 'off'
 
   action:
-    - service: humidifier.set_mode
+    - action: humidifier.set_mode
       data:
         mode: "auto"
       target:
@@ -209,7 +209,7 @@
       to: 'off'
 
   action:
-    - service: ecobee.resume_program
+    - action: ecobee.resume_program
       data:
         entity_id: climate.main_floor
         resume_all: true
@@ -228,7 +228,7 @@
       to: 'on'
 
   action:
-    - service: climate.set_preset_mode
+    - action: climate.set_preset_mode
       data:
         entity_id: climate.main_floor
         preset_mode: 'away_indefinitely'
@@ -264,9 +264,9 @@
       state: 'summer'
 
   action:
-    - service: homeassistant.turn_off
+    - action: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Outside temp above 68 turning On AC
         data:
@@ -283,7 +283,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.REDACTED_temperature
-      below: 68
+      below: 66
       for:
         hours: 0
         minutes: 30
@@ -307,9 +307,9 @@
       state: 'off'
 
   action:
-    - service: homeassistant.turn_on
+    - action: homeassistant.turn_on
       entity_id: input_boolean.thermostat_away
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Outside temp below 68 shutting Off AC
         data:
@@ -347,9 +347,9 @@
       state: 'winter'
 
   action:
-    - service: homeassistant.turn_off
+    - action: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Outside temp below 65 turning On Heat
         data:
@@ -390,9 +390,9 @@
       state: 'off'
 
   action:
-    - service: homeassistant.turn_on
+    - action: homeassistant.turn_on
       entity_id: input_boolean.thermostat_away
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Outside temp above 65 turning Off Heat
         data:
@@ -445,9 +445,9 @@
       state: 'off'
 
   action:
-    - service: homeassistant.turn_off
+    - action: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Outside temp below 65 or above 78 turning On HVAC
         data:
@@ -491,9 +491,9 @@
         state: 'autumn'
 
   action:
-    - service: homeassistant.turn_on
+    - action: homeassistant.turn_on
       entity_id: input_boolean.thermostat_away
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Outside temp above 65 or below 78 turning Off HVAC
         data:
@@ -513,7 +513,7 @@
       to: 'winter'
 
   action:
-    - service: climate.set_hvac_mode
+    - action: climate.set_hvac_mode
       data:
         entity_id: climate.main_floor
         hvac_mode: heat
@@ -531,7 +531,7 @@
       to: 'spring'
 
   action:
-    - service: climate.set_hvac_mode
+    - action: climate.set_hvac_mode
       data:
         entity_id: climate.main_floor
         hvac_mode: 'heat_cool'
@@ -549,7 +549,7 @@
       to: 'summer'
 
   action:
-    - service: climate.set_hvac_mode
+    - action: climate.set_hvac_mode
       data:
         entity_id: climate.main_floor
         hvac_mode: cool
@@ -567,7 +567,7 @@
       to: 'autumn'
 
   action:
-    - service: climate.set_hvac_mode
+    - action: climate.set_hvac_mode
       data:
         entity_id: climate.main_floor
         hvac_mode: 'heat_cool'
@@ -599,7 +599,7 @@
         state: 'home'
 
   action:
-    - service: homeassistant.turn_off
+    - action: homeassistant.turn_off
       entity_id: input_boolean.thermostat_away
 
         ##########################################################
@@ -633,9 +633,9 @@
         state: 'winter'
 
   action:
-    - service: homeassistant.turn_on
+    - action: homeassistant.turn_on
       entity_id: input_boolean.thermostat_away
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Door has been left open, shutting Off AC
         data:
@@ -674,7 +674,7 @@
       state: 'off'
 
   action:
-    - service: climate.set_preset_mode
+    - action: climate.set_preset_mode
       data:
         entity_id: climate.main_floor
         preset_mode: 'Guest'
@@ -706,7 +706,7 @@
       state: 'off'
 
   action:
-    - service: climate.set_preset_mode
+    - action: climate.set_preset_mode
       data:
         entity_id: climate.main_floor
         preset_mode: 'Guest'
@@ -746,7 +746,7 @@
         - fri
 
   action:
-    - service: ecobee.resume_program
+    - action: ecobee.resume_program
       data:
         entity_id: climate.main_floor
         resume_all: true
@@ -800,7 +800,7 @@
         state: 'off'
 
   action:
-    - service: climate.set_preset_mode
+    - action: climate.set_preset_mode
       data:
         entity_id: climate.main_floor
         preset_mode: 'Upstairs'
@@ -860,7 +860,7 @@
         state: 'off'
 
   action:
-    - service: climate.set_preset_mode
+    - action: climate.set_preset_mode
       data:
         entity_id: climate.main_floor
         preset_mode: 'Upstairs'
@@ -894,7 +894,7 @@
       state: 'off'
 
   action:
-    - service: ecobee.resume_program
+    - action: ecobee.resume_program
       data:
         entity_id: climate.main_floor
         resume_all: true
@@ -935,7 +935,7 @@
       state: 'off'
 
   action:
-    - service: climate.set_preset_mode
+    - action: climate.set_preset_mode
       data:
         entity_id: climate.main_floor
         preset_mode: 'Fireplace'
@@ -972,7 +972,7 @@
       state: 'off'
 
   action:
-    - service: ecobee.resume_program
+    - action: ecobee.resume_program
       data:
         entity_id: climate.main_floor
         resume_all: true
@@ -1001,7 +1001,7 @@
         state: 'home'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Fireplace Turned On!
         data:
@@ -1040,7 +1040,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Fireplace has been On for 4 Hours
         data:
@@ -1073,9 +1073,10 @@
       state: 'off'
 
   action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.fireplace
+    - action: switch.turn_on
+      target:
+        entity_id:
+          - switch.fireplace
     - delay:
         seconds: 30
 
@@ -1100,9 +1101,10 @@
       state: 'on'
 
   action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.fireplace
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.fireplace
     - delay:
         seconds: 30
 
@@ -1127,9 +1129,10 @@
       state: 'off'
 
   action:
-    - service: switch.turn_on
-      entity_id:
-        - switch.fireplace
+    - action: switch.turn_on
+      target:
+        entity_id:
+          - switch.fireplace
     - delay:
         seconds: 30
 
@@ -1154,9 +1157,10 @@
       state: 'on'
 
   action:
-    - service: switch.turn_off
-      entity_id:
-        - switch.fireplace
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.fireplace
     - delay:
         seconds: 30
 
@@ -1199,23 +1203,24 @@
         state: 'home'
 
   action:
-    - service: fan.turn_on
-      entity_id:
-        - fan.USER1s_office_fan
+    - action: fan.turn_on
+      target:
+        entity_id:
+          - fan.USER1s_office_fan
     - delay: '00:00:01'
-    - service: fan.set_preset_mode
+    - action: fan.set_preset_mode
       target:
         entity_id: fan.USER1s_office_fan
       data:
         preset_mode: Auto
     - delay: '00:00:01'
-    - service: climate.set_temperature
+    - action: climate.set_temperature
       data:
         entity_id: climate.office_fan
         temperature: 74
         hvac_mode: heat
     - delay: '00:00:01'
-    - service: fan.oscillate
+    - action: fan.oscillate
       data:
         entity_id: fan.USER1s_office_fan
         oscillating: 'true'
@@ -1250,22 +1255,24 @@
       state: 'on'
 
   action:
-    - service: fan.turn_on
-      entity_id:
-        - fan.USER1s_office_fan
-    - delay: '00:00:01'
-    - service: fan.set_preset_mode
+    - action: fan.turn_on
       target:
-        entity_id: fan.USER1s_office_fan
+        entity_id:
+          - fan.USER1s_office_fan
+    - delay: '00:00:01'
+    - action: fan.set_preset_mode
+      target:
+        entity_id:
+          - fan.USER1s_office_fan
       data:
         preset_mode: Auto
     - delay: '00:00:01'
-    - service: climate.set_hvac_mode
+    - action: climate.set_hvac_mode
       data:
         entity_id: climate.office_fan
         hvac_mode: cool
     - delay: '00:00:01'
-    - service: fan.oscillate
+    - action: fan.oscillate
       data:
         entity_id: fan.USER1s_office_fan
         oscillating: 'true'
@@ -1305,7 +1312,7 @@
         state: 'winter'
 
   action:
-    - service: climate.set_preset_mode
+    - action: climate.set_preset_mode
       data:
         entity_id: climate.main_floor
         preset_mode: 'Downstairs'
@@ -1358,7 +1365,7 @@
         state: 'off'
 
   action:
-    - service: climate.set_preset_mode
+    - action: climate.set_preset_mode
       data:
         entity_id: climate.main_floor
         preset_mode: 'Downstairs'
@@ -1388,10 +1395,10 @@
 #        state: 'off'
 
   action:
-    - service: climate.turn_off
+    - action: climate.turn_off
       entity_id: climate.portable_air_conditioner
     - delay: '00:05:00'
-    - service: switch.turn_off
+    - action: switch.turn_off
       entity_id: switch.portable_ac
 
         ##########################################################
@@ -1413,16 +1420,16 @@
       state: 'on'
 
   action:
-    - service: climate.turn_off
+    - action: climate.turn_off
       entity_id: climate.portable_air_conditioner
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Empty Portable AC Water Bin
         data:
           tag: climate
           group: climate
     - delay: '00:05:00'
-    - service: switch.turn_off
+    - action: switch.turn_off
       entity_id: switch.portable_ac
 
         ##########################################################
@@ -1438,7 +1445,7 @@
       to: 'on'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Empty Portable AC Water Bin
         data:

@@ -24,9 +24,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.front_porch
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.front_porch
       data:
         brightness_pct: 100
 
@@ -62,9 +63,10 @@
       state: 'None'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.front_porch
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.front_porch
       data:
         brightness_pct: 50
         transition: 120
@@ -101,9 +103,10 @@
       state: 'None'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.front_porch
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.front_porch
       data:
         transition: 900
 
@@ -132,9 +135,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.living_room_accent_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.living_room_accent_lights
 
         ##########################################################
         ## Turn On Back Door Lights when Back Door Opens
@@ -158,9 +162,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.back_door
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.back_door
       data:
        brightness_pct: 100
 
@@ -190,9 +195,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.back_door
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.back_door
       data:
         brightness_pct: 2
         transition: 300
@@ -229,9 +235,10 @@
       state: 'off'
 
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.back_door
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.back_door
       data:
         transition: 900
 
@@ -263,27 +270,32 @@
       state: 'home'
 
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.basement_lights
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_lights
       data:
         brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.basement_stairs
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_stairs
       data:
         brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.laundry_room_light
-    - service: light.turn_on
-      entity_id:
-        - light.basement_lamp
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.laundry_room_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_lamp
       data:
         brightness_pct: 100
-    - service: light.turn_on
-      entity_id:
-        - light.work_bench_light
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.work_bench_light
       data:
        brightness_pct: 2
 
@@ -317,7 +329,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: "{{ trigger.to_state.attributes.friendly_name }} Low"
         data:

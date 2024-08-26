@@ -35,7 +35,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Washing Machine Finished
         data:
@@ -71,7 +71,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Dryer Finished
         data:
@@ -107,7 +107,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER2_devices
+    - action: notify.USER2_devices
       data:
         message: Washing Machine Finished
         data:
@@ -143,7 +143,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER2_devices
+    - action: notify.USER2_devices
       data:
         message: Dryer Finished
         data:
@@ -179,7 +179,7 @@
       before: '20:00:00'
 
   action:
-    - service: media_player.play_media
+    - action: media_player.play_media
       target:
         entity_id: 
           - media_player.sonos_living_room
@@ -227,7 +227,7 @@
       before: '20:00:00'
 
   action:
-    - service: media_player.play_media
+    - action: media_player.play_media
       target:
         entity_id: 
           - media_player.sonos_living_room
@@ -267,7 +267,7 @@
       state: 'off'
 
   action:
-    - service: notify.USER1_devices
+    - action: notify.USER1_devices
       data:
         message: Time to Run a Tub Clean Cycler on the Washer
         data:
