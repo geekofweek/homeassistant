@@ -1,5 +1,5 @@
 #################################################################
-## iOS Actions
+## iOS Action Automations
 #################################################################
 
         #################################################################
@@ -71,6 +71,249 @@
   action:
     - action: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarm
+
+        #################################################################
+        ## Toggle Garage Door
+        #################################################################
+
+- alias: iOS Action - Toggle Garage Door
+  id: 'ios_action_automation_toogle_garage_door'
+
+  trigger:
+    - platform: event
+      event_type: ios.action_fired
+      event_data:
+        actionName: 'Toggle Garage Door'
+
+  action:
+    - action: cover.toggle
+      target:
+        entity_id: cover.garage_door
+      data: {}
+
+        #################################################################
+        ## Toggle Fireplace
+        #################################################################
+
+- alias: iOS Action - Toggle Fireplace
+  id: 'ios_action_automation_toogle_fireplace'
+
+  trigger:
+    - platform: event
+      event_type: ios.action_fired
+      event_data:
+        actionName: 'Toggle Fireplace'
+
+  action:
+    - action: switch.toggle
+      target:
+        entity_id: switch.fireplace
+      data: {}
+
+        #################################################################
+        ## Unlock Front Door
+        #################################################################
+
+- alias: iOS Action - Unlock Front Door
+  id: 'ios_action_automation_unlock_front_door'
+
+  trigger:
+    - platform: event
+      event_type: ios.action_fired
+      event_data:
+        actionName: 'Unlock Front Door'
+
+  action:
+    - action: lock.unlock
+      target:
+        entity_id: lock.front_door
+      data: {}
+
+        #################################################################
+        ## Unlock Back Door
+        #################################################################
+
+- alias: iOS Action - Unlock Back Door
+  id: 'ios_action_automation_unlock_back_door'
+
+  trigger:
+    - platform: event
+      event_type: ios.action_fired
+      event_data:
+        actionName: 'Unlock Back Door'
+
+  action:
+    - action: lock.unlock
+      target:
+        entity_id: lock.back_door
+      data: {}
+
+        #################################################################
+        ## Unlock Basement Door
+        #################################################################
+
+- alias: iOS Action - Unlock Basement Door
+  id: 'ios_action_automation_unlock_basement_door'
+
+  trigger:
+    - platform: event
+      event_type: ios.action_fired
+      event_data:
+        actionName: 'Unlock Basement Door'
+
+  action:
+    - action: lock.unlock
+      target:
+        entity_id: lock.basement_door
+      data: {}
+
+        #################################################################
+        ## Lock Doors
+        #################################################################
+
+- alias: iOS Action - Lock Doors
+  id: 'ios_action_automation_lock_doors'
+
+  trigger:
+    - platform: event
+      event_type: ios.action_fired
+      event_data:
+        actionName: 'Lock Doors'
+
+  action:
+    - action: lock.lock
+      target:
+        entity_id: 
+          - lock.front_door
+          - lock.back_door
+          - lock.basement_door
+      data: {}
+
+        #################################################################
+        ## Toggle Living Room Fans
+        #################################################################
+
+- alias: iOS Action - Toggle Living Room Fans
+  id: 'ios_action_automation_toggle_living_room_fans'
+
+  trigger:
+    - platform: event
+      event_type: ios.action_fired
+      event_data:
+        actionName: 'Toggle Living Room Fans'
+
+  action:
+    - action: fan.toggle
+      target:
+        entity_id: fan.living_room_fans
+      data: {}
+
+        #################################################################
+        ## Living Room Fans Increase Speed
+        #################################################################
+
+- alias: iOS Action - Living Room Fans Increase Speed
+  id: 'ios_action_automation_living_room_fans_increase_speed'
+
+  trigger:
+    - platform: event
+      event_type: ios.action_fired
+      event_data:
+        actionName: 'Living Room Fans Increase Speed'
+
+  action:
+    - action: fan.increase_speed
+      target:
+        entity_id: fan.living_room_fans
+      data: {}
+
+        #################################################################
+        ## Living Room Fans Decrease Speed
+        #################################################################
+
+- alias: iOS Action - Living Room Fans Decrease Speed
+  id: 'ios_action_automation_living_room_fans_decrease_speed'
+
+  trigger:
+    - platform: event
+      event_type: ios.action_fired
+      event_data:
+        actionName: 'Living Room Fans Decrease Speed'
+
+  action:
+    - action: fan.decrease_speed
+      target:
+        entity_id: fan.living_room_fans
+      data: {}
+
+        #################################################################
+        ## Party Mode
+        #################################################################
+
+- alias: iOS Action - Party Mode
+  id: 'ios_action_automation_party_mode'
+
+  trigger:
+    - platform: event
+      event_type: ios.action_fired
+      event_data:
+        actionName: 'Party Mode'
+
+  condition:
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.season
+        state: 'winter'
+
+  action:
+    - action: homeassistant.toggle
+      target:
+        entity_id: 
+          - input_boolean.livingroom_rainbow
+          - input_boolean.bedroom_rainbow
+          - input_boolean.pop_music
+      data: {}
+    - action: select.select_option
+      data:
+        entity_id: select.living_room_tv_activities
+        option: "Watch TV"
+
+        #################################################################
+        ## Party Mode Winter
+        #################################################################
+
+- alias: iOS Action - Party Mode Winter
+  id: 'ios_action_automation_party_mode_winter'
+
+  trigger:
+    - platform: event
+      event_type: ios.action_fired
+      event_data:
+        actionName: 'Party Mode'
+
+  condition:
+    - condition: state
+      entity_id: sensor.season
+      state: 'winter'
+
+  action:
+    - action: homeassistant.toggle
+      target:
+        entity_id: 
+          - input_boolean.livingroom_rainbow
+          - input_boolean.bedroom_rainbow
+          - input_boolean.pop_music
+      data: {}
+    - action: switch.toggle
+      target:
+        entity_id: 
+          - switch.fireplace
+      data: {}
+    - action: select.select_option
+      data:
+        entity_id: select.living_room_tv_activities
+        option: "Watch TV"
 
 #################################################################
 ## iOS Actionable Notifications

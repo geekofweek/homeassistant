@@ -27,6 +27,9 @@
       entity_id: input_boolean.thermostat_away
       state: 'off'
     - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+    - condition: state
       entity_id: group.household
       state: 'home'
 
@@ -283,7 +286,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.REDACTED_temperature
-      below: 66
+      below: 65
       for:
         hours: 0
         minutes: 30
@@ -311,7 +314,7 @@
       entity_id: input_boolean.thermostat_away
     - action: notify.USER1_devices
       data:
-        message: Outside temp below 68 shutting Off AC
+        message: Outside temp below 65 shutting Off AC
         data:
           tag: climate
           group: climate

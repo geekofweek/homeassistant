@@ -1730,7 +1730,7 @@
           media-source://tts/cloud?message="Welcome home, USER1."
         media_content_type: "music"
         extra:
-          volume: 50
+          volume: 45
     - delay: '00:00:30'
     - action: homeassistant.turn_off
       entity_id: input_boolean.USER1_greeting
@@ -1783,7 +1783,7 @@
           media-source://tts/cloud?message="USER1, is Home."
         media_content_type: "music"
         extra:
-          volume: 50
+          volume: 45
 
         ##########################################################
         ## Welcome Home USER2 Audio Greeting
@@ -1826,7 +1826,7 @@
           media-source://tts/cloud?message="Welcome home, USER2."
         media_content_type: "music"
         extra:
-          volume: 50
+          volume: 45
     - delay: '00:00:30'
     - action: homeassistant.turn_off
       entity_id: input_boolean.USER2_greeting
@@ -1882,7 +1882,7 @@
           media-source://tts/cloud?message="USER2, is Home."
         media_content_type: "music"
         extra:
-          volume: 50
+          volume: 45
 
         #################################################################
         ## USER2 Left Work Audio Notification
@@ -1933,4 +1933,4 @@
           media-source://tts/cloud?message="USER2 has left work, and will arrive Home in about, {{states('sensor.USER2_to_home')}} minutes"
         media_content_type: "music"
         extra:
-          volume: 50
+          volume: 45

@@ -45,14 +45,16 @@
 
   action:
     - action: light.turn_on
-      entity_id:
-        - light.smart_bulbs
+      target:
+        entity_id:
+          - light.smart_bulbs
       data:
        brightness_pct: 100
        color_name: "blue"
     - action: light.turn_on
-      entity_id:
-        - light.smart_bulbs
+      target:
+        entity_id:
+          - light.smart_bulbs
       data:
        flash: long
 
@@ -128,8 +130,9 @@
 
   action:
     - action: valve.close_valve
-      entity_id:
-        - valve.water_main
+      target:
+        entity_id:
+          - valve.water_main
 
         ##########################################################
         ## Turn On Water Main When Vacation Mode Off
@@ -157,8 +160,9 @@
 
   action:
     - action: valve.open_valve
-      entity_id:
-        - valve.water_main
+      target:
+        entity_id:
+          - valve.water_main
 
 #################################################################
 ## Notifications
@@ -745,7 +749,7 @@
   mode: parallel
   trigger:
     - platform: numeric_state
-      entity_id: 
+      entity_id:
         - sensor.basement_drain_water_sensor_batt
         - sensor.sump_pump_water_sensor_batt
         - sensor.kitchen_sink_water_sensor_batt

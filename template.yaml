@@ -20,7 +20,7 @@
           on
         {% elif is_state('climate.main_floor', 'cool') and state_attr('climate.main_floor', 'preset_mode') =='away_indefinitely' and state_attr('climate.main_floor', 'temperature')| int != 79 %}
           on
-        {% elif is_state('climate.main_floor', 'cool') and state_attr('climate.main_floor', 'preset_mode') =='sleep' and state_attr('climate.main_floor', 'temperature')| int != 71 %}
+        {% elif is_state('climate.main_floor', 'cool') and state_attr('climate.main_floor', 'preset_mode') =='sleep' and state_attr('climate.main_floor', 'temperature')| int != 72 %}
           on
         {% else %}
           off

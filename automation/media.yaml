@@ -823,7 +823,6 @@
       data:
         group_members:
           - media_player.sonos_living_room
-          - media_player.sonos_surround_sound
           - media_player.sonos_dining_room
           - media_player.sonos_kitchen
           - media_player.sonos_bathroom
@@ -835,7 +834,6 @@
       target:
         entity_id:
           - media_player.sonos_living_room
-          - media_player.sonos_surround_sound
           - media_player.sonos_dining_room
           - media_player.sonos_kitchen
           - media_player.sonos_bathroom
@@ -1469,7 +1467,7 @@
       state: 'on'
 
   action:
-    - action: input_select.select_option
+    - action: select.select_option
       data:
-        entity_id: input_select.sonos
+        entity_id: select.living_room_tv_activities
         option: "Play Xbox"
