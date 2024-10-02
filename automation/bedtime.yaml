@@ -9,8 +9,8 @@
 - alias: Bedtime - Locks
   id: 'bedtime_locks'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.bedtime
       to: 'on'
       for:
@@ -18,12 +18,12 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: lock.lock
       target:
         entity_id:
@@ -38,8 +38,8 @@
 - alias: Bedtime - Media
   id: 'bedtime_media'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.bedtime
       to: 'on'
       for:
@@ -47,12 +47,12 @@
         minutes: 1
         seconds: 30
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: select.select_option
       data:
         entity_id: select.living_room_tv_activities
@@ -90,8 +90,8 @@
 - alias: Bedtime - Blinds
   id: 'bedtime_blinds'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.bedtime
       to: 'on'
       for:
@@ -99,7 +99,7 @@
         minutes: 2
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -118,7 +118,7 @@
         entity_id: cover.stairs_blinds
         state: 'open'
 
-  action:
+  actions:
     - action: cover.close_cover
       target:
         entity_id:
@@ -139,8 +139,8 @@
 - alias: Bedtime - Helpers
   id: 'bedtime_helpers'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.bedtime
       to: 'on'
       for:
@@ -148,12 +148,12 @@
         minutes: 3
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -178,8 +178,8 @@
 - alias: Bedtime - Fans
   id: 'bedtime_fans'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.bedtime
       to: 'on'
       for:
@@ -187,12 +187,12 @@
         minutes: 3
         seconds: 30
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: fan.turn_off
       target:
         entity_id:
@@ -207,8 +207,8 @@
 - alias: Bedtime - Switches
   id: 'bedtime_switches'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.bedtime
       to: 'on'
       for:
@@ -216,12 +216,12 @@
         minutes: 4
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -239,8 +239,8 @@
 - alias: Bedtime - Lights
   id: 'bedtime_lights'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.bedtime
       to: 'on'
       for:
@@ -248,7 +248,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -259,7 +259,7 @@
       entity_id: input_boolean.overnight_guest_mode
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -301,8 +301,8 @@
 - alias: Bedtime - Guest Mode
   id: 'bedtime_guest_mode'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.bedtime
       to: 'on'
       for:
@@ -310,7 +310,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -318,7 +318,7 @@
       entity_id: input_boolean.overnight_guest_mode
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -416,8 +416,8 @@
 - alias: Bedtime - Thermostat
   id: 'bedtime_thermostat'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.bedtime
       to: 'on'
       for:
@@ -425,7 +425,7 @@
         minutes: 4
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.overnight_guest_mode
       state: 'off'
@@ -436,7 +436,7 @@
       after: '17:00:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: climate.set_preset_mode
       data:
         entity_id: climate.main_floor
@@ -449,8 +449,8 @@
 - alias: Bedtime - Exterior Lights
   id: 'bedtime_exterior_lights'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.bedtime
       to: 'on'
       for:
@@ -458,7 +458,7 @@
         minutes: 4
         seconds: 30
 
-  condition:
+  conditions:
     - condition: time
       after: '00:00:00'
       before: '06:00:00'
@@ -466,7 +466,7 @@
       entity_id: input_select.holiday
       state: 'None'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -531,8 +531,8 @@
 - alias: Bedtime - Bedtime Exterior Lights Holiday
   id: 'bedtime_exterior_lights_holiday'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.bedtime
       to: 'on'
       for:
@@ -540,7 +540,7 @@
         minutes: 4
         seconds: 30
 
-  condition:
+  conditions:
     - condition: time
       after: '00:00:00'
       before: '07:30:00'
@@ -550,7 +550,7 @@
           entity_id: input_select.holiday
           state: 'None'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -605,8 +605,8 @@
 - alias: Bedtime - Garage Door
   id: 'bedtime_garage_door'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.bedtime
       to: 'on'
       for:
@@ -614,7 +614,7 @@
         minutes: 5
         seconds: 30
 
-  condition:
+  conditions:
     - condition: state
       entity_id: cover.garage_door
       state: 'open'
@@ -622,7 +622,7 @@
       entity_id: input_boolean.garage_door_motor
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -640,8 +640,8 @@
 - alias: Bedtime USER1's Office Blinds
   id: 'bedtime_USER1_office_blinds'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.bedtime
       to: 'on'
       for:
@@ -649,7 +649,7 @@
         minutes: 5
         seconds: 30
 
-  condition:
+  conditions:
     - condition: state
       entity_id: binary_sensor.USER1s_office_window_right
       state: 'off'
@@ -657,7 +657,7 @@
       entity_id: input_boolean.disable_blinds
       state: 'off'
 
-  action:
+  actions:
     - action: cover.close_cover
       target:
         entity_id:
@@ -670,8 +670,8 @@
 - alias: Bedtime USER1's Office Blinds Portable AC
   id: 'bedtime_USER1_office_blinds_portable_ac'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.bedtime
       to: 'on'
       for:
@@ -679,7 +679,7 @@
         minutes: 5
         seconds: 30
 
-  condition:
+  conditions:
     - condition: state
       entity_id: binary_sensor.USER1s_office_window_right
       state: 'on'
@@ -690,7 +690,7 @@
       entity_id: input_boolean.USER1_office_portable_ac
       state: 'on'
 
-  action:
+  actions:
     - action: cover.close_cover
       target:
         entity_id:  
@@ -709,8 +709,8 @@
 - alias: Bedtime USER2's Office Blinds
   id: 'bedtime_USER2_office_blinds'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.bedtime
       to: 'on'
       for:
@@ -718,7 +718,7 @@
         minutes: 4
         seconds: 30
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.USER2_office_portable_ac
       state: 'off'
@@ -726,7 +726,7 @@
       entity_id: input_boolean.disable_blinds
       state: 'off'
 
-  action:
+  actions:
     - action: cover.close_cover
       target:
         entity_id:
@@ -739,8 +739,8 @@
 - alias: Bedtime USER2's Office Blinds Portable AC
   id: 'bedtime_USER2_office_blinds_portable_ac'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.bedtime
       to: 'on'
       for:
@@ -748,7 +748,7 @@
         minutes: 4
         seconds: 30
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.USER2_office_portable_ac
       state: 'on'
@@ -756,7 +756,7 @@
       entity_id: input_boolean.disable_blinds
       state: 'off'
 
-  action:
+  actions:
     - action: cover.close_cover
       target:
         entity_id: 
@@ -774,8 +774,8 @@
 - alias: Bedtime - Reset Switch
   id: 'bedtime_reset_switch'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.bedtime
       from: 'off'
       to: 'on'
@@ -784,6 +784,6 @@
         minutes: 10
         seconds: 0
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       entity_id: input_boolean.bedtime

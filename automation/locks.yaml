@@ -9,8 +9,8 @@
 - alias: Locks - Lock Front Door After 30 Mins
   id: 'locks_lock_front_door_after_30_mins'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: lock.front_door
       from: 'locked'
       to: 'unlocked'
@@ -19,7 +19,7 @@
         minutes: 30
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_lock_unlock_doors
       state: 'off'
@@ -30,7 +30,7 @@
       entity_id: lock.front_door
       state: 'unlocked'
 
-  action:
+  actions:
     - action: lock.lock
       entity_id: lock.front_door
 
@@ -41,8 +41,8 @@
 - alias: Locks - Lock Back Door After 2 Hours
   id: 'locks_lock_back_door_after_2_hours'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: lock.back_door
       from: 'locked'
       to: 'unlocked'
@@ -51,7 +51,7 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_lock_unlock_doors
       state: 'off'
@@ -66,7 +66,7 @@
       entity_id: lock.back_door
       state: 'unlocked'
 
-  action:
+  actions:
     - action: lock.lock
       entity_id: lock.back_door
 
@@ -77,8 +77,8 @@
 - alias: Locks - Lock Basement Door After 45 Mins
   id: 'locks_lock_basement_door_after_45_mins'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: lock.basement_door
       from: 'locked'
       to: 'unlocked'
@@ -87,7 +87,7 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_lock_unlock_doors
       state: 'off'
@@ -102,7 +102,7 @@
       entity_id: lock.basement_door
       state: 'unlocked'
 
-  action:
+  actions:
     - action: lock.lock
       entity_id: lock.basement_door
 
@@ -113,11 +113,11 @@
 - alias: Locks - Lock Doors at 2a
   id: 'locks_lock_back_door_at_2a'
 
-  trigger:
-    - platform: time
+  triggers:
+    - trigger: time
       at: '02:00:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_lock_unlock_doors
       state: 'off'
@@ -125,7 +125,7 @@
       entity_id: binary_sensor.doors
       state: 'off'
 
-  action:
+  actions:
     - action: lock.lock
       target:
         entity_id:
@@ -145,8 +145,8 @@
   id: 'locks_low_battery_notification'
 
   mode: parallel
-  trigger:
-    - platform: numeric_state
+  triggers:
+    - trigger: numeric_state
       entity_id: 
           - sensor.front_door_lock_batt
           - sensor.back_door_lock_batt
@@ -157,12 +157,12 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: "{{ trigger.to_state.attributes.friendly_name }} Low"

@@ -9,12 +9,12 @@
 - alias: Vacation - Mode On
   id: 'vacation_mode_on'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.vacation_mode
       to: 'on'
 
-  condition:
+  conditions:
     - condition: not
       conditions:
       - condition: state
@@ -24,7 +24,7 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
 
-  action:
+  actions:
     - action: homeassistant.turn_on
       target:
         entity_id:
@@ -42,12 +42,12 @@
 - alias: Vacation - Mode Off
   id: 'vacation_mode_off'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.vacation_mode
       to: 'off'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -65,8 +65,8 @@
 - alias: Vacation - Turn On when Gone 24 Hours
   id: 'vacation_turn_on_when_gone_24_hours'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       to: 'not_home'
       for:
@@ -74,12 +74,12 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
 
-  action:
+  actions:
     - action: homeassistant.turn_on
       entity_id: input_boolean.vacation_mode
 
@@ -90,18 +90,18 @@
 - alias: Vacation - Turn off when Home
   id: 'vacation_turn_off_when_home'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       from: 'not_home'
       to: 'home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       entity_id: input_boolean.vacation_mode
 
@@ -112,12 +112,12 @@
 - alias: Vacation - Turn On when Thermostat set to Vacation
   id: 'vacation_turn_on_when_thermostat_set_to_vacation'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.thermostat_climate_mode
       to: 'vacation'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
@@ -127,7 +127,7 @@
         entity_id: group.household
         state: 'home'
 
-  action:
+  actions:
     - action: homeassistant.turn_on
       entity_id: input_boolean.vacation_mode
 
@@ -138,18 +138,18 @@
 - alias: Vacation - Lights On at Night
   id: 'vacation_lights_on_at_night'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sun.sun
       from: 'above_horizon'
       to: 'below_horizon'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.vacation_mode
       state: 'on'
 
-  action:
+  actions:
     - delay:
         minutes: '{{ range(2, 20) | random }}'
     - action: light.turn_on
@@ -193,16 +193,16 @@
 - alias: Vacation - Lights Off at Night
   id: 'vacation_lights_off_at_night'
 
-  trigger:
-    - platform: time
+  triggers:
+    - trigger: time
       at: '21:30:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.vacation_mode
       state: 'on'
 
-  action:
+  actions:
     - delay:
         minutes: '{{ range(2, 32) | random }}'
     - action: light.turn_off

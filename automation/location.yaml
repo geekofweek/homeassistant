@@ -9,18 +9,18 @@
 - alias: Location - Household Away Mode Locks
   id: 'location_household_away_mode_locks'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       from: 'home'
       to: 'not_home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
 
-  action:
+  actions:
     - action: lock.lock
       target:
         entity_id:
@@ -35,18 +35,18 @@
 - alias: Location - Household Away Mode Helpers
   id: 'location_household_away_mode_helpers'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       from: 'home'
       to: 'not_home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -69,18 +69,18 @@
 - alias: Location - Household Away Mode Switches
   id: 'location_household_away_mode_switches'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       from: 'home'
       to: 'not_home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -98,18 +98,18 @@
 - alias: Location - Household Away Mode Fans
   id: 'location_household_away_mode_fans'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       from: 'home'
       to: 'not_home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
 
-  action:
+  actions:
     - action: fan.turn_off
       target:
         entity_id:
@@ -124,8 +124,8 @@
 - alias: Location - Household Away Mode Media
   id: 'location_household_away_mode_media'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       from: 'home'
       to: 'not_home'
@@ -134,12 +134,12 @@
         minutes: 0
         seconds: 45
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
 
-  action:
+  actions:
     - action: select.select_option
       data:
         entity_id: select.living_room_tv_activities
@@ -181,8 +181,8 @@
 - alias: Location - Household Away Mode Lights
   id: 'location_household_away_mode_lights'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       from: 'home'
       to: 'not_home'
@@ -191,7 +191,7 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
@@ -199,7 +199,7 @@
       entity_id: light.interior_lights
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -237,8 +237,8 @@
 - alias: Location - Household Away Mode Blinds
   id: 'location_household_away_mode_blinds'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       from: 'home'
       to: 'not_home'
@@ -247,7 +247,7 @@
         minutes: 3
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
@@ -263,7 +263,7 @@
         entity_id: cover.stairs_blinds
         state: 'open'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -286,13 +286,13 @@
 - alias: Location - USER1 Home from Waling Unlock Doors Turn On Garage Light
   id: 'location_USER1_home_from_walking_unlock_doors_turn_on_garage_light'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER1
       from: 'not_home'
       to: 'home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
@@ -303,7 +303,7 @@
       entity_id: input_boolean.USER1_away_driving
       state: 'off'
 
-  action:
+  actions:
     - action: lock.unlock
       target:
         entity_id:
@@ -317,13 +317,13 @@
 - alias: Location - USER1 Home from Driving Unlock Door
   id: 'location_USER1_home_from_driving_unlock_door'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER1
       from: 'not_home'
       to: 'home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_auto_garage
       state: 'off'
@@ -340,7 +340,7 @@
       entity_id: lock.back_door
       state: 'locked'
 
-  action:
+  actions:
     - action: lock.unlock
       target:
         entity_id: 
@@ -354,13 +354,13 @@
 - alias: Location - After USER1 Home Lock Doors
   id: 'location_after_USER1_home_lock_doors'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER1_away
       from: 'on'
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_lock_unlock_doors
       state: 'off'
@@ -371,7 +371,7 @@
       entity_id: binary_sensor.back_door_opened
       state: 'off'
 
-  action:
+  actions:
     - action: lock.lock
       target:
         entity_id:
@@ -386,13 +386,13 @@
 - alias: Location - USER2 Home from Walking Unlock Doors
   id: 'location_USER2_home_from_walking_unlock_doors'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER2
       from: 'not_home'
       to: 'home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
@@ -403,7 +403,7 @@
       entity_id: input_boolean.USER2_away_driving
       state: 'off'
 
-  action:
+  actions:
     - action: lock.unlock
       target:
         entity_id:
@@ -417,13 +417,13 @@
 - alias: Location - USER2 Home from Driving Unlock Door
   id: 'location_USER2_home_from_driving_unlock_door'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER2
 #      from: 'not_home'
       to: 'home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_auto_garage
       state: 'off'
@@ -440,7 +440,7 @@
       entity_id: lock.back_door
       state: 'locked'
 
-  action:
+  actions:
     - action: lock.unlock
       entity_id: lock.back_door
 
@@ -451,13 +451,13 @@
 - alias: Location - USER2 Home Lock Doors
   id: 'location_USER2_home_lock_doors'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER2_away
       from: 'on'
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_lock_unlock_doors
       state: 'off'
@@ -468,7 +468,7 @@
       entity_id: binary_sensor.back_door_opened
       state: 'off'
 
-  action:
+  actions:
     - action: lock.lock
       target:
         entity_id:
@@ -482,13 +482,13 @@
 - alias: Location - USER1 Home Turn On Lights
   id: 'location_USER1_home_turn_on_lights'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER1
       from: 'not_home'
       to: 'home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -499,7 +499,7 @@
       entity_id: input_boolean.USER1_away
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -570,13 +570,13 @@
 - alias: Location - USER1 Home Reset Front Porch Lights Brightness
   id: 'location_USER1_home_reset_front_porch_lights_brightness'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER1_away
       from: 'on'
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -587,7 +587,7 @@
       entity_id: input_select.holiday
       state: 'None'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -603,13 +603,13 @@
 - alias: Location - USER1 Home Reset Back Door Lights Brightness
   id: 'location_USER1_home_reset_back_door_lights_brightness'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER1_away
       from: 'on'
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -617,7 +617,7 @@
       entity_id: input_boolean.disable_home_away
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -633,8 +633,8 @@
 - alias: Location - USER1 Home Dim Garage Light after 16 Mins
   id: 'location_USER1_home_dim_garage_light_after_16_mins'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER1_away
       from: 'on'
       to: 'off'
@@ -643,7 +643,7 @@
         minutes: 6
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -651,7 +651,7 @@
       entity_id: input_boolean.disable_home_away
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -666,13 +666,13 @@
 - alias: Location - USER2 Home Turn On Lights
   id: 'location_USER2_home_turn_on_lights'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER2
       #from: 'not_home'
       to: 'home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -683,7 +683,7 @@
       entity_id: input_boolean.USER2_away
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -754,13 +754,13 @@
 - alias: Location - USER2 Home from Work Turn On Lights
   id: 'location_USER2_home_from_work_turn_on_lights'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER2
       #from: 'not_home'
       to: 'home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -781,7 +781,7 @@
         - thu
         - fri
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -824,13 +824,13 @@
 - alias: Location - USER2 Home Reset Front Porch Lights Brightness
   id: 'location_USER2_home_reset_front_porch_lights_brightness'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER2_away
       from: 'on'
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -841,7 +841,7 @@
       entity_id: input_select.holiday
       state: 'None'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -857,13 +857,13 @@
 - alias: Location - USER2 Home Reset Back Door Lights Brightness
   id: 'location_USER2_home_reset_back_door_lights_brightness'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER2_away
       from: 'on'
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -871,7 +871,7 @@
       entity_id: input_boolean.disable_home_away
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -887,8 +887,8 @@
 - alias: Location - USER2 Home Dim Garage Light after 16 Mins
   id: 'location_USER2_home_dim_garage_light_after_16_mins'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER2_away
       from: 'on'
       to: 'off'
@@ -897,7 +897,7 @@
         minutes: 6
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
@@ -905,7 +905,7 @@
       entity_id: sun.sun
       state: 'below_horizon'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -920,18 +920,18 @@
 - alias: Location - USER1 Away Shut Off Office
   id: 'location_USER1_away_shut_off_office'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER1_away
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -957,13 +957,13 @@
 - alias: Location - USER1 Away Close Blinds
   id: 'location_USER1_away_close_blinds'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER1_away
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
@@ -974,7 +974,7 @@
       entity_id: input_boolean.USER1_office_portable_ac
       state: 'off'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -987,13 +987,13 @@
 - alias: Location - USER1 Away Close Blinds Window Open
   id: 'location_USER1_away_shut_off_office_window_open'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER1_away
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
@@ -1004,7 +1004,7 @@
       entity_id: input_boolean.USER1_office_portable_ac
       state: 'off'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -1028,13 +1028,13 @@
 - alias: Location - USER1 Away Close Blinds Portable AC
   id: 'location_USER1_away_shut_off_office_portable_ac'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER1_away
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
@@ -1045,7 +1045,7 @@
       entity_id: input_boolean.USER1_office_portable_ac
       state: 'on'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -1063,13 +1063,13 @@
 - alias: Location - USER2 Away Shut Off Office
   id: 'location_USER2_away_shut_off_office'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER2_away
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
@@ -1077,7 +1077,7 @@
       entity_id: input_boolean.USER2_office_portable_ac
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -1094,13 +1094,13 @@
 - alias: Location - USER2 Away Shut Off Office Portable AC
   id: 'location_USER2_away_shut_off_office_portable_ac'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER2_away
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
@@ -1108,7 +1108,7 @@
       entity_id: input_boolean.USER2_office_portable_ac
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -1130,13 +1130,13 @@
 - alias: Location - USER1 Away Lock Doors
   id: 'location_USER1_away_lock_doors'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER1_away
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
@@ -1147,7 +1147,7 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
 
-  action:
+  actions:
     - action: lock.lock
       target:
         entity_id:
@@ -1162,13 +1162,13 @@
 - alias: Location - USER2 Away Lock Doors
   id: 'location_USER2_away_lock_doors'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER2_away
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
@@ -1179,7 +1179,7 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
 
-  action:
+  actions:
     - action: lock.lock
       target:
         entity_id:
@@ -1194,13 +1194,13 @@
 - alias: Location - Turn Off Lights when USER2 Leaves
   id: 'location_turn_off_lights_when_USER2_leaves'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER2
       from: 'home'
       to: 'not_home'
 
-  condition:
+  conditions:
     - condition: time
       after: '06:00:00'
       before: '07:30:00'
@@ -1218,7 +1218,7 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -1244,31 +1244,31 @@
 - alias: Location - Turn On Outdoor Lighting when Home
   id: 'location_turn_on_outdoor_lighting_when_home'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       from: 'not_home'
       to: 'home'
 
-  condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: input_boolean.disable_home_away
-        state: 'off'
-      - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: input_boolean.USER1_away
-            state: 'on'
-          - condition: state
-            entity_id: input_boolean.USER2_away
-            state: 'on'
+  conditions:
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: input_boolean.disable_home_away
+          state: 'off'
+        - condition: state
+          entity_id: sun.sun
+          state: 'below_horizon'
+        - condition: or
+          conditions:
+            - condition: state
+              entity_id: input_boolean.USER1_away
+              state: 'on'
+            - condition: state
+              entity_id: input_boolean.USER2_away
+              state: 'on'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -1296,13 +1296,13 @@
 - alias: Location - Turn On Backyard Lighting when Friends Visiting
   id: 'location_turn_on_backyard_lighting_when_friends_visiting'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.guest_mode
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -1313,7 +1313,7 @@
       after: '13:00:00'
       before: '23:59:00'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -1340,18 +1340,18 @@
 - alias: Location - Set USER1 Away Driving
   id: 'location_set_USER1_away_driving'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER1
       from: 'home'
       to: 'not_home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: cover.garage_door
       state: 'open'
 
-  action:
+  actions:
     - action: homeassistant.turn_on
       entity_id: input_boolean.USER1_away_driving
 
@@ -1362,8 +1362,8 @@
 - alias: Location - Set USER1 Away after 1 Min
   id: 'location_set_USER1_away_after_1_min'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER1
       from: 'home'
       to: 'not_home'
@@ -1372,7 +1372,7 @@
         minutes: 1
         seconds: 0
 
-  action:
+  actions:
     - action: homeassistant.turn_on
       target:
         entity_id:
@@ -1386,8 +1386,8 @@
 - alias: Location - Set USER1 Home after 10 Mins
   id: 'location_set_USER1_home_after_10_mins'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER1
       from: 'not_home'
       to: 'home'
@@ -1396,7 +1396,7 @@
         minutes: 10
         seconds: 30
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -1411,18 +1411,18 @@
 - alias: Location - Set USER2 Away Driving
   id: 'location_set_USER2_away_driving'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER2
       from: 'home'
       to: 'not_home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: cover.garage_door
       state: 'open'
 
-  action:
+  actions:
     - action: homeassistant.turn_on
       entity_id: input_boolean.USER2_away_driving
 
@@ -1433,8 +1433,8 @@
 - alias: Location - Set USER2 Away after 1 Min
   id: 'location_set_USER2_away_after_1_min'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER2
       from: 'home'
       to: 'not_home'
@@ -1443,7 +1443,7 @@
         minutes: 1
         seconds: 0
 
-  action:
+  actions:
     - action: homeassistant.turn_on
       target:
         entity_id:
@@ -1457,8 +1457,8 @@
 - alias: Location - Set USER2 Home after 10 Mins
   id: 'location_set_USER2_home_after_10_min'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER2
       #from: 'not_home'
       to: 'home'
@@ -1467,7 +1467,7 @@
         minutes: 10
         seconds: 0
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -1486,13 +1486,13 @@
 - alias: Location - USER1 Home Driving iOS Notification
   id: 'location_USER1_home_driving_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER1
       from: 'not_home'
       to: 'home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.USER1_away
       state: 'on'
@@ -1503,7 +1503,7 @@
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: USER1 Home
@@ -1519,13 +1519,13 @@
 - alias: Location - USER1 Home Walking iOS Notification
   id: 'location_USER1_home_walking_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER1
       from: 'not_home'
       to: 'home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.USER1_away
       state: 'on'
@@ -1536,7 +1536,7 @@
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: USER1 Home
@@ -1552,18 +1552,18 @@
 - alias: Location - USER1 Away iOS Notification
   id: 'location_USER1_away_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER1
       from: 'home'
       to: 'not_home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: USER1 Away
@@ -1578,13 +1578,13 @@
 - alias: Location - USER2 Home Driving iOS Notification
   id: 'location_USER2_home_driving_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER2
       from: 'not_home'
       to: 'home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.USER2_away
       state: 'on'
@@ -1595,7 +1595,7 @@
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: USER2 Home
@@ -1611,13 +1611,13 @@
 - alias: Location - USER2 Home Walking iOS Notification
   id: 'location_USER2_home_walking_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER2
       from: 'not_home'
       to: 'home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.USER2_away
       state: 'on'
@@ -1628,7 +1628,7 @@
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: USER2 Home
@@ -1644,18 +1644,18 @@
 - alias: Location - USER2 Away iOS Notification
   id: 'location_USER2_away_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER2
       from: 'home'
       to: 'not_home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: USER2 Away
@@ -1670,18 +1670,18 @@
 - alias: Location - USER2 Left Work iOS Notification
   id: 'location_USER2_left_work_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER2
       from: 'Work'
       to: 'not_home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: "USER2 has left work, ETA: {{states('sensor.USER2_to_home')}} mins"
@@ -1696,13 +1696,13 @@
 - alias: Location - Welcome Home USER1 Audio Greeting
   id: 'location_welcome_home_USER1_audio_greeting'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.doors
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: person.USER1
       state: 'home'
@@ -1716,7 +1716,7 @@
       after: '09:00:00'
       before: '22:00:00'
 
-  action:
+  actions:
     - delay: '00:00:08'
     - action: media_player.play_media
       target:
@@ -1742,13 +1742,13 @@
 - alias: Location - Notify USER2s Office that USER1 is Home
   id: 'location_notify_USER2s_office_that_USER1_is_home'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.doors
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: person.USER1
       state: 'home'
@@ -1771,7 +1771,7 @@
       after: '09:00:00'
       before: '22:00:00'
 
-  action:
+  actions:
     - delay: '00:00:10'
     - action: media_player.play_media
       target:
@@ -1792,13 +1792,13 @@
 - alias: Location - Welcome Home USER2 Audio Greeting
   id: 'location_welcome_home_USER2_audio_greeting'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.doors
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: person.USER2
       state: 'home'
@@ -1812,7 +1812,7 @@
       after: '09:00:00'
       before: '22:00:00'
 
-  action:
+  actions:
     - delay: '00:00:04'
     - action: media_player.play_media
       target:
@@ -1838,13 +1838,13 @@
 - alias: Location - Notify USER1s Office that USER2 is Home
   id: 'location_notify_USER1s_office_that_USER2_is_home'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.doors
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: person.USER1
       state: 'home'
@@ -1870,7 +1870,7 @@
       after: '09:00:00'
       before: '22:00:00'
 
-  action:
+  actions:
     - delay: '00:00:10'
     - action: media_player.play_media
       target:
@@ -1891,13 +1891,13 @@
 - alias: Location - USER2 Left Work Audio Notification
   id: 'location_USER2_left_work_audio_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER2
       from: 'Work'
       to: 'not_home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: person.USER1
       state: 'home'
@@ -1917,7 +1917,7 @@
       after: '09:00:00'
       before: '19:00:00'
 
-  action:
+  actions:
     - action: media_player.play_media
       target:
         entity_id: 

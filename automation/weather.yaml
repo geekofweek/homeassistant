@@ -9,15 +9,15 @@
 - alias: Weather - Turn Globe Blue when Raining
   id: 'weather_turn_globe_blue_when_raining'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: weather.REDACTED
       to: 'rainy'
       for:
         hours: 0
         minutes: 1
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: weather.REDACTED
       to: 'lightning-rainy'
       for:
@@ -25,7 +25,7 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -36,7 +36,7 @@
       entity_id: input_boolean.disable_rainy_day
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -53,15 +53,15 @@
 - alias: Weather - Reset Globe Color when Not Raining
   id: 'weather_reset_globe_color_when_not_raining'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: weather.REDACTED
       from: 'rainy'
-    - platform: state
+    - trigger: state
       entity_id: weather.REDACTED
       from: 'lightning-rainy'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -72,7 +72,7 @@
       entity_id: input_boolean.disable_rainy_day
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -89,8 +89,8 @@
 - alias: Weather - Set Globe Blue when On and Raining
   id: 'weather_set_globe_blue_when_on_and_raining'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: light.globe
       from: 'off'
       to: 'on'
@@ -99,7 +99,7 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -144,7 +144,7 @@
       entity_id: input_boolean.disable_rainy_day
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -161,15 +161,15 @@
 - alias: Weather - Turn USER1's Office Desk Lamp Blue when Raining
   id: 'weather_turn_USER1_office_desk_lamp_blue_when_raining'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: weather.REDACTED
       to: 'rainy'
       for:
         hours: 0
         minutes: 1
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: weather.REDACTED
       to: 'lightning-rainy'
       for:
@@ -177,7 +177,7 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -194,7 +194,7 @@
       entity_id: input_boolean.USER1_s_office_do_not_disturb
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -210,15 +210,15 @@
 - alias: Weather - Turn USER1's Office Accent Light Blue when Raining
   id: 'weather_turn_USER1_office_accent_light_blue_when_raining'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: weather.REDACTED
       to: 'rainy'
       for:
         hours: 0
         minutes: 1
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: weather.REDACTED
       to: 'lightning-rainy'
       for:
@@ -226,7 +226,7 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -246,7 +246,7 @@
       entity_id: cover.USER1_s_office_blinds
       state: 'closed'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -263,15 +263,15 @@
 - alias: Weather - Reset USER1's Office Desk Lamp Color when Not Raining
   id: 'weather_reset_USER1_office_desk_lamp_color_when_not_raining'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: weather.REDACTED
       from: 'rainy'
-    - platform: state
+    - trigger: state
       entity_id: weather.REDACTED
       from: 'lightning-rainy'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -288,7 +288,7 @@
       entity_id: input_boolean.USER1_s_office_do_not_disturb
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -304,15 +304,15 @@
 - alias: Weather - Reset USER1's Office Accent Light Color when Not Raining
   id: 'weather_reset_USER1_office_accent_light_color_when_not_raining'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: weather.REDACTED
       from: 'rainy'
-    - platform: state
+    - trigger: state
       entity_id: weather.REDACTED
       from: 'lightning-rainy'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -329,7 +329,7 @@
       entity_id: input_boolean.USER1_s_office_do_not_disturb
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -346,8 +346,8 @@
 - alias: Weather - Set USER1's Office Desk Lamp Blue when On and Raining
   id: 'weather_set_USER1_office_desk_lamp_blue_when_on_and_raining'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: light.USER1_office_desk_lamp
       from: 'off'
       to: 'on'
@@ -356,7 +356,7 @@
         minutes: 2
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -381,7 +381,7 @@
         entity_id: weather.REDACTED
         state: 'lightning-rainy'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -397,8 +397,8 @@
 - alias: Weather - Set USER1's Office Accent Light Blue when On and Raining
   id: 'weather_set_USER1_office_accent_light_blue_when_on_and_raining'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: light.USER1_office_desk_accent
       from: 'off'
       to: 'on'
@@ -407,7 +407,7 @@
         minutes: 2
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -432,7 +432,7 @@
         entity_id: weather.REDACTED
         state: 'lightning-rainy'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:

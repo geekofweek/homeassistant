@@ -9,13 +9,13 @@
 - alias: Motion - Turn On Living Room Lights when Motion Detected at Night
   id: 'motion_turn_on_living_room_lights_when_motion_detected_at_night'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.living_room_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -53,7 +53,7 @@
         entity_id: select.living_room_tv_activities
         state: "Play Nintendo Switch"
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -84,13 +84,13 @@
 - alias: Motion - Turn On Living Room Lights when Motion Detected at Night Weekends
   id: 'motion_turn_on_living_room_lights_when_motion_detected_at_night_weekends'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.living_room_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -132,7 +132,7 @@
         entity_id: select.living_room_tv_activities
         state: "Play Nintendo Switch"
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -163,13 +163,13 @@
 - alias: Motion - Turn On Living Room Lights when Motion Detected Daytime
   id: 'motion_turn_on_living_room_lights_when_motion_detected_daytime'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.living_room_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -215,7 +215,7 @@
         entity_id: select.living_room_tv_activities
         state: "Play Nintendo Switch"
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -246,8 +246,8 @@
 - alias: Motion - Turn Off Living Room Lights when No Motion Detected
   id: 'motion_turn_off_living_room_lights_when_no_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.living_room_motion
       from: 'on'
       to: 'off'
@@ -256,7 +256,7 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -278,7 +278,7 @@
         entity_id: vacuum.main_floor_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -291,8 +291,8 @@
 - alias: Motion - Turn Off Living Room Lights when No Motion Detected when Daytime
   id: 'motion_turn_off_living_room_lights_when_no_motion_detected_when_daytime'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.living_room_motion
       from: 'on'
       to: 'off'
@@ -301,7 +301,7 @@
         minutes: 30
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -326,7 +326,7 @@
         entity_id: vacuum.main_floor_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -339,8 +339,8 @@
 - alias: Motion - Turn Off Living Room Lights when No Motion Detected when Daytime USER2 Away
   id: 'motion_turn_off_living_room_lights_when_no_motion_detected_when_daytime_USER2_away'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.living_room_motion
       from: 'on'
       to: 'off'
@@ -349,7 +349,7 @@
         minutes: 15
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -382,7 +382,7 @@
         entity_id: vacuum.main_floor_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -395,13 +395,13 @@
 - alias: Motion - Turn On Living Room Fans when Motion Detected and USER2 Away
   id: 'motion_turn_on_living_room_fans_when_motion_detected_and_USER2_away'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.living_room_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -423,7 +423,7 @@
         entity_id: person.USER2
         state: 'home'
 
-  action:
+  actions:
     - action: fan.turn_on
       target:
         entity_id:
@@ -437,13 +437,13 @@
 - alias: Motion - Turn On Living Room Fans when Motion Detected at Night
   id: 'motion_turn_on_living_room_fans_when_motion_detected_at_night'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.living_room_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -466,7 +466,7 @@
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: fan.turn_on
       target:
         entity_id:
@@ -480,8 +480,8 @@
 - alias: Motion - Turn Off Living Room Fans when No Motion Detected
   id: 'motion_turn_off_living_room_fans_when_no_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.living_room_motion
       from: 'on'
       to: 'off'
@@ -490,7 +490,7 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -504,7 +504,7 @@
       entity_id: fan.living_room_fans
       state: 'on'
 
-  action:
+  actions:
     - action: fan.turn_off
       target:
         entity_id:
@@ -518,13 +518,13 @@
 - alias: Motion - Turn On Kitchen Lights when Motion Detected Evening
   id: 'motion_turn_on_kitchen_lights_when_motion_detected_evening'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.kitchen_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -541,7 +541,7 @@
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -566,13 +566,13 @@
 - alias: Motion - Turn On Kitchen Lights when Motion Detected Night
   id: 'motion_turn_on_kitchen_lights_when_motion_detected_night'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.kitchen_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -589,7 +589,7 @@
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -610,13 +610,13 @@
 - alias: Motion - Turn On Kitchen Lights when Motion Detected Daytime
   id: 'motion_turn_on_kitchen_lights_when_motion_detected_daytime'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.kitchen_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -638,7 +638,7 @@
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -659,8 +659,8 @@
 - alias: Motion - Turn Off Kitchen Lights when No Motion Detected Evenings
   id: 'motion_turn_off_kitchen_lights_when_no_motion_detected_evenings'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.kitchen_motion
       from: 'on'
       to: 'off'
@@ -669,7 +669,7 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -694,7 +694,7 @@
         entity_id: vacuum.main_floor_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -707,8 +707,8 @@
 - alias: Motion - Turn Off Kitchen Lights when No Motion Detected Weeknights
   id: 'motion_turn_off_kitchen_lights_when_no_motion_detected_weeknights'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.kitchen_motion
       from: 'on'
       to: 'off'
@@ -717,7 +717,7 @@
         minutes: 30
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -749,7 +749,7 @@
         entity_id: vacuum.main_floor_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -762,8 +762,8 @@
 - alias: Motion - Turn Off Kitchen Lights when No Motion Detected Weekends
   id: 'motion_turn_off_kitchen_lights_when_no_motion_detected_weekends'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.kitchen_motion
       from: 'on'
       to: 'off'
@@ -772,7 +772,7 @@
         minutes: 45
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -801,7 +801,7 @@
         entity_id: vacuum.main_floor_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -814,8 +814,8 @@
 - alias: Motion - Turn Off Kitchen Lights when No Motion Detected Daytime
   id: 'motion_turn_off_kitchen_lights_when_no_motion_detected_daytime'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.kitchen_motion
       from: 'on'
       to: 'off'
@@ -824,7 +824,7 @@
         minutes: 45
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -846,7 +846,7 @@
         entity_id: vacuum.main_floor_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -859,8 +859,8 @@
 - alias: Motion - Turn Off Kitchen Lights when No Motion Detected Daytime USER2 Away
   id: 'motion_turn_off_kitchen_lights_when_no_motion_detected_daytime_USER2_away'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.kitchen_motion
       from: 'on'
       to: 'off'
@@ -869,7 +869,7 @@
         minutes: 15
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -902,7 +902,7 @@
         entity_id: vacuum.main_floor_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -915,13 +915,13 @@
 - alias: Motion - Turn On Dining Room Lights when Motion Detected Evening
   id: 'motion_turn_on_dining_room_lights_when_motion_detected_evening'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.dining_room_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -941,7 +941,7 @@
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -963,13 +963,13 @@
 - alias: Motion - Turn On Dining Room Lights when Motion Detected Night Weekdays
   id: 'motion_turn_on_dining_room_lights_when_motion_detected_night_weekdays'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.dining_room_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -996,7 +996,7 @@
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1017,13 +1017,13 @@
 - alias: Motion - Turn On Dining Room Lights when Motion Detected Night Weekends
   id: 'motion_turn_on_dining_room_lights_when_motion_detected_night_weekends'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.dining_room_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -1048,7 +1048,7 @@
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1069,13 +1069,13 @@
 - alias: Motion - Turn On Dining Room Lights when Motion Detected Daytime
   id: 'motion_turn_on_dining_room_lights_when_motion_detected_daytime'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.dining_room_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -1097,7 +1097,7 @@
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1118,8 +1118,8 @@
 - alias: Motion - Turn Off Dining Room Lights when No Motion Detected Weeknights
   id: 'motion_turn_off_dining_room_lights_when_no_motion_detected_weeknights'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.dining_room_motion
       from: 'on'
       to: 'off'
@@ -1128,7 +1128,7 @@
         minutes: 30
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -1160,7 +1160,7 @@
         entity_id: vacuum.main_floor_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -1177,8 +1177,8 @@
 - alias: Motion - Turn Off Dining Room Lights when No Motion Detected Evenings
   id: 'motion_turn_off_dining_room_lights_when_no_motion_detected_evenings'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.dining_room_motion
       from: 'on'
       to: 'off'
@@ -1187,7 +1187,7 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -1212,7 +1212,7 @@
         entity_id: vacuum.main_floor_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -1225,8 +1225,8 @@
 - alias: Motion - Turn Off Dining Room Lights when No Motion Detected Weekends
   id: 'motion_turn_off_dining_room_lights_when_no_motion_detected_weekends'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.dining_room_motion
       from: 'on'
       to: 'off'
@@ -1235,7 +1235,7 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -1264,7 +1264,7 @@
         entity_id: vacuum.main_floor_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -1281,8 +1281,8 @@
 - alias: Motion - Turn Off Dining Room Lights when No Motion Detected Daytime
   id: 'motion_turn_off_dining_room_lights_when_no_motion_detected_daytime'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.dining_room_motion
       from: 'on'
       to: 'off'
@@ -1291,7 +1291,7 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -1313,7 +1313,7 @@
         entity_id: vacuum.main_floor_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -1330,8 +1330,8 @@
 - alias: Motion - Turn Off Dining Room Lights when No Motion Detected Daytime USER2 Away
   id: 'motion_turn_off_dining_room_lights_when_no_motion_detected_daytime_USER2_away'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.dining_room_motion
       from: 'on'
       to: 'off'
@@ -1340,7 +1340,7 @@
         minutes: 15
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -1373,7 +1373,7 @@
         entity_id: vacuum.main_floor_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -1390,13 +1390,13 @@
 - alias: Motion - Turn On Bathroom Lights when Motion Detected Morning
   id: 'motion_turn_on_bathroom_lights_when_motion_detected_morning'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.bathroom_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -1410,7 +1410,7 @@
       after: '05:45:00'
       before: '09:00:00'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1433,13 +1433,13 @@
 - alias: Motion - Turn On Bathroom Lights when Motion Detected Daytime
   id: 'motion_turn_on_bathroom_lights_when_motion_detected_daytime'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.bathroom_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -1456,7 +1456,7 @@
       after: '09:00:00'
       before: '22:00:00'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1477,13 +1477,13 @@
 - alias: Motion - Turn On Bathroom Lights when Motion Detected Evening
   id: 'motion_turn_on_bathroom_lights_when_motion_detected_evening'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.bathroom_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -1500,7 +1500,7 @@
       after: '15:00:00'
       before: '22:00:00'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1521,13 +1521,13 @@
 - alias: Motion - Turn On Bathroom Lights when Motion Detected Night
   id: 'motion_turn_on_bathroom_lights_when_motion_detected_night'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.bathroom_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -1544,7 +1544,7 @@
       after: '22:00:00'
       before: '00:00:00'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1559,13 +1559,13 @@
 - alias: Motion - Turn On Bathroom Lights when Motion Detected Late Night
   id: 'motion_turn_on_bathroom_lights_when_motion_detected_late_night'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.bathroom_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -1582,7 +1582,7 @@
       after: '00:00:00'
       before: '05:45:00'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1597,8 +1597,8 @@
 - alias: Motion - Turn Off Bathroom Lights when No Motion Detected
   id: 'motion_turn_off_bathroom_lights_when_no_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.bathroom_motion
       from: 'on'
       to: 'off'
@@ -1607,7 +1607,7 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -1629,7 +1629,7 @@
         entity_id: vacuum.main_floor_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -1642,8 +1642,8 @@
 - alias: Motion - Turn Off Bathroom Lights when No Motion Detected Late Night
   id: 'motion_turn_off_bathroom_lights_when_no_motion_detected_late_night'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.bathroom_motion
       from: 'on'
       to: 'off'
@@ -1652,7 +1652,7 @@
         minutes: 15
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -1674,7 +1674,7 @@
         entity_id: vacuum.main_floor_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -1687,13 +1687,13 @@
 - alias: Motion - Turn On Stair Lights when Motion Detected Evening
   id: 'motion_turn_on_stair_lights_when_motion_detected_evening'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.stairs_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -1710,7 +1710,7 @@
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1725,13 +1725,13 @@
 - alias: Motion - Turn On Stair Lights when Motion Detected Night
   id: 'motion_turn_on_stair_lights_when_motion_detected_night'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.stairs_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -1748,7 +1748,7 @@
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1763,13 +1763,13 @@
 - alias: Motion - Turn On Stair Lights when Motion Detected Daytime
   id: 'motion_turn_on_stair_lights_when_motion_detected_daytime'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.stairs_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -1791,7 +1791,7 @@
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1806,8 +1806,8 @@
 - alias: Motion - Turn Off Stair Lights when No Motion Detected
   id: 'motion_turn_off_stair_lights_when_no_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.stairs_motion
       from: 'on'
       to: 'off'
@@ -1816,7 +1816,7 @@
         minutes: 30
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -1841,7 +1841,7 @@
         entity_id: vacuum.upstairs_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -1854,8 +1854,8 @@
 - alias: Motion - Turn Off Stair Lights when No Motion Detected Night
   id: 'motion_turn_off_stair_lights_when_no_motion_detected_night'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.stairs_motion
       from: 'on'
       to: 'off'
@@ -1864,7 +1864,7 @@
         minutes: 15
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -1889,7 +1889,7 @@
         entity_id: vacuum.upstairs_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -1902,8 +1902,8 @@
 - alias: Motion - Turn Off Stair Lights when No Motion Detected Daytime
   id: 'motion_turn_off_stair_lights_when_no_motion_detected_daytime'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.stairs_motion
       from: 'on'
       to: 'off'
@@ -1912,7 +1912,7 @@
         minutes: 15
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -1934,7 +1934,7 @@
         entity_id: vacuum.upstairs_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -1947,13 +1947,13 @@
 - alias: Motion - Turn On Basement Lights when Motion Detected
   id: 'motion_turn_on_basement_lights_when_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.basement_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -1978,7 +1978,7 @@
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -2015,8 +2015,8 @@
 - alias: Motion - Turn Off Basement Lights when No Motion Detected
   id: 'motion_turn_off_basement_lights_when_no_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.basement_motion
       from: 'on'
       to: 'off'
@@ -2025,7 +2025,7 @@
         minutes: 30
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -2050,7 +2050,7 @@
         entity_id: vacuum.basement_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -2079,8 +2079,8 @@
 - alias: Motion - Turn Off Basement Lights when No Motion Detected Night
   id: 'motion_turn_off_basement_lights_when_no_motion_detected_night'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.basement_motion
       from: 'on'
       to: 'off'
@@ -2089,7 +2089,7 @@
         minutes: 15
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -2111,7 +2111,7 @@
         entity_id: vacuum.basement_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -2140,13 +2140,13 @@
 - alias: Motion - Turn On Craft Room Lights when Motion Detected
   id: 'motion_turn_on_craft_room_lights_when_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.craft_room_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -2157,7 +2157,7 @@
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -2179,8 +2179,8 @@
 - alias: Motion - Turn Off Craft Room Lights when No Motion Detected
   id: 'motion_turn_off_craft_room_lights_when_no_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.craft_room_motion
       from: 'on'
       to: 'off'
@@ -2189,7 +2189,7 @@
         minutes: 30
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -2208,7 +2208,7 @@
         entity_id: vacuum.basement_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -2222,8 +2222,8 @@
 - alias: Motion - Turn Off Craft Room Lights when No Motion Detected Night
   id: 'motion_turn_off_craft_room_lights_when_no_motion_detected_night'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.craft_room_motion
       from: 'on'
       to: 'off'
@@ -2232,7 +2232,7 @@
         minutes: 15
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -2254,7 +2254,7 @@
         entity_id: vacuum.basement_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -2268,13 +2268,13 @@
 - alias: Motion - Turn On Fitness Room Lights when Motion Detected
   id: 'motion_turn_on_fitness_room_lights_when_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.fitness_room_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -2285,7 +2285,7 @@
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -2300,8 +2300,8 @@
 - alias: Motion - Turn Off Fitness Room Lights when No Motion Detected
   id: 'motion_turn_off_fitness_room_lights_when_no_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.fitness_room_motion
       from: 'on'
       to: 'off'
@@ -2310,7 +2310,7 @@
         minutes: 30
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -2329,7 +2329,7 @@
         entity_id: vacuum.basement_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -2342,8 +2342,8 @@
 - alias: Motion - Turn Off Fitness Room Lights when No Motion Detected Night
   id: 'motion_turn_off_fitness_room_lights_when_no_motion_detected_night'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.fitness_room_motion
       from: 'on'
       to: 'off'
@@ -2352,7 +2352,7 @@
         minutes: 15
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -2374,7 +2374,7 @@
         entity_id: vacuum.basement_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -2387,13 +2387,13 @@
 - alias: Motion - Turn On USER2 Closet Light when Motion Detected Weekdays
   id: 'motion_turn_on_USER2_closet_light_when_motion_detected_weekdays'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER2_bedroom_closet_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -2414,7 +2414,7 @@
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -2429,13 +2429,13 @@
 - alias: Motion - Turn On USER2 Closet Light when Motion Detected Weekends
   id: 'motion_turn_on_USER2_closet_light_when_motion_detected_weekends'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER2_bedroom_closet_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -2450,7 +2450,7 @@
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -2465,8 +2465,8 @@
 - alias: Motion - Turn Off USER2 Closet Light when No Motion Detected
   id: 'motion_turn_off_USER2_closet_light_when_no_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER2_bedroom_closet_motion
       from: 'on'
       to: 'off'
@@ -2475,7 +2475,7 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -2486,7 +2486,7 @@
       entity_id: light.USER2s_bedroom_closet
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -2499,13 +2499,13 @@
 - alias: Motion - Turn On USER1 Office Fan when Motion Detected
   id: 'motion_turn_on_USER1_office_fan_when_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER1s_office_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -2530,7 +2530,7 @@
       entity_id: input_boolean.USER1_office_guest
       state: 'off'
 
-  action:
+  actions:
     - action: fan.turn_on
       target:
         entity_id:
@@ -2564,13 +2564,13 @@
 - alias: Motion - Turn On USER1 Office TV when Motion Detected
   id: 'motion_turn_on_USER1_office_tv_when_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER1s_office_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -2592,7 +2592,7 @@
       entity_id: input_boolean.USER1_office_guest
       state: 'off'
 
-  action:
+  actions:
     - action: select.select_option
       data:
         entity_id: select.USER1_s_office_tv_activities
@@ -2611,8 +2611,8 @@
 - alias: Motion - Turn Off USER1 Office Fan when No Motion Detected
   id: 'motion_turn_off_USER1_office_fan_when_no_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER1s_office_motion
       from: 'on'
       to: 'off'
@@ -2621,7 +2621,7 @@
         minutes: 20
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -2629,7 +2629,7 @@
       entity_id: input_boolean.USER1_office_guest
       state: 'off'
 
-  action:
+  actions:
     - action: fan.turn_off
       target:
         entity_id:
@@ -2646,8 +2646,8 @@
 - alias: Motion - Turn Off USER1 Office TV when No Motion Detected
   id: 'motion_turn_off_USER1_office_tv_when_no_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER1s_office_motion
       from: 'on'
       to: 'off'
@@ -2656,7 +2656,7 @@
         minutes: 20
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -2674,7 +2674,7 @@
       entity_id: input_boolean.USER1_office_guest
       state: 'off'
 
-  action:
+  actions:
     - action: select.select_option
       data:
         entity_id: select.USER1_s_office_tv_activities
@@ -2687,13 +2687,13 @@
 - alias: Motion - Turn On USER1 Office Lights when Motion Detected Night
   id: 'motion_turn_on_USER1_office_lights_when_motion_detected_night'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER1s_office_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -2729,7 +2729,7 @@
       entity_id: input_boolean.USER1_office_guest
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       entity_id: light.office_lamp
       data:
@@ -2763,13 +2763,13 @@
 - alias: Motion - Turn On USER1 Office Lights when Motion Detected Daytime
   id: 'motion_turn_on_USER1_office_lights_when_motion_detected_daytime'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER1s_office_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -2808,7 +2808,7 @@
       entity_id: input_boolean.USER1_office_guest
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       entity_id: light.office_lamp
       data:
@@ -2841,13 +2841,13 @@
 - alias: Motion - Turn On Moon Globe when Motion Detected
   id: 'motion_turn_on_USER1_office_moon_globe_when_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER1s_office_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -2864,7 +2864,7 @@
       entity_id: input_boolean.USER1_office_guest
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -2880,8 +2880,8 @@
 - alias: Motion - Turn Off USER1 Office Lights when No Motion Detected
   id: 'motion_turn_off_USER1_office_lights_when_no_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER1s_office_motion
       from: 'on'
       to: 'off'
@@ -2890,7 +2890,7 @@
         minutes: 20
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -2909,7 +2909,7 @@
       entity_id: input_boolean.USER1_office_guest
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -2922,8 +2922,8 @@
 - alias: Motion - Turn Off USER1 Office Music when No Motion Detected
   id: 'motion_turn_off_USER1_office_music_when_no_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER1s_office_motion
       from: 'on'
       to: 'off'
@@ -2932,7 +2932,7 @@
         minutes: 20
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -2940,7 +2940,7 @@
       entity_id: input_boolean.USER1_office_guest
       state: 'off'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id: 
@@ -2958,8 +2958,8 @@
 - alias: Motion - Turn Off USER1 Office Do Not Disturb when No Motion Detected
   id: 'motion_turn_off_USER1_office_do_not_disturb_when_no_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER1s_office_motion
       from: 'on'
       to: 'off'
@@ -2968,7 +2968,7 @@
         minutes: 19
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -2976,7 +2976,7 @@
       entity_id: input_boolean.USER1_s_office_do_not_disturb
       state: 'on'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       entity_id: input_boolean.USER1_s_office_do_not_disturb
 
@@ -2987,13 +2987,13 @@
 - alias: Motion - Turn On Dining Room Lights When USER2 Working
   id: 'motion_turn_on_dining_room_lights_when_USER2_working'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.dining_room_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -3017,7 +3017,7 @@
         - thu
         - fri
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -3038,13 +3038,13 @@
 - alias: Motion - Turn On USER2 Office when Motion Detected Daytime
   id: 'motion_turn_on_USER2_office_when_motion_detected_daytime'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER2s_office_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: person.USER2
       state: 'home'
@@ -3058,7 +3058,7 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id: 
@@ -3074,13 +3074,13 @@
 - alias: Motion - Turn On USER2 Office Lights when Motion Detected Evening
   id: 'motion_turn_on_USER2_office_lights_when_motion_detected_evening'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER2s_office_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: person.USER2
       state: 'home'
@@ -3097,7 +3097,7 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id: 
@@ -3112,13 +3112,13 @@
 - alias: Motion - Turn On USER2 Office Lights when Motion Detected Night
   id: 'motion_turn_on_USER2_office_lights_when_motion_detected_night'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER2s_office_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: person.USER2
       state: 'home'
@@ -3135,7 +3135,7 @@
       entity_id: input_boolean.disable_motion
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -3150,8 +3150,8 @@
 - alias: Motion - Turn Off USER2 Office Lights when No Motion Detected
   id: 'motion_turn_off_USER2_office_lights_when_no_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER2s_office_motion
       from: 'on'
       to: 'off'
@@ -3160,7 +3160,7 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -3176,7 +3176,7 @@
       entity_id: light.USER2_office_lights
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -3189,8 +3189,8 @@
 - alias: Motion - Turn Off USER2 Office Lights when No Motion Detected Night
   id: 'motion_turn_off_USER2_office_lights_when_no_motion_detected_night'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER2s_office_motion
       from: 'on'
       to: 'off'
@@ -3199,7 +3199,7 @@
         minutes: 15
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -3221,7 +3221,7 @@
         entity_id: vacuum.upstairs_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -3234,13 +3234,13 @@
 - alias: Motion - Turn On Upstairs Bathroom Lights when Motion Detected Evening
   id: 'motion_turn_on_upstairs_bathroom_lights_when_motion_detected_evening'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.upstairs_bathroom_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -3257,7 +3257,7 @@
       after: '07:00:00'
       before: '22:00:00'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -3272,13 +3272,13 @@
 - alias: Motion - Turn On Upstairs Bathroom Lights when Motion Detected Night
   id: 'motion_turn_on_upstairs_bathroom_lights_when_motion_detected_night'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.upstairs_bathroom_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -3295,7 +3295,7 @@
       after: '22:00:00'
       before: '07:00:00'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -3310,13 +3310,13 @@
 - alias: Motion - Turn On Upstairs Bathroom Lights when Motion Detected Daytime
   id: 'motion_turn_on_upstairs_bathroom_lights_when_motion_detected_daytime'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.upstairs_bathroom_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -3338,7 +3338,7 @@
         entity_id: sensor.upstairs_bathroom_light_level
         state: 'unknown'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -3353,8 +3353,8 @@
 - alias: Motion - Turn Off Upstairs Bathroom Lights when No Motion Detected
   id: 'motion_turn_off_upstairs_bathroom_lights_when_no_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.upstairs_bathroom_motion
       from: 'on'
       to: 'off'
@@ -3363,7 +3363,7 @@
         minutes: 15
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -3374,7 +3374,7 @@
       entity_id: light.upstairs_bathroom_vanity
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -3387,13 +3387,13 @@
 - alias: Motion - Turn On Bedroom Closet Lights when Motion Detected Early Morning
   id: 'motion_turn_on_bedroom_closet_lights_when_motion_detected_early_morning'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.bedroom_closet_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: time
       after: '05:00:00'
       before: '09:00:00'
@@ -3407,7 +3407,7 @@
       entity_id: cover.bedroom_closet_blinds
       state: 'closed'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -3423,13 +3423,13 @@
 - alias: Motion - Turn On Bedroom Closet Lights when Motion Detected Weekdays
   id: 'motion_turn_on_bedroom_closet_lights_when_motion_detected_weekdays'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.bedroom_closet_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: time
       after: '09:00:00'
       before: '22:30:00'
@@ -3450,7 +3450,7 @@
         - wed
         - thu
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -3466,13 +3466,13 @@
 - alias: Motion - Turn On Bedroom Closet Lights when Motion Detected Weekends
   id: 'motion_turn_on_bedroom_closet_lights_when_motion_detected_weekends'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.bedroom_closet_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: time
       after: '09:00:00'
       before: '01:30:00'
@@ -3490,7 +3490,7 @@
         - fri
         - sat
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -3506,8 +3506,8 @@
 - alias: Motion - Turn Off Bedroom Closet Lights when No Motion Detected
   id: 'motion_turn_off_bedroom_closet_lights_when_no_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.bedroom_closet_motion
       from: 'on'
       to: 'off'
@@ -3516,7 +3516,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -3527,7 +3527,7 @@
       entity_id: light.bedroom_closet_lights
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -3545,8 +3545,8 @@
   id: 'motion_low_battery_notification'
 
   mode: parallel
-  trigger:
-    - platform: numeric_state
+  triggers:
+    - trigger: numeric_state
       entity_id: 
         - sensor.living_room_motion_batt
         - sensor.dining_room_motion_batt
@@ -3566,12 +3566,12 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: "{{ trigger.to_state.attributes.friendly_name }} Low"

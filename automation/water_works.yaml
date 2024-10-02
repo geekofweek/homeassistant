@@ -9,33 +9,33 @@
 - alias: Water Works - Sound Alarm When Water Detected Lights
   id: 'water_works_sound_alarm_when_water_detected_lights'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
       from: 'off'
       to: 'on'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.kitchen_sink_water_sensor
       from: 'off'
       to: 'on'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.bathroom_sink_water_sensor
       from: 'off'
       to: 'on'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.upstairs_bathrooom_water_sensor
       from: 'off'
       to: 'on'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.utility_sink_water_sensor
       from: 'off'
       to: 'on'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.washing_machine_water_sensor
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -43,7 +43,7 @@
       entity_id: input_boolean.disable_water_automations
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -65,33 +65,33 @@
 - alias: Water Works - Shut Off Water Main When Water Detected
   id: 'water_works_shut_off_water_main_when_water_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
       from: 'off'
       to: 'on'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.kitchen_sink_water_sensor
       from: 'off'
       to: 'on'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.bathroom_sink_water_sensor
       from: 'off'
       to: 'on'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.upstairs_bathrooom_water_sensor
       from: 'off'
       to: 'on'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.utility_sink_water_sensor
       from: 'off'
       to: 'on'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.washing_machine_water_sensor
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_water_automations
       state: 'off'
@@ -99,7 +99,7 @@
       entity_id: valve.water_main
       state: 'open'
 
-  action:
+  actions:
     - action: valve.close_valve
       entity_id:
         - valve.water_main
@@ -111,13 +111,13 @@
 - alias: Water Works - Shut Off Water Main When Vacation Mode On
   id: 'water_works_shut_off_water_main_when_vacation_mode_on'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.vacation_mode
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_water_automations
       state: 'off'
@@ -128,7 +128,7 @@
       entity_id: valve.water_main
       state: 'open'
 
-  action:
+  actions:
     - action: valve.close_valve
       target:
         entity_id:
@@ -141,13 +141,13 @@
 - alias: Water Works - Turn On Water Main When Vacation Mode Off
   id: 'water_works_turn_on_water_main_when_vacation_mode_off'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.vacation_mode
       from: 'on'
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_water_automations
       state: 'off'
@@ -158,7 +158,7 @@
       entity_id: valve.water_main
       state: 'closed'
 
-  action:
+  actions:
     - action: valve.open_valve
       target:
         entity_id:
@@ -175,18 +175,18 @@
 - alias: Water Works - Water Main Turned Off iOS Notification
   id: 'water_works_water_main_turned_off_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: valve.water_main
       from: 'open'
       to: 'closed'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Water Main Has Been Shut Off!
@@ -201,13 +201,13 @@
 - alias: Water Works - Water Main Turned On iOS Notification
   id: 'water_works_water_main_turned_on_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: valve.water_main
       from: 'closed'
       to: 'open'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
@@ -215,7 +215,7 @@
       entity_id: input_boolean.disable_startup_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Water Main Has Been Turned Back On
@@ -230,18 +230,18 @@
 - alias: Water Works - Basement Drain Water Sensor iOS Notification
   id: 'water_works_basement_drain_water_sensor_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Water Detected in Basement Drain!
@@ -256,18 +256,18 @@
 - alias: Water Works - Kitchen Sink Water Sensor iOS Notification
   id: 'water_works_kitchen_sink_water_sensor_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.kitchen_sink_water_sensor
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Water Detected Under Kitchen Sink!
@@ -282,18 +282,18 @@
 - alias: Water Works - Bathroom Sink Water Sensor iOS Notification
   id: 'water_works_bathroom_sink_water_sensor_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.bathroom_sink_water_sensor
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Water Detected Under Bathroom Sink!
@@ -308,18 +308,18 @@
 - alias: Water Works - Attic Water Sensor iOS Notification
   id: 'water_works_attic_water_sensor_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.attic_water_sensor
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Water Detected by Attic!
@@ -334,18 +334,18 @@
 - alias: Water Works - Upstairs Bathroom Water Sensor iOS Notification
   id: 'water_works_upstairs_bathroom_water_sensor_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.upstairs_bathrooom_water_sensor
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Water Detected in Upstairs Bathroom!
@@ -360,18 +360,18 @@
 - alias: Water Works - Coal Room Water Sensor iOS Notification
   id: 'water_works_coal_room_water_sensor_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.coal_room_water_sensor
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Water Detected in Coal Room!
@@ -386,18 +386,18 @@
 - alias: Water Works - Utility Sink Water Sensor iOS Notification
   id: 'water_works_utility_sink_water_sensor_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.utility_sink_water_sensor
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Water Detected Under Utility Sink!
@@ -412,18 +412,18 @@
 - alias: Water Works - Washing Machine Water Sensor iOS Notification
   id: 'water_works_washing_mashine_water_sensor_ios_notficiation'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.washing_machine_water_sensor
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Water Detected by Washing Machine!
@@ -438,18 +438,18 @@
 - alias: Water Works - Sump Pump Water Sensor iOS Notification
   id: 'water_works_sump_pump_water_sensor_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.sump_pump_water_sensor_liquid_detected
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Water Detected in Sump Pump!
@@ -464,13 +464,13 @@
 - alias: Water Works - Basement Drain Water Sensor Audio Notification
   id: 'water_works_basement_drain_water_sensor_audio_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.basement_drain_water_sensor_liquid_detected
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -481,7 +481,7 @@
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: media_player.play_media
       target:
         entity_id: 
@@ -511,13 +511,13 @@
 - alias: Water Works - Kitchen Sink Water Sensor Audio Notification
   id: 'water_works_kitchen_sink_water_sensor_audio_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.kitchen_sink_water_sensor
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -528,7 +528,7 @@
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: media_player.play_media
       target:
         entity_id: 
@@ -558,13 +558,13 @@
 - alias: Water Works - Bathroom Sink Water Sensor Audio Notification
   id: 'water_works_bathroom_sink_water_sensor_audio_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.bathroom_sink_water_sensor
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -575,7 +575,7 @@
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: media_player.play_media
       target:
         entity_id: 
@@ -605,13 +605,13 @@
 - alias: Water Works - Upstairs Bathroom Sink Water Sensor Audio Notification
   id: 'water_works_upstairs_bathroom_sink_water_sensor_audio_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.upstairs_bathrooom_water_sensor
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -622,7 +622,7 @@
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: media_player.play_media
       target:
         entity_id: 
@@ -652,13 +652,13 @@
 - alias: Water Works - Utility Sink Water Sensor Audio Notification
   id: 'water_works_utility_sink_water_sensor_audio_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.utility_sink_water_sensor
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -669,7 +669,7 @@
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: media_player.play_media
       target:
         entity_id: 
@@ -699,13 +699,13 @@
 - alias: Water Works - Washing Machine Water Sensor Audio Notification
   id: 'water_works_washing_machine_water_sensor_audio_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.washing_machine_water_sensor
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -716,7 +716,7 @@
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: media_player.play_media
       target:
         entity_id: 
@@ -747,8 +747,8 @@
   id: 'water_works_low_battery_notification'
 
   mode: parallel
-  trigger:
-    - platform: numeric_state
+  triggers:
+    - trigger: numeric_state
       entity_id:
         - sensor.basement_drain_water_sensor_batt
         - sensor.sump_pump_water_sensor_batt
@@ -765,12 +765,12 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Water Sensor {{ trigger.to_state.attributes.friendly_name }} Low Battery
@@ -789,18 +789,18 @@
 - alias: Water Works - Water Leak Detected iOS Notification
   id: 'water_works_water_leak_detected_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.water_meter_leak_detected
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Possible Water Leak Detected!

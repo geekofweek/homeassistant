@@ -13,8 +13,8 @@
 - alias: LED Clock - Bedtime
   id: 'led_clock_bedtime'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.bedtime
       to: 'on'
       for:
@@ -22,12 +22,12 @@
         minutes: 6
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: light.turn_off
       entity_id:
         - light.USER1s_office_desktop_clock
@@ -73,8 +73,8 @@
 - alias: LED Clock - Household Away Mode
   id: 'led_clock_household_away_mode'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       from: 'home'
       to: 'not_home'
@@ -83,12 +83,12 @@
         minutes: 6
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_off
       entity_id:
         - light.USER1s_office_desktop_clock
@@ -132,13 +132,13 @@
 - alias: LED Clock - Weather App
   id: 'led_clock_weather_app'
 
-  trigger:
-    - platform: time_pattern
+  triggers:
+    - trigger: time_pattern
       minutes: '/30'
-    - platform: state
+    - trigger: state
       entity_id: weather.REDACTED
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/weather
@@ -165,13 +165,13 @@
 - alias: LED Clock - Temperature App
   id: 'led_clock_temperature_app'
 
-  trigger:
-    - platform: time_pattern
+  triggers:
+    - trigger: time_pattern
       minutes: '/30'
-    - platform: state
+    - trigger: state
       entity_id: sensor.REDACTED_temperature
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/temperature
@@ -198,13 +198,13 @@
 - alias: LED Clock - Humidity App
   id: 'led_clock_humidity_app'
 
-  trigger:
-    - platform: time_pattern
+  triggers:
+    - trigger: time_pattern
       minutes: '/30'
-    - platform: state
+    - trigger: state
       entity_id: sensor.REDACTED_humidity
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/humidity
@@ -231,16 +231,16 @@
 - alias: LED Clock - MK4S MMU3 Print Progress App
   id: 'led_clock_mk4s_mmu3_print_progress_app'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s_mmu3_progress
   
-  condition:
+  conditions:
     - condition: state
       entity_id: sensor.prusa_mk4s_mmu3
       state: 'printing'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/mk4s_mmu3_progress
@@ -271,16 +271,16 @@
 - alias: LED Clock - MK4S MMU3 Print Time Remaining App
   id: 'led_clock_mk4s_mmu3_print_time_remaining_app'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s_mmu3_progress
   
-  condition:
+  conditions:
     - condition: state
       entity_id: sensor.prusa_mk4s_mmu3
       state: 'printing'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/mk4s_mmu3_time_remaining
@@ -311,8 +311,8 @@
 - alias: LED Clock - MK4S MMU3 3D Print Clear When Idle
   id: 'led_clock_mk4s_mmu3_3d_print_clear_when_idle'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s_mmu3
       to: 'idle'
       for:
@@ -320,7 +320,7 @@
         minutes: 5
         seconds: 0
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/mk4s_mmu3_progress
@@ -341,13 +341,13 @@
 - alias: LED Clock - MK4S MMU3 3D Print Complete App
   id: 'led_clock_mk4s_mmu3_3d_print_complete_app'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s_mmu3
       from: 'printing'
       to: 'finished'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/mk4s_mmu3_progress
@@ -390,16 +390,16 @@
 - alias: LED Clock - mk4s_ Print Progress App
   id: 'led_clock_mk4s_print_progress_app'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s_progress
   
-  condition:
+  conditions:
     - condition: state
       entity_id: sensor.prusa_mk4s
       state: 'printing'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/mk4s_progress
@@ -430,16 +430,16 @@
 - alias: LED Clock - MK4S Print Time Remaining App
   id: 'led_clock_mk4s_print_time_remaining_app'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s_progress
   
-  condition:
+  conditions:
     - condition: state
       entity_id: sensor.prusa_mk4s
       state: 'printing'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/mk4s_time_remaining
@@ -470,8 +470,8 @@
 - alias: LED Clock - MK4S 3D Print Clear When Idle
   id: 'led_clock_mk4s_3d_print_clear_when_idle'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s
       to: 'idle'
       for:
@@ -479,7 +479,7 @@
         minutes: 5
         seconds: 0
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/mk4s_progress
@@ -500,13 +500,13 @@
 - alias: LED Clock - MK4S 3D Print Complete App
   id: 'led_clock_mk4s_3d_print_complete_app'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s
       from: 'printing'
       to: 'finished'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/mk4s_progress
@@ -549,16 +549,16 @@
 - alias: LED Clock - MK3.5 Print Progress App
   id: 'led_clock_mk3_5_print_progress_app'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk3_5_progress
   
-  condition:
+  conditions:
     - condition: state
       entity_id: sensor.prusa_mk3_5
       state: 'printing'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/mk3_5_progress
@@ -589,16 +589,16 @@
 - alias: LED Clock - MK3.5 Print Time Remaining App
   id: 'led_clock_mk3_5_print_time_remaining_app'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk3_5_progress
   
-  condition:
+  conditions:
     - condition: state
       entity_id: sensor.prusa_mk3_5
       state: 'printing'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/mk3_5_time_remaining
@@ -629,8 +629,8 @@
 - alias: LED Clock - MK3.5 3D Print Clear When Idle
   id: 'led_clock_mk3_5_3d_print_clear_when_idle'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk3_5
       to: 'idle'
       for:
@@ -638,7 +638,7 @@
         minutes: 5
         seconds: 0
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/mk3_5_progress
@@ -659,13 +659,13 @@
 - alias: LED Clock - MK3.5 3D Print Complete App
   id: 'led_clock_mk3_5_3d_print_complete_app'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk3_5
       from: 'printing'
       to: 'finished'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/mk3_5_progress
@@ -708,16 +708,16 @@
 - alias: LED Clock - Washing Machine Status App
   id: 'led_clock_washing_machine_status_app'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.washing_machine_time_remaining
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sensor.washer
       state: 'on'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/washer
@@ -748,8 +748,8 @@
 - alias: LED Clock - Washing Machine Done App
   id: 'led_clock_washing_machine_done_app'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.washer_wash_completed
       from: 'off'
       to: 'on'
@@ -758,7 +758,7 @@
         minutes: 0
         seconds: 1
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/washer
@@ -795,16 +795,16 @@
 - alias: LED Clock - Dryer Status App
   id: 'led_clock_dryer_status_app'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.dryer_time_remaining
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sensor.dryer
       state: 'on'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/dryer
@@ -835,8 +835,8 @@
 - alias: LED Clock - Dryer Done App
   id: 'led_clock_dryer_done_app'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.dryer_dry_completed
       from: 'off'
       to: 'on'
@@ -845,7 +845,7 @@
         minutes: 0
         seconds: 1
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/dryer
@@ -882,12 +882,12 @@
 - alias: LED Clock - Package App
   id: 'led_clock_package_app'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.package_camera_notification
       to: 'on'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/package
@@ -918,12 +918,12 @@
 - alias: LED Clock - Package App Clear
   id: 'led_clock_package_app_clear'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.package_camera_notification
       to: 'off'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/package
@@ -942,16 +942,16 @@
 - alias: LED Clock - Holiday Reset App
   id: 'led_clock_holiday_reset_app'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '05:00:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_select.holiday
       state: 'None'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/holiday
@@ -966,19 +966,19 @@
 - alias: LED Clock - Christmas App
   id: 'led_clock_christmas_app'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '09:30:00'
-   - platform: state
+   - trigger: state
      entity_id: input_select.holiday
      to: 'Christmas'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_select.holiday
       state: 'Christmas'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/holiday
@@ -1025,19 +1025,19 @@
 - alias: LED Clock - Halloween App
   id: 'led_clock_halloween_app'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '09:30:00'
-   - platform: state
+   - trigger: state
      entity_id: input_select.holiday
      to: 'Halloween'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_select.holiday
       state: 'Halloween'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/holiday
@@ -1084,19 +1084,19 @@
 - alias: LED Clock - Thanksgiving App
   id: 'led_clock_thanksgiving_app'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '09:30:00'
-   - platform: state
+   - trigger: state
      entity_id: input_select.holiday
      to: 'Thanksgiving'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_select.holiday
       state: 'Thanksgiving'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/holiday
@@ -1143,19 +1143,19 @@
 - alias: LED Clock - 4th of July App
   id: 'led_clock_4th_of_july_app'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '09:30:00'
-   - platform: state
+   - trigger: state
      entity_id: input_select.holiday
      to: "Independence Day"
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_select.holiday
       state: "Independence Day"
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/holiday
@@ -1210,19 +1210,19 @@
 - alias: LED Clock - Valentines Day App
   id: 'led_clock_valentines_day_app'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '09:30:00'
-   - platform: state
+   - trigger: state
      entity_id: input_select.holiday
      to: "Valentine's Day"
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_select.holiday
       state: "Valentine's Day"
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/holiday
@@ -1253,19 +1253,19 @@
 - alias: LED Clock - Easter App
   id: 'led_clock_easter_day_app'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '09:30:00'
-   - platform: state
+   - trigger: state
      entity_id: input_select.holiday
      to: "Easter"
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_select.holiday
       state: "Easter"
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/holiday
@@ -1296,19 +1296,19 @@
 - alias: LED Clock - New Years App
   id: 'led_clock_new_years_app'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '09:30:00'
-   - platform: state
+   - trigger: state
      entity_id: input_select.holiday
      to: "New Year's Eve"
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_select.holiday
       state: "New Year's Eve"
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/holiday
@@ -1343,13 +1343,13 @@
 - alias: LED Clock - Turn On USER1's Office when Motion Detected
   id: 'led_clock_turn_on_USER1_office_when_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER1s_office_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -1366,7 +1366,7 @@
       entity_id: input_boolean.USER1_office_guest
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       entity_id:
         - light.USER1s_office_desktop_clock
@@ -1378,8 +1378,8 @@
 - alias: LED Clock - Turn Off USER1's Office when No Motion Detected
   id: 'led_clock_turn_off_USER1_office_when_no_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER1s_office_motion
       from: 'on'
       to: 'off'
@@ -1388,7 +1388,7 @@
         minutes: 20
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -1396,7 +1396,7 @@
       entity_id: light.USER1s_office_desktop_clock
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_off
       entity_id:
         - light.USER1s_office_desktop_clock
@@ -1412,8 +1412,8 @@
 - alias: LED Clock - USER1's Office Apple TV Music Title
   id: 'led_clock_USER1_office_music_title_apple_tv'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: media_player.USER1_s_office_apple_tv
       attribute: media_title
       for:
@@ -1421,7 +1421,7 @@
         minutes: 0
         seconds: 1
 
-  condition:
+  conditions:
     - condition: state
       entity_id: media_player.USER1_s_office_apple_tv
       state: 'playing'
@@ -1435,7 +1435,7 @@
         entity_id: select.USER1_s_office_tv_activities
         state: 'power_off'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/music_song
@@ -1455,8 +1455,8 @@
 - alias: LED Clock - USER1's Office Music Title Sonos
   id: 'led_clock_USER1_office_music_title_sonos'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: media_player.sonos_USER1s_office
       attribute: media_title
       for:
@@ -1464,7 +1464,7 @@
         minutes: 0
         seconds: 1
 
-  condition:
+  conditions:
     - condition: state
       entity_id: media_player.sonos_USER1s_office
       state: 'playing'
@@ -1473,7 +1473,7 @@
       attribute: media_content_type
       state: 'music'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/music_song
@@ -1493,8 +1493,8 @@
 - alias: LED Clock - USER1's Office Album Title Apple TV
   id: 'led_clock_USER1_office_album_title_apple_tv'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: media_player.USER1_s_office_apple_tv
       attribute: media_title
       for:
@@ -1502,7 +1502,7 @@
         minutes: 0
         seconds: 1
 
-  condition:
+  conditions:
     - condition: state
       entity_id: media_player.USER1_s_office_apple_tv
       state: 'playing'
@@ -1516,7 +1516,7 @@
         entity_id: select.USER1_s_office_tv_activities
         state: 'power_off'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/music_album
@@ -1536,8 +1536,8 @@
 - alias: LED Clock - USER1's Office Album Title Sonos
   id: 'led_clock_USER1_office_album_title_sonos'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: media_player.sonos_USER1s_office
       attribute: media_title
       for:
@@ -1545,7 +1545,7 @@
         minutes: 0
         seconds: 1
 
-  condition:
+  conditions:
     - condition: state
       entity_id: media_player.sonos_USER1s_office
       state: 'playing'
@@ -1554,7 +1554,7 @@
       attribute: media_content_type
       state: 'music'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/music_album
@@ -1574,8 +1574,8 @@
 - alias: LED Clock - USER1's Office YouTube Title
   id: 'led_clock_USER1_office_youtube_title'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: media_player.USER1_s_office_apple_tv
       attribute: media_title
       for:
@@ -1583,7 +1583,7 @@
         minutes: 0
         seconds: 1
 
-  condition:
+  conditions:
     - condition: state
       entity_id: media_player.USER1_s_office_apple_tv
       state: 'playing'
@@ -1601,7 +1601,7 @@
         attribute: app_name
         state: "YouTube"
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/youtube
@@ -1621,15 +1621,15 @@
 - alias: LED Clock - USER1's Office Media Remove
   id: 'led_clock_USER1_office_media_remove'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: media_player.sonos_USER1s_office
       from: 'playing'
       for:
         hours: 0
         minutes: 0
         seconds: 10
-    - platform: state
+    - trigger: state
       entity_id: media_player.USER1_s_office_apple_tv
       from: 'playing'
       for:
@@ -1637,7 +1637,7 @@
         minutes: 0
         seconds: 10
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/music_song
@@ -1655,12 +1655,12 @@
 - alias: LED Clock - USER1's Office Party Time
   id: 'led_clock_USER1_office_party_time'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.office_rainbow
       to: 'on'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/party_time
@@ -1680,12 +1680,12 @@
 - alias: LED Clock - USER1's Office Party Time Off
   id: 'led_clock_USER1_office_party_time_off'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.office_rainbow
       to: 'off'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/custom/party_time
@@ -1701,12 +1701,12 @@
 - alias: LED Clock - USER1 Office Do Not Disturb On
   id: 'led_clock_USER1_office_do_not_disturb_on'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER1_s_office_do_not_disturb
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.USER1s_office_desktop_clock
       state: 'on'
@@ -1714,7 +1714,7 @@
       entity_id: person.USER1
       state: 'home'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/notify
@@ -1736,12 +1736,12 @@
 - alias: LED Clock - USER1 Office Do Not Disturb Off
   id: 'led_clock_USER1_office_do_not_disturb_off'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER1_s_office_do_not_disturb
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.USER1s_office_desktop_clock
       state: 'on'
@@ -1749,7 +1749,7 @@
       entity_id: person.USER1
       state: 'home'
 
-  action:
+  actions:
     - action: button.press
       target:
         entity_id: button.USER1s_office_desktop_clock_dismiss_notification
@@ -1761,8 +1761,8 @@
 - alias: LED Clock - USER1's Office Media Title
   id: 'led_clock_USER1_office_media_title'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: media_player.USER1_s_office_apple_tv
       attribute: media_title
       for:
@@ -1770,7 +1770,7 @@
         minutes: 0
         seconds: 1
 
-  condition:
+  conditions:
     - condition: state
       entity_id: person.USER1
       state: 'home'
@@ -1793,7 +1793,7 @@
         attribute: app_id
         state: "com.google.ios.youtube"
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/notify
@@ -1814,13 +1814,13 @@
 - alias: LED Clock - Doorbell USER1's Office
   id: 'led_clock_doorbell_USER1_office'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.front_door_doorbell
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.USER1s_office_desktop_clock
       state: 'on'
@@ -1828,7 +1828,7 @@
       entity_id: person.USER1
       state: 'home'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/notify
@@ -1847,13 +1847,13 @@
 - alias: LED Clock - USER1's Office USER2 Left
   id: 'led_clock_USER1_office_USER2_left_work'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER2
       from: 'Work'
       to: 'not_home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: person.USER1
       state: 'home'
@@ -1861,7 +1861,7 @@
       entity_id: light.USER1s_office_desktop_clock
       state: 'on'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/notify
@@ -1880,13 +1880,13 @@
 - alias: LED Clock - USER1's Office USER2 is Home
   id: 'led_clock_USER1_office_USER2_is_home'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.doors
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: person.USER1
       state: 'home'
@@ -1903,7 +1903,7 @@
       entity_id: light.USER1s_office_desktop_clock
       state: 'on'
 
-  action:
+  actions:
     - delay: '00:00:30'
     - action: mqtt.publish
       data:
@@ -1925,49 +1925,49 @@
   id: 'led_clock_USER1_office_echo_timer_done'
 
   mode: parallel
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER1_s_office_echo_timer
       from: 'on'
       to: 'off'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.basement_timer
       from: 'on'
       to: 'off'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.bathroom_timer
       from: 'on'
       to: 'off'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.bedroom_timer
       from: 'on'
       to: 'off'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.craft_room_timer
       from: 'on'
       to: 'off'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.dining_room_timer
       from: 'on'
       to: 'off'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.fitness_room_timer
       from: 'on'
       to: 'off'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.guest_bedroom_timer
       from: 'on'
       to: 'off'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.kitchen_timer
       from: 'on'
       to: 'off'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.USER2_s_office_timer
       from: 'on'
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: person.USER1
       state: 'home'
@@ -1978,7 +1978,7 @@
       entity_id: input_boolean.disable_echo
       state: 'off'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/notify
@@ -1998,21 +1998,21 @@
 - alias: LED Clock - USER1's Office Door Open
   id: 'led_clock_USER1_office_door_open'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.front_door_opened
       from: 'off'
       to: 'on'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.back_door_opened
       from: 'off'
       to: 'on'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.basement_door_opened
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: person.USER1
       state: 'home'
@@ -2020,7 +2020,7 @@
       entity_id: light.USER1s_office_desktop_clock
       state: 'on'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/notify
@@ -2040,13 +2040,13 @@
 - alias: LED Clock - USER1's Office Garage Door Open
   id: 'led_clock_USER1_office_garage_door_open'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: cover.garage_door
       from: 'closed'
       to: 'open'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: person.USER1
       state: 'home'
@@ -2054,7 +2054,7 @@
       entity_id: light.USER1s_office_desktop_clock
       state: 'on'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/notify
@@ -2074,13 +2074,13 @@
 - alias: LED Clock - USER1's Office Garage Door Closed
   id: 'led_clock_USER1_office_garage_door_closed'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: cover.garage_door
       from: 'open'
       to: 'closed'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: person.USER1
       state: 'home'
@@ -2088,7 +2088,7 @@
       entity_id: light.USER1s_office_desktop_clock
       state: 'on'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: USER1_office_clock/notify
@@ -2112,13 +2112,13 @@
 - alias: LED Clock - Turn On Living Room when Motion Detected
   id: 'led_clock_turn_on_living_room_when_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.living_room_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -2145,7 +2145,7 @@
         entity_id: media_player.living_room_apple_tv
         state: 'playing'
 
-  action:
+  actions:
     - action: light.turn_on
       entity_id:
         - light.living_room_clock
@@ -2157,8 +2157,8 @@
 - alias: LED Clock - Turn Off Living Room when No Motion Detected
   id: 'led_clock_turn_off_living_room_when_no_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.living_room_motion
       from: 'on'
       to: 'off'
@@ -2167,7 +2167,7 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_motion
       state: 'off'
@@ -2175,7 +2175,7 @@
       entity_id: light.living_room_clock
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_off
       entity_id:
         - light.living_room_clock
@@ -2187,8 +2187,8 @@
 - alias: LED Clock - urn Off Living Room LED Clock when Watching TV
   id: 'led_clock_turn_off_living_room_when_watching_tv'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: media_player.living_room_apple_tv
       to: 'playing'
       for:
@@ -2196,7 +2196,7 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_media_lights
       state: 'off'
@@ -2225,7 +2225,7 @@
         attribute: app_name
         state: "YouTube"
 
-  action:
+  actions:
     - action: light.turn_off
       entity_id:
         - light.living_room_clock
@@ -2237,22 +2237,22 @@
 - alias: LED Clock - urn Off Living Room Clock when Done Watching TV
   id: 'led_clock_turn_off_living_room_when_done_watching_tv'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: media_player.living_room_apple_tv
       to: 'paused'
       for:
         hours: 0
         minutes: 1
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: media_player.living_room_apple_tv
       to: 'idle'
       for:
         hours: 0
         minutes: 1
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: media_player.living_room_apple_tv
       from: 'playing'
       for:
@@ -2260,7 +2260,7 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_media_lights
       state: 'off'
@@ -2271,7 +2271,7 @@
       entity_id: light.living_room_clock
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       entity_id:
         - light.living_room_clock
@@ -2287,12 +2287,12 @@
 - alias: LED Clock - Living Room TV Off
   id: 'led_clock_living_room_tv_off'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: select.living_room_tv_activities
       to: 'power_off'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: living_room_clock/custom/tv_state
@@ -2316,12 +2316,12 @@
 - alias: LED Clock - Living Room Watch TV
   id: 'led_clock_living_room_watch_tv'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: select.living_room_tv_activities
       to: 'Watch TV'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: living_room_clock/custom/tv_state
@@ -2360,12 +2360,12 @@
 - alias: LED Clock - Living Room Nintendo Switch
   id: 'led_clock_living_room_nintendo_switch'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: select.living_room_tv_activities
       to: "Play Nintendo Switch"
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: living_room_clock/custom/tv_state
@@ -2417,12 +2417,12 @@
 - alias: LED Clock - Living Room Xbox
   id: 'led_clock_living_room_xbox'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: select.living_room_tv_activities
       to: 'Play Xbox'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: living_room_clock/custom/tv_state
@@ -2458,8 +2458,8 @@
 - alias: LED Clock - Living Room Music Title Apple TV
   id: 'led_clock_living_room_music_title_apple_tv'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: media_player.living_room_apple_tv
       attribute: media_title
       for:
@@ -2467,7 +2467,7 @@
         minutes: 0
         seconds: 1
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.living_room_clock
       state: 'on'
@@ -2496,7 +2496,7 @@
         attribute: app_name
         state: "YouTube"
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: living_room_clock/custom/music_song
@@ -2516,13 +2516,13 @@
 - alias: LED Clock - Living Room Music Title Sonos Living Room
   id: 'led_clock_living_room_music_title_sonos_living_room'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: media_player.sonos_living_room
       attribute: media_title
 
 
-  condition:
+  conditions:
     - condition: state
       entity_id: media_player.sonos_living_room
       state: 'playing'
@@ -2531,7 +2531,7 @@
       attribute: media_content_type
       state: 'music'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: living_room_clock/custom/music_song
@@ -2551,13 +2551,13 @@
 - alias: LED Clock - Living Room Music Title Sonos Surround Sound
   id: 'led_clock_living_room_music_title_sonos_surround_sound'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: media_player.sonos_surround_sound
       attribute: media_title
 
 
-  condition:
+  conditions:
     - condition: state
       entity_id: media_player.sonos_surround_sound
       state: 'playing'
@@ -2584,7 +2584,7 @@
         attribute: media_title
         state: "TV"
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: living_room_clock/custom/music_song
@@ -2604,8 +2604,8 @@
 - alias: LED Clock - Living Room Album Title Apple TV
   id: 'led_clock_living_room_album_title_apple_tv'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: media_player.living_room_apple_tv
       attribute: media_title
       for:
@@ -2613,7 +2613,7 @@
         minutes: 0
         seconds: 1
 
-  condition:
+  conditions:
     - condition: state
       entity_id: media_player.living_room_apple_tv
       state: 'playing'
@@ -2627,7 +2627,7 @@
         entity_id: select.living_room_tv_activities
         state: 'power_off'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: living_room_clock/custom/music_album
@@ -2647,8 +2647,8 @@
 - alias: LED Clock - Living Room Album Title Sonos Living Room
   id: 'led_clock_living_room_album_title_sonos_living_room'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: media_player.sonos_living_room
       attribute: media_title
       for:
@@ -2656,7 +2656,7 @@
         minutes: 0
         seconds: 1
 
-  condition:
+  conditions:
     - condition: state
       entity_id: media_player.sonos_living_room
       state: 'playing'
@@ -2665,7 +2665,7 @@
       attribute: media_content_type
       state: 'music'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: living_room_clock/custom/music_album
@@ -2685,8 +2685,8 @@
 - alias: LED Clock - Living Room Album Title Sonos Surround Sound
   id: 'led_clock_living_room_album_title_sonos_surround_sound'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: media_player.sonos_surround_sound
       attribute: media_title
       for:
@@ -2694,7 +2694,7 @@
         minutes: 0
         seconds: 1
 
-  condition:
+  conditions:
     - condition: state
       entity_id: media_player.sonos_surround_sound
       state: 'playing'
@@ -2721,7 +2721,7 @@
         attribute: media_title
         state: "TV"
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: living_room_clock/custom/music_album
@@ -2741,8 +2741,8 @@
 - alias: LED Clock - Living Room YouTube Title
   id: 'led_clock_living_room_youtube_title'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: media_player.living_room_apple_tv
       attribute: media_title
       for:
@@ -2750,7 +2750,7 @@
         minutes: 0
         seconds: 1
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -2771,7 +2771,7 @@
         attribute: app_name
         state: "YouTube"
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: living_room_clock/custom/youtube
@@ -2791,22 +2791,22 @@
 - alias: LED Clock - Living Room Media Remove
   id: 'led_clock_living_room_media_remove'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: media_player.sonos_living_room
       from: 'playing'
       for:
         hours: 0
         minutes: 0
         seconds: 10
-    - platform: state
+    - trigger: state
       entity_id: media_player.sonos_surround_sound
       from: 'playing'
       for:
         hours: 0
         minutes: 0
         seconds: 10
-    - platform: state
+    - trigger: state
       entity_id: media_player.living_room_apple_tv
       from: 'playing'
       for:
@@ -2814,7 +2814,7 @@
         minutes: 0
         seconds: 10
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: living_room_clock/custom/music_song
@@ -2832,12 +2832,12 @@
 - alias: LED Clock - Living Room Party Time
   id: 'led_clock_living_room_party_time'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.livingroom_rainbow
       to: 'on'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: living_room_clock/custom/party_time
@@ -2857,12 +2857,12 @@
 - alias: LED Clock - Living Room Party Time Off
   id: 'led_clock_living_room_party_time_off'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.livingroom_rainbow
       to: 'off'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: living_room_clock/custom/party_time
@@ -2878,8 +2878,8 @@
 - alias: LED Clock - Living Room Media Title
   id: 'led_clock_living_room_media_title'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: media_player.living_room_apple_tv
       attribute: media_title
       for:
@@ -2887,7 +2887,7 @@
         minutes: 0
         seconds: 1
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.living_room_clock
       state: 'on'
@@ -2907,7 +2907,7 @@
         attribute: app_id
         state: "com.google.ios.youtube"
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: living_room_clock/notify
@@ -2928,13 +2928,13 @@
 - alias: LED Clock - Doorbell Living Room
   id: 'led_clock_doorbell_living_room'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.front_door_doorbell
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.living_room_clock
       state: 'on'
@@ -2942,7 +2942,7 @@
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: living_room_clock/notify
@@ -2962,13 +2962,13 @@
 - alias: LED Clock - Living Room USER2 Left
   id: 'led_clock_living_room_USER2_left_work'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER2
       from: 'Work'
       to: 'not_home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -2976,7 +2976,7 @@
       entity_id: light.living_room_clock
       state: 'on'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: living_room_clock/notify
@@ -2995,13 +2995,13 @@
 - alias: LED Clock - Living Room USER2 is Home
   id: 'led_clock_living_room_USER2_is_home'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.doors
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -3018,7 +3018,7 @@
       entity_id: light.living_room_clock
       state: 'on'
 
-  action:
+  actions:
     - delay: '00:00:30'
     - action: mqtt.publish
       data:
@@ -3039,13 +3039,13 @@
 - alias: LED Clock - Living Room USER1 is Home
   id: 'led_clock_living_room_USER1_is_home'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.doors
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -3062,7 +3062,7 @@
       entity_id: light.living_room_clock
       state: 'on'
 
-  action:
+  actions:
     - delay: '00:00:30'
     - action: mqtt.publish
       data:
@@ -3084,49 +3084,49 @@
   id: 'led_clock_living_room_echo_timer_done'
 
   mode: parallel
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER1_s_office_echo_timer
       from: 'on'
       to: 'off'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.basement_timer
       from: 'on'
       to: 'off'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.bathroom_timer
       from: 'on'
       to: 'off'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.bedroom_timer
       from: 'on'
       to: 'off'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.craft_room_timer
       from: 'on'
       to: 'off'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.dining_room_timer
       from: 'on'
       to: 'off'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.fitness_room_timer
       from: 'on'
       to: 'off'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.guest_bedroom_timer
       from: 'on'
       to: 'off'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.kitchen_timer
       from: 'on'
       to: 'off'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.USER2_s_office_timer
       from: 'on'
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -3137,7 +3137,7 @@
       entity_id: input_boolean.disable_echo
       state: 'off'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: living_room_clock/notify
@@ -3157,21 +3157,21 @@
 - alias: LED Clock - Living Room Door Open
   id: 'led_clock_living_room_door_open'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.front_door_opened
       from: 'off'
       to: 'on'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.back_door_opened
       from: 'off'
       to: 'on'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.basement_door_opened
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -3179,7 +3179,7 @@
       entity_id: light.living_room_clock
       state: 'on'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: living_room_clock/notify
@@ -3200,13 +3200,13 @@
 - alias: LED Clock - Living Room Garage Door Open
   id: 'led_clock_living_room_garage_door_open'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: cover.garage_door
       from: 'closed'
       to: 'open'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -3214,7 +3214,7 @@
       entity_id: light.living_room_clock
       state: 'on'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: living_room_clock/notify
@@ -3235,13 +3235,13 @@
 - alias: LED Clock - Living Room Garage Door Closed
   id: 'led_clock_living_room_garage_door_closed'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: cover.garage_door
       from: 'open'
       to: 'closed'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -3249,7 +3249,7 @@
       entity_id: light.living_room_clock
       state: 'on'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: living_room_clock/notify
@@ -3270,12 +3270,12 @@
 - alias: LED Clock - Living Room Fireplace On
   id: 'led_clock_living_room_fireplace_on'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: switch.fireplace
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -3283,7 +3283,7 @@
       entity_id: light.living_room_clock
       state: 'on'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: living_room_clock/notify
@@ -3304,12 +3304,12 @@
 - alias: LED Clock - Living Room Fireplace Off
   id: 'led_clock_living_room_fireplace_off'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: switch.fireplace
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -3317,7 +3317,7 @@
       entity_id: light.living_room_clock
       state: 'on'
 
-  action:
+  actions:
     - action: mqtt.publish
       data:
         topic: living_room_clock/notify

@@ -9,12 +9,12 @@
 - alias: Bug Zapper - Turn On Bug Zapper at Sunset
   id: 'bug_zapper_turn_on_bug_zapper_at_sunset'
 
-  trigger:
-    - platform: sun
+  triggers:
+    - trigger: sun
       event: 'sunset'
       offset: '-00:30:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -27,7 +27,7 @@
         entity_id: sensor.season
         state: 'winter'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -40,17 +40,17 @@
 - alias: Bug Zapper - Turn Off Bug Zapper at Sunrise
   id: 'bug_zapper_turn_off_bug_zapper_at_sunrise'
 
-  trigger:
-    - platform: sun
+  triggers:
+    - trigger: sun
       event: 'sunrise'
       offset: '+00:15:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: switch.bug_zapper
       state: 'on'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -63,15 +63,15 @@
 - alias: Bug Zapper - Turn Off Bug Zapper in the Rain
   id: 'bug_zapper_turn_off_bug_zapper_in_the_rain'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: weather.REDACTED
       to: 'rainy'
       for:
         hours: 0
         minutes: 30
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: weather.REDACTED
       to: 'lightning-rainy'
       for:
@@ -79,12 +79,12 @@
         minutes: 30
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: switch.bug_zapper
       state: 'on'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -97,12 +97,12 @@
 - alias: Bug Zapper - Turn On Bug Zapper After Rain Stops
   id: 'bug_zapper_turn_on_bug_zapper_after_rain_stops'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: weather.REDACTED
       from: 'rainy'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: switch.bug_zapper
       state: 'off'
@@ -118,7 +118,7 @@
         entity_id: sensor.season
         state: 'winter'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -131,8 +131,8 @@
 - alias: Bug Zapper - Turn On Bug Zapper when Returning Home
   id: 'bug_zapper_turn_bug_zapper_when_returning_home'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       from: 'not_home'
       to: 'home'
@@ -141,7 +141,7 @@
         minutes: 0
         seconds: 30
 
-  condition:
+  conditions:
     - condition: state
       entity_id: switch.bug_zapper
       state: 'off'
@@ -164,7 +164,7 @@
         entity_id: sensor.season
         state: 'winter'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -177,8 +177,8 @@
 - alias: Bug Zapper - Turn On Bug Zapper when Returning Home before Sunset
   id: 'bug_zapper_turn_on_bug_zapper_when_returning_home_before_sunset'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       from: 'not_home'
       to: 'home'
@@ -187,7 +187,7 @@
         minutes: 0
         seconds: 30
 
-  condition:
+  conditions:
     - condition: state
       entity_id: switch.bug_zapper
       state: 'off'
@@ -210,7 +210,7 @@
         entity_id: sensor.season
         state: 'winter'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:

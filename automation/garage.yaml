@@ -9,8 +9,8 @@
 - alias: Garage - Household Away Mode Close Garage
   id: 'garage_household_away_mode_close_garage'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       from: 'home'
       to: 'not_home'
@@ -19,7 +19,7 @@
         minutes: 3
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
@@ -30,7 +30,7 @@
       entity_id: input_boolean.garage_door_motor
       state: 'off'
 
-  action:
+  actions:
     - action: lifx.effect_pulse
       data:
         cycles: 5
@@ -49,8 +49,8 @@
 - alias: Garage - Close Garage when USER1 Leaves
   id: 'garage_close_garage_when_USER1_leaves'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER1_away
       from: 'off'
       to: 'on'
@@ -59,7 +59,7 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.garage_door_motor
       state: 'off'
@@ -70,7 +70,7 @@
       entity_id: cover.garage_door
       state: 'open'
 
-  action:
+  actions:
     - action: lifx.effect_pulse
       data:
         cycles: 5
@@ -89,13 +89,13 @@
 - alias: Garage - Close Garage when USER2 Leaves
   id: 'garage_close_garage_when_USER2_leaves'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER2_away
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.garage_door_motor
       state: 'off'
@@ -106,7 +106,7 @@
       entity_id: cover.garage_door
       state: 'open'
 
-  action:
+  actions:
     - action: lifx.effect_pulse
       data:
         cycles: 5
@@ -125,13 +125,13 @@
 - alias: Garage - USER1 Home from Driving Open Garage Door
   id: 'garage_USER1_home_from_driving_open_garage_door'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER1
       from: 'not_home'
       to: 'home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.garage_door_motor
       state: 'off'
@@ -151,7 +151,7 @@
       entity_id: cover.garage_door
       state: 'closed'
 
-  action:
+  actions:
     - action: cover.open_cover
       entity_id: cover.garage_door
 
@@ -162,13 +162,13 @@
 - alias: Garage - USER1 Home Close Garage
   id: 'garage_USER1_home_close_garage'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER1_away
       from: 'on'
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_auto_garage
       state: 'off'
@@ -179,7 +179,7 @@
       entity_id: input_boolean.garage_door_motor
       state: 'off'
 
-  action:
+  actions:
     - action: lifx.effect_pulse
       data:
         cycles: 5
@@ -200,8 +200,8 @@
 - alias: Garage - USER2 Home from Driving Open Garage
   id: 'garage_USER2_home_from_driving_open_garage'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER2
       from: 'not_home'
       to: 'home'
@@ -210,7 +210,7 @@
         minutes: 0
         seconds: 5
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.garage_door_motor
       state: 'off'
@@ -230,7 +230,7 @@
       entity_id: cover.garage_door
       state: 'closed'
 
-  action:
+  actions:
     - action: cover.open_cover
       entity_id: cover.garage_door
 
@@ -241,8 +241,8 @@
 - alias: Garage - USER2 Home Close Garage
   id: 'garage_USER2_home_close_garage'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER2_away
       from: 'on'
       to: 'off'
@@ -251,7 +251,7 @@
         minutes: 0
         seconds: 5
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_auto_garage
       state: 'off'
@@ -262,7 +262,7 @@
       entity_id: input_boolean.garage_door_motor
       state: 'off'
 
-  action:
+  actions:
     - action: lifx.effect_pulse
       data:
         cycles: 5
@@ -283,8 +283,8 @@
 - alias: Garage - Close After 30 Mins
   id: 'garage_close_after_30_mins'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: cover.garage_door
       to: 'open'
       for:
@@ -292,7 +292,7 @@
         minutes: 30
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_auto_garage
       state: 'off'
@@ -303,7 +303,7 @@
       entity_id: input_boolean.garage_door_motor
       state: 'off'
 
-  action:
+  actions:
     - action: lifx.effect_pulse
       data:
         cycles: 5
@@ -322,12 +322,12 @@
 - alias: Garage - Open On Demand
   id: 'garage_open_on_demand'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.garage_door
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: cover.garage_door
       state: 'closed'
@@ -335,7 +335,7 @@
       entity_id: input_boolean.garage_door_motor
       state: 'off'
 
-  action:
+  actions:
     - action: cover.open_cover
       entity_id: cover.garage_door
 
@@ -346,12 +346,12 @@
 - alias: Garage - Close On Demand
   id: 'garage_close_on_demand'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.garage_door
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: cover.garage_door
       state: 'open'
@@ -359,7 +359,7 @@
       entity_id: input_boolean.garage_door_motor
       state: 'off'
 
-  action:
+  actions:
     - action: lifx.effect_pulse
       data:
         cycles: 5
@@ -378,18 +378,18 @@
 - alias: Garage - Turn Off Garage Door Boolean when Closed
   id: 'garage_turn_off_garage_door_boolean_when_closed'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: cover.garage_door
       from: 'open'
       to: 'closed'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: cover.garage_door
       state: 'closed'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       entity_id: input_boolean.garage_door
 
@@ -400,18 +400,18 @@
 - alias: Garage - Turn On Garage Door Boolean when Open
   id: 'garage_turn_on_garage_door_boolean_when_open'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: cover.garage_door
       from: 'closed'
       to: 'open'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: cover.garage_door
       state: 'open'
 
-  action:
+  actions:
     - action: homeassistant.turn_on
       entity_id: input_boolean.garage_door
 
@@ -422,13 +422,13 @@
 - alias: Garage - USER2 Leaving for Work Open Garage
   id: 'garage_USER2_leaving_for_work_open_garage'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.back_door_opened
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: time
       after: '06:00:00'
       before: '07:30:00'
@@ -455,7 +455,7 @@
       entity_id: input_boolean.garage_door_motor
       state: 'off'
 
-  action:
+  actions:
     - action: cover.open_cover
       entity_id: cover.garage_door
 
@@ -466,12 +466,12 @@
 - alias: Garage - Flash Light When Garage Motor On
   id: 'garage_flash_light_when_garage_motor_on'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.garage_door_motor
       to: 'on'
 
-  action:
+  actions:
     - action: lifx.effect_pulse
       data:
         cycles: 5
@@ -487,15 +487,15 @@
 - alias: Garage - Door Motor On
   id: 'garage_door_motor_on'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: call_service
       event_data:
         domain: cover
         service: close_cover
         service_data:
           entity_id: cover.garage_door
-    - platform: event
+    - trigger: event
       event_type: call_service
       event_data:
         domain: cover
@@ -503,7 +503,7 @@
         service_data:
           entity_id: cover.garage_door
 
-  action:
+  actions:
     - action: homeassistant.turn_on
       entity_id: input_boolean.garage_door_motor
 
@@ -514,8 +514,8 @@
 - alias: Garage - Door Motor Off
   id: 'garage_door_motor_off'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.garage_door_motor
       to: 'on'
       for:
@@ -523,7 +523,7 @@
         minutes: 0
         seconds: 18
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       entity_id: input_boolean.garage_door_motor
 
@@ -538,18 +538,18 @@
 - alias: Garage - Open iOS Notification
   id: 'garage_open_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: cover.garage_door
       from: 'closed'
       to: 'open'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Garage Door Open
@@ -570,18 +570,18 @@
 - alias: Garage - Closed iOS Notification
   id: 'garage_closed_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: cover.garage_door
       from: 'open'
       to: 'closed'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Garage Door Closed
@@ -602,22 +602,22 @@
 - alias: Garage - Door Still Open iOS Notification
   id: 'garage_door_still_open_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: cover.garage_door
       to: 'open'
       for:
         hours: 0
         minutes: 35
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: cover.garage_door
       to: 'closing'
       for:
         hours: 0
         minutes: 10
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: cover.garage_door
       to: 'opening'
       for:
@@ -625,12 +625,12 @@
         minutes: 10
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Garage Door is Still Open!

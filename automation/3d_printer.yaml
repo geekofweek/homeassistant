@@ -13,13 +13,13 @@
 - alias: 3D-Printer - Prusa MK4S Print Finished
   id: '3d_printer_prusa_mk4s_print_finished'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s
       from: 'printing'
       to: 'finished'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
@@ -29,7 +29,7 @@
         entity_id: sensor.prusa_mk4s
         state: 'printing'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: 3D Print Complete (MK4S)
@@ -45,13 +45,13 @@
 - alias: 3D-Printer - Prusa MK4S Print Stopped
   id: '3d_printer_prusa_mk4s_print_stopped'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s
       from: 'printing'
       to: 'stopped'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
@@ -61,7 +61,7 @@
         entity_id: sensor.prusa_mk4s
         state: 'printing'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -84,13 +84,13 @@
 - alias: 3D-Printer - Prusa MK4S Print Paused
   id: '3d_printer_prusa_mk4s_print_paused'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s
       from: 'printing'
       to: 'paused'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
@@ -100,7 +100,7 @@
         entity_id: sensor.prusa_mk4s
         state: 'printing'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -123,13 +123,13 @@
 - alias: 3D-Printer - Prusa MK4S Print Error
   id: '3d_printer_prusa_mk4s_print_error'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s
       from: 'printing'
       to: 'error'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
@@ -139,7 +139,7 @@
         entity_id: sensor.prusa_mk4s
         state: 'printing'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -162,12 +162,12 @@
 - alias: 3D-Printer - Prusa MK4S Print Attention
   id: '3d_printer_prusa_mk4s_print_attention'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s
       to: 'attention'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
@@ -177,7 +177,7 @@
         entity_id: sensor.prusa_mk4s
         state: 'printing'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -200,17 +200,17 @@
 - alias: 3D-Printer - MK4S On Turn On Light
   id: '3d_printer_mk4s_on_turn_on_light'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: switch.prusa_mk4s
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.prusa_mk4s
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -226,17 +226,17 @@
 - alias: 3D-Printer - MK4S Off Turn Off Light
   id: '3d_printer_mk4s_off_turn_off_light'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: switch.prusa_mk4s
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.prusa_mk4s
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -249,8 +249,8 @@
 - alias: 3D-Printer - MK4S Light Reset if Idle
   id: '3d_printer_mk4s_light_reset_if_idle'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s
       to: 'idle'
       for:
@@ -258,7 +258,7 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.prusa_mk4s
       state: 'on'
@@ -271,7 +271,7 @@
         entity_id: sensor.prusa_mk4s
         state: 'printing'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -287,8 +287,8 @@
 - alias: 3D-Printer - MK4S Light Print Start
   id: '3d_printer_mk4s_light_print_start'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s
       to: 'printing'
       for:
@@ -296,12 +296,12 @@
         minutes: 0
         seconds: 5
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.prusa_mk4s
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       entity_id:
         - light.prusa_mk4s
@@ -324,18 +324,18 @@
 - alias: 3D-Printer - MK4S Light Print Finish
   id: '3d_printer_mk4s_light_print_finish'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s
       from: 'printing'
       to: 'finished'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.prusa_mk4s
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -351,18 +351,18 @@
 - alias: 3D-Printer - Light MK4S Print Finish Reset
   id: '3d_printer_light_mk4s_print_finish_reset'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s
       from: 'finished'
       to: 'idle'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.prusa_mk4s
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -378,8 +378,8 @@
 - alias: 3D-Printer - Prusa MK4S Enclosure Fan On Temp
   id: '3d_printer_prusa_mk4s_enclosure_fan_on_temp'
 
-  trigger:
-    - platform: numeric_state
+  triggers:
+    - trigger: numeric_state
       entity_id: sensor.prusa_mk4s_enclosure_temperature
       above: 26
       for:
@@ -387,7 +387,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: or
       conditions:
         - condition: state
@@ -408,7 +408,7 @@
       entity_id: input_boolean.prusa_mk4s_disable_fans
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -421,8 +421,8 @@
 - alias: 3D-Printer - Prusa MK4S PSU Fan On Temp
   id: '3d_printer_prusa_mk4s_psu_fan_on_temp'
 
-  trigger:
-    - platform: numeric_state
+  triggers:
+    - trigger: numeric_state
       entity_id: sensor.prusa_mk4s_enclosure_temperature
       above: 30
       for:
@@ -430,7 +430,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: or
       conditions:
         - condition: state
@@ -451,7 +451,7 @@
       entity_id: input_boolean.prusa_mk4s_disable_fans
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -464,8 +464,8 @@
 - alias: 3D-Printer - Prusa MK4S Enclosure Fan Off Temp
   id: '3d_printer_prusa_mk4s_enclosure_fan_off_temp'
 
-  trigger:
-    - platform: numeric_state
+  triggers:
+    - trigger: numeric_state
       entity_id: sensor.prusa_mk4s_enclosure_temperature
       below: 26
       for:
@@ -473,7 +473,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: or
       conditions:
         - condition: state
@@ -486,7 +486,7 @@
       entity_id: input_boolean.prusa_mk4s_disable_fans
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -499,8 +499,8 @@
 - alias: 3D-Printer - Prusa MK4S PSU Fan Off Temp
   id: '3d_printer_prusa_mk4s_psu_fan_off_temp'
 
-  trigger:
-    - platform: numeric_state
+  triggers:
+    - trigger: numeric_state
       entity_id: sensor.prusa_mk4s_enclosure_temperature
       below: 28
       for:
@@ -508,7 +508,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: or
       conditions:
         - condition: state
@@ -521,7 +521,7 @@
       entity_id: input_boolean.prusa_mk4s_disable_fans
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -534,8 +534,8 @@
 - alias: 3D-Printer - Prusa MK4S Enclosure Fan On Print Start
   id: '3d_printer_prusa_mk4s_enclosure_fan_on_print_start'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s
       to: 'printing'
       for:
@@ -543,7 +543,7 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: or
       conditions:
         - condition: state
@@ -564,7 +564,7 @@
       entity_id: input_boolean.prusa_mk4s_disable_fans
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -577,8 +577,8 @@
 - alias: 3D-Printer - Prusa MK4S PSU Fan On Print Start
   id: '3d_printer_prusa_mk4s_psu_fan_on_print_start'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s
       to: 'printing'
       for:
@@ -586,7 +586,7 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: or
       conditions:
         - condition: state
@@ -607,7 +607,7 @@
       entity_id: input_boolean.prusa_mk4s_disable_fans
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -620,8 +620,8 @@
 - alias: 3D-Printer - Prusa MK4S Enclosure Fan Off Print Start
   id: '3d_printer_prusa_mk4s_enclosure_fan_off_print_start'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s
       to: 'printing'
       for:
@@ -629,7 +629,7 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: or
       conditions:
         - condition: state
@@ -650,7 +650,7 @@
       entity_id: input_boolean.prusa_mk4s_disable_fans
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -663,8 +663,8 @@
 - alias: 3D-Printer - Prusa MK4S PSU Fan Off Print Start
   id: '3d_printer_prusa_mk4s_psu_fan_off_print_start'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s
       to: 'printing'
       for:
@@ -672,7 +672,7 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: or
       conditions:
         - condition: state
@@ -693,7 +693,7 @@
       entity_id: input_boolean.prusa_mk4s_disable_fans
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -706,8 +706,8 @@
 - alias: 3D-Printer - Prusa MK4S Enclosure Fans On Print Finished
   id: '3d_printer_prusa_mk4s_enclosure_fans_on_print_finished'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s
       from: 'printing'
       to: 'finished'
@@ -716,7 +716,7 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: or
       conditions:
         - condition: state
@@ -734,7 +734,7 @@
       entity_id: input_boolean.prusa_mk4s_disable_fans
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -748,15 +748,15 @@
 - alias: 3D-Printer - Prusa MK4S Enclosure Fans Off Print Finished
   id: '3d_printer_prusa_mk4s_enclosure_fans_off_print_finished'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s
       to: 'finished'
       for:
         hours: 0
         minutes: 30
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: sensor.prusa_mk4s
       to: 'idle'
       for:
@@ -764,7 +764,7 @@
         minutes: 30
         seconds: 0
 
-  condition:
+  conditions:
     - condition: or
       conditions:
         - condition: state
@@ -782,7 +782,7 @@
       entity_id: input_boolean.prusa_mk4s_disable_fans
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -796,12 +796,12 @@
 - alias: 3D-Printer - MK4S Off Turn Off Fans
   id: '3d_printer_mk4s_off_turn_off_fans'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: switch.prusa_mk4s
       to: 'off'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -815,8 +815,8 @@
 - alias: 3D-Printer - Turn On Camera Recording Prusa MK4S
   id: '3d_printer_turn_on_camera_recording_prusa_mk4s'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s
       to: 'printing'
       for:
@@ -824,14 +824,14 @@
         minutes: 0
         seconds: 30
 
-  condition:
+  conditions:
     - condition: not
       conditions:
       - condition: state
         entity_id: select.prusa_mk4s_recording_mode
         state: 'Always'
 
-  action:
+  actions:
     - action: select.select_option
       data:
         entity_id: select.prusa_mk4s_recording_mode
@@ -844,8 +844,8 @@
 - alias: 3D-Printer - Turn Off Camera Recording Prusa MK4S
   id: '3d_printer_turn_off_camera_recording_prusa_mk4s'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s
       from: 'printing'
       for:
@@ -853,14 +853,14 @@
         minutes: 3
         seconds: 0
 
-  condition:
+  conditions:
     - condition: not
       conditions:
       - condition: state
         entity_id: select.prusa_mk4s_recording_mode
         state: 'Never'
 
-  action:
+  actions:
     - action: select.select_option
       data:
         entity_id: select.prusa_mk4s_recording_mode
@@ -877,13 +877,13 @@
 - alias: 3D-Printer - Prusa MK4S MMU3 Print Finished
   id: '3d_printer_prusa_mk4s_mmu3_print_finished'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s_mmu3
       from: 'printing'
       to: 'finished'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
@@ -893,7 +893,7 @@
         entity_id: sensor.prusa_mk4s_mmu3
         state: 'printing'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: 3D Print Complete (MMU)
@@ -909,13 +909,13 @@
 - alias: 3D-Printer - Prusa MK4S MMU3 Print Stopped
   id: '3d_printer_prusa_mk4s_mmu3_print_stopped'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s_mmu3
       from: 'printing'
       to: 'stopped'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
@@ -925,7 +925,7 @@
         entity_id: sensor.prusa_mk4s_mmu3
         state: 'printing'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -948,13 +948,13 @@
 - alias: 3D-Printer - Prusa MK4S MMU3 Print Paused
   id: '3d_printer_prusa_mk4s_mmu3_print_paused'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s_mmu3
       from: 'printing'
       to: 'paused'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
@@ -964,7 +964,7 @@
         entity_id: sensor.prusa_mk4s_mmu3
         state: 'printing'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -987,8 +987,8 @@
 - alias: 3D-Printer - Prusa MK4S MMU3 MMU Print Error
   id: '3d_printer_prusa_mk4s_mmu3_print_error'
 
-  trigger:
-    - platform: numeric_state
+  triggers:
+    - trigger: numeric_state
       entity_id: sensor.prusa_mk4s_mmu3_nozzle_temperature
       below: 165
       for:
@@ -996,7 +996,7 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
@@ -1004,7 +1004,7 @@
       entity_id: sensor.prusa_mk4s_mmu3
       state: 'printing'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Print Error (MMU)
@@ -1020,13 +1020,13 @@
 - alias: 3D-Printer - Prusa MK4S MMU3 Print Error
   id: '3d_printer_prusa_mk4s_mmu3_print_error'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s_mmu3
       from: 'printing'
       to: 'error'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
@@ -1036,7 +1036,7 @@
         entity_id: sensor.prusa_mk4s_mmu3
         state: 'printing'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1059,12 +1059,12 @@
 - alias: 3D-Printer - Prusa MK4S MMU3 Print Attention
   id: '3d_printer_prusa_mk4s_mmu3_print_attention'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s_mmu3
       to: 'attention'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
@@ -1074,7 +1074,7 @@
         entity_id: sensor.prusa_mk4s_mmu3
         state: 'printing'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1097,17 +1097,17 @@
 - alias: 3D-Printer - MK4S MMU3 On Turn On Light
   id: '3d_printer_mk4s_mmu3_on_turn_on_light'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: switch.prusa_mk4s_mmu3
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.prusa_mk4s_mmu3
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1123,17 +1123,17 @@
 - alias: 3D-Printer - MK4S MMU3 Off Turn Off Light
   id: '3d_printer_mk4s_mmu3_off_turn_off_light'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: switch.prusa_mk4s_mmu3
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.prusa_mk4s_mmu3
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -1146,8 +1146,8 @@
 - alias: 3D-Printer - MK4S MMU3 Light Print Start
   id: '3d_printer_mk4s_mmu3_light_print_start'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s_mmu3
       to: 'printing'
       for:
@@ -1155,12 +1155,12 @@
         minutes: 0
         seconds: 5
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.prusa_mk4s_mmu3
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1184,18 +1184,18 @@
 - alias: 3D-Printer - MK4S MMU3 Light Print Finish
   id: '3d_printer_mk4s_mmu3_light_print_finish'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s_mmu3
       from: 'printing'
       to: 'finished'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.prusa_mk4s_mmu3
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1211,18 +1211,18 @@
 - alias: 3D-Printer - Light MK4S MMU3 Print Finish Reset
   id: '3d_printer_light_mk4s_mmu3_print_finish_reset'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s_mmu3
       from: 'finished'
       to: 'idle'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.prusa_mk4s_mmu3
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1238,8 +1238,8 @@
 - alias: 3D-Printer - MK4S MMU3 Light Reset if Idle
   id: '3d_printer_mk4s_mmu3_light_reset_if_idle'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s_mmu3
       to: 'idle'
       for:
@@ -1247,7 +1247,7 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.prusa_mk4s_mmu3
       state: 'on'
@@ -1260,7 +1260,7 @@
         entity_id: sensor.prusa_mk4s_mmu3
         state: 'printing'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1276,8 +1276,8 @@
 - alias: 3D-Printer - Prusa MK4S MMU3 Enclosure Fan On Temp
   id: '3d_printer_prusa_mk4s_mmu3_enclosure_fan_on_temp'
 
-  trigger:
-    - platform: numeric_state
+  triggers:
+    - trigger: numeric_state
       entity_id: sensor.prusa_mk4s_mmu3_enclosure_temperature
       above: 26
       for:
@@ -1285,7 +1285,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: or
       conditions:
         - condition: state
@@ -1298,7 +1298,7 @@
       entity_id: input_boolean.prusa_mk4s_mmu3_disable_fans
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -1311,8 +1311,8 @@
 - alias: 3D-Printer - Prusa MK4S MMU3 PSU Fan On Temp
   id: '3d_printer_prusa_mk4s_mmu3_psu_fan_on_temp'
 
-  trigger:
-    - platform: numeric_state
+  triggers:
+    - trigger: numeric_state
       entity_id: sensor.prusa_mk4s_mmu3_enclosure_temperature
       above: 30
       for:
@@ -1320,7 +1320,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: or
       conditions:
         - condition: state
@@ -1333,7 +1333,7 @@
       entity_id: input_boolean.prusa_mk4s_mmu3_disable_fans
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -1346,8 +1346,8 @@
 - alias: 3D-Printer - Prusa MK4S MMU3 Enclosure Fan Off Temp
   id: '3d_printer_prusa_mk4s_mmu3_enclosure_fan_off_temp'
 
-  trigger:
-    - platform: numeric_state
+  triggers:
+    - trigger: numeric_state
       entity_id: sensor.prusa_mk4s_mmu3_enclosure_temperature
       below: 26
       for:
@@ -1355,7 +1355,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: or
       conditions:
         - condition: state
@@ -1368,7 +1368,7 @@
       entity_id: input_boolean.prusa_mk4s_mmu3_disable_fans
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -1381,8 +1381,8 @@
 - alias: 3D-Printer - Prusa MK4S MMU3 PSU Fan Off Temp
   id: '3d_printer_prusa_mk4s_mmu3_psu_fan_off_temp'
 
-  trigger:
-    - platform: numeric_state
+  triggers:
+    - trigger: numeric_state
       entity_id: sensor.prusa_mk4s_mmu3_enclosure_temperature
       below: 28
       for:
@@ -1390,7 +1390,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: or
       conditions:
         - condition: state
@@ -1403,7 +1403,7 @@
       entity_id: input_boolean.prusa_mk4s_mmu3_disable_fans
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -1416,8 +1416,8 @@
 - alias: 3D-Printer - Prusa MK4S MMU3 Enclosure Fan On Print Start
   id: '3d_printer_prusa_mk4s_mmu3_enclosure_fan_on_print_start'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s_mmu3
       to: 'printing'
       for:
@@ -1425,7 +1425,7 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: or
       conditions:
         - condition: state
@@ -1438,7 +1438,7 @@
       entity_id: input_boolean.prusa_mk4s_mmu3_disable_fans
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -1451,8 +1451,8 @@
 - alias: 3D-Printer - Prusa MK4S MMU3 PSU Fan On Print Start
   id: '3d_printer_prusa_mk4s_mmu3_psu_fan_on_print_start'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s_mmu3
       to: 'printing'
       for:
@@ -1460,7 +1460,7 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: or
       conditions:
         - condition: state
@@ -1473,7 +1473,7 @@
       entity_id: input_boolean.prusa_mk4s_mmu3_disable_fans
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -1486,8 +1486,8 @@
 - alias: 3D-Printer - Prusa MK4S MMU3 Enclosure Fan Off Print Start
   id: '3d_printer_prusa_mk4s_mmu3_enclosure_fan_off_print_start'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s_mmu3
       to: 'printing'
       for:
@@ -1495,7 +1495,7 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: or
       conditions:
         - condition: state
@@ -1508,7 +1508,7 @@
       entity_id: input_boolean.prusa_mk4s_mmu3_disable_fans
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -1521,8 +1521,8 @@
 - alias: 3D-Printer - Prusa MK4S MMU3 PSU Fan Off Print Start
   id: '3d_printer_prusa_mk4s_mmu3_psu_fan_off_print_start'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s_mmu3
       to: 'printing'
       for:
@@ -1530,7 +1530,7 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: or
       conditions:
         - condition: state
@@ -1543,7 +1543,7 @@
       entity_id: input_boolean.prusa_mk4s_mmu3_disable_fans
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -1556,8 +1556,8 @@
 - alias: 3D-Printer - Prusa MK4S MMU3 Enclosure Fans On Print Finished
   id: '3d_printer_prusa_mk4s_mmu3_enclosure_fans_on_print_finished'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s_mmu3
       from: 'printing'
       to: 'finished'
@@ -1566,7 +1566,7 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: or
       conditions:
         - condition: state
@@ -1584,7 +1584,7 @@
       entity_id: input_boolean.prusa_mk4s_mmu3_disable_fans
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -1598,15 +1598,15 @@
 - alias: 3D-Printer - Prusa MK4S MMU3 Enclosure Fans Off Print Finished
   id: '3d_printer_prusa_mk4s_mmu3_enclosure_fans_off_print_finished'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s_mmu3
       to: 'finished'
       for:
         hours: 0
         minutes: 30
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: sensor.prusa_mk4s_mmu3
       to: 'idle'
       for:
@@ -1614,7 +1614,7 @@
         minutes: 30
         seconds: 0
 
-  condition:
+  conditions:
     - condition: or
       conditions:
         - condition: state
@@ -1632,7 +1632,7 @@
       entity_id: input_boolean.prusa_mk4s_mmu3_disable_fans
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -1646,12 +1646,12 @@
 - alias: 3D-Printer - MK4S MMU3 Off Turn Off Fans
   id: '3d_printer_mk4s_mmu3_off_turn_off_fans'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: switch.prusa_mk4s_mmu3
       to: 'off'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -1665,8 +1665,8 @@
 - alias: 3D-Printer - Turn On Camera Recording Prusa MK4S MMU3
   id: '3d_printer_turn_on_camera_recording_prusa_mk4s_mmu3'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s_mmu3
       to: 'printing'
       for:
@@ -1674,14 +1674,14 @@
         minutes: 0
         seconds: 30
 
-  condition:
+  conditions:
     - condition: not
       conditions:
       - condition: state
         entity_id: select.prusa_mk4s_mmu3_camera_recording_mode
         state: 'Always'
 
-  action:
+  actions:
     - action: select.select_option
       data:
         entity_id: select.prusa_mk4s_mmu3_camera_recording_mode
@@ -1694,8 +1694,8 @@
 - alias: 3D-Printer - Turn Off Camera Recording Prusa MK4S MMU3
   id: '3d_printer_turn_off_camera_recording_prusa_mk4s_mmu3'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk4s_mmu3
       from: 'printing'
       for:
@@ -1703,14 +1703,14 @@
         minutes: 3
         seconds: 0
 
-  condition:
+  conditions:
     - condition: not
       conditions:
       - condition: state
         entity_id: select.prusa_mk4s_mmu3_camera_recording_mode
         state: 'Never'
 
-  action:
+  actions:
     - action: select.select_option
       data:
         entity_id: select.prusa_mk4s_mmu3_camera_recording_mode
@@ -1727,13 +1727,13 @@
 - alias: 3D-Printer - Prusa MK3.5 Print Finished
   id: '3d_printer_prusa_mk3_5_print_finished'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk3_5
       from: 'printing'
       to: 'finished'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
@@ -1743,7 +1743,7 @@
         entity_id: sensor.prusa_mk3_5
         state: 'printing'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: 3D Print Complete (MK3.5)
@@ -1758,13 +1758,13 @@
 - alias: 3D-Printer - Prusa MK3.5 Print Stopped
   id: '3d_printer_prusa_mk3_5_print_stopped'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk3_5
       from: 'printing'
       to: 'stopped'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
@@ -1774,7 +1774,7 @@
         entity_id: sensor.prusa_mk3_5
         state: 'printing'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Print Stopped (MK3.5)
@@ -1789,13 +1789,13 @@
 - alias: 3D-Printer - Prusa MK3.5 Print Paused
   id: '3d_printer_prusa_mk3_5_print_paused'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk3_5
       from: 'printing'
       to: 'paused'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
@@ -1805,7 +1805,7 @@
         entity_id: sensor.prusa_mk3_5
         state: 'printing'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Print Paused (MK3.5)
@@ -1820,8 +1820,8 @@
 - alias: 3D-Printer - Prusa MK3.5 MMU Print Error
   id: '3d_printer_prusa_mk3_5_print_error'
 
-  trigger:
-    - platform: numeric_state
+  triggers:
+    - trigger: numeric_state
       entity_id: sensor.prusa_mk4s_mmu3_nozzle_temperature
       below: 165
       for:
@@ -1829,7 +1829,7 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
@@ -1837,7 +1837,7 @@
       entity_id: sensor.prusa_mk3_5
       state: 'printing'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Print Error (MK3.5)
@@ -1852,13 +1852,13 @@
 - alias: 3D-Printer - Prusa MK3.5 Print Error
   id: '3d_printer_prusa_mk3_5_print_error'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk3_5
       from: 'printing'
       to: 'error'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
@@ -1868,7 +1868,7 @@
         entity_id: sensor.prusa_mk3_5
         state: 'printing'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Print Error (MK3.5)
@@ -1883,12 +1883,12 @@
 - alias: 3D-Printer - Prusa MK3.5 Print Attention
   id: '3d_printer_prusa_mk3_5_print_attention'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.prusa_mk3_5
       to: 'attention'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
@@ -1898,7 +1898,7 @@
         entity_id: sensor.prusa_mk3_5
         state: 'printing'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Print Needs Attention (MK3.5)

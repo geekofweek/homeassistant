@@ -13,11 +13,11 @@
 - alias: Roomba - Run Roomba Vacation Mode
   id: 'roomba_run_vacation_mode'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '09:30:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
@@ -42,7 +42,7 @@
         entity_id: group.household
         state: 'home'
 
-  action:
+  actions:
     - action: vacuum.start
       target:
         entity_id:
@@ -57,11 +57,11 @@
 - alias: Roomba - Run Main Floor Roomba Weekdays
   id: 'roomba_run_main_floor_roomba_weekdays'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '09:30:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
@@ -93,7 +93,7 @@
         entity_id: person.USER2
         state: 'home'
 
-  action:
+  actions:
     - action: vacuum.start
       target:
         entity_id:
@@ -106,11 +106,11 @@
 - alias: Roomba - Run Main Floor Roomba Weekdays Partial Clean
   id: 'roomba_run_main_floor_roomba_weekdays_partial_clean'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '09:30:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
@@ -143,7 +143,7 @@
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: homeassistant.turn_on
       target:
         entity_id: 
@@ -168,11 +168,11 @@
 - alias: Roomba - Run Main Floor Roomba Weekends
   id: 'roomba_run_main_floor_roomba_weekends'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '11:00:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
@@ -213,7 +213,7 @@
         entity_id: person.USER2
         state: 'home'
 
-  action:
+  actions:
     - action: vacuum.start
       target:
         entity_id:
@@ -226,13 +226,13 @@
 - alias: Roomba - Pause Main Floor Roomba when Doorbell Rings
   id: 'roomba_pause_main_floor_roomba_when_doorbell_rings'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.front_door_camera_doorbell
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
@@ -246,7 +246,7 @@
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: vacuum.pause
       target:
         entity_id:
@@ -263,8 +263,8 @@
 - alias: Roomba - Resume Main Floor Roomba after Doorbell Rings
   id: 'roomba_resume_main_floor_roomba_after_doorbell_rings'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.front_door_camera_doorbell
       from: 'on'
       to: 'off'
@@ -273,7 +273,7 @@
         minutes: 3
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
@@ -287,7 +287,7 @@
       entity_id: vacuum.main_floor_roomba
       state: 'paused'
 
-  action:
+  actions:
     - action: vacuum.start
       target:
         entity_id:
@@ -304,8 +304,8 @@
 - alias: Roomba - Run Main Floor Roomba when Away
   id: 'roomba_run_main_floor_roomba_when_away'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       from: 'home'
       to: 'not_home'
@@ -314,7 +314,7 @@
         minutes: 3
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
@@ -337,7 +337,7 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
 
-  action:
+  actions:
     - action: vacuum.start
       target:
         entity_id:
@@ -350,8 +350,8 @@
 - alias: Roomba - Run Main Floor Roomba when Away Already Ran
   id: 'roomba_run_main_floor_roomba_when_away_already_ran'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       from: 'home'
       to: 'not_home'
@@ -360,7 +360,7 @@
         minutes: 10
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
@@ -383,7 +383,7 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
 
-  action:
+  actions:
     - action: homeassistant.turn_on
       target:
         entity_id: 
@@ -403,8 +403,8 @@
 - alias: Roomba - Run Upstairs Roomba in USER1's Office
   id: 'roomba_run_upstairs_roomba_USER1_office'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER1s_office_motion
       to: 'off'
       for:
@@ -412,7 +412,7 @@
         minutes: 26
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
@@ -461,7 +461,7 @@
         - thu
         - fri
 
-  action:
+  actions:
     - action: homeassistant.turn_on
       target:
         entity_id: 
@@ -477,11 +477,11 @@
 - alias: Roomba - Run Upstairs Roomba when USER2 Away Partial Clean
   id: 'roomba_run_upstairs_roomba_when_USER2_away_partial_clean'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '09:30:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
@@ -513,7 +513,7 @@
         - thu
         - fri
 
-  action:
+  actions:
     - action: homeassistant.turn_on
       target:
         entity_id: 
@@ -538,8 +538,8 @@
 - alias: Roomba - Run Upstairs Roomba when Away
   id: 'roomba_run_upstairs_roomba_when_away'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       from: 'home'
       to: 'not_home'
@@ -548,7 +548,7 @@
         minutes: 3
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
@@ -571,7 +571,7 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
 
-  action:
+  actions:
     - action: vacuum.start
       target:
         entity_id:
@@ -584,8 +584,8 @@
 - alias: Roomba - Shut Off Roombas when Home
   id: 'roomba_shut_off_roombas_when_home'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       from: 'not_home'
       to: 'home'
@@ -594,7 +594,7 @@
         minutes: 0
         seconds: 90
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
@@ -613,7 +613,7 @@
         entity_id: vacuum.basement_roomba
         state: 'cleaning'
 
-  action:
+  actions:
     - action: vacuum.return_to_base
       target:
         entity_id:
@@ -628,11 +628,11 @@
 - alias: Roomba - Run Upstairs Roomba Mornings when Away
   id: 'roomba_run_upstairs_roomba_mornings_when_away'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '09:30:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
@@ -658,7 +658,7 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
 
-  action:
+  actions:
     - action: vacuum.start
       target:
         entity_id:
@@ -671,11 +671,11 @@
 - alias: Roomba - Run Basement Roomba Weekdays
   id: 'roomba_run_basement_roomba_weekdays'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '09:30:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
@@ -713,7 +713,7 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
 
-  action:
+  actions:
     - action: vacuum.start
       target:
         entity_id:
@@ -726,11 +726,11 @@
 - alias: Roomba - Run Basement Roomba Partial Clean
   id: 'roomba_run_basement_roomba_partial_clean'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '09:30:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
@@ -767,7 +767,7 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
 
-  action:
+  actions:
     - action: homeassistant.turn_on
       target:
         entity_id: 
@@ -787,11 +787,11 @@
 - alias: Roomba - Run Basement Roomba Partial Clean Weekend
   id: 'roomba_run_basement_roomba_partial_clean_weekend'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '14:00:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
@@ -828,7 +828,7 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
 
-  action:
+  actions:
     - action: homeassistant.turn_on
       target:
         entity_id: 
@@ -848,8 +848,8 @@
 - alias: Roomba - Run Basement Roomba when Away
   id: 'roomba_run_basement_roomba_when_away'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       from: 'home'
       to: 'not_home'
@@ -858,7 +858,7 @@
         minutes: 3
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
@@ -878,7 +878,7 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
 
-  action:
+  actions:
     - action: homeassistant.turn_on
       target:
         entity_id: 
@@ -893,8 +893,8 @@
 - alias: Roomba - Run Main Floor Roomba when USER2 Leaves
   id: 'roomba_run_main_floor_roomba_when_USER2_leaves'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER2
       from: 'home'
       to: 'not_home'
@@ -903,7 +903,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
@@ -936,7 +936,7 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
 
-  action:
+  actions:
     - action: vacuum.start
       target:
         entity_id:
@@ -949,8 +949,8 @@
 - alias: Roomba - Run Upstairs Roomba when USER2 Leaves
   id: 'roomba_run_upstairs_roomba_when_USER2_leaves'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER2
       from: 'home'
       to: 'not_home'
@@ -959,7 +959,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
@@ -992,7 +992,7 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
 
-  action:
+  actions:
     - action: homeassistant.turn_on
       target:
         entity_id: 
@@ -1017,8 +1017,8 @@
 - alias: Roomba - Turn Off Roomba when USER2 Home
   id: 'roomba_turn_off_roomba_when_USER2_home'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER2
       from: 'not_home'
       to: 'home'
@@ -1027,7 +1027,7 @@
         minutes: 0
         seconds: 90
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
@@ -1046,7 +1046,7 @@
         entity_id: vacuum.upstairs_roomba
         state: 'cleaning'
 
-  action:
+  actions:
     - action: vacuum.return_to_base
       target:
         entity_id:
@@ -1060,8 +1060,8 @@
 - alias: Roomba - Turn Off Roomba when Friends and Family Arrive
   id: 'roomba_turn_off_roomba_when_frinds_and_family_arrive'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.guest_mode
       from: 'off'
       to: 'on'
@@ -1070,7 +1070,7 @@
         minutes: 0
         seconds: 90
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
@@ -1089,7 +1089,7 @@
         entity_id: vacuum.basement_roomba
         state: 'cleaning'
 
-  action:
+  actions:
     - action: vacuum.return_to_base
       target:
         entity_id:
@@ -1108,8 +1108,8 @@
 - alias: Roomba - Turn On lights for Main Floor Roomba Away
   id: 'roomba_turn_on_lights_for_main_floor_roomba_away'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'cleaning'
       for:
@@ -1117,7 +1117,7 @@
         minutes: 0
         seconds: 15
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
@@ -1151,7 +1151,7 @@
       entity_id: input_boolean.roomba_clean_bedroom_closet_lights
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1198,22 +1198,22 @@
 - alias: Roomba - Turn Off lights when Main Floor Roomba finished Away
   id: 'roomba_turn_off_lights_when_main_floor_roomba_finished_away'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'docked'
       for:
         hours: 0
         minutes: 4
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'paused'
       for:
         hours: 0
         minutes: 4
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'stopped'
       for:
@@ -1221,7 +1221,7 @@
         minutes: 2
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
@@ -1255,7 +1255,7 @@
       entity_id: input_boolean.roomba_clean_bedroom_closet_lights
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -1288,8 +1288,8 @@
 - alias: Roomba - Turn On lights for Main Floor Roomba when Dark
   id: 'roomba_turn_on_lights_for_main_floor_roomba_when_dark'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'cleaning'
       for:
@@ -1297,7 +1297,7 @@
         minutes: 0
         seconds: 15
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
@@ -1350,7 +1350,7 @@
       entity_id: input_boolean.roomba_clean_bedroom_closet_lights
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1402,22 +1402,22 @@
 - alias: Roomba - Turn Off Lights Main Floor Roomba finished when Dark
   id: 'roomba_turn_off_lights_when_main_floor_roomba_finished_when_dark'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'docked'
       for:
         hours: 0
         minutes: 2
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'paused'
       for:
         hours: 0
         minutes: 4
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'stopped'
       for:
@@ -1425,7 +1425,7 @@
         minutes: 2
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
@@ -1466,7 +1466,7 @@
       entity_id: input_boolean.roomba_clean_bedroom_closet_lights
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -1499,8 +1499,8 @@
 - alias: Roomba - Turn On low lights for Upstairs Roomba Away
   id: 'roomba_turn_on_lights_for_upstairs_roomba_away'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.upstairs_roomba
       to: 'cleaning'
       for:
@@ -1508,7 +1508,7 @@
         minutes: 0
         seconds: 15
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
@@ -1530,7 +1530,7 @@
       entity_id: input_boolean.roomba_clean_upstairs_hallway_lights
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1548,22 +1548,22 @@
 - alias: Roomba - Turn Off lights when Upstairs Roomba finished Away
   id: 'roomba_turn_off_lights_when_upstairs_roomba_finished_away'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.upstairs_roomba
       to: 'docked'
       for:
         hours: 0
         minutes: 4
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: vacuum.upstairs_roomba
       to: 'paused'
       for:
         hours: 0
         minutes: 2
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: vacuum.upstairs_roomba
       to: 'stopped'
       for:
@@ -1571,7 +1571,7 @@
         minutes: 2
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
@@ -1593,7 +1593,7 @@
       entity_id: input_boolean.roomba_clean_upstairs_hallway_lights
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -1609,8 +1609,8 @@
 - alias: Roomba - Turn On low lights for Upstairs Roomba
   id: 'roomba_turn_on_lights_for_upstairs_roomba'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.upstairs_roomba
       to: 'cleaning'
       for:
@@ -1618,7 +1618,7 @@
         minutes: 0
         seconds: 15
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
@@ -1635,7 +1635,7 @@
       entity_id: input_boolean.roomba_clean_upstairs_hallway_lights
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1653,22 +1653,22 @@
 - alias: Roomba - Turn Off lights when Upstairs Roomba Finished
   id: 'roomba_turn_off_lights_when_upstairs_roomba_finished'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.upstairs_roomba
       to: 'docked'
       for:
         hours: 0
         minutes: 4
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: vacuum.upstairs_roomba
       to: 'paused'
       for:
         hours: 0
         minutes: 2
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: vacuum.upstairs_roomba
       to: 'stopped'
       for:
@@ -1676,7 +1676,7 @@
         minutes: 2
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
@@ -1705,7 +1705,7 @@
       entity_id: binary_sensor.stairs_motion
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -1721,8 +1721,8 @@
 - alias: Roomba - Turn On lights for Basement Roomba
   id: 'roomba_turn_on_lights_for_basement_roomba'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.basement_roomba
       to: 'cleaning'
       for:
@@ -1730,7 +1730,7 @@
         minutes: 0
         seconds: 15
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
@@ -1750,7 +1750,7 @@
       entity_id: input_boolean.roomba_clean_workbench_lights
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1765,15 +1765,15 @@
 - alias: Roomba - Turn Off lights when Basement Roomba finished
   id: 'roomba_turn_off_lights_when_basement_roomba_finished'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.basement_roomba
       to: 'docked'
       for:
         hours: 0
         minutes: 4
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: vacuum.basement_roomba
       to: 'paused'
       for:
@@ -1781,7 +1781,7 @@
         minutes: 4
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
@@ -1813,7 +1813,7 @@
       entity_id: input_boolean.roomba_clean_workbench_lights
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -1831,8 +1831,8 @@
   id: 'roomba_tooggle_lights_with_room_clean'
 
   mode: parallel
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: 
         - input_boolean.roomba_clean_living_room
         - input_boolean.roomba_clean_front_door
@@ -1842,7 +1842,7 @@
         hours: 0
         minutes: 0
         seconds: 1
-    - platform: state
+    - trigger: state
       entity_id: 
         - input_boolean.roomba_clean_dining_room
         - input_boolean.roomba_clean_dining_room_table
@@ -1852,7 +1852,7 @@
         hours: 0
         minutes: 0
         seconds: 1
-    - platform: state
+    - trigger: state
       entity_id: 
         - input_boolean.roomba_clean_kitchen
         - input_boolean.roomba_clean_back_door
@@ -1862,7 +1862,7 @@
         hours: 0
         minutes: 0
         seconds: 1
-    - platform: state
+    - trigger: state
       entity_id: 
         - input_boolean.roomba_clean_hallway
       to: 'on'
@@ -1871,7 +1871,7 @@
         hours: 0
         minutes: 0
         seconds: 1
-    - platform: state
+    - trigger: state
       entity_id: 
         - input_boolean.roomba_clean_bathroom
       to: 'on'
@@ -1880,7 +1880,7 @@
         hours: 0
         minutes: 0
         seconds: 1
-    - platform: state
+    - trigger: state
       entity_id: 
         - input_boolean.roomba_clean_bedroom
       to: 'on'
@@ -1889,7 +1889,7 @@
         hours: 0
         minutes: 0
         seconds: 1
-    - platform: state
+    - trigger: state
       entity_id: 
         - input_boolean.roomba_clean_bedroom_closet
       to: 'on'
@@ -1898,7 +1898,7 @@
         hours: 0
         minutes: 0
         seconds: 1
-    - platform: state
+    - trigger: state
       entity_id: 
         - input_boolean.roomba_clean_front_door
       to: 'on'
@@ -1907,7 +1907,7 @@
         hours: 0
         minutes: 0
         seconds: 1
-    - platform: state
+    - trigger: state
       entity_id: 
         - input_boolean.roomba_clean_USER1_office
       to: 'on'
@@ -1916,7 +1916,7 @@
         hours: 0
         minutes: 0
         seconds: 1
-    - platform: state
+    - trigger: state
       entity_id: 
         - input_boolean.roomba_clean_USER2_office
       to: 'on'
@@ -1925,7 +1925,7 @@
         hours: 0
         minutes: 0
         seconds: 1
-    - platform: state
+    - trigger: state
       entity_id: 
         - input_boolean.roomba_clean_guest_bedroom
       to: 'on'
@@ -1934,7 +1934,7 @@
         hours: 0
         minutes: 0
         seconds: 1
-    - platform: state
+    - trigger: state
       entity_id: 
         - input_boolean.roomba_clean_upstairs_hallway
       to: 'on'
@@ -1943,7 +1943,7 @@
         hours: 0
         minutes: 0
         seconds: 1
-    - platform: state
+    - trigger: state
       entity_id: 
         - input_boolean.roomba_clean_utility_area
       to: 'on'
@@ -1952,7 +1952,7 @@
         hours: 0
         minutes: 0
         seconds: 1
-    - platform: state
+    - trigger: state
       entity_id: 
         - input_boolean.roomba_clean_fitness_room
       to: 'on'
@@ -1961,7 +1961,7 @@
         hours: 0
         minutes: 0
         seconds: 1
-    - platform: state
+    - trigger: state
       entity_id: 
         - input_boolean.roomba_clean_craft_room
       to: 'on'
@@ -1970,7 +1970,7 @@
         hours: 0
         minutes: 0
         seconds: 1
-    - platform: state
+    - trigger: state
       entity_id: 
         - input_boolean.roomba_clean_laundry_room
       to: 'on'
@@ -1979,7 +1979,7 @@
         hours: 0
         minutes: 0
         seconds: 1
-    - platform: state
+    - trigger: state
       entity_id: 
         - input_boolean.roomba_clean_workbench
       to: 'on'
@@ -1989,7 +1989,7 @@
         minutes: 0
         seconds: 1
 
-  action:
+  actions:
     - action: homeassistant.turn_on
       target:
         entity_id: '{{ trigger.id }}'
@@ -2001,8 +2001,8 @@
 - alias: Roomba - Turn On Living Room Lights Room Clean
   id: 'roomba_turn_on_living_room_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'cleaning'
       for:
@@ -2010,7 +2010,7 @@
         minutes: 0
         seconds: 5
 
-  condition:
+  conditions:
     - condition: or
       conditions:
       - condition: state
@@ -2020,7 +2020,7 @@
         entity_id: input_boolean.roomba_clean_front_door
         state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -2033,8 +2033,8 @@
 - alias: Roomba - Turn Off Living Room Lights Room Clean
   id: 'roomba_turn_off_living_room_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'docked'
       for:
@@ -2042,7 +2042,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_living_room_lights
       state: 'on'
@@ -2066,7 +2066,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -2084,8 +2084,8 @@
 - alias: Roomba - Turn Off Living Room Lights Room Clean Boolean
   id: 'roomba_turn_off_living_room_lights_room_clean_boolean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'docked'
       for:
@@ -2093,7 +2093,7 @@
         minutes: 6
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_living_room_lights
       state: 'on'
@@ -2109,7 +2109,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -2122,8 +2122,8 @@
 - alias: Roomba - Turn On Dining Room Lights Room Clean
   id: 'roomba_turn_on_dining_room_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'cleaning'
       for:
@@ -2131,7 +2131,7 @@
         minutes: 0
         seconds: 5
 
-  condition:
+  conditions:
     - condition: or
       conditions:
       - condition: state
@@ -2141,7 +2141,7 @@
         entity_id: input_boolean.roomba_clean_dining_room_table
         state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -2154,8 +2154,8 @@
 - alias: Roomba - Turn Off Dining Room Lights Room Clean
   id: 'roomba_turn_off_dining_room_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'docked'
       for:
@@ -2163,7 +2163,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_dining_room_lights
       state: 'on'
@@ -2187,7 +2187,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -2205,8 +2205,8 @@
 - alias: Roomba - Turn Off Dining Room Lights Room Clean Boolean
   id: 'roomba_turn_off_dining_room_lights_room_clean_boolean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'docked'
       for:
@@ -2214,7 +2214,7 @@
         minutes: 6
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_dining_room_lights
       state: 'on'
@@ -2230,7 +2230,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -2244,8 +2244,8 @@
 - alias: Roomba - Turn On Kitchen Lights Room Clean
   id: 'roomba_turn_on_kitchen_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'cleaning'
       for:
@@ -2253,7 +2253,7 @@
         minutes: 0
         seconds: 5
 
-  condition:
+  conditions:
     - condition: or
       conditions:
       - condition: state
@@ -2263,7 +2263,7 @@
         entity_id: input_boolean.roomba_clean_back_door
         state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -2276,8 +2276,8 @@
 - alias: Roomba - Turn Off Kitchen Lights Room Clean
   id: 'roomba_turn_off_kitchen_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'docked'
       for:
@@ -2285,7 +2285,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_kitchen_lights
       state: 'on'
@@ -2309,7 +2309,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -2327,8 +2327,8 @@
 - alias: Roomba - Turn Off Kitchen Lights Room Clean Boolean
   id: 'roomba_turn_off_kitchen_lights_room_clean_boolean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'docked'
       for:
@@ -2336,7 +2336,7 @@
         minutes: 6
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_kitchen_lights
       state: 'on'
@@ -2352,7 +2352,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -2366,8 +2366,8 @@
 - alias: Roomba - Turn On Hallway Lights Room Clean
   id: 'roomba_turn_on_hallway_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'cleaning'
       for:
@@ -2375,12 +2375,12 @@
         minutes: 0
         seconds: 5
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_hallway_lights
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -2393,8 +2393,8 @@
 - alias: Roomba - Turn Off Hallway Lights Room Clean
   id: 'roomba_turn_off_hallway_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'docked'
       for:
@@ -2402,7 +2402,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_hallway_lights
       state: 'on'
@@ -2426,7 +2426,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -2443,8 +2443,8 @@
 - alias: Roomba - Turn Off Hallway Lights Room Clean Boolean
   id: 'roomba_turn_off_hallway_lights_room_clean_boolean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'docked'
       for:
@@ -2452,7 +2452,7 @@
         minutes: 6
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_hallway_lights
       state: 'on'
@@ -2468,7 +2468,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -2481,8 +2481,8 @@
 - alias: Roomba - Turn On Bathroom Lights Room Clean
   id: 'roomba_turn_on_bathroom_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'cleaning'
       for:
@@ -2490,12 +2490,12 @@
         minutes: 0
         seconds: 5
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_bathroom_lights
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -2508,8 +2508,8 @@
 - alias: Roomba - Turn Off Bathroom Lights Room Clean
   id: 'roomba_turn_off_bathroom_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'docked'
       for:
@@ -2517,7 +2517,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_bathroom_lights
       state: 'on'
@@ -2541,7 +2541,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -2558,8 +2558,8 @@
 - alias: Roomba - Turn Off Bathroom Lights Room Clean Boolean
   id: 'roomba_turn_off_bathroom_lights_room_clean_boolean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'docked'
       for:
@@ -2567,7 +2567,7 @@
         minutes: 6
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_bathroom_lights
       state: 'on'
@@ -2583,7 +2583,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -2596,8 +2596,8 @@
 - alias: Roomba - Turn On Bedroom Lights Room Clean
   id: 'roomba_turn_on_bedroom_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'cleaning'
       for:
@@ -2605,12 +2605,12 @@
         minutes: 0
         seconds: 5
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_bedroom_lights
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -2624,8 +2624,8 @@
 - alias: Roomba - Turn Off Bedroom Lights Room Clean
   id: 'roomba_turn_off_bedroom_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'docked'
       for:
@@ -2633,7 +2633,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_bedroom_lights
       state: 'on'
@@ -2652,7 +2652,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -2670,8 +2670,8 @@
 - alias: Roomba - Turn Off Bedroom Lights Room Clean Boolean
   id: 'roomba_turn_off_bedroom_lights_room_clean_boolean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'docked'
       for:
@@ -2679,7 +2679,7 @@
         minutes: 6
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_bedroom_lights
       state: 'on'
@@ -2695,7 +2695,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -2708,8 +2708,8 @@
 - alias: Roomba - Turn On Bedroom Closet Lights Room Clean
   id: 'roomba_turn_on_bedroom_closet_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'cleaning'
       for:
@@ -2717,12 +2717,12 @@
         minutes: 0
         seconds: 5
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_bedroom_closet_lights
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -2735,8 +2735,8 @@
 - alias: Roomba - Turn Off Bedroom Closet Lights Room Clean
   id: 'roomba_turn_off_bedroom_closet_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'docked'
       for:
@@ -2744,7 +2744,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_bedroom_closet_lights
       state: 'on'
@@ -2768,7 +2768,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -2785,8 +2785,8 @@
 - alias: Roomba - Turn Off Bedroom Closet Lights Room Clean Boolean
   id: 'roomba_turn_off_bedroom_closet_lights_room_clean_boolean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'docked'
       for:
@@ -2794,7 +2794,7 @@
         minutes: 6
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_bedroom_closet_lights
       state: 'on'
@@ -2810,7 +2810,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -2823,8 +2823,8 @@
 - alias: Roomba - Turn On USER1's Office Lights Room Clean
   id: 'roomba_turn_on_USER1_office_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.upstairs_roomba
       to: 'cleaning'
       for:
@@ -2832,12 +2832,12 @@
         minutes: 0
         seconds: 5
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_USER1_office_lights
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -2850,8 +2850,8 @@
 - alias: Roomba - Turn Off USER1's Office Lights Room Clean
   id: 'roomba_turn_off_USER1_office_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.upstairs_roomba
       to: 'docked'
       for:
@@ -2859,7 +2859,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_USER1_office_lights
       state: 'on'
@@ -2883,7 +2883,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -2900,8 +2900,8 @@
 - alias: Roomba - Turn Off USER1's Office Lights Room Clean Boolean
   id: 'roomba_turn_off_USER1_office_lights_room_clean_boolean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.upstairs_roomba
       to: 'docked'
       for:
@@ -2909,7 +2909,7 @@
         minutes: 6
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_USER1_office_lights
       state: 'on'
@@ -2925,7 +2925,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -2938,8 +2938,8 @@
 - alias: Roomba - Turn On USER2's Office Lights Room Clean
   id: 'roomba_turn_on_USER2_office_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.upstairs_roomba
       to: 'cleaning'
       for:
@@ -2947,12 +2947,12 @@
         minutes: 0
         seconds: 5
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_USER2_office_lights
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -2965,8 +2965,8 @@
 - alias: Roomba - Turn Off USER2's Office Lights Room Clean
   id: 'roomba_turn_off_USER2_office_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.upstairs_roomba
       to: 'docked'
       for:
@@ -2974,7 +2974,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_USER2_office_lights
       state: 'on'
@@ -2998,7 +2998,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -3015,8 +3015,8 @@
 - alias: Roomba - Turn Off USER2's Office Lights Room Clean Boolean
   id: 'roomba_turn_off_USER2_office_lights_room_clean_boolean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.upstairs_roomba
       to: 'docked'
       for:
@@ -3024,7 +3024,7 @@
         minutes: 6
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_USER2_office_lights
       state: 'on'
@@ -3040,7 +3040,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -3053,8 +3053,8 @@
 - alias: Roomba - Turn On Guest Bedroom Lights Room Clean
   id: 'roomba_turn_on_guest_bedroom_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.upstairs_roomba
       to: 'cleaning'
       for:
@@ -3062,12 +3062,12 @@
         minutes: 0
         seconds: 5
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_guest_bedroom_lights
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -3080,8 +3080,8 @@
 - alias: Roomba - Turn Off Guest Bedroom Lights Room Clean
   id: 'roomba_turn_off_guest_bedroom_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.upstairs_roomba
       to: 'docked'
       for:
@@ -3089,7 +3089,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_guest_bedroom_lights
       state: 'on'
@@ -3111,7 +3111,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -3128,8 +3128,8 @@
 - alias: Roomba - Turn On Upstairs Hallway Lights Room Clean
   id: 'roomba_turn_on_upstairs_hallway_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.upstairs_roomba
       to: 'cleaning'
       for:
@@ -3137,12 +3137,12 @@
         minutes: 0
         seconds: 5
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_upstairs_hallway_lights
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -3155,8 +3155,8 @@
 - alias: Roomba - Turn Off Upstairs Hallway Lights Room Clean
   id: 'roomba_turn_off_upstairs_hallway_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.upstairs_roomba
       to: 'docked'
       for:
@@ -3164,7 +3164,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_upstairs_hallway_lights
       state: 'on'
@@ -3188,7 +3188,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -3205,8 +3205,8 @@
 - alias: Roomba - Turn Off Upstairs Hallway Lights Room Clean Boolean
   id: 'roomba_turn_off_upstairs_hallway_lights_room_clean_boolean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.upstairs_roomba
       to: 'docked'
       for:
@@ -3214,7 +3214,7 @@
         minutes: 6
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_upstairs_hallway_lights
       state: 'on'
@@ -3230,7 +3230,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -3243,8 +3243,8 @@
 - alias: Roomba - Turn On Utility Area Lights Room Clean
   id: 'roomba_turn_on_utility_area_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.basement_roomba
       to: 'cleaning'
       for:
@@ -3252,12 +3252,12 @@
         minutes: 0
         seconds: 5
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_utility_area_lights
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -3273,8 +3273,8 @@
 - alias: Roomba - Turn Off Utility Area Lights Room Clean
   id: 'roomba_turn_off_utility_area_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.basement_roomba
       to: 'docked'
       for:
@@ -3282,7 +3282,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_utility_area_lights
       state: 'on'
@@ -3317,7 +3317,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -3337,8 +3337,8 @@
 - alias: Roomba - Turn Off Utility Area Lights Room Clean Boolean
   id: 'roomba_turn_off_utility_area_lights_room_clean_boolean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.basement_roomba
       to: 'docked'
       for:
@@ -3346,7 +3346,7 @@
         minutes: 6
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_utility_area_lights
       state: 'on'
@@ -3362,7 +3362,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -3375,8 +3375,8 @@
 - alias: Roomba - Turn On Laundry Room Lights Room Clean
   id: 'roomba_turn_on_laundry_room_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.basement_roomba
       to: 'cleaning'
       for:
@@ -3384,12 +3384,12 @@
         minutes: 0
         seconds: 5
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_laundry_room_lights
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -3405,8 +3405,8 @@
 - alias: Roomba - Turn Off Laundry Room Lights Room Clean
   id: 'roomba_turn_off_laundry_room_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.basement_roomba
       to: 'docked'
       for:
@@ -3414,7 +3414,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_laundry_room_lights
       state: 'on'
@@ -3449,7 +3449,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -3469,8 +3469,8 @@
 - alias: Roomba - Turn Off Laundry Room Lights Room Clean Boolean
   id: 'roomba_turn_off_laundry_room_lights_room_clean_boolean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.basement_roomba
       to: 'docked'
       for:
@@ -3478,7 +3478,7 @@
         minutes: 6
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_laundry_room_lights
       state: 'on'
@@ -3494,7 +3494,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -3507,8 +3507,8 @@
 - alias: Roomba - Turn On Workbench Lights Room Clean
   id: 'roomba_turn_on_workbench_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.basement_roomba
       to: 'cleaning'
       for:
@@ -3516,12 +3516,12 @@
         minutes: 0
         seconds: 5
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_workbench_lights
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -3537,8 +3537,8 @@
 - alias: Roomba - Turn Off Workbench Lights Room Clean
   id: 'roomba_turn_off_workbench_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.basement_roomba
       to: 'docked'
       for:
@@ -3546,7 +3546,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_workbench_lights
       state: 'on'
@@ -3581,7 +3581,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -3601,8 +3601,8 @@
 - alias: Roomba - Turn Off Workbench Lights Room Clean Boolean
   id: 'roomba_turn_off_workbench_lights_room_clean_boolean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.basement_roomba
       to: 'docked'
       for:
@@ -3610,7 +3610,7 @@
         minutes: 6
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_workbench_lights
       state: 'on'
@@ -3626,7 +3626,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -3639,8 +3639,8 @@
 - alias: Roomba - Turn On Fitness Room Lights Room Clean
   id: 'roomba_turn_on_fitness_room_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.basement_roomba
       to: 'cleaning'
       for:
@@ -3648,12 +3648,12 @@
         minutes: 0
         seconds: 5
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_fitness_room_lights
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -3666,8 +3666,8 @@
 - alias: Roomba - Turn Off Fitness Room Lights Room Clean
   id: 'roomba_turn_off_fitness_room_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.basement_roomba
       to: 'docked'
       for:
@@ -3675,7 +3675,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_fitness_room_lights
       state: 'on'
@@ -3699,7 +3699,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -3716,8 +3716,8 @@
 - alias: Roomba - Turn Off Fitness Room Lights Room Clean Boolean
   id: 'roomba_turn_off_fitness_room_lights_room_clean_boolean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.basement_roomba
       to: 'docked'
       for:
@@ -3725,7 +3725,7 @@
         minutes: 6
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_fitness_room_lights
       state: 'on'
@@ -3741,7 +3741,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -3754,8 +3754,8 @@
 - alias: Roomba - Turn On Craft Room Lights Room Clean
   id: 'roomba_turn_on_craft_room_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.basement_roomba
       to: 'cleaning'
       for:
@@ -3763,12 +3763,12 @@
         minutes: 0
         seconds: 5
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_craft_room_lights
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -3781,8 +3781,8 @@
 - alias: Roomba - Turn Off Craft Room Lights Room Clean
   id: 'roomba_turn_off_craft_room_lights_room_clean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.basement_roomba
       to: 'docked'
       for:
@@ -3790,7 +3790,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_craft_room_lights
       state: 'on'
@@ -3814,7 +3814,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -3831,8 +3831,8 @@
 - alias: Roomba - Turn Off Craft Room Lights Room Clean Boolean
   id: 'roomba_turn_off_craft_room_lights_room_clean_boolean'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.basement_roomba
       to: 'docked'
       for:
@@ -3840,7 +3840,7 @@
         minutes: 6
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.roomba_clean_craft_room_lights
       state: 'on'
@@ -3856,7 +3856,7 @@
       after: '08:30:00'
       before: '23:00:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -3874,8 +3874,8 @@
   id: 'roomba_disable_room_clean_boolean_if_roomba_didnt_run_main_floor'
 
   mode: parallel
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: 
         - input_boolean.roomba_clean_living_room
         - input_boolean.roomba_clean_dining_room
@@ -3901,7 +3901,7 @@
         minutes: 5
         seconds: 0
   
-  condition:
+  conditions:
     - condition: state
       entity_id: vacuum.main_floor_roomba
       state: 'docked'
@@ -3910,7 +3910,7 @@
         minutes: 4
         seconds: 0
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id: '{{ trigger.entity_id }}'
@@ -3923,8 +3923,8 @@
   id: 'roomba_disable_room_clean_boolean_if_roomba_didnt_run_upstairs'
 
   mode: parallel
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: 
         - input_boolean.roomba_clean_USER1_office
         - input_boolean.roomba_clean_USER2_office
@@ -3940,7 +3940,7 @@
         minutes: 5
         seconds: 0
   
-  condition:
+  conditions:
     - condition: state
       entity_id: vacuum.upstairs_roomba
       state: 'docked'
@@ -3949,7 +3949,7 @@
         minutes: 4
         seconds: 0
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id: '{{ trigger.entity_id }}'
@@ -3962,8 +3962,8 @@
   id: 'roomba_disable_room_clean_boolean_if_roomba_didnt_run_basement'
 
   mode: parallel
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id:
         - input_boolean.roomba_clean_utility_area
         - input_boolean.roomba_clean_fitness_room
@@ -3981,7 +3981,7 @@
         minutes: 5
         seconds: 0
   
-  condition:
+  conditions:
     - condition: state
       entity_id: vacuum.upstairs_roomba
       state: 'docked'
@@ -3990,7 +3990,7 @@
         minutes: 4
         seconds: 0
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id: '{{ trigger.entity_id }}'
@@ -4002,8 +4002,8 @@
 - alias: Roomba - Set Upstairs Roomba has Ran for the Day
   id: 'roomba_set_upstairs_roomba_has_ran_for_the_day'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.upstairs_roomba
       to: 'cleaning'
       for:
@@ -4011,12 +4011,12 @@
         minutes: 39
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
 
-  action:
+  actions:
     - action: homeassistant.turn_on
       target:
         entity_id:
@@ -4029,8 +4029,8 @@
 - alias: Roomba - Set Main Floor Roomba has Ran for the Day
   id: 'roomba_set_main_floor_roomba_has_ran_for_the_day'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.main_floor_roomba
       to: 'cleaning'
       for:
@@ -4038,12 +4038,12 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
 
-  action:
+  actions:
     - action: homeassistant.turn_on
       target:
         entity_id:
@@ -4056,8 +4056,8 @@
 - alias: Roomba - Set Basement Roomba has Ran for the Day
   id: 'roomba_set_basement_roomba_has_ran_for_the_day'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.basement_roomba
       to: 'cleaning'
       for:
@@ -4065,12 +4065,12 @@
         minutes: 45
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
 
-  action:
+  actions:
     - action: homeassistant.turn_on
       target:
         entity_id:
@@ -4083,8 +4083,8 @@
 - alias: Roomba - Set Upstairs Roomba has Ran USER1's Office
   id: 'roomba_set_upstairs_roomba_has_ran_for_the_day_USER1_office'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: vacuum.upstairs_roomba
       to: 'cleaning'
       for:
@@ -4092,7 +4092,7 @@
         minutes: 5
         seconds: 0
   
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.upstairs_roomba_ran_USER1_office
       state: 'off'
@@ -4101,7 +4101,7 @@
       state: 'on'
 
 
-  action:
+  actions:
     - action: homeassistant.turn_on
       target:
         entity_id:
@@ -4114,11 +4114,11 @@
 - alias: Roomba - Reset Helpers
   id: 'roomba_reset_helpers'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '00:01:00'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -4154,16 +4154,16 @@
 - alias: Roomba - Main Floor Stuck iOS Notification
   id: 'roomba_main_floor_stuck_ios_notification'
 
-  trigger:
-    - platform: template
+  triggers:
+    - trigger: template
       value_template: "{%if is_state_attr('vacuum.main_floor_roomba', 'status', 'Stuck') %}true{%endif%}"
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Main Floor Roomba is Stuck, Please Help
@@ -4178,16 +4178,16 @@
 - alias: Roomba - Upstairs Stuck iOS Notification
   id: 'roomba_upstairs_stuck_ios_notification'
 
-  trigger:
-    - platform: template
+  triggers:
+    - trigger: template
       value_template: "{%if is_state_attr('vacuum.upstairs_roomba', 'status', 'Stuck') %}true{%endif%}"
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Upstairs Roomba is Stuck, Please Help
@@ -4202,16 +4202,16 @@
 - alias: Roomba - Basement Stuck iOS Notification
   id: 'roomba_basement_stuck_ios_notification'
 
-  trigger:
-    - platform: template
+  triggers:
+    - trigger: template
       value_template: "{%if is_state_attr('vacuum.basement_roomba', 'status', 'Stuck') %}true{%endif%}"
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Basement Roomba is Stuck, Please Help
@@ -4226,17 +4226,17 @@
 - alias: Roomba - Main Floor Full iOS Notification
   id: 'roomba_main_floor_full_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.main_floor_roomba_bin_full
       to: 'True'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Main Floor Roomba is Full, Empty It
@@ -4251,17 +4251,17 @@
 - alias: Roomba - Upstairs Full iOS Notification
   id: 'roomba_upstairs_full_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.upstairs_roomba_bin_full
       to: 'True'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Upstairs Roomba is Full, Empty It
@@ -4276,17 +4276,17 @@
 - alias: Roomba - Basement Full iOS Notification
   id: 'roomba_basement_full_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.basement_roomba_bin_full
       to: 'True'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_roomba
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Basement Roomba is Full, Empty It

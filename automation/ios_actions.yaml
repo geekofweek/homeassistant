@@ -9,13 +9,13 @@
 - alias: iOS Action - Bedtime
   id: 'ios_action_bedtime'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: ios.action_fired
       event_data:
         actionName: 'Bedtime'
 
-  action:
+  actions:
     - action: homeassistant.turn_on
       target:
         entity_id:
@@ -28,13 +28,13 @@
 - alias: iOS Action - Arm Alarm Home
   id: 'ios_action_arm_alarm_home'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: ios.action_fired
       event_data:
         actionName: 'Arm Alarm Home'
 
-  action:
+  actions:
     - action: alarm_control_panel.alarm_arm_home
       entity_id: alarm_control_panel.alarm
 
@@ -45,13 +45,13 @@
 - alias: iOS Action - Arm Alarm Away
   id: 'ios_action_arm_alarm_away'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: ios.action_fired
       event_data:
         actionName: 'Arm Alarm Away'
 
-  action:
+  actions:
     - action: alarm_control_panel.alarm_arm_away
       entity_id: alarm_control_panel.alarm
 
@@ -62,13 +62,13 @@
 - alias: iOS Action - Disarm Alarm
   id: 'ios_action_disarm_alarm'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: ios.action_fired
       event_data:
         actionName: 'Disarm Alarm'
 
-  action:
+  actions:
     - action: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarm
 
@@ -79,13 +79,13 @@
 - alias: iOS Action - Toggle Garage Door
   id: 'ios_action_automation_toogle_garage_door'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: ios.action_fired
       event_data:
         actionName: 'Toggle Garage Door'
 
-  action:
+  actions:
     - action: cover.toggle
       target:
         entity_id: cover.garage_door
@@ -98,13 +98,13 @@
 - alias: iOS Action - Toggle Fireplace
   id: 'ios_action_automation_toogle_fireplace'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: ios.action_fired
       event_data:
         actionName: 'Toggle Fireplace'
 
-  action:
+  actions:
     - action: switch.toggle
       target:
         entity_id: switch.fireplace
@@ -117,13 +117,13 @@
 - alias: iOS Action - Unlock Front Door
   id: 'ios_action_automation_unlock_front_door'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: ios.action_fired
       event_data:
         actionName: 'Unlock Front Door'
 
-  action:
+  actions:
     - action: lock.unlock
       target:
         entity_id: lock.front_door
@@ -136,13 +136,13 @@
 - alias: iOS Action - Unlock Back Door
   id: 'ios_action_automation_unlock_back_door'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: ios.action_fired
       event_data:
         actionName: 'Unlock Back Door'
 
-  action:
+  actions:
     - action: lock.unlock
       target:
         entity_id: lock.back_door
@@ -155,13 +155,13 @@
 - alias: iOS Action - Unlock Basement Door
   id: 'ios_action_automation_unlock_basement_door'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: ios.action_fired
       event_data:
         actionName: 'Unlock Basement Door'
 
-  action:
+  actions:
     - action: lock.unlock
       target:
         entity_id: lock.basement_door
@@ -174,13 +174,13 @@
 - alias: iOS Action - Lock Doors
   id: 'ios_action_automation_lock_doors'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: ios.action_fired
       event_data:
         actionName: 'Lock Doors'
 
-  action:
+  actions:
     - action: lock.lock
       target:
         entity_id: 
@@ -196,13 +196,13 @@
 - alias: iOS Action - Toggle Living Room Fans
   id: 'ios_action_automation_toggle_living_room_fans'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: ios.action_fired
       event_data:
         actionName: 'Toggle Living Room Fans'
 
-  action:
+  actions:
     - action: fan.toggle
       target:
         entity_id: fan.living_room_fans
@@ -215,13 +215,13 @@
 - alias: iOS Action - Living Room Fans Increase Speed
   id: 'ios_action_automation_living_room_fans_increase_speed'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: ios.action_fired
       event_data:
         actionName: 'Living Room Fans Increase Speed'
 
-  action:
+  actions:
     - action: fan.increase_speed
       target:
         entity_id: fan.living_room_fans
@@ -234,13 +234,13 @@
 - alias: iOS Action - Living Room Fans Decrease Speed
   id: 'ios_action_automation_living_room_fans_decrease_speed'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: ios.action_fired
       event_data:
         actionName: 'Living Room Fans Decrease Speed'
 
-  action:
+  actions:
     - action: fan.decrease_speed
       target:
         entity_id: fan.living_room_fans
@@ -253,20 +253,20 @@
 - alias: iOS Action - Party Mode
   id: 'ios_action_automation_party_mode'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: ios.action_fired
       event_data:
         actionName: 'Party Mode'
 
-  condition:
+  conditions:
     - condition: not
       conditions:
       - condition: state
         entity_id: sensor.season
         state: 'winter'
 
-  action:
+  actions:
     - action: homeassistant.toggle
       target:
         entity_id: 
@@ -280,24 +280,48 @@
         option: "Watch TV"
 
         #################################################################
+        ## Party Mode TV On
+        #################################################################
+
+- alias: iOS Action - Party Mode TV On
+  id: 'ios_action_automation_party_mode_tv_on'
+
+  triggers:
+    - trigger: event
+      event_type: ios.action_fired
+      event_data:
+        actionName: 'Party Mode'
+
+  conditions:
+    - condition: state
+      entity_id: select.living_room_tv_activities
+      state: "power_off"
+
+  actions:
+    - action: select.select_option
+      data:
+        entity_id: select.living_room_tv_activities
+        option: "Watch TV"
+
+        #################################################################
         ## Party Mode Winter
         #################################################################
 
 - alias: iOS Action - Party Mode Winter
   id: 'ios_action_automation_party_mode_winter'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: ios.action_fired
       event_data:
         actionName: 'Party Mode'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sensor.season
       state: 'winter'
 
-  action:
+  actions:
     - action: homeassistant.toggle
       target:
         entity_id: 
@@ -326,13 +350,13 @@
 - alias: iOS Action - Unlock Doors
   id: 'ios_action_unlock_doors'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: mobile_app_notification_action
       event_data:
-        action: "unlock_doors"
+        actions: "unlock_doors"
 
-  action:
+  actions:
     - action: lock.unlock
       target:
         entity_id:
@@ -346,13 +370,13 @@
 - alias: iOS Action - Unlock Front Door
   id: 'ios_action_unlock_front_door'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: mobile_app_notification_action
       event_data:
-        action: "unlock_front_door"
+        actions: "unlock_front_door"
 
-  action:
+  actions:
     - action: lock.unlock
       target:
         entity_id:
@@ -365,13 +389,13 @@
 - alias: iOS Action - Close Garage
   id: 'ios_action_close_garage'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: mobile_app_notification_action
       event_data:
-        action: "close_garage"
+        actions: "close_garage"
 
-  action:
+  actions:
     - action: cover.close_cover
       entity_id: cover.garage_door
 
@@ -382,13 +406,13 @@
 - alias: iOS Action - Open Garage
   id: 'ios_action_open_garage'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: mobile_app_notification_action
       event_data:
-        action: "open_garage"
+        actions: "open_garage"
 
-  action:
+  actions:
     - action: cover.open_cover
       entity_id: cover.garage_door
 
@@ -399,13 +423,13 @@
 - alias: iOS Action - Silence Alarm
   id: 'ios_action_silence_alarm'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: mobile_app_notification_action
       event_data:
-        action: "disarm_alarm"
+        actions: "disarm_alarm"
 
-  action:
+  actions:
     - action: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarm
 
@@ -416,13 +440,13 @@
 - alias: iOS Action - Enable Alarm
   id: 'ios_action_enable_alarm'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: mobile_app_notification_action
       event_data:
-        action: "arm_alarm"
+        actions: "arm_alarm"
 
-  action:
+  actions:
     - action: alarm_control_panel.alarm_arm_away
       entity_id: alarm_control_panel.alarm
 
@@ -433,13 +457,13 @@
 - alias: iOS Action - Siren
   id: 'ios_action_siren'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: mobile_app_notification_action
       event_data:
-        action: "siren_off"
+        actions: "siren_off"
 
-  action:
+  actions:
     - action: switch.turn_off
       entity_id: switch.siren
 
@@ -450,12 +474,12 @@
 - alias: iOS Action - Fireplace Off
   id: 'ios_action_fireplace_off'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: mobile_app_notification_action
       event_data:
-        action: "fireplace_off"
+        actions: "fireplace_off"
 
-  action:
+  actions:
     - action: switch.turn_off
       entity_id: switch.fireplace

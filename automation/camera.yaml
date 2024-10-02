@@ -9,23 +9,23 @@
 - alias: Camera - Package Camera On
   id: 'camera_package_camera_on'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.front_door_camera_package_detected
       to: 'on'
-    #- platform: state
+    #- trigger: state
     #  entity_id: binary_sensor.front_door_camera_person_detected
     #  to: 'on'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.front_door_camera_doorbell
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.view_package_camera
       state: 'off'
 
-  action:
+  actions:
     - action: homeassistant.turn_on
       target:
         entity_id:
@@ -38,8 +38,8 @@
 - alias: Camera - Package Camera Off
   id: 'camera_package_camera_off'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.front_door_opened
       from: 'on'
       to: 'off'
@@ -48,7 +48,7 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: or
       conditions:
       - condition: state
@@ -58,7 +58,7 @@
         entity_id: input_boolean.package_camera_notification
         state: 'on'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -72,11 +72,11 @@
 - alias: Camera - Package Camera Off at Midnight
   id: 'camera_package_camera_off_at_midnight'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '23:59:00'
 
-  condition:
+  conditions:
     - condition: or
       conditions:
       - condition: state
@@ -86,7 +86,7 @@
         entity_id: input_boolean.package_camera_notification
         state: 'on'
 
-  action:
+  actions:
     - action: homeassistant.turn_off
       target:
         entity_id:
@@ -100,13 +100,13 @@
 - alias: Camera - Turn On Front Porch Lights when Rung
   id: 'camera_turn_on_front_porch_lights_when_rung'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.front_door_camera_doorbell
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -114,7 +114,7 @@
       entity_id: input_boolean.disable_doorbell
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -129,8 +129,8 @@
 - alias: Camera - Reset Front Porch Lights Brightness After Ring
   id: 'camera_reset_front_porch_lights_brightness_after_ring'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.front_door_camera_doorbell
       from: 'on'
       to: 'off'
@@ -139,7 +139,7 @@
         minutes: 15
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -147,7 +147,7 @@
       entity_id: input_boolean.disable_doorbell
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -163,21 +163,21 @@
 - alias: Camera - Turn On Front Porch Lights when Motion Detected
   id: 'camera_turn_on_front_porch_lights_when_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.front_door_camera_person_detected
       from: 'off'
       to: 'on'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.front_porch_person_detected
       from: 'off'
       to: 'on'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.front_yard_camera_person_detected
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -185,7 +185,7 @@
       entity_id: input_boolean.disable_doorbell
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -200,8 +200,8 @@
 - alias: Camera - Reset Front Porch Lights Brightness After Motion Detected
   id: 'camera_reset_front_porch_lights_brightness_after_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.front_door_camera_person_detected
       from: 'on'
       to: 'off'
@@ -209,7 +209,7 @@
         hours: 0
         minutes: 15
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.front_porch_person_detected
       from: 'on'
       to: 'off'
@@ -217,7 +217,7 @@
         hours: 0
         minutes: 15
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.front_yard_camera_person_detected
       from: 'on'
       to: 'off'
@@ -226,7 +226,7 @@
         minutes: 15
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -241,7 +241,7 @@
         minutes: 30
         seconds: 0
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -257,13 +257,13 @@
 - alias: Camera - Turn On Lights when Ring and Away
   id: 'camera_turn_on_lights_when_ring_and_away'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.front_door_camera_doorbell
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -276,7 +276,7 @@
         entity_id: group.household
         state: 'home'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -310,8 +310,8 @@
 - alias: Camera - Turn Off Lights After Ring and Away
   id: 'camera_turn_off_lights_after_ring_and_away'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.front_door_camera_doorbell
       from: 'on'
       to: 'off'
@@ -320,7 +320,7 @@
         minutes: 16
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -333,7 +333,7 @@
         entity_id: group.household
         state: 'home'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -364,21 +364,21 @@
 - alias: Camera - Turn On Lights when Motion Detected and Away
   id: 'camera_turn_on_lights_when_motion_detected_and_away'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.front_door_camera_person_detected
       from: 'off'
       to: 'on'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.front_porch_person_detected
       from: 'off'
       to: 'on'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.front_yard_camera_person_detected
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -391,7 +391,7 @@
         entity_id: group.household
         state: 'home'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -425,8 +425,8 @@
 - alias: Camera - Turn Off Lights After Motion Detected and Away
   id: 'camera_turn_off_lights_after_motion_detected_and_away'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.front_door_camera_person_detected
       from: 'on'
       to: 'off'
@@ -434,7 +434,7 @@
         hours: 0
         minutes: 16
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.front_porch_person_detected
       from: 'on'
       to: 'off'
@@ -442,7 +442,7 @@
         hours: 0
         minutes: 16
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.front_yard_camera_person_detected
       from: 'on'
       to: 'off'
@@ -451,7 +451,7 @@
         minutes: 16
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -464,7 +464,7 @@
         entity_id: group.household
         state: 'home'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -495,21 +495,21 @@
 - alias: Camera - Turn On Backyard Lights when Motion Detected and Away
   id: 'camera_turn_on_backyard_lights_when_motion_detected_and_away'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.backyard_gate_camera_person_detected
       from: 'off'
       to: 'on'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.backyard_camera_person_detected
       from: 'off'
       to: 'on'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.side_yard_camera_person_detected
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -536,7 +536,7 @@
         entity_id: group.household
         state: 'home'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -569,8 +569,8 @@
 - alias: Camera - Reset Backyard Lights After Motion Detected and Away
   id: 'camera_reset_backyard_lights_after_motion_detected_and_away'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.backyard_gate_camera_person_detected
       from: 'on'
       to: 'off'
@@ -578,7 +578,7 @@
         hours: 1
         minutes: 0
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.backyard_camera_person_detected
       from: 'on'
       to: 'off'
@@ -586,7 +586,7 @@
         hours: 1
         minutes: 0
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.side_yard_camera_person_detected
       from: 'on'
       to: 'off'
@@ -595,7 +595,7 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -624,7 +624,7 @@
         entity_id: group.household
         state: 'home'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -652,8 +652,8 @@
 - alias: Camera - Turn Off Backyard Lights After Motion Detected and Away
   id: 'camera_turn_off_backyard_lights_after_motion_detected_and_away'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.backyard_gate_camera_person_detected
       from: 'on'
       to: 'off'
@@ -661,7 +661,7 @@
         hours: 1
         minutes: 0
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.backyard_camera_person_detected
       from: 'on'
       to: 'off'
@@ -669,7 +669,7 @@
         hours: 1
         minutes: 0
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.side_yard_camera_person_detected
       from: 'on'
       to: 'off'
@@ -678,7 +678,7 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -708,7 +708,7 @@
         entity_id: group.household
         state: 'home'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -734,8 +734,8 @@
 - alias: Camera - Household Away Turn Off Privacy Mode
   id: 'camera_household_away_turn_off_privacy_mode'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       from: 'home'
       to: 'not_home'
@@ -744,12 +744,12 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -770,8 +770,8 @@
 - alias: Camera - Household Away Turn On Privacy Mode
   id: 'camera_household_home_turn_on_privacy_mode'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       from: 'not_home'
       to: 'home'
@@ -780,12 +780,12 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_home_away
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -806,12 +806,12 @@
 - alias: Camera - Turn on Front Yard Infrared after Sunset
   id: 'camera_turn_on_front_yard_infrared_after_sunset'
 
-  trigger:
-    - platform: sun
+  triggers:
+    - trigger: sun
       event: 'sunset'
       offset: '00:17:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: binary_sensor.front_yard_camera_is_dark
       state: 'off'
@@ -819,7 +819,7 @@
       entity_id: select.front_yard_camera_infrared_mode
       state: "Auto"
 
-  action:
+  actions:
     - action: select.select_option
       data:
         entity_id: select.front_yard_camera_infrared_mode
@@ -832,16 +832,16 @@
 - alias: Camera - Reset Front Yard Infrared at 4a
   id: 'camera_reset_front_yard_infrared_at_4a'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '04:00:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: select.front_yard_camera_infrared_mode
       state: "Always Enable"
 
-  action:
+  actions:
     - action: select.select_option
       data:
         entity_id: select.front_yard_camera_infrared_mode
@@ -854,12 +854,12 @@
 - alias: Camera - Turn on Front Porch Infrared after Sunset
   id: 'camera_turn_on_front_porch_infrared_after_sunset'
 
-  trigger:
-    - platform: sun
+  triggers:
+    - trigger: sun
       event: 'sunset'
       offset: '00:17:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: binary_sensor.front_porch_camera_is_dark
       state: 'off'
@@ -867,7 +867,7 @@
       entity_id: select.front_porch_camera_infrared_mode
       state: "Auto"
 
-  action:
+  actions:
     - action: select.select_option
       data:
         entity_id: select.front_porch_camera_infrared_mode
@@ -880,16 +880,16 @@
 - alias: Camera - Reset Front Porch Infrared at 4a
   id: 'camera_reset_front_porch_infrared_at_4a'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '04:00:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: select.front_porch_camera_infrared_mode
       state: "Always Enable"
 
-  action:
+  actions:
     - action: select.select_option
       data:
         entity_id: select.front_porch_camera_infrared_mode
@@ -906,12 +906,12 @@
 - alias: Camera - Person Detected in Front Door
   id: 'camera_person_detected_in_front_door'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.front_door_camera_person_detected
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
@@ -921,7 +921,7 @@
         entity_id: group.household
         state: 'home'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Person Detected at Front Door!
@@ -937,12 +937,12 @@
 - alias: Camera - Person Detected in Front Porch
   id: 'camera_person_detected_in_front_porch'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.front_porch_person_detected
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
@@ -952,7 +952,7 @@
         entity_id: group.household
         state: 'home'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Person Detected on Front Porch!
@@ -968,12 +968,12 @@
 - alias: Camera - Person Detected in Front Yard
   id: 'camera_person_detected_in_front_yard'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.front_yard_camera_person_detected
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
@@ -983,7 +983,7 @@
         entity_id: group.household
         state: 'home'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Person Detected in Front Yard!
@@ -999,12 +999,12 @@
 - alias: Camera - Person Detected in Backyard
   id: 'camera_person_detected_in_backyard'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.backyard_camera_person_detected
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
@@ -1014,7 +1014,7 @@
         entity_id: group.household
         state: 'home'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Person Detected in Backyard!
@@ -1030,12 +1030,12 @@
 - alias: Camera - Person Detected at Backyard Gate
   id: 'camera_person_detected_at_backyard_gate'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.backyard_gate_camera_person_detected
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
@@ -1045,7 +1045,7 @@
         entity_id: group.household
         state: 'home'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Person Detected at Backyard Gate!
@@ -1061,12 +1061,12 @@
 - alias: Camera - Person Detected in Side Yard
   id: 'camera_person_detected_in_side_yard'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.side_yard_camera_person_detected
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
@@ -1076,7 +1076,7 @@
         entity_id: group.household
         state: 'home'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Person Detected in Side Yard!
@@ -1092,12 +1092,12 @@
 - alias: Camera - Person Detected in Garage
   id: 'camera_person_detected_in_garage'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.garage_camera_person_detected
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
@@ -1107,7 +1107,7 @@
         entity_id: group.household
         state: 'home'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Person Detected in Garage!
@@ -1123,18 +1123,18 @@
 - alias: Camera - Doorbell iOS USER1 Notification
   id: 'camera_doorbell_ios_USER1_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.front_door_camera_doorbell
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
       
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Someone is at the Front Door
@@ -1154,18 +1154,18 @@
 - alias: Camera - Doorbell iOS USER2 Notification
   id: 'camera_doorbell_ios_USER2_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.front_door_camera_doorbell
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
       
-  action:
+  actions:
     - action: notify.USER2_devices
       data:
         message: Someone is at the Front Door
@@ -1186,12 +1186,12 @@
 - alias: Camera - Package iOS Notification
   id: 'camera_package_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.front_door_camera_package_detected
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
@@ -1199,7 +1199,7 @@
       entity_id:  input_boolean.package_camera_notification
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Package Detected on Front Porch

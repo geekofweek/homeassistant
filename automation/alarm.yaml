@@ -9,12 +9,12 @@
 - alias: Alarm - Triggered Armed Away
   id: 'alarm_triggered_armed_away'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: alarm_control_panel.alarm
       to: 'triggered'
 
-  condition:
+  conditions:
     - condition: not
       conditions:
       - condition: state
@@ -24,7 +24,7 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -131,17 +131,17 @@
 - alias: Alarm - Triggered Armed Home
   id: 'alarm_triggered_armed_home'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: alarm_control_panel.alarm
       to: 'triggered'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -227,12 +227,12 @@
 - alias: Alarm - Panic Button On
   id: 'alarm_panic_button_on'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: switch.panic_mode
       to: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -310,12 +310,12 @@
 - alias: Alarm - Panic Button Off
   id: 'alarm_panic_button_off'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: switch.panic_mode
       to: 'off'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -328,8 +328,8 @@
 - alias: Alarm - Panic Button Auto Off
   id: 'alarm_panic_button_auto_off'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: switch.panic_mode
       to: 'on'
       for:
@@ -337,7 +337,7 @@
         minutes: 2
         seconds: 0
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -350,13 +350,13 @@
 - alias: Alarm - Away Door Alarm
   id: 'alarm_away_door_alarm'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.doors
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: not
       conditions:
       - condition: state
@@ -369,7 +369,7 @@
       entity_id: alarm_control_panel.alarm
       state: 'armed_away'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Door Alarm Triggered!
@@ -424,13 +424,13 @@
 - alias: Alarm - Home Door Alarm
   id: 'alarm_home_door_alarm'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.doors
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -438,7 +438,7 @@
       entity_id: alarm_control_panel.alarm
       state: 'armed_home'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Door Alarm Triggered!
@@ -493,8 +493,8 @@
 - alias: Alarm - Motion Alarm Away
   id: 'alarm_motion_alarm_away'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.motion
       from: 'off'
       to: 'on'
@@ -503,7 +503,7 @@
         minutes: 1
         seconds: 30
 
-  condition:
+  conditions:
     - condition: not
       conditions:
       - condition: state
@@ -531,7 +531,7 @@
       entity_id: switch.3d_printer_prusa_mini
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Motion Alarm Triggered!
@@ -561,12 +561,12 @@
 - alias: Alarm - Garage Alarm Home
   id: 'alarm_garage_alarm_home'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: cover.garage_door
       to: 'open'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -574,7 +574,7 @@
       entity_id: alarm_control_panel.alarm
       state: 'armed_home'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Garage Door Alarm Triggered!
@@ -590,12 +590,12 @@
 - alias: Alarm - Garage Alarm Away
   id: 'alarm_garage_alarm_away'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: cover.garage_door
       to: 'open'
 
-  condition:
+  conditions:
     - condition: not
       conditions:
       - condition: state
@@ -608,7 +608,7 @@
       entity_id: alarm_control_panel.alarm
       state: 'armed_away'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Garage Door Alarm Triggered!
@@ -624,20 +624,20 @@
 - alias: Alarm - Disable Alarm when Home
   id: 'alarm_disable_alarm_when_home'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       from: 'not_home'
       to: 'home'
 
-  condition:
+  conditions:
     - condition: not
       conditions:
       - condition: state
         entity_id: alarm_control_panel.alarm
         state: 'disarmed'
 
-  action:
+  actions:
     - action: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarm
 
@@ -648,24 +648,24 @@
 - alias: Alarm - Disable Alarm when USER1 or USER2 Home
   id: 'alarm_disable_alarm_when_USER1_or_USER2_home'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: person.USER1
       from: 'not_home'
       to: 'home'
-    - platform: state
+    - trigger: state
       entity_id: person.USER2
       from: 'not_home'
       to: 'home'
 
-  condition:
+  conditions:
     - condition: not
       conditions:
       - condition: state
         entity_id: alarm_control_panel.alarm
         state: 'disarmed'
 
-  action:
+  actions:
     - action: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarm
 
@@ -676,8 +676,8 @@
 - alias: Alarm - Enable Alarm when Away
   id: 'alarm_enable_alarm_when_away'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       from: 'home'
       to: 'not_home'
@@ -686,7 +686,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: not
       conditions:
       - condition: state
@@ -699,7 +699,7 @@
       entity_id: alarm_control_panel.alarm
       state: 'disarmed'
 
-  action:
+  actions:
     - action: alarm_control_panel.alarm_arm_away
       entity_id: alarm_control_panel.alarm
 
@@ -710,8 +710,8 @@
 - alias: Alarm - Arm Home at Bedtime
   id: 'alarm_arm_home_at_bedtime'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.bedtime
       from: 'off'
       to: 'on'
@@ -720,7 +720,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -728,7 +728,7 @@
       entity_id: alarm_control_panel.alarm
       state: 'disarmed'
 
-  action:
+  actions:
     - action: alarm_control_panel.alarm_arm_home
       entity_id: alarm_control_panel.alarm
 
@@ -739,21 +739,21 @@
 - alias: Alarm - Disarm Armed Home in the Morning on Motion
   id: 'alarm_disarm_armed_home_in_the_morning_on_motion'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.bathroom_motion
       from: 'off'
       to: 'on'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.stairs_motion
       from: 'off'
       to: 'on'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.bedroom_closet_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -764,7 +764,7 @@
       after: '05:00:00'
       before: '21:00:00'
 
-  action:
+  actions:
     - action: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarm
 
@@ -775,43 +775,43 @@
 - alias: Alarm - Disable Alarm if Lock Code Used
   id: 'alarm_disable_alarm_if_lock_code_used'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.front_door_lock_code
       to: 'USER2'
-    - platform: state
+    - trigger: state
       entity_id: sensor.front_door_lock_code
       to: 'USER1'
-    - platform: state
+    - trigger: state
       entity_id: sensor.front_door_lock_code
       to: 'guest'
-    - platform: state
+    - trigger: state
       entity_id: sensor.back_door_lock_code
       to: 'USER2'
-    - platform: state
+    - trigger: state
       entity_id: sensor.back_door_lock_code
       to: 'USER1'
-    - platform: state
+    - trigger: state
       entity_id: sensor.back_door_lock_code
       to: 'guest'
-    - platform: state
+    - trigger: state
       entity_id: sensor.basement_door_lock_code
       to: 'USER2'
-    - platform: state
+    - trigger: state
       entity_id: sensor.basement_door_lock_code
       to: 'USER1'
-    - platform: state
+    - trigger: state
       entity_id: sensor.basement_door_lock_code
       to: 'guest'
 
-  condition:
+  conditions:
     - condition: not
       conditions:
       - condition: state
         entity_id: alarm_control_panel.alarm
         state: 'disarmed'
 
-  action:
+  actions:
     - action: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarm
 
@@ -826,17 +826,17 @@
 - alias: Alarm - Armed Home iOS Notification
   id: 'alarm_armed_home_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: alarm_control_panel.alarm
       to: 'armed_home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Alarm is Armed
@@ -856,17 +856,17 @@
 - alias: Alarm - Armed Away iOS Notification
   id: 'alarm_armed_away_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: alarm_control_panel.alarm
       to: 'armed_away'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Alarm is Armed
@@ -886,17 +886,17 @@
 - alias: Alarm - Disabled iOS Notification
   id: 'alarm_disabled_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: alarm_control_panel.alarm
       to: 'disarmed'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Alarm is Disarmed
@@ -916,8 +916,8 @@
 - alias: Alarm - Low Battery Notification
   id: 'alarm_low_battery_notification'
 
-  trigger:
-    - platform: numeric_state
+  triggers:
+    - trigger: numeric_state
       entity_id: 
           - sensor.siren_batt
       below: 30
@@ -926,12 +926,12 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Alarm {{ trigger.to_state.attributes.friendly_name }} Low Battery

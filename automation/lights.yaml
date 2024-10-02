@@ -9,8 +9,8 @@
 - alias: Lights - Reset Exterior Garage Light Brightness when Garage Closed
   id: 'lights_reset_exterior_garage_light_brightness_when_garage_closed'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: cover.garage_door
       to: 'closed'
       for:
@@ -18,7 +18,7 @@
         minutes: 5
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_door_open_lights_on
       state: 'off'
@@ -29,7 +29,7 @@
       entity_id: light.garage_light
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -45,13 +45,13 @@
 - alias: Lights - Turn On Exterior Garage Light when Garage Open
   id: 'lights_turn_on_exterior_garage_light_when_garage_open'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: cover.garage_door
       from: 'closed'
       to: 'open'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_door_open_lights_on
       state: 'off'
@@ -59,7 +59,7 @@
       entity_id: sun.sun
       state: 'below_horizon'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -74,12 +74,12 @@
 - alias: Lights - Turn Off Interior Garage Light when Garage Closed
   id: 'lights_turn_off_interior_garage_light_when_garage_closed'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: cover.garage_door
       to: 'closed'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_door_open_lights_on
       state: 'off'
@@ -87,7 +87,7 @@
       entity_id: light.garage_interior
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -102,8 +102,8 @@
 - alias: Lights - Turn On Interior Garage Light when Garage Open
   id: 'lights_turn_on_interior_garage_light_when_garage_open'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: cover.garage_door
       from: 'closed'
       to: 'open'
@@ -112,12 +112,12 @@
         minutes: 0
         seconds: 9
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_door_open_lights_on
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -132,8 +132,8 @@
 - alias: Lights - Turn Off Exterior Garage Light After Midnight
   id: 'lights_turn_off_exterior_garage_light_after_midnight'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: light.garage_light
       from: 'off'
       to: 'on'
@@ -142,12 +142,12 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: time
       after: '00:00:00'
       before: '07:30:00'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -162,17 +162,17 @@
 - alias: Lights - Turn On Exterior Garage Light at Sunset
   id: 'lights_turn_on_exterior_garage_light_at_sunset'
 
-  trigger:
-    - platform: sun
+  triggers:
+    - trigger: sun
       event: 'sunset'
       offset: '-00:15:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_exterior_on_sunset
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -187,11 +187,11 @@
 - alias: Lights - Turn Off Exterior Garage Light at Midnight
   id: 'lights_turn_off_exterior_garage_light_at_midnight'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '00:00:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -202,7 +202,7 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -215,11 +215,11 @@
 - alias: Lights - Turn Off Exterior Garage Light at Midnight Friends Visiting Weekdays
   id: 'lights_turn_off_exterior_garage_light_at_midnight_friends_visiting_weekdays'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '00:00:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -236,7 +236,7 @@
         - wed
         - thu
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -249,12 +249,12 @@
 - alias: Lights - Turn On Front Porch Lights at Sunset
   id: 'lights_turn_on_front_porch_lights_at_sunset'
 
-  trigger:
-    - platform: sun
+  triggers:
+    - trigger: sun
       event: 'sunset'
       offset: '-00:15:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_exterior_on_sunset
       state: 'off'
@@ -262,7 +262,7 @@
       entity_id: input_select.holiday
       state: 'None'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -279,22 +279,29 @@
 - alias: Lights - Turn Off Front Porch Lights at Midnight
   id: 'lights_turn_off_front_porch_lights_at_midnight'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '23:45:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
     - condition: state
       entity_id: input_boolean.disable_exterior_off_night
       state: 'off'
-    - condition: state
-      entity_id: input_select.holiday
-      state: 'None'
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: input_select.holiday
+          state: 'Christmas'
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: input_select.holiday
+          state: "New Year's Eve"
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -314,8 +321,8 @@
 - alias: Lights - Turn Off Front Porch Lights After Midnight
   id: 'lights_turn_off_front_porch_lights_after_midnight'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: light.front_porch
       from: 'off'
       to: 'on'
@@ -324,7 +331,7 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: time
       after: '00:00:00'
       before: '07:30:00'
@@ -334,11 +341,18 @@
     - condition: state
       entity_id: group.household
       state: 'home'
-    - condition: state
-      entity_id: input_select.holiday
-      state: 'None'
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: input_select.holiday
+          state: 'Christmas'
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: input_select.holiday
+          state: "New Year's Eve"
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -358,8 +372,8 @@
 - alias: Lights - Turn Off Front Porch Lights After 2a
   id: 'lights_turn_off_front_porch_lights_after_2a'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: light.front_porch
       from: 'off'
       to: 'on'
@@ -368,7 +382,7 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: time
       after: '00:00:00'
       before: '07:30:00'
@@ -379,7 +393,7 @@
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -399,12 +413,12 @@
 - alias: Lights - Turn On Front Yard Lighting at Sunset
   id: 'lights_turn_on_front_yard_lighting_at_sunset'
 
-  trigger:
-    - platform: sun
+  triggers:
+    - trigger: sun
       event: 'sunset'
       offset: '-00:15:00'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -417,11 +431,11 @@
 - alias: Lights - Turn Off Front Yard Lighting at 3a
   id: 'lights_turn_off_front_yard_lighting_at_3a'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '03:00:00'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -434,8 +448,8 @@
 - alias: Lights - Turn Off Front Yard Lighting after 3a
   id: 'lights_turn_off_front_yard_lighting_after_3a'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: switch.front_yard_lighting
       from: 'off'
       to: 'on'
@@ -444,7 +458,7 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: time
       after: '03:00:00'
       before: '07:30:00'
@@ -455,7 +469,7 @@
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -468,17 +482,17 @@
 - alias: Lights - Turn On Back Door Lights at Sunset
   id: 'lights_turn_on_back_door_lights_at_sunset'
 
-  trigger:
-    - platform: sun
+  triggers:
+    - trigger: sun
       event: 'sunset'
       offset: '-00:15:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_exterior_on_sunset
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -494,11 +508,11 @@
 - alias: Lights - Turn Off Back Door Lights at Midnight
   id: 'lights_turn_off_back_door_lights_at_midnight'
 
-  trigger:
-    - platform: time
+  triggers:
+    - trigger: time
       at: '00:00:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -509,7 +523,7 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
 
-  action:
+  actions:
    - action: light.turn_off
      target:
       entity_id:
@@ -527,11 +541,11 @@
 - alias: Lights - Turn Off Back Door Lights at Midnight Weekdays Friends Visiting
   id: 'lights_turn_off_back_door_lights_at_midnight_weekdays_friends_visiting'
 
-  trigger:
-    - platform: time
+  triggers:
+    - trigger: time
       at: '00:00:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
@@ -548,7 +562,7 @@
         - wed
         - thu
 
-  action:
+  actions:
    - action: light.turn_off
      target:
       entity_id:
@@ -566,8 +580,8 @@
 - alias: Lights - Turn Off Backyard Lighting After Midnight
   id: 'lights_turn_off_backyard_lighting_after_midnight'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: light.back_door
       from: 'off'
       to: 'on'
@@ -576,7 +590,7 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: time
       after: '00:00:00'
       before: '07:30:00'
@@ -590,7 +604,7 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -616,12 +630,12 @@
 - alias: Lights - Turn Off Interior Lights at Sunrise
   id: 'lights_turn_off_interior_lights_at_sunrise'
 
-  trigger:
-    - platform: sun
+  triggers:
+    - trigger: sun
       event: 'sunrise'
       offset: '+00:45:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: binary_sensor.motion
       state: 'off'
@@ -634,7 +648,7 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -647,12 +661,12 @@
 - alias: Lights - Turn Off Exterior Lights at Sunrise
   id: 'lights_turn_off_exterior_lights_at_sunrise'
 
-  trigger:
-    - platform: sun
+  triggers:
+    - trigger: sun
       event: 'sunrise'
       offset: '+00:15:00'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -688,12 +702,12 @@
 - alias: Lights - Turn On Backyard Lighting at Sunset
   id: 'lights_turn_on_backyard_lighting_at_sunset'
 
-  trigger:
-    - platform: sun
+  triggers:
+    - trigger: sun
       event: 'sunset'
       offset: '-00:15:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_exterior_on_sunset
       state: 'off'
@@ -704,7 +718,7 @@
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -731,11 +745,11 @@
 - alias: Lights - Turn Off Backyard Lighting at Midnight
   id: 'lights_turn_off_backyard_lighting_at_midnight'
 
-  trigger:
-    - platform: time
+  triggers:
+    - trigger: time
       at: '00:00:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_exterior_off_night
       state: 'off'
@@ -743,7 +757,7 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -770,11 +784,11 @@
 - alias: Lights - Turn Off Backyard Lighting At Midnight Weekedays Friends Visiting
   id: 'lights_turn_off_backyard_lighting_at_midnight_weekdays_friends_visiting'
 
-  trigger:
-    - platform: time
+  triggers:
+    - trigger: time
       at: '00:00:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_exterior_off_night
       state: 'off'
@@ -788,7 +802,7 @@
         - wed
         - thu
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -815,18 +829,18 @@
 - alias: Lights - Turn On Guest Bedroom Lamp when Ceiling is On
   id: 'lights_turn_on_guest_bedroom_lamp_when_ceiling_is_on'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: light.guest_bedroom_ceiling
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.guest_bedroom_nightstand
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -841,18 +855,18 @@
 - alias: Lights - Turn Off Guest Bedroom Lamp when Ceiling is Off
   id: 'lights_turn_off_guest_bedroom_lamp_when_ceiling_is_off'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: light.guest_bedroom_ceiling
       from: 'on'
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.guest_bedroom_nightstand
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -865,13 +879,13 @@
 - alias: Lights - Turn On Basement Lights when Workbench Switch Used
   id: 'lights_turn_on_basement_lights_when_workbench_switch_used'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: light.work_bench_light
       from: 'off'
       to: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -902,13 +916,13 @@
 - alias: Lights - Turn On Basement Lights when Laundry Room Switch Used
   id: 'lights_turn_on_basement_lights_when_laundry_room_switch_used'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: light.laundry_room_light
       from: 'off'
       to: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -941,13 +955,13 @@
 - alias: Lights - Turn Off Basement Lights when Laundry Switch Used
   id: 'lights_turn_off_basement_lights_when_laundry_switch_used'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: light.laundry_room_light
       from: 'on'
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -955,7 +969,7 @@
       entity_id: light.basement_lighting
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -980,13 +994,13 @@
 - alias: Lights - Turn Off Basement Lights when Work Bench Switch Used
   id: 'lights_turn_off_basement_lights_when_work_bench_switch_used'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: light.work_bench_light
       from: 'on'
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -994,7 +1008,7 @@
       entity_id: light.basement_lighting
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -1023,11 +1037,11 @@
 - alias: Lights - Media Center Lighting Random Color Every 30 Mins
   id: 'lights_media_center_lighting_random_color_every_30_mins'
 
-  trigger:
-    - platform: time_pattern
+  triggers:
+    - trigger: time_pattern
       minutes: '/30'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.media_center_lighting
       state: 'on'
@@ -1041,7 +1055,7 @@
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id: light.media_center_lighting
@@ -1059,11 +1073,11 @@
 - alias: Lights - Living Room Lights Random Color On
   id: 'lights_living_room_lights_random_color_on'
 
-  trigger:
-    - platform: time_pattern
+  triggers:
+    - trigger: time_pattern
       seconds: '/15'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.livingroom_rainbow
       state: 'on'
@@ -1074,7 +1088,7 @@
       entity_id: input_boolean.bedtime
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -1123,12 +1137,12 @@
 - alias: Lights - Living Room Lights Random Color Off
   id: 'lights_living_room_lights_random_color_off'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.livingroom_rainbow
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -1139,7 +1153,7 @@
       entity_id: light.living_room_lights
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1174,11 +1188,11 @@
 - alias: Lights - Bedroom Lights Random Color On
   id: 'lights_bedroom_lights_random_color_on'
 
-  trigger:
-    - platform: time_pattern
+  triggers:
+    - trigger: time_pattern
       seconds: '/15'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.bedroom_rainbow
       state: 'on'
@@ -1189,7 +1203,7 @@
       entity_id: input_boolean.bedtime
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -1220,12 +1234,12 @@
 - alias: Lights - Bedroom Lights Random Color Off
   id: 'lights_bedroom_lights_random_color_off'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.bedroom_rainbow
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -1236,7 +1250,7 @@
       entity_id: light.bedroom_lights
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1263,12 +1277,12 @@
 - alias: Lights - USER1 Office Lights Random Color On
   id: 'lights_USER1_office_lights_random_color_on'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.office_rainbow
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.office_rainbow
       state: 'on'
@@ -1279,7 +1293,7 @@
       entity_id: input_boolean.bedtime
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       data:
         brightness_pct: 100
@@ -1300,11 +1314,11 @@
 - alias: Lights - USER1's Office Lamp Random Color
   id: 'lights_USER1_office_lamp_random_color'
 
-  trigger:
-    - platform: time_pattern
+  triggers:
+    - trigger: time_pattern
       seconds: '/15'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.office_rainbow
       state: 'on'
@@ -1315,7 +1329,7 @@
       entity_id: input_boolean.bedtime
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id: 
@@ -1335,12 +1349,12 @@
 - alias: Lights - USER1 Office Random Color Off
   id: 'lights_USER1_office_random_color_off'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.office_rainbow
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -1354,7 +1368,7 @@
       entity_id: light.moon_globe
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       entity_id: light.office_lamp
       data:
@@ -1390,11 +1404,11 @@
 - alias: Lights - Front Porch Lights Random Color On
   id: 'lights_front_porch_lights_random_color_on'
 
-  trigger:
-    - platform: time_pattern
+  triggers:
+    - trigger: time_pattern
       seconds: '/15'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.front_porch_rainbow
       state: 'on'
@@ -1405,7 +1419,7 @@
       entity_id: input_boolean.bedtime
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id: light.front_porch_left
@@ -1432,17 +1446,17 @@
 - alias: Lights - Front Porch Lights Random Color Off
   id: 'lights_front_porch_lights_random_color_off'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.front_porch_rainbow
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.front_porch
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       entity_id: light.front_porch
     - delay: '00:00:01'
@@ -1460,17 +1474,17 @@
 - alias: Lights - USER1 Office Desk Lamp Do Not Disturb On
   id: 'lights_USER1_office_desk_lamp_do_not_disturb_on'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER1_s_office_do_not_disturb
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: person.USER1
       state: 'home'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1486,12 +1500,12 @@
 - alias: Lights - USER1's Office Accent Light Do Not Disturb On
   id: 'lights_USER1_office_accent_light_do_not_disturb_on'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER1_s_office_do_not_disturb
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: person.USER1
       state: 'home'
@@ -1499,7 +1513,7 @@
       entity_id: cover.USER1_s_office_blinds
       state: 'closed'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1515,12 +1529,12 @@
 - alias: Lights - USER1 Office Desk Lamp Do Not Disturb Off Daytime Blinds Open
   id: 'lights_USER1_office_desk_lamp_do_not_disturb_off_daytime_blinds_open'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER1_s_office_do_not_disturb
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: person.USER1
       state: 'home'
@@ -1539,7 +1553,7 @@
         entity_id: cover.USER1_s_office_blinds
         state: 'opening'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1560,12 +1574,12 @@
 - alias: Lights - USER1 Office Desk Lamp Do Not Disturb Off Daytime Blinds Closed
   id: 'lights_USER1_office_desk_lamp_do_not_disturb_off_daytime_blinds_closed'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER1_s_office_do_not_disturb
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: person.USER1
       state: 'home'
@@ -1584,7 +1598,7 @@
         entity_id: cover.USER1_s_office_blinds
         state: 'closing'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1600,12 +1614,12 @@
 - alias: Lights - USER1's Office Accent Light Do Not Disturb Off Daytime Blinds Closed
   id: 'lights_USER1_office_accent_light_do_not_disturb_off_daytime_blinds_closed'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER1_s_office_do_not_disturb
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: person.USER1
       state: 'home'
@@ -1624,7 +1638,7 @@
         entity_id: cover.USER1_s_office_blinds
         state: 'closing'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1640,12 +1654,12 @@
 - alias: Lights - USER1 Office Desk Lamp Do Not Disturb Off Night
   id: 'lights_USER1_office_desk_lamp_do_not_disturb_off_night'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER1_s_office_do_not_disturb
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: person.USER1
       state: 'home'
@@ -1656,7 +1670,7 @@
       entity_id: light.USER1_office_desk_lamp
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1672,12 +1686,12 @@
 - alias: Lights - USER1's Office Accent Light Do Not Disturb Off Night
   id: 'lights_USER1_office_accent_light_do_not_disturb_off_night'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: input_boolean.USER1_s_office_do_not_disturb
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: person.USER1
       state: 'home'
@@ -1688,7 +1702,7 @@
       entity_id: light.USER1_office_desk_accent
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1709,8 +1723,8 @@
   id: 'lights_set_default_color_temp_370'
   
   mode: parallel
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id:
         - light.globe
         - light.USER1s_nightstand
@@ -1728,7 +1742,7 @@
         minutes: 0
         seconds: 6
 
-  condition:
+  conditions:
     - condition: state
       entity_id: alarm_control_panel.alarm
       state: 'disarmed'
@@ -1768,7 +1782,7 @@
         entity_id: binary_sensor.washing_machine_water_sensor
         state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id: "{{ trigger.entity_id }}"
@@ -1786,12 +1800,12 @@
 - alias: Lights - Turn Off Grow Light After 16 Hours
   id: 'lights_turn_off_grow_light_after_16_hours'
 
-  trigger:
-    - platform: sun
+  triggers:
+    - trigger: sun
       event: 'sunrise'
       offset: '+16:00:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: switch.grow_light
       state: 'on'
@@ -1799,7 +1813,7 @@
       entity_id: input_boolean.disable_grow_light
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -1812,11 +1826,11 @@
 - alias: Lights - Turn On Grow Light at Sunrise
   id: 'lights_turn_on_grow_light_at_sunrise'
 
-  trigger:
-    - platform: sun
+  triggers:
+    - trigger: sun
       event: 'sunrise'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: switch.grow_light
       state: 'off'
@@ -1824,7 +1838,7 @@
       entity_id: input_boolean.disable_grow_light
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -1841,15 +1855,15 @@
 - alias: Lights - Living Room Lights On Pico Remote
   id: 'lights_living_room_lights_on_pico_remote'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 43846935
         button_number: 2
-        action: press
+        actions: press
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1879,15 +1893,15 @@
 - alias: Lights - Living Room Lights Off Pico Remote
   id: 'lights_living_room_lights_off_pico_remote'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 43846935
         button_number: 4
-        action: press
+        actions: press
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -1902,15 +1916,15 @@
 - alias: Lights - Living Room Lights Increase Brightness Pico Remote
   id: 'lights_living_room_lights_increase_brightness_pico_remote'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 43846935
         button_number: 5
-        action: press
+        actions: press
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1927,20 +1941,20 @@
 - alias: Lights - Living Room Lights Decrease Brightness Pico Remote
   id: 'lights_living_room_lights_decrease_brightness_pico_remote'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 43846935
         button_number: 6
-        action: press
+        actions: press
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.living_room_accent_lights
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -1957,20 +1971,20 @@
 - alias: Lights - Living Room Fan Lights On Pico Remote
   id: 'lights_living_room_fan_lights_on_pico_remote'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 49229391
         button_number: 2
-        action: press
+        actions: press
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.living_room_fan_lights
       state: 'off'
 
-  action:
+  actions:
     - delay:
         seconds: 1
     - action: light.turn_on
@@ -1987,20 +2001,20 @@
 - alias: Lights - Living Room Fan Lights Off Pico Remote
   id: 'lights_living_room_fan_lights_off_pico_remote'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 49229391
         button_number: 4
-        action: press
+        actions: press
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.living_room_fan_lights
       state: 'on'
 
-  action:
+  actions:
     - delay:
         seconds: 1
     - action: light.turn_off
@@ -2017,20 +2031,20 @@
 #- alias: Lights - Living Room Fan Dimm Lights Pico Remote
 #  id: 'lights_living_room_fan_dimm)lights_pico_remote'
 
-#  trigger:
-#    - platform: event
+#  triggers:
+#    - trigger: event
 #      event_type: lutron_caseta_button_event
 #      event_data:
 #        serial: 49229391
 #        button_number: 2
-#        action: press
+#        actions: press
 
-#  condition:
+#  conditions:
 #    - condition: state
 #      entity_id: light.living_room_fan_lights
 #      state: 'on'
 
-#  action:
+#  actions:
 #    - action: script.turn_on
 #      entity_id:
 #        - script.living_room_fan_light_dimmer
@@ -2044,15 +2058,15 @@
 #- alias: Lights - Living Room Fan Lights Start Dimmer Reset
 #  id: 'lights_living_room_fan_lights_start_dimmer_reset'
 
-#  trigger:
-#    - platform: state
+#  triggers:
+#    - trigger: state
 #      entity_id: switch.living_room_east_fan_dimmer
 #      to: 'on'
 #      for:
 #        hours: 0
 #        minutes: 0
 #        seconds: 10
-#    - platform: state
+#    - trigger: state
 #      entity_id: switch.living_room_east_fan_dimmer
 #      to: 'on'
 #      for:
@@ -2060,7 +2074,7 @@
 #        minutes: 0
 #        seconds: 10
 
-#  action:
+#  actions:
 #    - action: switch.turn_off
 #      entity_id:
 #        - switch.living_room_east_fan_dimmer
@@ -2073,20 +2087,20 @@
 - alias: Lights - West Living Room Fan Lights On Pico Remote
   id: 'lights_west_living_room_fan_lights_on_pico_remote'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 91525691
         button_number: 2
-        action: press
+        actions: press
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.living_room_ceiling_west
       state: 'off'
 
-  action:
+  actions:
     - delay:
         seconds: 1
     - action: light.turn_on
@@ -2103,20 +2117,20 @@
 - alias: Lights - West Fan Living Room Lights Off Pico Remote
   id: 'lights_west_living_room_fan_lights_off_pico_remote'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 91525691
         button_number: 4
-        action: press
+        actions: press
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.living_room_ceiling_west
       state: 'on'
 
-  action:
+  actions:
     - delay:
         seconds: 1
     - action: light.turn_off
@@ -2133,20 +2147,20 @@
 #- alias: Lights - Living Room West Fan Dimm Lights Pico Remote
 #  id: 'lights_living_room_west_fan_dimm_lights_pico_remote'
 
-#  trigger:
-#    - platform: event
+#  triggers:
+#    - trigger: event
 #      event_type: lutron_caseta_button_event
 #      event_data:
 #        serial: 91525691
 #        button_number: 2
-#        action: press
+#        actions: press
 
-#  condition:
+#  conditions:
 #    - condition: state
 #      entity_id: light.living_room_ceiling_west
 #      state: 'on'
 
-#  action:
+#  actions:
 #    - action: script.turn_on
 #      entity_id:
 #        - script.living_room_west_fan_light_dimmer
@@ -2160,15 +2174,15 @@
 #- alias: Lights - Living Room West Fan Lights Start Dimmer Reset
 #  id: 'lights_living_room_west_fan_lights_start_dimmer_reset'
 
-#  trigger:
-#    - platform: state
+#  triggers:
+#    - trigger: state
 #      entity_id: switch.living_room_west_fan_dimmer
 #      to: 'on'
 #      for:
 #        hours: 0
 #        minutes: 0
 #        seconds: 10
-#    - platform: state
+#    - trigger: state
 #      entity_id: switch.living_room_west_fan_dimmer
 #      to: 'on'
 #      for:
@@ -2176,7 +2190,7 @@
 #        minutes: 0
 #        seconds: 10
 
-#  action:
+#  actions:
 #    - action: switch.turn_off
 #      entity_id:
 #        - switch.living_room_west_fan_dimmer
@@ -2188,15 +2202,15 @@
 - alias: Lights - Basement Lights On Pico Remote
   id: 'lights_basement_lights_on_pico_remote'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 42010030
         button_number: 2
-        action: press
+        actions: press
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -2235,15 +2249,15 @@
 - alias: Lights - Basement Lights Off Pico Remote
   id: 'lights_basement_lights_off_pico_remote'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 42010030
         button_number: 4
-        action: press
+        actions: press
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -2258,15 +2272,15 @@
 - alias: Lights - Basement Lights Increase Brightness Pico Remote
   id: 'lights_basement_lights_increase_brightness_pico_remote'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 42010030
         button_number: 5
-        action: press
+        actions: press
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -2295,15 +2309,15 @@
 - alias: Lights - Basement Lights Decrease Brightness Pico Remote
   id: 'lights_basement_lights_decrease_brightness_pico_remote'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 42010030
         button_number: 6
-        action: press
+        actions: press
     
-  condition:
+  conditions:
     - condition: or
       conditions:
       - condition: state
@@ -2316,7 +2330,7 @@
         entity_id: light.work_bench_light
         state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -2345,15 +2359,15 @@
 - alias: Lights - Basement Lights On Center Pico Button
   id: 'lights_basement_lights_on_center_pico_button'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 42010030
         button_number: 3
-        action: press
+        actions: press
 
-  condition:
+  conditions:
     - condition: or
       conditions:
       - condition: state
@@ -2366,7 +2380,7 @@
         entity_id: light.work_bench_light
         state: 'off'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -2397,20 +2411,20 @@
 - alias: Lights - Basement Lights Off Center Pico Button
   id: 'lights_basement_lights_off_center_pico_button'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 42010030
         button_number: 3
-        action: press
+        actions: press
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.basement_lighting
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -2425,15 +2439,15 @@
 - alias: Lights - Bedroom Closet Lights On Pico Remote
   id: 'lights_bedroom_closet_lights_on_pico_remote'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 92034753
         button_number: 2
-        action: press
+        actions: press
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -2449,15 +2463,15 @@
 - alias: Lights - Bedroom Closet Lights Off Pico Remote
   id: 'lights_bedroom_closet_lights_off_pico_remote'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 92034753
         button_number: 4
-        action: press
+        actions: press
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id:
@@ -2472,15 +2486,15 @@
 - alias: Lights - Bedroom Closet Lights Increase Brightness Pico Remote
   id: 'lights_bedroom_closet_lights_increase_brightness_pico_remote'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 92034753
         button_number: 5
-        action: press
+        actions: press
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -2497,20 +2511,20 @@
 - alias: Lights - Bedroom Closet Lights Decrease Brightness Pico Remote
   id: 'lights_bedroom_closet_lights_decrease_brightness_pico_remote'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 92034753
         button_number: 6
-        action: press
+        actions: press
 
-  condition:
+  conditions:
     - condition: state
       entity_id: light.bedroom_closet_lights
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id:
@@ -2533,15 +2547,15 @@
 - alias: Lights - Bedroom Lamps Dimmer
   id: 'lights_bedroom_lamps_dimmer'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: state_changed
       event_data:
         entity_id: sensor.bedroom_lamps_dimmer_brightness
-    - platform: state
+    - trigger: state
       entity_id: sensor.bedroom_lamps_dimmer_brightness
 
-  condition:
+  conditions:
     - condition: template
       value_template: >-
         {{ as_timestamp(now()) - as_timestamp(states.sensor.uptime.last_changed) |
@@ -2553,7 +2567,7 @@
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id: light.bedroom_lamps
@@ -2570,15 +2584,15 @@
 - alias: Lights - Bedroom Ceiling Dimmer
   id: 'lights_bedroom_ceiling_dimmer'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: state_changed
       event_data:
         entity_id: sensor.bedroom_ceiling_dimmer_brightness
-    - platform: state
+    - trigger: state
       entity_id: sensor.bedroom_ceiling_dimmer_brightness
 
-  condition:
+  conditions:
     - condition: template
       value_template: >-
         {{ as_timestamp(now()) - as_timestamp(states.sensor.uptime.last_changed) |
@@ -2590,7 +2604,7 @@
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: light.turn_on
       target:
         entity_id: light.bedroom_ceiling

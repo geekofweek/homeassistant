@@ -13,8 +13,8 @@
 - alias: Laundry - Washing Machine Done USER1 iOS Notification
   id: 'laundry_washing_machine_done_USER1_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.washer_wash_completed
       from: 'off'
       to: 'on'
@@ -23,7 +23,7 @@
         minutes: 0
         seconds: 1
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -34,7 +34,7 @@
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Washing Machine Finished
@@ -49,8 +49,8 @@
 - alias: Laundry - Dryer Done USER1 iOS Notification
   id: 'laundry_dryer_done_USER1_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.dryer_dry_completed
       from: 'off'
       to: 'on'
@@ -59,7 +59,7 @@
         minutes: 0
         seconds: 1
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -70,7 +70,7 @@
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Dryer Finished
@@ -85,8 +85,8 @@
 - alias: Laundry - Washing Machine Done USER2 iOS Notification
   id: 'laundry_washing_machine_done_USER2_ios_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.washer_wash_completed
       from: 'off'
       to: 'on'
@@ -95,7 +95,7 @@
         minutes: 0
         seconds: 1
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -106,7 +106,7 @@
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER2_devices
       data:
         message: Washing Machine Finished
@@ -121,8 +121,8 @@
 - alias: Laundry - Dryer Done USER2 iOS Notification
   id: 'laundry_dryer_done_USER2_ios_notficiation'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.dryer_dry_completed
       from: 'off'
       to: 'on'
@@ -131,7 +131,7 @@
         minutes: 0
         seconds: 1
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -142,7 +142,7 @@
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER2_devices
       data:
         message: Dryer Finished
@@ -157,8 +157,8 @@
 - alias: Laundry - Washing Machine Done Audio Notification
   id: 'laundry_washing_machine_done_audio_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.washer_wash_completed
       from: 'off'
       to: 'on'
@@ -167,7 +167,7 @@
         minutes: 0
         seconds: 1
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -178,7 +178,7 @@
       after: '09:00:00'
       before: '20:00:00'
 
-  action:
+  actions:
     - action: media_player.play_media
       target:
         entity_id: 
@@ -205,8 +205,8 @@
 - alias: Laundry - Dryer Done Audio Notification
   id: 'laundry_dryer_done_audio_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.dryer_dry_completed
       from: 'off'
       to: 'on'
@@ -215,7 +215,7 @@
         minutes: 0
         seconds: 1
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -226,7 +226,7 @@
       after: '09:00:00'
       before: '20:00:00'
 
-  action:
+  actions:
     - action: media_player.play_media
       target:
         entity_id: 
@@ -253,12 +253,12 @@
 - alias: Laundry - Washer Run Tub Clean Notification
   id: 'laundry_washer_run_tub_clean_notification'
 
-  trigger:
-    - platform: numeric_state
+  triggers:
+    - trigger: numeric_state
       entity_id: sensor.washer_tub_clean
       above: 29
 
-  condition:
+  conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
@@ -266,7 +266,7 @@
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Time to Run a Tub Clean Cycler on the Washer

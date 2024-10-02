@@ -9,8 +9,8 @@
 - alias: Fountain - Fountain Off When Away
   id: 'fountain_off_when_away'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       from: 'home'
       to: 'not_home'
@@ -19,7 +19,7 @@
         minutes: 3
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_fountain
       state: 'off'
@@ -27,7 +27,7 @@
       entity_id: switch.fountain
       state: 'on'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -41,8 +41,8 @@
 - alias: Fountain - Fountain On When Home
   id: 'fountain_on_when_home'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       from: 'not_home'
       to: 'home'
@@ -51,7 +51,7 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_fountain
       state: 'off'
@@ -80,7 +80,7 @@
         entity_id: sensor.season
         state: 'winter'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -93,13 +93,13 @@
 - alias: Fountain - Lights On When Home Before Sunset
   id: 'fountain_lights_on_when_home_before_sunset'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       from: 'not_home'
       to: 'home'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_fountain
       state: 'off'
@@ -113,7 +113,7 @@
       after: sunset
       after_offset: "-00:15:00"
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -126,12 +126,12 @@
 - alias: Fountain - Turn on Lights at Sunset
   id: 'fountain_turn_on_lights_at_sunset'
 
-  trigger:
-    - platform: sun
+  triggers:
+    - trigger: sun
       event: 'sunset'
       offset: '-00:15:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_fountain
       state: 'off'
@@ -142,7 +142,7 @@
       entity_id: switch.fountain
       state: 'on'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -155,12 +155,12 @@
 - alias: Fountain - Turn on Lights when Fountain on at Night
   id: 'fountain_turn_on_lights_when_fountain_on_at_night'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: switch.fountain
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_fountain
       state: 'off'
@@ -174,7 +174,7 @@
       entity_id: sun.sun
       state: 'below_horizon'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -187,12 +187,12 @@
 - alias: Fountain - Turn off Lights when Fountain turns off
   id: 'fountain_turn_off_lights_when_fountain_turns_off'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: switch.fountain
       to: 'off'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_fountain
       state: 'off'
@@ -203,7 +203,7 @@
       entity_id: switch.fountain_lights
       state: 'on'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -216,11 +216,11 @@
 - alias: Fountain - Turn On Daily
   id: 'fountain_turn_on_daily'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '10:00:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_fountain
       state: 'off'
@@ -249,7 +249,7 @@
         entity_id: sensor.season
         state: 'winter'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -262,11 +262,11 @@
 - alias: Fountain - Turn Off at Midnight
   id: 'fountain_turn_off_at_midnight'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '23:59:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_fountain
       state: 'off'
@@ -277,7 +277,7 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -291,15 +291,15 @@
 - alias: Fountain - Turn Off When Raining
   id: 'fountain_turn_off_when_raining'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: weather.REDACTED
       to: 'rainy'
       for:
         hours: 1
         minutes: 0
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: weather.REDACTED
       to: 'lightning-rainy'
       for:
@@ -307,7 +307,7 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_fountain
       state: 'off'
@@ -318,7 +318,7 @@
       entity_id: group.household
       state: 'home'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:
@@ -331,15 +331,15 @@
 - alias: Fountain - Turn On When Done Raining
   id: 'fountain_turn_on_when_done_raining'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: weather.REDACTED
       from: 'rainy'
       for:
         hours: 1
         minutes: 0
         seconds: 0
-    - platform: state
+    - trigger: state
       entity_id: weather.REDACTED
       from: 'lightning-rainy'
       for:
@@ -347,7 +347,7 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_fountain
       state: 'off'
@@ -379,7 +379,7 @@
         entity_id: sensor.season
         state: 'winter'
 
-  action:
+  actions:
     - action: switch.turn_on
       target:
         entity_id:
@@ -392,8 +392,8 @@
 - alias: Fountain - Turn Off When Cold
   id: 'fountain_turn_off_when_cold'
 
-  trigger:
-    - platform: numeric_state
+  triggers:
+    - trigger: numeric_state
       entity_id: sensor.REDACTED_temperature
       below: 38
       for:
@@ -401,12 +401,12 @@
         minutes: 30
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: switch.fountain
       state: 'on'
 
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id:

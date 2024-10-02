@@ -9,8 +9,8 @@
 - alias: Occupancy - Turn Off Bedroom Lights when Unoccupied
   id: 'occupancy_turn_off_bedroom_lights_when_unoccupied'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.bedroom_occupancy
       from: 'on'
       to: 'off'
@@ -19,7 +19,7 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_occupancy
       state: 'off'
@@ -32,7 +32,7 @@
         entity_id: vacuum.main_floor_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       target:
         entity_id: 
@@ -45,8 +45,8 @@
 - alias: Occupancy - Turn Off Guest Bedroom Lights when Unoccupied
   id: 'occupancy_turn_off_guest_bedroom_lights_when_unoccupied'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.guest_bedroom_occupancy
       from: 'on'
       to: 'off'
@@ -55,7 +55,7 @@
         minutes: 30
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_occupancy
       state: 'off'
@@ -71,6 +71,6 @@
         entity_id: vacuum.upstairs_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       entity_id: light.guest_bedroom_lights

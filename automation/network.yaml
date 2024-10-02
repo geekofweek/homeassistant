@@ -9,8 +9,8 @@
 - alias: Network - Re-Enable Pi-hole After 15 Mins
   id: 'network_reenable_pihole_after_15_mins'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: switch.pihole
       from: 'on'
       to: 'off'
@@ -19,12 +19,12 @@
         minutes: 15
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: switch.pihole
       state: 'off'
 
-  action:
+  actions:
     - action: homeassistant.turn_on
       target:
         entity_id:
@@ -41,8 +41,8 @@
 - alias: Network - WAN Down Notification
   id: 'network_wan_down_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.wan
       to: 'off'
       for:
@@ -50,12 +50,12 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Internet is Down!
@@ -70,8 +70,8 @@
 - alias: Network - WAN Up Notification
   id: 'network_wan_up_notification'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.wan
       from: 'off'
       to: 'on'
@@ -80,12 +80,12 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: Internet is Up

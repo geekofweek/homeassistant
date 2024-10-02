@@ -9,13 +9,13 @@
 - alias: Blinds - Close USER2's Office Blinds when Sun Below Horizon
   id: 'blinds_close_USER2_office_blinds_when_sun_below_horizon'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sun.sun
       from: 'above_horizon'
       to: 'below_horizon'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -26,7 +26,7 @@
       entity_id: input_boolean.USER2_office_portable_ac
       state: 'off'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -39,13 +39,13 @@
 - alias: Blinds - Close USER2's Office Blinds when Sun Below Horizon Portable AC
   id: 'blinds_close_USER2_office_blinds_when_sun_below_horizon_portable_ac'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sun.sun
       from: 'above_horizon'
       to: 'below_horizon'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -56,7 +56,7 @@
       entity_id: input_boolean.USER2_office_portable_ac
       state: 'on'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -74,13 +74,13 @@
 - alias: Blinds - Close Bedroom Closet Blinds when Sun Below Horizon
   id: 'blinds_close_bedroom_closet_blinds_when_sun_below_horizon'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sun.sun
       from: 'above_horizon'
       to: 'below_horizon'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -88,7 +88,7 @@
       entity_id: cover.bedroom_closet_blinds
       state: 'open'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -101,13 +101,13 @@
 - alias: Blinds - Close Upstairs Blinds when Sun Below Horizon
   id: 'blinds_close_upstairs_blinds_when_sun_below_horizon'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sun.sun
       from: 'above_horizon'
       to: 'below_horizon'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -115,7 +115,7 @@
       entity_id: cover.stairs_blinds
       state: 'open'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -128,13 +128,13 @@
 - alias: Blinds - Close Kitchen Blinds when Sun Below Horizon
   id: 'blinds_close_kitchen_blinds_when_sun_below_horizon'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sun.sun
       from: 'above_horizon'
       to: 'below_horizon'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -142,7 +142,7 @@
       entity_id: cover.kitchen_blinds
       state: 'open'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -159,13 +159,13 @@
 - alias: Blinds - USER1's Office Blinds When Motion Detected
   id: 'blinds_USER1_office_blinds_when_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER1s_office_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -214,7 +214,7 @@
       entity_id: input_boolean.USER1_office_guest
       state: 'off'
 
-  action:
+  actions:
     - action: cover.open_cover
       data:
         entity_id: 
@@ -227,8 +227,8 @@
 - alias: Blinds - Close USER1's Office Blinds When No Motion Detected
   id: 'blinds_close_USER1_office_blinds_when_no_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER1s_office_motion
       from: 'on'
       to: 'off'
@@ -237,7 +237,7 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -251,7 +251,7 @@
       entity_id: input_boolean.USER1_office_portable_ac
       state: 'off'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -264,8 +264,8 @@
 - alias: Blinds - Close USER1's Office Blinds When No Motion Detected Portable AC
   id: 'blinds_close_USER1_office_blinds_when_no_motion_detected_portable_ac'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER1s_office_motion
       from: 'on'
       to: 'off'
@@ -274,7 +274,7 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -288,7 +288,7 @@
       entity_id: input_boolean.USER1_office_portable_ac
       state: 'on'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -307,15 +307,15 @@
 - alias: Blinds - Close USER1's Office Blinds Outside Temperature
   id: 'blinds_close_USER1_office_blinds_outside_temperature'
 
-  trigger:
-    - platform: numeric_state
+  triggers:
+    - trigger: numeric_state
       entity_id: sensor.REDACTED_temperature
       above: 85
       for:
         hours: 0
         minutes: 30
         seconds: 0
-    - platform: numeric_state
+    - trigger: numeric_state
       entity_id: sensor.REDACTED_temperature
       below: 20
       for:
@@ -323,7 +323,7 @@
         minutes: 30
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -337,7 +337,7 @@
       entity_id: input_boolean.USER1_office_portable_ac
       state: 'off'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -350,15 +350,15 @@
 - alias: Blinds - Close USER1's Office Blinds Outside Temperature Portable AC
   id: 'blinds_close_USER1_office_blinds_outside_temperature_portable_ac'
 
-  trigger:
-    - platform: numeric_state
+  triggers:
+    - trigger: numeric_state
       entity_id: sensor.REDACTED_temperature
       above: 85
       for:
         hours: 0
         minutes: 30
         seconds: 0
-    - platform: numeric_state
+    - trigger: numeric_state
       entity_id: sensor.REDACTED_temperature
       below: 20
       for:
@@ -366,7 +366,7 @@
         minutes: 30
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -380,7 +380,7 @@
       entity_id: input_boolean.USER1_office_portable_ac
       state: 'on'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -399,12 +399,12 @@
 - alias: Blinds - Close USER1's Office Blinds Halfway Before Sunset
   id: 'blinds_close_USER1_office_blinds_halfway_before_sunset'
 
-  trigger:
-    - platform: sun
+  triggers:
+    - trigger: sun
       event: 'sunset'
       offset: '-00:50:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -412,7 +412,7 @@
       entity_id: cover.USER1_s_office_blinds
       state: 'open'
 
-  action:
+  actions:
     - action: cover.set_cover_position
       data:
         entity_id: 
@@ -426,12 +426,12 @@
 - alias: Blinds - Close USER1's Office Blinds Before Sunset Window Closed
   id: 'blinds_close_USER1_office_blinds_before_sunset_window_closed'
 
-  trigger:
-    - platform: sun
+  triggers:
+    - trigger: sun
       event: 'sunset'
       offset: '-00:32:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -442,7 +442,7 @@
       entity_id: cover.USER1_s_office_blinds
       state: 'open'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -455,12 +455,12 @@
 - alias: Blinds - Close USER1's Office Blinds Before Sunset Window Open
   id: 'blinds_close_USER1_office_blinds_before_sunset_window_open'
 
-  trigger:
-    - platform: sun
+  triggers:
+    - trigger: sun
       event: 'sunset'
       offset: '-00:32:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -471,7 +471,7 @@
       entity_id: cover.USER1_s_office_blinds
       state: 'open'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id:
@@ -485,8 +485,8 @@
 - alias: Blinds - Close USER1's Office Blinds when Sun Below Horizon and Window Closed
   id: 'blinds_close_USER1s_office_blinds_when_sun_below_horizon_window_closed'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sun.sun
       from: 'above_horizon'
       to: 'below_horizon'
@@ -495,7 +495,7 @@
         minutes: 0
         seconds: 30
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -503,7 +503,7 @@
       entity_id: binary_sensor.USER1s_office_window_right
       state: 'off'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -516,8 +516,8 @@
 - alias: Blinds - Close USER1's Office Blinds Partially when Sun Below Horizon and Window Open
   id: 'blinds_close_USER1s_office_blinds_partially_when_sun_below_horizon_and_window_open'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sun.sun
       from: 'above_horizon'
       to: 'below_horizon'
@@ -526,7 +526,7 @@
         minutes: 0
         seconds: 30
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -537,7 +537,7 @@
       entity_id: input_boolean.USER1_office_portable_ac
       state: 'off'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -556,8 +556,8 @@
 - alias: Blinds - Close USER1's Office Blinds Partially when Sun Below Horizon Portable AC
   id: 'blinds_close_USER1s_office_blinds_partially_when_sun_below_horizon_and_window_open_portable_ac'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sun.sun
       from: 'above_horizon'
       to: 'below_horizon'
@@ -566,7 +566,7 @@
         minutes: 0
         seconds: 30
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -577,7 +577,7 @@
       entity_id: input_boolean.USER1_office_portable_ac
       state: 'on'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -596,16 +596,16 @@
 - alias: Blinds - Turn Off USER1's Office Lights when Blinds are Open
   id: 'blinds_turn_off_USER1_office_lights_when_blinds_are_open'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: cover.USER1_s_office_blinds
       from: 'closed'
       to: 'opening'
-    - platform: state
+    - trigger: state
       entity_id: cover.USER1_s_office_blinds
       to: 'open'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -613,7 +613,7 @@
       entity_id: light.USER1_office_lights
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_off
       entity_id:
         - light.USER1_s_office_ceiling
@@ -631,16 +631,16 @@
 - alias: Blinds - Turn Off USER1's Office Desk Lamp when Blinds are Open
   id: 'blinds_turn_off_USER1_office_desk_lamp_when_blinds_are_open'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: cover.USER1_s_office_blinds
       from: 'closed'
       to: 'opening'
-    - platform: state
+    - trigger: state
       entity_id: cover.USER1_s_office_blinds
       to: 'open'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -648,7 +648,7 @@
       entity_id: input_boolean.USER1_s_office_do_not_disturb
       state: 'off'
 
-  action:
+  actions:
     - action: light.turn_off
       entity_id:
         - light.USER1_office_desk_lamp
@@ -668,13 +668,13 @@
 - alias: Blinds - Open Stairs Blinds When Motion Detected
   id: 'blinds_stairs_blinds_open_when_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.stairs_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -713,7 +713,7 @@
         entity_id: vacuum.upstairs_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: cover.open_cover
       data:
         entity_id: 
@@ -726,8 +726,8 @@
 - alias: Blinds - Close Stairs Blinds When No Motion Detected
   id: 'blinds_close_stairs_blinds_when_no_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.stairs_motion
       from: 'on'
       to: 'off'
@@ -736,7 +736,7 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -756,7 +756,7 @@
       entity_id: cover.stairs_blinds
       state: 'open'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -769,15 +769,15 @@
 - alias: Blinds - Close Stairs Blinds Outside Temperature
   id: 'blinds_close_stairs_blinds_outside_temperature'
 
-  trigger:
-    - platform: numeric_state
+  triggers:
+    - trigger: numeric_state
       entity_id: sensor.REDACTED_temperature
       above: 85
       for:
         hours: 0
         minutes: 30
         seconds: 0
-    - platform: numeric_state
+    - trigger: numeric_state
       entity_id: sensor.REDACTED_temperature
       below: 20
       for:
@@ -785,7 +785,7 @@
         minutes: 30
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -793,7 +793,7 @@
       entity_id: cover.stairs_blinds
       state: 'open'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -806,16 +806,16 @@
 - alias: Blinds - Turn Off Stair Lights when Blinds are Open
   id: 'blinds_turn_off_stair_lights_when_blinds_are_open'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: cover.stairs_blinds
       from: 'closed'
       to: 'opening'
-    - platform: state
+    - trigger: state
       entity_id: cover.stairs_blinds
       to: 'open'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -823,7 +823,7 @@
       entity_id: light.stairs_light
       state: 'on'
 
-  action:
+  actions:
     - action: light.turn_off
       entity_id:
         - light.stairs_light
@@ -835,12 +835,12 @@
 - alias: Blinds - Close Upstairs Blinds Before Sunset
   id: 'blinds_close_upstairs_blinds_before_sunset'
 
-  trigger:
-    - platform: sun
+  triggers:
+    - trigger: sun
       event: 'sunset'
       offset: '-00:45:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -848,7 +848,7 @@
       entity_id: cover.stairs_blinds
       state: 'open'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -865,13 +865,13 @@
 - alias: Blinds - USER2's Office Blinds When Motion Detected
   id: 'blinds_USER2_office_blinds_when_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER2s_office_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -925,7 +925,7 @@
         entity_id: input_boolean.USER2_office_portable_ac
         state: 'on'
 
-  action:
+  actions:
     - action: cover.open_cover
       data:
         entity_id: 
@@ -938,13 +938,13 @@
 - alias: Blinds - Open USER2's Office Blinds When Motion Detected Winter Sunny
   id: 'blinds_USER2_office_blinds_when_motion_detected_winter__sunny'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER2s_office_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -996,7 +996,7 @@
         entity_id: vacuum.upstairs_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: cover.set_cover_position
       data:
         entity_id: 
@@ -1010,13 +1010,13 @@
 - alias: Blinds - Open USER2's Office Blinds When Motion Detected Winter Early
   id: 'blinds_USER2_office_blinds_when_motion_detected_winter__early'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER2s_office_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -1070,7 +1070,7 @@
         entity_id: vacuum.upstairs_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: cover.open_cover
       data:
         entity_id: 
@@ -1083,13 +1083,13 @@
 - alias: Blinds - Open USER2's Office Blinds When Motion Detected Winter
   id: 'blinds_USER2_office_blinds_when_motion_detected_winter'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER2s_office_motion
       from: 'off'
       to: 'on'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -1144,7 +1144,7 @@
         entity_id: vacuum.upstairs_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: cover.open_cover
       data:
         entity_id: 
@@ -1157,8 +1157,8 @@
 - alias: Blinds - Close USER2's Office Blinds When No Motion Detected
   id: 'blinds_close_USER2_office_blinds_when_no_motion_detected'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER2s_office_motion
       from: 'on'
       to: 'off'
@@ -1167,7 +1167,7 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -1178,7 +1178,7 @@
       entity_id: input_boolean.USER2_office_portable_ac
       state: 'off'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -1191,8 +1191,8 @@
 - alias: Blinds - Close USER2's Office Blinds When No Motion Detected Portable AC
   id: 'blinds_close_USER2_office_blinds_when_no_motion_detected_portable_ac'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.USER2s_office_motion
       from: 'on'
       to: 'off'
@@ -1201,7 +1201,7 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -1212,7 +1212,7 @@
       entity_id: input_boolean.USER2_office_portable_ac
       state: 'on'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -1230,15 +1230,15 @@
 - alias: Blinds - Close USER2's Office Blinds Outside Temperature
   id: 'blinds_close_USER2_office_blinds_outside_temperature'
 
-  trigger:
-    - platform: numeric_state
+  triggers:
+    - trigger: numeric_state
       entity_id: sensor.REDACTED_temperature
       above: 85
       for:
         hours: 0
         minutes: 30
         seconds: 0
-    - platform: numeric_state
+    - trigger: numeric_state
       entity_id: sensor.REDACTED_temperature
       below: 20
       for:
@@ -1246,7 +1246,7 @@
         minutes: 30
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -1257,7 +1257,7 @@
       entity_id: input_boolean.USER2_office_portable_ac
       state: 'off'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -1270,15 +1270,15 @@
 - alias: Blinds - Close USER2's Office Blinds Outside Temperature Portable AC
   id: 'blinds_close_USER2_office_blinds_outside_temperature_portable_ac'
 
-  trigger:
-    - platform: numeric_state
+  triggers:
+    - trigger: numeric_state
       entity_id: sensor.REDACTED_temperature
       above: 85
       for:
         hours: 0
         minutes: 30
         seconds: 0
-    - platform: numeric_state
+    - trigger: numeric_state
       entity_id: sensor.REDACTED_temperature
       below: 20
       for:
@@ -1286,7 +1286,7 @@
         minutes: 30
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -1297,7 +1297,7 @@
       entity_id: input_boolean.USER2_office_portable_ac
       state: 'on'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -1315,12 +1315,12 @@
 - alias: Blinds - Close USER2's Office Blinds Before Sunset
   id: 'blinds_close_USER2_office_blinds_before_sunset'
 
-  trigger:
-    - platform: sun
+  triggers:
+    - trigger: sun
       event: 'sunset'
       offset: '-00:45:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -1331,7 +1331,7 @@
       entity_id: input_boolean.USER2_office_portable_ac
       state: 'off'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -1344,12 +1344,12 @@
 - alias: Blinds - Close USER2's Office Blinds Before Sunset Portable AC
   id: 'blinds_close_USER2_office_blinds_before_sunset_portable_ac'
 
-  trigger:
-    - platform: sun
+  triggers:
+    - trigger: sun
       event: 'sunset'
       offset: '-00:45:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -1360,7 +1360,7 @@
       entity_id: input_boolean.USER2_office_portable_ac
       state: 'off'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -1382,11 +1382,11 @@
 - alias: Blinds - Open Bedroom Blinds at 10a Weekdays
   id: 'blinds_open_bedroom_blinds_at_10a_weekdays'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '10:00:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -1416,7 +1416,7 @@
         - thu
         - fri
 
-  action:
+  actions:
     - action: cover.open_cover
       data:
         entity_id: 
@@ -1429,12 +1429,12 @@
 - alias: Blinds - Close Bedroom Blinds Before Sunset
   id: 'blinds_close_bedroom_blinds_before_sunset'
 
-  trigger:
-    - platform: sun
+  triggers:
+    - trigger: sun
       event: 'sunset'
       offset: '-00:45:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -1442,7 +1442,7 @@
       entity_id: cover.bedroom_closet_blinds
       state: 'open'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -1455,16 +1455,16 @@
 - alias: Blinds - Turn Off Bedroom Lights when Blinds are Open
   id: 'blinds_turn_off_bedroom_lights_when_blinds_are_open'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: cover.bedroom_closet_blinds
       from: 'closed'
       to: 'opening'
-    - platform: state
+    - trigger: state
       entity_id: cover.bedroom_closet_blinds
       to: 'open'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -1480,7 +1480,7 @@
         entity_id: vacuum.main_floor_roomba
         state: 'returning'
 
-  action:
+  actions:
     - action: light.turn_off
       entity_id:
         - light.bedroom_lights
@@ -1492,11 +1492,11 @@
 - alias: Blinds - Open Center Bedroom Blind at 9a When Away
   id: 'blinds_open_center_bedroom_blind_at_9a_when_away'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '09:00:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -1509,7 +1509,7 @@
         entity_id: group.household
         state: 'home'
 
-  action:
+  actions:
     - action: cover.set_cover_position
       data:
         entity_id: 
@@ -1523,11 +1523,11 @@
 - alias: Blinds - Open Center Bedroom Blind at 2p When Away
   id: 'blinds_open_center_bedroom_blind_at_2p_when_away'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '14:00:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -1537,7 +1537,7 @@
         entity_id: group.household
         state: 'home'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -1554,12 +1554,12 @@
 - alias: Blinds - Open Kitchen South Blind at Sunrise
   id: 'blinds_open_kitcen_south_blind_at_sunrise'
 
-  trigger:
-    - platform: sun
+  triggers:
+    - trigger: sun
       event: 'sunrise'
       offset: '00:60:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -1582,7 +1582,7 @@
       entity_id: sensor.REDACTED_forecasted_temperature_high
       above: 20
 
-  action:
+  actions:
     - action: cover.open_cover
       data:
         entity_id: 
@@ -1595,8 +1595,8 @@
 - alias: Blinds - Open Kitchen Blinds when Home
   id: 'blinds_open_kitcen_blinds_when_home'
 
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: group.household
       from: 'not_home'
       to: 'home'
@@ -1605,7 +1605,7 @@
         minutes: 1
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -1637,7 +1637,7 @@
       entity_id: sensor.REDACTED_forecasted_temperature_high
       above: 20
 
-  action:
+  actions:
     - action: cover.open_cover
       data:
         entity_id: 
@@ -1655,11 +1655,11 @@
 - alias: Blinds - Open Kitchen West Blind at 9a
   id: 'blinds_open_kitchen_west_blind_at_9a'
 
-  trigger:
-   - platform: time
+  triggers:
+   - trigger: time
      at: '09:00:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -1685,7 +1685,7 @@
       entity_id: sensor.REDACTED_forecasted_temperature_high
       above: 20
 
-  action:
+  actions:
     - action: cover.set_cover_position
       data:
         entity_id: 
@@ -1699,12 +1699,12 @@
 - alias: Blinds - Close Kitchen West Blind Before Sunset
   id: 'blinds_close_kitchen_west_blind_before_sunset'
 
-  trigger:
-    - platform: sun
+  triggers:
+    - trigger: sun
       event: 'sunset'
       offset: '-01:30:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -1712,7 +1712,7 @@
       entity_id: cover.kitchen_blinds_west
       state: 'open'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -1725,12 +1725,12 @@
 - alias: Blinds - Close Kitchen South Blind Before Sunset
   id: 'blinds_close_kitchen_south_blind_before_sunset'
 
-  trigger:
-    - platform: sun
+  triggers:
+    - trigger: sun
       event: 'sunset'
       offset: '-00:30:00'
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_blinds
       state: 'off'
@@ -1738,7 +1738,7 @@
       entity_id: cover.kitchen_blinds_south
       state: 'open'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -1755,15 +1755,15 @@
 - alias: Blinds - Kitchen Blinds Open Pico Remote
   id: 'blinds_kitchen_blinds_open_pico_remote'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 91735138
         button_number: 2
-        action: press
+        actions: press
 
-  action:
+  actions:
     - action: cover.open_cover
       data:
         entity_id: 
@@ -1776,15 +1776,15 @@
 - alias: Blinds - Kitchen Blinds Close Pico Remote
   id: 'blinds_kitchen_blinds_close_pico_remote'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 91735138
         button_number: 4
-        action: press
+        actions: press
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -1797,15 +1797,15 @@
 - alias: Blinds - Kitchen Raise Blinds Pico Remote Press
   id: 'blinds_kitchen_blinds_raise_pico_remote_press'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 91735138
         button_number: 5
-        action: press
+        actions: press
 
-  action:
+  actions:
     - action: cover.open_cover
       entity_id:
         - cover.kitchen_blinds
@@ -1817,15 +1817,15 @@
 - alias: Blinds - Kitchen Raise Blinds Pico Remote Release
   id: 'blinds_kitchen_blinds_raise_pico_remote_release'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 91735138
         button_number: 5
-        action: release
+        actions: release
 
-  action:
+  actions:
     - action: cover.stop_cover
       entity_id:
         - cover.kitchen_blinds
@@ -1837,15 +1837,15 @@
 - alias: Blinds - Kitchen Lower Blinds Pico Remote Press
   id: 'blinds_kitchen_blinds_lower_pico_remote_press'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 91735138
         button_number: 6
-        action: press
+        actions: press
 
-  action:
+  actions:
     - action: cover.close_cover
       entity_id:
         - cover.kitchen_blinds
@@ -1857,15 +1857,15 @@
 - alias: Blinds - Kitchen Lower Blinds Pico Remote Release
   id: 'blinds_kitchen_blinds_lower_pico_remote_release'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 91735138
         button_number: 6
-        action: release
+        actions: release
 
-  action:
+  actions:
     - action: cover.stop_cover
       entity_id:
         - cover.kitchen_blinds
@@ -1877,15 +1877,15 @@
 - alias: Blinds - Kitchen Blinds Reset Pico Remote
   id: 'blinds_kitchen_blinds_reset_pico_remote'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 91735138
         button_number: 3
-        action: press
+        actions: press
 
-  action:
+  actions:
     - action: cover.open_cover
       data:
         entity_id: 
@@ -1903,20 +1903,20 @@
 - alias: Blinds - Bedroom Closet Open Pico Remote
   id: 'blinds_bedroom_closet_open_pico_remote'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 92034753
         button_number: 3
-        action: press
+        actions: press
 
-  condition:
+  conditions:
     - condition: state
       entity_id: cover.bedroom_closet_blinds
       state: 'closed'
 
-  action:
+  actions:
     - action: cover.open_cover
       data:
         entity_id: 
@@ -1929,20 +1929,20 @@
 - alias: Blinds - Bedroom Closet Close Pico Remote
   id: 'blinds_bedroom_closet_close_pico_remote'
 
-  trigger:
-    - platform: event
+  triggers:
+    - trigger: event
       event_type: lutron_caseta_button_event
       event_data:
         serial: 92034753
         button_number: 3
-        action: press
+        actions: press
   
-  condition:
+  conditions:
     - condition: state
       entity_id: cover.bedroom_closet_blinds
       state: 'open'
 
-  action:
+  actions:
     - action: cover.close_cover
       data:
         entity_id: 
@@ -1960,8 +1960,8 @@
   id: 'blinds_fix_stuck_in_opening_state'
   
   mode: parallel
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id:
         - cover.kitchen_blinds
         - cover.bedroom_closet_blinds
@@ -1974,7 +1974,7 @@
         minutes: 5
         seconds: 0
 
-  action:
+  actions:
     - action: cover.stop_cover
       target:
         entity_id: "{{ trigger.entity_id }}"
@@ -1987,8 +1987,8 @@
   id: 'blinds_fix_stuck_in_closing_state'
   
   mode: parallel
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id:
         - cover.kitchen_blinds
         - cover.bedroom_closet_blinds
@@ -2001,7 +2001,7 @@
         minutes: 5
         seconds: 0
 
-  action:
+  actions:
     - action: cover.stop_cover
       target:
         entity_id: "{{ trigger.entity_id }}"
@@ -2018,8 +2018,8 @@
   id: 'blinds_low_battery_notification'
 
   mode: parallel
-  trigger:
-    - platform: numeric_state
+  triggers:
+    - trigger: numeric_state
       entity_id: 
           - sensor.USER1s_office_blinds_center
           - sensor.USER1s_office_blinds_left
@@ -2039,12 +2039,12 @@
         minutes: 0
         seconds: 0
 
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.disable_notifications
       state: 'off'
 
-  action:
+  actions:
     - action: notify.USER1_devices
       data:
         message: "{{ trigger.to_state.attributes.friendly_name }} Low Battery"
