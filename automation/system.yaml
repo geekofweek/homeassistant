@@ -153,6 +153,62 @@
         notification_id: http-login
 
         #################################################################
+        ## Reconnect USER2's Nightstand if Offline
+        #################################################################
+
+- alias: System - Reconnect USER2's Nightstand if Offline
+  id: 'system_reconnect_USER2_nightstand_if_offline'
+
+  triggers:
+    - trigger: state
+      entity_id: light.USER2s_nightstand
+      to: 'unavailable'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+    - trigger: state
+      entity_id: light.USER2s_nightstand
+      to: 'unknown'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  actions:
+    - action: unifi.reconnect_client
+      data:
+        device_id: a493838be740ec667e8fc26fc3e57ee9
+
+        #################################################################
+        ## Reconnect USER1's Nightstand if Offline
+        #################################################################
+
+- alias: System - Reconnect USER1's Nightstand if Offline
+  id: 'system_reconnect_USER1_nightstand_if_offline'
+
+  triggers:
+    - trigger: state
+      entity_id: light.USER1s_nightstand
+      to: 'unavailable'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+    - trigger: state
+      entity_id: light.USER1s_nightstand
+      to: 'unknown'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  actions:
+    - action: unifi.reconnect_client
+      data:
+        device_id: 054511dc5c2c02b186621a55149cb370
+
+        #################################################################
         ## Ping Locks if they become Unavailable
         #################################################################
 
@@ -296,7 +352,6 @@
         message: "Power Cycling Garage Door Relay"
         data:
           tag: garage
-          group: system
     - action: switch.turn_off
       target:
         entity_id: 
@@ -766,8 +821,7 @@
       data:
         message: NAS-01 RAID Failing
         data:
-          tag: nas
-          group: system
+          tag: nas-01
 
         #################################################################
         ## NAS-02 Warning iOS Notification
@@ -791,8 +845,7 @@
       data:
         message: NAS-02 RAID Failing
         data:
-          tag: nas
-          group: system
+          tag: nas-02
 
         ##########################################################
         ## UPS Power Loss Alert iOS Notification
@@ -820,7 +873,6 @@
         message: Power Outage Detected
         data:
           tag: ups
-          group: system
 
         ##########################################################
         ## UPS Power Restored Alert iOS Notification
@@ -851,7 +903,6 @@
         message: Power Restored
         data:
           tag: ups
-          group: system
 
         ##########################################################
         ## UPS Low Battery Alert iOS Notification
@@ -879,7 +930,6 @@
         message: "{{ trigger.to_state.attributes.friendly_name }} Low"
         data:
           tag: ups
-          group: system
 
         ##########################################################
         ## UPS Disconnected iOS Notification
@@ -907,7 +957,6 @@
         message: "{{ trigger.to_state.attributes.friendly_name }} has Disconnected"
         data:
           tag: ups
-          group: system
 
         #################################################################
         ## Home Assistant Started iOS Notification
@@ -931,7 +980,6 @@
         message: Home Assistant Started
         data:
           tag: homeassistant
-          group: system
 
         #################################################################
         ## Home Assistant Update iOS Notification
@@ -960,7 +1008,6 @@
         message: Update Available for Home Assistant
         data:
           tag: homeassistant
-          group: system
 
         ##########################################################
         ## Guest Mode is Still On
@@ -987,9 +1034,6 @@
     - action: notify.USER1_devices
       data:
         message: 'Guest Mode is Still On'
-        data:
-          tag: homeassistant
-          group: system
 
         ##########################################################
         ## Echo Timer Notification USER1
@@ -1058,7 +1102,6 @@
         message: "{{ trigger.to_state.attributes.friendly_name }} Finished"
         data:
           tag: echo
-          group: system
 
         ##########################################################
         ## Echo Timer Notification USER2
@@ -1127,4 +1170,3 @@
         message: "{{ trigger.to_state.attributes.friendly_name }} Finished"
         data:
           tag: echo
-          group: system

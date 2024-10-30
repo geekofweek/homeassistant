@@ -1844,6 +1844,207 @@
         entity_id:
           - switch.grow_light
 
+        ##########################################################
+        ## Turn On Bedroom Grow Light at 10a
+        ##########################################################
+
+- alias: Lights - Turn On Bedroom Grow Light at 10a
+  id: 'lights_turn_on_bedroom_grow_light_at_10a'
+
+  triggers:
+   - trigger: time
+     at: '10:05:00'
+
+  conditions:
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_bedroom_grow_light
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.season
+        state: 'summer'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: person.USER2
+        state: 'home'
+
+  actions:
+    - action: light.turn_on
+      target:
+        entity_id: light.closet_lamp
+      data:
+        brightness_pct: 100
+        effect: Plantgrowth
+
+        ##########################################################
+        ## Turn Off Bedroom Grow Light When Home
+        ##########################################################
+
+- alias: Lights - Turn Off Bedroom Grow Light When Home
+  id: 'lights_turn_off_bedroom_grow_light_when_home'
+
+  triggers:
+    - trigger: state
+      entity_id: person.USER2
+      from: 'not_home'
+      to: 'home'
+    - trigger: state
+      entity_id: group.household
+      from: 'not_home'
+      to: 'home'
+
+  conditions:
+    - condition: state
+      entity_id: light.closet_lamp
+      state: 'on'
+    - condition: state
+      entity_id: person.USER2
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_bedroom_grow_light
+      state: 'off'
+    - condition: state
+      entity_id: light.closet_lamp
+      attribute: effect
+      state: "Plantgrowth"
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.season
+        state: 'summer'
+
+  actions:
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.closet_lamp
+
+        ##########################################################
+        ## Turn On Bedroom Grow Light When Away
+        ##########################################################
+
+- alias: Lights - Turn On Bedroom Grow Light When Away
+  id: 'lights_turn_on_bedroom_grow_light_when_away'
+
+  triggers:
+    - trigger: state
+      entity_id: group.household
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 16
+        seconds: 00
+
+  conditions:
+    - condition: state
+      entity_id: light.closet_lamp
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_bedroom_grow_light
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: light.closet_lamp
+        attribute: effect
+        state: "Plantgrowth"
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.season
+        state: 'summer'
+
+  actions:
+    - action: light.turn_on
+      target:
+        entity_id: light.closet_lamp
+      data:
+        brightness_pct: 100
+        effect: Plantgrowth
+
+        ##########################################################
+        ## Turn On Bedroom Grow Light at Sunrise Vacation Mode
+        ##########################################################
+
+- alias: Lights - Turn On Bedroom Grow Light at Sunrise Vacation Mode
+  id: 'lights_turn_on_bedroom_grow_light_at_sunrise_vacation_mode'
+
+  triggers:
+    - trigger: sun
+      event: 'sunrise'
+      offset: '+00:46:00'
+
+  conditions:
+    - condition: state
+      entity_id: light.closet_lamp
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_bedroom_grow_light
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.season
+        state: 'summer'
+
+  actions:
+    - action: light.turn_on
+      target:
+        entity_id: light.closet_lamp
+      data:
+        brightness_pct: 100
+        effect: Plantgrowth
+
+        ##########################################################
+        ## Turn Off Bedroom Grow Light After 16 Hours
+        ##########################################################
+
+- alias: Lights - Turn Off Bedroom Grow Light After 16 Hours
+  id: 'lights_turn_off_bedroom_grow_light_after_16_hours'
+
+  triggers:
+    - trigger: sun
+      event: 'sunrise'
+      offset: '+16:00:00'
+
+  conditions:
+    - condition: state
+      entity_id: light.closet_lamp
+      state: 'on'
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.disable_bedroom_grow_light
+      state: 'off'
+    - condition: state
+      entity_id: light.closet_lamp
+      attribute: effect
+      state: "Plantgrowth"
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.season
+        state: 'summer'
+
+  actions:
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.closet_lamp
+
 #################################################################
 ## Pico Remotes
 #################################################################

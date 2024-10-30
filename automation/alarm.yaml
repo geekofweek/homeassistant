@@ -91,7 +91,6 @@
               critical: 1
               volume: 1.0
           tag: alarm
-          group: alarm
           entity_id:
            - camera.front_porch
           actions:
@@ -112,7 +111,6 @@
               critical: 1
               volume: 1.0
           tag: alarm
-          group: alarm
           entity_id:
            - camera.front_porch
           actions:
@@ -187,7 +185,6 @@
               critical: 1
               volume: 1.0
           tag: alarm
-          group: alarm
           entity_id:
            - camera.front_porch
           actions:
@@ -208,7 +205,6 @@
               critical: 1
               volume: 1.0
           tag: alarm
-          group: alarm
           entity_id:
            - camera.front_porch
           actions:
@@ -278,7 +274,6 @@
               critical: 1
               volume: 1.0
           tag: alarm
-          group: alarm
           entity_id:
            - camera.front_porch
           actions:
@@ -295,7 +290,6 @@
               critical: 1
               volume: 1.0
           tag: alarm
-          group: alarm
           entity_id:
            - camera.front_porch
           actions:
@@ -380,7 +374,6 @@
               critical: 1
               volume: 1.0
           tag: alarm
-          group: alarm
           entity_id:
            - camera.front_porch
           actions:
@@ -401,7 +394,6 @@
               critical: 1
               volume: 1.0
           tag: alarm
-          group: alarm
           entity_id:
            - camera.front_porch
           actions:
@@ -449,7 +441,6 @@
               critical: 1
               volume: 1.0
           tag: alarm
-          group: alarm
           entity_id:
            - camera.front_porch
           actions:
@@ -470,7 +461,6 @@
               critical: 1
               volume: 1.0
           tag: alarm
-          group: alarm
           entity_id:
            - camera.front_porch
           actions:
@@ -542,7 +532,6 @@
               critical: 1
               volume: 1.0
           tag: alarm
-          group: alarm
           entity_id:
            - camera.front_porch
           actions:
@@ -580,7 +569,6 @@
         message: Garage Door Alarm Triggered!
         data:
           tag: alarm
-          group: alarm
           entity_id: camera.garage
 
         ##########################################################
@@ -614,7 +602,6 @@
         message: Garage Door Alarm Triggered!
         data:
           tag: alarm
-          group: alarm
           entity_id: camera.garage
 
         ##########################################################
@@ -842,7 +829,6 @@
         message: Alarm is Armed
         data:
           tag: alarm
-          group: alarm
           actions:
             - action: "disarm_alarm"
               title: "Disable Alarm System"
@@ -872,7 +858,6 @@
         message: Alarm is Armed
         data:
           tag: alarm
-          group: alarm
           actions:
             - action: "disarm_alarm"
               title: "Disable Alarm System"
@@ -902,7 +887,6 @@
         message: Alarm is Disarmed
         data:
           tag: alarm
-          group: alarm
           actions:
             - action: "arm_alarm"
               title: "Arm Alarm System"
@@ -935,6 +919,3 @@
     - action: notify.USER1_devices
       data:
         message: Alarm {{ trigger.to_state.attributes.friendly_name }} Low Battery
-        data:
-          tag: battery
-          group: battery

@@ -42,7 +42,6 @@
         message: Ecobee eco+ Detected - Disabling
         data:
           tag: climate
-          group: climate
 
         ##########################################################
         ## Set Thermostat Home
@@ -125,7 +124,6 @@
         message: House has been empty for an hour, shutting Off HVAC
         data:
           tag: climate
-          group: climate
     - action: homeassistant.turn_on
       entity_id: input_boolean.thermostat_away
     - delay: '00:00:30'
@@ -274,7 +272,6 @@
         message: Outside temp above 68 turning On AC
         data:
           tag: climate
-          group: climate
 
         ##########################################################
         ## Turn Thermostat Off Summer
@@ -317,7 +314,6 @@
         message: Outside temp below 65 shutting Off AC
         data:
           tag: climate
-          group: climate
 
         ##########################################################
         ## Turn Thermostat On Winter
@@ -357,7 +353,6 @@
         message: Outside temp below 65 turning On Heat
         data:
           tag: climate
-          group: climate
 
         ##########################################################
         ## Turn Thermostat Off Winter
@@ -400,7 +395,6 @@
         message: Outside temp above 65 turning Off Heat
         data:
           tag: climate
-          group: climate
 
         ##########################################################
         ## Turn Thermostat On Spring/Fall
@@ -455,7 +449,6 @@
         message: Outside temp below 65 or above 78 turning On HVAC
         data:
           tag: climate
-          group: climate
 
         ##########################################################
         ## Turn Thermostat Off Spring/Fall
@@ -501,7 +494,6 @@
         message: Outside temp above 65 or below 78 turning Off HVAC
         data:
           tag: climate
-          group: climate
 
         ##########################################################
         ## Winter Season Turn On Heat
@@ -643,7 +635,6 @@
         message: Door has been left open, shutting Off AC
         data:
           tag: climate
-          group: climate
 
         ##########################################################
         ## Adjust Thermostat for Overnight Guests before Midnight
@@ -1008,8 +999,7 @@
       data:
         message: Fireplace Turned On!
         data:
-          tag: climate
-          group: climate
+          tag: fireplace-climate
           push:
           actions:
             - action: "fireplace_off"
@@ -1047,8 +1037,7 @@
       data:
         message: Fireplace has been On for 4 Hours
         data:
-          tag: climate
-          group: climate
+          tag: fireplace-climate
           actions:
             - action: "fireplace_off"
               title: "Turn Off Fireplace"
@@ -1429,8 +1418,7 @@
       data:
         message: Empty Portable AC Water Bin
         data:
-          tag: climate
-          group: climate
+          tag: portable-ac-climate
     - delay: '00:05:00'
     - action: switch.turn_off
       entity_id: switch.portable_ac
@@ -1452,5 +1440,4 @@
       data:
         message: Empty Portable AC Water Bin
         data:
-          tag: climate
-          group: climate
+          tag: portable-ac-climate

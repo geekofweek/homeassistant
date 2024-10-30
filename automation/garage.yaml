@@ -554,8 +554,7 @@
       data:
         message: Garage Door Open
         data:
-          tag: garage
-          group: garage
+          tag: garage-open
           entity_id: camera.garage
           actions:
             - action: "close_garage"
@@ -586,8 +585,7 @@
       data:
         message: Garage Door Closed
         data:
-          tag: garage
-          group: garage
+          tag: garage-closed
           entity_id: camera.garage
           actions:
             - action: "open_garage"
@@ -635,8 +633,7 @@
       data:
         message: Garage Door is Still Open!
         data:
-          tag: garage
-          group: garage
+          tag: garage-still-open
           entity_id: camera.garage
           actions:
             - action: "close_garage"

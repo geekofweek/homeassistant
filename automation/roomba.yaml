@@ -1162,7 +1162,9 @@
     - action: light.turn_on
       target:
         entity_id:
-          - light.bedroom_lights
+          - light.bedroom_lamps
+          - light.bedroom_ceiling
+          - light.bedroom_closet_ceiling
       data:
        brightness_pct: 100
        color_temp: 370
@@ -1275,7 +1277,9 @@
     - action: light.turn_off
       target:
         entity_id:
-          - light.bedroom_lights
+          - light.bedroom_lamps
+          - light.bedroom_ceiling
+          - light.bedroom_closet_ceiling
     - action: light.turn_off
       target:
         entity_id:
@@ -1386,12 +1390,13 @@
       target:
         entity_id:
           - light.bedroom_lamps
+          - light.bedroom_closet_ceiling
       data:
        brightness_pct: 100
     - action: light.turn_on
       target:
         entity_id:
-          - light.bedroom_closet_lights
+          - light.bedroom_closet_ceiling
       data:
        brightness_pct: 100
 
@@ -1486,7 +1491,8 @@
     - action: light.turn_off
       target:
         entity_id:
-          - light.bedroom_lights
+          - light.bedroom_lamps
+          - light.bedroom_closet_ceiling
     - action: light.turn_off
       target:
         entity_id:
@@ -2726,7 +2732,7 @@
     - action: light.turn_on
       target:
         entity_id:
-          - light.bedroom_closet_lights
+          - light.bedroom_closet_ceiling
 
         ##########################################################
         ## Turn Off Bedroom Closet Lights Room Clean
@@ -2776,7 +2782,7 @@
     - action: light.turn_off
       target:
         entity_id:
-          - light.bedroom_closet_lights
+          - light.bedroom_closet_ceiling
 
         ##########################################################
         ## Turn Off Bedroom Closet Lights Room Clean Boolean
@@ -4169,7 +4175,6 @@
         message: Main Floor Roomba is Stuck, Please Help
         data:
           tag: main-floor-roomba
-          group: roomba
 
         ##########################################################
         ## Upstairs Roomba is Stuck iOS Notification
@@ -4193,7 +4198,6 @@
         message: Upstairs Roomba is Stuck, Please Help
         data:
           tag: upstairs-roomba
-          group: roomba
 
         ##########################################################
         ## Basement Roomba is Stuck iOS Notification
@@ -4217,7 +4221,6 @@
         message: Basement Roomba is Stuck, Please Help
         data:
           tag: basement-roomba
-          group: roomba
 
         ##########################################################
         ## Main Floor Roomba is Full iOS Notification
@@ -4242,7 +4245,6 @@
         message: Main Floor Roomba is Full, Empty It
         data:
           tag: main-floor-roomba
-          group: roomba
 
         ##########################################################
         ## Upstairs Roomba is Full iOS Notification
@@ -4267,7 +4269,6 @@
         message: Upstairs Roomba is Full, Empty It
         data:
           tag: upstairs-roomba
-          group: roomba
 
         ##########################################################
         ## Basement Roomba is Full iOS Notification
@@ -4292,4 +4293,3 @@
         message: Basement Roomba is Full, Empty It
         data:
           tag: basement-roomba
-          group: roomba

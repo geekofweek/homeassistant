@@ -1017,9 +1017,6 @@
     - action: notify.USER1_devices
       data:
         message: Office Window Open!
-        data:
-          tag: USER1-location
-          group: location
 
         ##########################################################
         ## USER1 Away Close Blinds Portable AC
@@ -1509,7 +1506,6 @@
         message: USER1 Home
         data:
           tag: USER1-location
-          group: location
           entity_id: camera.driveway
 
     #################################################################
@@ -1542,7 +1538,6 @@
         message: USER1 Home
         data:
           tag: USER1-location
-          group: location
           entity_id: camera.front_porch
 
     #################################################################
@@ -1569,7 +1564,6 @@
         message: USER1 Away
         data:
           tag: USER1-location
-          group: location
 
         #################################################################
         ## USER2 Home Driving iOS Notification 
@@ -1601,7 +1595,6 @@
         message: USER2 Home
         data:
           tag: USER2-location
-          group: location
           entity_id: camera.driveway
 
         #################################################################
@@ -1634,7 +1627,6 @@
         message: USER2 Home
         data:
           tag: USER2-location
-          group: location
           entity_id: camera.front_porch
 
         #################################################################
@@ -1661,7 +1653,6 @@
         message: USER2 Away
         data:
           tag: USER2-location
-          group: location
 
         #################################################################
         ## USER2 Left Work iOS Notification
@@ -1687,7 +1678,6 @@
         message: "USER2 has left work, ETA: {{states('sensor.USER2_to_home')}} mins"
         data:
           tag: USER2-location
-          group: location
 
         ##########################################################
         ## Welcome Home USER1 Audio Greeting

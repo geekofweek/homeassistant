@@ -31,6 +31,12 @@
       - condition: state
         entity_id: vacuum.main_floor_roomba
         state: 'returning'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: light.closet_lamp
+        attribute: effect
+        state: "Plantgrowth"
 
   actions:
     - action: light.turn_off
