@@ -2,15 +2,15 @@
 ## HomeKit
 #################################################################
 
-  - filter:
+#################################################################
+## HomeKit bridge Mode
+#################################################################
+
+  - name: Lights
+    mode: bridge
+    port: 21078
+    filter:
       include_entities:
-        - alarm_control_panel.alarm
-        - cover.garage_door
-        - cover.USER1_s_office_blinds
-        - cover.USER2_s_office_blinds
-        - cover.stairs_blinds
-        - cover.kitchen_blinds
-        - cover.bedroom_closet_blinds
         - light.living_room_lamps
         - light.globe
         - light.media_center_lighting
@@ -54,21 +54,53 @@
         - light.backyard_patio
         - light.garage_light
         - light.garage_interior
-        - vacuum.main_floor_roomba
-        - vacuum.upstairs_roomba
-        - vacuum.basement_roomba
-        - fan.USER1s_office_fan
+
+  - name: Covers
+    mode: bridge
+    port: 21079
+    filter:
+      include_entities:
+        - cover.garage_door
+        - cover.USER1_s_office_blinds
+        - cover.USER2_s_office_blinds
+        - cover.stairs_blinds
+        - cover.kitchen_blinds
+        - cover.bedroom_closet_blinds
+
+  - name: Switches
+    mode: bridge
+    port: 21080
+    filter:
+      include_entities:
         - switch.front_yard_lighting
         - switch.backyard_lighting
         - switch.air_purifier
         - switch.fountain
         - switch.fireplace
-        - climate.main_floor
-        - climate.office_fan
-        - sensor.main_floor_humidity
-        - sensor.office_fan_humidity
+
+  - name: Vacuums
+    mode: bridge
+    port: 21081
+    filter:
+      include_entities:
+        - vacuum.main_floor_roomba
+        - vacuum.upstairs_roomba
+        - vacuum.basement_roomba
+
+  - name: Fans
+    mode: bridge
+    port: 21082
+    filter:
+      include_entities:
+        - fan.USER1s_office_fan
         - fan.living_room_east
         - fan.living_room_west
+
+  - name: Binary Sensors
+    mode: bridge
+    port: 21084
+    filter:
+      include_entities:
         - binary_sensor.living_room_motion
         - binary_sensor.dining_room_motion
         - binary_sensor.kitchen_motion
@@ -83,6 +115,12 @@
         - binary_sensor.front_door_opened
         - binary_sensor.back_door_opened
         - binary_sensor.basement_door_opened
+
+  - name: Sensors
+    mode: bridge
+    port: 21085
+    filter:
+      include_entities:
         - sensor.living_room_temperature
         - sensor.main_floor_temperature
         - sensor.kitchen_temperature
@@ -100,6 +138,14 @@
         - sensor.bathroom_humidity
         - sensor.craft_room_humidity
         - sensor.fitness_room_humidity
+        - sensor.main_floor_humidity
+        - sensor.office_fan_humidity
+
+  - name: Input Boolean
+    mode: bridge
+    port: 21086
+    filter:
+      include_entities:
         - input_boolean.bedtime
 
 #################################################################
@@ -238,3 +284,24 @@
     filter:
       include_entities:
         - remote.USER1_s_office_tv
+
+  - name: Alarm
+    mode: accessory
+    port: 21087
+    filter:
+      include_entities:
+        - alarm_control_panel.alarm
+
+  - name: Thermostat
+    mode: accessory
+    port: 21089
+    filter:
+      include_entities:
+        - climate.main_floor
+  
+  - name: USER1's Office Heater
+    mode: accessory
+    port: 21090
+    filter:
+      include_entities:
+        - climate.USER1s_office_fan

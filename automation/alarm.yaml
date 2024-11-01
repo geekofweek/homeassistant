@@ -97,10 +97,10 @@
             - action: "disarm_alarm"
               title: "Disable Alarm System"
               destructive: true
-              uri: "/lovelace/alarm"
+              activationMode: background
             - action: "siren_off"
               title: "Siren Off"
-              uri: "/lovelace/alarm"
+              activationMode: background
     - action: notify.USER2_devices
       data:
         message: Alarm Triggered!
@@ -117,10 +117,10 @@
             - action: "disarm_alarm"
               title: "Disable Alarm System"
               destructive: true
-              uri: "/lovelace/alarm"
+              activationMode: background
             - action: "siren_off"
               title: "Siren Off"
-              uri: "/lovelace/alarm"
+              activationMode: background
 
         ##########################################################
         ## Alarm Triggered Armed Home
@@ -191,10 +191,10 @@
             - action: "disarm_alarm"
               title: "Disable Alarm System"
               destructive: true
-              uri: "/lovelace/alarm"
+              activationMode: background
             - action: "siren_off"
               title: "Siren Off"
-              uri: "/lovelace/alarm"
+              activationMode: background
     - action: notify.USER2_devices
       data:
         message: Alarm Triggered!
@@ -211,10 +211,10 @@
             - action: "disarm_alarm"
               title: "Disable Alarm System"
               destructive: true
-              uri: "/lovelace/alarm"
+              activationMode: background
             - action: "siren_off"
               title: "Siren Off"
-              uri: "/lovelace/alarm"
+              activationMode: background
 
         ##########################################################
         ## Panic Button On
@@ -279,7 +279,7 @@
           actions:
             - action: "siren_off"
               title: "Siren Off"
-              uri: "/lovelace/alarm"
+              activationMode: background
     - action: notify.USER2_devices
       data:
         message: Panic Button Has Been Pressed!
@@ -295,7 +295,7 @@
           actions:
             - action: "siren_off"
               title: "Siren Off"
-              uri: "/lovelace/alarm"
+              activationMode: background
 
         ##########################################################
         ## Panic Button Off
@@ -380,10 +380,10 @@
             - action: "disarm_alarm"
               title: "Disable Alarm System"
               destructive: true
-              uri: "/lovelace/alarm"
+              activationMode: background
             - action: "siren_off"
               title: "Siren Off"
-              uri: "/lovelace/alarm"
+              activationMode: background
     - action: notify.USER2_devices
       data:
         message: Door Alarm Triggered!
@@ -400,10 +400,10 @@
             - action: "disarm_alarm"
               title: "Disable Alarm System"
               destructive: true
-              uri: "/lovelace/alarm"
+              activationMode: background
             - action: "siren_off"
               title: "Siren Off"
-              uri: "/lovelace/alarm"
+              activationMode: background
     - action: alarm_control_panel.alarm_trigger
       target:
         entity_id:
@@ -447,10 +447,10 @@
             - action: "disarm_alarm"
               title: "Disable Alarm System"
               destructive: true
-              uri: "/lovelace/alarm"
+              activationMode: background
             - action: "siren_off"
               title: "Siren Off"
-              uri: "/lovelace/alarm"
+              activationMode: background
     - action: notify.USER2_devices
       data:
         message: Door Alarm Triggered!
@@ -467,10 +467,10 @@
             - action: "disarm_alarm"
               title: "Disable Alarm System"
               destructive: true
-              uri: "/lovelace/alarm"
+              activationMode: background
             - action: "siren_off"
               title: "Siren Off"
-              uri: "/lovelace/alarm"
+              activationMode: background
     - action: alarm_control_panel.alarm_trigger
       target:
         entity_id:
@@ -538,7 +538,7 @@
             - action: "disarm_alarm"
               title: "Disable Alarm System"
               destructive: true
-              uri: "/lovelace/alarm"
+              activationMode: background
 #    - action: alarm_control_panel.alarm_trigger
 #      entity_id:
 #        - alarm_control_panel.alarm
@@ -833,7 +833,7 @@
             - action: "disarm_alarm"
               title: "Disable Alarm System"
               destructive: true
-              uri: "/lovelace/alarm"
+              activationMode: background
 
     #################################################################
     ## Alarm Armed Away iOS Notification
@@ -862,7 +862,7 @@
             - action: "disarm_alarm"
               title: "Disable Alarm System"
               destructive: true
-              uri: "/lovelace/alarm"
+              activationMode: background
 
     #################################################################
     ## Alarm Disabled iOS Notification
@@ -891,7 +891,7 @@
             - action: "arm_alarm"
               title: "Arm Alarm System"
               destructive: true
-              uri: "/lovelace/alarm"
+              activationMode: background
 
         ##########################################################
         ## Siren Low Battery Notification

@@ -354,7 +354,7 @@
     - trigger: event
       event_type: mobile_app_notification_action
       event_data:
-        actions: "unlock_doors"
+        action: "unlock_doors"
 
   actions:
     - action: lock.unlock
@@ -374,7 +374,7 @@
     - trigger: event
       event_type: mobile_app_notification_action
       event_data:
-        actions: "unlock_front_door"
+        action: "unlock_front_door"
 
   actions:
     - action: lock.unlock
@@ -393,7 +393,7 @@
     - trigger: event
       event_type: mobile_app_notification_action
       event_data:
-        actions: "close_garage"
+        action: "close_garage"
 
   actions:
     - action: cover.close_cover
@@ -410,7 +410,7 @@
     - trigger: event
       event_type: mobile_app_notification_action
       event_data:
-        actions: "open_garage"
+        action: "open_garage"
 
   actions:
     - action: cover.open_cover
@@ -427,7 +427,7 @@
     - trigger: event
       event_type: mobile_app_notification_action
       event_data:
-        actions: "disarm_alarm"
+        action: "disarm_alarm"
 
   actions:
     - action: alarm_control_panel.alarm_disarm
@@ -444,7 +444,7 @@
     - trigger: event
       event_type: mobile_app_notification_action
       event_data:
-        actions: "arm_alarm"
+        action: "arm_alarm"
 
   actions:
     - action: alarm_control_panel.alarm_arm_away
@@ -461,7 +461,7 @@
     - trigger: event
       event_type: mobile_app_notification_action
       event_data:
-        actions: "siren_off"
+        action: "siren_off"
 
   actions:
     - action: switch.turn_off
@@ -478,7 +478,7 @@
     - trigger: event
       event_type: mobile_app_notification_action
       event_data:
-        actions: "fireplace_off"
+        action: "fireplace_off"
 
   actions:
     - action: switch.turn_off

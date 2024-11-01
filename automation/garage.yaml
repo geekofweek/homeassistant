@@ -560,7 +560,7 @@
             - action: "close_garage"
               title: "Close Garage Door"
               destructive: true
-              uri: "/lovelace/garage"
+              activationMode: background
 
         #################################################################
         ## Garage Closed iOS Notification
@@ -591,7 +591,7 @@
             - action: "open_garage"
               title: "Open Garage Door"
               destructive: true
-              uri: "/lovelace/garage"
+              activationMode: background
 
         #################################################################
         ## Garage Door Still Open iOS Notification
@@ -639,4 +639,4 @@
             - action: "close_garage"
               title: "Close Garage Door"
               destructive: true
-              uri: "/lovelace/garage"
+              activationMode: background
