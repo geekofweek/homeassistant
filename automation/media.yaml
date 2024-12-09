@@ -128,11 +128,6 @@
     - action: light.turn_off
       target:
         entity_id:
-          - light.living_room_ceiling_east
-          - light.living_room_ceiling_west
-    - action: light.turn_off
-      target:
-        entity_id:
           - light.dining_room_lights
     - action: light.turn_off
       target:
@@ -146,16 +141,20 @@
       target:
         entity_id:
           - light.hallway_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_ceiling_east
+    - delay: '00:00:05'
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_ceiling_west
     - delay: '00:00:15' 
     - action: light.turn_off
       target:
         entity_id:
           - light.living_room_accent_lights
-    - action: light.turn_off
-      target:
-        entity_id:
-          - light.living_room_ceiling_east
-          - light.living_room_ceiling_west
     - action: light.turn_off
       target:
         entity_id:
@@ -473,11 +472,6 @@
     - action: light.turn_off
       target:
         entity_id:
-          - light.living_room_ceiling_east
-          - light.living_room_ceiling_west
-    - action: light.turn_off
-      target:
-        entity_id:
           - light.dining_room_lights
     - action: light.turn_off
       target:
@@ -491,16 +485,20 @@
       target:
         entity_id:
           - light.hallway_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_ceiling_east
+    - delay: '00:00:05'
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_ceiling_west
     - delay: '00:00:15' 
     - action: light.turn_off
       target:
         entity_id:
           - light.living_room_accent_lights
-    - action: light.turn_off
-      target:
-        entity_id:
-          - light.living_room_ceiling_east
-          - light.living_room_ceiling_west
     - action: light.turn_off
       target:
         entity_id:
@@ -590,11 +588,6 @@
     - action: light.turn_off
       target:
         entity_id:
-          - light.living_room_ceiling_east
-          - light.living_room_ceiling_west
-    - action: light.turn_off
-      target:
-        entity_id:
           - light.dining_room_lights
     - action: light.turn_off
       target:
@@ -608,16 +601,20 @@
       target:
         entity_id:
           - light.hallway_light
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_ceiling_east
+    - delay: '00:00:05'
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_ceiling_west
     - delay: '00:00:15' 
     - action: light.turn_off
       target:
         entity_id:
           - light.living_room_accent_lights
-    - action: light.turn_off
-      target:
-        entity_id:
-          - light.living_room_ceiling_east
-          - light.living_room_ceiling_west
     - action: light.turn_off
       target:
         entity_id:
@@ -1386,6 +1383,56 @@
         sound_output: external_arc
 
         ##########################################################
+        ## Fix Living Room TV Sound Output Power On
+        ##########################################################
+
+- alias: Media - Fix Living Room TV Sound Output Power On
+  id: 'media_fix_living_room_tv_sound_output_power_on'
+
+  triggers:
+    - trigger: state
+      entity_id: media_player.living_room_tv
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 15
+
+  actions:
+    - action: webostv.select_sound_output
+      data:
+        entity_id: media_player.living_room_tv
+        sound_output: external_arc
+
+        ##########################################################
+        ## Fix Living Room TV Sound Output When Changed
+        ##########################################################
+
+- alias: Media - Fix Living Room TV Sound Output When Changed
+  id: 'media_fix_living_room_tv_sound_output_when_changed'
+
+  triggers:
+    - trigger: state
+      entity_id: media_player.living_room_tv
+      attribute: sound_output
+      from: external_arc
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 15
+
+  conditions:
+    - condition: state
+      entity_id: media_player.living_room_tv
+      state: 'on'
+
+  actions:
+    - action: webostv.select_sound_output
+      data:
+        entity_id: media_player.living_room_tv
+        sound_output: external_arc
+
+        ##########################################################
         ## Turn off Living Room Lights When Playing Xbox
         ##########################################################
 
@@ -1427,6 +1474,7 @@
       target:
         entity_id:
           - light.living_room_ceiling_east
+    - delay: '00:00:05' 
     - action: light.turn_off
       target:
         entity_id:

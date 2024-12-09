@@ -4154,133 +4154,35 @@
 #################################################################
 
         ##########################################################
-        ## Main Floor Roomba is Stuck iOS Notification
+        ## Roomba is Stuck iOS Notification
         ##########################################################
 
-- alias: Roomba - Main Floor Stuck iOS Notification
-  id: 'roomba_main_floor_stuck_ios_notification'
+- alias: Roomba - Stuck iOS Notification
+  id: 'roomba_stuck_ios_notification'
 
-  triggers:
-    - trigger: template
-      value_template: "{%if is_state_attr('vacuum.main_floor_roomba', 'status', 'Stuck') %}true{%endif%}"
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.disable_roomba
-      state: 'off'
-
-  actions:
-    - action: notify.USER1_devices
-      data:
-        message: Main Floor Roomba is Stuck, Please Help
-        data:
-          tag: main-floor-roomba
-
-        ##########################################################
-        ## Upstairs Roomba is Stuck iOS Notification
-        ##########################################################
-
-- alias: Roomba - Upstairs Stuck iOS Notification
-  id: 'roomba_upstairs_stuck_ios_notification'
-
-  triggers:
-    - trigger: template
-      value_template: "{%if is_state_attr('vacuum.upstairs_roomba', 'status', 'Stuck') %}true{%endif%}"
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.disable_roomba
-      state: 'off'
-
-  actions:
-    - action: notify.USER1_devices
-      data:
-        message: Upstairs Roomba is Stuck, Please Help
-        data:
-          tag: upstairs-roomba
-
-        ##########################################################
-        ## Basement Roomba is Stuck iOS Notification
-        ##########################################################
-
-- alias: Roomba - Basement Stuck iOS Notification
-  id: 'roomba_basement_stuck_ios_notification'
-
-  triggers:
-    - trigger: template
-      value_template: "{%if is_state_attr('vacuum.basement_roomba', 'status', 'Stuck') %}true{%endif%}"
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.disable_roomba
-      state: 'off'
-
-  actions:
-    - action: notify.USER1_devices
-      data:
-        message: Basement Roomba is Stuck, Please Help
-        data:
-          tag: basement-roomba
-
-        ##########################################################
-        ## Main Floor Roomba is Full iOS Notification
-        ##########################################################
-
-- alias: Roomba - Main Floor Full iOS Notification
-  id: 'roomba_main_floor_full_ios_notification'
-
+  mode: parallel
   triggers:
     - trigger: state
-      entity_id: binary_sensor.main_floor_roomba_bin_full
-      to: 'True'
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.disable_roomba
-      state: 'off'
-
-  actions:
-    - action: notify.USER1_devices
-      data:
-        message: Main Floor Roomba is Full, Empty It
-        data:
-          tag: main-floor-roomba
-
-        ##########################################################
-        ## Upstairs Roomba is Full iOS Notification
-        ##########################################################
-
-- alias: Roomba - Upstairs Full iOS Notification
-  id: 'roomba_upstairs_full_ios_notification'
-
-  triggers:
+      entity_id: vacuum.main_floor_roomba
+      to: 'error'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
     - trigger: state
-      entity_id: binary_sensor.upstairs_roomba_bin_full
-      to: 'True'
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.disable_roomba
-      state: 'off'
-
-  actions:
-    - action: notify.USER1_devices
-      data:
-        message: Upstairs Roomba is Full, Empty It
-        data:
-          tag: upstairs-roomba
-
-        ##########################################################
-        ## Basement Roomba is Full iOS Notification
-        ##########################################################
-
-- alias: Roomba - Basement Full iOS Notification
-  id: 'roomba_basement_full_ios_notification'
-
-  triggers:
+      entity_id: vacuum.upstairs_roomba
+      to: 'error'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
     - trigger: state
-      entity_id: binary_sensor.basement_roomba_bin_full
-      to: 'True'
+      entity_id: vacuum.basement_roomba
+      to: 'error'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
 
   conditions:
     - condition: state
@@ -4290,6 +4192,4 @@
   actions:
     - action: notify.USER1_devices
       data:
-        message: Basement Roomba is Full, Empty It
-        data:
-          tag: basement-roomba
+        message: "{{ trigger.to_state.attributes.friendly_name }} is Stuck, Please Help"

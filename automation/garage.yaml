@@ -156,6 +156,58 @@
       entity_id: cover.garage_door
 
         ##########################################################
+        ## After USER1 Home Close Garage Windy
+        ########################################################
+
+- alias: Garage - USER1 Home Close Garage Windy
+  id: 'garage_USER1_home_close_garage_windy'
+
+  triggers:
+    - trigger: state
+      entity_id: person.USER1
+      from: 'not_home'
+      to: 'home'
+      for:
+        hours: 0
+        minutes: 3
+        seconds: 30
+
+  conditions:
+    - condition: state
+      entity_id: input_boolean.disable_auto_garage
+      state: 'off'
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'open'
+    - condition: state
+      entity_id: input_boolean.garage_door_motor
+      state: 'off'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: weather.REDACTED
+        state: 'windy'
+      - condition: numeric_state
+        entity_id: weather.REDACTED
+        attribute: wind_speed
+        above: '13'
+
+  actions:
+    - action: lifx.effect_pulse
+      data:
+        cycles: 5
+        power_on: true
+        brightness_pct: 100
+      target:
+        entity_id: light.garage_interior
+    - delay: '00:00:05'
+    - action: homeassistant.turn_on
+      entity_id: input_boolean.garage_door_motor
+    - action: cover.close_cover
+      entity_id: cover.garage_door
+
+
+        ##########################################################
         ## After USER1 Home Close Garage Door
         ########################################################
 
@@ -235,6 +287,57 @@
       entity_id: cover.garage_door
 
         ##########################################################
+        ## After USER2 Home Close Garage Windy
+        ########################################################
+
+- alias: Garage - USER2 Home Close Garage Windy
+  id: 'garage_USER2_home_close_garage_windy'
+
+  triggers:
+    - trigger: state
+      entity_id: person.USER2
+      from: 'not_home'
+      to: 'home'
+      for:
+        hours: 0
+        minutes: 3
+        seconds: 0
+
+  conditions:
+    - condition: state
+      entity_id: input_boolean.disable_auto_garage
+      state: 'off'
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'open'
+    - condition: state
+      entity_id: input_boolean.garage_door_motor
+      state: 'off'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: weather.REDACTED
+        state: 'windy'
+      - condition: numeric_state
+        entity_id: weather.REDACTED
+        attribute: wind_speed
+        above: '13'
+
+  actions:
+    - action: lifx.effect_pulse
+      data:
+        cycles: 5
+        power_on: true
+        brightness_pct: 100
+      target:
+        entity_id: light.garage_interior
+    - delay: '00:00:05'
+    - action: homeassistant.turn_on
+      entity_id: input_boolean.garage_door_motor
+    - action: cover.close_cover
+      entity_id: cover.garage_door
+
+        ##########################################################
         ## After USER2 Home Close Garage Door
         ########################################################
 
@@ -249,7 +352,7 @@
       for:
         hours: 0
         minutes: 0
-        seconds: 5
+        seconds: 10
 
   conditions:
     - condition: state

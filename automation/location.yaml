@@ -51,7 +51,6 @@
       target:
         entity_id:
           - input_boolean.guest_mode
-          - input_boolean.interior_holiday
           - input_boolean.office_rainbow
           - input_boolean.livingroom_rainbow
           - input_boolean.front_porch_rainbow
@@ -84,7 +83,7 @@
     - action: switch.turn_off
       target:
         entity_id:
-          - switch.air_purifier
+          - switch.USER1s_office_air_purifier
           - switch.lower_backyard_lighting
           - switch.backyard_patio_lighting
           - switch.fireplace
@@ -935,7 +934,7 @@
     - action: switch.turn_off
       target:
         entity_id:
-          - switch.air_purifier
+          - switch.USER1s_office_air_purifier
           - switch.USER1s_office_desktop_clock_display
     - action: fan.turn_off
       target:

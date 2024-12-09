@@ -3,6 +3,44 @@
 #################################################################
 
         ##########################################################
+        ## Doorbell Fingerprint Unlock Front Door
+        ##########################################################
+
+- alias: Locks - doorbell fingerprint unlock front door
+  id: 'locks_doorbell_fingerprint_unlock_front_door'
+
+  triggers:
+    - platform: event
+      event_type: state_changed
+      event_data:
+        entity_id: event.front_door_camera_fingerprint
+
+  conditions:
+    - condition: state
+      entity_id: lock.front_door
+      state: 'locked'
+    - condition: state
+      entity_id: input_boolean.disable_lock_unlock_doors
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.front_door_opened
+      state: 'off'
+    - condition: template
+      value_template: >
+        {{
+          not trigger.event.data.old_state.attributes.get('restored', false) and
+          not trigger.event.data.old_state.state == 'unavailable' and
+          trigger.event.data.new_state is not none and
+          trigger.event.data.new_state.attributes.event_type == 'identified' and
+          (trigger.event.data.new_state.attributes.ulp_id|default('')) != '' and
+          trigger.event.data.new_state.attributes.ulp_id in ['REDACTED', 'REDACTED']
+        }}
+
+  actions:
+    - action: lock.unlock
+      entity_id: lock.front_door
+
+        ##########################################################
         ## Lock Front Door After 30 Mins
         ##########################################################
 

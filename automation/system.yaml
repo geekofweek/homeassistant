@@ -460,13 +460,13 @@
         hours: 0
         minutes: 1
         seconds: 0
-    - trigger: state
-      entity_id: binary_sensor.USER1_s_macbook_pro_focus
-      to: 'on'
-      for:
-        hours: 0
-        minutes: 1
-        seconds: 0
+#    - trigger: state
+#      entity_id: binary_sensor.USER1_s_macbook_pro_focus
+#      to: 'on'
+#      for:
+#        hours: 0
+#        minutes: 1
+#        seconds: 0
     - trigger: state
       entity_id: sensor.USER1_s_macbook_pro_active_audio_input
       from: 'Inactive'
@@ -540,9 +540,9 @@
     - condition: state
       entity_id: binary_sensor.USER1_s_macbook_pro_audio_input_in_use
       state: 'off'
-    - condition: state
-      entity_id: binary_sensor.USER1_s_macbook_pro_focus
-      state: 'off'
+#    - condition: state
+#      entity_id: binary_sensor.USER1_s_macbook_pro_focus
+#      state: 'off'
 
   actions:
     - action: homeassistant.turn_off
@@ -800,30 +800,6 @@
 #################################################################
 
         #################################################################
-        ## NAS-01 Warning iOS Notification
-        #################################################################
-
-- alias: System - NAS-01 Warning iOS Notification
-  id: 'system_nas_01_warning_ios_notification'
-
-  triggers:
-    - trigger: state
-      entity_id: sensor.nas_01_status
-      to: 'warning'
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  actions:
-    - action: notify.USER1_devices
-      data:
-        message: NAS-01 RAID Failing
-        data:
-          tag: nas-01
-
-        #################################################################
         ## NAS-02 Warning iOS Notification
         #################################################################
 
@@ -846,6 +822,32 @@
         message: NAS-02 RAID Failing
         data:
           tag: nas-02
+
+        ##########################################################
+        ## NVR
+        ##########################################################
+
+- alias: System - NVR Drive Failure
+  id: 'system_nvr_drive_failure'
+
+  triggers:
+    - trigger: state
+      entity_id: 
+        - binary_sensor.zephyr_place_REDACTED_hdd_1
+        - binary_sensor.zephyr_place_REDACTED_hdd_2
+        - binary_sensor.zephyr_place_REDACTED_hdd_3
+        - binary_sensor.zephyr_place_REDACTED_hdd_4
+      to: 'on'
+
+  conditions:
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+
+  actions:
+    - action: notify.USER1_devices
+      data:
+        message: "{{ trigger.to_state.attributes.friendly_name }} Failing"
 
         ##########################################################
         ## UPS Power Loss Alert iOS Notification

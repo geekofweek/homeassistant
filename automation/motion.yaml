@@ -2516,7 +2516,7 @@
       entity_id: fan.USER1s_office_fan
       state: 'off'
     - condition: state
-      entity_id: switch.air_purifier
+      entity_id: switch.USER1s_office_air_purifier
       state: 'off'
     - condition: not
       conditions:
@@ -2555,7 +2555,7 @@
     - action: switch.turn_on
       target:
         entity_id:
-          - switch.air_purifier
+          - switch.USER1s_office_air_purifier
 
         ##########################################################
         ## Turn On USER1 Office TV when Motion Detected
@@ -2637,7 +2637,7 @@
     - action: switch.turn_off
       target:
         entity_id:
-          - switch.air_purifier
+          - switch.USER1s_office_air_purifier
 
         ##########################################################
         ## Turn Off USER1 Office TV when No Motion Detected

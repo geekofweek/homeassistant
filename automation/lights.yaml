@@ -1049,9 +1049,6 @@
       entity_id: input_boolean.livingroom_rainbow
       state: 'off'
     - condition: state
-      entity_id: input_boolean.interior_holiday
-      state: 'off'
-    - condition: state
       entity_id: group.household
       state: 'home'
 
@@ -1756,9 +1753,6 @@
       entity_id: input_boolean.office_rainbow
       state: 'off'
     - condition: state
-      entity_id: input_boolean.interior_holiday
-      state: 'off'
-    - condition: state
       entity_id: input_boolean.USER1_s_office_do_not_disturb
       state: 'off'
     - condition: or
@@ -1880,6 +1874,14 @@
       data:
         brightness_pct: 100
         effect: Plantgrowth
+    - delay:
+        seconds: 30
+    - action: light.turn_on
+      target:
+        entity_id: light.closet_lamp
+      data:
+        brightness_pct: 100
+        effect: Plantgrowth
 
         ##########################################################
         ## Turn Off Bedroom Grow Light When Home
@@ -1967,6 +1969,14 @@
       data:
         brightness_pct: 100
         effect: Plantgrowth
+    - delay:
+        seconds: 30
+    - action: light.turn_on
+      target:
+        entity_id: light.closet_lamp
+      data:
+        brightness_pct: 100
+        effect: Plantgrowth
 
         ##########################################################
         ## Turn On Bedroom Grow Light at Sunrise Vacation Mode
@@ -2000,6 +2010,14 @@
         state: 'summer'
 
   actions:
+    - action: light.turn_on
+      target:
+        entity_id: light.closet_lamp
+      data:
+        brightness_pct: 100
+        effect: Plantgrowth
+    - delay:
+        seconds: 30
     - action: light.turn_on
       target:
         entity_id: light.closet_lamp

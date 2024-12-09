@@ -2,6 +2,157 @@
 ## Scripts
 #################################################################
 
+        ##########################################################
+        ## Party Time
+        ##########################################################
+
+party_time:
+  alias: "Party Time"
+  sequence:
+    - if:
+          - condition: not
+            conditions:
+            - condition: state
+              entity_id: sensor.season
+              state: 'summer'
+          - condition: numeric_state
+            entity_id: sensor.REDACTED_temperature
+            below: 50
+      then:
+          - action: homeassistant.turn_on
+            data: {}
+            target:
+              entity_id: input_boolean.livingroom_rainbow
+          - action: homeassistant.turn_on
+            data: {}
+            target:
+              entity_id: input_boolean.pop_music
+          - action: switch.turn_on
+            data: {}
+            target:
+             entity_id: switch.fireplace
+      else:
+          - action: homeassistant.turn_on
+            data: {}
+            target:
+              entity_id: input_boolean.livingroom_rainbow
+          - action: homeassistant.turn_on
+            data: {}
+            target:
+              entity_id: input_boolean.pop_music
+
+#################################################################
+## TV Remotes (Amazon Echo Workaround)
+#################################################################
+
+        ##########################################################
+        ## Living Room TV On
+        ##########################################################
+
+living_room_watch_tv:
+  alias: "Turn On TV"
+  sequence:
+    - action: select.select_option
+      entity_id: select.living_room_tv_activities
+      data:
+        option: "Watch TV"
+
+        ##########################################################
+        ## Living Room Xbox
+        ##########################################################
+
+living_room_play_xbox:
+  alias: "Turn On Xbox"
+  sequence:
+    - action: select.select_option
+      entity_id: select.living_room_tv_activities
+      data:
+        option: "Play Xbox"
+
+        ##########################################################
+        ## Living Room Nintendo Switch
+        ##########################################################
+
+living_room_play_nintendo_switch:
+  alias: "Turn On Switch"
+  sequence:
+    - action: select.select_option
+      entity_id: select.living_room_tv_activities
+      data:
+        option: "Play Nintendo Switch"
+
+        ##########################################################
+        ## Living Room TV Off
+        ##########################################################
+
+living_room_tv_off:
+  alias: "Turn Off TV"
+  sequence:
+    - action: select.select_option
+      entity_id: select.living_room_tv_activities
+      data:
+        option: "power_off"
+
+        ##########################################################
+        ## Bedroom TV On
+        ##########################################################
+
+bedroom_watch_tv:
+  alias: "Turn On Bedroom TV"
+  sequence:
+    - action: select.select_option
+      entity_id: select.bedroom_tv_activities
+      data:
+        option: "Watch TV"
+
+        ##########################################################
+        ## Bedroom TV Off
+        ##########################################################
+
+bedroom_tv_off:
+  alias: "Turn Off Bedroom TV"
+  sequence:
+    - action: select.select_option
+      entity_id: select.bedroom_tv_activities
+      data:
+        option: "power_off"
+
+        ##########################################################
+        ## USER1's Office TV On
+        ##########################################################
+
+USER1_office_watch_tv:
+  alias: "Turn On Office TV"
+  sequence:
+    - action: select.select_option
+      entity_id: select.USER1_s_office_tv_activities
+      data:
+        option: "Watch TV"
+
+        ##########################################################
+        ## USER1's Office TV Xbox
+        ##########################################################
+
+USER1_office_play_xbox:
+  alias: "Turn On Office Xbox"
+  sequence:
+    - action: select.select_option
+      entity_id: select.USER1_s_office_tv_activities
+      data:
+        option: "Play Xbox One"
+
+        ##########################################################
+        ## USER1's Office TV Off
+        ##########################################################
+
+USER1_office_tv_off:
+  alias: "Turn Off Office TV"
+  sequence:
+    - action: select.select_option
+      entity_id: select.USER1_s_office_tv_activities
+      data:
+        option: "power_off"
+
 #################################################################
 ## Fan Light Dimmer
 #################################################################
@@ -13,19 +164,19 @@
 living_room_fan_light_dimmer:
   alias: Living Room Fan Lights Dimmer Sequence
   sequence:
-    - service: switch.turn_on
+    - action: switch.turn_on
       entity_id:
         - switch.living_room_east_fan_dimmer
     - delay: '00:00:07'
-    - service: switch.turn_off
+    - action: switch.turn_off
       entity_id:
         - switch.living_room_east_fan_dimmer
     - delay: '00:00:05'
-    - service: switch.turn_on
+    - action: switch.turn_on
       entity_id:
         - switch.living_room_west_fan_dimmer
     - delay: '00:00:07'
-    - service: switch.turn_off
+    - action: switch.turn_off
       entity_id:
         - switch.living_room_west_fan_dimmer
 
@@ -36,10 +187,10 @@ living_room_fan_light_dimmer:
 living_room_west_fan_light_dimmer:
   alias: Living Room West Fan Lights Dimmer Sequence
   sequence:
-    - service: switch.turn_on
+    - action: switch.turn_on
       entity_id:
         - switch.living_room_west_fan_dimmer
     - delay: '00:00:07'
-    - service: switch.turn_off
+    - action: switch.turn_off
       entity_id:
         - switch.living_room_west_fan_dimmer

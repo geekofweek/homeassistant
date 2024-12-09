@@ -74,7 +74,7 @@
       include_entities:
         - switch.front_yard_lighting
         - switch.backyard_lighting
-        - switch.air_purifier
+        - switch.USER1s_office_air_purifier
         - switch.fountain
         - switch.fireplace
 
@@ -223,6 +223,7 @@
     entity_config:
         camera.garage:
           video_codec: copy
+          linked_motion_sensor: binary_sensor.garage_camera_object_detected
 
   - name: Front Yard Camera
     mode: accessory

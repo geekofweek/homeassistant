@@ -5,18 +5,20 @@
 homeassistant:
   auth_providers:
     - type: homeassistant
-    - type: trusted_networks
-      trusted_networks:
-        - REDACTED.0/24
+    #- type: trusted_networks
+    #  trusted_networks:
+    #    - REDACTED.0/24
   customize: !include customize.yaml
 default_config:
 http:
   use_x_forREDACTEDed_for: true
   trusted_proxies:
-    - REDACTED.33
+    - REDACTED.34
   ssl_certificate: !secret ssl_certificate
   ssl_key: !secret ssl_key
   ip_ban_enabled: false
+go2rtc:
+  debug_ui: false
 #  login_attempts_threshold: 10
 #logger:
 #  default: warning
@@ -76,7 +78,7 @@ notify:
     name: REDACTED_devices
     services:
       - service: mobile_app_REDACTEDs_iphone
-      - service: mobile_app_REDACTEDs_ipad
+      - service: mobile_app_REDACTED_s_ipad
       - service: mobile_app_REDACTED_s_macbook_pro
 
   - platform: group
@@ -94,7 +96,6 @@ automation ui: !include automations.yaml
 group: !include groups.yaml
 script: !include scripts.yaml
 homekit: !include homekit.yaml
-switch: !include switch.yaml
 emulated_hue: !include emulated_hue.yaml
 template: !include template.yaml
 command_line: !include command_line.yaml
