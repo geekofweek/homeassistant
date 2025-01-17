@@ -169,8 +169,8 @@
       to: 'home'
       for:
         hours: 0
-        minutes: 3
-        seconds: 30
+        minutes: 4
+        seconds: 0
 
   conditions:
     - condition: state
@@ -206,7 +206,6 @@
     - action: cover.close_cover
       entity_id: cover.garage_door
 
-
         ##########################################################
         ## After USER1 Home Close Garage Door
         ########################################################
@@ -219,6 +218,10 @@
       entity_id: input_boolean.USER1_away
       from: 'on'
       to: 'off'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
 
   conditions:
     - condition: state
@@ -352,7 +355,7 @@
       for:
         hours: 0
         minutes: 0
-        seconds: 10
+        seconds: 0
 
   conditions:
     - condition: state

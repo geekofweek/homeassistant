@@ -3,6 +3,107 @@
 #################################################################
 
 #################################################################
+## Systems
+#################################################################
+
+        ##########################################################
+        ## Startup PrusaConnect LXC When Printers Turn On
+        ##########################################################
+
+- alias: Startup PrusaConnect LXC When Printers Turn On
+  id: '3d_printer_startup_prusaconnect_lxc_when_printers_turn_on'
+
+  triggers:
+    - trigger: state
+      entity_id: switch.prusa_mk4s
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+    - trigger: state
+      entity_id: switch.prusa_mk4s_mmu3
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  conditions:
+    - condition: state
+      entity_id: binary_sensor.lxc_prusaconnect_cam_108_status
+      state: 'off'
+
+  actions:
+    - action: button.press
+      target:
+        entity_id: button.lxc_prusaconnect_cam_108_start
+
+        ##########################################################
+        ## Shutdown PrusaConnect LXC When MK4S Turns Off
+        ##########################################################
+
+- alias: Shutdown PrusaConnect LXC When MK4S Turns Off
+  id: '3d_printer_shutdown_prusaconnect_lxc_when_mk4s_turns_off'
+
+  triggers:
+    - trigger: state
+      entity_id: switch.prusa_mk4s
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  conditions:
+    - condition: state
+      entity_id: binary_sensor.lxc_prusaconnect_cam_108_status
+      state: 'on'
+    - condition: state
+      entity_id: switch.prusa_mk4s
+      state: 'off'
+    - condition: state
+      entity_id: switch.prusa_mk4s_mmu3
+      state: 'off'
+
+  actions:
+    - action: button.press
+      target:
+        entity_id: button.lxc_prusaconnect_cam_108_shutdown
+
+        ##########################################################
+        ## Shutdown PrusaConnect LXC When MK4S MMU3 Turns Off
+        ##########################################################
+
+- alias: Shutdown PrusaConnect LXC When MK4S MMU3 Turns Off
+  id: '3d_printer_shutdown_prusaconnect_lxc_when_mk4s_mmu3_turns_off'
+
+  triggers:
+    - trigger: state
+      entity_id: switch.prusa_mk4s_mmu3
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  conditions:
+    - condition: state
+      entity_id: binary_sensor.lxc_prusaconnect_cam_108_status
+      state: 'on'
+    - condition: state
+      entity_id: switch.prusa_mk4s
+      state: 'off'
+    - condition: state
+      entity_id: switch.prusa_mk4s_mmu3
+      state: 'off'
+
+  actions:
+    - action: button.press
+      target:
+        entity_id: button.lxc_prusaconnect_cam_108_shutdown
+
+#################################################################
 ## Prusa MK4S
 #################################################################
 
@@ -376,7 +477,7 @@
   triggers:
     - trigger: numeric_state
       entity_id: sensor.prusa_mk4s_enclosure_temperature
-      above: 26
+      above: 25
       for:
         hours: 0
         minutes: 5
@@ -419,7 +520,7 @@
   triggers:
     - trigger: numeric_state
       entity_id: sensor.prusa_mk4s_enclosure_temperature
-      above: 30
+      above: 28
       for:
         hours: 0
         minutes: 5
@@ -462,7 +563,7 @@
   triggers:
     - trigger: numeric_state
       entity_id: sensor.prusa_mk4s_enclosure_temperature
-      below: 26
+      below: 24
       for:
         hours: 0
         minutes: 5
@@ -554,7 +655,7 @@
           state: 'ASA'
     - condition: numeric_state
       entity_id: sensor.prusa_mk4s_enclosure_temperature
-      above: 26
+      above: 25
     - condition: state
       entity_id: input_boolean.prusa_mk4s_disable_fans
       state: 'off'
@@ -597,7 +698,7 @@
           state: 'ASA'
     - condition: numeric_state
       entity_id: sensor.prusa_mk4s_enclosure_temperature
-      above: 30
+      above: 28
     - condition: state
       entity_id: input_boolean.prusa_mk4s_disable_fans
       state: 'off'
@@ -640,7 +741,7 @@
           state: 'ASA'
     - condition: numeric_state
       entity_id: sensor.prusa_mk4s_enclosure_temperature
-      below: 26
+      below: 24
     - condition: state
       entity_id: input_boolean.prusa_mk4s_disable_fans
       state: 'off'
@@ -1268,7 +1369,7 @@
   triggers:
     - trigger: numeric_state
       entity_id: sensor.prusa_mk4s_mmu3_enclosure_temperature
-      above: 26
+      above: 25
       for:
         hours: 0
         minutes: 5
@@ -1303,7 +1404,7 @@
   triggers:
     - trigger: numeric_state
       entity_id: sensor.prusa_mk4s_mmu3_enclosure_temperature
-      above: 30
+      above: 28
       for:
         hours: 0
         minutes: 5
@@ -1338,7 +1439,7 @@
   triggers:
     - trigger: numeric_state
       entity_id: sensor.prusa_mk4s_mmu3_enclosure_temperature
-      below: 26
+      below: 24
       for:
         hours: 0
         minutes: 5
@@ -1422,7 +1523,7 @@
           state: 'off'
     - condition: numeric_state
       entity_id: sensor.prusa_mk4s_mmu3_enclosure_temperature
-      above: 26
+      above: 25
     - condition: state
       entity_id: input_boolean.prusa_mk4s_mmu3_disable_fans
       state: 'off'
@@ -1457,7 +1558,7 @@
           state: 'off'
     - condition: numeric_state
       entity_id: sensor.prusa_mk4s_mmu3_enclosure_temperature
-      above: 30
+      above: 28
     - condition: state
       entity_id: input_boolean.prusa_mk4s_mmu3_disable_fans
       state: 'off'
@@ -1492,7 +1593,7 @@
           state: 'on'
     - condition: numeric_state
       entity_id: sensor.prusa_mk4s_mmu3_enclosure_temperature
-      below: 26
+      below: 24
     - condition: state
       entity_id: input_boolean.prusa_mk4s_mmu3_disable_fans
       state: 'off'
@@ -1704,156 +1805,3 @@
       data:
         entity_id: select.prusa_mk4s_mmu3_camera_recording_mode
         option: "Never"
-
-#################################################################
-## Prusa MK3.5
-#################################################################
-
-        ##########################################################
-        ## Prusa MK3.5 3D Print Finished
-        ##########################################################
-
-- alias: 3D-Printer - Prusa MK3.5 Print Finished
-  id: '3d_printer_prusa_mk3_5_print_finished'
-
-  triggers:
-    - trigger: state
-      entity_id: sensor.prusa_mk3_5
-      from: 'printing'
-      to: 'finished'
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: sensor.prusa_mk3_5
-        state: 'printing'
-
-  actions:
-    - action: notify.USER1_devices
-      data:
-        message: 3D Print Complete (MK3.5)
-        data:
-          tag: prusa_mk3_5
-
-        ##########################################################
-        ## Prusa MK3.5 Print Stopped
-        ##########################################################
-
-- alias: 3D-Printer - Prusa MK3.5 Print Stopped
-  id: '3d_printer_prusa_mk3_5_print_stopped'
-
-  triggers:
-    - trigger: state
-      entity_id: sensor.prusa_mk3_5
-      from: 'printing'
-      to: 'stopped'
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: sensor.prusa_mk3_5
-        state: 'printing'
-
-  actions:
-    - action: notify.USER1_devices
-      data:
-        message: Print Stopped (MK3.5)
-        data:
-          tag: prusa_mk3_5
-
-        ##########################################################
-        ## Prusa MK3.5 Print Paused
-        ##########################################################
-
-- alias: 3D-Printer - Prusa MK3.5 Print Paused
-  id: '3d_printer_prusa_mk3_5_print_paused'
-
-  triggers:
-    - trigger: state
-      entity_id: sensor.prusa_mk3_5
-      from: 'printing'
-      to: 'paused'
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: sensor.prusa_mk3_5
-        state: 'printing'
-
-  actions:
-    - action: notify.USER1_devices
-      data:
-        message: Print Paused (MK3.5)
-        data:
-          tag: prusa_mk3_5
-
-        ##########################################################
-        ## Prusa MK3.5 Print Error
-        ##########################################################
-
-- alias: 3D-Printer - Prusa MK3.5 Print Error
-  id: '3d_printer_prusa_mk3_5_print_error'
-
-  triggers:
-    - trigger: state
-      entity_id: sensor.prusa_mk3_5
-      from: 'printing'
-      to: 'error'
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: sensor.prusa_mk3_5
-        state: 'printing'
-
-  actions:
-    - action: notify.USER1_devices
-      data:
-        message: Print Error (MK3.5)
-        data:
-          tag: prusa_mk3_5
-
-        ##########################################################
-        ## Prusa MK3.5 Print Attention
-        ##########################################################
-
-- alias: 3D-Printer - Prusa MK3.5 Print Attention
-  id: '3d_printer_prusa_mk3_5_print_attention'
-
-  triggers:
-    - trigger: state
-      entity_id: sensor.prusa_mk3_5
-      to: 'attention'
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: sensor.prusa_mk3_5
-        state: 'printing'
-
-  actions:
-    - action: notify.USER1_devices
-      data:
-        message: Print Needs Attention (MK3.5)
-        data:
-          tag: prusa_mk3_5

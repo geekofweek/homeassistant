@@ -2761,72 +2761,46 @@
   ## Bedroom Lamps Dimmer
   #################################################################
 
-  mode: queued
+  mode: single
   max_exceeded: silent
 - alias: Lights - Bedroom Lamps Dimmer
   id: 'lights_bedroom_lamps_dimmer'
 
   triggers:
-    - trigger: event
-      event_type: state_changed
-      event_data:
-        entity_id: sensor.bedroom_lamps_dimmer_brightness
-    - trigger: state
-      entity_id: sensor.bedroom_lamps_dimmer_brightness
+    - trigger: mqtt
+      topic: "zigbee2mqtt/Bedroom Lamps Dimmer"
 
   conditions:
     - condition: template
-      value_template: >-
-        {{ as_timestamp(now()) - as_timestamp(states.sensor.uptime.last_changed) |
-        int > 90 }}
-    - condition: state
-      entity_id: input_boolean.disable_light_dimmer
-      state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
+      value_template: "{{ trigger.payload_json.action == \"brightness_move_to_level\"}}"
 
   actions:
-    - action: light.turn_on
-      target:
+    - data:
         entity_id: light.bedroom_lamps
-      data:
+        brightness: "{{ trigger.payload_json.action_level }}"
         transition: "{{ 0.7 }}"
-        brightness: "{{ trigger.to_state.state }}"
+      action: light.turn_on
 
   #################################################################
   ## Bedroom Ceiling Dimmer
   #################################################################
 
-  mode: queued
+  mode: single
   max_exceeded: silent
 - alias: Lights - Bedroom Ceiling Dimmer
   id: 'lights_bedroom_ceiling_dimmer'
 
   triggers:
-    - trigger: event
-      event_type: state_changed
-      event_data:
-        entity_id: sensor.bedroom_ceiling_dimmer_brightness
-    - trigger: state
-      entity_id: sensor.bedroom_ceiling_dimmer_brightness
+    - trigger: mqtt
+      topic: "zigbee2mqtt/Bedroom Ceiling Dimmer"
 
   conditions:
     - condition: template
-      value_template: >-
-        {{ as_timestamp(now()) - as_timestamp(states.sensor.uptime.last_changed) |
-        int > 90 }}
-    - condition: state
-      entity_id: input_boolean.disable_light_dimmer
-      state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
+      value_template: "{{ trigger.payload_json.action == \"brightness_move_to_level\"}}"
 
   actions:
-    - action: light.turn_on
-      target:
+    - data:
         entity_id: light.bedroom_ceiling
-      data:
+        brightness: "{{ trigger.payload_json.action_level }}"
         transition: "{{ 0.7 }}"
-        brightness: "{{ trigger.to_state.state }}"
+      action: light.turn_on

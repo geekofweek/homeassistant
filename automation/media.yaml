@@ -3,6 +3,153 @@
 #################################################################
 
         ##########################################################
+        ## Turn Off Lamp 1 for TV
+        ##########################################################
+
+- alias: Media - Turn Off Lamp 1 for TV
+  id: 'media_turn_off_lamp_1_for_tv'
+
+  triggers:
+    - trigger: state
+      entity_id: media_player.living_room_apple_tv
+      to: 'playing'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 35
+    - trigger: state
+      entity_id: select.living_room_tv_activities
+      to: "Play Xbox"
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 5
+    - trigger: state
+      entity_id: select.living_room_tv_activities
+      to: "Play Nintendo Switch"
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 5
+
+  conditions:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.living_room_lamp_1
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_media_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.livingroom_rainbow
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: select.living_room_tv_activities
+        state: "power_off"
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.living_room_apple_tv
+        attribute: app_id
+        state: "com.google.ios.youtube"
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.living_room_apple_tv
+        attribute: app_name
+        state: "YouTube"
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.living_room_apple_tv
+        attribute: app_id
+        state: "com.apple.TVPhotos"
+
+  actions:
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_lamp_1
+      data:
+       transition: 5
+
+        ##########################################################
+        ## Turn On Lamp 1 for TV
+        ##########################################################
+
+- alias: Media - Turn On Lamp 1 for TV
+  id: 'media_turn_on_lamp_1_for_tv'
+
+  triggers:
+    - trigger: state
+      entity_id: media_player.living_room_apple_tv
+      from: 'playing'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 35
+    - trigger: state
+      entity_id: select.living_room_tv_activities
+      from: "Play Xbox"
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 35
+    - trigger: state
+      entity_id: select.living_room_tv_activities
+      from: "Play Nintendo Switch"
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 35
+
+  conditions:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.living_room_lamp_1
+      state: 'off'
+    - condition: state
+      entity_id: light.living_room_lamp_2
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_media_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.livingroom_rainbow
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: select.living_room_tv_activities
+        state: "Play Xbox"
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: select.living_room_tv_activities
+        state: "Play Nintendo Switch"
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.living_room_apple_tv
+        state: "playing"
+
+  actions:
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.living_room_lamp_1
+      data:
+       transition: 5
+       color_temp: 370
+       brightness_pct: 100
+
+        ##########################################################
         ## Plex Lights On
         ##########################################################
 
@@ -101,6 +248,10 @@
     - trigger: state
       entity_id: media_player.plex_living_room_appletv
       to: 'playing'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 15
 
   conditions:
     - condition: state

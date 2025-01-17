@@ -3,11 +3,11 @@
 #################################################################
 
         ##########################################################
-        ## Re-Enable Pi-hole After 15 Mins
+        ## Re-Enable Pi-hole After 30 Mins
         ##########################################################
 
-- alias: Network - Re-Enable Pi-hole After 15 Mins
-  id: 'network_reenable_pihole_after_15_mins'
+- alias: Network - Re-Enable Pi-hole After 30 Mins
+  id: 'network_reenable_pihole_after_30_mins'
 
   triggers:
     - trigger: state
@@ -16,7 +16,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 15
+        minutes: 30
         seconds: 0
 
   conditions:

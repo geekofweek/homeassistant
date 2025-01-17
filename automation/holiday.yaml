@@ -89,6 +89,9 @@
     - condition: state
       entity_id: light.front_porch
       state: 'on'
+    - condition: time
+      after: '15:30:00'
+      before: '02:00:00'
 
   actions:
     - action: light.turn_on
@@ -876,6 +879,9 @@
     - action: light.turn_off
       entity_id: light.front_porch
     - delay: '00:00:60'
+    - action: light.turn_off
+      entity_id: light.front_porch
+    - delay: '00:00:90'
     - action: light.turn_off
       entity_id: light.front_porch
 
