@@ -17,20 +17,6 @@
         hours: 0
         minutes: 0
         seconds: 35
-    - trigger: state
-      entity_id: select.living_room_tv_activities
-      to: "Play Xbox"
-      for:
-        hours: 0
-        minutes: 2
-        seconds: 5
-    - trigger: state
-      entity_id: select.living_room_tv_activities
-      to: "Play Nintendo Switch"
-      for:
-        hours: 0
-        minutes: 2
-        seconds: 5
 
   conditions:
     - condition: state
@@ -68,6 +54,56 @@
         entity_id: media_player.living_room_apple_tv
         attribute: app_id
         state: "com.apple.TVPhotos"
+
+  actions:
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.living_room_lamp_1
+      data:
+       transition: 5
+
+        ##########################################################
+        ## Turn Off Lamp 1 for Game Consoles
+        ##########################################################
+
+- alias: Media - Turn Off Lamp 1 for Game Consoles
+  id: 'media_turn_off_lamp_1_for_game_consoles'
+
+  triggers:
+    - trigger: state
+      entity_id: select.living_room_tv_activities
+      to: "Play Xbox"
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 5
+    - trigger: state
+      entity_id: select.living_room_tv_activities
+      to: "Play Nintendo Switch"
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 5
+
+  conditions:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: light.living_room_lamp_1
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.disable_media_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.livingroom_rainbow
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: select.living_room_tv_activities
+        state: "power_off"
 
   actions:
     - action: light.turn_off

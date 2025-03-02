@@ -307,7 +307,7 @@
       target:
         entity_id:
           - lock.back_door
-          - lock.front_door
+          - lock.basement_door
 
         ##########################################################
         ## USER1 Home from Driving Unlock Door
@@ -408,6 +408,7 @@
         entity_id:
           - lock.back_door
           - lock.front_door
+          - lock.basement_door
 
         ##########################################################
         ## USER2 Home from Driving Unlock Door
@@ -441,7 +442,10 @@
 
   actions:
     - action: lock.unlock
-      entity_id: lock.back_door
+      target:
+        entity_id: 
+          - lock.back_door
+          - lock.basement_door
 
         ##########################################################
         ## After USER2 Home Lock Doors
@@ -473,6 +477,7 @@
         entity_id:
           - lock.back_door
           - lock.front_door
+          - lock.basement_door
 
         ##########################################################
         ## USER1 Home Turn On Lights

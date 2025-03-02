@@ -526,6 +526,8 @@
           windy
         {% elif is_state('weather.REDACTED_ecobee', 'hail') %}
           hail
+        {% elif is_state('weather.REDACTED_ecobee', 'hazy') %}
+          hazy
         {% else %}
           {{ states("sensor.weather_condition_REDACTED") }}
         {% endif %}
@@ -568,6 +570,8 @@
           Windy
         {% elif is_state('weather.REDACTED_ecobee', 'hail') %}
           Hail
+        {% elif is_state('weather.REDACTED_ecobee', 'hazy') %}
+          Hazy
         {% else %}
           {{ states("sensor.weather_condition_REDACTED") }}
         {% endif %}

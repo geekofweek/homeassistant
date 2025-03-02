@@ -69,6 +69,28 @@ weather:
     wind_bearing_template: "{{ state_attr('weather.REDACTED_ecobee', 'wind_bearing') }}"
     visibility_template: "{{ state_attr('weather.REDACTED_ecobee', 'visibility') }}"
 
+rest_command:
+  pihole_login:
+    url: '{{ api_url }}/auth'
+    method: POST
+    payload: '{ "password" : "{{ password }}" }'
+    content_type:  'application/json; charset=utf-8'
+    verify_ssl: false
+  pihole_logout:
+    url: '{{ api_url }}/auth'
+    method: DELETE
+    verify_ssl: false
+    headers:
+      sid: "{{ sid }}"
+  pihole_set_blocking:
+    url: '{{ api_url }}/dns/blocking'
+    method: POST
+    payload: '{ "blocking" : {{ blocking }}, "timer" : {{ timer }} }'
+    content_type:  'application/json; charset=utf-8'
+    verify_ssl: false
+    headers:
+      sid: "{{ sid }}"
+
 #################################################################
 ## Notifications
 #################################################################

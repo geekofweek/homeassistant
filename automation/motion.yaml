@@ -411,9 +411,14 @@
     - condition: state
       entity_id: person.USER1
       state: 'home'
-    - condition: state
-      entity_id: vacuum.main_floor_roomba
-      state: 'docked'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'returning'
     - condition: state
       entity_id: fan.living_room_fans
       state: 'off'
@@ -456,9 +461,14 @@
     - condition: state
       entity_id: person.USER1
       state: 'home'
-    - condition: state
-      entity_id: vacuum.main_floor_roomba
-      state: 'docked'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'cleaning'
+      - condition: state
+        entity_id: vacuum.main_floor_roomba
+        state: 'returning'
     - condition: time
       after: '21:30:00'
       before: '02:00:00'
