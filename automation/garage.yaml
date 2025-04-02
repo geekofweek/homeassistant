@@ -21,7 +21,7 @@
 
   conditions:
     - condition: state
-      entity_id: input_boolean.disable_home_away
+      entity_id: input_boolean.disable_auto_garage
       state: 'off'
     - condition: state
       entity_id: cover.garage_door
@@ -137,9 +137,6 @@
       state: 'off'
     - condition: state
       entity_id: input_boolean.disable_auto_garage
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.disable_home_away
       state: 'off'
     - condition: state
       entity_id: input_boolean.USER1_away
@@ -271,9 +268,6 @@
       state: 'off'
     - condition: state
       entity_id: input_boolean.disable_auto_garage
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.disable_home_away
       state: 'off'
     - condition: state
       entity_id: input_boolean.USER2_away

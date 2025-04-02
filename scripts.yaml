@@ -404,3 +404,314 @@ pihole_enable:
       data:
         api_url: !secret pihole-04_api_url
         sid: "{{ sid }}"
+
+        ##########################################################
+        ## Home Showing Mode On
+        ##########################################################
+
+home_showing_mode_on:
+  alias: Home Showing Mode On
+  sequence:
+    - action: select.select_option
+      data:
+        entity_id: select.living_room_tv_activities
+        option: "power_off"
+    - action: select.select_option
+      data:
+        entity_id: select.USER1_s_office_tv_activities
+        option: "power_off"
+    - action: homeassistant.turn_on
+      target:
+        entity_id:
+          - input_boolean.disable_climate
+          - input_boolean.disable_roomba
+          - input_boolean.disable_doorbell
+          - input_boolean.disable_door_open_lights_on
+          - input_boolean.disable_home_away
+          - input_boolean.disable_lock_unlock_doors
+          - input_boolean.disable_media_lights
+          - input_boolean.disable_motion
+          - input_boolean.disable_blinds
+          - input_boolean.disable_occupancy
+          - input_boolean.disable_water_automations
+          - input_boolean.disable_light_dimmer
+          - input_boolean.disable_grow_light
+          - input_boolean.disable_bedroom_grow_light
+          - input_boolean.disable_rainy_day
+    - action: cover.open_cover
+      data:
+        entity_id: 
+          - cover.USER1_s_office_blinds
+          - cover.USER2_s_office_blinds
+          - cover.stairs_blinds
+          - cover.bedroom_closet_blinds
+          - cover.kitchen_blinds_south
+    - action: cover.set_cover_position
+      data:
+        entity_id: 
+          - cover.kitchen_blinds_west
+        position: 20
+    - delay: '00:00:05'
+    - action: switch.turn_on
+      target:
+        entity_id:
+          - switch.front_yard_lighting
+          - switch.backyard_patio_lighting
+          - switch.lower_backyard_lighting
+          - switch.fountain
+          - switch.prusa_mk4s
+          - switch.prusa_mk4s_mmu3
+    - delay: '00:00:05'
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.front_porch
+          - light.garage_light
+          - light.back_door
+          - light.backyard_deck
+          - light.backyard_patio
+      data:
+        brightness_pct: 50
+        color_temp: 370
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.living_room_lamps
+          - light.bedroom_lamp
+      data:
+        brightness_pct: 100
+        color_temp: 370
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.media_center_lighting
+      data:
+       brightness_pct: 100
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.globe
+      data:
+       brightness_pct: 65
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.basement_lighting
+          - light.dining_room_table
+          - light.kitchen_ceiling
+          - light.kitchen_sink
+          - light.guest_bedroom_ceiling
+      data:
+        brightness_pct: 100
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.hallway_light
+          - light.dining_room_ceiling
+          - light.bathroom_shower
+          - light.USER1s_nightstand
+          - light.USER2s_nightstand
+      data:
+       brightness_pct: 25
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bathroom_vanity
+      data:
+        brightness_pct: 50
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bedroom_closet_lights
+          - light.stairs_light
+          - light.USER2_s_office_ceiling
+          - light.bedroom_ceiling
+      data:
+        brightness: 75
+        color_temp: 370
+    - action: light.turn_on
+      entity_id: light.office_lamp
+      data:
+        brightness_pct: 100
+        color_temp: 370
+    - action: light.turn_on
+      entity_id: light.USER1_office_desk_accent
+      data:
+        transition: 15
+        brightness_pct: 80
+        color_temp: 370
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1_s_office_ceiling
+      data:
+        brightness_pct: 15
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER1_office_desk_lamp
+      data:
+        brightness_pct: 25
+        color_temp: 370
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.upstairs_bathroom_vanity
+          - light.kitchen_cabinets
+      data:
+        brightness_pct: 2
+    - action: light.turn_on
+      data:
+        brightness_pct: 100
+        effect: Club
+      target:
+        entity_id: 
+          - light.jupitier_globe
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.moon_globe
+      data:
+        brightness_pct: 10
+        color_temp: 238
+    - action: fan.set_percentage
+      data:
+        entity_id:
+          - fan.living_room_east
+          - fan.living_room_west
+        percentage: 16
+    - action: fan.turn_off
+      target:
+        entity_id:
+          - fan.USER1s_office_fan
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.USER1s_office_air_purifier
+          - switch.grow_light
+    - action: media_player.join
+      data:
+        group_members:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_craft_room
+          - media_player.sonos_fitness_room
+          - media_player.sonos_move
+          - media_player.sonos_roam
+      target:
+        entity_id:
+          - media_player.sonos_living_room
+    - delay: '00:00:05'
+    - action: media_player.volume_set
+      target:
+        entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_craft_room
+          - media_player.sonos_fitness_room
+          - media_player.sonos_move
+          - media_player.sonos_roam
+      data:
+        volume_level: 0.02
+    - delay: '00:00:05'
+    - action: media_player.select_source
+      data:
+        source: 'Lo-Fi Station'
+      target:
+        entity_id: 
+          - media_player.sonos_living_room
+    - action: light.turn_off
+      target:
+        entity_id: 
+          - light.USER1s_office_desktop_clock
+          - light.living_room_clock
+
+        ##########################################################
+        ## Home Showing Mode Off
+        ##########################################################
+
+home_showing_mode_off:
+  alias: Home Showing Mode Off
+  sequence:
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.disable_climate
+          - input_boolean.disable_roomba
+          - input_boolean.disable_doorbell
+          - input_boolean.disable_door_open_lights_on
+          - input_boolean.disable_home_away
+          - input_boolean.disable_lock_unlock_doors
+          - input_boolean.disable_media_lights
+          - input_boolean.disable_motion
+          - input_boolean.disable_blinds
+          - input_boolean.disable_occupancy
+          - input_boolean.disable_water_automations
+          - input_boolean.disable_light_dimmer
+          - input_boolean.disable_grow_light
+          - input_boolean.disable_bedroom_grow_light
+          - input_boolean.disable_rainy_day
+    - action: switch.turn_off
+      target:
+        entity_id:
+          - switch.backyard_patio_lighting
+          - switch.lower_backyard_lighting
+          - switch.front_yard_lighting
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.interior_lights
+          - light.front_porch
+          - light.back_door
+          - light.garage_light
+          - light.back_door
+          - light.backyard_deck
+          - light.backyard_patio
+          - light.USER1s_office_desktop_clock
+          - light.living_room_clock
+    - action: cover.close_cover
+      data:
+        entity_id: 
+          - cover.USER1_s_office_blinds
+          - cover.USER2_s_office_blinds
+          - cover.stairs_blinds
+          - cover.bedroom_closet_blinds
+          - cover.kitchen_blinds
+    - action: fan.turn_off
+      target:
+        entity_id:
+          - fan.living_room_east
+          - fan.living_room_west
+    - action: lock.lock
+      target:
+        entity_id:
+          - lock.front_door
+          - lock.back_door
+          - lock.basement_door
+    - action: media_player.media_stop
+      target:
+        entity_id:
+          - media_player.sonos_living_room
+          - media_player.sonos_dining_room
+          - media_player.sonos_kitchen
+          - media_player.sonos_bathroom
+          - media_player.sonos_bedroom
+          - media_player.sonos_bedroom_closet
+          - media_player.sonos_USER1s_office
+          - media_player.sonos_USER2s_office
+          - media_player.sonos_craft_room
+          - medial_player.sonos_fitness_room
+          - media_player.sonos_move
+          - media_player.sonos_roam

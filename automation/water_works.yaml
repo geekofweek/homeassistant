@@ -297,31 +297,6 @@
           tag: bathroom-sink-water-leak
 
         ##########################################################
-        ## Attic Water Sensor iOS Notification
-        ##########################################################
-
-- alias: Water Works - Attic Water Sensor iOS Notification
-  id: 'water_works_attic_water_sensor_ios_notification'
-
-  triggers:
-    - trigger: state
-      entity_id: binary_sensor.attic_water_sensor
-      from: 'off'
-      to: 'on'
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.disable_notifications
-      state: 'off'
-
-  actions:
-    - action: notify.USER1_devices
-      data:
-        message: Water Detected by Attic!
-        data:
-          tag: attic-water-leak
-
-        ##########################################################
         ## Upstairs Bathroom Water Sensor iOS Notification
         ##########################################################
 
@@ -747,7 +722,6 @@
         - sensor.utility_sink_water_sensor_batt
         - sensor.washing_machine_water_sensor_batt
         - sensor.coal_room_water_sensor_batt
-        - sensor.attic_water_sensor_batt
       below: 30
       for:
         hours: 1

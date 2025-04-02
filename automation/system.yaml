@@ -3,6 +3,48 @@
 #################################################################
 
         ##########################################################
+        ## Home Showing Mode On
+        ##########################################################
+
+- alias: System - Home Showing Mode On
+  id: 'system_home_showing_mode_on'
+
+  triggers:
+    - trigger: state
+      entity_id: input_boolean.home_showing_mode
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+
+  actions:
+    - action: script.home_showing_mode_on
+      data: {}
+
+        ##########################################################
+        ## Home Showing Mode Off
+        ##########################################################
+
+- alias: System - Home Showing Mode Off
+  id: 'system_home_showing_mode_off'
+
+  triggers:
+    - trigger: state
+      entity_id: input_boolean.home_showing_mode
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+
+  actions:
+    - action: script.home_showing_mode_off
+      data: {}
+
+        ##########################################################
         ## Backup Home Assistant Nightly
         ##########################################################
 

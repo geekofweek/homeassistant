@@ -23,6 +23,11 @@
     - condition: state
       entity_id: input_boolean.guest_mode
       state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: input_boolean.home_showing_mode
+        state: 'on'
 
   actions:
     - action: light.turn_on
@@ -138,6 +143,11 @@
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: input_boolean.home_showing_mode
+        state: 'on'
 
   actions:
     - action: light.turn_on
@@ -362,6 +372,11 @@
     - condition: state
       entity_id: alarm_control_panel.alarm
       state: 'armed_away'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: input_boolean.home_showing_mode
+        state: 'on'
 
   actions:
     - action: notify.USER1_devices
@@ -429,6 +444,11 @@
     - condition: state
       entity_id: alarm_control_panel.alarm
       state: 'armed_home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: input_boolean.home_showing_mode
+        state: 'on'
 
   actions:
     - action: notify.USER1_devices
@@ -520,6 +540,11 @@
     - condition: state
       entity_id: switch.3d_printer_prusa_mini
       state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: input_boolean.home_showing_mode
+        state: 'on'
 
   actions:
     - action: notify.USER1_devices
@@ -562,6 +587,11 @@
     - condition: state
       entity_id: alarm_control_panel.alarm
       state: 'armed_home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: input_boolean.home_showing_mode
+        state: 'on'
 
   actions:
     - action: notify.USER1_devices
@@ -595,6 +625,11 @@
     - condition: state
       entity_id: alarm_control_panel.alarm
       state: 'armed_away'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: input_boolean.home_showing_mode
+        state: 'on'
 
   actions:
     - action: notify.USER1_devices
@@ -685,6 +720,11 @@
     - condition: state
       entity_id: alarm_control_panel.alarm
       state: 'disarmed'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: input_boolean.home_showing_mode
+        state: 'on'
 
   actions:
     - action: alarm_control_panel.alarm_arm_away
