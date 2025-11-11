@@ -5,7 +5,7 @@
 [![HA Community](https://img.shields.io/badge/HA%20community-forum-orange)](https://community.home-assistant.io/u/geekoftheweek/summary)
 
 # Update
-I recenetly moved and started over from scratch, sort of I re-used a lot of yaml snippits, with Home Assistant.  Basically I took what I did here and turned it up to 11.  It's more devices, more useless complexity, and so on.  That said the stress of moving, setting up new, etc.  I'm not sure when, or if, I'll get around to updating things here.  As Home Assistant has moved fairly into the UI based automations people probably find my old school yaml way less useful.  Unless I get a lot of interest in updating things I may just preserve this as-is for a while.
+I recenetly moved and started over from scratch, sort of I re-used a lot of yaml snippets, with Home Assistant.  Basically I took what I did here and turned it up to 11.  It's more devices, more useless complexity, and so on.  That said the stress of moving, setting up new, etc.  I'm not sure when, or if, I'll get around to updating things here.  As Home Assistant has moved fairly into the UI based automations people probably find my old school yaml way less useful.  Unless I get a lot of interest in updating things I may just preserve this as-is for a while.
 
 
 # Overview
