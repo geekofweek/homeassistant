@@ -64,6 +64,28 @@ route53:
   records:
     - home
 
+rest_command:
+  pihole_login:
+    url: '{{ api_url }}/auth'
+    method: POST
+    payload: '{ "password" : "{{ password }}" }'
+    content_type:  'application/json; charset=utf-8'
+    verify_ssl: false
+  pihole_logout:
+    url: '{{ api_url }}/auth'
+    method: DELETE
+    verify_ssl: false
+    headers:
+      sid: "{{ sid }}"
+  pihole_set_blocking:
+    url: '{{ api_url }}/dns/blocking'
+    method: POST
+    payload: '{ "blocking" : {{ blocking }}, "timer" : {{ timer }} }'
+    content_type:  'application/json; charset=utf-8'
+    verify_ssl: false
+    headers:
+      sid: "{{ sid }}"
+
 #################################################################
 ## Notifications
 #################################################################
@@ -96,4 +118,3 @@ template: !include template.yaml
 #command_line: !include command_line.yaml
 python_script:
 ios: !include ios.yaml
-rest_command: !include rest_command.yaml

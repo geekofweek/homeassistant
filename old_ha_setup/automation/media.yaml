@@ -58,11 +58,11 @@
           - light.jupiter_globe
       data:
        transition: 10
-    - action: light.turn_off
+    - action: switch.turn_off
       data: {}
       target:
         entity_id:
-          - light.media_room_ap_led
+          - switch.media_room_ap_led
 
         ##########################################################
         ## Media Room Watching TV Lights On Day
@@ -113,11 +113,11 @@
       data:
        transition: 15
        brightness_pct: 100
-    - action: light.turn_on
+    - action: switch.turn_on
       data: {}
       target:
         entity_id:
-          - light.media_room_ap_led
+          - switch.media_room_ap_led
 
         ##########################################################
         ## Media Room Watching TV Lights On Evening
@@ -175,11 +175,11 @@
       data:
        transition: 60
        brightness_pct: 100
-    - action: light.turn_on
+    - action: switch.turn_on
       data: {}
       target:
         entity_id:
-          - light.media_room_ap_led
+          - switch.media_room_ap_led
 
         ##########################################################
         ## Media Room Watching TV Lights On Night
@@ -243,11 +243,11 @@
       data:
        transition: 15
        brightness_pct: 25
-    - action: light.turn_on
+    - action: switch.turn_on
       data: {}
       target:
         entity_id:
-          - light.media_room_ap_led
+          - switch.media_room_ap_led
 
         ##########################################################
         ## Turn Off Media Room Lights When Playing Video Games
@@ -287,13 +287,6 @@
           - light.media_room_main_lights
       data:
        transition: 5
-    - action: light.turn_on
-      target:
-        entity_id:
-          - light.basement_stairs_main_lights
-      data:
-       transition: 5
-       brightness_pct: 25
 
         ##########################################################
         ## Turn On Media Room Lights When Done Playing Video Games
@@ -334,110 +327,6 @@
       data:
        transition: 60
        brightness_pct: 50
-    - action: light.turn_on
-      target:
-        entity_id:
-          - light.basement_stairs_main_lights
-      data:
-       transition: 60
-       brightness_pct: 100
-
-        ##########################################################
-        ## Dim Basement Stair Lights When Playing Video Games
-        ##########################################################
-
-- alias: Media - Dim Basement Stair Lights When Playing Video Games
-  id: 'media_dim_basement_stair_lights_when_playing_video_games'
-
-  triggers:
-    - trigger: state
-      entity_id: select.media_room_activities
-      to: "Play Xbox"
-      for:
-        hours: 0
-        minutes: 1
-        seconds: 0
-    - trigger: state
-      entity_id: select.media_room_activities
-      to: "Play Nintendo Switch"
-      for:
-        hours: 0
-        minutes: 1
-        seconds: 0
-
-  conditions:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: input_boolean.bedtime
-      state: 'off'
-    - condition: state
-      entity_id: light.basement_stairs_main_lights
-      state: 'on'
-
-  actions:
-    - action: light.turn_on
-      target:
-        entity_id:
-          - light.basement_stairs_main_lights
-      data:
-       transition: 5
-       brightness_pct: 25
-
-        ##########################################################
-        ## Turn Up Basement Stair Lights When Done Playing Video Games
-        ##########################################################
-
-- alias: Media - Turn Up Basement Stair Lights When Done Playing Video Games
-  id: 'media_turn_up_basement_stair_lights_when_done_playing_video_games'
-
-  triggers:
-    - trigger: state
-      entity_id: select.media_room_activities
-      from: "Play Xbox"
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 15
-    - trigger: state
-      entity_id: select.media_room_activities
-      from: "Play Nintendo Switch"
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 15
-
-  conditions:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
-      - condition: sun
-        after: sunset
-        after_offset: "-00:45:00"
-    - condition: state
-      entity_id: input_boolean.bedtime
-      state: 'off'
-    - condition: state
-      entity_id: light.basement_stairs_main_lights
-      state: 'on'
-    - condition: time
-      after: '07:00:00'
-      before: '23:00:00'
-
-  actions:
-    - action: light.turn_on
-      target:
-        entity_id:
-          - light.basement_stairs_main_lights
-      data:
-       transition: 60
-       brightness_pct: 100
 
 #################################################################
 ## Helpers

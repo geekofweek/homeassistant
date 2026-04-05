@@ -44,173 +44,6 @@
         entity_id:
           - switch.ad_block
 
-        ##########################################################
-        ## Reset Waste Collection
-        ##########################################################
-
-- alias: System - Reset Waste Collection at 4a
-  id: 'system_reset_waste_collection_at_4a'
-
-  triggers:
-   - trigger: time
-     at: '04:15:00'
-   - trigger: time
-     at: '05:45:00'
-
-  conditions:
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: input_boolean.yard_waste_collection
-        state: 'on'
-      - condition: state
-        entity_id: input_boolean.recycle_waste_collection
-        state: 'on'
-      - condition: state
-        entity_id: input_boolean.garbage_waste_collection
-        state: 'on'
-
-  actions:
-    - action: homeassistant.turn_off
-      data: {}
-      target:
-        entity_id:
-          - input_boolean.yard_waste_collection
-          - input_boolean.recycle_waste_collection
-          - input_boolean.garbage_waste_collection
-
-        ##########################################################
-        ## Yard Waste Collection
-        ##########################################################
-
-- alias: System - Turn on Yard Waste on Tuesday
-  id: 'system_turn_on_yard_waste_on_tuesday'
-
-  triggers:
-   - trigger: time
-     at: '15:15:00'
-   - trigger: time
-     at: '16:45:00'
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.out_of_town_mode
-      state: 'off'
-    - condition: time
-      weekday:
-        - tue
-    - condition: state
-      entity_id: input_boolean.yard_waste_collection
-      state: 'off'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: sensor.season
-        state: 'winter'
-
-  actions:
-    - action: homeassistant.turn_on
-      data: {}
-      target:
-        entity_id:
-          - input_boolean.yard_waste_collection
-    - action: homeassistant.turn_off
-      data: {}
-      target:
-        entity_id:
-          - input_boolean.recycle_waste_collection
-          - input_boolean.garbage_waste_collection
-
-        ##########################################################
-        ## Recycle Waste Collection
-        ##########################################################
-
-- alias: System - Turn on Recycle Waste on Wednesday
-  id: 'system_turn_on_recycle_waste_on_wednesday'
-
-  triggers:
-   - trigger: time
-     at: '15:15:00'
-   - trigger: time
-     at: '16:45:00'
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.out_of_town_mode
-      state: 'off'
-    - condition: time
-      weekday:
-        - wed
-    - condition: state
-      entity_id: input_boolean.recycle_waste_collection
-      state: 'off'
-
-  actions:
-    - action: homeassistant.turn_on
-      data: {}
-      target:
-        entity_id:
-          - input_boolean.recycle_waste_collection
-    - action: homeassistant.turn_off
-      data: {}
-      target:
-        entity_id:
-          - input_boolean.garbage_waste_collection
-          - input_boolean.yard_waste_collection
-
-        ##########################################################
-        ## Garbage Waste Collection
-        ##########################################################
-
-- alias: System - Turn on Garbage Waste on Thursday
-  id: 'system_turn_on_garbage_waste_on_thursday'
-
-  triggers:
-   - trigger: time
-     at: '15:15:00'
-   - trigger: time
-     at: '16:45:00'
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.out_of_town_mode
-      state: 'off'
-    - condition: time
-      weekday:
-        - thu
-    - condition: state
-      entity_id: input_boolean.garbage_waste_collection
-      state: 'off'
-
-  actions:
-    - action: homeassistant.turn_on
-      data: {}
-      target:
-        entity_id:
-          - input_boolean.garbage_waste_collection
-    - action: homeassistant.turn_off
-      data: {}
-      target:
-        entity_id:
-          - input_boolean.recycle_waste_collection
-          - input_boolean.yard_waste_collection
-
-        ##########################################################
-        ## Start Lets Encrypt at 3a
-        ##########################################################
-
-- alias: System - Start Lets Encrypt at 3a
-  id: 'system_start_letsencrypt_at_3a'
-
-  triggers:
-   - trigger: time
-     at: '03:30:00'
-
-  actions:
-    - action: hassio.app_start
-      data:
-        app: core_letsencrypt
-
         #################################################################
         ## Clear Erroneous Failed Login Notifications
         #################################################################
@@ -522,13 +355,13 @@
 
   conditions:
     - condition: state
-      entity_id: binary_sensor.windows_desktop_status
+      entity_id: binary_sensor.qemu_windows_100_status
       state: 'on'
 
   actions:
     - action: button.press
       target:
-        entity_id: button.windows_desktop_shutdown
+        entity_id: button.qemu_windows_100_shutdown
 
         ##########################################################
         ## Shutdown Windows VM when Household Away
@@ -549,13 +382,13 @@
 
   conditions:
     - condition: state
-      entity_id: binary_sensor.windows_desktop_status
+      entity_id: binary_sensor.qemu_windows_100_status
       state: 'on'
 
   actions:
     - action: button.press
       target:
-        entity_id: button.windows_desktop_shutdown
+        entity_id: button.qemu_windows_100_shutdown
 
 #################################################################
 ## Network
@@ -625,7 +458,7 @@
 
   triggers:
     - trigger: state
-      entity_id: binary_sensor.home_assistant_versions_update_available
+      entity_id: binary_sensor.docker_hub_update_available
       to: 'on'
       for:
         hours: 0

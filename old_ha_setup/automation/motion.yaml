@@ -350,7 +350,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 30
+        minutes: 40
         seconds: 0
 
   conditions:
@@ -680,7 +680,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 5
+        minutes: 15
         seconds: 0
 
   conditions:
@@ -1142,7 +1142,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 5
+        minutes: 15
         seconds: 0
 
   conditions:
@@ -1599,7 +1599,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 5
+        minutes: 10
         seconds: 0
 
   conditions:
@@ -1637,7 +1637,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 30
+        minutes: 40
         seconds: 0
 
   conditions:
@@ -1853,7 +1853,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 5
+        minutes: 10
         seconds: 0
 
   conditions:
@@ -2043,7 +2043,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 10
+        minutes: 15
         seconds: 0
   
   conditions:
@@ -2189,7 +2189,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 5
+        minutes: 10
         seconds: 0
   
   conditions:
@@ -2546,7 +2546,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 5
+        minutes: 30
         seconds: 0
   
   conditions:
@@ -2625,7 +2625,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 10
+        minutes: 15
         seconds: 0
   
   conditions:
@@ -2746,7 +2746,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 5
+        minutes: 30
         seconds: 0
   
   conditions:
@@ -2879,7 +2879,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 2
+        minutes: 5
         seconds: 0
 
   conditions:
@@ -2958,14 +2958,14 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 2
+        minutes: 5
         seconds: 0
     - trigger: state
       entity_id: binary_sensor.upstairs_bathroom_toilet_motion_sensor_motion_detection
       to: 'off'
       for:
         hours: 0
-        minutes: 5
+        minutes: 15
         seconds: 0
 
   conditions:
@@ -3356,7 +3356,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 5
+        minutes: 15
         seconds: 0
 
   conditions:
@@ -3631,7 +3631,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 40
+        minutes: 45
         seconds: 0
   
   conditions:
@@ -3670,11 +3670,9 @@
     - condition: state
       entity_id: select.media_room_activities
       state: 'power_off'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: media_player.media_room_lg_tv
-        state: 'on'
+    - condition: state
+      entity_id: media_player.media_room_lg_tv
+      state: 'off'
     - condition: state
       entity_id: media_player.media_room_apple_tv
       state: 'off'
@@ -3712,7 +3710,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 40
+        minutes: 45
         seconds: 0
 
   conditions:
@@ -3816,7 +3814,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 10
+        minutes: 45
         seconds: 0
   
   conditions:
@@ -3891,7 +3889,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 15
+        minutes: 30
         seconds: 0
 
   conditions:
@@ -3949,10 +3947,10 @@
           - light.basement_storage_area_main_lights
  
         ##########################################################
-        ## Turn Off Basement Storage Lights When No Motion Detected
+        ## Turn Off Ftiness Room Lights When No Motion Detected
         ##########################################################
 
-- alias: Motion - Turn Off Basement Storage Lights When No Motion Detected
+- alias: Motion - Turn Off Ftiness Room Lights When No Motion Detected
   id: 'motion_turn_off_basement_storage_lights_when_no_motion_detected'
 
   triggers:
@@ -3961,7 +3959,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 15
+        minutes: 30
         seconds: 0
 
   conditions:

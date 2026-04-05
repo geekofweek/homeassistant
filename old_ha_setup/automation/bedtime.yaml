@@ -46,13 +46,9 @@
           - switch.USER1s_office_air_purifier
           - switch.basement_storage_air_purifier
           - switch.fountain
-          - switch.kitchen_wall_panel_screen
-          - switch.espresso_machine_power
-    - action: switch.turn_on
-      data: {}
-      target:
-        entity_id:
-          - switch.kitchen_wall_panel_maintenance_mode
+          - switch.media_room_ap_led
+          - switch.second_floor_ap_led
+          - switch.four_season_room_ap_led
     - action: fan.turn_off
       data: {}
       target:
@@ -120,9 +116,6 @@
           - light.foyer_chandelier
           - light.USER1_s_office_closet_light
           - light.guest_bedroom_closet_light
-          - light.media_room_ap_led
-          - light.second_floor_ap_led
-          - light.four_season_room_ap_led
     - action: light.turn_on
       target:
         entity_id:
@@ -539,13 +532,13 @@
       state: 'home'
 
   actions:
-    - action: light.turn_on
+    - action: switch.turn_on
       data: {}
       target:
         entity_id:
-          - light.media_room_ap_led
-          - light.second_floor_ap_led
-          - light.four_season_room_ap_led
+          - switch.media_room_ap_led
+          - switch.second_floor_ap_led
+          - switch.four_season_room_ap_led
 
 #################################################################
 ## Helpers

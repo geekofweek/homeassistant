@@ -2,10 +2,6 @@
 ## Holiday Automations
 ##################################################################
 
-##################################################################
-## Christmas Tree Automations
-##################################################################
-
         ##########################################################
         ## Christmas Tree Bedtime
         ##########################################################
@@ -36,7 +32,7 @@
         state: 'on'
 
   action:
-    - action: switch.turn_off
+    - service: switch.turn_off
       data: {}
       entity_id:
         - switch.christmas_tree
@@ -75,7 +71,7 @@
         state: 'off'
 
   action:
-    - action: switch.turn_on
+    - service: switch.turn_on
       data: {}
       entity_id:
         - switch.christmas_tree
@@ -115,7 +111,7 @@
         state: 'on'
 
   action:
-    - action: switch.turn_off
+    - service: switch.turn_off
       data: {}
       entity_id:
         - switch.christmas_tree
@@ -158,7 +154,7 @@
         state: 'off'
 
   action:
-    - action: switch.turn_on
+    - service: switch.turn_on
       data: {}
       entity_id:
         - switch.christmas_tree
@@ -219,7 +215,7 @@
       state: 'on'
 
   action:
-    - action: switch.turn_off
+    - service: switch.turn_off
       data: {}
       entity_id:
         - switch.basement_christmas_tree
@@ -268,254 +264,10 @@
       state: 'off'
 
   action:
-    - action: switch.turn_on
+    - service: switch.turn_on
       data: {}
       entity_id:
         - switch.basement_christmas_tree
-
-##################################################################
-## Exterior Lighting Automations
-##################################################################
-
-        ##########################################################
-        ## St. Patricks Day Lighting On at Sunset
-        ##########################################################
-
-- alias: Holiday - St. Patricks Day Lighting On at Sunset
-  id: 'holiday_st_patricks_day_lighting_on_at_sunset'
-
-  triggers:
-    - trigger: sun
-      event: 'sunset'
-      offset: '-00:15:00'
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.disable_exterior_light_automations
-      state: 'off'
-    - condition: state
-      entity_id: input_select.exterior_holiday_lighting
-      state: "St. Patricks Day"
-
-  actions:
-    - action: light.turn_on
-      entity_id: 
-        - light.front_porch
-        - light.garage
-      data:
-        transition: 900
-        brightness_pct: 100
-        rgb_color: [0,255,0]
-
-        ##########################################################
-        ## Independence Day Lighting On at Sunset
-        ##########################################################
-
-- alias: Holiday - Independence Day Lighting On at Sunset
-  id: 'holiday_independence_day_lighting_on_at_sunset'
-
-  triggers:
-    - trigger: sun
-      event: 'sunset'
-      offset: '-00:15:00'
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.disable_exterior_light_automations
-      state: 'off'
-    - condition: state
-      entity_id: input_select.exterior_holiday_lighting
-      state: 'Independence Day'
-
-  actions:
-    - action: light.turn_on
-      entity_id: 
-        - light.front_porch_right
-        - light.garage_right
-      data:
-        transition: 900
-        brightness_pct: 100
-        rgb_color: [255,0,0]
-    - action: light.turn_on
-      entity_id: 
-        - light.front_porch_left
-        - light.garage_left
-      data:
-        transition: 900
-        brightness_pct: 100
-        rgb_color: [0,0,255]
-
-        ##########################################################
-        ## Independence Day Lighting Rotate Colors
-        ##########################################################
-
-- alias: Holiday - Independence Day Lighting Rotate Colors
-  id: 'holiday_independence_day_lighting_rotate_colors'
-
-  triggers:
-    trigger: time_pattern
-    minutes: /5
-
-  conditions:
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: state
-      entity_id: input_select.exterior_holiday_lighting
-      state: 'Independence Day'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: light.front_porch
-        state: 'on'
-        for:
-          hours: 0
-          minutes: 15
-          seconds: 0
-      - condition: state
-        entity_id: light.garage
-        state: 'on'
-        for:
-          hours: 0
-          minutes: 15
-          seconds: 0
-
-  actions:
-    - action: light.turn_on
-      entity_id: 
-        - light.front_porch_right
-        - light.garage_right
-      data:
-        transition: 15
-        rgb_color: '{{ states(''input_select.exterior_independence_day_light_color_right'') }}'
-    - action: light.turn_on
-      entity_id: 
-        - light.front_porch_left
-        - light.garage_left
-      data:
-        transition: 15
-        rgb_color: '{{ states(''input_select.exterior_independence_day_light_color_left'') }}'
-    - action: input_select.select_option
-      target:
-        entity_id: input_select.exterior_independence_day_light_color_right
-      data:
-        option: >
-          {{ state_attr('input_select.exterior_independence_day_light_color_right', 'options')
-              | reject('eq', states('input_select.exterior_independence_day_light_color_right'))
-              | list | random }}
-    - action: input_select.select_option
-      target:
-        entity_id: input_select.exterior_independence_day_light_color_left
-      data:
-        option: >
-          {{ state_attr('input_select.exterior_independence_day_light_color_left', 'options')
-              | reject('eq', states('input_select.exterior_independence_day_light_color_left'))
-              | list | random }}
-
-        ##########################################################
-        ## Halloween Lighting On at Sunset
-        ##########################################################
-
-- alias: Holiday - Halloween Lighting On at Sunset
-  id: 'holiday_halloween_lighting_on_at_sunset'
-
-  triggers:
-    - trigger: sun
-      event: 'sunset'
-      offset: '-00:15:00'
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.disable_exterior_light_automations
-      state: 'off'
-    - condition: state
-      entity_id: input_select.exterior_holiday_lighting
-      state: 'Halloween'
-
-  actions:
-    - action: light.turn_on
-      entity_id: 
-        - light.front_porch_right
-        - light.garage_right
-      data:
-        transition: 900
-        brightness_pct: 100
-        rgb_color: [160,6,255]
-    - action: light.turn_on
-      entity_id: 
-        - light.front_porch_left
-        - light.garage_left
-      data:
-        transition: 900
-        brightness_pct: 100
-        rgb_color: [255,85,7]
-
-        ##########################################################
-        ## Halloween Lighting Rotate Colors
-        ##########################################################
-
-- alias: Holiday - Halloween Lighting Rotate Colors
-  id: 'holiday_halloween_lighting_rotate_colors'
-
-  triggers:
-    trigger: time_pattern
-    minutes: /5
-
-  conditions:
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: state
-      entity_id: input_select.exterior_holiday_lighting
-      state: 'Halloween'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: light.front_porch
-        state: 'on'
-        for:
-          hours: 0
-          minutes: 15
-          seconds: 0
-      - condition: state
-        entity_id: light.garage
-        state: 'on'
-        for:
-          hours: 0
-          minutes: 15
-          seconds: 0
-
-  actions:
-    - action: light.turn_on
-      entity_id: 
-        - light.front_porch_right
-        - light.garage_right
-      data:
-        transition: 15
-        rgb_color: '{{ states(''input_select.exterior_halloween_light_color_right'') }}'
-    - action: light.turn_on
-      entity_id: 
-        - light.front_porch_left
-        - light.garage_left
-      data:
-        transition: 15
-        rgb_color: '{{ states(''input_select.exterior_halloween_light_color_left'') }}'
-    - action: input_select.select_option
-      target:
-        entity_id: input_select.exterior_halloween_light_color_right
-      data:
-        option: >
-          {{ state_attr('input_select.exterior_halloween_light_color_right', 'options')
-              | reject('eq', states('input_select.exterior_halloween_light_color_right'))
-              | list | random }}
-    - action: input_select.select_option
-      target:
-        entity_id: input_select.exterior_halloween_light_color_left
-      data:
-        option: >
-          {{ state_attr('input_select.exterior_halloween_light_color_left', 'options')
-              | reject('eq', states('input_select.exterior_halloween_light_color_left'))
-              | list | random }}
 
         ##########################################################
         ## Christmas Lighting
@@ -623,29 +375,106 @@
               | list | random }}
 
         ##########################################################
-        ## Reset Holiday Modes at Sunrise
+        ## Halloween Lighting On at Sunset
         ##########################################################
 
-- alias: Holiday - Reset Holiday Modes at Sunrise
-  id: 'holiday_reset_holiday_modes_at_sunrise'
+- alias: Holiday - Halloween Lighting On at Sunset
+  id: 'holiday_halloween_lighting_on_at_sunset'
 
   triggers:
     - trigger: sun
-      event: 'sunrise'
-      offset: '+00:30:00'
+      event: 'sunset'
+      offset: '-00:15:00'
 
   conditions:
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: input_select.exterior_holiday_lighting
-        state: 'Christmas'
-      - condition: state
-        entity_id: input_select.exterior_holiday_lighting
-        state: 'Halloween'
+    - condition: state
+      entity_id: input_boolean.disable_exterior_light_automations
+      state: 'off'
+    - condition: state
+      entity_id: input_select.exterior_holiday_lighting
+      state: 'Halloween'
 
   actions:
-    - action: select.select_option
+    - action: light.turn_on
+      entity_id: 
+        - light.front_porch_right
+        - light.garage_right
       data:
-        entity_id: input_select.exterior_holiday_lighting
-        option: "None"
+        transition: 900
+        brightness_pct: 100
+        rgb_color: [160,6,255]
+    - action: light.turn_on
+      entity_id: 
+        - light.front_porch_left
+        - light.garage_left
+      data:
+        transition: 900
+        brightness_pct: 100
+        rgb_color: [255,85,7]
+
+        ##########################################################
+        ## Halloween Lighting Rotate Colors
+        ##########################################################
+
+- alias: Holiday - Halloween Lighting Rotate Colors
+  id: 'holiday_halloween_lighting_rotate_colors'
+
+  triggers:
+    trigger: time_pattern
+    minutes: /5
+
+  conditions:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_select.exterior_holiday_lighting
+      state: 'Halloween'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: light.front_porch
+        state: 'on'
+        for:
+          hours: 0
+          minutes: 15
+          seconds: 0
+      - condition: state
+        entity_id: light.garage
+        state: 'on'
+        for:
+          hours: 0
+          minutes: 15
+          seconds: 0
+
+  actions:
+    - action: light.turn_on
+      entity_id: 
+        - light.front_porch_right
+        - light.garage_right
+      data:
+        transition: 15
+        rgb_color: '{{ states(''input_select.exterior_halloween_light_color_right'') }}'
+    - action: light.turn_on
+      entity_id: 
+        - light.front_porch_left
+        - light.garage_left
+      data:
+        transition: 15
+        rgb_color: '{{ states(''input_select.exterior_halloween_light_color_left'') }}'
+    - action: input_select.select_option
+      target:
+        entity_id: input_select.exterior_halloween_light_color_right
+      data:
+        option: >
+          {{ state_attr('input_select.exterior_halloween_light_color_right', 'options')
+              | reject('eq', states('input_select.exterior_halloween_light_color_right'))
+              | list | random }}
+    - action: input_select.select_option
+      target:
+        entity_id: input_select.exterior_halloween_light_color_left
+      data:
+        option: >
+          {{ state_attr('input_select.exterior_halloween_light_color_left', 'options')
+              | reject('eq', states('input_select.exterior_halloween_light_color_left'))
+              | list | random }}

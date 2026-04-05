@@ -1,0 +1,34 @@
+#################################################################
+## Coffee Automations
+#################################################################
+
+        ##########################################################
+        ## Turn on Espresso Machine in the Morning
+        ##########################################################
+
+- alias: Coffee - Turn on Espresso Machine in the Morning
+  id: 'coffee_turn_on_espresso_machine_in_the_morning'
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+
+  conditions:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: switch.espresso_machine_power
+      state: 'off'
+
+  actions:
+    - action: switch.turn_on
+      data: {}
+      target:
+        entity_id:
+          - switch.espresso_machine_power

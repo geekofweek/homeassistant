@@ -63,13 +63,9 @@
           - switch.media_room_air_purifier
           - switch.USER1s_office_air_purifier
           - switch.basement_storage_air_purifier
-          - switch.kitchen_wall_panel_screen
-          - switch.espresso_machine_power
-    - action: switch.turn_on
-      data: {}
-      target:
-        entity_id:
-          - switch.kitchen_wall_panel_maintenance_mode
+          - switch.media_room_ap_led
+          - switch.second_floor_ap_led
+          - switch.four_season_room_ap_led
 
         ##########################################################
         ## Household Away Mode Workshop Air Purfier
@@ -260,9 +256,6 @@
           - light.guest_bedroom_closet_light
           - light.USER1_s_office_closet_light
           - light.patio_lights
-          - light.media_room_ap_led
-          - light.second_floor_ap_led
-          - light.four_season_room_ap_led
 
         ##########################################################
         ## Household Away Mode Four Season Room Garage Door
@@ -297,81 +290,6 @@
           - cover.four_season_room
 
         ##########################################################
-        ## Turn On Wall Panel Power When Home
-        ##########################################################
-
-- alias: Location - Turn on Wall Panel Power When Home
-  id: 'location_turn_on_wall_panel_when_home'
-
-  triggers:
-    - trigger: state
-      entity_id: group.household
-      from: 'not_home'
-      to: 'home'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 15
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.disable_location_automations
-      state: 'off'
-    - condition: state
-      entity_id: switch.kitchen_wall_panel_switch
-      state: 'off'
-
-  actions:
-    - action: switch.turn_on
-      data: {}
-      target:
-        entity_id:
-          - switch.kitchen_wall_panel_switch
-    - delay: '00:01:30'
-    - action: switch.turn_off
-      data: {}
-      target:
-        entity_id:
-          - switch.kitchen_wall_panel_maintenance_mode
-
-        ##########################################################
-        ## Turn On Wall Panel Display When Home
-        ##########################################################
-
-- alias: Location - Turn on Wall Panel Display When Home
-  id: 'location_turn_on_wall_panel_display_when_home'
-
-  triggers:
-    - trigger: state
-      entity_id: group.household
-      from: 'not_home'
-      to: 'home'
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.disable_location_automations
-      state: 'off'
-    - condition: state
-      entity_id: switch.kitchen_wall_panel_screen
-      state: 'off'
-    - condition: state
-      entity_id: switch.kitchen_wall_panel_switch
-      state: 'on'
-
-  actions:
-    - action: switch.turn_off
-      data: {}
-      target:
-        entity_id:
-          - switch.kitchen_wall_panel_maintenance_mode
-    - delay: '00:00:02'
-    - action: switch.turn_on
-      data: {}
-      target:
-        entity_id:
-          - switch.kitchen_wall_panel_screen
-
-        ##########################################################
         ## Turn On AP LEDs When Home
         ##########################################################
 
@@ -390,13 +308,13 @@
       state: 'off'
 
   actions:
-    - action: light.turn_on
+    - action: switch.turn_on
       data: {}
       target:
         entity_id:
-          - light.media_room_ap_led
-          - light.second_floor_ap_led
-          - light.four_season_room_ap_led
+          - switch.media_room_ap_led
+          - switch.second_floor_ap_led
+          - switch.four_season_room_ap_led
 
         ##########################################################
         ## Turn On Stair Lights When Home Before 9p
@@ -529,45 +447,7 @@
         entity_id:
           - light.basement_stairs_main_lights
       data:
-        brightness_pct: 25
-        transition: 120
-
-        ##########################################################
-        ## Turn On Basement Stair Lights When Home Daytime
-        ##########################################################
-
-- alias: Location - Turn On Basement Stair Lights When Home Daytime
-  id: 'location_turn_on_basement_stair_lights_when_home_daytime'
-
-  triggers:
-    - trigger: state
-      entity_id: group.household
-      from: 'not_home'
-      to: 'home'
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.disable_location_automations
-      state: 'off'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
-      - condition: sun
-        after: sunset
-        after_offset: "-00:45:00"
-    - condition: state
-      entity_id: light.basement_stairs_main_lights
-      state: 'off'
-
-  actions:
-    - action: light.turn_on
-      target:
-        entity_id:
-          - light.basement_stairs_main_lights
-      data:
-        brightness_pct: 25
+        brightness_pct: 100
         transition: 120
 
         ##########################################################

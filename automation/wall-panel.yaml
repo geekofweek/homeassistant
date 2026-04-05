@@ -1,0 +1,467 @@
+#################################################################
+## Wall Panel Automations
+#################################################################
+
+#################################################################
+## Device Control
+#################################################################
+
+#################################################################
+## Turn Wall Panel Screen On When Motion Detected
+#################################################################
+
+- alias: Wall Panel - Turn Wall Panel Screen On When Motion Detected
+  id: 'wall_panel_turn_screen_on_motion_detected'
+
+  triggers:
+    - platform: state
+      entity_id: binary_sensor.wall_panel_motion
+      to: 'on'
+
+  conditions:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: switch.kitchen_wall_panel_screen
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.bedtime
+      state: 'off'
+    - condition: state
+      entity_id: switch.kitchen_wall_panel_switch
+      state: 'on'
+#    - condition: not
+#      conditions:
+#      - condition: state
+#        entity_id: sensor.main_floor_current_room
+#        state: "Kitchen"
+#      - condition: state
+#        entity_id: binary_sensor.main_floor_cleaning
+#        state: 'on'
+#    - condition: not
+#      conditions:
+#      - condition: state
+#        entity_id: sensor.main_floor_current_room
+#        state: "Bedroom Hallway"
+#      - condition: state
+#        entity_id: binary_sensor.main_floor_cleaning
+#        state: 'on'
+#    - condition: not
+#      conditions:
+#      - condition: state
+#        entity_id: sensor.main_floor_current_room
+#        state: "Living Room"
+#      - condition: state
+#        entity_id: binary_sensor.main_floor_cleaning
+#        state: 'on'
+#    - condition: not
+#      conditions:
+#      - condition: state
+#        entity_id: vacuum.four_season_room
+#        state: 'cleaning'
+
+  actions:
+    - action: switch.turn_on
+      data: {}
+      target:
+        entity_id:
+          - switch.kitchen_wall_panel_screen
+
+#################################################################
+## Turn Wall Panel Screen Off When No Motion Detected
+#################################################################
+
+- alias: Wall Panel - Turn Wall Panel Screen Off When No Motion Detected
+  id: 'wall_panel_turn_screen_off_no_motion_detected'
+
+  triggers:
+    - platform: state
+      entity_id: binary_sensor.wall_panel_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 7
+        seconds: 0
+
+  conditions:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: switch.kitchen_wall_panel_screen
+      state: 'on'
+    - condition: state
+      entity_id: switch.kitchen_wall_panel_switch
+      state: 'on'
+
+  actions:
+    - action: switch.turn_off
+      data: {}
+      target:
+        entity_id:
+          - switch.kitchen_wall_panel_screen
+
+#################################################################
+## Turn Wall Panel Screen On When Bedtime Off
+#################################################################
+
+- alias: Wall Panel - Turn Screen When Bedtime Off
+  id: 'wall_panel_turn_screen_on_bedtime_off'
+
+  triggers:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+
+  conditions:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: switch.kitchen_wall_panel_screen
+      state: 'off'
+
+  actions:
+    - action: switch.turn_off
+      data: {}
+      target:
+        entity_id:
+          - switch.kitchen_wall_panel_maintenance_mode
+    - delay: '00:00:02'
+    - action: switch.turn_on
+      data: {}
+      target:
+        entity_id:
+          - switch.kitchen_wall_panel_screen
+    - delay: '00:00:15'
+    - action: button.press
+      data: {}
+      target:
+        entity_id:
+          - button.kitchen_wall_panel_restart_browser
+
+#################################################################
+## Turn Wall Panel Power On When Bedtime Off
+#################################################################
+
+- alias: Wall Panel - Turn Screen When Bedtime Off
+  id: 'wall_panel_turn_screen_on_bedtime_off'
+
+  triggers:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+
+  conditions:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: switch.kitchen_wall_panel_switch
+      state: 'off'
+
+  actions:
+    - action: switch.turn_on
+      data: {}
+      target:
+        entity_id:
+          - switch.kitchen_wall_panel_switch
+    - delay: '00:01:30'
+    - action: switch.turn_off
+      data: {}
+      target:
+        entity_id:
+          - switch.kitchen_wall_panel_maintenance_mode
+
+#################################################################
+## Kitchen Wall Panel Dark Mode On at Sunset
+#################################################################
+
+- alias: Wall Panel - Kitchen Dark Mode On at Sunset
+  id: 'wall_panel_kitchen_dark_mode_on_at_sunset'
+
+  triggers:
+    - trigger: sun
+      event: 'sunset'
+      offset: '-00:15:00'
+
+  conditions:
+    - condition: state
+      entity_id: switch.kitchen_wall_panel_switch
+      state: 'on'
+
+  actions:
+     - action: input_button.press
+       data: {}
+       target:
+         entity_id: input_button.kitchen_wall_panel_dark_mode
+
+#################################################################
+## Kitchen Wall Panel Light Mode On at Sunrise
+#################################################################
+
+- alias: Wall Panel - Kitchen Light Mode On at Sunrise
+  id: 'wall_panel_kitchen_light_mode_on_at_sunrise'
+
+  triggers:
+    - trigger: sun
+      event: 'sunrise'
+      offset: '+00:15:00'
+
+  conditions:
+    - condition: state
+      entity_id: switch.kitchen_wall_panel_switch
+      state: 'on'
+
+  actions:
+     - action: input_button.press
+       data: {}
+       target:
+         entity_id: input_button.kitchen_wall_panel_light_mode
+
+#################################################################
+## Kitchen Wall Panel Dark Mode On Button
+#################################################################
+
+- alias: Wall Panel - Kitchen Dark Mode On Button
+  id: 'wall_panel_kitchen_dark_mode_on_button'
+
+  triggers:
+    - platform: state
+      entity_id: input_button.kitchen_wall_panel_dark_mode
+
+  conditions:
+    - condition: state
+      entity_id: switch.kitchen_wall_panel_switch
+      state: 'on'
+
+  actions:
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: switch.kitchen_wall_panel_screen
+              state:
+                - "off"
+          sequence:
+            - action: rest_command.kitchen_wall_panel_dark_mode_on
+              metadata: {}
+              data: {}
+            - delay:
+                hours: 0
+                minutes: 0
+                seconds: 2
+                milliseconds: 0
+            - action: button.press
+              metadata: {}
+              target:
+                entity_id: button.kitchen_wall_panel_restart_browser
+              data: {}
+            - delay:
+                hours: 0
+                minutes: 0
+                seconds: 5
+                milliseconds: 0
+            - action: switch.turn_off
+              metadata: {}
+              target:
+                entity_id: switch.kitchen_wall_panel_screen
+              data: {}
+        - conditions:
+            - condition: state
+              entity_id: switch.kitchen_wall_panel_screen
+              state:
+                - "on"
+          sequence:
+            - action: rest_command.kitchen_wall_panel_dark_mode_on
+              metadata: {}
+              data: {}
+            - delay:
+                hours: 0
+                minutes: 0
+                seconds: 2
+                milliseconds: 0
+            - action: button.press
+              metadata: {}
+              target:
+                entity_id: button.kitchen_wall_panel_restart_browser
+              data: {}
+
+#################################################################
+## Kitchen Wall Panel Dark Mode Off Button
+#################################################################
+
+- alias: Wall Panel - Kitchen Dark Mode Off Button
+  id: 'wall_panel_kitchen_dark_mode_off_button'
+
+  triggers:
+    - platform: state
+      entity_id: input_button.kitchen_wall_panel_light_mode
+
+  conditions:
+    - condition: state
+      entity_id: switch.kitchen_wall_panel_switch
+      state: 'on'
+
+  actions:
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: switch.kitchen_wall_panel_screen
+              state:
+                - "off"
+          sequence:
+            - action: rest_command.kitchen_wall_panel_dark_mode_off
+              metadata: {}
+              data: {}
+            - delay:
+                hours: 0
+                minutes: 0
+                seconds: 2
+                milliseconds: 0
+            - action: button.press
+              metadata: {}
+              target:
+                entity_id: button.kitchen_wall_panel_restart_browser
+              data: {}
+            - delay:
+                hours: 0
+                minutes: 0
+                seconds: 5
+                milliseconds: 0
+            - action: switch.turn_off
+              metadata: {}
+              target:
+                entity_id: switch.kitchen_wall_panel_screen
+              data: {}
+        - conditions:
+            - condition: state
+              entity_id: switch.kitchen_wall_panel_screen
+              state:
+                - "on"
+          sequence:
+            - action: rest_command.kitchen_wall_panel_dark_mode_off
+              metadata: {}
+              data: {}
+            - delay:
+                hours: 0
+                minutes: 0
+                seconds: 2
+                milliseconds: 0
+            - action: button.press
+              metadata: {}
+              target:
+                entity_id: button.kitchen_wall_panel_restart_browser
+              data: {}
+
+#################################################################
+## Kitchen Wall Panel Restart if Offline
+#################################################################
+
+- alias: Wall Panel - Kitchen Restart if Offline
+  id: 'wall_panel_kitchen_restart_if_offline'
+
+  description: "Restart Kitchen Wall Panel if Offline"
+  mode: single
+  triggers:
+    - trigger: state
+      entity_id:
+        - device_tracker.kitchen_wall_panel_network
+      to:
+        - not_home
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  conditions:
+    - condition: state
+      entity_id: switch.kitchen_wall_panel_switch
+      state:
+        - "on"
+    - condition: state
+      entity_id: input_boolean.out_of_town_mode
+      state:
+        - "off"
+
+  actions:
+    - choose:
+        - conditions:
+            - condition: or
+              conditions:
+                - condition: state
+                  entity_id: input_boolean.bedtime
+                  state:
+                    - "on"
+                - condition: state
+                  entity_id: group.household
+                  state:
+                    - not_home
+          sequence:
+            - action: switch.turn_off
+              metadata: {}
+              target:
+                entity_id: switch.kitchen_wall_panel_switch
+              data: {}
+            - delay:
+                hours: 0
+                minutes: 0
+                seconds: 30
+                milliseconds: 0
+            - action: switch.turn_on
+              metadata: {}
+              target:
+                entity_id: switch.kitchen_wall_panel_switch
+              data: {}
+            - delay:
+                hours: 0
+                minutes: 2
+                seconds: 0
+                milliseconds: 0
+            - action: switch.turn_off
+              metadata: {}
+              target:
+                entity_id: switch.kitchen_wall_panel_screen
+              data: {}
+            - action: notify.USER1_devices
+              metadata: {}
+              data:
+                message: Wall Panel Offline - Restarting
+        - conditions:
+            - condition: state
+              entity_id: input_boolean.bedtime
+              state:
+                - "off"
+            - condition: state
+              entity_id: group.household
+              state:
+                - home
+          sequence:
+            - action: switch.turn_off
+              metadata: {}
+              target:
+                entity_id: switch.kitchen_wall_panel_switch
+              data: {}
+            - delay:
+                hours: 0
+                minutes: 0
+                seconds: 30
+                milliseconds: 0
+            - action: switch.turn_on
+              metadata: {}
+              target:
+                entity_id: switch.kitchen_wall_panel_switch
+              data: {}
+            - action: notify.USER1_devices
+              metadata: {}
+              data:
+                message: Wall Panel Offline - Restarting

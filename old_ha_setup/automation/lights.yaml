@@ -469,57 +469,6 @@
         transition: 900
 
         ##########################################################
-        ## Turn On Basement Stair Lights Bedtime Off
-        ##########################################################
-
-- alias: Lights - Turn On Basement Stair Lights Bedtime Off
-  id: 'lights_turn_on_basement_stair_lights_bedtime_off'
-
-  trigger:
-    - platform: state
-      entity_id: input_boolean.bedtime
-      to: 'off'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 30
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.disable_interior_light_automations
-      state: 'off'
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: media_player.media_room_apple_tv
-        state: 'playing'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: select.media_room_activities
-        state: "Play Xbox"
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: select.media_room_activities
-        state: "Play Nintendo Switch"
-    - condition: state
-      entity_id: input_boolean.bedtime
-      state: 'off'
-
-  actions:
-    - action: light.turn_on
-      target:
-        entity_id:
-          - light.basement_stairs_main_lights
-      data:
-        brightness_pct: 25
-        transition: 900
-
-        ##########################################################
         ## Turn On Basement Stair Lights at Sunset
         ##########################################################
 
@@ -542,21 +491,14 @@
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: state
+      entity_id: light.basement_stairs_main_lights
+      state: 'off'
     - condition: not
       conditions:
       - condition: state
         entity_id: media_player.media_room_apple_tv
         state: 'playing'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: select.media_room_activities
-        state: "Play Xbox"
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: select.media_room_activities
-        state: "Play Nintendo Switch"
     - condition: state
       entity_id: input_boolean.bedtime
       state: 'off'
@@ -618,7 +560,7 @@
 
   triggers:
    - trigger: time
-     at: '03:00:00'
+     at: '02:00:00'
 
   conditions:
     - condition: state
@@ -941,7 +883,7 @@
           - light.globe
       data:
         brightness_pct: 65
-        color_temp_kelvin: 2700
+        color_temp: 366
         transition: 30
 
         ##########################################################

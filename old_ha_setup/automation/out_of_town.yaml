@@ -1,0 +1,192 @@
+#################################################################
+## Out of Town Mode Automations
+#################################################################
+
+        ##########################################################
+        ## Out of Town Mode On
+        ##########################################################
+
+- alias: Out of Town - Mode On
+  id: 'out_of_town_mode_on'
+
+  triggers:
+    - trigger: state
+      entity_id: input_boolean.out_of_town_mode
+      to: 'on'
+
+  conditions:
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+
+  actions:
+    - action: homeassistant.turn_on
+      target:
+        entity_id:
+          - input_boolean.disable_fountain_automations
+          - input_boolean.disable_fan_automations
+          - input_boolean.disable_media_automations
+
+        ##########################################################
+        ## Out of Town Mode Off
+        ##########################################################
+
+- alias: Out of Town - Mode Off
+  id: 'out_of_town_mode_off'
+
+  triggers:
+    - trigger: state
+      entity_id: input_boolean.out_of_town_mode
+      to: 'off'
+
+  actions:
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.disable_fan_automations
+          - input_boolean.disable_media_automations
+
+        ##########################################################
+        ## Turn On Out of Town Mode when Gone 24 Hours
+        ##########################################################
+
+- alias: Out of Town - Turn On when Gone 24 Hours
+  id: 'out_of_town_turn_on_when_gone_24_hours'
+
+  triggers:
+    - trigger: state
+      entity_id: group.household
+      to: 'not_home'
+      for:
+        hours: 24
+        minutes: 0
+        seconds: 0
+
+  conditions:
+    - condition: state
+      entity_id: input_boolean.disable_location_automations
+      state: 'off'
+
+  actions:
+    - action: homeassistant.turn_on
+      entity_id: input_boolean.out_of_town_mode
+
+        ##########################################################
+        ## Turn off Out of Town Mode when Home
+        ##########################################################
+
+- alias: Out of Town - Turn off when Home
+  id: 'out_of_town_turn_off_when_home'
+
+  triggers:
+    - trigger: state
+      entity_id: group.household
+      from: 'not_home'
+      to: 'home'
+
+  conditions:
+    - condition: state
+      entity_id: input_boolean.disable_location_automations
+      state: 'off'
+
+  actions:
+    - action: homeassistant.turn_off
+      entity_id: input_boolean.out_of_town_mode
+
+        ##########################################################
+        ## Turn On Out of Town Mode when Thermostat set to Out of Town
+        ##########################################################
+
+- alias: Out of Town - Turn On when Thermostat set to Out of Town
+  id: 'out_of_town_turn_on_when_thermostat_set_to_vacation'
+
+  triggers:
+    - trigger: state
+      entity_id: sensor.main_floor_thermostat_climate_mode
+      to: 'vacation'
+    - trigger: state
+      entity_id: sensor.upstairs_thermostat_climate_mode
+      to: 'vacation'
+
+  conditions:
+    - condition: state
+      entity_id: input_boolean.disable_location_automations
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+
+  actions:
+    - action: homeassistant.turn_on
+      entity_id: input_boolean.out_of_town_mode
+
+        ##########################################################
+        ## Out of Town Lights On at Night
+        ##########################################################
+
+- alias: Out of Town - Lights On at Night
+  id: 'out_of_town_lights_on_at_night'
+
+  triggers:
+    - trigger: sun
+      event: 'sunset'
+      offset: '-00:60:00'
+
+  conditions:
+    - condition: state
+      entity_id: input_boolean.out_of_town_mode
+      state: 'on'
+
+  actions:
+    - delay:
+        minutes: '{{ range(2, 20) | random }}'
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.USER2s_office_ceiling_fan_light
+    - delay:
+        minutes: '{{ range(2, 28) | random }}'
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.study_main_lights
+      data:
+        brightness_pct: 50
+        transition: 120
+
+        ##########################################################
+        ## Out of Town Mode Lights off at Night
+        ##########################################################
+
+- alias: Out of Town - Lights Off at Night
+  id: 'out_of_town_lights_off_at_night'
+
+  triggers:
+    - trigger: time
+      at: '21:30:00'
+
+  conditions:
+    - condition: state
+      entity_id: input_boolean.out_of_town_mode
+      state: 'on'
+
+  actions:
+    - delay:
+        minutes: '{{ range(2, 59) | random }}'
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.USER2s_office_ceiling_fan_light
+    - delay:
+        minutes: '{{ range(2, 59) | random }}'
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.study_main_lights

@@ -2,138 +2,6 @@
 ## Camera Automations
 #################################################################
 
-#################################################################
-## PTZ Automations
-#################################################################
-
-    #################################################################
-    ## Person Detected on Patio Point Backyard PTZ
-    #################################################################
-
-- alias: Camera - Person Detected on Patio Point Backyard PTZ
-  id: 'camera_person_detected_on_patio_point_backyard_ptz'
-
-  mode: single
-  triggers:
-    - trigger: state
-      entity_id: binary_sensor.patio_camera_person_detected
-      to: 'on'
-    - trigger: state
-      entity_id: binary_sensor.side_yard_south_camera_person_detected
-      to: 'on'
-
-  conditions:
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-
-  actions:
-    - action: input_button.press
-      data: {}
-      target:
-        entity_id:
-          - input_button.backyard_ptz_patio
-
-        ##########################################################
-        ## Backyard PTZ Patrol On with Toggle
-        ##########################################################
-
-- alias: Camera - Backyard PTZ Patrol On with Toggle
-  id: 'camera_backyard_ptz_patrol_on_with_toggle'
-
-  triggers:
-    - trigger: state
-      entity_id: input_boolean.backyard_ptz_patrol
-      to: 'on'
-
-  conditions:
-    - condition: state
-      entity_id: select.backyard_camera_ptz_patrol
-      state: "stop"
-
-  actions:
-    - action: select.select_option
-      data:
-        entity_id: select.backyard_camera_ptz_patrol
-        option: "Backyard Patrol"
-
-        ##########################################################
-        ## Backyard PTZ Patrol Off with Toggle
-        ##########################################################
-
-- alias: Camera - Backyard PTZ Patrol Off with Toggle
-  id: 'camera_backyard_ptz_patrol_off_with_toggle'
-
-  triggers:
-    - trigger: state
-      entity_id: input_boolean.backyard_ptz_patrol
-      to: 'off'
-
-  conditions:
-    - condition: state
-      entity_id: select.backyard_camera_ptz_patrol
-      state: "Backyard Patrol"
-
-  actions:
-    - action: select.select_option
-      data:
-        entity_id: select.backyard_camera_ptz_patrol
-        option: "stop"
-
-        ##########################################################
-        ## Backyard PTZ Turn On Toggle with Select
-        ##########################################################
-
-- alias: Camera - Backyard PTZ Turn On Toggle with Select
-  id: 'camera_backyard_ptz_turn_on_toggle_with_select'
-
-  triggers:
-    - trigger: state
-      entity_id: select.backyard_camera_ptz_patrol
-      to: 'Backyard Patrol'
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.backyard_ptz_patrol
-      state: "off"
-
-  actions:
-    - action: homeassistant.turn_on
-      data: {}
-      target:
-        entity_id:
-          - input_boolean.backyard_ptz_patrol
-
-        ##########################################################
-        ## Backyard PTZ Turn Off Toggle with Select
-        ##########################################################
-
-- alias: Camera - Backyard PTZ Turn Off Toggle with Select
-  id: 'camera_backyard_ptz_turn_off_toggle_with_select'
-
-  triggers:
-    - trigger: state
-      entity_id: select.backyard_camera_ptz_patrol
-      to: 'stop'
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.backyard_ptz_patrol
-      state: "on"
-
-  actions:
-    - action: homeassistant.turn_off
-      data: {}
-      target:
-        entity_id:
-          - input_boolean.backyard_ptz_patrol
-
-#################################################################
-## Doorbell Automations
-#################################################################
-
         ##########################################################
         ## Doorbell Chime Sonos
         ##########################################################
@@ -334,10 +202,6 @@
         entity_id:
           - input_boolean.view_package_camera
           - input_boolean.package_camera_notification
-
-#################################################################
-## Light Automations
-#################################################################
 
         ##########################################################
         ## Turn On Front Porch & Garage Lights when Motion or Doorbell
@@ -573,10 +437,6 @@
         brightness_pct: 25
         transition: 900
 
-#################################################################
-## Infrared Automations
-#################################################################
-
         ##########################################################
         ## Turn on Side Yard South Camera Infrared after Sunset
         ##########################################################
@@ -674,10 +534,6 @@
       data:
         entity_id: select.patio_camera_infrared_mode
         option: auto
-
-#################################################################
-## Privacy Mode Automations
-#################################################################
 
         ##########################################################
         ## Household Away Turn Off Camera Privacy Mode

@@ -1,0 +1,35 @@
+#################################################################
+## Rest Commands
+#################################################################
+
+#################################################################
+## Kitchen Wall Panel - Sonos App
+#################################################################
+
+  launch_sonos_kitchen_wall_panel:
+    url: http://kitchen-wall-panel.network.REDACTED:2323/?cmd=startApplication&package=com.sonos.acr2&password=REDACTED
+    method: POST
+
+#################################################################
+## Kitchen Wall Panel - Unifi Protect App
+#################################################################
+
+  launch_unifi_protect_kitchen_wall_panel:
+    url: http://kitchen-wall-panel.network.REDACTED:2323/?cmd=startApplication&package=com.ubnt.unifi.protect&password=REDACTED
+    method: POST
+
+#################################################################
+## Kitchen Wall Panel - Dark Mode Off
+#################################################################
+
+  kitchen_wall_panel_dark_mode_off:
+    url: http://kitchen-wall-panel.network.REDACTED:2323/?cmd=setStringSetting&key=appDarkMode&value=0&password=REDACTED
+    method: POST
+
+#################################################################
+## Kitchen Wall Panel - Dark Mode On
+#################################################################
+
+  kitchen_wall_panel_dark_mode_on:
+    url: http://kitchen-wall-panel.network.REDACTED:2323/?cmd=setStringSetting&key=appDarkMode&value=2&password=REDACTED
+    method: POST

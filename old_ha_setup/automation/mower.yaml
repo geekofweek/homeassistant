@@ -1,0 +1,45 @@
+#################################################################
+## Automower Automations
+#################################################################
+
+      ##########################################################
+      ## Update Mower Status
+      ##########################################################
+
+- alias: Mower - Update State at Regular Intervals
+  id: 'mower_update_state_at_regular_intervals'
+
+  triggers:
+    - trigger: time_pattern
+      minutes: /5
+    - trigger: homeassistant
+      event: start
+
+  conditions:
+    - condition: numeric_state
+      entity_id: sun.sun
+      attribute: elevation
+      above: -15
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.season
+        state: 'winter'
+
+  actions:
+      - action: google_assistant_sdk_custom.send_text_command
+        metadata: {}
+        data:
+          command:
+            - what is Navimow battery level?
+            - what is Navimow doing?
+        response_variable: result
+      - event: set_mower_state
+        event_data:
+          battery_level: >-
+            {{ result.responses[0].text | regex_replace(find='.* ([0-9]+)
+            percent.*', replace='\\1', ignorecase=True) }}
+          status: >-
+            {{ result.responses[1].text | regex_replace(find='.*Mower
+            (.*)\.', replace='\\1', ignorecase=True) }}
+  mode: restart

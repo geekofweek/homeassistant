@@ -233,8 +233,8 @@
 
   triggers:
     - trigger: state
-      entity_id: lawn_mower.mower
-      to: 'mowing'
+      entity_id: sensor.mower_status
+      to: 'Mowing'
 
   actions:
     - action: mqtt.publish
@@ -270,8 +270,8 @@
 
   triggers:
     - trigger: state
-      entity_id: lawn_mower.mower
-      to: 'docked'
+      entity_id: sensor.mower_status
+      to: 'Parked'
 
   actions:
     - action: mqtt.publish

@@ -19,48 +19,35 @@
       wind_bearing_template: "{{ state_attr('weather.REDACTED_ecobee', 'wind_bearing') }}"
       visibility_template: "{{ state_attr('weather.REDACTED_ecobee', 'visibility') }}"
 
-       ##########################################################
-       ## Bathroom Occupancy Sensor
-       ##########################################################
+      ##########################################################
+      ## Navimow Mower Status
+      ##########################################################
 
-  - binary_sensor:
-      - unique_id: bathroom_occupancy_sensor
-        name: "Bathroom Occupied"
-        state: >
-          {{ is_state('binary_sensor.primary_bathroom_door_sensor', 'off')
-             or is_state('binary_sensor.primary_bathroom_toilet_door_sensor', 'off') }}
+  - trigger:
+      platform: event
+      event_type: set_mower_state
+    sensor:
+      - name: "Mower Battery level"
+        unique_id: "mower_battery_level"
+        device_class: battery
+        state_class: measurement
+        unit_of_measurement: "%"
+        state: "{{ trigger.event.data.battery_level }}"
 
-       ##########################################################
-       ## Upstairs Bathroom Occupancy Sensor
-       ##########################################################
-
-  - binary_sensor:
-      - unique_id: upstairs_bathroom_occupancy_sensor
-        name: "Upstairs Bathroom Occupied"
-        state: >
-          {{ is_state('binary_sensor.upstairs_bathroom_door_sensor', 'off')
-             or is_state('binary_sensor.upstairs_bathroom_toilet_door_sensor', 'off') }}
-
-       ##########################################################
-       ## Guest Bathroom Occupancy Sensor
-       ##########################################################
-
-  - binary_sensor:
-      - unique_id: guest_bathroom_occupancy_sensor
-        name: "Guest Bathroom Occupied"
-        state: >
-          {{ is_state('binary_sensor.guest_bathroom_door_sensor', 'off')
-             or is_state('binary_sensor.guest_bathroom_toilet_door_sensor', 'off') }}
-
-       ##########################################################
-       ## Basement Bathroom Occupancy Sensor
-       ##########################################################
-
-  - binary_sensor:
-      - unique_id: basement_bathroom_occupancy_sensor
-        name: "Basement Bathroom Occupied"
-        state: >
-          {{ is_state("binary_sensor.basement_bathroom_door_sensor", "off") }}
+      - name: "Mower: Status"
+        unique_id: "mower_status"
+        icon: "mdi:robot-mower"
+        state: |
+          {{
+            {
+              "is running": "Mowing",
+              "isn't docked": "Mowing",
+              "running": "Mowing",
+              "is paused": "Paused",
+              "is docked": "Parked",
+              "isn't running": "Parked"
+            }[trigger.event.data.status] | default('unknown')
+          }}
 
       ##########################################################
       ## Fake Binary Sensors for UI Elements
@@ -178,9 +165,6 @@
         state: "{{ daily['weather.REDACTED_ecobee'].forecast[0].templow }}"
         device_class: temperature
         unit_of_measurement: '°F'
-      - name: REDACTED, MO Forecasted Condition Today
-        unique_id: REDACTED_forecasted_condition_today
-        state: "{{ daily['weather.REDACTED_ecobee'].forecast[0].condition }}"
 
       ##########################################################
       ## Outdoor Temperature Ranges
@@ -220,8 +204,6 @@
           sunny
         {% elif is_state('weather.REDACTED_ecobee', 'sunny') and is_state('sun.sun', 'below_horizon') %}
           clear-night
-        {% elif is_state('weather.REDACTED_ecobee', 'hazy') %}
-          fog
         {% else %}
           {{ states("weather.REDACTED_ecobee") }}
         {% endif %}
@@ -264,6 +246,10 @@
           windy
         {% elif is_state('weather.REDACTED_ecobee', 'hail') %}
           hail
+        {% elif is_state('weather.REDACTED_ecobee', 'hazy') %}
+          hazy
+        {% elif is_state('weather.REDACTED_ecobee', 'Hazy') %}
+          hazy
         {% else %}
           {{ states("sensor.weather_condition_REDACTED") }}
         {% endif %}
@@ -306,6 +292,8 @@
           Windy
         {% elif is_state('weather.REDACTED_ecobee', 'hail') %}
           Hail
+        {% elif is_state('weather.REDACTED_ecobee', 'hazy') %}
+          Hazy
         {% else %}
           {{ states("sensor.weather_condition_REDACTED") }}
         {% endif %}
