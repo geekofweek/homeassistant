@@ -10,6 +10,7 @@ I've updated the repository to include my updated configuration files after the 
 I had a few goals going into the new home setup:
 * Start fresh but re-use yaml and automation logic where I could
 * Proritize local control unless absolutely not possible to solve the problem
+* Get rid of the Amazon Echo's
 * Go big, do what I did before but just turn it up to 11
 
 It might take me some time to go through the device list, screenshots, etc. as lots of things have change.  
@@ -43,3 +44,5 @@ My personal [Home Assistant Operating System](https://home-assistant.io) configu
 | [Apple TV](https://amzn.to/4slNXgL) | [Apple TV](https://www.home-assistant.io/integrations/apple_tv/)| 6x, One device per TV|
 | [Sonos](https://amzn.to/4sRWokK) | [Sonos](https://www.home-assistant.io/integrations/sonos/)| 20+ devices of various models |
 | [Rachio Smart Hose Timer](https://amzn.to/4skIcQv) | [Rachio](https://www.home-assistant.io/integrations/rachio/)| Meh, they work |
+| [ApoloSign Digital Calendar 21.5"](https://amzn.to/4scowhD) | [Fully Kiosk Browser](https://www.home-assistant.io/integrations/fully_kiosk/)| Wall mounted touch screen for controling HA |
+
