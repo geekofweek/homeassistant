@@ -23,4 +23,4 @@ My personal [Home Assistant Operating System](https://home-assistant.io) configu
 | ------------- | ------------- | ------------------------------------------- |
 | [Connect ZWA-2](https://amzn.to/4v37fdc) | [Z-Wave](https://www.home-assistant.io/integrations/zwave_js/) | I utilize the [Waveshare ESP32](https://amzn.to/48t04RM) board for POE |
 | [SMLIGHT SLZB-06M](https://amzn.to/3NWIE9n) | [Zigbee](https://www.home-assistant.io/integrations/zha/) | NA |
-| [Lutron Smart Bridge 2 Pro](https://amzn.to/2WLpKEF) | [Lutron Caséta](https://www.home-assistant.io/integrations/lutron_caseta) | I have two Lutron hubs as I hit the device limit on the first one. |
+| [Lutron Smart Bridge 2 Pro](https://amzn.to/2WLpKEF) | [Lutron Caséta](https://www.home-assistant.io/integrations/lutron_caseta) | I have two Lutron hubs as I hit the device limit on the first one. Original Pro hub was reset and migrated from my old house. |
