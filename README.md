@@ -24,7 +24,7 @@ My personal [Home Assistant Operating System](https://home-assistant.io) configu
 | Device | Integration | Notes | 
 | ------------- | ------------- | ------------- |
 | [Connect ZWA-2](https://amzn.to/4v37fdc) | [Z-Wave](https://www.home-assistant.io/integrations/zwave_js/) | [Waveshare ESP32](https://amzn.to/48t04RM) board for POE |
-| [SLZB-06M](https://amzn.to/3NWIE9n) | [Zigbee](https://www.home-assistant.io/integrations/zha/) | POE Connection |
+| [SLZB-06M](https://amzn.to/3NWIE9n) | [Zigbee](https://www.home-assistant.io/integrations/zha/) | POE Connection.  Various brands of Zigbee bulbs included Philips hue.  I use a lot less than I did at the old place. |
 | [Lutron Smart Hub](https://amzn.to/4sRVYe9) | [Lutron Caséta](https://www.home-assistant.io/integrations/lutron_caseta) | I have two Lutron hubs as I hit the device limit on the first one. I have a lot of dimmers, switches, motion sensors, and Pico remotes... a lot. |
 | [Ecobee Premium](https://amzn.to/4sURFiw) | [Ecobee](https://www.home-assistant.io/integrations/ecobee/) | Dual thermostats for two HVACs. My previous API access was intact, will switch to homekit when that fails. |
 | [Navimow x315](https://navimow.com/products/segway-navimow-x315?variant=43296344113289) | [Navimow](https://github.com/segwaynavimow/NavimowHA)| Using official custom integration |
