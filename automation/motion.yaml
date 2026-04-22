@@ -365,7 +365,7 @@
       state: 'below_horizon'
     - condition: time
       after: '06:00:00'
-      before: '22:00:00'
+      before: '22:30:00'
 
   actions:
     - action: light.turn_off
@@ -1652,7 +1652,7 @@
       state: 'below_horizon'
     - condition: time
       after: '06:00:00'
-      before: '22:00:00'
+      before: '22:30:00'
 
   actions:
     - action: light.turn_off
@@ -2556,6 +2556,9 @@
     - condition: state
       entity_id: light.USER1_s_office_lights
       state: 'on'
+    - condition: state
+      entity_id: binary_sensor.USER1_s_office_door_sensor
+      state: 'on'
 
   actions:
     - action: light.turn_off
@@ -2746,7 +2749,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 5
+        minutes: 20
         seconds: 0
   
   conditions:
@@ -2755,6 +2758,9 @@
       state: 'off'
     - condition: state
       entity_id: light.USER2_s_office_lights
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.USER2_s_office_door_sensor
       state: 'on'
 
   actions:

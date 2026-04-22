@@ -46,13 +46,8 @@
           - switch.USER1s_office_air_purifier
           - switch.basement_storage_air_purifier
           - switch.fountain
-          - switch.kitchen_wall_panel_screen
+          - switch.kitchen_wall_panel_switch
           - switch.espresso_machine_power
-    - action: switch.turn_on
-      data: {}
-      target:
-        entity_id:
-          - switch.kitchen_wall_panel_maintenance_mode
     - action: fan.turn_off
       data: {}
       target:
@@ -676,3 +671,32 @@
         entity_id:
           - input_boolean.bedtime
           - input_boolean.USER2_bedtime
+
+        ##########################################################
+        ## Disable Bedtime when USER1 or USER2 Home
+        ##########################################################
+
+- alias: Bedtime - Disable Bedtime when USER1 or USER2 Home
+  id: 'bedtime_disable_bedtime_when_USER1_or_USER2_home'
+
+  triggers:
+    - trigger: state
+      entity_id: person.USER1
+      from: 'not_home'
+      to: 'home'
+    - trigger: state
+      entity_id: person.USER2
+      from: 'not_home'
+      to: 'home'
+
+  conditions:
+      - condition: state
+        entity_id: input_boolean.bedtime
+        state: 'on'
+
+  actions:
+    - action: homeassistant.turn_off
+      data: {}
+      target:
+        entity_id:
+          - input_boolean.bedtime

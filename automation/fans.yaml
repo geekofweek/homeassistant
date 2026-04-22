@@ -837,6 +837,9 @@
       - condition: state
         entity_id: fan.USER1s_office_ceiling_fan
         state: 'on'
+    - condition: state
+      entity_id: binary_sensor.USER1_s_office_door_sensor
+      state: 'on'
 
   actions:
     - action: switch.turn_off
@@ -962,7 +965,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 5
+        minutes: 20
         seconds: 0
 
   conditions:
@@ -978,6 +981,9 @@
     - condition: numeric_state
       entity_id: sensor.USER2_s_office_temperature
       below: 78
+    - condition: state
+      entity_id: binary_sensor.USER2_s_office_door_sensor
+      state: 'on'
 
   actions:
     - action: fan.turn_off
@@ -1008,6 +1014,9 @@
       state: 'off'
     - condition: state
       entity_id: fan.USER2s_office_ceiling_fan
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.USER2_s_office_door_sensor
       state: 'on'
 
   actions:

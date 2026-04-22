@@ -63,13 +63,8 @@
           - switch.media_room_air_purifier
           - switch.USER1s_office_air_purifier
           - switch.basement_storage_air_purifier
-          - switch.kitchen_wall_panel_screen
+          - switch.kitchen_wall_panel_switch
           - switch.espresso_machine_power
-    - action: switch.turn_on
-      data: {}
-      target:
-        entity_id:
-          - switch.kitchen_wall_panel_maintenance_mode
 
         ##########################################################
         ## Household Away Mode Workshop Air Purfier
@@ -311,7 +306,7 @@
       for:
         hours: 0
         minutes: 0
-        seconds: 15
+        seconds: 30
 
   conditions:
     - condition: state
@@ -322,17 +317,49 @@
       state: 'off'
 
   actions:
-    - action: switch.turn_on
-      data: {}
-      target:
-        entity_id:
-          - switch.kitchen_wall_panel_switch
-    - delay: '00:01:30'
-    - action: switch.turn_off
-      data: {}
-      target:
-        entity_id:
-          - switch.kitchen_wall_panel_maintenance_mode
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: sun.sun
+              state:
+                - above_horizon
+          sequence:
+            - action: switch.turn_on
+              metadata: {}
+              target:
+                entity_id: switch.kitchen_wall_panel_switch
+              data: {}
+            - delay:
+                hours: 0
+                minutes: 1
+                seconds: 0
+                milliseconds: 0
+            - action: input_button.press
+              metadata: {}
+              target:
+                entity_id: input_button.kitchen_wall_panel_light_mode
+              data: {}
+        - conditions:
+            - condition: state
+              entity_id: sun.sun
+              state:
+                - below_horizon
+          sequence:
+            - action: switch.turn_on
+              metadata: {}
+              target:
+                entity_id: switch.kitchen_wall_panel_switch
+              data: {}
+            - delay:
+                hours: 0
+                minutes: 1
+                seconds: 0
+                milliseconds: 0
+            - action: input_button.press
+              metadata: {}
+              data: {}
+              target:
+                entity_id: input_button.kitchen_wall_panel_dark_mode
 
         ##########################################################
         ## Turn On Wall Panel Display When Home

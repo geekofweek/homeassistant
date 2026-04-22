@@ -21,11 +21,11 @@
   conditions:
     - condition: or
       conditions:
-      - condition: not
-        conditions:
-        - condition: state
-          entity_id: person.USER1
-          state: 'home'
+      #- condition: not
+      #  conditions:
+      #  - condition: state
+      #    entity_id: person.USER1
+      #    state: 'home'
       - condition: not
         conditions:
         - condition: state
@@ -73,3 +73,82 @@
       target:
         entity_id:
           - lawn_mower.mower
+
+        ##########################################################
+        ## Reload Integration if Not Updating
+        ##########################################################
+
+- alias: Mower - Reload Integration if Not Updating
+  id: 'mower_reload_integration_if_not_updating'
+
+  triggers:
+    - trigger: state
+      entity_id: lawn_mower.mower
+      to: 'mowing'
+      for:
+        hours: 1
+        minutes: 30
+        seconds: 0
+    - trigger: state
+      entity_id: lawn_mower.mower
+      to: 'mowing'
+      for:
+        hours: 1
+        minutes: 45
+        seconds: 0
+    - trigger: state
+      entity_id: lawn_mower.mower
+      to: 'mowing'
+      for:
+        hours: 2
+        minutes: 0
+        seconds: 0
+    - trigger: state
+      entity_id: lawn_mower.mower
+      to: 'returning'
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
+    - trigger: state
+      entity_id: lawn_mower.mower
+      to: 'returning'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+    - trigger: state
+      entity_id: lawn_mower.mower
+      to: 'returning'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+    - trigger: state
+      entity_id: lawn_mower.mower
+      to: 'error'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+    - trigger: state
+      entity_id: lawn_mower.mower
+      to: 'error'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+    - trigger: state
+      entity_id: lawn_mower.mower
+      to: 'error'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  actions:
+    - action: homeassistant.reload_config_entry
+      data: {}
+      target:
+        device_id: 
+          - 2292821b0dc65bb54b4b609283cf059c

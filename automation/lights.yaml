@@ -194,6 +194,26 @@
       data:
         transition: 900
 
+        ##########################################################
+        ## Turn Off Interior Lights at Sunrise
+        ##########################################################
+
+- alias: Lights - Turn Off Interior Lights at Sunrise
+  id: 'lights_turn_off_interior_lights_at_sunrise'
+
+  triggers:
+    - trigger: sun
+      event: 'sunrise'
+      offset: '+00:15:00'
+
+  actions:
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.stairs_main_lights
+      data:
+        transition: 900
+
 #################################################################
 ## Interior Lights
 #################################################################
