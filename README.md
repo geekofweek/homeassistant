@@ -38,8 +38,8 @@ My personal [Home Assistant Operating System](https://home-assistant.io) configu
 | [Ecobee Premium](https://amzn.to/4sURFiw) | [Ecobee](https://www.home-assistant.io/integrations/ecobee/) | Dual thermostats for two HVACs. My previous API access was intact, will switch to homekit when that fails. |
 | [IoTaWatt](https://circuitiq.ai/collections/iotawatt-power-monitoring) | [IoTaWatt](https://www.home-assistant.io/integrations/iotawatt/)| NA|
 | [Flume 2](https://amzn.to/4meRpIw) | [Flume](https://www.home-assistant.io/integrations/flume/)| NA|
-| [Roborock Saros 10r](https://amzn.to/4c96kzg) | [Roborock](https://www.home-assistant.io/integrations/roborock/)| NA |
-| [Roomba j7+](https://amzn.to/4sTdKhc) | [iRobot Roomba and Braava](https://www.home-assistant.io/integrations/roomba/)| 3x Roomba Vacuums, they J7+ was the last decent model.  Will not be purchasing more Roombas and will phase them out with Roborock |
+| [Roborock Saros 10r](https://amzn.to/4c96kzg) | [Roborock](https://www.home-assistant.io/integrations/roborock/)| 3x |
+| [Roomba j7+](https://amzn.to/4sTdKhc) | [iRobot Roomba and Braava](https://www.home-assistant.io/integrations/roomba/)| 1x Roomba Vacuums, they J7+ was the last decent model.  Will not be purchasing more Roombas and will phase them out with Roborock |
 | [Navimow x315](https://navimow.com/products/segway-navimow-x315?variant=43296344113289) | [Navimow](https://github.com/segwaynavimow/NavimowHA)| Official custom integration |
 | [Apple TV](https://amzn.to/4slNXgL) | [Apple TV](https://www.home-assistant.io/integrations/apple_tv/)| 6x, One device per TV|
 | [Sonos](https://amzn.to/4sRWokK) | [Sonos](https://www.home-assistant.io/integrations/sonos/)| 20+ devices of various models |
