@@ -43,21 +43,14 @@
       target:
         entity_id:
           - button.main_floor_full_vacuum
+          - button.upstairs_upstairs_full_vacuum
+          - button.basement_basement_vacuum
     - action: vacuum.start
       data: {}
       target:
         entity_id:
           - vacuum.four_season_room
-          - vacuum.upstairs
-    - action: homeassistant.turn_on
-      data: {}
-      target:
-        entity_id: 
-          - input_boolean.roomba_clean_media_room
-          - input_boolean.roomba_clean_basement_bathroom
-          - input_boolean.roomba_clean_game_room
-    - delay: '00:00:02'
-    - action: python_script.basement_roomba
+          - vacuum.garage
 
 #################################################################
 ## Main Floor
@@ -362,7 +355,7 @@
           - input_boolean.main_floor_kitchen_full_clean
 
 #################################################################
-## Scheduled Modes
+## Main Floor
 #################################################################
 
         ##########################################################
@@ -599,7 +592,7 @@
       to: 'off'
       for:
         hours: 0
-        minutes: 20
+        minutes: 5
         seconds: 0
 
   conditions:
@@ -852,11 +845,11 @@
 #################################################################
 
         ##########################################################
-        ## Clean Upstairs Daily Full
+        ## Clean Upstairs Daily Vacuum
         ##########################################################
 
-- alias: Vacuum - Clean Upstairs Daily Full
-  id: 'vacuum_clean_upstairs_when_daily_full'
+- alias: Vacuum - Clean Upstairs Daily Vacuum
+  id: 'vacuum_clean_upstairs_when_daily_vacuum'
 
   triggers:
    - trigger: time
@@ -868,9 +861,6 @@
       state: 'home'
     - condition: state
       entity_id: input_boolean.disable_vacuum_automations
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.upstairs_roomba_ran
       state: 'off'
     - condition: state
       entity_id: input_boolean.out_of_town_mode
@@ -881,8 +871,10 @@
     - condition: time
       weekday:
         - mon
+        - tue
         - wed
-        - fri
+        - thu
+        - sat
         - sun
     - condition: state
       entity_id: vacuum.upstairs
@@ -892,38 +884,22 @@
       state: 'on'
 
   actions:
-    - action: vacuum.start
+    - action: button.press
       data: {}
       target:
         entity_id:
-          - vacuum.upstairs
-    - action: homeassistant.turn_on
-      data: {}
-      target:
-        entity_id: 
-          - input_boolean.upstairs_roomba_ran
-    - action: light.turn_on
-      data: {}
-      target:
-        entity_id:
-          - light.USER2_s_office_lights
-          - light.USER1_s_office_lights
-          - light.workshop_ceiling
-          - light.upstairs_bathroom_lights
-          - light.guest_bedroom_lights
-          - light.guest_bathroom_lights
-          - light.stairs_main_lights
+          - button.upstairs_upstairs_full_vacuum
 
         ##########################################################
-        ## Clean Upstairs Daily Partial
+        ## Clean Upstairs Full Clean
         ##########################################################
 
-- alias: Vacuum - Clean Upstairs Daily Partial
-  id: 'vacuum_clean_upstairs_when_daily_partial'
+- alias: Vacuum - Clean Upstairs Full Clean
+  id: 'vacuum_clean_upstairs_full_clean'
 
   triggers:
    - trigger: time
-     at: '04:00:00'
+     at: '02:00:00'
 
   conditions:
     - condition: state
@@ -933,9 +909,6 @@
       entity_id: input_boolean.disable_vacuum_automations
       state: 'off'
     - condition: state
-      entity_id: input_boolean.upstairs_roomba_ran
-      state: 'off'
-    - condition: state
       entity_id: input_boolean.out_of_town_mode
       state: 'off'
     - condition: state
@@ -943,9 +916,7 @@
       state: 'off'
     - condition: time
       weekday:
-        - tue
-        - thu
-        - sat
+        - fri
     - condition: state
       entity_id: vacuum.upstairs
       state: 'docked'
@@ -954,259 +925,11 @@
       state: 'on'
 
   actions:
-    - action: homeassistant.turn_on
-      data: {}
-      target:
-        entity_id: 
-          - input_boolean.roomba_clean_USER2_office
-          - input_boolean.roomba_clean_upstairs_hallway
-          - input_boolean.roomba_clean_upstairs_bathroom
-          - input_boolean.roomba_clean_USER1_office
-          - input_boolean.upstairs_roomba_ran
-    - delay: '00:00:02'
-    - action: python_script.upstairs_roomba
-    - action: light.turn_on
+    - action: button.press
       data: {}
       target:
         entity_id:
-          - light.USER2_s_office_lights
-          - light.USER1_s_office_lights
-          - light.upstairs_bathroom_lights
-          - light.stairs_main_lights
-
-        ##########################################################
-        ## Clean Workshop When Door Open
-        ##########################################################
-
-- alias: Vacuum - Clean Workshop When Door Open
-  id: 'vacuum_clean_workshop_when_door_open'
-
-  triggers:
-   - trigger: time
-     at: '03:59:00'
-
-  conditions:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: input_boolean.disable_vacuum_automations
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.upstairs_roomba_ran
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.out_of_town_mode
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.guest_mode
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.guest_mode
-      state: 'off'
-    - condition: state
-      entity_id: vacuum.upstairs
-      state: 'docked'
-    - condition: state
-      entity_id: binary_sensor.workshop_door_sensor
-      state: 'on'
-    - condition: time
-      weekday:
-        - tue
-        - thu
-        - sat
-
-  actions:
-    - action: homeassistant.turn_on
-      data: {}
-      target:
-        entity_id: 
-          - input_boolean.roomba_clean_3d_printer_room
-    - action: light.turn_on
-      data: {}
-      target:
-        entity_id:
-          - light.workshop_ceiling
-
-        ##########################################################
-        ## Send Upstairs Home When Stuck
-        ##########################################################
-
-- alias: Vacuum - Send Upstairs Home When Stuck
-  id: 'vacuum_send_upstairs_home_when_stuck'
-
-  triggers:
-    - trigger: state
-      entity_id: vacuum.upstairs
-      to: 'error'
-      for:
-        hours: 0
-        minutes: 5
-        seconds: 0
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.disable_vacuum_automations
-      state: 'off'
-    - condition: time
-      after: '03:00:00'
-      before: '06:00:00'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: vacuum.upstairs
-        state: 'docked'
-
-  actions:
-    - action: vacuum.return_to_base
-      data: {}
-      target:
-        entity_id: 
-          - vacuum.upstairs
-
-        ##########################################################
-        ## Turn Off lights when Upstairs finished
-        ##########################################################
-
-- alias: Vacuum - Turn Off lights when Upstairs finished
-  id: 'vacuum_turn_off_lights_when_upstairs_finished'
-
-  triggers:
-    - trigger: state
-      entity_id: vacuum.upstairs
-      to: 'docked'
-      for:
-        hours: 0
-        minutes: 4
-        seconds: 0
-    - trigger: state
-      entity_id: vacuum.upstairs
-      to: 'paused'
-      for:
-        hours: 0
-        minutes: 4
-        seconds: 0
-    - trigger: state
-      entity_id: vacuum.upstairs
-      to: 'stopped'
-      for:
-        hours: 0
-        minutes: 2
-        seconds: 0
-    - trigger: state
-      entity_id: vacuum.upstairs
-      to: 'error'
-      for:
-        hours: 0
-        minutes: 5
-        seconds: 0
-    - trigger: state
-      entity_id: vacuum.upstairs
-      to: 'idle'
-      for:
-        hours: 0
-        minutes: 5
-        seconds: 0
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.disable_vacuum_automations
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.guest_mode
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.upstairs_roomba_ran
-      state: 'on'
-    - condition: time
-      after: '02:00:00'
-      before: '07:00:00'
-
-  actions:
-    - action: light.turn_off
-      data: {}
-      target:
-        entity_id:
-          - light.USER2_s_office_lights
-          - light.USER1_s_office_lights
-          - light.workshop_ceiling
-          - light.upstairs_bathroom_lights
-          - light.guest_bedroom_lights
-          - light.guest_bathroom_lights
-          - light.stairs_main_lights
-
-        ##########################################################
-        ## Turn Off lights when Upstairs finished Away
-        ##########################################################
-
-- alias: Vacuum - Turn Off lights when Upstairs finished Away
-  id: 'vacuum_turn_off_lights_when_upstairs_finished_away'
-
-  triggers:
-    - trigger: state
-      entity_id: vacuum.upstairs
-      to: 'docked'
-      for:
-        hours: 0
-        minutes: 4
-        seconds: 0
-    - trigger: state
-      entity_id: vacuum.upstairs
-      to: 'paused'
-      for:
-        hours: 0
-        minutes: 4
-        seconds: 0
-    - trigger: state
-      entity_id: vacuum.upstairs
-      to: 'stopped'
-      for:
-        hours: 0
-        minutes: 2
-        seconds: 0
-    - trigger: state
-      entity_id: vacuum.upstairs
-      to: 'error'
-      for:
-        hours: 0
-        minutes: 5
-        seconds: 0
-    - trigger: state
-      entity_id: vacuum.upstairs
-      to: 'idle'
-      for:
-        hours: 0
-        minutes: 5
-        seconds: 0
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.disable_vacuum_automations
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.guest_mode
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.upstairs_roomba_ran
-      state: 'on'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-
-  actions:
-    - action: light.turn_off
-      data: {}
-      target:
-        entity_id:
-          - light.USER2_s_office_lights
-          - light.USER1_s_office_lights
-          - light.workshop_ceiling
-          - light.upstairs_bathroom_lights
-          - light.guest_bedroom_lights
-          - light.guest_bathroom_lights
-          - light.stairs_main_lights
+          - button.upstairs_upstairs_full_clean
 
         ##########################################################
         ## Clean Upstairs When Away
@@ -1230,6 +953,9 @@
       entity_id: input_boolean.disable_vacuum_automations
       state: 'off'
     - condition: state
+      entity_id: input_boolean.out_of_town_mode
+      state: 'off'
+    - condition: state
       entity_id: vacuum.upstairs
       state: 'docked'
     - condition: state
@@ -1237,11 +963,11 @@
       state: 'above_horizon'
 
   actions:
-    - action: vacuum.start
+    - action: button.press
       data: {}
       target:
-        entity_id: 
-          - vacuum.upstairs
+        entity_id:
+          - button.upstairs_upstairs_full_vacuum
 
         ##########################################################
         ## Upstairs End when Home
@@ -1290,7 +1016,7 @@
 
   triggers:
    - trigger: time
-     at: '11:00:00'
+     at: '10:30:00'
 
   conditions:
     - condition: state
@@ -1299,14 +1025,13 @@
     - condition: time
       weekday:
         - mon
+        - tue
         - wed
+        - thu
         - fri
     - condition: state
       entity_id: vacuum.four_season_room
       state: 'docked'
-    - condition: numeric_state
-      entity_id: sensor.four_season_room_roomba_battery
-      above: 99
     - condition: or
       conditions:
       - condition: state
@@ -1364,16 +1089,49 @@
         entity_id: 
           - vacuum.four_season_room
 
+        ##########################################################
+        ## Dock Four Season Room if Idle
+        ##########################################################
+
+- alias: Vacuum - Dock Four Season Room if Idle
+  id: 'vacuum_dock_four_season_room_if_idle'
+
+  triggers:
+    - trigger: state
+      entity_id: vacuum.four_season_room
+      to: 'idle'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+
+  conditions:
+    - condition: state
+      entity_id: input_boolean.disable_vacuum_automations
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.four_season_room
+        state: 'docked'
+
+  actions:
+    - action: vacuum.return_to_base
+      data: {}
+      target:
+        entity_id: 
+          - vacuum.four_season_room
+
 #################################################################
 ## Basement
 #################################################################
 
         ##########################################################
-        ## Basement Clean Media Room Daily
+        ## Basement Vacuum Daily
         ##########################################################
 
-- alias: Vacuum - Basement Clean Media Room Daily
-  id: 'vacuum_basement_clean_media_room_daily'
+- alias: Vacuum - Basement Vacuum Daily
+  id: 'vacuum_basement_vacuum_daily'
 
   triggers:
    - trigger: time
@@ -1389,91 +1147,59 @@
     - condition: state
       entity_id: vacuum.basement
       state: 'docked'
-    - condition: numeric_state
-      entity_id: sensor.basement_roomba_battery
-      above: 99
     - condition: state
       entity_id: input_boolean.out_of_town_mode
       state: 'off'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - sat
+        - sun
 
   actions:
-    - action: homeassistant.turn_on
-      data: {}
-      target:
-        entity_id: 
-          - input_boolean.roomba_clean_media_room
-          - input_boolean.roomba_clean_basement_bathroom
-          - input_boolean.roomba_clean_game_room
-    - delay: '00:00:02'
-    - action: python_script.basement_roomba
-    - action: light.turn_on
+    - action: button.press
       data: {}
       target:
         entity_id:
-          - light.media_room_lights
-          - light.game_room_lights
-          - light.basement_bathroom_vanity_lights
+          - button.basement_basement_vacuum
 
         ##########################################################
-        ## Turn Off lights when Basement finished
+        ## Basement Full Clean
         ##########################################################
 
-- alias: Vacuum - Turn Off lights when Basement finished
-  id: 'vacuum_turn_off_lights_when_basement_finished'
+- alias: Vacuum - Basement Full Clean
+  id: 'vacuum_basement_full_clean'
 
   triggers:
-    - trigger: state
-      entity_id: vacuum.basement
-      to: 'docked'
-      for:
-        hours: 0
-        minutes: 4
-        seconds: 0
-    - trigger: state
-      entity_id: vacuum.basement
-      to: 'paused'
-      for:
-        hours: 0
-        minutes: 4
-        seconds: 0
-    - trigger: state
-      entity_id: vacuum.basement
-      to: 'stopped'
-      for:
-        hours: 0
-        minutes: 2
-        seconds: 0
-    - trigger: state
-      entity_id: vacuum.basement
-      to: 'error'
-      for:
-        hours: 0
-        minutes: 5
-        seconds: 0
-    - trigger: state
-      entity_id: vacuum.basement
-      to: 'idle'
-      for:
-        hours: 0
-        minutes: 5
-        seconds: 0
+   - trigger: time
+     at: '02:00:00'
 
   conditions:
     - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
       entity_id: input_boolean.disable_vacuum_automations
       state: 'off'
+    - condition: state
+      entity_id: vacuum.basement
+      state: 'docked'
+    - condition: state
+      entity_id: input_boolean.out_of_town_mode
+      state: 'off'
     - condition: time
-      after: '02:00:00'
-      before: '06:00:00'
+      weekday:
+        - fri
 
   actions:
-    - action: light.turn_off
+    - action: button.press
       data: {}
       target:
         entity_id:
-          - light.media_room_lights
-          - light.game_room_lights
-          - light.basement_bathroom_vanity_lights
+          - button.basement_basement_full_clean
 
         ##########################################################
         ## Basement Unfinished Clean
@@ -1504,9 +1230,6 @@
     - condition: state
       entity_id: vacuum.basement
       state: 'docked'
-    - condition: numeric_state
-      entity_id: sensor.basement_roomba_battery
-      above: 99
     - condition: state
       entity_id: input_boolean.out_of_town_mode
       state: 'off'
@@ -1515,20 +1238,11 @@
       state: 'on'
 
   actions:
-    - action: homeassistant.turn_on
-      data: {}
-      target:
-        entity_id: 
-          - input_boolean.roomba_clean_fitness_room
-          - input_boolean.roomba_clean_basement_storage
-    - delay: '00:00:02'
-    - action: python_script.basement_roomba
-    - action: light.turn_on
+    - action: button.press
       data: {}
       target:
         entity_id:
-          - light.fitness_room_main_lights
-          - light.basement_storage_area_main_lights
+          - button.basement_basement_unfinished
 
         ##########################################################
         ## Clean Basement When Away
@@ -1559,14 +1273,11 @@
       state: 'off'
 
   actions:
-    - action: homeassistant.turn_on
+    - action: button.press
       data: {}
       target:
-        entity_id: 
-          - input_boolean.roomba_clean_media_room
-          - input_boolean.roomba_clean_basement_bathroom
-    - delay: '00:00:02'
-    - action: python_script.basement_roomba
+        entity_id:
+          - button.basement_basement_vacuum
 
         ##########################################################
         ## Basement End when Home
@@ -1603,8 +1314,445 @@
           - vacuum.basement
 
 #################################################################
+## Garage
+#################################################################
+
+        ##########################################################
+        ## Clean Garage Daily
+        ##########################################################
+
+- alias: Vacuum - Clean Garage Daily
+  id: 'vacuum_clean_garage_daily'
+
+  triggers:
+   - trigger: time
+     at: '04:30:00'
+
+  conditions:
+    - condition: state
+      entity_id: input_boolean.disable_vacuum_automations
+      state: 'off'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+        - sat
+        - sun
+    - condition: state
+      entity_id: vacuum.garage
+      state: 'docked'
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'closed'
+    - condition: state
+      entity_id: input_boolean.garage_vacuum_weather_hold
+      state: 'off'
+
+  actions:
+    - action: vacuum.start
+      data: {}
+      target:
+        entity_id:
+          - vacuum.garage
+
+        ##########################################################
+        ## Empty Garage Bin
+        ##########################################################
+
+- alias: Vacuum - Empty Garage Bin
+  id: 'vacuum_empty_garage_bin'
+
+  triggers:
+   - trigger: time
+     at: '17:30:00'
+
+  conditions:
+    - condition: state
+      entity_id: input_boolean.disable_vacuum_automations
+      state: 'off'
+    - condition: time
+      weekday:
+        - mon
+        - thu
+    - condition: state
+      entity_id: vacuum.garage
+      state: 'docked'
+    - condition: state
+      entity_id: input_boolean.garage_vacuum_weather_hold
+      state: 'off'
+
+  actions:
+    - action: vacuum.return_to_base
+      data: {}
+      target:
+        entity_id: 
+          - vacuum.garage
+
+        ##########################################################
+        ## Turn On Lights When Garage Vacuum is Cleaning
+        ##########################################################
+
+- alias: Vacuum - Turn On Lights When Garage Vacuum is Cleaning
+  id: 'vacuum_turn_on_garage_lights_when_cleaning'
+
+  triggers:
+    - trigger: state
+      entity_id: vacuum.garage
+      to: 'cleaning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 5
+
+  conditions:
+    - condition: state
+      entity_id: input_boolean.disable_vacuum_automations
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.garage
+        state: 'docked'
+
+  actions:
+    - action: light.turn_on
+      data: {}
+      target:
+        entity_id:
+          - light.garage_interior
+
+        ##########################################################
+        ## Turn Off Lights When Garage Vacuum is Cleaning
+        ##########################################################
+
+- alias: Vacuum - Turn Off Lights When Garage Vacuum is Cleaning
+  id: 'vacuum_turn_off_garage_lights_when_cleaning'
+
+  triggers:
+    - trigger: state
+      entity_id: vacuum.garage
+      to: 'docked'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 15
+    - trigger: state
+      entity_id: vacuum.garage
+      to: 'error'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 15
+    - trigger: state
+      entity_id: vacuum.garage
+      to: 'idle'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 15
+
+  conditions:
+    - condition: state
+      entity_id: input_boolean.disable_vacuum_automations
+      state: 'off'
+    - condition: state
+      entity_id: vacuum.garage
+      state: 'docked'
+
+  actions:
+    - action: light.turn_off
+      data: {}
+      target:
+        entity_id:
+          - light.garage_interior
+
+        ##########################################################
+        ## Cancel Garage Clean if Garage Door Open
+        ##########################################################
+
+- alias: Vacuum - Cancel Garage Clean if Garage Door Open
+  id: 'vacuum_cancel_garage_clean_if_garage_door_open'
+
+  triggers:
+    - trigger: state
+      entity_id: vacuum.garage
+      to: 'cleaning'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 5
+
+  conditions:
+    - condition: state
+      entity_id: input_boolean.disable_vacuum_automations
+      state: 'off'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: cover.garage_door
+        state: 'open'
+      - condition: state
+        entity_id: cover.garage_door
+        state: 'opening'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.garage
+        state: 'docked'
+      - condition: state
+        entity_id: vacuum.garage
+        state: 'returning'
+
+  actions:
+    - action: vacuum.return_to_base
+      data: {}
+      target:
+        entity_id: 
+          - vacuum.garage
+
+        ##########################################################
+        ## Send Garage To Dock if Garage Door Open
+        ##########################################################
+
+- alias: Vacuum - Send Garage To Dock if Garage Door Open
+  id: 'vacuum_send_garage_to_dock_if_garage_door_open'
+
+  mode: single
+  triggers:
+    - trigger: state
+      entity_id: cover.garage_door
+      to: 'opening'
+    - trigger: state
+      entity_id: cover.garage_door
+      to: 'open'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 0
+    - trigger: state
+      entity_id: group.household
+      from: 'not_home'
+      to: 'home'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 0
+    - trigger: state
+      entity_id: person.USER1
+      from: 'not_home'
+      to: 'home'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 0
+    - trigger: state
+      entity_id: person.USER2
+      from: 'not_home'
+      to: 'home'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 0
+
+  conditions:
+    - condition: state
+      entity_id: input_boolean.disable_vacuum_automations
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.garage
+        state: 'docked'
+      - condition: state
+        entity_id: vacuum.garage
+        state: 'returning'
+
+  actions:
+    - action: vacuum.return_to_base
+      data: {}
+      target:
+        entity_id: 
+          - vacuum.garage
+
+#################################################################
 ## Helper Automations
 #################################################################
+
+        ##########################################################
+        ## Set Initial Weather Hold for Garage Vacuum
+        ##########################################################
+
+- alias: Vacuum - Set Initial Weather Hold for Garage Vacuum
+  id: 'vacuum_set_initial_weather_hold_for_garage_vacuum'
+
+  triggers:
+    - trigger: state
+      entity_id:
+        - weather.REDACTED
+      to:
+        - lightning
+        - lightning-rainy
+        - hail
+        - pouring
+        - rainy
+        - snowy
+        - snowy-rainy
+        - exceptional
+
+  conditions:
+    - condition: state
+      entity_id: input_boolean.garage_vacuum_weather_hold
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.garage_vacuum_initial_weather_hold
+      state: 'off'
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: person.USER1
+          state:
+            - not_home
+        - condition: state
+          entity_id: person.USER2
+          state:
+            - not_home
+        - condition: state
+          entity_id: group.household
+          state:
+            - not_home
+
+  actions:
+    - action: homeassistant.turn_on
+      data: {}
+      target:
+        entity_id:
+          - input_boolean.garage_vacuum_initial_weather_hold
+
+        ##########################################################
+        ## Set Weather Hold for Garage Vacuum
+        ##########################################################
+
+- alias: Vacuum - Set Weather Hold for Garage Vacuum
+  id: 'vacuum_set_weather_hold_for_garage_vacuum'
+
+  mode: single
+  triggers:
+    - trigger: state
+      entity_id: cover.garage_door
+      to: 'open'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 15
+    - trigger: state
+      entity_id: cover.garage_door
+      to: 'opening'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 0
+    - trigger: state
+      entity_id: group.household
+      from: 'not_home'
+      to: 'home'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 5
+    - trigger: state
+      entity_id: person.USER1
+      from: 'not_home'
+      to: 'home'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 5
+    - trigger: state
+      entity_id: person.USER2
+      from: 'not_home'
+      to: 'home'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 5
+
+  conditions:
+    - condition: state
+      entity_id: input_boolean.garage_vacuum_initial_weather_hold
+      state: 'on'
+
+  actions:
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: input_boolean.garage_vacuum_weather_hold
+              state:
+                - "off"
+          sequence:
+            - action: homeassistant.turn_on
+              metadata: {}
+              target:
+                entity_id: input_boolean.garage_vacuum_weather_hold
+              data: {}
+        - conditions:
+            - condition: state
+              entity_id: input_boolean.garage_vacuum_weather_hold
+              state:
+                - "on"
+          sequence:
+            - action: homeassistant.turn_off
+              metadata: {}
+              target:
+                entity_id: input_boolean.garage_vacuum_weather_hold
+              data: {}
+            - delay:
+                hours: 0
+                minutes: 0
+                seconds: 30
+                milliseconds: 0
+            - action: homeassistant.turn_on
+              metadata: {}
+              target:
+                entity_id: input_boolean.garage_vacuum_weather_hold
+              data: {}
+
+        ##########################################################
+        ## Reset Weather Hold for Garage Vacuum
+        ##########################################################
+
+- alias: Vacuum - Reset Weather Hold for Garage Vacuum
+  id: 'vacuum_reset_weather_hold_for_garage_vacuum'
+
+  triggers:
+    - trigger: state
+      entity_id: input_boolean.garage_vacuum_weather_hold
+      to: 'on'
+      for:
+        hours: 24
+        minutes: 0
+        seconds: 0
+    - trigger: state
+      entity_id: input_boolean.garage_vacuum_weather_hold
+      to: 'on'
+      for:
+        hours: 48
+        minutes: 0
+        seconds: 0
+
+  conditions:
+    - condition: state
+      entity_id: input_boolean.garage_vacuum_weather_hold
+      state: 'on'
+
+  actions:
+    - action: homeassistant.turn_off
+      data: {}
+      target:
+        entity_id:
+          - input_boolean.garage_vacuum_weather_hold
 
         ##########################################################
         ## Reset Vacuum Helpers
@@ -1624,9 +1772,6 @@
       data: {}
       target:
         entity_id:
-          - input_boolean.upstairs_roomba_ran_USER1_office
-          - input_boolean.upstairs_roomba_ran_USER2_office
-          - input_boolean.upstairs_roomba_ran
           - input_boolean.kitchen_lunch_cleaned
           - input_boolean.back_of_house_cleaned
           - input_boolean.main_floor_bathroom_full_clean
@@ -1635,322 +1780,7 @@
           - input_boolean.main_floor_kitchen_full_mop
           - input_boolean.main_floor_full_clean
           - input_boolean.main_floor_full_mop
-          - input_boolean.roborock_clean_bathroom
-          - input_boolean.roborock_clean_bedroom
-          - input_boolean.roborock_clean_bedroom_hallway
-          - input_boolean.roborock_clean_closet
-          - input_boolean.roborock_clean_dining_room
-          - input_boolean.roborock_clean_foyer
-          - input_boolean.roborock_clean_hallway
-          - input_boolean.roborock_clean_hallway_bathroom
-          - input_boolean.roborock_clean_kitchen
-          - input_boolean.roborock_clean_laundry_room
-          - input_boolean.roborock_clean_living_room
-          - input_boolean.roborock_clean_study
-          - input_boolean.main_floor_roborock_room_clean_view
-          - input_boolean.roomba_clean_USER1_office
-          - input_boolean.roomba_clean_USER2_office
-          - input_boolean.roomba_clean_guest_bedroom
-          - input_boolean.roomba_clean_guest_bathroom
-          - input_boolean.roomba_clean_guest_bedroom_closet
-          - input_boolean.roomba_clean_3d_printer_room
-          - input_boolean.roomba_clean_upstairs_hallway
-          - input_boolean.roomba_clean_USER1_office_closet
-          - input_boolean.upstairs_roomba_room_clean_view
-          - input_boolean.roomba_clean_USER1_office
-          - input_boolean.roomba_clean_USER2_office
-          - input_boolean.roomba_clean_guest_bedroom
-          - input_boolean.roomba_clean_guest_bathroom
-          - input_boolean.roomba_clean_guest_bedroom_closet
-          - input_boolean.roomba_clean_3d_printer_room
-          - input_boolean.roomba_clean_upstairs_hallway
-          - input_boolean.roomba_clean_USER1_office_closet
-          - input_boolean.upstairs_roomba_room_clean_view
-          - input_boolean.roomba_clean_media_room
-          - input_boolean.roomba_clean_game_room
-          - input_boolean.roomba_clean_basement_bathroom
-          - input_boolean.roomba_clean_fitness_room
-          - input_boolean.roomba_clean_basement_storage
-          - input_boolean.basement_roomba_room_clean_view
-
-        ##########################################################
-        ## Disable Room Clean Boolean if Roborock Didn't Run Main Floor
-        ##########################################################
-
-- alias: Vacuum - Disable Room Clean Boolean if Roborock Didn't Run Main Floor
-  id: 'vacuum_disable_room_clean_boolean_if_roborock_didnt_run_main_floor'
-
-  mode: parallel
-  triggers:
-    - trigger: state
-      entity_id: 
-        - input_boolean.roborock_clean_bathroom
-        - input_boolean.roborock_clean_bedroom
-        - input_boolean.roborock_clean_bedroom_hallway
-        - input_boolean.roborock_clean_closet
-        - input_boolean.roborock_clean_dining_room
-        - input_boolean.roborock_clean_foyer
-        - input_boolean.roborock_clean_hallway
-        - input_boolean.roborock_clean_hallway_bathroom
-        - input_boolean.roborock_clean_kitchen
-        - input_boolean.roborock_clean_laundry_room
-        - input_boolean.roborock_clean_living_room
-        - input_boolean.roborock_clean_study
-        - input_boolean.main_floor_roborock_room_clean_view
-      to: 'on'
-      for:
-        hours: 0
-        minutes: 5
-        seconds: 0
-  
-  actions:
-    - action: homeassistant.turn_off
-      data: {}
-      target:
-        entity_id: '{{ trigger.entity_id }}'
-
-        ##########################################################
-        ## Disable Room Clean Boolean Main Floor After 5 Mins
-        ##########################################################
-
-- alias: Vacuum - Disable Room Clean Boolean Main Floor After 5 Mins
-  id: 'vacuum_disable_room_clean_boolean_main_floor_after_5_mins'
-
-  mode: parallel
-  triggers:
-    - trigger: state
-      entity_id:
-        - input_boolean.roborock_clean_bathroom
-        - input_boolean.roborock_clean_bedroom
-        - input_boolean.roborock_clean_bedroom_hallway
-        - input_boolean.roborock_clean_closet
-        - input_boolean.roborock_clean_dining_room
-        - input_boolean.roborock_clean_foyer
-        - input_boolean.roborock_clean_hallway
-        - input_boolean.roborock_clean_hallway_bathroom
-        - input_boolean.roborock_clean_kitchen
-        - input_boolean.roborock_clean_laundry_room
-        - input_boolean.roborock_clean_living_room
-        - input_boolean.roborock_clean_study
-        - input_boolean.main_floor_roborock_room_clean_view
-      from: 'off'
-      to: 'on'
-      for:
-        hours: 0
-        minutes: 5
-        seconds: 0
-
-  actions:
-    - action: homeassistant.turn_off
-      data: {}
-      target:
-        entity_id: '{{ trigger.entity_id }}'
-
-        ##########################################################
-        ## Disable Room Clean Boolean if Roomba Didn't Run Upstairs
-        ##########################################################
-
-- alias: Vacuum - Disable Room Clean Boolean if Roomba Didn't Run Upstairs
-  id: 'vacuum_disable_room_clean_boolean_if_roomba_didnt_run_upstairs'
-
-  mode: parallel
-  triggers:
-    - trigger: state
-      entity_id: 
-        - input_boolean.roomba_clean_USER1_office
-        - input_boolean.roomba_clean_USER2_office
-        - input_boolean.roomba_clean_guest_bedroom
-        - input_boolean.roomba_clean_guest_bathroom
-        - input_boolean.roomba_clean_guest_bedroom_closet
-        - input_boolean.roomba_clean_3d_printer_room
-        - input_boolean.roomba_clean_upstairs_hallway
-        - input_boolean.roomba_clean_USER1_office_closet
-        - input_boolean.upstairs_roomba_room_clean_view
-      to: 'on'
-      for:
-        hours: 0
-        minutes: 5
-        seconds: 0
-  
-  conditions:
-    - condition: state
-      entity_id: vacuum.upstairs
-      state: 'docked'
-      for:
-        hours: 0
-        minutes: 4
-        seconds: 0
-
-  actions:
-    - action: homeassistant.turn_off
-      data: {}
-      target:
-        entity_id: '{{ trigger.entity_id }}'
-
-        ##########################################################
-        ## Disable Room Clean Boolean if Roomba Didn't Run Basement
-        ##########################################################
-
-- alias: Vacuum - Disable Room Clean Boolean if Roomba Didn't Run Basement
-  id: 'vacuum_disable_room_clean_boolean_if_roomba_didnt_run_basement'
-
-  mode: parallel
-  triggers:
-    - trigger: state
-      entity_id: 
-        - input_boolean.roomba_clean_media_room
-        - input_boolean.roomba_clean_game_room
-        - input_boolean.roomba_clean_basement_bathroom
-        - input_boolean.roomba_clean_fitness_room
-        - input_boolean.roomba_clean_basement_storage
-        - input_boolean.basement_roomba_room_clean_view
-      to: 'on'
-      for:
-        hours: 0
-        minutes: 5
-        seconds: 0
-  
-  conditions:
-    - condition: state
-      entity_id: vacuum.basement
-      state: 'docked'
-      for:
-        hours: 0
-        minutes: 4
-        seconds: 0
-
-  actions:
-    - action: homeassistant.turn_off
-      data: {}
-      target:
-        entity_id: '{{ trigger.entity_id }}'
-
-        ##########################################################
-        ## Disable Room Clean View Main Floor
-        ##########################################################
-
-- alias: Vacuum - Disable Room Clean View Main Floor
-  id: 'vacuum_disable_room_clean_view_main_floor'
-
-  triggers:
-    - trigger: state
-      entity_id: 
-        - input_boolean.main_floor_roborock_room_clean_view
-      to: 'on'
-
-  actions:
-    - action: homeassistant.turn_off
-      data: {}
-      target:
-        entity_id:
-          - input_boolean.upstairs_roomba_room_clean_view
-          - input_boolean.basement_roomba_room_clean_view
-
-        ##########################################################
-        ## Disable Room Clean View Upstairs
-        ##########################################################
-
-- alias: Vacuum - Disable Room Clean View Upstairs
-  id: 'vacuum_disable_room_clean_view_upstairs'
-
-  triggers:
-    - trigger: state
-      entity_id: 
-        - input_boolean.upstairs_roomba_room_clean_view
-      to: 'on'
-
-  actions:
-    - action: homeassistant.turn_off
-      data: {}
-      target:
-        entity_id:
-          - input_boolean.basement_roomba_room_clean_view
-          - input_boolean.main_floor_roborock_room_clean_view
-
-        ##########################################################
-        ## Disable Room Clean View Basement
-        ##########################################################
-
-- alias: Vacuum - Disable Room Clean View Basement
-  id: 'vacuum_disable_room_clean_view_basement'
-
-  triggers:
-    - trigger: state
-      entity_id: 
-        - input_boolean.basement_roomba_room_clean_view
-      to: 'on'
-
-  actions:
-    - action: homeassistant.turn_off
-      data: {}
-      target:
-        entity_id:
-          - input_boolean.upstairs_roomba_room_clean_view
-          - input_boolean.main_floor_roborock_room_clean_view
-
-        ##########################################################
-        ## Set Upstairs Roomba has Ran USER1's Office
-        ##########################################################
-
-- alias: Vacuum - Set Upstairs Roomba has Ran USER1's Office
-  id: 'vacuum_set_upstairs_roomba_has_ran_for_the_day_USER1_office'
-
-  triggers:
-    - trigger: state
-      entity_id: vacuum.upstairs
-      to: 'cleaning'
-      for:
-        hours: 0
-        minutes: 5
-        seconds: 0
-  
-  conditions:
-    - condition: state
-      entity_id: input_boolean.upstairs_roomba_ran_USER1_office
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.roomba_clean_USER1_office
-      state: 'on'
-
-
-  actions:
-    - action: homeassistant.turn_on
-      data: {}
-      target:
-        entity_id:
-          - input_boolean.upstairs_roomba_ran_USER1_office
-
-        ##########################################################
-        ## Set Upstairs Roomba has Ran USER2's Office
-        ##########################################################
-
-- alias: Vacuum - Set Upstairs Roomba has Ran USER2's Office
-  id: 'vacuum_set_upstairs_roomba_has_ran_for_the_day_USER2_office'
-
-  triggers:
-    - trigger: state
-      entity_id: vacuum.upstairs
-      to: 'cleaning'
-      for:
-        hours: 0
-        minutes: 5
-        seconds: 0
-  
-  conditions:
-    - condition: state
-      entity_id: input_boolean.upstairs_roomba_ran_USER2_office
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.roomba_clean_USER2_office
-      state: 'on'
-
-
-  actions:
-    - action: homeassistant.turn_on
-      data: {}
-      target:
-        entity_id:
-          - input_boolean.upstairs_roomba_ran_USER2_office
+          - input_boolean.garage_vacuum_initial_weather_hold
 
 #################################################################
 ## Notifications
@@ -1993,29 +1823,23 @@
         hours: 0
         minutes: 5
         seconds: 0
-
-  conditions:
-    - condition: state
-      entity_id: input_boolean.disable_vacuum_automations
-      state: 'off'
-
-  actions:
-    - action: notify.USER1_devices
-      data:
-        message: "{{ trigger.to_state.attributes.friendly_name }} is Stuck, Please Help"
-
-        ##########################################################
-        ## Main Floor is Low on Water iOS Notification
-        ##########################################################
-
-- alias: Vacuum - Main Floor is Low on Water iOS Notification
-  id: 'vacuum_main_floor_low_water_ios_notification'
-
-  mode: parallel
-  triggers:
     - trigger: state
-      entity_id: binary_sensor.main_floor_water_shortage
-      to: 'on'
+      entity_id: vacuum.garage
+      to: 'error'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+    - trigger: state
+      entity_id: vacuum.garage
+      to: 'unavailable'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+    - trigger: state
+      entity_id: vacuum.garage
+      to: 'unknown'
       for:
         hours: 0
         minutes: 5
@@ -2029,4 +1853,4 @@
   actions:
     - action: notify.USER1_devices
       data:
-        message: "Main Floor Vacuum is Low on Water, Please Refill"
+        message: "{{ trigger.to_state.attributes.friendly_name }} is Stuck, Please Help"

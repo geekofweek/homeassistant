@@ -304,6 +304,11 @@
           hours: 0
           minutes: 5
           seconds: 0
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: vacuum.garage
+        state: 'cleaning'
 
   actions:
     - action: light.turn_off

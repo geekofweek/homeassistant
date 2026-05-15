@@ -26,6 +26,9 @@
     - condition: state
       entity_id: input_boolean.disable_climate_automations
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.out_of_town_mode
+      state: 'off'
     - condition: not
       conditions:
       - condition: state

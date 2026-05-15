@@ -1426,14 +1426,6 @@
     - condition: state
       entity_id: group.household
       state: 'home'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: sensor.main_floor_current_room
-        state: "Living Room"
-      - condition: state
-        entity_id: binary_sensor.main_floor_cleaning
-        state: 'on'
     - condition: state
       entity_id: input_boolean.bedtime
       state: 'off'
@@ -1442,6 +1434,9 @@
       - condition: state
         entity_id: media_player.living_room_apple_tv
         state: 'playing'
+    - condition: state
+      entity_id: binary_sensor.main_floor_vacuum_living_room_cleaning
+      state: 'off'
 
   actions:
     - action: light.turn_on
@@ -1489,14 +1484,6 @@
     - condition: state
       entity_id: group.household
       state: 'home'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: sensor.main_floor_current_room
-        state: "Living Room"
-      - condition: state
-        entity_id: binary_sensor.main_floor_cleaning
-        state: 'on'
     - condition: state
       entity_id: input_boolean.bedtime
       state: 'off'
@@ -1505,6 +1492,9 @@
       - condition: state
         entity_id: media_player.living_room_apple_tv
         state: 'playing'
+    - condition: state
+      entity_id: binary_sensor.main_floor_vacuum_living_room_cleaning
+      state: 'off'
 
   actions:
     - action: light.turn_on
@@ -1552,14 +1542,6 @@
     - condition: state
       entity_id: group.household
       state: 'home'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: sensor.main_floor_current_room
-        state: "Living Room"
-      - condition: state
-        entity_id: binary_sensor.main_floor_cleaning
-        state: 'on'
     - condition: state
       entity_id: input_boolean.bedtime
       state: 'off'
@@ -1568,6 +1550,9 @@
       - condition: state
         entity_id: media_player.living_room_apple_tv
         state: 'playing'
+    - condition: state
+      entity_id: binary_sensor.main_floor_vacuum_living_room_cleaning
+      state: 'off'
 
   actions:
     - action: light.turn_on
@@ -2232,14 +2217,9 @@
     - condition: state
       entity_id: light.four_season_room_lights
       state: 'off'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: vacuum.four_season_room
-        state: 'cleaning'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
     - condition: or
       conditions:
       - condition: state
@@ -2344,6 +2324,11 @@
     - condition: state
       entity_id: input_boolean.bedtime
       state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.upstairs_current_room
+        state: "USER1's Office"
 
   actions:
     - action: light.turn_on
@@ -2387,14 +2372,9 @@
     - condition: state
       entity_id: light.USER1_s_office_lamp
       state: 'off'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: person.USER1
-        state: 'home'
-      - condition: state
-        entity_id: vacuum.upstairs
-        state: 'cleaning'
+    - condition: state
+      entity_id: person.USER1
+      state: 'home'
     - condition: or
       conditions:
       - condition: state
@@ -2406,6 +2386,11 @@
     - condition: state
       entity_id: input_boolean.bedtime
       state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.upstairs_current_room
+        state: "USER1's Office"
 
   actions:
     - action: light.turn_on
@@ -2462,6 +2447,11 @@
       - condition: state
         entity_id: vacuum.upstairs
         state: 'returning'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.upstairs_current_room
+        state: "USER1's Office"
 
   actions:
     - action: media_player.turn_on
@@ -2525,6 +2515,11 @@
       - condition: state
         entity_id: sensor.prusa_core_one_mmu
         state: 'printing'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.upstairs_current_room
+        state: "USER1's Office"
 
   actions:
     - action: media_player.select_source
@@ -2605,6 +2600,11 @@
     - condition: state
       entity_id: input_boolean.bedtime
       state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.upstairs_current_room
+        state: "Workshop"
 
   actions:
     - action: light.turn_on
@@ -2667,20 +2667,20 @@
     - condition: state
       entity_id: light.USER2_s_office_lights
       state: 'off'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: person.USER2
-        state: 'home'
-      - condition: state
-        entity_id: vacuum.upstairs
-        state: 'cleaning'
+    - condition: state
+      entity_id: person.USER2
+      state: 'home'
     - condition: state
       entity_id: input_boolean.bedtime
       state: 'off'
     - condition: state
       entity_id: input_boolean.USER2_bedtime
       state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.upstairs_current_room
+        state: "USER2's Office"
 
   actions:
     - action: light.turn_on
@@ -2728,6 +2728,11 @@
       - condition: state
         entity_id: vacuum.upstairs
         state: 'returning'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.upstairs_current_room
+        state: "USER2's Office"
 
   actions:
     - action: media_player.turn_on
@@ -2809,14 +2814,14 @@
     - condition: time
       after: '07:00:00'
       before: '02:00:00'
-    - condition: or
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: not
       conditions:
       - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: vacuum.upstairs
-        state: 'cleaning'
+        entity_id: sensor.upstairs_current_room
+        state: "Upstairs Bathroom"
 
   actions:
     - action: light.turn_on
@@ -2854,14 +2859,14 @@
     - condition: time
       after: '02:00:00'
       before: '07:00:00'
-    - condition: or
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: not
       conditions:
       - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: vacuum.upstairs
-        state: 'cleaning'
+        entity_id: sensor.upstairs_current_room
+        state: "Upstairs Bathroom"
 
   actions:
     - action: light.turn_on
@@ -2934,14 +2939,14 @@
     - condition: state
       entity_id: light.upstairs_bathroom_toilet
       state: 'off'
-    - condition: or
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: not
       conditions:
       - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: vacuum.upstairs
-        state: 'cleaning'
+        entity_id: sensor.upstairs_current_room
+        state: "Upstairs Bathroom"
 
   actions:
     - action: light.turn_on
@@ -3024,14 +3029,14 @@
     - condition: state
       entity_id: binary_sensor.guest_bedroom_door_sensor
       state: 'on'
-    - condition: or
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: not
       conditions:
       - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: vacuum.upstairs
-        state: 'cleaning'
+        entity_id: sensor.upstairs_current_room
+        state: "Guest Bedroom"
 
   actions:
     - action: light.turn_on
@@ -3108,14 +3113,14 @@
     - condition: time
       after: '07:00:00'
       before: '22:00:00'
-    - condition: or
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: not
       conditions:
       - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: vacuum.upstairs
-        state: 'cleaning'
+        entity_id: sensor.upstairs_current_room
+        state: "Guest Bathroom"
 
   actions:
     - action: light.turn_on
@@ -3153,14 +3158,14 @@
     - condition: time
       after: '22:00:00'
       before: '07:00:00'
-    - condition: or
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: not
       conditions:
       - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: vacuum.upstairs
-        state: 'cleaning'
+        entity_id: sensor.upstairs_current_room
+        state: "Guest Bathroom"
 
   actions:
     - action: light.turn_on
@@ -3281,17 +3286,17 @@
     - condition: state
       entity_id: light.guest_bathroom_toilet_light
       state: 'off'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: state
-        entity_id: vacuum.upstairs
-        state: 'cleaning'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
     - condition: time
       after: '07:00:00'
       before: '22:00:00'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.upstairs_current_room
+        state: "Guest Bathroom"
 
   actions:
     - action: light.turn_on
@@ -3332,6 +3337,11 @@
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.upstairs_current_room
+        state: "Guest Bathroom"
 
   actions:
     - action: light.turn_on
@@ -3453,14 +3463,9 @@
     - condition: state
       entity_id: light.media_room_lights
       state: 'off'
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: group.household
-          state: 'home'
-        - condition: state
-          entity_id: vacuum.basement
-          state: 'cleaning'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
     - condition: not
       conditions:
       - condition: state
@@ -3480,7 +3485,7 @@
       after: '07:00:00'
       before: '22:00:00'
     - condition: state
-      entity_id: input_boolean.bedtime
+      entity_id: binary_sensor.basement_vacuum_media_room_cleaning
       state: 'off'
 
   actions:
@@ -3512,14 +3517,9 @@
     - condition: state
       entity_id: light.media_room_lights
       state: 'off'
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: group.household
-          state: 'home'
-        - condition: state
-          entity_id: vacuum.basement
-          state: 'cleaning'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
     - condition: not
       conditions:
       - condition: state
@@ -3540,6 +3540,9 @@
       before: '00:00:00'
     - condition: state
       entity_id: input_boolean.bedtime
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.basement_vacuum_media_room_cleaning
       state: 'off'
 
   actions:
@@ -3578,14 +3581,9 @@
     - condition: state
       entity_id: light.media_room_lights
       state: 'off'
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: group.household
-          state: 'home'
-        - condition: state
-          entity_id: vacuum.basement
-          state: 'cleaning'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
     - condition: not
       conditions:
       - condition: state
@@ -3606,6 +3604,9 @@
       before: '07:00:00'
     - condition: state
       entity_id: input_boolean.bedtime
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.basement_vacuum_media_room_cleaning
       state: 'off'
 
   actions:
@@ -3690,14 +3691,9 @@
     - condition: state
       entity_id: input_boolean.bedtime
       state: 'off'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: vacuum.basement
-        state: 'cleaning'
-      - condition: state
-        entity_id: vacuum.basement
-        state: 'returning'
+    - condition: state
+      entity_id: binary_sensor.basement_vacuum_media_room_cleaning
+      state: 'off'
 
   actions:
     - action: select.select_option
@@ -3781,17 +3777,17 @@
     - condition: state
       entity_id: light.game_room_lights
       state: 'off'
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: group.household
-          state: 'home'
-        - condition: state
-          entity_id: vacuum.basement
-          state: 'cleaning'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
     - condition: state
       entity_id: input_boolean.bedtime
       state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.basement_current_room
+        state: "Game Room"
 
   actions:
     - action: light.turn_on
@@ -3870,9 +3866,6 @@
         - condition: state
           entity_id: group.household
           state: 'home'
-        - condition: state
-          entity_id: vacuum.basement
-          state: 'cleaning'
     - condition: state
       entity_id: input_boolean.bedtime
       state: 'off'
@@ -3940,9 +3933,6 @@
         - condition: state
           entity_id: group.household
           state: 'home'
-        - condition: state
-          entity_id: vacuum.basement
-          state: 'cleaning'
     - condition: state
       entity_id: input_boolean.bedtime
       state: 'off'
@@ -4012,6 +4002,11 @@
     - condition: state
       entity_id: group.household
       state: 'home'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.basement_current_room
+        state: "Basement Bathroom"
 
   actions:
     - action: light.turn_on

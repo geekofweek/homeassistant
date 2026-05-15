@@ -229,6 +229,36 @@
         option: "mechanical"
 
         ##########################################################
+        ## Package Detection Webhook
+        ##########################################################
+
+- alias: Camera - Package Detection Webhook
+  id: 'camera_package_detection_webhook'
+
+  description: "Webhook for handling package detection events"
+  mode: single
+
+  triggers:
+    - trigger: webhook
+      allowed_methods:
+        - POST
+        - PUT
+      local_only: true
+      webhook_id: "REDACTED"
+
+  conditions:
+    - condition: state
+      entity_id: input_boolean.front_door_camera_package_detected
+      state: 'off'
+
+  actions:
+    - action: homeassistant.turn_on
+      data: {}
+      target:
+        entity_id:
+          - input_boolean.front_door_camera_package_detected
+
+        ##########################################################
         ## Package Camera On
         ##########################################################
 
@@ -241,6 +271,9 @@
       to: 'on'
     - trigger: state
       entity_id: binary_sensor.front_door_camera_doorbell
+      to: 'on'
+    - trigger: state
+      entity_id: input_boolean.front_door_camera_package_detected
       to: 'on'
 
   conditions:
@@ -279,8 +312,8 @@
       to: 'open'
       for:
         hours: 0
-        minutes: 1
-        seconds: 0
+        minutes: 0
+        seconds: 5
 
   conditions:
     - condition: or
@@ -302,6 +335,7 @@
         entity_id:
           - input_boolean.view_package_camera
           - input_boolean.package_camera_notification
+          - input_boolean.front_door_camera_package_detected
 
         ##########################################################
         ## Package Camera Off at Midnight
@@ -334,6 +368,7 @@
         entity_id:
           - input_boolean.view_package_camera
           - input_boolean.package_camera_notification
+          - input_boolean.front_door_camera_package_detected
 
 #################################################################
 ## Light Automations
@@ -995,6 +1030,9 @@
   triggers:
     - trigger: state
       entity_id: binary_sensor.front_door_camera_package_detected
+      to: 'on'
+    - trigger: state
+      entity_id: input_boolean.front_door_camera_package_detected
       to: 'on'
 
   conditions:

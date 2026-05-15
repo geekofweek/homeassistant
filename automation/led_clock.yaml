@@ -364,6 +364,8 @@
     - trigger: state
       entity_id: vacuum.upstairs
       to: 'cleaning'
+    - trigger: state
+      entity_id: sensor.upstairs_current_room
 
   actions:
     - action: mqtt.publish
@@ -376,7 +378,7 @@
           "repeat": 3,
           "scrollSpeed": 70,
           "color": [0,128,0],
-          "text": "Upstairs Cleaning"
+          "text": "Cleaning {{ states("sensor.upstairs_current_room") }}"
           }
     - action: mqtt.publish
       data:
@@ -388,7 +390,7 @@
           "repeat": 3,
           "scrollSpeed": 70,
           "color": [0,128,0],
-          "text": "Upstairs Cleaning"
+          "text": "Cleaning {{ states("sensor.upstairs_current_room") }}"
           }
 
       ##########################################################
@@ -450,7 +452,7 @@
           "repeat": 3,
           "scrollSpeed": 70,
           "color": [0,128,0],
-          "text": "4 Season Room Cleaning"
+          "text": "Cleaning 4 Season Room"
           }
 
       ##########################################################
@@ -488,6 +490,8 @@
     - trigger: state
       entity_id: vacuum.basement
       to: 'cleaning'
+    - trigger: state
+      entity_id: sensor.basement_current_room
 
   actions:
     - action: mqtt.publish
@@ -500,7 +504,7 @@
           "repeat": 3,
           "scrollSpeed": 70,
           "color": [0,128,0],
-          "text": "Basement Cleaning"
+          "text": "Cleaning {{ states("sensor.basement_current_room") }}"
           }
     - action: mqtt.publish
       data:
@@ -512,7 +516,7 @@
           "repeat": 3,
           "scrollSpeed": 70,
           "color": [0,128,0],
-          "text": "Basement Cleaning"
+          "text": "Cleaning {{ states("sensor.basement_current_room") }}"
           }
 
       ##########################################################
@@ -2406,14 +2410,9 @@
     - condition: state
       entity_id: light.media_room_led_clock_matrix
       state: 'off'
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: vacuum.basement
-        state: 'cleaning'
-      - condition: state
-        entity_id: vacuum.basement
-        state: 'returning'
+    - condition: state
+      entity_id: binary_sensor.basement_vacuum_media_room_cleaning
+      state: 'off'
     - condition: not
       conditions:
       - condition: state

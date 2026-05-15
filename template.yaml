@@ -3,6 +3,28 @@
 #################################################################
 
       ##########################################################
+      ## Main Floor Vaccum Media Room Cleaning Sensor
+      ##########################################################
+
+  - binary_sensor:
+      - unique_id: main_floor_vacuum_living_room_cleaning
+        name: "Main Floor Vacuum Living Room Cleaning"
+        state: >
+          {{ is_state('sensor.main_floor_current_room', 'Living room')
+             and is_state('binary_sensor.main_floor_cleaning', 'on') }}
+
+      ##########################################################
+      ## Basement Vaccum Media Room Cleaning Sensor
+      ##########################################################
+
+  - binary_sensor:
+      - unique_id: basement_vacuum_media_room_cleaning
+        name: "Basement Vacuum Media Room Cleaning"
+        state: >
+          {{ is_state('sensor.basement_current_room', 'Media Room')
+             and is_state('binary_sensor.basement_cleaning', 'on') }}
+
+      ##########################################################
       ## Weather Template
       ##########################################################
 
